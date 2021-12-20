@@ -15,8 +15,6 @@ const SignInBox = ({ handleLoggedIn }) => {
 		setUserData(input);
     }
 
-    // console.log(userData)
-
     return (
         <View style={SignInBoxStyles.container}>
             <UserName handleInput={handleInput} />
