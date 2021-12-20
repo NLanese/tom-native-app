@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
 import LandingPage from './Pages/LandingPage/Landing'
+import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
 
@@ -50,7 +51,7 @@ export default function App() {
               {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
 
               {loggedIn === true ? (
-                <Text style={{ color: 'white' }}>Loggin In</Text>
+                <Home />
               ) : null}
 
             <StatusBar style="auto" />
