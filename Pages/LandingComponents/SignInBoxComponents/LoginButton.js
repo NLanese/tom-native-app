@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 import { useHistory } from 'react-router-native';
-import { TextInput, Text, View, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import { buttonStyles } from '../../../Styles/LandingPageStyles';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../GraphQL/operations';
@@ -14,23 +14,14 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	const [user, setUser] = useRecoilState(userState);
 	let history = useHistory();
 
-	useEffect(() => {
-		// console.log('data')
-		
+	useEffect( async () => {
 		if (!loadingL && dataL) {
-			const { signinUser } = dataL.signinUser;
-			setUser(dataL.signinUser)
-			stateChange(dataL.signinUser.token);
-			
-			setTimeout(() => {
-				handleLoggedIn()
-				history.push("/home");
-			}, 0)
+			await setUser(dataL.signinUser)
+			await stateChange(dataL.signinUser.token);
+			await handleLoggedIn()
+			await history.push("/home");
 		}
 	}, [dataL])
-
-    console.log(user)
-	// console.log(dataL)
 
 	return (
 		<View style={buttonStyles.container}>
