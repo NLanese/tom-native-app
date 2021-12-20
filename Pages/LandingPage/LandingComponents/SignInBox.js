@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { SignInBoxStyles } from '../../Styles/LandingPageStyles'
+import { SignInBoxStyles } from '../../../Styles/LandingPageStyles'
 import UserName from './SignInBoxComponents/UserName'
 import Password from './SignInBoxComponents/Password'
 import LoginButton from './SignInBoxComponents/LoginButton'

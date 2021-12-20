@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 // import { userState } from '../../../Recoil/atoms';
 import { View, Button, Modal, TextInput, Text, Pressable } from 'react-native'
 import { useMutation } from '@apollo/client';
-import { SIGNUP } from '../../../GraphQL/operations';
-import { buttonStyles, signUpModal } from '../../../Styles/LandingPageStyles';
+import { SIGNUP } from '../../../../GraphQL/operations';
+import { buttonStyles, signUpModal } from '../../../../Styles/LandingPageStyles';
 
 /* Add phoneNumber / firstname / lastname / adminEmail INPUTS */
 /* Add fields above to the onPress on button */
