@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { userState } from '../../../Recoil/atoms';
+// import { useRecoilState } from 'recoil';
+// import { userState } from '../../../Recoil/atoms';
 import { View, Button, Modal, TextInput, Text, Pressable } from 'react-native'
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../GraphQL/operations';
 import { buttonStyles, signUpModal } from '../../../Styles/LandingPageStyles';
 
+/* Add phoneNumber / firstname / lastname / adminEmail INPUTS */
+/* Add fields above to the onPress on button */
+/* console log the data to make sure request when through */
 const SignUpButton = () => {
 	const [userData, setUserData] = useState({})
     const [signup, { loading: loadingS, error: errorS, data: dataS }] =
 		useMutation(SIGNUP);
     const [modalVisible, setModalVisible] = useState(false);
-	const [user, setUser] = useRecoilState(userState);
+	// const [user, setUser] = useRecoilState(userState);
 
 	const handleInput = (id, information) => {
 		const input = { ...userData };
@@ -19,13 +22,14 @@ const SignUpButton = () => {
 		setUserData(input);
 	};
 
+	/* Going to be used to check for errors */
 	useEffect(() => {
 		if (!loadingS && dataS) {
-			const { signupUser } = dataS;
-			setUser(signupUser);
+			console.log(dataS)
+		} else {
+			console.log(errorS)
 		}
-	}, [dataS]);
-
+	}, [dataS, errorS]);
 
     return (
 			<View style={buttonStyles.signinButton}>
