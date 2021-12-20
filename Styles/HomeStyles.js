@@ -4,9 +4,12 @@ const home = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: '#1a2c3d',
+		flex: 1,
+		width: '100%'
 	},
 	text: {
-		color: '#F7F7FF',
+		color: 'white',
 	},
 	navbar: {
 		height: 4000
