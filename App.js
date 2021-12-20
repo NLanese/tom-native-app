@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
-import LandingPage from './Pages/Landing'
+import LandingPage from './Pages/LandingPage/Landing'
 import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, Text, View } from 'react-native';
-import { userNameStyles } from '../../../Styles/LandingPageStyles'
+import { userNameStyles } from '../../../../Styles/LandingPageStyles'
 
 const UserName = ({ handleInput }) => {
     return (
