@@ -12,6 +12,11 @@ import stateChange from './Hooks/handleToken'
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
+import Reporting from './Pages/ReportingPage/Reporting'
+import Productivity from './Pages/ProductivityPage/Productivity'
+import Communication from './Pages/CommunicationPage/Communication'
+import Analytics from './Pages/AnalyticsPage/Analytics'
+import Settings from './Pages/SettingsPage/Settings'
 
 let state;
 
@@ -59,6 +64,11 @@ export default function App() {
                   <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
                   <Route exact path='/reportanaccident' component={ReportAnAccident} />
+                  <Route exact path='/reporting' component={Reporting} />
+                  <Route exact path='/productivity' component={Productivity} /> 
+                  <Route exact path='/communication' component={Communication} />
+                  <Route exact path='/analytics' component={Analytics} />
+                  <Route exact path='/settings' component={Settings} />
                 </Switch>
               ) : null}
 
