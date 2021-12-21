@@ -21,8 +21,8 @@ const titleStyles = StyleSheet.create({
 
 const SignInBoxStyles = StyleSheet.create({
 	container: {
-		backgroundColor: '#95110F',
-		height: 550,
+		backgroundColor: '#CCCCCC',
+		height: 250,
 		borderRadius: 10,
 		paddingTop: 10,
 	},
@@ -41,18 +41,20 @@ const userNameStyles = StyleSheet.create({
 		margin: 12,
 		borderWidth: 1,
 		borderRadius: 10,
+		marginTop: 25
 	},
 });
 
 const buttonStyles = StyleSheet.create({
 	container: {
-		paddingLeft: 25,
-		paddingRight: 25,
+		backgroundColor: 'black',
+		marginLeft: 25,
+		marginRight: 25
 	},
 	signinButton: {
 		paddingLeft: 25,
 		paddingRight: 25,
-		marginTop: 285
+		marginTop: 150
 	},
 	button: {
 		borderRadius: 25,
@@ -64,7 +66,7 @@ const signUpModal = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 22,
+		marginTop: 0,
 	},
 	modalView: {
 		margin: 20,
@@ -81,12 +83,13 @@ const signUpModal = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
 		elevation: 5,
-		marginTop: 135,
+		marginTop: 0,
 	},
 	button: {
 		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
+		marginBottom: 100,
+		// padding: 10,
+		// elevation: 2,
 	},
 	buttonOpen: {
 		backgroundColor: '#F194FF',
