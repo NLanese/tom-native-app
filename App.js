@@ -10,6 +10,7 @@ import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
+import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 
 let state;
 
@@ -55,6 +56,7 @@ export default function App() {
                 <Switch>
                   <Route exact path='/home' component={Home} />
                   <Route exact path='/scorecard' component={ScoreCard} />
+                  <Route exact path='/shiftplanner' component={ShiftPlanner} />
                 </Switch>
               ) : null}
 
