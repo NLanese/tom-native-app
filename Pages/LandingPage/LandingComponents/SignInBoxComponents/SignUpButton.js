@@ -82,7 +82,7 @@ const SignUpButton = () => {
 									setModalVisible(!modalVisible);
 								}}
 								title='Sign Up!'
-								color='#F6AE2D'
+								color='black'
 								accessibilityLabel='Sign Up!'
 							/>
 						</View>

@@ -33,7 +33,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 					},
 				});}}
 				title='Login!'
-				color='#F6AE2D'
+				color='#CCCCCC'
 				accessibilityLabel='Login!'
 			/>
 		</View>
