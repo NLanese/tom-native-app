@@ -9,6 +9,7 @@ import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
+import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 
 let state;
 
@@ -51,7 +52,10 @@ export default function App() {
               {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
 
               {loggedIn === true ? (
-                <Home />
+                <Switch>
+                  <Route exact path='/home' component={Home} />
+                  <Route exact path='/scorecard' component={ScoreCard} />
+                </Switch>
               ) : null}
 
             <StatusBar style="auto" />

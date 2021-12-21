@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const home = StyleSheet.create({
 	container: {
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		alignItems: 'center',
 		backgroundColor: '#1a2c3d',
 		flex: 1,
@@ -11,55 +11,30 @@ const home = StyleSheet.create({
 	text: {
 		color: 'white',
 	},
-	navbar: {
-		height: 4000
-	}
+	logo: {
+		width: 300,
+		height: 80,
+		marginTop: 50
+	  }
 });
 
-const card = StyleSheet.create({
+const buttonBox = StyleSheet.create({
 	container: {
-		borderWidth: 1,
-		borderColor: '#F7F7FF',
-		width: 400,
-		borderRadius: 6,
-		backgroundColor: '#292929',
-		marginTop: 5
-		// justifyContent: 'center',
-		// alignItems: 'center',
-		// flexDirection: 'row',
-		// flex: 1
-	},
-	titleContainer: {
-		alignItems: 'center',
-	},
-	rowContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-evenly',
-		// alignItems: 'center',
-		// justifyContent: 'flex-start',
-	},
-	image: {
-		width: 398,
-		height: 300,
-		borderRadius: 3,
-		// borderBottomLeftRadius: 6,
-		// borderBottomRightRadius: 6,
-		marginTop: 3
-	},
-	text: {
-		color: '#F7F7FF',
-	},
-	titleText: {
-		color: '#F7F7FF',
-		fontSize: 30,
-	},
-	postedByText: {
-		color: '#F7F7FF',
+		marginTop: 20,
 		justifyContent: 'flex-start',
+		alignItems: 'center',
+		backgroundColor: 'black',
+		height: 500,
+		width: '90%',
+		display: 'flex'
+		
 	},
-});
+	scoreCardButton: {
+		// marginLeft: 25
+	}
+})
 
 export {
     home,
-	card
+	buttonBox
 }
