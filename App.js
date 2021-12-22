@@ -64,7 +64,8 @@ export default function App() {
                   <Route exact path='/home' component={Home} />
                   <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
-                  <Route exact path='/reportanaccident' component={CreateOrAdd} />
+                  <Route exact path='/createoradd' component={CreateOrAdd} />
+                  <Route exact path='/reportanaccident' component={ReportAnAccident} />
                   <Route exact path='/reporting' component={Reporting} />
                   <Route exact path='/productivity' component={Productivity} /> 
                   <Route exact path='/communication' component={Communication} />

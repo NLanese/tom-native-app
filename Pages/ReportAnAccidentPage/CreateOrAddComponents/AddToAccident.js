@@ -8,7 +8,7 @@ const AddToAccidentButton = () => {
         <View style={CreateOrAddStyle.ataContainer}>
             <Button 
                 onPress={() => {
-                    console.log('hit')
+                    console.log('Need to create AddToAccident.js')
                 }}
                 style={CreateOrAddStyle.caaButton}
                 title='Add to Accident'
