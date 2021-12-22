@@ -43,7 +43,7 @@ const client = new ApolloClient({
 });
 
 export default function App() {
-  const [loggedIn, setloggedIn] = useState(false)
+  const [loggedIn, setloggedIn] = useState(true)
 
 	const handleLoggedIn = () => {
 		state = stateChange('')
