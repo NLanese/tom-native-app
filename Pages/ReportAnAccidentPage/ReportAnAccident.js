@@ -5,7 +5,7 @@ const ReportAnAccident = () => {
 
     return (
         <View>
-            <Text> This is Report An Accident page</Text>
+            <Text> This is Report An Accident page </Text>
         </View>
     )
 }

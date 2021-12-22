@@ -17,6 +17,7 @@ import Productivity from './Pages/ProductivityPage/Productivity'
 import Communication from './Pages/CommunicationPage/Communication'
 import Analytics from './Pages/AnalyticsPage/Analytics'
 import Settings from './Pages/SettingsPage/Settings'
+import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
 
 let state;
 
@@ -43,7 +44,7 @@ const client = new ApolloClient({
 });
 
 export default function App() {
-  const [loggedIn, setloggedIn] = useState(true)
+  const [loggedIn, setloggedIn] = useState(false)
 
 	const handleLoggedIn = () => {
 		state = stateChange('')
@@ -63,7 +64,7 @@ export default function App() {
                   <Route exact path='/home' component={Home} />
                   <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
-                  <Route exact path='/reportanaccident' component={ReportAnAccident} />
+                  <Route exact path='/reportanaccident' component={CreateOrAdd} />
                   <Route exact path='/reporting' component={Reporting} />
                   <Route exact path='/productivity' component={Productivity} /> 
                   <Route exact path='/communication' component={Communication} />
