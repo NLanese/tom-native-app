@@ -5,7 +5,9 @@ import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
 
 const ReportAnAccident = () => {
-    const [accidentData, setAccidentData] = useState({})
+    const [accidentData, setAccidentData] = useState({
+        usingSafety: false
+    })
 
     const handleInput = (id, information, event) => {
         const input = { ...accidentData }
