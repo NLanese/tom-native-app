@@ -14,14 +14,21 @@ const ButtonBox = () => {
 
     return (
         <View style={buttonBox.container}>
-            <ScoreCardButton />
-            <ShiftPlannerButton />
-            <ReportAnAccidentButton />
-            <ReportingButton />
-            <ProductivityButton />
-            <CommunicationButton />
-            <AnalyticsButton />
-            <SettingsButton />
+
+            <View style={buttonBox.leftContainer}>
+                <ScoreCardButton />
+                <ShiftPlannerButton />
+                <ReportAnAccidentButton />
+                <ReportingButton />
+            </View>
+
+            <View style={buttonBox.rightContainer}>
+                <ProductivityButton />
+                <CommunicationButton />
+                <AnalyticsButton />
+                <SettingsButton />
+            </View>
+
         </View>
     )
 }
