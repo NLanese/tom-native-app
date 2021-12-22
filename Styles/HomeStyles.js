@@ -23,11 +23,32 @@ const buttonBox = StyleSheet.create({
 		marginTop: 20,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		backgroundColor: 'black',
+		// backgroundColor: 'black',
 		height: 500,
 		width: '90%',
 		display: 'flex'
 		
+	},
+	leftContainer: {
+		position: 'relative',
+		right: 90,
+		display: 'flex',
+		flexWrap: 'wrap',
+		height: 500,
+		width: '45%',
+		alignContent: 'space-between',
+		justifyContent: 'space-around',
+	},
+	rightContainer: {
+		position: 'relative',
+		bottom: 500,
+		left: 90,
+		display: 'flex',
+		flexWrap: 'wrap',
+		height: 500,
+		width: '45%',
+		alignContent: 'space-between',
+		justifyContent: 'space-around'
 	},
 	scoreCardButton: {
 		// marginLeft: 25
