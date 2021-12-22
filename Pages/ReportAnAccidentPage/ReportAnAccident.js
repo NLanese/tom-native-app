@@ -6,7 +6,8 @@ import InputField from "./ReportAnAccidentComponents/InputField";
 
 const ReportAnAccident = () => {
     const [accidentData, setAccidentData] = useState({
-        usingSafety: false
+        usingSafety: false,
+        safetyFailed: false
     })
 
     const handleInput = (id, information, event) => {
