@@ -1,11 +1,14 @@
-import react from "react";
+import React, { useState } from "react";
 import { View, Text } from 'react-native'
+import { ReportAnAccidentStyle } from "../../Styles/ReportAnAccidentStyles";
+import Title from "./ReportAnAccidentComponents/Title";
 
 const ReportAnAccident = () => {
+    const [accidentData, setAccidentData] = useState({})
 
     return (
-        <View>
-            <Text> This is Report An Accident page </Text>
+        <View style={ReportAnAccidentStyle.container}>
+            <Title />
         </View>
     )
 }

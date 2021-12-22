@@ -42,9 +42,27 @@ const CreateOrAddStyle = StyleSheet.create({
         width: 150,
         height: 50,
     }
+})
 
+const ReportAnAccidentStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        height: '100%'
+    },
+    titleContainer: {
+        marginTop: 70,
+        height: 50,
+        width: 368,
+        alignContent: 'flex-start',
+        alignItems: 'center',
+    },
+    titleText: {
+        color: '#CCCCCC',
+        fontSize: 36,  
+    },
 })
 
 export {
-    CreateOrAddStyle
+    CreateOrAddStyle,
+    ReportAnAccidentStyle
 }

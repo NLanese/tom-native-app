@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text } from 'react-native'
 import { CreateOrAddStyle } from "../../../Styles/ReportAnAccidentStyles";
-import CreateOrAdd from "../CreateOrAdd";
 
 const Title = () => {
 
