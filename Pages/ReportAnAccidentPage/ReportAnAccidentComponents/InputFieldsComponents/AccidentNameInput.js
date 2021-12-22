@@ -8,14 +8,15 @@ const AccidentNameInput = ({ handleInput }) => {
 
     return (
         <View style={SubmitStyle.container}>
-            <TextInput 
-                name='Name'
-                placeholder="Name of the report"
-                style={SubmitStyle.input}
-                onChangeText={(name) => {
-                    handleInput('name', name)
-                }}
-            />
+            <Text style={SubmitStyle.text}> Report Name </Text>
+                <TextInput 
+                    name='Name'
+                    placeholder=" Name of the report"
+                    style={SubmitStyle.input}
+                    onChangeText={(name) => {
+                        handleInput('name', name)
+                    }}
+                />
         </View>
     )
 }
