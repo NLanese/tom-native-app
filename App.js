@@ -18,6 +18,7 @@ import Communication from './Pages/CommunicationPage/Communication'
 import Analytics from './Pages/AnalyticsPage/Analytics'
 import Settings from './Pages/SettingsPage/Settings'
 import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
+import ReportThirdParty from './Pages/ReportAnAccidentPage/ReportThirdParty'
 
 let state;
 
@@ -65,7 +66,11 @@ export default function App() {
                   <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
                   <Route exact path='/createoradd' component={CreateOrAdd} />
+
+
                   <Route exact path='/reportanaccident' component={ReportAnAccident} />
+                    <Route exact path='/reportthirdparty' component={ReportThirdParty} />
+
                   <Route exact path='/reporting' component={Reporting} />
                   <Route exact path='/productivity' component={Productivity} /> 
                   <Route exact path='/communication' component={Communication} />

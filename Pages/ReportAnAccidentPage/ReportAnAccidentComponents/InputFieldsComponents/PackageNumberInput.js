@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TextInput } from 'react-native'
 import { SubmitStyle } from "../../../../Styles/ReportAnAccidentStyles";
 
-
+/* NEED TO CHANGE TO ONLY ACCEPT INT INPUT */
 const PackageNumberInput = ({ handleInput }) => {
 
 
