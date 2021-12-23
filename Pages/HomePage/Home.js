@@ -9,8 +9,6 @@ import ButtonBox from './HomeComponents/ButtonBox';
 const Home = () => {
     const [user, setUser] = useRecoilState(userState);
 
-    console.log(user)
-
     return (
         <View style={home.container}> 
             <Title />
