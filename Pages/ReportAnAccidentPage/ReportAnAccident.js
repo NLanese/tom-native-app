@@ -3,19 +3,21 @@ import { View, Text, Button } from 'react-native'
 import { ReportAnAccidentStyle } from "../../Styles/ReportAnAccidentStyles";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../Recoil/atoms'
+import { useHistory } from "react-router-native";
 import { useMutation } from "@apollo/client";
 import { CREATEACCIDENT } from "../../GraphQL/operations";
 import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
 
 const ReportAnAccident = () => {
-    // const [user, setUser] = useRecoilState(userState)
+    let history = useHistory()
     const [createAccident, { loading: loading, error: error, data: data }] =
 		useMutation(CREATEACCIDENT);
     const [accidentData, setAccidentData] = useState({
         usingSafety: false,
         safetyFailed: false
     })
+    const [returnedAccidentData, setReturnedAccidentData] = useState({})
 
     const handleInput = (id, information, event) => {
         const input = { ...accidentData }
@@ -23,15 +25,16 @@ const ReportAnAccident = () => {
         setAccidentData(input)
     }
 
-    useEffect(() => {
+    useEffect( async () => {
         if (!loading && data) {
-            console.log(data)
+            await setReturnedAccidentData(data.createAccident)
+            // await history.push("/reporthitperson")
+        } else {
+            console.log(error)
         }
     }, [data])
 
-    // console.log(`data from outside ${data}`)
-    console.log(error)
-    // console.log(accidentData)
+    console.log(returnedAccidentData)
 
     return (
         <View style={ReportAnAccidentStyle.container}>
