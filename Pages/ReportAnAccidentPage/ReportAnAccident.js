@@ -9,7 +9,7 @@ import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
 
 const ReportAnAccident = () => {
-    const [user, setUser] = useRecoilState(userState)
+    // const [user, setUser] = useRecoilState(userState)
     const [createAccident, { loading: loading, error: error, data: data }] =
 		useMutation(CREATEACCIDENT);
     const [accidentData, setAccidentData] = useState({
@@ -29,8 +29,8 @@ const ReportAnAccident = () => {
         }
     }, [data])
 
-    console.log(`data from outside ${data}`)
-    // console.log(error)
+    // console.log(`data from outside ${data}`)
+    console.log(error)
     // console.log(accidentData)
 
     return (
@@ -42,12 +42,10 @@ const ReportAnAccident = () => {
                     createAccident({
                         variables: {
                             name: accidentData.name,
-                            usingSafety: true,
-                            safetyFailed: true,
-                            numberPackageCarried: 123,
-                            safetyEquipmentUsed: {
-                                "Key": "Value"
-                            }
+                            usingSafety: accidentData.usingSafety,
+                            safetyFailed: accidentData.safetyFailed,
+                            numberPackageCarried: parseInt(accidentData.numberPackageCarried),
+                            safetyEquipmentUsed: accidentData.safetyEquipmentUsed
                         }
                     })
                 }}

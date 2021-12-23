@@ -38,7 +38,7 @@ const LOGIN = gql`
 `;
 
 const CREATEACCIDENT = gql`
-  mutation Mutation($name: String!, $usingSafety: Boolean!, $safetyFailed: Boolean!, $numberPackageCarried: Int!, $safetyEquipmentUsed: JSON!) {
+  mutation Mutation($name: String!, $usingSafety: Boolean!, $safetyFailed: Boolean!, $numberPackageCarried: Int!, $safetyEquipmentUsed: String!) {
   createAccident(name: $name, using_safety: $usingSafety, safety_failed: $safetyFailed, number_package_carried: $numberPackageCarried, safety_equipment_used: $safetyEquipmentUsed) {
     id
     name
