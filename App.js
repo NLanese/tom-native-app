@@ -20,6 +20,9 @@ import Settings from './Pages/SettingsPage/Settings'
 import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
 import ReportThirdParty from './Pages/ReportAnAccidentPage/ReportThirdParty'
 import ReportInjuryAccident from './Pages/ReportAnAccidentPage/ReportInjuryAccident'
+import ReportPropertyAccident from './Pages/ReportAnAccidentPage/ReportPropertyAccident'
+import ReportHitPerson from './Pages/ReportAnAccidentPage/ReportHitPerson'
+import ReportInjuryReport from './Pages/ReportAnAccidentPage/ReportInjuryReport'
 
 let state;
 
@@ -72,6 +75,10 @@ export default function App() {
                   <Route exact path='/reportanaccident' component={ReportAnAccident} />
                     <Route exact path='/reportthirdparty' component={ReportThirdParty} />
                     <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
+                    <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
+                    <Route exact path='/reporthitperson' component={ReportHitPerson} />
+                    <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
+
 
                   <Route exact path='/reporting' component={Reporting} />
                   <Route exact path='/productivity' component={Productivity} /> 

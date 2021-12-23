@@ -28,7 +28,7 @@ const ReportAnAccident = () => {
     useEffect( async () => {
         if (!loading && data) {
             await setReturnedAccidentData(data.createAccident)
-            await history.push("/reportinjuryaccident")
+            // await history.push("/reporthitperson")
         } else {
             console.log(error)
         }
