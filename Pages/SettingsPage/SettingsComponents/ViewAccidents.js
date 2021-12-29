@@ -1,13 +1,16 @@
 import react from "react"
 import { useHistory } from 'react-router-native';
-import { View, Button, Text } from 'react-native'
+import { View, Button, Text, ScrollView } from 'react-native'
+import { useRecoilState } from 'recoil'
+import { userState } from '../../../Recoil/atoms'
 
 const ViewAccidents = () => {
 
+
     return (
-        <View >
+        <ScrollView >
             <Text>Accident Information</Text>
-        </View>
+        </ScrollView>
     )
 }
 
