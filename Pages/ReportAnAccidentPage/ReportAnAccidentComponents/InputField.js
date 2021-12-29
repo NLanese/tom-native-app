@@ -12,10 +12,10 @@ const InputField = ({ accidentData, handleInput }) => {
     return (
         <View style={ReportAnAccidentStyle.inputFieldContainer}>
             <AccidentNameInput handleInput={handleInput}/>
-            <UsingSafetyButton handleInput={handleInput} usingSafety={accidentData.usingSafety}/>
+            {/* <UsingSafetyButton handleInput={handleInput} usingSafety={accidentData.usingSafety}/>
             <SafetyFailedButton handleInput={handleInput} safetyFailed={accidentData.safetyFailed} />
             <PackageNumberInput handleInput={handleInput} />
-            <SafetyEquipmentUsedInput handleInput={handleInput} />
+            <SafetyEquipmentUsedInput handleInput={handleInput} /> */}
         </View>
     )
 }

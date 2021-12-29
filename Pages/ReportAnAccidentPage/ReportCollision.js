@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text } from 'react-native'
 
-const ReportThirdParty = () => {
+const ReportCollision = () => {
 
     return (
         <View>
-            <Text>HELLO FROM REPORT THIRD PARTY </Text>
+            <Text>HELLO FROM REPORT COLLISION </Text>
         </View>
     )
 }
 
-export default ReportThirdParty
+export default ReportCollision

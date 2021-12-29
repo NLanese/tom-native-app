@@ -8,6 +8,7 @@ import { useMutation } from "@apollo/client";
 import { CREATEACCIDENT } from "../../GraphQL/operations";
 import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
+import ButtonField from "./ReportAnAccidentComponents/ButtonField";
 
 const ReportAnAccident = () => {
     let history = useHistory()
@@ -17,6 +18,7 @@ const ReportAnAccident = () => {
         usingSafety: false,
         safetyFailed: false
     })
+    const [typeOfReport, setTypeOfReport] = useState()
     const [returnedAccidentData, setReturnedAccidentData] = useState({})
 
     const handleInput = (id, information, event) => {
@@ -40,6 +42,7 @@ const ReportAnAccident = () => {
         <View style={ReportAnAccidentStyle.container}>
             <Title />
             <InputField accidentData={accidentData} handleInput={handleInput}/>
+            <ButtonField />
             <Button 
                 onPress={() => {
                     createAccident({

@@ -18,7 +18,7 @@ import Communication from './Pages/CommunicationPage/Communication'
 import Analytics from './Pages/AnalyticsPage/Analytics'
 import Settings from './Pages/SettingsPage/Settings'
 import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
-import ReportThirdParty from './Pages/ReportAnAccidentPage/ReportThirdParty'
+import ReportCollision from './Pages/ReportAnAccidentPage/ReportCollision'
 import ReportInjuryAccident from './Pages/ReportAnAccidentPage/ReportInjuryAccident'
 import ReportPropertyAccident from './Pages/ReportAnAccidentPage/ReportPropertyAccident'
 import ReportHitPerson from './Pages/ReportAnAccidentPage/ReportHitPerson'
@@ -73,7 +73,7 @@ export default function App() {
 
 
                   <Route exact path='/reportanaccident' component={ReportAnAccident} />
-                    <Route exact path='/reportthirdparty' component={ReportThirdParty} />
+                    <Route exact path='/reportcollision' component={ReportCollision} />
                     <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
                     <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
                     <Route exact path='/reporthitperson' component={ReportHitPerson} />
