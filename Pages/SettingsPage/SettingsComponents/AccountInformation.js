@@ -4,27 +4,25 @@ import AdminAndUserInformation from "./InformationComponents/AdminAndUserInforma
 import EditAccountInformationButton from "./ButtonBoxComponents/EditAccountInformationButton";
 import ViewAccidentsButton from "./ButtonBoxComponents/ViewAccidentsButton";
 import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
 import { settings } from "../../../Styles/SettingStyles";
+import { GET_USER_DATA } from '../../../GraphQL/operations'
+import { useRecoilState } from 'recoil'
+import { userState } from '../../../Recoil/atoms'
 
-const AccountInformation = (props) => {
+const AccountInformation = () => {
 
-    const [userData, { loading: loading, error: error, data: data }] = useQuery(GET_USER_DATA);
-    /* Going to be used to check for errors */
-    useEffect(() => {
-        if (!loading && data) {
-            console.log(data)
-        } else {
-            console.log(error)
-        }
-    }, [dataS, errorS]);
+    const [getUser, setUser] = useRecoilState(userState)
+    
+    console.log(getUser)
 
     return (
         <View style={settings.container}>
             <View>
-                <AdminAndUserInformation userData={userData}/>
+                <AdminAndUserInformation userData={getUser}/>
             </View>
-            <EditAccountInformationButton userData={userData}/>
-            <ViewAccidentsButton userData={userData}/>
+            <EditAccountInformationButton userData={getUser}/>
+            <ViewAccidentsButton userData={getUser}/>
         </View>
     )
 }
