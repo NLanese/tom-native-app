@@ -23,6 +23,7 @@ import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/
 import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportPropertyAccident'
 import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
 import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
+import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
 
 let state;
 
@@ -69,15 +70,16 @@ export default function App() {
                   <Route exact path='/home' component={Home} />
                   <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
-                  <Route exact path='/createoradd' component={CreateOrAdd} />
 
 
                   <Route exact path='/reportanaccident' component={ReportAnAccident} />
-                    <Route exact path='/reportcollision' component={ReportCollision} />
-                    <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
-                    <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
-                    <Route exact path='/reporthitperson' component={ReportHitPerson} />
-                    <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
+                    <Route exact path='/before_we_begin' component={BeforeWeBegin} />
+                    <Route exact path='/createoradd' component={CreateOrAdd} />
+                      <Route exact path='/reportcollision' component={ReportCollision} />
+                      <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
+                      <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
+                      <Route exact path='/reporthitperson' component={ReportHitPerson} />
+                      <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
 
 
                   <Route exact path='/reporting' component={Reporting} />
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1a2c3d',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    justifyContent: 'flex-start',
   },
 });

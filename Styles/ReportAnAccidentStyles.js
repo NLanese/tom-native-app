@@ -106,9 +106,30 @@ const ButtonFieldStyle = StyleSheet.create({
     }
 })
 
+const BeforeWeBeginStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+        marginRight: 50,
+        marginLeft: 50
+    },
+    subContainer: {
+        marginTop: 25
+    },
+    text: {
+		color: '#F7F7FF',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 15
+	},
+})
+
 export {
     CreateOrAddStyle,
     ReportAnAccidentStyle,
     SubmitStyle,
-    ButtonFieldStyle
+    ButtonFieldStyle,
+    BeforeWeBeginStyle
 }

@@ -4,8 +4,8 @@ import { ReportAnAccidentStyle } from "../../Styles/ReportAnAccidentStyles";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../Recoil/atoms'
 import { useHistory } from "react-router-native";
-import { useMutation } from "@apollo/client";
-import { CREATEACCIDENT } from "../../GraphQL/operations";
+import { useMutation, useQuery } from "@apollo/client";
+import { CREATEACCIDENT, GET_USER_DATA } from "../../GraphQL/operations";
 import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
 import ButtonField from "./ReportAnAccidentComponents/ButtonField";
@@ -18,7 +18,7 @@ const ReportAnAccident = () => {
         // usingSafety: false,
         // safetyFailed: false
     })
-    const [typeOfReport, setTypeOfReport] = useState()
+    // const [typeOfReport, setTypeOfReport] = useState()
     const [returnedAccidentData, setReturnedAccidentData] = useState({})
 
     const handleInput = (id, information, event) => {
@@ -38,7 +38,7 @@ const ReportAnAccident = () => {
 
     // console.log(accidentData)
 
-    console.log(returnedAccidentData)
+    // console.log(returnedAccidentData)
 
     return (
         <View style={ReportAnAccidentStyle.container}>

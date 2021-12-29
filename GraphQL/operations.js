@@ -47,4 +47,21 @@ const CREATEACCIDENT = gql`
 }
 `;
 
-export { SIGNUP, LOGIN, CREATEACCIDENT }
+const GET_USER_DATA = gql`
+  query Query {
+  getUser {
+    id
+    firstname
+    lastname
+    email
+    phoneNumber
+    employeeId
+    adminFirstname
+    adminLastname
+    adminUsername
+    adminEmail
+  }
+}
+`
+
+export { SIGNUP, LOGIN, CREATEACCIDENT, GET_USER_DATA }
