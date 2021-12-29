@@ -4,7 +4,14 @@ import { StyleSheet } from 'react-native';
 const settings = StyleSheet.create({
     container: {
         width: '100%',
-        backgroundColor: '#1a2c3d'
+        backgroundColor: '#1a2c3d',
+        justifyContent: 'center'
+    },
+
+    informationContainer :{
+        position: 'absolute',
+        width: "80%",
+        left: "10%"
     },
 
     text: {
