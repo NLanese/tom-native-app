@@ -18,11 +18,11 @@ import Communication from './Pages/CommunicationPage/Communication'
 import Analytics from './Pages/AnalyticsPage/Analytics'
 import Settings from './Pages/SettingsPage/Settings'
 import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
-import ReportCollision from './Pages/ReportAnAccidentPage/ReportCollision'
-import ReportInjuryAccident from './Pages/ReportAnAccidentPage/ReportInjuryAccident'
-import ReportPropertyAccident from './Pages/ReportAnAccidentPage/ReportPropertyAccident'
-import ReportHitPerson from './Pages/ReportAnAccidentPage/ReportHitPerson'
-import ReportInjuryReport from './Pages/ReportAnAccidentPage/ReportInjuryReport'
+import ReportCollision from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportCollision'
+import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryAccident'
+import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportPropertyAccident'
+import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
+import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
 
 let state;
 

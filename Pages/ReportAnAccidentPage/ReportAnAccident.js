@@ -15,8 +15,8 @@ const ReportAnAccident = () => {
     const [createAccident, { loading: loading, error: error, data: data }] =
 		useMutation(CREATEACCIDENT);
     const [accidentData, setAccidentData] = useState({
-        usingSafety: false,
-        safetyFailed: false
+        // usingSafety: false,
+        // safetyFailed: false
     })
     const [typeOfReport, setTypeOfReport] = useState()
     const [returnedAccidentData, setReturnedAccidentData] = useState({})
@@ -36,22 +36,25 @@ const ReportAnAccident = () => {
         }
     }, [data])
 
+    // console.log(accidentData)
+
     console.log(returnedAccidentData)
 
     return (
         <View style={ReportAnAccidentStyle.container}>
             <Title />
             <InputField accidentData={accidentData} handleInput={handleInput}/>
-            <ButtonField />
+            {/* <ButtonField /> */}
             <Button 
                 onPress={() => {
                     createAccident({
                         variables: {
                             name: accidentData.name,
-                            usingSafety: accidentData.usingSafety,
-                            safetyFailed: accidentData.safetyFailed,
-                            numberPackageCarried: parseInt(accidentData.numberPackageCarried),
-                            safetyEquipmentUsed: accidentData.safetyEquipmentUsed
+                            location: accidentData.location
+                            // usingSafety: accidentData.usingSafety,
+                            // safetyFailed: accidentData.safetyFailed,
+                            // numberPackageCarried: parseInt(accidentData.numberPackageCarried),
+                            // safetyEquipmentUsed: accidentData.safetyEquipmentUsed
                         }
                     })
                 }}
