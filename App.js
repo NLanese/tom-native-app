@@ -23,12 +23,14 @@ import ReportInjuryAccident from './Pages/ReportAnAccidentPage/ReportInjuryAccid
 import ReportPropertyAccident from './Pages/ReportAnAccidentPage/ReportPropertyAccident'
 import ReportHitPerson from './Pages/ReportAnAccidentPage/ReportHitPerson'
 import ReportInjuryReport from './Pages/ReportAnAccidentPage/ReportInjuryReport'
+import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
+import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.52:5001/graphql',
+	uri: 'http://10.0.0.46:5001/graphql',
 });
 
 // Auth for token
@@ -73,18 +75,23 @@ export default function App() {
 
 
                   <Route exact path='/reportanaccident' component={ReportAnAccident} />
-                    <Route exact path='/reportthirdparty' component={ReportThirdParty} />
-                    <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
-                    <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
-                    <Route exact path='/reporthitperson' component={ReportHitPerson} />
-                    <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
+                  <Route exact path='/reportthirdparty' component={ReportThirdParty} />
+                  <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
+                  <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
+                  <Route exact path='/reporthitperson' component={ReportHitPerson} />
+                  <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
 
 
                   <Route exact path='/reporting' component={Reporting} />
                   <Route exact path='/productivity' component={Productivity} /> 
                   <Route exact path='/communication' component={Communication} />
                   <Route exact path='/analytics' component={Analytics} />
+
+
                   <Route exact path='/settings' component={Settings} />
+                  <Route exact path='/account_information' component={AccountInformation} />
+                  <Route exact path='/edit_account_information' component={EditAccountInformation} />
+
                 </Switch>
               ) : null}
 
