@@ -65,12 +65,13 @@ const GETDRIVERDATA = gql`
 }
 `
 
-const UPDATEDRIVER = gql`
-  mutation UpdateDriver($updateDriver: UpdateDriver) {
-  updateDriver(updateDriver: $updateDriver) {
-    firstname
-  }
-}
-`
+// const UPDATEDRIVER = gql`
+//   mutation UpdateDriver($updateDriver: UpdateDriver) {
+//   updateDriver(updateDriver: $updateDriver) {
+//     firstname
+//     email
+//   }
+// }
+// `
 
-export { SIGNUP, LOGIN, CREATEACCIDENT, GETDRIVERDATA, UPDATEDRIVER }
+export { SIGNUP, LOGIN, CREATEACCIDENT, GETDRIVERDATA }
