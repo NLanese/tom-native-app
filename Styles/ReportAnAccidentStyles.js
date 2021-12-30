@@ -177,6 +177,23 @@ const PoliceContactedStyle = StyleSheet.create({
 	},
 })
 
+const PleaseRememberStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+        marginRight: 50,
+        marginLeft: 50
+    },
+    text: {
+		color: '#F7F7FF',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 24
+	},
+})
+
 export {
     CreateOrAddStyle,
     ReportAnAccidentStyle,
@@ -185,5 +202,6 @@ export {
     BeforeWeBeginStyle,
     MedicalAttentionStyle,
     LeadershipNotifiedStyle,
-    PoliceContactedStyle
+    PoliceContactedStyle,
+    PleaseRememberStyle
 }

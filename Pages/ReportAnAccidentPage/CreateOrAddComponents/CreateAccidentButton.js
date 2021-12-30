@@ -10,7 +10,7 @@ const CreateAccidentButton = () => {
         <View style={CreateOrAddStyle.caaContainer}>
             <Button 
                 onPress={() => {
-                    history.push('/reportanaccident')
+                    history.push('/report_an_accident')
                 }}
                 style={CreateOrAddStyle.caaButton}
                 title='Report a New Accident'
