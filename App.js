@@ -27,6 +27,9 @@ import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
 import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
 import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
+import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
+import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
+import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 
 let state;
 
@@ -95,7 +98,13 @@ export default function App() {
                   <Route exact path='/productivity' component={Productivity} /> 
                   <Route exact path='/communication' component={Communication} />
                   <Route exact path='/analytics' component={Analytics} />
+
+
                   <Route exact path='/settings' component={Settings} />
+                  <Route exact path='/account_information' component={AccountInformation} />
+                  <Route exact path='/edit_account_information' component={EditAccountInformation} />
+                  <Route exact path='/view_accidents' component={ViewAccidents} />
+
                 </Switch>
               ) : null}
 
