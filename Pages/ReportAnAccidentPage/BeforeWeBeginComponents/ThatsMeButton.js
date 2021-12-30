@@ -9,7 +9,7 @@ const ThatsMeButton = () => {
     return (
         <View style={buttonBox.scoreCardButton}>
             <Button 
-                onPress={() => {history.push("/medical_attention")}}
+                onPress={() => {history.push("/create_or_add")}}
 				title='Thats me!'
 				color='#CCCCCC'
 				accessibilityLabel='Thats me'

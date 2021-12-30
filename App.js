@@ -27,6 +27,7 @@ import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
 import MedicalAttention from './Pages/ReportAnAccidentPage/MedicalAttention'
 import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
 import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
+import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 
 let state;
 
@@ -75,12 +76,13 @@ export default function App() {
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
 
 
-                  <Route exact path='/reportanaccident' component={ReportAnAccident} />
-                    <Route exact path='/leadership_notified' component={LeadershipNotified} />
-                      <Route exact path='/police_contacted' component={PoliceContacted} />
-                    <Route exact path='/before_we_begin' component={BeforeWeBegin} />
+                  <Route exact path='/leadership_notified' component={LeadershipNotified} />
+                    <Route exact path='/police_contacted' component={PoliceContacted} />
+                      <Route exact path='/please_remember' component={PleaseRemember} />
+                        <Route exact path='/before_we_begin' component={BeforeWeBegin} />
+                          <Route exact path='/create_or_add' component={CreateOrAdd} />
+                            <Route exact path='/report_an_accident' component={ReportAnAccident} />
                     <Route exact path='/medical_attention' component={MedicalAttention} />
-                    <Route exact path='/createoradd' component={CreateOrAdd} />
                       
                       
                       

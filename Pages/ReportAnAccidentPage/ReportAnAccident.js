@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import { userState } from '../../Recoil/atoms'
 import { useHistory } from "react-router-native";
 import { useMutation, useQuery } from "@apollo/client";
-import { CREATEACCIDENT, GETDRIVERDATA } from "../../GraphQL/operations";
+import { CREATEACCIDENT, GETDRIVERDATA, UPDATEDRIVER } from "../../GraphQL/operations";
 import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
 import ButtonField from "./ReportAnAccidentComponents/ButtonField";
@@ -17,6 +17,8 @@ const ReportAnAccident = () => {
 		useMutation(CREATEACCIDENT);
     const [accidentData, setAccidentData] = useState({})
     const [returnedAccidentData, setReturnedAccidentData] = useState({})
+
+    // const [updateDriver, {loading: loadingD, error: errorD, data: dataD}] = useMutation(UPDATEDRIVER)
 
     const handleInput = (id, information, event) => {
         const input = { ...accidentData }
@@ -55,6 +57,16 @@ const ReportAnAccident = () => {
                 color='#CCCCCC'
 				accessibilityLabel='Submit!'
             />
+            {/* <Button 
+                onPress={() => {
+                    updateDriver({
+                        updateDriver: {
+                            firstname: 'TEST FROM FRONTEND'
+                        }
+                    })
+                }}
+                title="Test"
+            /> */}
         </View>
     )
 }
