@@ -26,7 +26,8 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	return (
 		<View style={buttonStyles.container}>
 			<Button
-				onPress={() => {login({
+				onPress={() => {
+					login({
 					variables: {
 						email: userData.username,
 						password: userData.password,
