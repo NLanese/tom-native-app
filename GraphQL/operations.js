@@ -30,6 +30,7 @@ const LOGIN = gql`
     adminFirstname
     adminLastname
     adminUsername
+    adminPhonenumber
     adminEmail
     adminAccountStanding
     adminApproved
@@ -47,9 +48,9 @@ const CREATEACCIDENT = gql`
 }
 `;
 
-const GETUSERDATA = gql`
+const GETDRIVERDATA = gql`
   query Query {
-  getUser {
+  getDriver {
     id
     firstname
     lastname
@@ -64,4 +65,4 @@ const GETUSERDATA = gql`
 }
 `
 
-export { SIGNUP, LOGIN, CREATEACCIDENT, GETUSERDATA }
+export { SIGNUP, LOGIN, CREATEACCIDENT, GETDRIVERDATA }

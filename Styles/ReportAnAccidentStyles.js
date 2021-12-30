@@ -126,10 +126,64 @@ const BeforeWeBeginStyle = StyleSheet.create({
 	},
 })
 
+const MedicalAttentionStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+        marginRight: 50,
+        marginLeft: 50
+    },
+    text: {
+		color: '#F7F7FF',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 24
+	},
+})
+
+const LeadershipNotifiedStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+        marginRight: 50,
+        marginLeft: 50
+    },
+    text: {
+		color: '#F7F7FF',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 24
+	},
+})
+
+const PoliceContactedStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+        marginRight: 50,
+        marginLeft: 50
+    },
+    text: {
+		color: '#F7F7FF',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 24
+	},
+})
+
 export {
     CreateOrAddStyle,
     ReportAnAccidentStyle,
     SubmitStyle,
     ButtonFieldStyle,
-    BeforeWeBeginStyle
+    BeforeWeBeginStyle,
+    MedicalAttentionStyle,
+    LeadershipNotifiedStyle,
+    PoliceContactedStyle
 }
