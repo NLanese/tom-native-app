@@ -17,7 +17,7 @@ const SIGNUP = gql`
 
 const LOGIN = gql`
 	mutation Mutation($email: String!, $password: String!) {
-  signinUser(email: $email, password: $password) {
+  signinDriver(email: $email, password: $password) {
     id
     firstname
     lastname
@@ -47,7 +47,7 @@ const CREATEACCIDENT = gql`
 }
 `;
 
-const GET_USER_DATA = gql`
+const GETUSERDATA = gql`
   query Query {
   getUser {
     id
@@ -64,4 +64,4 @@ const GET_USER_DATA = gql`
 }
 `
 
-export { SIGNUP, LOGIN, CREATEACCIDENT, GET_USER_DATA }
+export { SIGNUP, LOGIN, CREATEACCIDENT, GETUSERDATA }

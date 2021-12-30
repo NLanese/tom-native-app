@@ -122,7 +122,7 @@ const BeforeWeBeginStyle = StyleSheet.create({
 		color: '#F7F7FF',
 		alignItems: 'center',
 		justifyContent: 'center',
-		fontSize: 15
+		fontSize: 24
 	},
 })
 
