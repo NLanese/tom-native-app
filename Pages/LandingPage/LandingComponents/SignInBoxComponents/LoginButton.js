@@ -16,8 +16,8 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	useEffect( async () => {
 		if (!loadingL && dataL) {
-			await setUser(dataL.signinUser)
-			await stateChange(dataL.signinUser.token);
+			await setUser(dataL.signinDriver)
+			await stateChange(dataL.signinDriver.token);
 			await handleLoggedIn()
 			await history.push("/home");
 		}

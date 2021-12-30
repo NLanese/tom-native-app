@@ -13,7 +13,7 @@ const CreateAccidentButton = () => {
                     history.push('/reportanaccident')
                 }}
                 style={CreateOrAddStyle.caaButton}
-                title='Report an Accident'
+                title='Report a New Accident'
                 color='#CCCCCC'
                 accessibilityLabel='Report an Accident'
             />

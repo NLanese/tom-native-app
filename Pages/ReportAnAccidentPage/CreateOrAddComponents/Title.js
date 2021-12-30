@@ -6,10 +6,7 @@ const Title = () => {
 
     return (
         <View style={CreateOrAddStyle.titleContainer}>
-            <Text style={CreateOrAddStyle.titleText}> Create a new accident </Text>
-            <Text style={CreateOrAddStyle.titleText}> Or </Text>
-            <Text style={CreateOrAddStyle.titleText}> Add to an existing one </Text>
-
+            <Text style={CreateOrAddStyle.text}> Hello my name is Tom, I am sorry to hear about your accident. Let me help get you started! Are you creating a new accident report or need to add to an existing one? </Text>
         </View>
     )
 }

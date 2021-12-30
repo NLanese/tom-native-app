@@ -17,7 +17,7 @@ const SIGNUP = gql`
 
 const LOGIN = gql`
 	mutation Mutation($email: String!, $password: String!) {
-  signinUser(email: $email, password: $password) {
+  signinDriver(email: $email, password: $password) {
     id
     firstname
     lastname
@@ -38,17 +38,30 @@ const LOGIN = gql`
 `;
 
 const CREATEACCIDENT = gql`
-  mutation Mutation($name: String!, $usingSafety: Boolean!, $safetyFailed: Boolean!, $numberPackageCarried: Int!, $safetyEquipmentUsed: String!) {
-  createAccident(name: $name, using_safety: $usingSafety, safety_failed: $safetyFailed, number_package_carried: $numberPackageCarried, safety_equipment_used: $safetyEquipmentUsed) {
+  mutation Mutation($name: String!, $location: String!) {
+  createAccident(name: $name, location: $location) {
     id
     name
-    using_safety
-    safety_failed
-    number_package_carried
-    safety_equipment_used
-    deleted
+    location
   }
 }
 `;
 
-export { SIGNUP, LOGIN, CREATEACCIDENT }
+const GETUSERDATA = gql`
+  query Query {
+  getUser {
+    id
+    firstname
+    lastname
+    email
+    phoneNumber
+    employeeId
+    adminFirstname
+    adminLastname
+    adminUsername
+    adminEmail
+  }
+}
+`
+
+export { SIGNUP, LOGIN, CREATEACCIDENT, GETUSERDATA }

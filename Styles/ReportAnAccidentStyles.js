@@ -3,18 +3,18 @@ import { StyleSheet } from 'react-native';
 const CreateOrAddStyle = StyleSheet.create({
     container: {
         display: 'flex',
-        // flexWrap: 'wrap',
-        // justifyContent: 'space-around',
-        // alignItems: 'center',
-        // alignContent: 'flex-start',
+        alignItems: 'center',
         height: "100%",
     },
     titleContainer: {
         marginTop: 70,
+        paddingLeft: 25,
+        paddingRight: 25,
         height: 50,
         width: 368,
-        alignContent: 'flex-start',
-        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row'
     },
     caaContainer: {
         marginTop: 140,
@@ -34,9 +34,10 @@ const CreateOrAddStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    titleText: {
+    text: {
         color: '#CCCCCC',
-        fontSize: 36,  
+        fontSize: 24, 
+        flexWrap: 'wrap' 
     },
     caaButton: {
         width: 150,
@@ -97,8 +98,38 @@ const SubmitStyle = StyleSheet.create({
 	},
 });
 
+const ButtonFieldStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})
+
+const BeforeWeBeginStyle = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+        marginRight: 50,
+        marginLeft: 50
+    },
+    subContainer: {
+        marginTop: 25
+    },
+    text: {
+		color: '#F7F7FF',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 24
+	},
+})
+
 export {
     CreateOrAddStyle,
     ReportAnAccidentStyle,
-    SubmitStyle
+    SubmitStyle,
+    ButtonFieldStyle,
+    BeforeWeBeginStyle
 }
