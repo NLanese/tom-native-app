@@ -24,7 +24,6 @@ import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccident
 import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
 import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
 import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
-import MedicalAttention from './Pages/ReportAnAccidentPage/MedicalAttention'
 import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
 import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
@@ -82,7 +81,6 @@ export default function App() {
                         <Route exact path='/before_we_begin' component={BeforeWeBegin} />
                           <Route exact path='/create_or_add' component={CreateOrAdd} />
                             <Route exact path='/report_an_accident' component={ReportAnAccident} />
-                    <Route exact path='/medical_attention' component={MedicalAttention} />
                       
                       
                       

@@ -35,6 +35,12 @@ const ReportAnAccident = () => {
         }
     }, [data])
 
+    // useEffect(() => {
+    //     console.log(dataD)
+    //     console.log(errorD)
+    //     console.log(loadingD)
+    // }, [errorD, dataD, loadingD])
+
     return (
         <View style={ReportAnAccidentStyle.container}>
             <NavBar />
@@ -60,8 +66,11 @@ const ReportAnAccident = () => {
             {/* <Button 
                 onPress={() => {
                     updateDriver({
-                        updateDriver: {
-                            firstname: 'TEST FROM FRONTEND'
+                        variables: {
+                            updateDriver: {
+                                firstname: 'TEST FROM FRONTEND',
+                                email: 'test'
+                            }
                         }
                     })
                 }}
