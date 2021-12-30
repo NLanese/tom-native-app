@@ -1,11 +1,17 @@
 import react from "react"
 import { settings } from "../../../Styles/SettingStyles";
+
+import { UPDATE_USER } from "../../../GraphQL/operations";
+import { useMutation } from "@apollo/client";
+
 import { useState } from "react";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 import { View, Button, Text, TextInput } from 'react-native'
 
 const EditAccountInformation = () => {
+
+    const [updateUser, { loading: loadingL, error: errorL, data: dataL }] = useMutation(UPDATE_USER);
 
     const [getUser, setUser] = useRecoilState(userState)
     const [getLocalChanges, setLocalChanges] = useState({})
@@ -14,22 +20,55 @@ const EditAccountInformation = () => {
         const updateObject = {...getLocalChanges}
         updateObject[attr] = input
         setLocalChanges(updateObject)
+
     }
-    const handleSubmission = (localChanges) => {
-        const userState = {...getUser}
-        if (localChanges.firstname != "" && localChanges.firstname != null){
-            userState.firstname = localChanges.firstname
+    const handleSubmission = () => {
+        let user = getLocalChanges
+        let previousState = getUser
+        console.log(user)
+        console.log(previousState)
+        if (user.passowrd){
+            if (user.password.length > 1 && user.password != user.confirmPassword){
+                throw new Error("Error: Passwords entered do not match")
+            }s
         }
-        if (localChanges.lastname != "" && localChanges.lastname != null){
-            userState.lastname = localChanges.lastname
+        if (!user.firstname){
+            user.firstname = previousState.firstname
         }
-        if (localChanges.email != "" && localChanges.email != null){
-            userState.email = localChanges.email
+        if (!user.lastname){
+            user.lastname = previousState.lastname
         }
-        if (localChanges.phoneNumber != "" && localChanges.phoneNumber != null){
-            userState.phoneNumber = localChanges.phoneNumber
+        if (!user.email){
+            user.email = previousState.email
         }
-        setUser(userState)
+        if (!user.phoneNumber){
+            user.phoneNumber = previousState.phoneNumber
+        }
+        if (!user.passowrd){
+            updateUser({
+                variables: {
+                    updateUser: {
+                        firstname: "test", //user.firstname,
+                        lastname: "test", //user.lastname,
+                        email: "test", //user.email,
+                        phoneNumber: "test" //user.phoneNumber,
+                    }
+                }
+            })
+        }
+        else{
+            updateUser({
+                variables: {
+                    updateUser: {
+                        firstname: "test", //user.firstname,
+                        lastname: "test", //user.lastname,
+                        email: "test", //user.email,
+                        phoneNumber: "test", //user.phoneNumber,
+                        passowrd: "test"
+                    }
+                }
+            })
+        }
     }
 
     return (
@@ -70,6 +109,25 @@ const EditAccountInformation = () => {
                     handleInput('phoneNumber', phoneNumber)
                 }}
             />
+            <Text>Password: </Text>
+            <TextInput
+                placeholder="password"
+                name='password'
+                // style={}
+                onChangeText={(password) => {
+                    handleInput('password', password)
+                }}
+            />        
+            <Text>Confirm Password: </Text>
+            <TextInput
+                placeholder="password"
+                name='confirmPassword'
+                // style={}
+                onChangeText={(confirmPassword) => {
+                    handleInput('confirmPassword', confirmPassword)
+                }}
+            />      
+            
             <Button 
                 onPress={() => handleSubmission(getLocalChanges)}
 				title='Submit Changes'

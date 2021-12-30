@@ -162,9 +162,8 @@ query Query {
 
 
 const UPDATE_USER = gql`
-  mutation Mutation($firstname: String, $lastname: String, $email: String, $phoneNumber: String){
-    updateUser(firstname: $firstname, lastname: $lastname, email: $email, phoneNumber: $phoneNumber){
-      id
+  mutation UpdateUser($updateuser: UpdateUser) {
+  updateUser(updateUser: $updateUser) {
       firstname
       lastname
       email
@@ -190,4 +189,4 @@ const UPDATE_USER = gql`
 
 
 
-export { SIGNUP, LOGIN, CREATEACCIDENT, GET_USER_DATA }
+export { SIGNUP, LOGIN, CREATEACCIDENT, GET_USER_DATA, UPDATE_USER }
