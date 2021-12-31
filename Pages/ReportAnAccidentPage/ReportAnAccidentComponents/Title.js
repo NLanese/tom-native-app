@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from 'react-native'
-import { ReportAnAccidentStyle } from "../../../Styles/ReportAnAccidentStyles";
+import { ReportAnAccidentStyles } from "../../../Styles/ReportAnAccidentStyles";
 
 const Title = () => {
 
     return (
-        <View style={ReportAnAccidentStyle.titleContainer}>
-            <Text style={ReportAnAccidentStyle.titleText}> Report An Accident </Text>
+        <View style={ReportAnAccidentStyles.titleContainer}>
+            <Text style={ReportAnAccidentStyles.titleText}> Report An Accident </Text>
         </View>
     )
 }

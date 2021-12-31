@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from 'react-native'
-import { ReportAnAccidentStyle } from "../../Styles/ReportAnAccidentStyles";
+import { ReportAnAccidentStyles } from "../../Styles/ReportAnAccidentStyles";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../Recoil/atoms'
 import { useHistory } from "react-router-native";
@@ -42,7 +42,7 @@ const ReportAnAccident = () => {
     // }, [errorD, dataD, loadingD])
 
     return (
-        <View style={ReportAnAccidentStyle.container}>
+        <View style={ReportAnAccidentStyles.container}>
             <NavBar />
             <Title />
             <InputField accidentData={accidentData} handleInput={handleInput}/>
