@@ -40,7 +40,8 @@ const EmailStyles = StyleSheet.create({
 
 const ButtonStyles = StyleSheet.create({
 	container: {
-		display: 'flex'
+		display: 'flex',
+		alignItems: 'center',
 	},
 	signinButton: {
 		display: 'flex',
@@ -60,8 +61,9 @@ const ButtonStyles = StyleSheet.create({
 	},
 	logInButton: {
 		backgroundColor: '#02020A',
-		marginLeft: 25,
-		marginRight: 25
+		width: 150,
+		borderRadius: 20,
+		marginTop: 10
 	},
 	button: {
 		borderRadius: 25,
