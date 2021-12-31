@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextInput, Text, View } from 'react-native';
-import { userNameStyles } from '../../../../Styles/LandingPageStyles';
+import { EmailStyles } from '../../../../Styles/LandingPageStyles';
 
 const Password = ({ handleInput }) => {
     return (
-        <View style={userNameStyles.container}>
+        <View style={EmailStyles.container}>
             <Text> Password </Text>
-            <TextInput style={userNameStyles.input} onChangeText={password => {
+            <TextInput style={EmailStyles.input} placeholder="Please enter your Password!" placeholderTextColor={'white'} onChangeText={password => {
                 handleInput('password', password);
             }}/>
         </View>

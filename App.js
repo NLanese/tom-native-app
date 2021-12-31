@@ -31,6 +31,9 @@ import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
+import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
+import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
+import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 
 let state;
 
@@ -75,7 +78,6 @@ export default function App() {
               {loggedIn === true ? (
                 <Switch>
                   <Route exact path='/home' component={Home} />
-                  <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
 
 
@@ -106,6 +108,11 @@ export default function App() {
                       <Route exact path='/edit_account_information' component={EditAccountInformation} />
                       <Route exact path='/view_accidents' component={ViewAccidents} />
                     <Route exact path='/account_settings' component={AccountSettings} />
+
+                  <Route exact path='/scorecard' component={ScoreCard} />
+                    <Route exact path='/quality' component={Quality} />
+                    <Route exact path='/safetyandcompliance' component={SafetyAndCompliance} />
+                    <Route exact path='/team' component={Team} />
 
                 </Switch>
               ) : null}
