@@ -11,7 +11,7 @@ const AddToAccidentButton = () => {
                     console.log('Need to create AddToAccident.js')
                 }}
                 style={CreateOrAddStyle.caaButton}
-                title='Add to Accident'
+                title='Add to Existing Accident'
                 color='#CCCCCC'
                 accessibilityLabel='Add to Accident'
             />

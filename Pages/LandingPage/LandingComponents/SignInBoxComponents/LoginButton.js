@@ -16,8 +16,8 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	useEffect( async () => {
 		if (!loadingL && dataL) {
-			await setUser(dataL.signinUser)
-			await stateChange(dataL.signinUser.token);
+			await setUser(dataL.signinDriver)
+			await stateChange(dataL.signinDriver.token);
 			await handleLoggedIn()
 			await history.push("/home");
 		}
@@ -27,8 +27,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 		<View style={buttonStyles.container}>
 			<Button
 				onPress={() => {
-					console.log(userData.username)
-					console.log(userData.password)
 					login({
 					variables: {
 						email: userData.username,

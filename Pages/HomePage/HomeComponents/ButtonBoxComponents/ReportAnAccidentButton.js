@@ -9,7 +9,7 @@ const ReportAnAccidentButton = () => {
     return (
         <View style={buttonBox.scoreCardButton}>
             <Button 
-                onPress={() => {history.push("/createoradd")}}
+                onPress={() => {history.push("/leadership_notified")}}
 				title='Report An Accident'
 				color='#CCCCCC'
 				accessibilityLabel='Report An Accident'
