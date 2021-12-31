@@ -11,7 +11,7 @@ const Settings = () => {
         <View>
             <NavBar />
 
-            <View style={SettingsStyles.buttonBox}>
+            <View>
                 <UserInformationButton />
                 <AccountSettingsButton />
             </View>

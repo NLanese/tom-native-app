@@ -7,8 +7,8 @@ const AccountSettingsButton = () => {
     let history = useHistory()
 
     return (
-        <View style={SettingsStyles.button}>
-            <Button 
+        <View style={SettingsStyles.ButtonCasing}>
+            <Button style={SettingsStyles.Button}
                 onPress={() => {history.push("/edit_account_information")}}
                 title='Edit Account Information'
                 color='#CCCCCC'

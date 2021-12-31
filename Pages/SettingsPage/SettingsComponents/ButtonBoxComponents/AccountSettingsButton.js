@@ -7,9 +7,10 @@ const AccountSettingsButton = () => {
     let history = useHistory()
 
     return (
-        <View style={SettingsStyles.button}>
-            <Button 
+        <View style={SettingsStyles.ButtonCasing}>
+            <Button style={SettingsStyles.Buttom}
                 onPress={() => {history.push("/account_settings")}}
+                titleStyle={SettingsStyles.ButtonTitle}
                 title='Account Settings'
                 color='#CCCCCC'
                 accessibilityLabel='AccountSettings'

@@ -10,7 +10,7 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
         <View>
 
             <View>
-
+                
             </View>
         </View>
     )

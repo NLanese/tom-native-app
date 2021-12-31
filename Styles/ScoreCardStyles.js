@@ -17,5 +17,5 @@ const EmployeeSafetyAndComplianceStyles = StyleSheet.create({
 })
 
 const ButtonBoxStyles = StyleSheet.create({
-
+    
 })
