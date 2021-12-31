@@ -9,7 +9,7 @@ const HomeStyles = StyleSheet.create({
 		width: '100%'
 	},
 	text: {
-		color: 'white',
+		color: '#ffffff',
 	},
 	logo: {
 		width: 300,
@@ -23,7 +23,6 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginTop: 20,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		// backgroundColor: 'black',
 		height: 500,
 		width: '90%',
 		display: 'flex'
@@ -50,9 +49,6 @@ const ButtonBoxStyles = StyleSheet.create({
 		alignContent: 'space-between',
 		justifyContent: 'space-around'
 	},
-	scoreCardButton: {
-		// marginLeft: 25
-	}
 })
 
 export {

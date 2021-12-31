@@ -11,7 +11,7 @@ const ShiftPlannerButton = () => {
             <Button 
                 onPress={() => {history.push("/shiftplanner")}}
 				title='Shift Planner'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Shift Planner'
             />
         </View>

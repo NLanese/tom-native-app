@@ -25,18 +25,20 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	return (
 		<View style={ButtonStyles.container}>
-			<Button
-				onPress={() => {
-					login({
-					variables: {
-						email: userData.email,
-						password: userData.password,
-					},
-				});}}
-				title='Login!'
-				color='#CCCCCC'
-				accessibilityLabel='Login!'
-			/>
+			<View style={ButtonStyles.logInButton}>
+				<Button
+					onPress={() => {
+						login({
+						variables: {
+							email: userData.email,
+							password: userData.password,
+						},
+					});}}
+					title='Login!'
+					color='#ffffff'
+					accessibilityLabel='Login!'
+				/>
+			</View>
 		</View>
 	);
 };

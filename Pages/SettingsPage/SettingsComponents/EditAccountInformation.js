@@ -133,6 +133,7 @@ const EditAccountInformation = () => {
                     }}
                     />      
                 
+
                 <View style={EditAccountInformationStyles.ButtonCasing}>
                     <Button 
                         onPress={() => handleSubmission(editData)}

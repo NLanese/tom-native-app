@@ -60,7 +60,7 @@ const ReportAnAccident = () => {
                     })
                 }}
                 title='Submit!'
-                color='#CCCCCC'
+                color='#ffffff'
 				accessibilityLabel='Submit!'
             />
             {/* <Button 

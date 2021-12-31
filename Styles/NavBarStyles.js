@@ -4,7 +4,7 @@ const NavbarStyles = StyleSheet.create({
 	container: {
 		height: 75,
 		width: '100%',
-		backgroundColor: '#95110F',
+		backgroundColor: '#E87C73',
 		flexDirection: 'row',
 	},
 	rightText: {
@@ -12,7 +12,8 @@ const NavbarStyles = StyleSheet.create({
 		fontSize: 18,
         marginRight: 10,
 		marginTop: 35,
-		color: '#F7F7FF',
+		color: '#02020A',
+		fontWeight: 'bold',
         // justifyContent: 'right',
         // alignContent: 'center'
 		// alignSelf: 'flex-end',
@@ -23,8 +24,9 @@ const NavbarStyles = StyleSheet.create({
 		marginTop: 35,
         marginLeft: 10,
 		marginRight: 100,
-		color: '#F7F7FF',
+		color: '#02020A',
 		alignSelf: 'flex-start',
+		fontWeight: 'bold',
 	},
 });
 

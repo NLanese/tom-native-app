@@ -11,7 +11,7 @@ const AnalyticsButton = () => {
             <Button 
                 onPress={() => {history.push("/analytics")}}
 				title='Analytics'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Analytics'
             />
         </View>

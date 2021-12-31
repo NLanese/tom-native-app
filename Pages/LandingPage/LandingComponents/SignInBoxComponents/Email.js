@@ -6,7 +6,7 @@ const UserName = ({ handleInput }) => {
     return (
         <View style={EmailStyles.container}>
             <Text style={EmailStyles.text}> Email </Text>
-            <TextInput name='Email' placeholder="Please enter your Email Address!" placeholderTextColor={'grey'} style={EmailStyles.input} onChangeText={email => {
+            <TextInput name='Email' placeholder="Please enter your Email Address!" placeholderTextColor={'#CCCCCC'} style={EmailStyles.input} onChangeText={email => {
                 handleInput('email', email);
             }}/>
         </View>

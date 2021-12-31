@@ -11,7 +11,7 @@ const QualityButton = () => {
             <Button 
                 onPress={() => {history.push("/quality")}}
 				title='Quality'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='quality'
             />
         </View>

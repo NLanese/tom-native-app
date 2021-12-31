@@ -11,7 +11,7 @@ const TeamButton = () => {
             <Button 
                 onPress={() => {history.push("/team")}}
 				title='Team'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Team'
             />
         </View>

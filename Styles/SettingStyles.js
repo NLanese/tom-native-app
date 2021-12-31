@@ -15,12 +15,12 @@ const SettingsStyles = StyleSheet.create({
         left: "10%"
     },
     text: {
-        color: 'white'
+        color: '#ffffff'
     },
     header: {
         marginTop: 40,
         position: "absolute",
-        backgroundColor: "black",
+        backgroundColor: "#02020A",
         width: '100%',
         textAlign: 'center'
     },
@@ -74,7 +74,7 @@ const AdminAndUserInformationStyles = StyleSheet.create({
         left: "10%"
     },
     text: {
-        color: 'black',
+        color: '#02020A',
         marginTop: 7,
         fontSize: 16,
         fontWeight: "400"
@@ -89,7 +89,7 @@ const AdminAndUserInformationStyles = StyleSheet.create({
         marginBottom: 10,
         position: "relative",
         backgroundColor: "navy",
-        color: 'white',
+        color: '#ffffff',
         width: '100%',
         textAlign: 'center',
         fontSize: 22,

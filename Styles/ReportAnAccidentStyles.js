@@ -20,7 +20,7 @@ const CreateOrAddStyles = StyleSheet.create({
         marginTop: 140,
         height: 50,
         width: 320,
-        backgroundColor: 'black',
+        backgroundColor: '#02020A',
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center'
@@ -29,13 +29,13 @@ const CreateOrAddStyles = StyleSheet.create({
         marginTop: 20,
         height: 50,
         width: 320,
-        backgroundColor: 'black',
+        backgroundColor: '#02020A',
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center'
     },
     text: {
-        color: '#CCCCCC',
+        color: '#ffffff',
         fontSize: 24, 
         flexWrap: 'wrap' 
     },
@@ -63,7 +63,7 @@ const ReportAnAccidentStyles = StyleSheet.create({
         // backgroundColor: 'green'
     },
     titleText: {
-        color: '#CCCCCC',
+        color: '#ffffff',
         fontSize: 36,  
     },
 })

@@ -12,7 +12,7 @@ const AccountSettingsButton = () => {
                 onPress={() => {history.push("/account_settings")}}
                 titleStyle={SettingsStyles.ButtonTitle}
                 title='Account Settings'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='AccountSettings'
             />
         </View>

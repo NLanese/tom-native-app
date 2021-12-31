@@ -10,7 +10,7 @@ const InjuryReportButton = () => {
             <Button 
                 onPress={() => {history.push("/reportinjuryreport")}}
 				title='Injury Report'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Injury Report'
             />
         </View>
