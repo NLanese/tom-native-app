@@ -30,6 +30,8 @@ import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
+import NavBar from './Global/NavBar';
+// import NavBar from './Global/NavBar';
 
 let state;
 
@@ -70,6 +72,8 @@ export default function App() {
           <View style={styles.container}>
 
               {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
+              
+              {/* <NavBar /> */}
 
               {loggedIn === true ? (
                 <Switch>
