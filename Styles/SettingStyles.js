@@ -6,17 +6,14 @@ const SettingsStyles = StyleSheet.create({
         backgroundColor: '#1a2c3d',
         justifyContent: 'center'
     },
-
     informationContainer :{
         position: 'absolute',
         width: "80%",
         left: "10%"
     },
-
     text: {
         color: 'white'
     },
-
     header: {
         marginTop: 40,
         position: "absolute",

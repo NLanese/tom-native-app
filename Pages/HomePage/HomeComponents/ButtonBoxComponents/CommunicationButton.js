@@ -1,13 +1,13 @@
 import react from "react"
 import { useHistory } from 'react-router-native';
 import { View, Button } from 'react-native'
-import { buttonBox } from "../../../../Styles/HomeStyles"
+import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 const CommunicationButton = () => {
     let history = useHistory()
 
     return (
-        <View style={buttonBox.scoreCardButton}>
+        <View style={ButtonBoxStyles.scoreCardButton}>
             <Button 
                 onPress={() => {history.push("/communication")}}
 				title='Communication'
