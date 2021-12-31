@@ -1,6 +1,6 @@
-import react from "react"
+import React from "react"
 import { useHistory } from 'react-router-native';
-import { View, Button, Text, ScrollView } from 'react-native'
+import { Text, ScrollView } from 'react-native'
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 

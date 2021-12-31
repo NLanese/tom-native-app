@@ -1,34 +1,38 @@
-import react from "react"
-import { settings } from "../../../Styles/SettingStyles";
-
-import { UPDATEDRIVER } from "../../../GraphQL/operations";
-import { useMutation } from "@apollo/client";
-
+import React, { useEffect } from "react"
+import { UPDATEDRIVER, GETDRIVERDATA } from "../../../GraphQL/operations";
+import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
+import { useHistory } from "react-router-native";
 import { View, Button, Text, TextInput } from 'react-native'
-import { useEffect } from "react/cjs/react.development";
+
 
 const EditAccountInformation = () => {
-
+    let history = useHistory()
     const [updateDriver, { loading: loading, error: error, data: data }] = useMutation(UPDATEDRIVER);
-
     const [getUser, setUser] = useRecoilState(userState)
     const [editData, setEditData] = useState({})
 
-    const handleInput = (attr, input) => {
-        const updateObject = { ...editData }
-        updateObject[attr] = input
-        setEditData(updateObject)
+    const handleInput = (id, information, event) => {
+        const input = { ...editData }
+        input[id] = information
+        setEditData(input)
     }
 
-    const handleSubmission = () => {
+    const { loading: loadingD, error: errorD, data: dataD } = useQuery(GETDRIVERDATA)
+
+    useEffect(() => {
+        console.log(dataD)
+        console.log(errorD)
+    }, [dataD, errorD, loadingD])
+
+    const handleSubmission = async () => {
         let user = editData
         let previousState = getUser
         
         if (user.passowrd){
-            if (user.password.length > 1 && user.password != user.confirmPassword){
+            if (user.password.length > 7 && user.password != user.confirmPassword){
                 throw new Error("Error: Passwords entered do not match")
             }s
         }
@@ -45,8 +49,8 @@ const EditAccountInformation = () => {
             user.phoneNumber = previousState.phoneNumber
         }
 
-        if (!user.passowrd){
-            updateDriver({
+        if (!user.password){
+            await updateDriver({
                 variables: {
                     updateDriver: {
                         firstname: user.firstname,
@@ -58,25 +62,26 @@ const EditAccountInformation = () => {
             })
         }
         else{
-            updateDriver({
+            await updateDriver({
                 variables: {
                     updateDriver: {
                         firstname: user.firstname,
                         lastname: user.lastname,
                         email: user.email,
                         phoneNumber: user.phoneNumber,
-                        passowrd: user.passowrd
+                        password: user.password
                     }
                 }
             })
         }
+        await history.push('/account_information')
     }
 
-    // useEffect(() => {
-    //     if (!loading && data) {
-    //         console.log(data)
-    //     }
-    // }, [data])
+    useEffect(() => {
+        if (!loading && data) {
+            console.log(data)
+        }
+    }, [data])
 
     return (
         <View>

@@ -3,20 +3,21 @@ import { View, Text } from 'react-native'
 import AdminAndUserInformation from "./InformationComponents/AdminAndUserInformation";
 import EditAccountInformationButton from "./ButtonBoxComponents/EditAccountInformationButton";
 import ViewAccidentsButton from "./ButtonBoxComponents/ViewAccidentsButton";
-import { settings } from "../../../Styles/SettingStyles";
+import { SettingsStyles } from "../../../Styles/SettingStyles";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
+import { AccountInformationStyles } from "../../../Styles/SettingStyles";
 
 const AccountInformation = () => {
-   
     const [getUser, setUser] = useRecoilState(userState)
-    console.log(getUser)
 
     return (
-        <View style={settings.container}>
-            <View>
+        <View style={SettingsStyles.container}>
+
+            <View style={AccountInformationStyles.container}>
                 <AdminAndUserInformation userData={getUser}/>
             </View>
+            
             <EditAccountInformationButton/>
             <ViewAccidentsButton userData={getUser}/>
         </View>
