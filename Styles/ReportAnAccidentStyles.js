@@ -60,7 +60,6 @@ const ReportAnAccidentStyles = StyleSheet.create({
     inputFieldContainer: {
         height: 368,
         width: '90%',
-        // backgroundColor: 'green'
     },
     titleText: {
         color: '#ffffff',
@@ -75,20 +74,20 @@ const SubmitStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	text: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 15
 	},
 	titleText: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 24,
 		marginLeft: 70
 	},
 	input: {
-		backgroundColor: '#F7F7FF',
+		backgroundColor: '#ffffff',
 		color: '#02020A',
 		height: 40,
 		width: 275,
@@ -119,7 +118,7 @@ const BeforeWeBeginStyles = StyleSheet.create({
         marginTop: 25
     },
     text: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 24
@@ -136,7 +135,7 @@ const MedicalAttentionStyles = StyleSheet.create({
         marginLeft: 50
     },
     text: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 24
@@ -153,7 +152,7 @@ const LeadershipNotifiedStyles = StyleSheet.create({
         marginLeft: 50
     },
     text: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 24
@@ -170,7 +169,7 @@ const PoliceContactedStyles = StyleSheet.create({
         marginLeft: 50
     },
     text: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 24
@@ -187,7 +186,7 @@ const PleaseRememberStyles = StyleSheet.create({
         marginLeft: 50
     },
     text: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center',
 		fontSize: 24

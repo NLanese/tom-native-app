@@ -14,9 +14,6 @@ const NavbarStyles = StyleSheet.create({
 		marginTop: 35,
 		color: '#02020A',
 		fontWeight: 'bold',
-        // justifyContent: 'right',
-        // alignContent: 'center'
-		// alignSelf: 'flex-end',
 	},
 	leftText: {
         flex: 2,
