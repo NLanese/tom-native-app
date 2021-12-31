@@ -7,11 +7,11 @@ const ViewAccidentsButton = () => {
     let history = useHistory()
 
     return (
-        <View style={SettingsStyles.button}>
+        <View style={SettingsStyles.ButtonCasing}>
             <Button 
                 onPress={() => {history.push("/view_accidents")}}
-                title='View Accidents'
-                color='#ffffff'
+                title='View All Accidents'
+                color='#CCCCCC'
                 accessibilityLabel='ViewAccidents'
             />
         </View>

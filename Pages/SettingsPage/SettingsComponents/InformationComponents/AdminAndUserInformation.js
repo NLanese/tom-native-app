@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from 'react-native'
-import { AdminAndUserInformationStyles } from "../../../../Styles/SettingStyles";
+import { AdminAndUserInformationStyles, SettingsStyles } from "../../../../Styles/SettingStyles";
 
 const AdminAndUserInformation = ({userData}) => {
 
@@ -8,15 +8,15 @@ const AdminAndUserInformation = ({userData}) => {
         <View styles={AdminAndUserInformationStyles.container}>
             <View style={AdminAndUserInformationStyles.personalInformation}>
                 <Text style={AdminAndUserInformationStyles.header}>Personal Information</Text>
-                <Text style={AdminAndUserInformationStyles.text}> Name: {`${userData.firstname} ${userData.lastname}`}</Text>
-                <Text style={AdminAndUserInformationStyles.text}> Phone Number: {`${userData.phoneNumber}`}</Text>
-                <Text style={AdminAndUserInformationStyles.text}> Email: {`${userData.email}`}</Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Name: <Text style={AdminAndUserInformationStyles.text}>{`${userData.firstname} ${userData.lastname}`}</Text></Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Phone Number: <Text style={AdminAndUserInformationStyles.text}>{`${userData.phoneNumber}`}</Text></Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Email: <Text style={AdminAndUserInformationStyles.text}>{`${userData.email}`}</Text></Text>
             </View>
             <View style={AdminAndUserInformationStyles.employeeInformation}>
-                <Text style={AdminAndUserInformationStyles.text}> Employee ID: {`${userData.employeeId}`}</Text>
-                <Text style={AdminAndUserInformationStyles.text}> Administrator Name: {`${userData.adminFirstname} ${userData.adminLastname}`}</Text>
-                <Text style={AdminAndUserInformationStyles.text}> Administrator Email: {`${userData.adminEmail}`}</Text>
-                <Text style={AdminAndUserInformationStyles.text}> Administrator Status: {`${userData.adminAccountStanding}`}</Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Employee ID: <Text style={AdminAndUserInformationStyles.text}>{`${userData.employeeId}`}</Text></Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Administrator Name: <Text style={AdminAndUserInformationStyles.text}>{`${userData.adminFirstname} ${userData.adminLastname}`}</Text></Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Administrator Email: <Text style={AdminAndUserInformationStyles.text}>{`${userData.adminEmail}`}</Text></Text>
+                <Text style={AdminAndUserInformationStyles.BigText}> Administrator Status: <Text style={AdminAndUserInformationStyles.text}>{`${userData.adminAccountStanding}`}</Text></Text>
             </View>
         </View>
     )
