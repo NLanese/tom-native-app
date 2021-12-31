@@ -4,9 +4,6 @@ import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
 import { ButtonStyles, SignUpModal } from '../../../../Styles/LandingPageStyles';
 
-/* Add phoneNumber / firstname / lastname / adminEmail INPUTS */
-/* Add fields above to the onPress on button */
-/* console log the data to make sure request when through */
 const SignUpButton = () => {
 	const [userData, setUserData] = useState({})
     const [signup, { loading: loading, error: error, data: data }] =
@@ -33,11 +30,6 @@ const SignUpButton = () => {
 				<Modal animationType='slide' transparent={true} visible={modalVisible}>
 					<View style={SignUpModal.centeredView}>
 						<View style={SignUpModal.modalView}>
-							{/* <Pressable
-								style={[SignUpModal.button, SignUpModal.buttonClose]}
-								onPress={() => setModalVisible(!modalVisible)}
-							/> */}
-
 							<Text style={SignUpModal.modalText}> Email </Text>
 							<TextInput
 								name='Email'
@@ -102,8 +94,8 @@ const SignUpButton = () => {
 							/>
 
 							<Button
-								onPress={ async () => {
-									await signup({
+								onPress={() => {
+									signup({
 										variables: {
 											signupInput: {
 												email: userData.email,
@@ -116,7 +108,7 @@ const SignUpButton = () => {
 											},
 										},
 									});
-									await setModalVisible(!modalVisible);
+									setModalVisible(!modalVisible);
 								}}
 								title='Sign Up!'
 								color='black'

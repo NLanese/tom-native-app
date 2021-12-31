@@ -6,7 +6,7 @@ const Password = ({ handleInput }) => {
     return (
         <View style={EmailStyles.container}>
             <Text> Password </Text>
-            <TextInput style={EmailStyles.input} placeholder="Please enter your Password!" placeholderTextColor={'white'} onChangeText={password => {
+            <TextInput style={EmailStyles.input} placeholder="Please enter your Password!" placeholderTextColor={'grey'} onChangeText={password => {
                 handleInput('password', password);
             }}/>
         </View>
