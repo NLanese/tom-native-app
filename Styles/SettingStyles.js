@@ -50,17 +50,14 @@ const AdminAndUserInformationStyles = StyleSheet.create({
         backgroundColor: '#1a2c3d',
         justifyContent: 'center'
     },
-
     informationContainer :{
         position: 'absolute',
         width: "80%",
         left: "10%"
     },
-
     text: {
         color: 'white'
     },
-
     header: {
         marginBottom: 10,
         position: "relative",
@@ -68,7 +65,6 @@ const AdminAndUserInformationStyles = StyleSheet.create({
         width: '100%',
         textAlign: 'center'
     },
-
     buttonBox: {
         marginTop: 50,
 		justifyContent: 'flex-start',
@@ -82,8 +78,17 @@ const AdminAndUserInformationStyles = StyleSheet.create({
     }
 })
 
+const EditAccountInformationStyles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        height: "100%",
+    },
+})
+
 export {
     SettingsStyles,
     AccountInformationStyles,
-    AdminAndUserInformationStyles
+    AdminAndUserInformationStyles,
+    EditAccountInformationStyles
 }
