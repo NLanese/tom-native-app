@@ -1,15 +1,23 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
-import { Text, ScrollView } from 'react-native'
+import { Text, ScrollView, View } from 'react-native'
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
+import { ViewAccidentsStyles } from "../../../Styles/SettingStyles";
+import NavBar from "../../../Global/NavBar";
 
 const ViewAccidents = () => {
 
     return (
-        <ScrollView >
-            <Text>Accident Information</Text>
-        </ScrollView>
+        <View>
+            <NavBar />
+
+            <View style={ViewAccidentsStyles.container}>
+                <ScrollView>
+
+                </ScrollView>
+            </View>
+        </View>
     )
 }
 
