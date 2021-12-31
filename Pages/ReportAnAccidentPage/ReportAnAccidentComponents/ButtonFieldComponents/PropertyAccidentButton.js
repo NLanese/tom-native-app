@@ -10,7 +10,7 @@ const PropertyAccidentButton = () => {
             <Button 
                 onPress={() => {history.push("/reportpropertyaccident")}}
 				title='I hit someones property'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Property Accident'
             />
         </View>

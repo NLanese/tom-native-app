@@ -10,7 +10,7 @@ const SafetyAndComplianceButton = () => {
             <Button 
                 onPress={() => {history.push("/safetyandcompliance")}}
 				title='Safety and Compliance'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='safetyandcompliance'
             />
         </View>

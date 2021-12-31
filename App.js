@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { AppStyles } from './Styles/AppStyles';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -31,7 +32,6 @@ import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
-import NavBar from './Global/NavBar';
 // import NavBar from './Global/NavBar';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
@@ -42,7 +42,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://10.0.0.46:5001/graphql',
+	uri: 'http://192.168.1.52:5001/graphql',
 });
 
 // Auth for token
@@ -74,7 +74,7 @@ export default function App() {
     <NativeRouter>
       <RecoilRoot>
         <ApolloProvider client={client}>
-          <View style={styles.container}>
+          <View style={AppStyles.container}>
 
               {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
               
@@ -129,12 +129,3 @@ export default function App() {
     </NativeRouter>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1a2c3d',
-    // alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-});

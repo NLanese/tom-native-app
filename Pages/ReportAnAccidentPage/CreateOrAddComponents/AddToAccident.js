@@ -12,7 +12,7 @@ const AddToAccidentButton = () => {
                 }}
                 style={CreateOrAddStyles.caaButton}
                 title='Add to Existing Accident'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='Add to Accident'
             />
         </View>

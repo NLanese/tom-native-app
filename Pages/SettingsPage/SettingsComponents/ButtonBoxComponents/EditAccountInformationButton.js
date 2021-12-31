@@ -11,7 +11,7 @@ const AccountSettingsButton = () => {
             <Button 
                 onPress={() => {history.push("/edit_account_information")}}
                 title='Edit Account Information'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='EditAccountInformation'
             />
         </View>

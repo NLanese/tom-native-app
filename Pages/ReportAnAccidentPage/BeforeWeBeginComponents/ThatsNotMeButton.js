@@ -9,7 +9,7 @@ const ThatsNotMeButton = () => {
             <Button 
                 onPress={() => { console.log('make modal saying to contact admin')}}
 				title='Thats not me!'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Thats not me'
             />
         </View>

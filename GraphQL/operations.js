@@ -11,19 +11,6 @@ const SIGNUP = gql`
 }
 `;
 
-// const SIGNUP = gql`
-// mutation Mutation($signupInput: SignupInput!) {
-//   signupDriver(signupInput: $signupInput) {
-//     id
-//     firstname
-//     lastname
-//     email
-//     password
-//     token
-//   }
-// }
-// `;
-
 const LOGIN = gql`
 	mutation Mutation($email: String!, $password: String!) {
   signinDriver(email: $email, password: $password) {

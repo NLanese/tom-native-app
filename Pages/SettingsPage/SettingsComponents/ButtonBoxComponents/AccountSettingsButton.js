@@ -11,7 +11,7 @@ const AccountSettingsButton = () => {
             <Button 
                 onPress={() => {history.push("/account_settings")}}
                 title='Account Settings'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='AccountSettings'
             />
         </View>

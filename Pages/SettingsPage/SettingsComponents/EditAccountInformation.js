@@ -136,7 +136,7 @@ const EditAccountInformation = () => {
                 <Button 
                     onPress={() => handleSubmission(editData)}
                     title='Submit Changes'
-                    color='#CCCCCC'
+                    color='#ffffff'
                     accessibilityLabel='UpdateUserInformation'
                     />
             </View>

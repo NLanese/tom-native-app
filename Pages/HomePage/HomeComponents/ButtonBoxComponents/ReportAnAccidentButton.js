@@ -11,7 +11,7 @@ const ReportAnAccidentButton = () => {
             <Button 
                 onPress={() => {history.push("/leadership_notified")}}
 				title='Report An Accident'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Report An Accident'
             />
         </View>

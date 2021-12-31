@@ -11,7 +11,7 @@ const ViewAccidentsButton = () => {
             <Button 
                 onPress={() => {history.push("/view_accidents")}}
                 title='View Accidents'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='ViewAccidents'
             />
         </View>

@@ -8,28 +8,9 @@ const LandingStyles = StyleSheet.create({
     },
 })
 
-const TitleStyles = StyleSheet.create({
-	container: {
-        paddingTop: 20,
-        paddingBottom: 50,
-		flexDirection: 'row',
-		justifyContent: 'center',
-	},
-	text: {
-		color: '#F6AE2D',
-		fontSize: 48,
-		paddingTop: 25,
-	},
-	rtext: {
-		color: '#95110F',
-		fontSize: 72,
-        fontWeight: 'bold'
-	},
-});
-
 const SignInBoxStyles = StyleSheet.create({
 	container: {
-		backgroundColor: '#CCCCCC',
+		backgroundColor: '#ffffff',
 		height: 250,
 		width: '90%',
 		borderRadius: 10,
@@ -48,26 +29,39 @@ const EmailStyles = StyleSheet.create({
 	},
 	input: {
 		backgroundColor: '#02020A',
-		color: '#F7F7FF',
+		color: '#ffffff',
 		height: 40,
 		width: 225,
 		margin: 12,
 		borderWidth: 1,
 		borderRadius: 10,
-		// marginTop: 25
 	},
 });
 
 const ButtonStyles = StyleSheet.create({
 	container: {
-		backgroundColor: 'black',
-		marginLeft: 25,
-		marginRight: 25
+		display: 'flex'
 	},
 	signinButton: {
+		display: 'flex',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
 		paddingLeft: 25,
 		paddingRight: 25,
 		marginTop: 150
+	},
+	signUpSubmitButton: {
+		height: 35,
+		width: 150,
+		backgroundColor: '#ffffff',
+		marginBottom: 50,
+		marginTop: 10,
+		borderRadius: 20,
+	},
+	logInButton: {
+		backgroundColor: '#02020A',
+		marginLeft: 25,
+		marginRight: 25
 	},
 	button: {
 		borderRadius: 25,
@@ -79,15 +73,14 @@ const SignUpModal = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 0,
+		marginTop: 100,
+		marginBottom: 75
 	},
 	modalView: {
-		margin: 20,
-		width: 250,
+		width: 300,
+		height: 200,
 		backgroundColor: '#02020A',
 		borderRadius: 20,
-		padding: 35,
-		alignItems: 'center',
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
@@ -96,36 +89,46 @@ const SignUpModal = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
 		elevation: 5,
-		marginTop: 0,
+		paddingTop: 20
 	},
+	insideModalView: {
+		display: 'flex',
+		alignItems: 'center'
+	},	
 	button: {
 		borderRadius: 20,
 		marginBottom: 100,
-		// padding: 10,
-		// elevation: 2,
-	},
-	buttonOpen: {
-		backgroundColor: '#F194FF',
-	},
-	buttonClose: {
-		backgroundColor: '#2196F3',
 	},
 	textStyle: {
-		color: '#F7F7FF',
+		color: '#ffffff',
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
 	modalText: {
-		marginBottom: 15,
+		marginBottom: 5,
 		textAlign: 'center',
-		color: '#F7F7FF',
+		color: '#ffffff',
+	},
+	modalTitle: {
+		marginBottom: 5,
+		textAlign: 'center',
+		color: '#ffffff',
+		fontWeight: 'bold',
+		fontSize: 24
+	},
+	modalSubTitle: {
+		marginBottom: 5,
+		textAlign: 'center',
+		color: '#ffffff',
+		fontSize: 12,
+		marginBottom: 25
 	},
 	input: {
-		backgroundColor: '#F7F7FF',
+		backgroundColor: '#ffffff',
 		color: '#02020A',
 		height: 40,
 		width: 225,
-		margin: 12,
+		marginBottom: 15,
 		borderWidth: 1,
 		borderRadius: 10,
 	},
@@ -133,7 +136,6 @@ const SignUpModal = StyleSheet.create({
 
 export {
 	LandingStyles,
-	TitleStyles,
 	SignInBoxStyles,
 	EmailStyles,
 	ButtonStyles,

@@ -10,7 +10,7 @@ const CollisionButton = () => {
             <Button 
                 onPress={() => {history.push("/reportcollision")}}
 				title='I hit another vehicle'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Third Party Report'
             />
         </View>

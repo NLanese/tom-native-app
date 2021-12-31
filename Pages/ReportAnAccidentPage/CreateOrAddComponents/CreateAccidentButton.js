@@ -14,7 +14,7 @@ const CreateAccidentButton = () => {
                 }}
                 style={CreateOrAddStyles.caaButton}
                 title='Report a New Accident'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='Report an Accident'
             />
         </View>

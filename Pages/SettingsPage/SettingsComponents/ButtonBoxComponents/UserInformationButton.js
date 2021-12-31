@@ -11,7 +11,7 @@ const UserInformationButton = () => {
             <Button 
                 onPress={() => {history.push("/account_information")}}
                 title='Account Information'
-                color='#CCCCCC'
+                color='#ffffff'
                 accessibilityLabel='AccountInformation'
             />
         </View>
