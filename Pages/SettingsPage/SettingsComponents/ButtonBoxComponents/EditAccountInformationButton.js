@@ -1,13 +1,13 @@
 import react from "react"
 import { useHistory } from 'react-router-native';
 import { View, Button } from 'react-native'
-import { settings } from "../../../../Styles/SettingStyles";
+import { SettingsStyles } from "../../../../Styles/SettingStyles";
 
 const AccountSettingsButton = () => {
     let history = useHistory()
 
     return (
-        <View style={settings.button}>
+        <View style={SettingsStyles.button}>
             <Button 
                 onPress={() => {history.push("/edit_account_information")}}
                 title='Edit Account Information'

@@ -101,9 +101,9 @@ export default function App() {
 
 
                   <Route exact path='/settings' component={Settings} />
-                  <Route exact path='/account_information' component={AccountInformation} />
-                  <Route exact path='/edit_account_information' component={EditAccountInformation} />
-                  <Route exact path='/view_accidents' component={ViewAccidents} />
+                    <Route exact path='/account_information' component={AccountInformation} />
+                      <Route exact path='/edit_account_information' component={EditAccountInformation} />
+                      <Route exact path='/view_accidents' component={ViewAccidents} />
 
                 </Switch>
               ) : null}
