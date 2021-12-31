@@ -11,7 +11,7 @@ const ProductivityButton = () => {
             <Button 
                 onPress={() => {history.push("/Productivity")}}
 				title='Productivity'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Productivity'
             />
         </View>

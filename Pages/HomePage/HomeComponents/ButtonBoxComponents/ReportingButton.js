@@ -11,7 +11,7 @@ const ReportingButton = () => {
             <Button 
                 onPress={() => {history.push("/reporting")}}
 				title='Reporting'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Reporting'
             />
         </View>

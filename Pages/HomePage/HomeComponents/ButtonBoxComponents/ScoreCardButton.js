@@ -11,7 +11,7 @@ const ScoreCardButton = () => {
             <Button 
                 onPress={() => {history.push("/scorecard")}}
 				title='Score Card'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Score Card'
             />
         </View>

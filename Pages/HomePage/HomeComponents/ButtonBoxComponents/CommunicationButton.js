@@ -11,7 +11,7 @@ const CommunicationButton = () => {
             <Button 
                 onPress={() => {history.push("/communication")}}
 				title='Communication'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Communication'
             />
         </View>

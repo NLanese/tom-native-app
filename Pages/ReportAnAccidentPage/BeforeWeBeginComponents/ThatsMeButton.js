@@ -11,7 +11,7 @@ const ThatsMeButton = () => {
             <Button 
                 onPress={() => {history.push("/create_or_add")}}
 				title='Thats me!'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='Thats me'
             />
         </View>

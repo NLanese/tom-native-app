@@ -10,7 +10,7 @@ const HitPersonButton = () => {
             <Button 
                 onPress={() => {history.push("/reporthitperson")}}
 				title='I hit a pedestrain'
-				color='#CCCCCC'
+				color='#ffffff'
 				accessibilityLabel='HitPerson'
             />
         </View>

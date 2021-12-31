@@ -15,12 +15,12 @@ const SettingsStyles = StyleSheet.create({
         left: "10%"
     },
     text: {
-        color: 'white'
+        color: '#ffffff'
     },
     header: {
         marginTop: 40,
         position: "absolute",
-        backgroundColor: "grey",
+        backgroundColor: "#CCCCCC",
         width: '100%',
         textAlign: 'center'
     },
@@ -42,7 +42,7 @@ const AccountInformationStyles = StyleSheet.create({
 	container: {
 		marginTop: 0,
         paddingBottom: 15,
-        borderBottomColor: "grey",
+        borderBottomColor: "#CCCCCC",
         borderBottomWidth: 5
 	},
     buttonBox: {
@@ -63,14 +63,14 @@ const AdminAndUserInformationStyles = StyleSheet.create({
         left: "10%"
     },
     text: {
-        color: 'white',
+        color: '#ffffff',
         marginTop: 7,
         fontSize: 16
     },
     header: {
         marginBottom: 10,
         position: "relative",
-        backgroundColor: "grey",
+        backgroundColor: "#CCCCCC",
         width: '100%',
         textAlign: 'center',
         fontSize: 22,

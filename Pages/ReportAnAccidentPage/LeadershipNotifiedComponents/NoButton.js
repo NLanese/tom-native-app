@@ -28,7 +28,7 @@ const NoButton = () => {
 									setModalVisible(!modalVisible);
 								}}
 								title='Ok'
-								color='#F6AE2D'
+								color='#ffffff'
 								accessibilityLabel='Ok'
 							/>
 						</View>
