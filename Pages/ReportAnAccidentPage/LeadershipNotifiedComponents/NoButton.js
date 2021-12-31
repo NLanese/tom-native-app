@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Modal, Button } from 'react-native'
-import { signUpModal } from "../../../Styles/LandingPageStyles";
+import { SignUpModal } from "../../../Styles/LandingPageStyles";
 import { userState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 import { Linking } from "react-native";
@@ -13,10 +13,10 @@ const NoButton = () => {
         <View>
 
                 <Modal animationType='slide' transparent={true} visible={modalVisible}>
-					<View style={signUpModal.centeredView}>
-						<View style={signUpModal.modalView}>
+					<View style={SignUpModal.centeredView}>
+						<View style={SignUpModal.modalView}>
 
-							<Text style={signUpModal.modalText}> Please call your manager </Text>
+							<Text style={SignUpModal.modalText}> Please call your manager </Text>
 
                             <Button 
                                 onPress={() => Linking.openURL('tel://+19732517969')}

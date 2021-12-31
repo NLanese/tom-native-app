@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
-// import { useRecoilState } from 'recoil';
-// import { userState } from '../../../Recoil/atoms';
 import { View, Button, Modal, TextInput, Text, Pressable } from 'react-native'
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
-import { buttonStyles, signUpModal } from '../../../../Styles/LandingPageStyles';
+import { ButtonStyles, SignUpModal } from '../../../../Styles/LandingPageStyles';
 
 /* Add phoneNumber / firstname / lastname / adminEmail INPUTS */
 /* Add fields above to the onPress on button */
 /* console log the data to make sure request when through */
 const SignUpButton = () => {
 	const [userData, setUserData] = useState({})
-    const [signup, { loading: loadingS, error: errorS, data: dataS }] =
+    const [signup, { loading: loading, error: error, data: data }] =
 		useMutation(SIGNUP);
     const [modalVisible, setModalVisible] = useState(false);
-	// const [user, setUser] = useRecoilState(userState);
 
 	const handleInput = (id, information) => {
 		const input = { ...userData };
@@ -24,62 +21,102 @@ const SignUpButton = () => {
 
 	/* Going to be used to check for errors */
 	useEffect(() => {
-		if (!loadingS && dataS) {
-			console.log(dataS)
+		if (!loading && data) {
+			console.log(data)
 		} else {
-			console.log(errorS)
+			console.log(error)
 		}
-	}, [dataS, errorS]);
+	}, [data, error]);
 
     return (
-			<View style={buttonStyles.signinButton}>
+			<View style={ButtonStyles.signinButton}>
 				<Modal animationType='slide' transparent={true} visible={modalVisible}>
-					<View style={signUpModal.centeredView}>
-						<View style={signUpModal.modalView}>
-							<Pressable
-								style={[signUpModal.button, signUpModal.buttonClose]}
+					<View style={SignUpModal.centeredView}>
+						<View style={SignUpModal.modalView}>
+							{/* <Pressable
+								style={[SignUpModal.button, SignUpModal.buttonClose]}
 								onPress={() => setModalVisible(!modalVisible)}
-							/>
+							/> */}
 
-							<Text style={signUpModal.modalText}> Email </Text>
+							<Text style={SignUpModal.modalText}> Email </Text>
 							<TextInput
 								name='Email'
-								style={signUpModal.input}
+								style={SignUpModal.input}
 								onChangeText={(email) => {
 									handleInput('email', email);
 								}}
 							/>
 
-							<Text style={signUpModal.modalText}> Username </Text>
+							<Text style={SignUpModal.modalText}> Username </Text>
 							<TextInput
 								name='Username'
-								style={signUpModal.input}
+								style={SignUpModal.input}
 								onChangeText={(username) => {
 									handleInput('username', username);
 								}}
 							/>
 
-							<Text style={signUpModal.modalText}> Password </Text>
+							<Text style={SignUpModal.modalText}> First Name </Text>
+							<TextInput
+								name='Firstname'
+								style={SignUpModal.input}
+								onChangeText={(firstname) => {
+									handleInput('firstname', firstname);
+								}}
+							/>
+
+							<Text style={SignUpModal.modalText}> Last Name </Text>
+							<TextInput
+								name='Lastname'
+								style={SignUpModal.input}
+								onChangeText={(lastname) => {
+									handleInput('lastname', lastname);
+								}}
+							/>
+
+							<Text style={SignUpModal.modalText}> Phone Number </Text>
+							<TextInput
+								name='Phone Number'
+								style={SignUpModal.input}
+								onChangeText={(phoneNumber) => {
+									handleInput('phoneNumber', phoneNumber);
+								}}
+							/>
+
+							<Text style={SignUpModal.modalText}> Password </Text>
 							<TextInput
 								name='Password'
-								style={signUpModal.input}
+								style={SignUpModal.input}
 								onChangeText={(password) => {
 									handleInput('password', password);
 								}}
 							/>
 
+							<Text style={SignUpModal.modalText}> Admin Email </Text>
+							<TextInput
+								name='Admin Email'
+								style={SignUpModal.input}
+								onChangeText={(adminEmail) => {
+									handleInput('adminEmail', adminEmail);
+								}}
+							/>
+
 							<Button
-								onPress={() => {
-									signup({
+								onPress={ async () => {
+									await signup({
 										variables: {
-											signupUserSignupInput: {
+											signupInput: {
 												email: userData.email,
 												username: userData.username,
 												password: userData.password,
+												firstname: userData.firstname,
+												lastname: userData.lastname,
+												phoneNumber: userData.phoneNumber,
+												adminEmail: userData.adminEmail
 											},
 										},
 									});
-									setModalVisible(!modalVisible);
+									await setModalVisible(!modalVisible);
 								}}
 								title='Sign Up!'
 								color='black'
