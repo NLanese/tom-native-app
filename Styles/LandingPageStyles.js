@@ -1,6 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-const titleStyles = StyleSheet.create({
+const LandingStyles = StyleSheet.create({
+	container: {
+        display: 'flex',
+        alignItems: 'center',
+        height: "100%",
+    },
+})
+
+const TitleStyles = StyleSheet.create({
 	container: {
         paddingTop: 20,
         paddingBottom: 50,
@@ -23,15 +31,20 @@ const SignInBoxStyles = StyleSheet.create({
 	container: {
 		backgroundColor: '#CCCCCC',
 		height: 250,
+		width: '90%',
 		borderRadius: 10,
 		paddingTop: 10,
+		marginTop: 100
 	},
 });
 
-const userNameStyles = StyleSheet.create({
+const EmailStyles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	text: {
+		marginTop: 10
 	},
 	input: {
 		backgroundColor: '#02020A',
@@ -41,11 +54,11 @@ const userNameStyles = StyleSheet.create({
 		margin: 12,
 		borderWidth: 1,
 		borderRadius: 10,
-		marginTop: 25
+		// marginTop: 25
 	},
 });
 
-const buttonStyles = StyleSheet.create({
+const ButtonStyles = StyleSheet.create({
 	container: {
 		backgroundColor: 'black',
 		marginLeft: 25,
@@ -61,7 +74,7 @@ const buttonStyles = StyleSheet.create({
 	},
 });
 
-const signUpModal = StyleSheet.create({
+const SignUpModal = StyleSheet.create({
 	centeredView: {
 		flex: 1,
 		justifyContent: 'center',
@@ -119,9 +132,10 @@ const signUpModal = StyleSheet.create({
 });
 
 export {
-	titleStyles,
+	LandingStyles,
+	TitleStyles,
 	SignInBoxStyles,
-	userNameStyles,
-	buttonStyles,
-	signUpModal,
+	EmailStyles,
+	ButtonStyles,
+	SignUpModal,
 };

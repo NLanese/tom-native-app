@@ -3,16 +3,12 @@ import { gql } from '@apollo/client';
 /* ------------------------------ USERS ------------------------------ */
 
 const SIGNUP = gql`
-	mutation Mutation($signupUserSignupInput: SignupInput) {
-		signupUser(signupInput: $signupUserSignupInput) {
-			id
-			firstname
-			lastname
-			username
-			email
-			token
-		}
-	}
+	mutation Mutation($signupInput: SignupInput!) {
+  signupDriver(signupInput: $signupInput) {
+    id
+    email
+  }
+}
 `;
 
 const LOGIN = gql`

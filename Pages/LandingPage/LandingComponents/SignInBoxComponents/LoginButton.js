@@ -3,33 +3,33 @@ import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
 import { useHistory } from 'react-router-native';
 import { View, Button } from 'react-native';
-import { buttonStyles } from '../../../../Styles/LandingPageStyles';
+import { ButtonStyles } from '../../../../Styles/LandingPageStyles';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';
 import stateChange from '../../../../Hooks/handleToken'
 
 const LoginButton = ({ userData, handleLoggedIn }) => {
-	const [login, { loading: loadingL, error: errorL, data: dataL }] =
+	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN);
 	const [user, setUser] = useRecoilState(userState);
 	let history = useHistory();
 
 	useEffect( async () => {
-		if (!loadingL && dataL) {
-			await setUser(dataL.signinDriver)
-			await stateChange(dataL.signinDriver.token);
+		if (!loading && data) {
+			await setUser(data.signinDriver)
+			await stateChange(data.signinDriver.token);
 			await handleLoggedIn()
 			await history.push("/home");
 		}
-	}, [dataL])
+	}, [data])
 
 	return (
-		<View style={buttonStyles.container}>
+		<View style={ButtonStyles.container}>
 			<Button
 				onPress={() => {
 					login({
 					variables: {
-						email: userData.username,
+						email: userData.email,
 						password: userData.password,
 					},
 				});}}

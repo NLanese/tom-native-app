@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles'
-import UserName from './SignInBoxComponents/UserName'
+import Email from './SignInBoxComponents/Email'
 import Password from './SignInBoxComponents/Password'
 import LoginButton from './SignInBoxComponents/LoginButton'
 import SignUpButton from './SignInBoxComponents/SignUpButton'
@@ -17,7 +17,7 @@ const SignInBox = ({ handleLoggedIn }) => {
 
     return (
         <View style={SignInBoxStyles.container}>
-            <UserName handleInput={handleInput} />
+            <Email handleInput={handleInput} />
             <Password handleInput={handleInput} />
             <LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/>
             <SignUpButton />
