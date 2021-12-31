@@ -6,6 +6,8 @@ import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 import { useHistory } from "react-router-native";
 import { View, Button, Text, TextInput } from 'react-native'
+import NavBar from '../../../Global/NavBar'
+import { EditAccountInformationStyles } from "../../../Styles/SettingStyles";
 
 
 const EditAccountInformation = () => {
@@ -19,13 +21,6 @@ const EditAccountInformation = () => {
         input[id] = information
         setEditData(input)
     }
-
-    const { loading: loadingD, error: errorD, data: dataD } = useQuery(GETDRIVERDATA)
-
-    useEffect(() => {
-        console.log(dataD)
-        console.log(errorD)
-    }, [dataD, errorD, loadingD])
 
     const handleSubmission = async () => {
         let user = editData
@@ -77,75 +72,79 @@ const EditAccountInformation = () => {
         await history.push('/account_information')
     }
 
-    useEffect(() => {
-        if (!loading && data) {
-            console.log(data)
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         console.log(data)
+    //     }
+    // }, [data])
 
     return (
-        <View>
-            <Text>First Name: </Text>
-            <TextInput
-                placeholder={getUser.firstname}
-                name='firstname'
-                // style={}
-                onChangeText={(firstname) => {
-                    handleInput('firstname', firstname)
-                }}
-            />
-            <Text>Last Name: </Text>
-            <TextInput
-                placeholder={getUser.lastname}
-                name='lastname'
-                // style={}
-                onChangeText={(lastname) => {
-                    handleInput('lastname', lastname)
-                }}
-            />
-            <Text>Email: </Text>
-            <TextInput
-                placeholder={getUser.email}
-                name='email'
-                // style={}
-                onChangeText={(email) => {
-                    handleInput('email', email)
-                }}
-            />
-            <Text>Phone Number: </Text>
-            <TextInput
-                placeholder={getUser.phoneNumber}
-                name='phoneNumber'
-                // style={}
-                onChangeText={(phoneNumber) => {
-                    handleInput('phoneNumber', phoneNumber)
-                }}
-            />
-            <Text>Password: </Text>
-            <TextInput
-                placeholder="password"
-                name='password'
-                // style={}
-                onChangeText={(password) => {
-                    handleInput('password', password)
-                }}
-            />        
-            <Text>Confirm Password: </Text>
-            <TextInput
-                placeholder="password"
-                name='confirmPassword'
-                // style={}
-                onChangeText={(confirmPassword) => {
-                    handleInput('confirmPassword', confirmPassword)
-                }}
-            />      
+        <View style={EditAccountInformationStyles.container}>
+            <NavBar />
             
-            <Button 
-                onPress={() => handleSubmission(editData)}
-				title='Submit Changes'
-				color='#CCCCCC'
-				accessibilityLabel='UpdateUserInformation'
-            />
+            <View>
+                <Text>First Name: </Text>
+                <TextInput
+                    placeholder={getUser.firstname}
+                    name='firstname'
+                    // style={}
+                    onChangeText={(firstname) => {
+                        handleInput('firstname', firstname)
+                    }}
+                    />
+                <Text>Last Name: </Text>
+                <TextInput
+                    placeholder={getUser.lastname}
+                    name='lastname'
+                    // style={}
+                    onChangeText={(lastname) => {
+                        handleInput('lastname', lastname)
+                    }}
+                    />
+                <Text>Email: </Text>
+                <TextInput
+                    placeholder={getUser.email}
+                    name='email'
+                    // style={}
+                    onChangeText={(email) => {
+                        handleInput('email', email)
+                    }}
+                    />
+                <Text>Phone Number: </Text>
+                <TextInput
+                    placeholder={getUser.phoneNumber}
+                    name='phoneNumber'
+                    // style={}
+                    onChangeText={(phoneNumber) => {
+                        handleInput('phoneNumber', phoneNumber)
+                    }}
+                    />
+                <Text>Password: </Text>
+                <TextInput
+                    placeholder="password"
+                    name='password'
+                    // style={}
+                    onChangeText={(password) => {
+                        handleInput('password', password)
+                    }}
+                    />        
+                <Text>Confirm Password: </Text>
+                <TextInput
+                    placeholder="password"
+                    name='confirmPassword'
+                    // style={}
+                    onChangeText={(confirmPassword) => {
+                        handleInput('confirmPassword', confirmPassword)
+                    }}
+                    />      
+                
+                <Button 
+                    onPress={() => handleSubmission(editData)}
+                    title='Submit Changes'
+                    color='#CCCCCC'
+                    accessibilityLabel='UpdateUserInformation'
+                    />
+            </View>
         </View>
     )
 }
