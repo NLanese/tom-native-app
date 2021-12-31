@@ -11,7 +11,7 @@ const LandingStyles = StyleSheet.create({
 const SignInBoxStyles = StyleSheet.create({
 	container: {
 		backgroundColor: '#ffffff',
-		height: 250,
+		height: 260,
 		width: '90%',
 		borderRadius: 10,
 		paddingTop: 10,
@@ -25,7 +25,10 @@ const EmailStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	text: {
-		marginTop: 10
+		marginTop: 10,
+		marginBottom: -10,
+		fontSize: 24,
+		fontWeight: 'bold'
 	},
 	input: {
 		backgroundColor: '#02020A',
@@ -55,15 +58,29 @@ const ButtonStyles = StyleSheet.create({
 		height: 35,
 		width: 150,
 		backgroundColor: '#ffffff',
-		marginBottom: 50,
+		marginBottom: 75,
 		marginTop: 10,
 		borderRadius: 20,
+		shadowColor: '#ffffff',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 6,
 	},
 	logInButton: {
 		backgroundColor: '#02020A',
 		width: 150,
 		borderRadius: 20,
-		marginTop: 10
+		marginTop: 10,
+		shadowColor: '#02020A',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.65,
+		shadowRadius: 6,
 	},
 	button: {
 		borderRadius: 25,
