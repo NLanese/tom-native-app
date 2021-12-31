@@ -9,9 +9,8 @@ const Settings = () => {
 
     return (
         <View>
-            <View style={SettingsStyles.navBar}>
-                <NavBar />
-            </View>
+            <NavBar />
+
             <View style={SettingsStyles.buttonBox}>
                 <UserInformationButton />
                 <AccountSettingsButton />
