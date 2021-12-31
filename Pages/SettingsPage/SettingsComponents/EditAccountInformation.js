@@ -29,8 +29,9 @@ const EditAccountInformation = () => {
         if (user.passowrd){
             if (user.password.length > 7 && user.password != user.confirmPassword){
                 throw new Error("Error: Passwords entered do not match")
-            }s
+            }
         }
+        
         if (!user.firstname){
             user.firstname = previousState.firstname
         }
@@ -71,12 +72,6 @@ const EditAccountInformation = () => {
         }
         await history.push('/account_information')
     }
-
-    // useEffect(() => {
-    //     if (!loading && data) {
-    //         console.log(data)
-    //     }
-    // }, [data])
 
     return (
         <View style={EditAccountInformationStyles.container}>

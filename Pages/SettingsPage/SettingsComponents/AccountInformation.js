@@ -33,18 +33,27 @@ const AccountInformation = () => {
             }
     }, [queryData])
 
-    return (
-        <View style={SettingsStyles.container}>
-            <NavBar />
 
-            <View style={AccountInformationStyles.container}>
-                <AdminAndUserInformation userData={userData}/>
+    if (!queryData.firstname) {
+        return (
+            <View style={SettingsStyles.container}>
+                <Text> LOADING!!</Text>
             </View>
-            
-            <EditAccountInformationButton/>
-            <ViewAccidentsButton userData={userData}/>
-        </View>
-    )
+        )
+    } else {
+        return (
+            <View style={SettingsStyles.container}>
+                <NavBar />
+    
+                <View style={AccountInformationStyles.container}>
+                    <AdminAndUserInformation userData={userData}/>
+                </View>
+                
+                <EditAccountInformationButton/>
+                <ViewAccidentsButton userData={userData}/>
+            </View>
+        )
+    }
 }
 
 export default AccountInformation

@@ -6,7 +6,6 @@ import { userState } from '../../../Recoil/atoms'
 
 const ViewAccidents = () => {
 
-
     return (
         <ScrollView >
             <Text>Accident Information</Text>
