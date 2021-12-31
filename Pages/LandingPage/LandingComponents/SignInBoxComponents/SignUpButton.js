@@ -111,17 +111,17 @@ const SignUpButton = () => {
 							// console.log(signupObj)
 							console.log("attempt in progress")
 							signup({
-								// variables: {
-								// 	SignupInput: {
-								// 		email: userData.email,
-								// 		firstname: userData.firstname,
-								// 		lastname: userData.lastName,
-								// 		phoneNumber: userData.phoneNumber,
-								// 		username: userData.username,
-								// 		password: userData.password,
-								// 		adminEmail: userData.adminEmail
-								// 	},
-								// },
+								variables: {
+									SignupInput: {
+										email: userData.email,
+										firstname: userData.firstname,
+										lastname: userData.lastName,
+										phoneNumber: userData.phoneNumber,
+										username: userData.username,
+										password: userData.password,
+										adminEmail: userData.adminEmail
+									},
+								},
 							});
 							// setModalVisible(!modalVisible);
 						}}

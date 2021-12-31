@@ -26,12 +26,11 @@ import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccident
 import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
 import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
 import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
-import MedicalAttention from './Pages/ReportAnAccidentPage/MedicalAttention'
 import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
 import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
-import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents';
+import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 
 let state;
 
@@ -86,7 +85,6 @@ export default function App() {
                         <Route exact path='/before_we_begin' component={BeforeWeBegin} />
                           <Route exact path='/create_or_add' component={CreateOrAdd} />
                             <Route exact path='/report_an_accident' component={ReportAnAccident} />
-                    <Route exact path='/medical_attention' component={MedicalAttention} />
                       
                       
                       
@@ -104,10 +102,10 @@ export default function App() {
 
 
                   <Route exact path='/settings' component={Settings} />
-                  <Route exact path='/account_information' component={AccountInformation} />
-                  <Route exact path="/account_settings" component={AccountSettings} />
-                  <Route exact path='/edit_account_information' component={EditAccountInformation} />
-                  <Route exact path='/view_accidents' component={ViewAccidents} />
+                    <Route exact path='/account_information' component={AccountInformation} />
+                      <Route exact path='/edit_account_information' component={EditAccountInformation} />
+                      <Route exact path='/view_accidents' component={ViewAccidents} />
+                    <Route exact path='/account_settings' component={AccountSettings} />
 
                 </Switch>
               ) : null}

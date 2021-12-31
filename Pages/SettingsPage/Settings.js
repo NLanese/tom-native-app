@@ -1,15 +1,18 @@
-import react from "react";
-import { useHistory } from 'react-router-native';
+import React from "react";
 import { View, Text, Button } from 'react-native'
 import UserInformationButton from "./SettingsComponents/ButtonBoxComponents/UserInformationButton";
 import AccountSettingsButton from "./SettingsComponents/ButtonBoxComponents/AccountSettingsButton";
-import { settings } from "../../Styles/SettingStyles";
+import { SettingsStyles } from "../../Styles/SettingStyles";
+import NavBar from "../../Global/NavBar";
 
 const Settings = () => {
 
     return (
         <View>
-            <View style={settings.buttonBox}>
+            <View style={SettingsStyles.navBar}>
+                <NavBar />
+            </View>
+            <View style={SettingsStyles.buttonBox}>
                 <UserInformationButton />
                 <AccountSettingsButton />
             </View>

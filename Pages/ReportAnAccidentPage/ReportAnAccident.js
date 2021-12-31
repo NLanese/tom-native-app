@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from 'react-native'
-import { ReportAnAccidentStyle } from "../../Styles/ReportAnAccidentStyles";
+import { ReportAnAccidentStyles } from "../../Styles/ReportAnAccidentStyles";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../Recoil/atoms'
 import { useHistory } from "react-router-native";
@@ -35,8 +35,14 @@ const ReportAnAccident = () => {
         }
     }, [data])
 
+    // useEffect(() => {
+    //     console.log(dataD)
+    //     console.log(errorD)
+    //     console.log(loadingD)
+    // }, [errorD, dataD, loadingD])
+
     return (
-        <View style={ReportAnAccidentStyle.container}>
+        <View style={ReportAnAccidentStyles.container}>
             <NavBar />
             <Title />
             <InputField accidentData={accidentData} handleInput={handleInput}/>
@@ -60,8 +66,11 @@ const ReportAnAccident = () => {
             {/* <Button 
                 onPress={() => {
                     updateDriver({
-                        updateDriver: {
-                            firstname: 'TEST FROM FRONTEND'
+                        variables: {
+                            updateDriver: {
+                                firstname: 'TEST FROM FRONTEND',
+                                email: 'test'
+                            }
                         }
                     })
                 }}

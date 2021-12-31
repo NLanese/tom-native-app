@@ -68,12 +68,18 @@ const GETDRIVERDATA = gql`
     firstname
     lastname
     email
+    password
     phoneNumber
+    token
     employeeId
+    adminId
     adminFirstname
     adminLastname
     adminUsername
+    adminPhonenumber
     adminEmail
+    adminAccountStanding
+    adminApproved
   }
 }
 `
@@ -82,6 +88,10 @@ const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
     firstname
+    lastname
+    email
+    phoneNumber
+    password
   }
 }
 `

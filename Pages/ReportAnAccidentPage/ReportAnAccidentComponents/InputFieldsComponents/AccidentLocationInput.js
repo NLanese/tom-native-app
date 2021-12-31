@@ -1,18 +1,18 @@
 import React from "react";
 import { View, Text, TextInput } from 'react-native'
-import { SubmitStyle } from "../../../../Styles/ReportAnAccidentStyles";
+import { SubmitStyles } from "../../../../Styles/ReportAnAccidentStyles";
 
 
 const AccidentLocation = ({ handleInput }) => {
 
 
     return (
-        <View style={SubmitStyle.container}>
-            <Text style={SubmitStyle.text}> Location of Accident </Text>
+        <View style={SubmitStyles.container}>
+            <Text style={SubmitStyles.text}> Location of Accident </Text>
                 <TextInput 
                     name='Location'
                     placeholder=" Location of the Accident"
-                    style={SubmitStyle.input}
+                    style={SubmitStyles.input}
                     onChangeText={(location) => {
                         handleInput('location', location)
                     }}

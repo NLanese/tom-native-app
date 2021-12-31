@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const navStyles = StyleSheet.create({
+const NavbarStyles = StyleSheet.create({
 	container: {
 		height: 75,
 		width: '100%',
@@ -28,4 +28,4 @@ const navStyles = StyleSheet.create({
 	},
 });
 
-export { navStyles }
+export { NavbarStyles }

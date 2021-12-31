@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const home = StyleSheet.create({
+const HomeStyles = StyleSheet.create({
 	container: {
 		justifyContent: 'flex-start',
 		alignItems: 'center',
@@ -18,7 +18,7 @@ const home = StyleSheet.create({
 	  }
 });
 
-const buttonBox = StyleSheet.create({
+const ButtonBoxStyles = StyleSheet.create({
 	container: {
 		marginTop: 20,
 		justifyContent: 'flex-start',
@@ -56,6 +56,6 @@ const buttonBox = StyleSheet.create({
 })
 
 export {
-    home,
-	buttonBox
+    HomeStyles,
+	ButtonBoxStyles
 }
