@@ -17,6 +17,8 @@ import Productivity from './Pages/ProductivityPage/Productivity'
 import Communication from './Pages/CommunicationPage/Communication'
 import Analytics from './Pages/AnalyticsPage/Analytics'
 import Settings from './Pages/SettingsPage/Settings'
+import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
+import AccountSettings from './Pages/SettingsPage/SettingsComponents/AccountSettings'
 import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
 import ReportCollision from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportCollision'
 import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryAccident'
@@ -27,17 +29,20 @@ import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
 import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
 import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
-import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 import NavBar from './Global/NavBar';
 // import NavBar from './Global/NavBar';
+import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
+import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
+import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
+
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.52:5001/graphql',
+	uri: 'http://10.0.0.46:5001/graphql',
 });
 
 // Auth for token
@@ -78,7 +83,6 @@ export default function App() {
               {loggedIn === true ? (
                 <Switch>
                   <Route exact path='/home' component={Home} />
-                  <Route exact path='/scorecard' component={ScoreCard} />
                   <Route exact path='/shiftplanner' component={ShiftPlanner} />
 
 
@@ -108,6 +112,12 @@ export default function App() {
                     <Route exact path='/account_information' component={AccountInformation} />
                       <Route exact path='/edit_account_information' component={EditAccountInformation} />
                       <Route exact path='/view_accidents' component={ViewAccidents} />
+                    <Route exact path='/account_settings' component={AccountSettings} />
+
+                  <Route exact path='/scorecard' component={ScoreCard} />
+                    <Route exact path='/quality' component={Quality} />
+                    <Route exact path='/safetyandcompliance' component={SafetyAndCompliance} />
+                    <Route exact path='/team' component={Team} />
 
                 </Switch>
               ) : null}

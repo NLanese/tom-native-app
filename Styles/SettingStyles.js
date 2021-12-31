@@ -6,6 +6,9 @@ const SettingsStyles = StyleSheet.create({
         backgroundColor: '#1a2c3d',
         justifyContent: 'center'
     },
+    navBar: {
+        top: '0%'
+    },
     informationContainer :{
         position: 'absolute',
         width: "80%",
@@ -37,8 +40,15 @@ const SettingsStyles = StyleSheet.create({
 
 const AccountInformationStyles = StyleSheet.create({
 	container: {
-		marginTop: 75
-	}
+		marginTop: 0,
+        paddingBottom: 15,
+        borderBottomColor: "grey",
+        borderBottomWidth: 5
+	},
+    buttonBox: {
+        marginTop: 15,
+
+    }
 })
 
 const AdminAndUserInformationStyles = StyleSheet.create({
@@ -53,14 +63,18 @@ const AdminAndUserInformationStyles = StyleSheet.create({
         left: "10%"
     },
     text: {
-        color: 'white'
+        color: 'white',
+        marginTop: 7,
+        fontSize: 16
     },
     header: {
         marginBottom: 10,
         position: "relative",
         backgroundColor: "grey",
         width: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 22,
+        fontWeight: "600"
     },
     buttonBox: {
         marginTop: 50,
@@ -83,9 +97,14 @@ const EditAccountInformationStyles = StyleSheet.create({
     },
 })
 
+const ViewAccidentsStyles = StyleSheet.create({
+
+})  
+
 export {
     SettingsStyles,
     AccountInformationStyles,
     AdminAndUserInformationStyles,
-    EditAccountInformationStyles
+    EditAccountInformationStyles,
+    ViewAccidentsStyles
 }

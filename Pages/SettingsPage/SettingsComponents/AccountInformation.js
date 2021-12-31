@@ -48,9 +48,10 @@ const AccountInformation = () => {
                 <View style={AccountInformationStyles.container}>
                     <AdminAndUserInformation userData={userData}/>
                 </View>
-                
-                <EditAccountInformationButton/>
-                <ViewAccidentsButton userData={userData}/>
+                <View style={AccountInformationStyles.buttonBox}>
+                    <EditAccountInformationButton/>
+                    <ViewAccidentsButton userData={userData}/>
+                </View>
             </View>
         )
     }
