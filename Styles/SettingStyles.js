@@ -112,8 +112,38 @@ const EditAccountInformationStyles = StyleSheet.create({
     container: {
         display: 'flex',
         alignItems: 'center',
-        height: "100%",
     },
+
+    InputsField: {
+        marginTop: 25,
+        alignItems: 'center'
+    },
+
+    InputTitles: {
+        color: 'white',
+        marginTop: 7,
+        fontSize: 20,
+        fontWeight: "700"
+    },
+
+    Input: {
+        textAlign: "center",
+        color: 'black',
+        borderRadius: 18,
+        marginTop: 2,
+        marginBottom: 12,
+        backgroundColor: 'white',
+        height: 30,
+        width: 300
+    },
+
+    ButtonCasing: {
+        marginTop: 55,
+        width: "90%",
+        backgroundColor: '#02020A',
+        borderRadius: 10,
+        borderColor: '#ffffff'
+    }
 })
 
 const ViewAccidentsStyles = StyleSheet.create({

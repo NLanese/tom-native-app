@@ -77,9 +77,9 @@ const EditAccountInformation = () => {
         <View style={EditAccountInformationStyles.container}>
             <NavBar />
             
-            <View>
-                <Text>First Name: </Text>
-                <TextInput
+            <View style={EditAccountInformationStyles.InputsField}>
+                <Text style={EditAccountInformationStyles.InputTitles}>First Name: </Text>
+                <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.firstname}
                     name='firstname'
                     // style={}
@@ -87,8 +87,8 @@ const EditAccountInformation = () => {
                         handleInput('firstname', firstname)
                     }}
                     />
-                <Text>Last Name: </Text>
-                <TextInput
+                <Text style={EditAccountInformationStyles.InputTitles}>Last Name: </Text>
+                <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.lastname}
                     name='lastname'
                     // style={}
@@ -96,8 +96,8 @@ const EditAccountInformation = () => {
                         handleInput('lastname', lastname)
                     }}
                     />
-                <Text>Email: </Text>
-                <TextInput
+                <Text style={EditAccountInformationStyles.InputTitles}>Email: </Text>
+                <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.email}
                     name='email'
                     // style={}
@@ -105,8 +105,8 @@ const EditAccountInformation = () => {
                         handleInput('email', email)
                     }}
                     />
-                <Text>Phone Number: </Text>
-                <TextInput
+                <Text style={EditAccountInformationStyles.InputTitles}>Phone Number: </Text>
+                <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.phoneNumber}
                     name='phoneNumber'
                     // style={}
@@ -114,8 +114,8 @@ const EditAccountInformation = () => {
                         handleInput('phoneNumber', phoneNumber)
                     }}
                     />
-                <Text>Password: </Text>
-                <TextInput
+                <Text style={EditAccountInformationStyles.InputTitles}>Password: </Text>
+                <TextInput style={EditAccountInformationStyles.Input}
                     placeholder="password"
                     name='password'
                     // style={}
@@ -123,8 +123,8 @@ const EditAccountInformation = () => {
                         handleInput('password', password)
                     }}
                     />        
-                <Text>Confirm Password: </Text>
-                <TextInput
+                <Text style={EditAccountInformationStyles.InputTitles}>Confirm Password: </Text>
+                <TextInput style={EditAccountInformationStyles.Input}
                     placeholder="password"
                     name='confirmPassword'
                     // style={}
@@ -133,12 +133,14 @@ const EditAccountInformation = () => {
                     }}
                     />      
                 
-                <Button 
-                    onPress={() => handleSubmission(editData)}
-                    title='Submit Changes'
-                    color='#CCCCCC'
-                    accessibilityLabel='UpdateUserInformation'
-                    />
+                <View style={EditAccountInformationStyles.ButtonCasing}>
+                    <Button 
+                        onPress={() => handleSubmission(editData)}
+                        title='Submit Changes'
+                        color='#CCCCCC'
+                        accessibilityLabel='UpdateUserInformation'
+                        />
+                </View>
             </View>
         </View>
     )
