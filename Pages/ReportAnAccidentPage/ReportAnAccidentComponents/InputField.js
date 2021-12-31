@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from 'react-native'
-import { ReportAnAccidentStyle } from "../../../Styles/ReportAnAccidentStyles";
+import { ReportAnAccidentStyles } from "../../../Styles/ReportAnAccidentStyles";
 import AccidentNameInput from "./InputFieldsComponents/AccidentNameInput";
 import AccidentLocation from "./InputFieldsComponents/AccidentLocationInput";
 import UsingSafetyButton from "./InputFieldsComponents/UsingSafetyButton";
@@ -11,7 +11,7 @@ import SafetyEquipmentUsedInput from "./InputFieldsComponents/SafetyEquipmentUse
 const InputField = ({ accidentData, handleInput }) => {
 
     return (
-        <View style={ReportAnAccidentStyle.inputFieldContainer}>
+        <View style={ReportAnAccidentStyles.inputFieldContainer}>
             <AccidentNameInput handleInput={handleInput}/>
             <AccidentLocation handleInput={handleInput} />
             {/* <UsingSafetyButton handleInput={handleInput} usingSafety={accidentData.usingSafety}/>

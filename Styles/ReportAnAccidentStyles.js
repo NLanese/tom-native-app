@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const CreateOrAddStyle = StyleSheet.create({
+const CreateOrAddStyles = StyleSheet.create({
     container: {
         display: 'flex',
         alignItems: 'center',
@@ -45,7 +45,7 @@ const CreateOrAddStyle = StyleSheet.create({
     }
 })
 
-const ReportAnAccidentStyle = StyleSheet.create({
+const ReportAnAccidentStyles = StyleSheet.create({
     container: {
         display: 'flex',
         height: '100%'
@@ -68,7 +68,7 @@ const ReportAnAccidentStyle = StyleSheet.create({
     },
 })
 
-const SubmitStyle = StyleSheet.create({
+const SubmitStyles = StyleSheet.create({
 	container: {
         display: 'flex',
 		justifyContent: 'center',
@@ -98,7 +98,7 @@ const SubmitStyle = StyleSheet.create({
 	},
 });
 
-const ButtonFieldStyle = StyleSheet.create({
+const ButtonFieldStyles = StyleSheet.create({
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -106,7 +106,7 @@ const ButtonFieldStyle = StyleSheet.create({
     }
 })
 
-const BeforeWeBeginStyle = StyleSheet.create({
+const BeforeWeBeginStyles = StyleSheet.create({
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -126,7 +126,7 @@ const BeforeWeBeginStyle = StyleSheet.create({
 	},
 })
 
-const MedicalAttentionStyle = StyleSheet.create({
+const MedicalAttentionStyles = StyleSheet.create({
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -143,7 +143,7 @@ const MedicalAttentionStyle = StyleSheet.create({
 	},
 })
 
-const LeadershipNotifiedStyle = StyleSheet.create({
+const LeadershipNotifiedStyles = StyleSheet.create({
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -160,7 +160,7 @@ const LeadershipNotifiedStyle = StyleSheet.create({
 	},
 })
 
-const PoliceContactedStyle = StyleSheet.create({
+const PoliceContactedStyles = StyleSheet.create({
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -177,7 +177,7 @@ const PoliceContactedStyle = StyleSheet.create({
 	},
 })
 
-const PleaseRememberStyle = StyleSheet.create({
+const PleaseRememberStyles = StyleSheet.create({
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -195,13 +195,13 @@ const PleaseRememberStyle = StyleSheet.create({
 })
 
 export {
-    CreateOrAddStyle,
-    ReportAnAccidentStyle,
-    SubmitStyle,
-    ButtonFieldStyle,
-    BeforeWeBeginStyle,
-    MedicalAttentionStyle,
-    LeadershipNotifiedStyle,
-    PoliceContactedStyle,
-    PleaseRememberStyle
+    CreateOrAddStyles,
+    ReportAnAccidentStyles,
+    SubmitStyles,
+    ButtonFieldStyles,
+    BeforeWeBeginStyles,
+    MedicalAttentionStyles,
+    LeadershipNotifiedStyles,
+    PoliceContactedStyles,
+    PleaseRememberStyles
 }

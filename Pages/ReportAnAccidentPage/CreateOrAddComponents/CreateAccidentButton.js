@@ -1,18 +1,18 @@
 import React from 'react'
 import { View, Text, Button } from 'react-native'
-import { CreateOrAddStyle } from '../../../Styles/ReportAnAccidentStyles'
+import { CreateOrAddStyles } from '../../../Styles/ReportAnAccidentStyles'
 import { useHistory } from 'react-router-native'
 
 const CreateAccidentButton = () => {
     let history = useHistory()
 
     return (
-        <View style={CreateOrAddStyle.caaContainer}>
+        <View style={CreateOrAddStyles.caaContainer}>
             <Button 
                 onPress={() => {
                     history.push('/report_an_accident')
                 }}
-                style={CreateOrAddStyle.caaButton}
+                style={CreateOrAddStyles.caaButton}
                 title='Report a New Accident'
                 color='#CCCCCC'
                 accessibilityLabel='Report an Accident'

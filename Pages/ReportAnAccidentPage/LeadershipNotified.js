@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from 'react-native'
-import { LeadershipNotifiedStyle } from "../../Styles/ReportAnAccidentStyles";
+import { LeadershipNotifiedStyles } from "../../Styles/ReportAnAccidentStyles";
 import NoButton from "./LeadershipNotifiedComponents/NoButton";
 import YesButton from "./LeadershipNotifiedComponents/YesButton";
 import NavBar from "../../Global/NavBar";
@@ -12,9 +12,9 @@ const LeadershipNotified = () => {
         <View>
             <NavBar />
             
-            <View style={LeadershipNotifiedStyle.container}>
+            <View style={LeadershipNotifiedStyles.container}>
 
-                <Text style={LeadershipNotifiedStyle.text}>
+                <Text style={LeadershipNotifiedStyles.text}>
                     Before we start, have you notified your leadership?
                 </Text>
 

@@ -1,11 +1,11 @@
 import React from "react"
 import { View, Button } from 'react-native'
-import { buttonBox } from "../../../Styles/HomeStyles"
+import { ButtonBoxStyles } from "../../../Styles/HomeStyles"
 
 const ThatsNotMeButton = () => {
 
     return (
-        <View style={buttonBox.scoreCardButton}>
+        <View style={ButtonBoxStyles.scoreCardButton}>
             <Button 
                 onPress={() => { console.log('make modal saying to contact admin')}}
 				title='Thats not me!'
