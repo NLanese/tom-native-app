@@ -24,7 +24,6 @@ const SettingsStyles = StyleSheet.create({
         width: '100%',
         textAlign: 'center'
     },
-
     buttonBox: {
         marginTop: 50,
 		justifyContent: 'flex-start',
@@ -33,11 +32,9 @@ const SettingsStyles = StyleSheet.create({
 		width: '90%',
 		display: 'flex'
     },
-
     ButtonTitle: {
         fontSize: 300
     },
-
     ButtonCasing: {
         marginTop: 55,
         width: "80%",
@@ -113,19 +110,16 @@ const EditAccountInformationStyles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
     },
-
     InputsField: {
         marginTop: 25,
         alignItems: 'center'
     },
-
     InputTitles: {
         color: 'white',
         marginTop: 7,
         fontSize: 20,
         fontWeight: "700"
     },
-
     Input: {
         textAlign: "center",
         color: 'black',
@@ -136,7 +130,6 @@ const EditAccountInformationStyles = StyleSheet.create({
         height: 30,
         width: 300
     },
-
     ButtonCasing: {
         marginTop: 55,
         width: "90%",

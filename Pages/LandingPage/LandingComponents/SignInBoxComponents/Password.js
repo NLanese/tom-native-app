@@ -5,7 +5,7 @@ import { EmailStyles } from '../../../../Styles/LandingPageStyles';
 const Password = ({ handleInput }) => {
     return (
         <View style={EmailStyles.container}>
-            <Text> Password </Text>
+            <Text style={EmailStyles.text}> Password </Text>
             <TextInput style={EmailStyles.input} placeholder="Please enter your Password!" placeholderTextColor={'#CCCCCC'} onChangeText={password => {
                 handleInput('password', password);
             }}/>
