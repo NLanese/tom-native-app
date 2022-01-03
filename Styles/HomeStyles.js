@@ -21,9 +21,9 @@ const HomeStyles = StyleSheet.create({
 
 const ButtonBoxStyles = StyleSheet.create({
 	container: {
-		marginTop: 20,
+		marginTop: 40,
 		justifyContent: 'flex-start',
-		// alignItems: 'center',
+		alignItems: 'flex-start',
 		height: 500,
 		width: '90%',
 		display: 'flex',
@@ -52,22 +52,28 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 })
 
-const scoreCardButton = StyleSheet.create({
+const ScoreCardButtonStyles = StyleSheet.create({
 	container: {
 		height: 180,
 		width: 160,
 		shadowOpacity: 0,
 		borderWidth: 1,
-		borderColor: '#f1f1f1'
+		borderColor: '#f1f1f1',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	image: {
 		height: 130,
 		width: 158
 	},
+	Button: {
+		display: 'flex',
+	}
 })
 
 export {
     HomeStyles,
 	ButtonBoxStyles,
-	scoreCardButton
+	ScoreCardButtonStyles
 }
