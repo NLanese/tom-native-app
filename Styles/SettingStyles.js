@@ -18,7 +18,6 @@ const AccountInformationStyles = StyleSheet.create({
 	},
     buttonBox: {
         marginTop: 15,
-
     }
 })
 

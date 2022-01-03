@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TextInput } from 'react-native-paper';
 import { UpdateFieldStyles } from "../../../../Styles/SettingStyles";
 
@@ -10,8 +9,6 @@ import { UpdateFieldStyles } from "../../../../Styles/SettingStyles";
 // handleInput which will be the reference to the handleInput function from the parent Componentn
 const UpdateField = (props) => {
 
-    let startingValue = props.value
-
     const labelMaker = (input) => {
         if (input === 'firstname'){
             return "First Name"
@@ -19,12 +16,12 @@ const UpdateField = (props) => {
         else if (input === 'lastname'){
             return "Last Name"
         }
-        // else if (input === 'phoneNumber'){
-        //     return "Phone Number"
-        // }
-        // else if (input === 'confirmPassword'){
-        //     return "Confirm Your Password"
-        // }
+        else if (input === 'phoneNumber'){
+            return "Phone Number"
+        }
+        else if (input === 'confirmPassword'){
+            return "Confirm Your Password"
+        }
         else{
             return input.charAt(0).toUpperCase() + input.slice(1)
         }
