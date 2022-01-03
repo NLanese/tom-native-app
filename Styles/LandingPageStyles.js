@@ -25,7 +25,7 @@ const EmailStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	text: {
-		marginTop: 10,
+		marginTop: -5,
 		marginBottom: -10,
 		fontSize: 24,
 		fontWeight: 'bold'
@@ -38,6 +38,7 @@ const EmailStyles = StyleSheet.create({
 		margin: 12,
 		borderWidth: 1,
 		borderRadius: 10,
+		fontSize: 14
 	},
 });
 
@@ -56,12 +57,12 @@ const ButtonStyles = StyleSheet.create({
 	},
 	signUpSubmitButton: {
 		height: 35,
-		width: 150,
-		backgroundColor: '#ffffff',
+		width: 200,
+		backgroundColor: '#02020A',
 		marginBottom: 75,
 		marginTop: 10,
 		borderRadius: 20,
-		shadowColor: '#ffffff',
+		shadowColor: '#02020A',
 		shadowOffset: {
 			width: 0,
 			height: 2,
@@ -71,9 +72,9 @@ const ButtonStyles = StyleSheet.create({
 	},
 	logInButton: {
 		backgroundColor: '#02020A',
-		width: 150,
+		width: 200,
 		borderRadius: 20,
-		marginTop: 10,
+		// marginTop: 10,
 		shadowColor: '#02020A',
 		shadowOffset: {
 			width: 0,
