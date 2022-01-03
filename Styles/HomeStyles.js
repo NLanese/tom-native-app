@@ -12,8 +12,9 @@ const HomeStyles = StyleSheet.create({
 		color: '#ffffff',
 	},
 	logo: {
-		width: 300,
-		height: 80,
+		resizeMode: 'stretch',
+		width: 200,
+		height: 85,
 		marginTop: 50
 	  }
 });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ButtonGroup, withTheme/* , Text  */} from 'react-native-elements';
-import { View, /* Button, */ Modal, TextInput, Text, Pressable, ScrollView, TouchableOpacity } from 'react-native'
+import { Button } from 'react-native-paper';
+import { View, Modal, TextInput, Text, Pressable, ScrollView, TouchableOpacity } from 'react-native'
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
 import { ButtonStyles, SignUpModal } from '../../../../Styles/LandingPageStyles';
@@ -10,7 +10,7 @@ const SignUpButton = () => {
     const [signup, { loading: loading, error: error, data: data }] =
 		useMutation(SIGNUP);
     const [modalVisible, setModalVisible] = useState(false);
-	const [buttonLoading, setButtonLoading] = useState(false)
+	const [buttonLoading, setButtonLoading] = useState(false);
 
 	const handleInput = (id, information) => {
 		const input = { ...userData };
@@ -21,9 +21,29 @@ const SignUpButton = () => {
 	const handleButtonLoading = async () => {
 		await setButtonLoading(!buttonLoading)
 	}
+	
+	useEffect(() => {
+		console.log(loading)
+
+		if (loading !== false) {
+			console.log('loading hit')
+			setButtonLoading(true)
+		}
+	}, [loading])
+
+	// useEffect(() => {
+	// 	console.log('data hit')
+	// }, [data])
+
+	// useEffect(() => {
+	// 	if (typeof data === undefined) {
+	// 		console.log('errror hit')
+	// 		setButtonLoading(false)
+	// 	}
+	// }, [error])
 
     return (
-			<View style={ButtonStyles.signinButton}>
+			<View>
 				<Modal animationType='slide' transparent={true} visible={modalVisible} /* style={SignUpModal.modal} */>
 
 					<View style={SignUpModal.centeredView}>
@@ -110,7 +130,7 @@ const SignUpButton = () => {
 										paddingVertical: 5,
 										}}
 										onPress={ async () => {
-											handleButtonLoading()
+											// handleButtonLoading()
 											signup({
 												variables: {
 													signupInput: {
@@ -124,7 +144,7 @@ const SignUpButton = () => {
 													},
 												},
 											});
-											setModalVisible(!modalVisible);
+											// setModalVisible(!modalVisible);
 										}}
 									/>
 								</View>
@@ -136,21 +156,16 @@ const SignUpButton = () => {
 
 				</Modal>
 
-				<View style={ButtonStyles.signUpSubmitButton}>
-					<Button
+				<View>
+					<Button 
+						icon="pen" 
+						dark={true}
+						mode="contained"
+						style={ButtonStyles.signUpButton}
 						onPress={() => setModalVisible(!modalVisible)}
-						title='Sign Up!'
-						color='#02020A'
-						accessibilityLabel='Sign Up!'
-						titleStyle={{ fontWeight: '700' }}
-						buttonStyle={{
-							backgroundColor: '#02020A',
-							borderColor: 'transparent',
-							borderWidth: 0,
-							borderRadius: 5,
-							paddingVertical: 5,
-							}}
-					/>
+					>
+							Sign Up
+					</Button>
 				</View>
 			</View>
 		);

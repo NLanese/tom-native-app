@@ -1,18 +1,17 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Input } from 'react-native-elements';
-import { EmailStyles } from '../../../../Styles/LandingPageStyles'
+import { View } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { EmailStyles } from '../../../../Styles/LandingPageStyles';
 
 const UserName = ({ handleInput }) => {
     return (
-        <View style={EmailStyles.container}>
-            <Text style={EmailStyles.text}> Email </Text>
-
-            <Input
+        <View>
+            <TextInput
                 style={EmailStyles.input}
-                placeholderTextColor={'#CCCCCC'}
-                placeholder='Please enter your Email Address!'
-                inputContainerStyle={{borderBottomWidth: 0}}
+                selectionColor='black'
+                activeOutlineColor='black'
+                activeUnderlineColor='black'
+                label='Email'
                 onChangeText={email => {
                     handleInput('email', email)
                 }}

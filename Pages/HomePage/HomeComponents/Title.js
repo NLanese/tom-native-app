@@ -8,7 +8,7 @@ const Title = () => {
         <View>
             <Image
                 style={HomeStyles.logo}
-                source={require('../../../assets/tom-logo-white-transparent.png')}
+                source={require('../../../assets/tom-logo-letters.png')}
                 />
         </View>
     )
