@@ -4,7 +4,7 @@ const NavbarStyles = StyleSheet.create({
 	container: {
 		height: 75,
 		width: '100%',
-		backgroundColor: '#E87C73',
+		backgroundColor: '#1ba8e0',
 		flexDirection: 'row',
 	},
 	rightText: {

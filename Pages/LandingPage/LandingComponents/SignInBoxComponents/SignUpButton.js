@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Modal, TextInput, Text, Pressable, ScrollView, TouchableOpacity } from 'react-native'
+import { Button, ButtonGroup, withTheme/* , Text  */} from 'react-native-elements';
+import { View, /* Button, */ Modal, TextInput, Text, Pressable, ScrollView, TouchableOpacity } from 'react-native'
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
 import { ButtonStyles, SignUpModal } from '../../../../Styles/LandingPageStyles';
@@ -9,12 +10,17 @@ const SignUpButton = () => {
     const [signup, { loading: loading, error: error, data: data }] =
 		useMutation(SIGNUP);
     const [modalVisible, setModalVisible] = useState(false);
+	const [buttonLoading, setButtonLoading] = useState(false)
 
 	const handleInput = (id, information) => {
 		const input = { ...userData };
 		input[id] = information;
 		setUserData(input);
 	};
+
+	const handleButtonLoading = async () => {
+		await setButtonLoading(!buttonLoading)
+	}
 
     return (
 			<View style={ButtonStyles.signinButton}>
@@ -92,7 +98,19 @@ const SignUpButton = () => {
 
 								<View style={ButtonStyles.signUpSubmitButton}>
 									<Button
-										onPress={() => {
+										title='Submit!'
+										accessibilityLabel='Submit!'
+										loading={buttonLoading}
+										titleStyle={{ fontWeight: '700' }}
+										buttonStyle={{
+										backgroundColor: '#02020A',
+										borderColor: 'transparent',
+										borderWidth: 0,
+										borderRadius: 5,
+										paddingVertical: 5,
+										}}
+										onPress={ async () => {
+											handleButtonLoading()
 											signup({
 												variables: {
 													signupInput: {
@@ -108,9 +126,6 @@ const SignUpButton = () => {
 											});
 											setModalVisible(!modalVisible);
 										}}
-										title='Submit!'
-										color='#02020A'
-										accessibilityLabel='Submit!'
 									/>
 								</View>
 
@@ -127,6 +142,14 @@ const SignUpButton = () => {
 						title='Sign Up!'
 						color='#02020A'
 						accessibilityLabel='Sign Up!'
+						titleStyle={{ fontWeight: '700' }}
+						buttonStyle={{
+							backgroundColor: '#02020A',
+							borderColor: 'transparent',
+							borderWidth: 0,
+							borderRadius: 5,
+							paddingVertical: 5,
+							}}
 					/>
 				</View>
 			</View>
