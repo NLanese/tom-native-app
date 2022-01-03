@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import hidden from './hidden';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
@@ -37,12 +38,11 @@ import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 
-
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.52:5001/graphql',
+	uri: `${hidden.APOLLO_URI}`,
 });
 
 // Auth for token
