@@ -6,8 +6,6 @@ const AccountSettings = (props) => {
 
     return (
         <View>
-            <NavBar />
-
             <Text>
                 User Information Page
             </Text>

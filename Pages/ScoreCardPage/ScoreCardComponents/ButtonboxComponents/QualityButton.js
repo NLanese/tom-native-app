@@ -18,6 +18,7 @@ const QualityButton = () => {
         <View >
             <Button
                 mode="outlined"
+                loading={buttonLoading}
                 style={ButtonStyles.logInButton}
                 onPress={ async () => {
                     handleButtonLoading()
