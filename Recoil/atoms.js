@@ -7,5 +7,5 @@ export const userState = atom({
 
 export const websiteState = atom({
 	key: 'website',
-	default: 'landing',
+	default: 'Landing',
 });
