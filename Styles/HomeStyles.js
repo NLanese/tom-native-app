@@ -4,7 +4,7 @@ const HomeStyles = StyleSheet.create({
 	container: {
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		backgroundColor: '#1a2c3d',
+		backgroundColor: '#F9F9F9',
 		flex: 1,
 		width: '100%'
 	},
@@ -12,8 +12,9 @@ const HomeStyles = StyleSheet.create({
 		color: '#ffffff',
 	},
 	logo: {
-		width: 300,
-		height: 80,
+		resizeMode: 'stretch',
+		width: 200,
+		height: 85,
 		marginTop: 50
 	  }
 });
@@ -22,11 +23,11 @@ const ButtonBoxStyles = StyleSheet.create({
 	container: {
 		marginTop: 20,
 		justifyContent: 'flex-start',
-		alignItems: 'center',
+		// alignItems: 'center',
 		height: 500,
 		width: '90%',
-		display: 'flex'
-		
+		display: 'flex',
+		// backgroundColor: 'black'
 	},
 	leftContainer: {
 		position: 'relative',
@@ -51,7 +52,22 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 })
 
+const scoreCardButton = StyleSheet.create({
+	container: {
+		height: 180,
+		width: 160,
+		shadowOpacity: 0,
+		borderWidth: 1,
+		borderColor: '#f1f1f1'
+	},
+	image: {
+		height: 130,
+		width: 158
+	},
+})
+
 export {
     HomeStyles,
-	ButtonBoxStyles
+	ButtonBoxStyles,
+	scoreCardButton
 }
