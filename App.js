@@ -32,7 +32,7 @@ import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
-// import NavBar from './Global/NavBar';
+import BannerComponent from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
@@ -78,7 +78,7 @@ export default function App() {
 
               {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
               
-              {/* <NavBar /> */}
+              <BannerComponent />
 
               {loggedIn === true ? (
                 <Switch>
