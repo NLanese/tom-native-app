@@ -34,7 +34,7 @@ const Team = () => {
 
     return(
         <View>
-            <NavBar />
+            <Text>Team</Text>
             <View>
                 {renderTeamEmployees(topThreeAndOthers, 0)}
             </View>

@@ -21,8 +21,8 @@ const SafetyAndCompliance = () => {
 
     return(
         <View>
-            <NavBar />
             <View>
+                <Text>Safety and Compliance</Text>
                 {renderTopThree(topThree)}
             </View>
         </View>

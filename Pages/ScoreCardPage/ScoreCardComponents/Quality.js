@@ -15,7 +15,8 @@ const Quality = () => {
 
     return(
         <View>
-            <NavBar />
+            
+            <Text>Quality Page</Text>
         </View>
     )
 }
