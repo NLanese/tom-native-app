@@ -16,8 +16,9 @@ const ButtonBox = () => {
         <View style={ButtonBoxStyles.container}>
 
             <ScoreCardButton />
+            <ShiftPlannerButton />
+            <SettingsButton />
             {/* <View style={ButtonBoxStyles.leftContainer}>
-                <ShiftPlannerButton />
                 <ReportAnAccidentButton />
                 <ReportingButton />
             </View>
@@ -26,7 +27,6 @@ const ButtonBox = () => {
                 <ProductivityButton />
                 <CommunicationButton />
                 <AnalyticsButton />
-                <SettingsButton />
             </View> */}
 
         </View>

@@ -83,7 +83,7 @@ export default function App() {
               {loggedIn === true ? (
                 <Switch>
                   <Route exact path='/home' component={Home} />
-                  <Route exact path='/shiftplanner' component={ShiftPlanner} />
+                  <Route exact path='/shift_planner' component={ShiftPlanner} />
 
 
                   <Route exact path='/leadership_notified' component={LeadershipNotified} />
