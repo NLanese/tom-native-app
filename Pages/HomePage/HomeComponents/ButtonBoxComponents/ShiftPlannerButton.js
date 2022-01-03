@@ -11,8 +11,10 @@ const ShiftPlannerButton = () => {
     return (
         <View style={ScoreCardButtonStyles.container}>
             <Card onPress={() => {history.push("/shift_planner")}}>
-                <Card.Cover source={{ uri: 'https://picsum.photos/699' }} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions>
+                <Card.Cover source={require('../../../../assets/shift_planner.png')} style={ScoreCardButtonStyles.image}/>
+                <Card.Actions
+                    style={ScoreCardButtonStyles.button}
+                >
                     <View>
                         <Button
                             color="black"

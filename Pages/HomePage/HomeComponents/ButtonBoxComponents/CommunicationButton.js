@@ -10,10 +10,13 @@ const CommunicationButton = () => {
     return (
         <View style={ScoreCardButtonStyles.container}>
             <Card onPress={() => {history.push("/communication")}}>
-                <Card.Cover source={{ uri: 'https://picsum.photos/699' }} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions>
+                <Card.Cover source={require('../../../../assets/communication.png')} style={ScoreCardButtonStyles.image}/>
+                <Card.Actions
+                    style={ScoreCardButtonStyles.button}
+                >
                     <View>
                         <Button
+                            
                             color="black"
                         >
                         COMMUNICATION

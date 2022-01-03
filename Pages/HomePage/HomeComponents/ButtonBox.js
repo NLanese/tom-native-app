@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import { View, Text } from 'react-native'
 import { ButtonBoxStyles } from '../../../Styles/HomeStyles';
 import ScoreCardButton from './ButtonBoxComponents/ScoreCardButton'
@@ -14,12 +14,17 @@ const ButtonBox = () => {
 
     return (
         <View style={ButtonBoxStyles.container}>
-            <ReportAnAccidentButton />
-            <ProductivityButton />
-            <CommunicationButton />
-            <ScoreCardButton />
-            <ShiftPlannerButton />
-            <SettingsButton />
+            <View style={ButtonBoxStyles.leftContainer}>
+                <ScoreCardButton />
+                <ReportAnAccidentButton />
+                <ProductivityButton />
+            </View>
+
+            <View style={ButtonBoxStyles.rightContainer}>
+                <ShiftPlannerButton />
+                <CommunicationButton />
+                <SettingsButton />
+            </View>
         </View>
     )
 }

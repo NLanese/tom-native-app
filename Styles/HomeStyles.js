@@ -21,35 +21,21 @@ const HomeStyles = StyleSheet.create({
 
 const ButtonBoxStyles = StyleSheet.create({
 	container: {
-		marginTop: 40,
-		justifyContent: 'flex-start',
-		alignItems: 'flex-start',
-		height: 500,
-		width: '90%',
+		marginTop: 10,
+		width: '100%',
 		display: 'flex',
-		// backgroundColor: 'black'
-	},
-	leftContainer: {
-		position: 'relative',
-		right: 90,
-		display: 'flex',
-		flexWrap: 'wrap',
-		height: 500,
-		width: '45%',
-		alignContent: 'space-between',
-		justifyContent: 'space-around',
 	},
 	rightContainer: {
-		position: 'relative',
-		bottom: 500,
-		left: 90,
-		display: 'flex',
-		flexWrap: 'wrap',
-		height: 500,
-		width: '45%',
-		alignContent: 'space-between',
-		justifyContent: 'space-around'
+		justifyContent: 'flex-start',
+		alignItems: 'flex-end',
+		marginRight: 15
 	},
+	leftContainer: {
+		position: 'absolute',
+		justifyContent: 'flex-end',
+		alignItems: 'flex-start',
+		marginLeft: 15
+	}
 })
 
 const ScoreCardButtonStyles = StyleSheet.create({
@@ -61,14 +47,16 @@ const ScoreCardButtonStyles = StyleSheet.create({
 		borderColor: '#f1f1f1',
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		marginTop: 8
 	},
 	image: {
 		height: 130,
-		width: 158
+		width: 158,
+		backgroundColor: 'black',
 	},
-	Button: {
-		display: 'flex',
+	button: {
+		backgroundColor: '#24296f'
 	}
 })
 
