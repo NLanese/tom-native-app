@@ -1,19 +1,32 @@
-import react from "react"
+import React from "react"
 import { useHistory } from 'react-router-native';
-import { View, Button } from 'react-native'
-import { SettingsStyles } from "../../../../Styles/SettingStyles";
+import { View } from 'react-native'
+import { Button } from 'react-native-paper';
+import { useState } from "react";
+import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 
 const ViewAccidentsButton = () => {
     let history = useHistory()
 
+
+    const [buttonLoading, setButtonLoading] = useState(false)
+	const handleButtonLoading = async () => {
+		await setButtonLoading(!buttonLoading)
+	}
+
     return (
-        <View style={SettingsStyles.ButtonCasing}>
-            <Button 
-                onPress={() => {history.push("/view_accidents")}}
-                title='View All Accidents'
-                color='#CCCCCC'
-                accessibilityLabel='ViewAccidents'
-            />
+        <View >
+            <Button
+                mode="outlined"
+                loading={buttonLoading}
+                style={ButtonStyles.logInButton}
+                onPress={ async () => {
+                    handleButtonLoading()
+                    history.push("/view_accidents")
+                } }
+            >
+                View Accidents
+            </Button>
         </View>
     )
 }

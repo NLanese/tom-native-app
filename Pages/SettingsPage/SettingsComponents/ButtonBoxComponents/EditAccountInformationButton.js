@@ -1,21 +1,34 @@
-import react from "react"
+import React from "react"
 import { useHistory } from 'react-router-native';
-import { View, Button } from 'react-native'
-import { SettingsStyles } from "../../../../Styles/SettingStyles";
+import { View } from 'react-native'
+import { Button } from 'react-native-paper';
+import { useState } from "react";
+import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 
-const AccountSettingsButton = () => {
+const EditAccountInformationButton = () => {
     let history = useHistory()
 
+
+    const [buttonLoading, setButtonLoading] = useState(false)
+	const handleButtonLoading = async () => {
+		await setButtonLoading(!buttonLoading)
+	}
+
     return (
-        <View style={SettingsStyles.ButtonCasing}>
-            <Button style={SettingsStyles.Button}
-                onPress={() => {history.push("/edit_account_information")}}
-                title='Edit Account Information'
-                color='#ffffff'
-                accessibilityLabel='EditAccountInformation'
-            />
+        <View >
+            <Button
+                mode="outlined"
+                loading={buttonLoading}
+                style={ButtonStyles.logInButton}
+                onPress={ async () => {
+                    handleButtonLoading()
+                    history.push("/edit_account_information")
+                } }
+            >
+                Edit Account Information
+            </Button>
         </View>
     )
 }
 
-export default AccountSettingsButton
+export default EditAccountInformationButton

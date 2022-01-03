@@ -1,19 +1,32 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
-import { View, Button } from 'react-native'
-import { ButtonBoxStyles } from "../../../../Styles/ScoreCardStyles";
+import { View } from 'react-native'
+import { Button } from 'react-native-paper';
+import { useState } from "react";
+import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 
 const SafetyAndComplianceButton = () => {
     let history = useHistory()
 
+
+    const [buttonLoading, setButtonLoading] = useState(false)
+	const handleButtonLoading = async () => {
+		await setButtonLoading(!buttonLoading)
+	}
+
     return (
-        <View style={ButtonBoxStyles.ButtonCasing}>
-            <Button 
-                onPress={() => {history.push("/safetyandcompliance")}}
-				title='Safety and Compliance'
-				color='#ffffff'
-				accessibilityLabel='safetyandcompliance'
-            />
+        <View >
+            <Button
+                mode="outlined"
+                loading={buttonLoading}
+                style={ButtonStyles.logInButton}
+                onPress={ async () => {
+                    handleButtonLoading()
+                    history.push("/safetyandcompliance")
+                } }
+            >
+                Safety And Compliance
+            </Button>
         </View>
     )
 }

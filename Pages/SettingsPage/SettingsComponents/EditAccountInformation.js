@@ -1,13 +1,15 @@
 import React, { useEffect } from "react"
 import { UPDATEDRIVER, GETDRIVERDATA } from "../../../GraphQL/operations";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 import { useHistory } from "react-router-native";
-import { View, Button, Text, TextInput } from 'react-native'
-import NavBar from '../../../Global/NavBar'
+import { View, Text } from 'react-native'
+import { Button } from 'react-native-paper';
 import { EditAccountInformationStyles } from "../../../Styles/SettingStyles";
+import { ButtonStyles } from "../../../Styles/LandingPageStyles";
+import UpdateField from "./InformationComponents/UpdateField";
 
 
 const EditAccountInformation = () => {
@@ -15,8 +17,14 @@ const EditAccountInformation = () => {
     const [updateDriver, { loading: loading, error: error, data: data }] = useMutation(UPDATEDRIVER);
     const [getUser, setUser] = useRecoilState(userState)
     const [editData, setEditData] = useState({})
+    const [buttonLoading, setButtonLoading] = useState(false)
 
-    const handleInput = (id, information, event) => {
+
+	const handleButtonLoading = async () => {
+		await setButtonLoading(!buttonLoading)
+	}
+
+    const handleInput = (id, information) => {
         const input = { ...editData }
         input[id] = information
         setEditData(input)
@@ -24,8 +32,8 @@ const EditAccountInformation = () => {
 
     const handleSubmission = async () => {
         let user = editData
+        console.log(user)
         let previousState = getUser
-        
         if (user.passowrd){
             if (user.password.length > 7 && user.password != user.confirmPassword){
                 throw new Error("Error: Passwords entered do not match")
@@ -44,7 +52,6 @@ const EditAccountInformation = () => {
         if (!user.phoneNumber){
             user.phoneNumber = previousState.phoneNumber
         }
-
         if (!user.password){
             await updateDriver({
                 variables: {
@@ -75,11 +82,9 @@ const EditAccountInformation = () => {
 
     return (
         <View style={EditAccountInformationStyles.container}>
-            <NavBar />
             
             <View style={EditAccountInformationStyles.InputsField}>
-                <Text style={EditAccountInformationStyles.InputTitles}>First Name: </Text>
-                <TextInput style={EditAccountInformationStyles.Input}
+                {/* <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.firstname}
                     name='firstname'
                     // style={}
@@ -87,7 +92,6 @@ const EditAccountInformation = () => {
                         handleInput('firstname', firstname)
                     }}
                     />
-                <Text style={EditAccountInformationStyles.InputTitles}>Last Name: </Text>
                 <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.lastname}
                     name='lastname'
@@ -96,7 +100,6 @@ const EditAccountInformation = () => {
                         handleInput('lastname', lastname)
                     }}
                     />
-                <Text style={EditAccountInformationStyles.InputTitles}>Email: </Text>
                 <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.email}
                     name='email'
@@ -105,7 +108,6 @@ const EditAccountInformation = () => {
                         handleInput('email', email)
                     }}
                     />
-                <Text style={EditAccountInformationStyles.InputTitles}>Phone Number: </Text>
                 <TextInput style={EditAccountInformationStyles.Input}
                     placeholder={getUser.phoneNumber}
                     name='phoneNumber'
@@ -114,7 +116,6 @@ const EditAccountInformation = () => {
                         handleInput('phoneNumber', phoneNumber)
                     }}
                     />
-                <Text style={EditAccountInformationStyles.InputTitles}>Password: </Text>
                 <TextInput style={EditAccountInformationStyles.Input}
                     placeholder="password"
                     name='password'
@@ -123,7 +124,6 @@ const EditAccountInformation = () => {
                         handleInput('password', password)
                     }}
                     />        
-                <Text style={EditAccountInformationStyles.InputTitles}>Confirm Password: </Text>
                 <TextInput style={EditAccountInformationStyles.Input}
                     placeholder="password"
                     name='confirmPassword'
@@ -131,18 +131,33 @@ const EditAccountInformation = () => {
                     onChangeText={(confirmPassword) => {
                         handleInput('confirmPassword', confirmPassword)
                     }}
-                    />      
-                
+                    />       */}
 
-                <View style={EditAccountInformationStyles.ButtonCasing}>
+                
+                <UpdateField value={getUser.firstname} field="firstname" handleInput={handleInput} />
+                <UpdateField value={getUser.lastname} field="lastname" handleInput={handleInput} />
+                <UpdateField value={getUser.email} field="email" handleInput={handleInput} />
+                <UpdateField value={getUser.phoneNumber} field="phoneNumber" handleInput={handleInput} />
+                <UpdateField value={getUser.passowrd} field="password" handleInput={handleInput} />
+                <UpdateField value={getUser.passowrd} field="confirmPassword" handleInput={handleInput} />
+
+
+                <View style>
                     <Button 
-                        onPress={() => handleSubmission(editData)}
-                        title='Submit Changes'
-                        color='#CCCCCC'
-                        accessibilityLabel='UpdateUserInformation'
-                        />
+                        mode="outlined"
+                        loading={buttonLoading}
+                        style={ButtonStyles.logInButton}
+                        onPress={() => {
+                            handleButtonLoading()
+                            handleSubmission(editData)
+                        }}
+                    >
+                        Submit Changes
+                    </Button>
                 </View>
+
             </View>
+
         </View>
     )
 }

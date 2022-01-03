@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
-import EmployeeSafetyAndCompliance from './InformationComponents/EmployeeSafetyAndCompliance'
-import NavBar from "../../../../Global/NavBar";
 
 const EmployeeSafetyAndCompliance = ({driverData}) => {
 

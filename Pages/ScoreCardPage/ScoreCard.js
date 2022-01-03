@@ -8,9 +8,7 @@ import NavBar from "../../Global/NavBar";
 const ScoreCard = () => {
 
     return (
-        <View>
-            <NavBar />
-            
+        <View>            
             <QualityButton />
             <SafetyAndComplianceButton />
             <TeamButton />
