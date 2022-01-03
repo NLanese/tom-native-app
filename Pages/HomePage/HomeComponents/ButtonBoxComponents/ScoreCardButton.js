@@ -1,8 +1,8 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
 import { View, Text } from 'react-native'
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { ButtonBoxStyles, ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
+import { Button, Card } from 'react-native-paper';
+import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
 
 const ScoreCardButton = () => {
     let history = useHistory()
