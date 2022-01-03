@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
 import { useHistory } from 'react-router-native';
-import { Button, ButtonGroup, withTheme, Text } from 'react-native-elements';
-import { View/* , Button */ } from 'react-native';
+import { Button } from 'react-native-elements';
+import { View } from 'react-native';
 import { ButtonStyles } from '../../../../Styles/LandingPageStyles';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';

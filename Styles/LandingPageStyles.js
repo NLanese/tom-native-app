@@ -38,7 +38,7 @@ const EmailStyles = StyleSheet.create({
 		margin: 12,
 		borderWidth: 1,
 		borderRadius: 10,
-		fontSize: 18
+		fontSize: 14
 	},
 });
 
@@ -57,12 +57,12 @@ const ButtonStyles = StyleSheet.create({
 	},
 	signUpSubmitButton: {
 		height: 35,
-		width: 150,
-		backgroundColor: '#ffffff',
+		width: 200,
+		backgroundColor: '#02020A',
 		marginBottom: 75,
 		marginTop: 10,
 		borderRadius: 20,
-		shadowColor: '#ffffff',
+		shadowColor: '#02020A',
 		shadowOffset: {
 			width: 0,
 			height: 2,
