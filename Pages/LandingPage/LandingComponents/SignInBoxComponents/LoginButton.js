@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
 import { useHistory } from 'react-router-native';
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-paper';
 import { View } from 'react-native';
 import { ButtonStyles } from '../../../../Styles/LandingPageStyles';
 import { useMutation } from '@apollo/client';
@@ -25,33 +25,30 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 		}
 	}, [data])
 
-	const handleButtonLoading = async () => {
-		await setButtonLoading(!buttonLoading)
+	const handleButtonLoading = () => {
+		setButtonLoading(!buttonLoading)
 	}
 
 	return (
-		<View style={ButtonStyles.container}>
-			<View style={ButtonStyles.logInButton}>
-				<Button
-                title="Login!"
-                loading={buttonLoading}
-                titleStyle={{ fontWeight: '700' }}
-				onPress={ async () => {
-					handleButtonLoading()
-					await login({
-					variables: {
-						email: userData.email,
-						password: userData.password,
-					},
-				});}}
-                buttonStyle={{
-                  backgroundColor: '#02020A',
-                  borderColor: 'transparent',
-                  borderWidth: 0,
-                  borderRadius: 5,
-                  paddingVertical: 5,
-                }}
-              />
+		<View>
+			<View>
+				<Button 
+					icon="login" 
+					mode="contained"
+					loading={buttonLoading} 
+					style={ButtonStyles.logInButton}
+					onPress={ async () => {
+						await handleButtonLoading()
+						await login({
+							variables: {
+								email: userData.email,
+								password: userData.password,
+							},
+						});
+					}}
+				>
+						Login
+				</Button>
 
 			</View>
 		</View>

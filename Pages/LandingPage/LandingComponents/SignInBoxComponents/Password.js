@@ -1,23 +1,20 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Input } from 'react-native-elements';
-
+import { View } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import { EmailStyles } from '../../../../Styles/LandingPageStyles';
 
 const Password = ({ handleInput }) => {
     return (
-        <View style={EmailStyles.container}>
-            <Text style={EmailStyles.text}> Password </Text>
-
-            <Input
+        <View>
+            <TextInput
                 style={EmailStyles.input}
-                placeholderTextColor={'#CCCCCC'}
-                placeholder='Please enter your Password!'
-                inputContainerStyle={{borderBottomWidth: 0}}
+                selectionColor='black'
+                activeOutlineColor='black'
+                activeUnderlineColor='black'
+                label='Password'
                 onChangeText={password => {
                     handleInput('password', password)
                 }}
-                secureTextEntry={true}
             />
         </View>
     );

@@ -15,7 +15,14 @@ const SignInBoxStyles = StyleSheet.create({
 		width: '90%',
 		borderRadius: 10,
 		paddingTop: 10,
-		marginTop: 100
+		marginTop: 100,
+		shadowColor: '#ffffff',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 6,
 	},
 });
 
@@ -30,16 +37,19 @@ const EmailStyles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: 'bold'
 	},
+	// input: {
+	// 	// backgroundColor: '#02020A',
+	// 	color: '#ffffff',
+	// 	height: 40,
+	// 	width: 225,
+	// 	margin: 12,
+	// 	// borderWidth: 1,
+	// 	// borderRadius: 10,
+	// 	fontSize: 14
+	// },
 	input: {
-		backgroundColor: '#02020A',
-		color: '#ffffff',
-		height: 40,
-		width: 225,
-		margin: 12,
-		borderWidth: 1,
-		borderRadius: 10,
-		fontSize: 14
-	},
+		backgroundColor: '#f1f1f1'
+	}
 });
 
 const ButtonStyles = StyleSheet.create({
@@ -53,7 +63,14 @@ const ButtonStyles = StyleSheet.create({
 		alignItems: 'center',
 		paddingLeft: 25,
 		paddingRight: 25,
-		marginTop: 150
+		marginTop: 150,
+		shadowColor: '#02020A',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.65,
+		shadowRadius: 6,
 	},
 	signUpSubmitButton: {
 		height: 35,
@@ -70,18 +87,33 @@ const ButtonStyles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 6,
 	},
+	// logInButton: {
+	// 	backgroundColor: '#02020A',
+	// 	width: 200,
+	// 	borderRadius: 20,
+	// 	// marginTop: 10,
+	// 	shadowColor: '#02020A',
+	// 	shadowOffset: {
+	// 		width: 0,
+	// 		height: 2,
+	// 	},
+	// 	shadowOpacity: 0.65,
+	// 	shadowRadius: 6,
+	// },
 	logInButton: {
-		backgroundColor: '#02020A',
-		width: 200,
-		borderRadius: 20,
-		// marginTop: 10,
-		shadowColor: '#02020A',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.65,
-		shadowRadius: 6,
+		height: 50,
+		display: 'flex',
+		justifyContent: 'center',
+		backgroundColor: 'black',
+		marginTop: 5
+	},
+	signUpButton: {
+		height: 50,
+		display: 'flex',
+		justifyContent: 'center',
+		backgroundColor: '#ffcb05',
+		marginTop: 175,
+		shadowOpacity: 0.0,
 	},
 	button: {
 		borderRadius: 25,

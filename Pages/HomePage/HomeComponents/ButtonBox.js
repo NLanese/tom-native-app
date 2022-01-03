@@ -15,9 +15,10 @@ const ButtonBox = () => {
     return (
         <View style={ButtonBoxStyles.container}>
 
-            <View style={ButtonBoxStyles.leftContainer}>
-                <ScoreCardButton />
-                <ShiftPlannerButton />
+            <ScoreCardButton />
+            <ShiftPlannerButton />
+            <SettingsButton />
+            {/* <View style={ButtonBoxStyles.leftContainer}>
                 <ReportAnAccidentButton />
                 <ReportingButton />
             </View>
@@ -26,8 +27,7 @@ const ButtonBox = () => {
                 <ProductivityButton />
                 <CommunicationButton />
                 <AnalyticsButton />
-                <SettingsButton />
-            </View>
+            </View> */}
 
         </View>
     )
