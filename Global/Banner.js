@@ -1,7 +1,7 @@
 import React from "react";
 import { Appbar, Avatar } from 'react-native-paper';
 import { useHistory } from 'react-router-native';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const BannerComponent = () => {
     let history = useHistory()
