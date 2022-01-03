@@ -8,6 +8,15 @@ const LandingStyles = StyleSheet.create({
     },
 })
 
+const LogoStyles = StyleSheet.create({
+	logo: {
+		resizeMode: 'stretch',
+		width: 200,
+		height: 85,
+		marginTop: 50
+	  }
+})
+
 const SignInBoxStyles = StyleSheet.create({
 	container: {
 		backgroundColor: '#ffffff',
@@ -188,6 +197,7 @@ const SignUpModal = StyleSheet.create({
 
 export {
 	LandingStyles,
+	LogoStyles,
 	SignInBoxStyles,
 	EmailStyles,
 	ButtonStyles,

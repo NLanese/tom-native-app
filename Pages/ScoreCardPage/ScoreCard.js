@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import QualityButton from "./ScoreCardComponents/ButtonboxComponents/QualityButton";
 import SafetyAndComplianceButton from "./ScoreCardComponents/ButtonboxComponents/SafetyAndComplianceButton";
 import TeamButton from "./ScoreCardComponents/ButtonboxComponents/TeamButton";

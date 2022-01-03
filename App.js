@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import hidden from './hidden';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
@@ -32,18 +33,17 @@ import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
-// import NavBar from './Global/NavBar';
+import BannerComponent from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 import BannerComponent from './Global/Banner';
 
-
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://10.0.0.46:5001/graphql',
+	uri: `${hidden.APOLLO_URI}`,
 });
 
 // Auth for token

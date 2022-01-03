@@ -1,17 +1,18 @@
-import React from 'react';
-import { useRecoilState } from 'recoil'
-import { userState } from '../../Recoil/atoms'
-import { View, Text} from 'react-native';
-import { HomeStyles } from '../../Styles/HomeStyles';
-import Title from './HomeComponents/Title'
+import React, { useEffect } from 'react';
+import { websiteState } from '../../Recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { View } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
-import BannerComponent from '../../Global/Banner';
 
 const Home = () => {
-    const [user, setUser] = useRecoilState(userState);
+    const [website, setWebsite] = useRecoilState(websiteState)
 
-    return (
-        <View /* style={HomeStyles.container} */> 
+    useEffect(() => {
+        setWebsite('Home')
+    }, [])
+
+    return 
+        <View> 
             <ButtonBox />
         </View>
     )
