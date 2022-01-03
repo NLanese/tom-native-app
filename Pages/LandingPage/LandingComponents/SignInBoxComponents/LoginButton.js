@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
 import { useHistory } from 'react-router-native';
-import { View, Button } from 'react-native';
+import { Button, ButtonGroup, withTheme, Text } from 'react-native-elements';
+import { View/* , Button */ } from 'react-native';
 import { ButtonStyles } from '../../../../Styles/LandingPageStyles';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';
@@ -26,7 +27,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	return (
 		<View style={ButtonStyles.container}>
 			<View style={ButtonStyles.logInButton}>
-				<Button
+				{/* <Button
 					onPress={() => {
 						login({
 						variables: {
@@ -37,7 +38,21 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 					title='Login!'
 					color='#ffffff'
 					accessibilityLabel='Login!'
-				/>
+				/> */}
+
+				<Button
+                title="Login!"
+                loading={false}
+                titleStyle={{ fontWeight: '700' }}
+                buttonStyle={{
+                  backgroundColor: '#02020A',
+                  borderColor: 'transparent',
+                  borderWidth: 0,
+                  borderRadius: 5,
+                  paddingVertical: 5,
+                }}
+              />
+
 			</View>
 		</View>
 	);
