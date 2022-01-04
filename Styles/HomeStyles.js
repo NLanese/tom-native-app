@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const HomeStyles = StyleSheet.create({
+	container: {
+		display: 'flex',
+		height: '100%'
+	},	
 	logo: {
 		resizeMode: 'stretch',
 		width: 200,
@@ -18,13 +22,14 @@ const ButtonBoxStyles = StyleSheet.create({
 	rightContainer: {
 		justifyContent: 'flex-start',
 		alignItems: 'flex-end',
-		marginRight: 15
+		marginRight: 15,
+		marginLeft: 150
 	},
 	leftContainer: {
 		position: 'absolute',
 		justifyContent: 'flex-end',
 		alignItems: 'flex-start',
-		marginLeft: 15
+		marginLeft: 15,
 	}
 })
 

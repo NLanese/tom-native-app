@@ -37,7 +37,6 @@ import BannerComponent from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
-import BannerComponent from './Global/Banner';
 
 let state;
 

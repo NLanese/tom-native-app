@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
-import NavBar from "../../../Global/NavBar";
+ 
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import TopThreeTeamEmployees from "./InformationComponents/TopThreeTeamEmployee";
 

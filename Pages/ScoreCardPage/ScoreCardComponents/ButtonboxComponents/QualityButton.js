@@ -15,7 +15,7 @@ const QualityButton = () => {
 	}
 
     return (
-        <View >
+        <View>
             <Button
                 mode="outlined"
                 loading={buttonLoading}
