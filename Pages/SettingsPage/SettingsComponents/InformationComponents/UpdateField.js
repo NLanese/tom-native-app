@@ -32,9 +32,9 @@ const UpdateField = (props) => {
                     placeholder={props.value}
                     name={props.field}
                     style={UpdateFieldStyles.Input}
-                    selectionColor='black'
-                    activeOutlineColor='black'
-                    activeUnderlineColor='black'
+                    selectionColor='#24296f'
+                    activeOutlineColor='#24296f'
+                    activeUnderlineColor='#24296f'
                     label={labelMaker(props.field)}
                     onChangeText={(input) => {
                         props.handleInput(props.field, input)
