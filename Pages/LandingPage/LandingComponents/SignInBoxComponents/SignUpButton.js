@@ -24,7 +24,6 @@ const SignUpButton = () => {
 	
 	useEffect(() => {
 		console.log(loading)
-
 		if (loading !== false) {
 			console.log('loading hit')
 			setButtonLoading(true)
@@ -153,12 +152,12 @@ const SignUpButton = () => {
 
 						</ScrollView>
 					</View>
-
 				</Modal>
 
 				<View>
 					<Button 
 						icon="pen" 
+						mode="outlined"
 						dark={true}
 						mode="contained"
 						style={ButtonStyles.signUpButton}
