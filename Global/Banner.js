@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
       // paddingBottom: 10
     },
     rightIcons: {
-      position: 'absolute',
-      width: 365,
+      position: 'relative',
+      width: 200,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end'

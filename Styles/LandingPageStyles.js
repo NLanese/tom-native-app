@@ -87,14 +87,14 @@ const ButtonStyles = StyleSheet.create({
 		backgroundColor: '#02020A',
 		marginBottom: 75,
 		marginTop: 10,
-		borderRadius: 20,
-		shadowColor: '#02020A',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 6,
+		// borderRadius: 20,
+		// shadowColor: '#02020A',
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 2,
+		// },
+		// shadowOpacity: 0.25,
+		// shadowRadius: 6,
 	},
 	// logInButton: {
 	// 	backgroundColor: '#02020A',
