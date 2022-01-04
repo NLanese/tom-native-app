@@ -1,27 +1,34 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
 import { View } from 'react-native'
-import { Button, Card } from 'react-native-paper';
-import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
+import { Button, Card, Title } from 'react-native-paper';
+import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 
 const ScoreCardButton = () => {
     let history = useHistory()
 
     return (
-        <View style={ScoreCardButtonStyles.container}>
+        <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/score_card")}}>
-                <Card.Cover source={require('../../../../assets/scorecard.png')} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions
+                <Card.Cover source={require("../../../../assets/scorecard.jpg")} style={ScoreCardStyles.image}/>
+                {/* <Card.Actions
                     style={ScoreCardButtonStyles.button}
                 >
                     <View>
                         <Button
                             color="black"
                         >
-                           SCORECARD
+                           ScoreCard
                         </Button>
                     </View>
-                </Card.Actions>
+                </Card.Actions> */}
+                <Card.Content>
+                    <Title
+                        style={ScoreCardStyles.CardContent}
+                    >
+                        Scorecard
+                    </Title>
+                </Card.Content>
             </Card>
         </View>
     )

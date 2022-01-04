@@ -1,18 +1,19 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
 import { View } from 'react-native'
+import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
-import { Button, Card } from 'react-native-paper';
+import { Button, Card, Title } from 'react-native-paper';
 
 
 const ShiftPlannerButton = () => {
     let history = useHistory()
 
     return (
-        <View style={ScoreCardButtonStyles.container}>
+        <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/shift_planner")}}>
-                <Card.Cover source={require('../../../../assets/shift_planner.png')} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions
+                <Card.Cover source={require('../../../../assets/shift_planner.png')} style={ScoreCardStyles.image}/>
+                {/* <Card.Actions
                     style={ScoreCardButtonStyles.button}
                 >
                     <View>
@@ -22,7 +23,14 @@ const ShiftPlannerButton = () => {
                            SHIFT PLANNER
                         </Button>
                     </View>
-                </Card.Actions>
+                </Card.Actions> */}
+                <Card.Content>
+                    <Title
+                        style={ScoreCardStyles.CardContent}
+                    >
+                        Scorecard
+                    </Title>
+                </Card.Content>
             </Card>
         </View>
     )

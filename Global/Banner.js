@@ -17,22 +17,11 @@ const BannerComponent = () => {
         <Appbar style={styles.bottom}>
           <View style={styles.leftIcons}>
 
-            {/* <Appbar.Action
-              color='white'
-              style={styles.actionBar}
-              icon="chevron-left"
-              onPress={() => history.goBack()}
-            /> */}
-
             <Appbar.BackAction 
               color="white"
               size={20}
               onPress={history.goBack()} 
             />
-
-            {/* <Text style={styles.centerText}>
-              {website}
-            </Text> */}
 
             <Appbar.Content 
               top={10}
@@ -40,11 +29,9 @@ const BannerComponent = () => {
               title={website} 
               style={styles.title}
             />
-
           </View>
                   
           <View style={styles.centerIcon}>
-
           </View>
 
           <View style={styles.rightIcons}>
