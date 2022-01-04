@@ -4,6 +4,7 @@ import { websiteState } from '../Recoil/atoms'
 import { Appbar, Avatar } from 'react-native-paper';
 import { useHistory } from 'react-router-native';
 import { StyleSheet, View, Text } from 'react-native';
+import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 
 const BannerComponent = () => {
   const [website] = useRecoilState(websiteState)
@@ -15,35 +16,56 @@ const BannerComponent = () => {
 
         <Appbar style={styles.bottom}>
           <View style={styles.leftIcons}>
-            <Appbar.Action
-              color='#d0c1d0'
+
+            {/* <Appbar.Action
+              color='white'
               style={styles.actionBar}
-              icon="arrow-left-bold"
+              icon="chevron-left"
               onPress={() => history.goBack()}
+            /> */}
+
+            <Appbar.BackAction 
+              color="white"
+              size={20}
+              onPress={history.goBack()} 
             />
 
-            <Appbar.Action
-              color='#d0c1d0'
-              style={styles.actionBar}
-              icon="home"
-              onPress={() => history.push('/home')}
+            {/* <Text style={styles.centerText}>
+              {website}
+            </Text> */}
+
+            <Appbar.Content 
+              top={10}
+              left={-15}
+              title={website} 
+              style={styles.title}
             />
+
           </View>
                   
           <View style={styles.centerIcon}>
-            <Text style={styles.centerText}>
-              {website}
-            </Text>
+
           </View>
 
           <View style={styles.rightIcons}>
-            <Appbar.Action
-              color='#d0c1d0'
-              style={styles.actionBar}
-              icon="alarm-light-outline"
+
+          <Appbar.Action
+              color='white'
+              style={styles.actionBarHome}
+              icon="home-variant"
+              onPress={() => history.push('/home')}
             />
 
-            <Avatar.Image size={24} source={require('../assets/tom-logo-white-transparent.png')} />
+            <Appbar.Action
+              color='white'
+              style={styles.actionBar}
+              icon="bell"
+            />
+
+            <Avatar.Image
+              source={SomeDudesFace}
+              size={32}
+            />
           </View>
 
         </Appbar>
@@ -61,16 +83,16 @@ const styles = StyleSheet.create({
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: '#24296f',
+      backgroundColor: '#570de4',
       display: 'flex',
-      // paddingBottom: 51
     },
+
     leftIcons: {
-      // position: 'absolute',
-      width: 150,
+      width: 300,
       flexDirection: 'row',
-      // paddingBottom: 10
+      color: 'white',
     },
+
     rightIcons: {
       position: 'absolute',
       width: 365,
@@ -78,27 +100,49 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'flex-end'
     },
+
     centerIcon: {
       position: 'absolute',
       width: 150,
       alignItems: 'center',
-      marginLeft: 120
+      // marginLeft: 120
     },
+
     centerText: {
-      // width: 100,
-      fontSize: 24,
-      fontWeight: "700"
+      fontSize: 16,
+      top: 14,
+      fontWeight: "700",
+      color: 'white'
     },
+
     actionBar: {
       position: 'relative',
       top: 0,
-      color: '#d0c1d0' 
+      color: '#570de4', 
+      left: -3
     },
+
+    actionBarHome: {
+      // position: 'relative',
+      left: '2%',
+      color: '#570de4' 
+    },
+
+    actionBarHome: {
+      position: 'relative',
+      top: 0,
+      left: 7,
+      color: '#570de4' 
+    },
+
     topBar: {
       position: 'relative',
       top: 0,
       height: 20,
-      backgroundColor: '#9174a9',
-      // paddingBottom: 20
-    }
+      backgroundColor: '#570de4',
+    },
+
+    title: {
+      top: '2%'
+    },
   });

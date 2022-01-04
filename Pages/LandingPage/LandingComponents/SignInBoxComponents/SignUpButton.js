@@ -4,6 +4,7 @@ import { View, Modal, TextInput, Text, Pressable, ScrollView, TouchableOpacity }
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
 import { ButtonStyles, SignUpModal } from '../../../../Styles/LandingPageStyles';
+import UpdateField from './UpdateField';
 
 const SignUpButton = () => {
 	const [userData, setUserData] = useState({})
@@ -44,7 +45,7 @@ const SignUpButton = () => {
 
     return (
 			<View>
-				<Modal animationType='slide' transparent={true} visible={modalVisible} /* style={SignUpModal.modal} */>
+				<Modal animationType='slide' transparent={true} visible={modalVisible} style={SignUpModal.modal} >
 
 					<View style={SignUpModal.centeredView}>
 						<ScrollView style={SignUpModal.modalView}>
@@ -53,7 +54,17 @@ const SignUpButton = () => {
 								<Text style={SignUpModal.modalTitle}> Tom App Sign Up! </Text>
 								<Text style={SignUpModal.modalSubTitle}> Please enter the proper information below! </Text>
 
-								<Text style={SignUpModal.modalText}> Email </Text>
+								<UpdateField field="firstname" handleInput={handleInput} />
+								<UpdateField field="lastname" handleInput={handleInput} />
+								<UpdateField field="email" handleInput={handleInput} />
+								<UpdateField field="phoneNumber" handleInput={handleInput} />
+								<UpdateField field="adminEmail" handleInput={handleInput} />
+								<UpdateField field="password" handleInput={handleInput} />
+								<UpdateField field="confirmPassword" handleInput={handleInput} />
+
+
+
+								{/* <Text style={SignUpModal.modalText}> Email </Text>
 								<TextInput
 									name='Email'
 									style={SignUpModal.input}
@@ -114,20 +125,21 @@ const SignUpButton = () => {
 									onChangeText={(adminEmail) => {
 										handleInput('adminEmail', adminEmail);
 									}}
-								/>
+								/> */}
 
 								<View style={ButtonStyles.signUpSubmitButton}>
 									<Button
 										title='Submit!'
+										mode="outlined"
 										accessibilityLabel='Submit!'
 										loading={buttonLoading}
 										titleStyle={{ fontWeight: '700' }}
 										buttonStyle={{
-										backgroundColor: '#02020A',
-										borderColor: 'transparent',
-										borderWidth: 0,
-										borderRadius: 5,
-										paddingVertical: 5,
+											backgroundColor: '#02020A',
+											borderColor: 'transparent',
+											borderWidth: 0,
+											borderRadius: 5,
+											paddingVertical: 5,
 										}}
 										onPress={ async () => {
 											// handleButtonLoading()

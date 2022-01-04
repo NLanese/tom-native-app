@@ -130,6 +130,10 @@ const ButtonStyles = StyleSheet.create({
 });
 
 const SignUpModal = StyleSheet.create({
+	modal: {
+		flex: 1
+	},
+
 	centeredView: {
 		flex: 1,
 		justifyContent: 'center',
@@ -193,6 +197,12 @@ const SignUpModal = StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 10,
 	},
+	inputField: {
+        flex: 1,
+        marginTop: 8,
+        backgroundColor: '#f1f1f1',
+		width: '80%',	
+	}
 });
 
 export {

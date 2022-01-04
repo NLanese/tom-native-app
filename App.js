@@ -42,7 +42,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: `${hidden.APOLLO_URI}`,
+	uri: 'http://10.0.0.46:5001/graphql'
 });
 
 // Auth for token
