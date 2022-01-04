@@ -1,8 +1,8 @@
-import react from "react"
+import React from "react"
 import { useHistory } from 'react-router-native';
 import { View } from 'react-native'
 import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Button, Card } from 'react-native-paper';
 
 
 const SettingsButton = () => {
@@ -11,8 +11,10 @@ const SettingsButton = () => {
     return (
         <View style={ScoreCardButtonStyles.container}>
             <Card onPress={() => {history.push("/settings")}}>
-                <Card.Cover source={{ uri: 'https://picsum.photos/699' }} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions>
+                <Card.Cover source={require('../../../../assets/settings.png')} style={ScoreCardButtonStyles.image}/>
+                <Card.Actions
+                    style={ScoreCardButtonStyles.button}
+                >
                     <View>
                         <Button
                             color="black"

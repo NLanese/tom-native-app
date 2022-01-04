@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { LandingStyles } from '../../Styles/LandingPageStyles';
 import SignInBox from './LandingComponents/SignInBox'
-import Title from '../HomePage/HomeComponents/Title';
+import Title from './LandingComponents/Title';
 
 const LandingPage = ({ handleLoggedIn }) => {
     return (
