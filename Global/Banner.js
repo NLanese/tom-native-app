@@ -36,7 +36,7 @@ const BannerComponent = () => {
             </Text>
           </View>
 
-          {/* <View style={styles.rightIcons}>
+          <View style={styles.rightIcons}>
             <Appbar.Action
               color='#d0c1d0'
               style={styles.actionBar}
@@ -44,7 +44,7 @@ const BannerComponent = () => {
             />
 
             <Avatar.Image size={24} source={require('../assets/tom-logo-white-transparent.png')} />
-          </View> */}
+          </View>
 
         </Appbar>
     </View>
