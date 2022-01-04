@@ -11,7 +11,7 @@ const Home = () => {
         setWebsite('Home')
     }, [])
 
-    return 
+    return (
         <View> 
             <ButtonBox />
         </View>

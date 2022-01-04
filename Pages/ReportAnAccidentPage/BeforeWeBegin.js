@@ -5,15 +5,12 @@ import { useRecoilState } from "recoil";
 import { BeforeWeBeginStyles } from "../../Styles/ReportAnAccidentStyles";
 import ThatsMeButton from "./BeforeWeBeginComponents/ThatsMeButton";
 import ThatsNotMeButton from "./BeforeWeBeginComponents/ThatsNotMeButton";
-import NavBar from "../../Global/NavBar";
 
 const BeforeWeBegin = () => {
     const [userData, setUserData] = useRecoilState(userState)
 
     return (
-        <View>
-            <NavBar />
-            
+        <View>            
             <View style={BeforeWeBeginStyles.container}>
                 <Text style={BeforeWeBeginStyles.text}> Before we begin, Please verify that I have the correct information below.</Text>
 

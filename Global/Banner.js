@@ -36,7 +36,7 @@ const BannerComponent = () => {
             </Text>
           </View>
 
-          <View style={styles.rightIcons}>
+          {/* <View style={styles.rightIcons}>
             <Appbar.Action
               color='#d0c1d0'
               style={styles.actionBar}
@@ -44,7 +44,7 @@ const BannerComponent = () => {
             />
 
             <Avatar.Image size={24} source={require('../assets/tom-logo-white-transparent.png')} />
-          </View>
+          </View> */}
 
         </Appbar>
     </View>
@@ -62,11 +62,14 @@ const styles = StyleSheet.create({
       right: 0,
       bottom: 0,
       backgroundColor: '#24296f',
-      display: 'flex'
+      display: 'flex',
+      // paddingBottom: 51
     },
     leftIcons: {
+      // position: 'absolute',
       width: 150,
       flexDirection: 'row',
+      // paddingBottom: 10
     },
     rightIcons: {
       position: 'absolute',
@@ -77,9 +80,9 @@ const styles = StyleSheet.create({
     },
     centerIcon: {
       position: 'absolute',
-      width: 385,
+      width: 150,
       alignItems: 'center',
-      justifyContent: 'center'
+      marginLeft: 120
     },
     centerText: {
       // width: 100,
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
       position: 'relative',
       top: 0,
       height: 20,
-      backgroundColor: '#9174a9'
+      backgroundColor: '#9174a9',
+      // paddingBottom: 20
     }
   });

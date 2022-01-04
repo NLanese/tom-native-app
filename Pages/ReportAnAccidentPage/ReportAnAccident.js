@@ -9,7 +9,6 @@ import { CREATEACCIDENT, GETDRIVERDATA, UPDATEDRIVER } from "../../GraphQL/opera
 import Title from "./ReportAnAccidentComponents/Title";
 import InputField from "./ReportAnAccidentComponents/InputField";
 import ButtonField from "./ReportAnAccidentComponents/ButtonField";
-import NavBar from "../../Global/NavBar";
 
 const ReportAnAccident = () => {
     let history = useHistory()
@@ -43,7 +42,6 @@ const ReportAnAccident = () => {
 
     return (
         <View style={ReportAnAccidentStyles.container}>
-            <NavBar />
             <Title />
             <InputField accidentData={accidentData} handleInput={handleInput}/>
             <Button 
