@@ -2,7 +2,6 @@ import React from "react"
 import { useHistory } from 'react-router-native';
 import { View } from 'react-native'
 import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
-import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
 import { Button, Card, Title } from 'react-native-paper';
 
 
@@ -12,7 +11,7 @@ const ShiftPlannerButton = () => {
     return (
         <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/shift_planner")}}>
-                <Card.Cover source={require('../../../../assets/shift_planner.png')} style={ScoreCardStyles.image}/>
+                <Card.Cover source={require('../../../../assets/shift-planner.jpg')} style={ScoreCardStyles.image}/>
                 {/* <Card.Actions
                     style={ScoreCardButtonStyles.button}
                 >
@@ -28,7 +27,7 @@ const ShiftPlannerButton = () => {
                     <Title
                         style={ScoreCardStyles.CardContent}
                     >
-                        Scorecard
+                        Shift Planner
                     </Title>
                 </Card.Content>
             </Card>
