@@ -17,7 +17,8 @@ const HomeStyles = StyleSheet.create({
 
 const ButtonBoxStyles = StyleSheet.create({
 	container: {
-		marginTop: 10,
+		// marginTop: 10,
+		marginTop: 110,
 		width: '100%',
 		display: 'flex',
 	},
