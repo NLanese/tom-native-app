@@ -1,7 +1,7 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
 import { View } from 'react-native'
-import { Button, Card } from 'react-native-paper';
+import { Button, Card, Title } from 'react-native-paper';
 import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
 
 const CommunicationButton = () => {
@@ -11,7 +11,7 @@ const CommunicationButton = () => {
         <View style={ScoreCardButtonStyles.container}>
             <Card onPress={() => {history.push("/communication")}}>
                 <Card.Cover source={require('../../../../assets/communication.png')} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions
+                {/* <Card.Actions
                     style={ScoreCardButtonStyles.button}
                 >
                     <View>
@@ -22,7 +22,14 @@ const CommunicationButton = () => {
                         COMMUNICATION
                         </Button>
                     </View>
-                </Card.Actions>
+                </Card.Actions> */}
+                <Card.Content>
+                    <Title
+                        style={ScoreCardButtonStyles.CardContent}
+                    >
+                        Messages
+                    </Title>
+                </Card.Content>
             </Card>
         </View>
     )

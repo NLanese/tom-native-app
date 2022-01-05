@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Modal, Button } from 'react-native'
-import { SignUpModal } from "../../../Styles/LandingPageStyles";
+import { SignUpModalStyles } from "../../../Styles/LandingPageStyles";
 import { Linking } from "react-native";
 
 const NoButton = () => {
@@ -10,10 +10,10 @@ const NoButton = () => {
         <View>
 
                 <Modal animationType='slide' transparent={true} visible={modalVisible}>
-					<View style={SignUpModal.centeredView}>
-						<View style={SignUpModal.modalView}>
+					<View style={SignUpModalStyles.centeredView}>
+						<View style={SignUpModalStyles.modalView}>
 
-							<Text style={SignUpModal.modalText}> Please call the police </Text>
+							<Text style={SignUpModalStyles.modalText}> Please call the police </Text>
 
                             <Button 
                                 onPress={() => Linking.openURL('tel://+1911')}

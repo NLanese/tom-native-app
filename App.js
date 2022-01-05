@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import hidden from './hidden';
+import { Portal, Provider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
@@ -40,9 +41,11 @@ import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 
 let state;
 
+console.log(hidden.APOLLO_URI)
+
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: `${hidden.APOLLO_URI}`,
+	uri: 'http://localhost:5001/graphql'
 });
 
 // Auth for token
@@ -79,7 +82,8 @@ export default function App() {
               {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
               
               <BannerComponent />
-
+              <Provider>
+              <Portal.Host>
               {loggedIn === true ? (
                 <Switch>
                   <Route exact path='/home' component={Home} />
@@ -121,7 +125,8 @@ export default function App() {
 
                 </Switch>
               ) : null}
-
+              </Portal.Host>
+              </Provider>
             <StatusBar style="auto" />
           </View>
         </ApolloProvider>
