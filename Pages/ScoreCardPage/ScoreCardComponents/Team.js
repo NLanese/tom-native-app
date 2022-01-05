@@ -15,8 +15,6 @@ const Team = () => {
         }
     }, [data])
 
-    console.log('hit')
-
     console.log(queryData)
 
     const sortTeamEmployees = (teamEmployees) => {
