@@ -56,7 +56,7 @@ const SignUpButton = () => {
 				onPress={() => setModalVisible(!modalVisible)} >
 					Sign Up
 			</Button>
-			<SignUpModal modalVisible={modalVisible} handleInput={handleInput} setModalVisible={setModalVisible}/> 
+			<SignUpModal modalVisible={modalVisible} handleInput={handleInput} setModalVisible={setModalVisible} userData={userData}/> 
 		</View>
 		);
 };
