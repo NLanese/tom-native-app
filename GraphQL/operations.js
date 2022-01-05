@@ -135,6 +135,35 @@ const GETDRIVERSFORDSPFORTEAM = gql`
 }
 `
 
+const GETDRIVERSFORSCORECARDQUALITY = gql`
+  query Query {
+  getDriversForScorecardQuality {
+    id
+    createdAt
+    firstname
+    lastname
+    email
+    phoneNumber
+    employeeId
+    fico
+    netradyne
+    delivery_associate
+    seatbelt_and_speeding
+    defects
+    customer_delivery_feedback
+    delivered_and_recieved
+    delivery_completion_rate
+    photo_on_delivery
+    call_compliance
+    scan_compliance
+    has_many_accidents
+    belongs_to_team
+    dsp_name
+    dsp_shortcode
+  }
+}
+`
+
 
 export {  
   SIGNUP, 
@@ -143,5 +172,6 @@ export {
   GETDRIVERDATA, 
   UPDATEDRIVER, 
   GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE,
-  GETDRIVERSFORDSPFORTEAM
+  GETDRIVERSFORDSPFORTEAM,
+  GETDRIVERSFORSCORECARDQUALITY
 }
