@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles'
 import Email from './SignInBoxComponents/Email'
 import Password from './SignInBoxComponents/Password'
 import LoginButton from './SignInBoxComponents/LoginButton'
 import SignUpButton from './SignInBoxComponents/SignUpButton'
+import {  Portal,  Provider } from 'react-native-paper';
+import { SignUpModalStyles } from '../../../Styles/LandingPageStyles';
+
 
 const SignInBox = ({ handleLoggedIn }) => {
     const [userData, setUserData] = useState({})
@@ -17,10 +20,10 @@ const SignInBox = ({ handleLoggedIn }) => {
 
     return (
         <View style={SignInBoxStyles.container}>
-            <Email handleInput={handleInput} />
-            <Password handleInput={handleInput} />
-            <LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/>
-            <SignUpButton />
+            <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} /></View>
+            <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} /></View>
+            <View style={SignInBoxStyles.loginContents}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
+            <View style={SignInBoxStyles.signUpContents}><SignUpButton /></View>
         </View>
     );
 };

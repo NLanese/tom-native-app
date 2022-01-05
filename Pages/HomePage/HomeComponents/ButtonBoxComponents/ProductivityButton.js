@@ -1,17 +1,17 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
 import { View } from 'react-native'
-import { Button, Card } from 'react-native-paper';
-import { ScoreCardButtonStyles } from "../../../../Styles/HomeStyles"
+import { Button, Card, Title } from 'react-native-paper';
+import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 
 const ProductivityButton = () => {
     let history = useHistory()
 
     return (
-        <View style={ScoreCardButtonStyles.container}>
+        <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/productivity")}}>
-                <Card.Cover source={require('../../../../assets/productivity.png')} style={ScoreCardButtonStyles.image}/>
-                <Card.Actions
+                <Card.Cover source={require('../../../../assets/productivity.jpg')} style={ScoreCardStyles.image}/>
+                {/* <Card.Actions
                     style={ScoreCardButtonStyles.button}
                 >
                     <View>
@@ -21,7 +21,14 @@ const ProductivityButton = () => {
                         PRODUCTIVITY
                         </Button>
                     </View>
-                </Card.Actions>
+                </Card.Actions> */}
+                <Card.Content>
+                    <Title
+                        style={ScoreCardStyles.CardContent}
+                    >
+                        Productivity
+                    </Title>
+                </Card.Content>
             </Card>
         </View>
     )
