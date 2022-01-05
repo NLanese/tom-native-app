@@ -4,6 +4,7 @@ import { GETDRIVERSFORDSPFORTEAM } from "../../../GraphQL/operations";
 import { useQuery } from "@apollo/client";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import TopThreeTeamEmployees from "./InformationComponents/TopThreeTeamEmployee";
+import { ActivityIndicator } from "react-native-paper";
 
 const Team = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDSPFORTEAM)
@@ -45,8 +46,8 @@ const Team = () => {
 
     if (!queryData[0]) {
         return (
-            <View>
-                <Text>Loading</Text>
+            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
+                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
             </View>
         )
     } else {

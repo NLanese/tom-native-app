@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import hidden from './hidden';
-import { Portal, Provider } from 'react-native-paper';
+import { Portal, Provider as PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
@@ -34,7 +34,7 @@ import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
-import BannerComponent from './Global/Banner';
+import Banner from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
@@ -75,58 +75,59 @@ export default function App() {
     <NativeRouter>
       <RecoilRoot>
         <ApolloProvider client={client}>
-          <View style={AppStyles.container}>
+          <PaperProvider>
 
-              {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
-              
-              <BannerComponent />
-              <Provider>
-              <Portal.Host>
-              {loggedIn === true ? (
-                <Switch>
-                  <Route exact path='/home' component={Home} />
-                  <Route exact path='/shift_planner' component={ShiftPlanner} />
+            <View style={AppStyles.container}>
 
+                {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
+                
+                <Banner />
 
-                  <Route exact path='/leadership_notified' component={LeadershipNotified} />
-                    <Route exact path='/police_contacted' component={PoliceContacted} />
-                      <Route exact path='/please_remember' component={PleaseRemember} />
-                        <Route exact path='/before_we_begin' component={BeforeWeBegin} />
-                          <Route exact path='/create_or_add' component={CreateOrAdd} />
-                            <Route exact path='/report_an_accident' component={ReportAnAccident} />
-                      
-                      
-                      
-                      <Route exact path='/reportcollision' component={ReportCollision} />
-                      <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
-                      <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
-                      <Route exact path='/reporthitperson' component={ReportHitPerson} />
-                      <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
+                {loggedIn === true ? (
+                  <Switch>
+                    <Route exact path='/home' component={Home} />
+                    <Route exact path='/shift_planner' component={ShiftPlanner} />
 
 
-                  <Route exact path='/reporting' component={Reporting} />
-                  <Route exact path='/productivity' component={Productivity} /> 
-                  <Route exact path='/communication' component={Communication} />
-                  <Route exact path='/analytics' component={Analytics} />
+                    <Route exact path='/leadership_notified' component={LeadershipNotified} />
+                      <Route exact path='/police_contacted' component={PoliceContacted} />
+                        <Route exact path='/please_remember' component={PleaseRemember} />
+                          <Route exact path='/before_we_begin' component={BeforeWeBegin} />
+                            <Route exact path='/create_or_add' component={CreateOrAdd} />
+                              <Route exact path='/report_an_accident' component={ReportAnAccident} />
+                        
+                        
+                        
+                        <Route exact path='/reportcollision' component={ReportCollision} />
+                        <Route exact path='/reportinjuryaccident' component={ReportInjuryAccident} />
+                        <Route exact path='/reportpropertyaccident' component={ReportPropertyAccident} />
+                        <Route exact path='/reporthitperson' component={ReportHitPerson} />
+                        <Route exact path='/reportinjuryreport' component={ReportInjuryReport} />
 
 
-                  <Route exact path='/settings' component={Settings} />
-                    <Route exact path='/account_information' component={AccountInformation} />
-                      <Route exact path='/edit_account_information' component={EditAccountInformation} />
-                      <Route exact path='/view_accidents' component={ViewAccidents} />
-                    <Route exact path='/account_settings' component={AccountSettings} />
+                    <Route exact path='/reporting' component={Reporting} />
+                    <Route exact path='/productivity' component={Productivity} /> 
+                    <Route exact path='/communication' component={Communication} />
+                    <Route exact path='/analytics' component={Analytics} />
 
-                  <Route exact path='/score_card' component={ScoreCard} />
-                    <Route exact path='/quality' component={Quality} />
-                    <Route exact path='/safetyandcompliance' component={SafetyAndCompliance} />
-                    <Route exact path='/team' component={Team} />
 
-                </Switch>
-              ) : null}
-              </Portal.Host>
-              </Provider>
-            <StatusBar style="auto" />
-          </View>
+                    <Route exact path='/settings' component={Settings} />
+                      <Route exact path='/account_information' component={AccountInformation} />
+                        <Route exact path='/edit_account_information' component={EditAccountInformation} />
+                        <Route exact path='/view_accidents' component={ViewAccidents} />
+                      <Route exact path='/account_settings' component={AccountSettings} />
+
+                    <Route exact path='/score_card' component={ScoreCard} />
+                      <Route exact path='/quality' component={Quality} />
+                      <Route exact path='/safetyandcompliance' component={SafetyAndCompliance} />
+                      <Route exact path='/team' component={Team} />
+
+                  </Switch>
+                ) : null}
+              <StatusBar style="auto" />
+            </View>
+
+          </PaperProvider>
         </ApolloProvider>
       </RecoilRoot>
     </NativeRouter>
