@@ -20,7 +20,7 @@ const LogoStyles = StyleSheet.create({
 
 const SignInBoxStyles = StyleSheet.create({
 	container: {
-		marginTop: 40,
+		marginTop: 100,
 		shadowColor: '#ffffff',
 		shadowOffset: {
 			width: 0,

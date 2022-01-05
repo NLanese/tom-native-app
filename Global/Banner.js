@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
 import { Appbar, Avatar } from 'react-native-paper';
@@ -7,6 +7,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 
 const BannerComponent = () => {
+  const [expanded, setExpanded] = useState(true)
   const [website] = useRecoilState(websiteState)
   let history = useHistory()
 
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     rightIcons: {
       position: 'absolute',
       width: 110,
-      marginLeft: 262,
+      marginLeft: 252,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end',
