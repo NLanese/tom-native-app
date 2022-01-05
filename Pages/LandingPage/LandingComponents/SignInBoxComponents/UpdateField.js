@@ -1,5 +1,5 @@
 import { TextInput } from 'react-native-paper';
-import { SignUpModal } from '../../../../Styles/LandingPageStyles';
+import { SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
 
 
 // Comes with three props
@@ -30,9 +30,11 @@ const UpdateField = (props) => {
 
     return(
         <TextInput
+                    mode="flat"
+                    dense={false}
                     placeholder={labelMaker(props.field)}
                     name={props.field}
-                    style={SignUpModal.inputField}
+                    style={SignUpModalStyles.inputField}
                     selectionColor='#24296f'
                     activeOutlineColor='#24296f'
                     activeUnderlineColor='#24296f'

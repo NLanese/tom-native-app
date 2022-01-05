@@ -20,7 +20,7 @@ const BannerComponent = () => {
             <Appbar.BackAction 
               color="white"
               size={20}
-              onPress={history.goBack()} 
+              onPress={() => history.goBack()} 
             />
 
             <Appbar.Content 
@@ -75,23 +75,26 @@ const styles = StyleSheet.create({
     },
 
     leftIcons: {
-      width: 300,
+      width: 245,
       flexDirection: 'row',
-      color: 'white',
+      // backgroundColor: "red"
     },
 
     rightIcons: {
       position: 'absolute',
-      width: 365,
+      width: 110,
+      marginLeft: 262,
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'flex-end'
+      justifyContent: 'flex-end',
+      // backgroundColor: "green"
     },
 
     centerIcon: {
       position: 'absolute',
       width: 150,
       alignItems: 'center',
+      backgroundColor: "yellow"
       // marginLeft: 120
     },
 
@@ -132,4 +135,10 @@ const styles = StyleSheet.create({
     title: {
       top: '2%'
     },
+
+    test: {
+      height: 75,
+      width: 75,
+      backgroundColor: "red"
+    }
   });
