@@ -3,22 +3,24 @@ import { View, Text } from 'react-native'
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
 import { ButtonStyles, SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
-import { Modal,  Button } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import SignUpModal from './SignUpModal';
 import {  Portal,  Provider } from 'react-native-paper';
 
 const SignUpButton = () => {
 	const [userData, setUserData] = useState({})
 
-    const [signup, { loading: loading, error: error, data: data }] =
+    const [signup, { loading: loading, error: error, data: data }] = 
 		useMutation(SIGNUP);
 
     const [modalVisible, setModalVisible] = useState(false);
+	
 	const [buttonLoading, setButtonLoading] = useState(false);
 
 	const handleInput = (id, information) => {
 		const input = { ...userData };
 		input[id] = information;
+		console.log(information)
 		setUserData(input);
 	};
 
@@ -56,7 +58,7 @@ const SignUpButton = () => {
 				onPress={() => setModalVisible(!modalVisible)} >
 					Sign Up
 			</Button>
-			<SignUpModal modalVisible={modalVisible} handleInput={handleInput} setModalVisible={setModalVisible}/> 
+			<SignUpModal setModalVisible={setModalVisible} modalVisible={modalVisible} handleInput={handleInput} signupCommand={signup} getUserData={userData}/> 
 		</View>
 		);
 };
