@@ -3,14 +3,11 @@ import { Button, Portal, Provider, IconButton } from 'react-native-paper';
 import { View, Text, Modal } from 'react-native'
 import UpdateField from './UpdateField'
 import { SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
-import { SIGNUP } from '../../../../GraphQL/operations';
-import { useMutation } from '@apollo/client';
 
 
 
-const SignUpModal = ({ modalVisible, userData, handleInput, setModalVisible }) => {
-    const [signup, { loading: loading, error: error, data: data }] =
-		useMutation(SIGNUP);
+
+const SignUpModal = (props) => {
 
     return(
         <View>
@@ -21,7 +18,17 @@ const SignUpModal = ({ modalVisible, userData, handleInput, setModalVisible }) =
 
                         <View style={SignUpModalStyles.insideModalView}>
                             <IconButton 
-                                onPress={() => setModalVisible(!modalVisible)}
+                                style={{
+                                    position: 'relative',
+                                    right: 5,
+                                    left: 160
+                                }}
+                                onPress={() => {
+                                    props.setModalVisible(!props.modalVisible)}
+                                }
+                                size={30}
+                                color={"white"}
+                                icon="alpha-x-box-outline"
                             />
                             <Text style={SignUpModalStyles.modalTitle}> Tom App Sign Up! </Text>
                             <Text style={SignUpModalStyles.modalSubTitle}> Please enter the proper information below! </Text>
@@ -53,20 +60,29 @@ const SignUpModal = ({ modalVisible, userData, handleInput, setModalVisible }) =
                                     }}
                                     onPress={ async () => {
                                         // handleButtonLoading()
-                                        signup({
+                                        let userData = props.getUserData
+                                        console.log(userData)
+                                        props.signupCommand({
                                             variables: {
                                                 signupInput: {
                                                     email: userData.email,
-                                                    username: userData.username,
+                                                    // username: "BanjawanjaweenaWannies",
                                                     password: userData.password,
                                                     firstname: userData.firstname,
                                                     lastname: userData.lastname,
                                                     phoneNumber: userData.phoneNumber,
                                                     adminEmail: userData.adminEmail
+                                                    // email: "user4",
+                                                    // username: "name3000",
+                                                    // password: "123Wer!",
+                                                    // firstname: "LeBurrn",
+                                                    // lastname: "Jummz",
+                                                    // phoneNumber: "123-456-7899",
+                                                    // adminEmail: "admin1"
                                                 },
                                             },
                                         });
-                                        // setModalVisible(!modalVisible);
+                                        setModalVisible(!modalVisible);
                                     }}
                                 > Sign up </Button>
                             </View>
