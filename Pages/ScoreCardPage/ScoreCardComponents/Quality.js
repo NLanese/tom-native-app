@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
+import { ActivityIndicator } from "react-native-paper";
  
 
 
@@ -27,8 +28,8 @@ const Quality = () => {
 
     if (!queryData[0]) {
         return (
-            <View>
-                <Text>Loading</Text>
+            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
+                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
             </View>
         )
     } else {
