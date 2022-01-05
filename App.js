@@ -39,12 +39,13 @@ import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 
-
 let state;
+
+console.log(hidden.APOLLO_URI)
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://10.0.0.46:5001/graphql'
+	uri: 'http://localhost:5001/graphql'
 });
 
 // Auth for token

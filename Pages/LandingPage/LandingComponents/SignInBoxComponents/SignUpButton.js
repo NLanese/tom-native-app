@@ -29,7 +29,6 @@ const SignUpButton = () => {
 	
 	useEffect(() => {
 		console.log(loading)
-
 		if (loading !== false) {
 			console.log('loading hit')
 			setButtonLoading(true)
@@ -58,10 +57,9 @@ const SignUpButton = () => {
 				onPress={() => setModalVisible(!modalVisible)} >
 					Sign Up
 			</Button>
-			<SignUpModal modalVisible={modalVisible} handleInput={handleInput} signupCommand={signup} getUserData={userData}/> 
+			<SignUpModal setModalVisible={setModalVisible} modalVisible={modalVisible} handleInput={handleInput} signupCommand={signup} getUserData={userData}/> 
 		</View>
-
 		);
-    };
+};
 
 export default SignUpButton;

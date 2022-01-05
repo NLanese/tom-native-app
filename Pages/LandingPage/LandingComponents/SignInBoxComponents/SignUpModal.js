@@ -3,13 +3,11 @@ import { Button, Portal, Provider, IconButton } from 'react-native-paper';
 import { View, Text, Modal } from 'react-native'
 import UpdateField from './UpdateField'
 import { SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
-import { SIGNUP } from '../../../../GraphQL/operations';
+
 
 
 
 const SignUpModal = (props) => {
-
-    const [modalVisible, setModalVisible] = useState(props.modalVisible);
 
     return(
         <View>
@@ -20,7 +18,17 @@ const SignUpModal = (props) => {
 
                         <View style={SignUpModalStyles.insideModalView}>
                             <IconButton 
-                                onPress={() => setModalVisible(!modalVisible)}
+                                style={{
+                                    position: 'relative',
+                                    right: 5,
+                                    left: 160
+                                }}
+                                onPress={() => {
+                                    props.setModalVisible(!props.modalVisible)}
+                                }
+                                size={30}
+                                color={"white"}
+                                icon="alpha-x-box-outline"
                             />
                             <Text style={SignUpModalStyles.modalTitle}> Tom App Sign Up! </Text>
                             <Text style={SignUpModalStyles.modalSubTitle}> Please enter the proper information below! </Text>
@@ -74,7 +82,7 @@ const SignUpModal = (props) => {
                                                 },
                                             },
                                         });
-                                        // setModalVisible(!modalVisible);
+                                        setModalVisible(!modalVisible);
                                     }}
                                 > Sign up </Button>
                             </View>

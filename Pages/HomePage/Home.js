@@ -8,9 +8,9 @@ import { HomeStyles } from '../../Styles/HomeStyles';
 const Home = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
-    // useEffect(() => {
-    //     setWebsite('Home')
-    // }, [])
+    useEffect(() => {
+        setWebsite('Home')
+    }, [])
 
     return (
         <View style={HomeStyles.container}> 
