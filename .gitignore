@@ -15,7 +15,7 @@ web-build/
 /.env
 env
 
-config.js
+hidden.js/
 
 # macOS
 .DS_Store

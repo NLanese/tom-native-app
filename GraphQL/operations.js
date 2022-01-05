@@ -65,6 +65,35 @@ const GETDRIVERDATA = gql`
 }
 `
 
+const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
+  query Query {
+  getDriversForDspForSafetyAndCompliance {
+    id
+    createdAt
+    firstname
+    lastname
+    email
+    phoneNumber
+    employeeId
+    fico
+    netradyne
+    delivery_associate
+    seatbelt_and_speeding
+    defects
+    customer_delivery_feedback
+    delivered_and_recieved
+    delivery_completion_rate
+    photo_on_delivery
+    call_compliance
+    scan_compliance
+    has_many_accidents
+    belongs_to_team
+    dsp_name
+    dsp_shortcode
+  }
+}
+`
+
 const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
@@ -77,4 +106,4 @@ const UPDATEDRIVER = gql`
 }
 `
 
-export { SIGNUP, LOGIN, CREATEACCIDENT, GETDRIVERDATA, UPDATEDRIVER }
+export { SIGNUP, LOGIN, CREATEACCIDENT, GETDRIVERDATA, UPDATEDRIVER, GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE }

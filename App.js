@@ -41,11 +41,9 @@ import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 
 let state;
 
-console.log(hidden.APOLLO_URI)
-
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://localhost:5001/graphql'
+	uri: 'http://192.168.1.52:5001/graphql'
 });
 
 // Auth for token
