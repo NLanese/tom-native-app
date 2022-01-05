@@ -26,10 +26,7 @@ const AccountInformation = () => {
     }, [data])
 
     useEffect(() => {
-        if (queryData.firstname !== userData.firstname || queryData.lastname !== userData.lastname ||
-            queryData.email !== userData.email || queryData.phoneNumber !== userData.phoneNumber) {
-                setUserData(queryData)
-            }
+            setUserData(queryData)
     }, [queryData])
 
 
