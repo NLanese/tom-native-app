@@ -10,7 +10,7 @@ import {  Portal,  Provider } from 'react-native-paper';
 const SignUpButton = () => {
 	const [userData, setUserData] = useState({})
 
-    const [signup, { loading: loading, error: error, data: data }] =
+    const [signup, { loading: loading, error: error, data: data }] = 
 		useMutation(SIGNUP);
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -19,6 +19,7 @@ const SignUpButton = () => {
 	const handleInput = (id, information) => {
 		const input = { ...userData };
 		input[id] = information;
+		console.log(information)
 		setUserData(input);
 	};
 
@@ -57,7 +58,7 @@ const SignUpButton = () => {
 				onPress={() => setModalVisible(!modalVisible)} >
 					Sign Up
 			</Button>
-			<SignUpModal modalVisible={modalVisible} handleInput={handleInput} setModalVisible={setModalVisible}/> 
+			<SignUpModal modalVisible={modalVisible} handleInput={handleInput} signupCommand={signup} getUserData={userData}/> 
 		</View>
 
 		);

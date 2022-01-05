@@ -3,6 +3,7 @@ import { Button, Portal, Provider, IconButton } from 'react-native-paper';
 import { View, Text, Modal } from 'react-native'
 import UpdateField from './UpdateField'
 import { SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
+import { SIGNUP } from '../../../../GraphQL/operations';
 
 
 
@@ -51,16 +52,25 @@ const SignUpModal = (props) => {
                                     }}
                                     onPress={ async () => {
                                         // handleButtonLoading()
-                                        signup({
+                                        let userData = props.getUserData
+                                        console.log(userData)
+                                        props.signupCommand({
                                             variables: {
                                                 signupInput: {
                                                     email: userData.email,
-                                                    username: userData.username,
+                                                    // username: "BanjawanjaweenaWannies",
                                                     password: userData.password,
                                                     firstname: userData.firstname,
                                                     lastname: userData.lastname,
                                                     phoneNumber: userData.phoneNumber,
                                                     adminEmail: userData.adminEmail
+                                                    // email: "user4",
+                                                    // username: "name3000",
+                                                    // password: "123Wer!",
+                                                    // firstname: "LeBurrn",
+                                                    // lastname: "Jummz",
+                                                    // phoneNumber: "123-456-7899",
+                                                    // adminEmail: "admin1"
                                                 },
                                             },
                                         });

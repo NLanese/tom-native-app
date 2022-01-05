@@ -176,12 +176,13 @@ const SignUpModalStyles = StyleSheet.create({
 
 	inputField: {
         flex: 1,
-        marginTop: 5,
+        marginTop: 0,
+		marginBottom: 2,
         backgroundColor: '#f1f1f1',
 		width: '80%',	
 		top: 0,
 		height: 45,
-		paddingVertical: 10,
+		paddingVertical: -5,
 	},
 
 	submitbutton: {
