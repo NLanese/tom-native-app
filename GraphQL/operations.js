@@ -25,11 +25,10 @@ const LOGIN = gql`
     adminId
     adminFirstname
     adminLastname
-    adminUsername
-    adminPhonenumber
     adminEmail
     adminAccountStanding
     adminApproved
+    adminPhoneNumber
   }
 }
 `;
@@ -58,7 +57,6 @@ const GETDRIVERDATA = gql`
     adminId
     adminFirstname
     adminLastname
-    adminUsername
     adminPhonenumber
     adminEmail
     adminAccountStanding

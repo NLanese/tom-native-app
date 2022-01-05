@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 const HomeStyles = StyleSheet.create({
 	container: {
 		display: 'flex',
+		height: '100%',
+		backgroundColor: '#F9f9f9',
 		height: '100%'
 	},	
 	logo: {
@@ -19,23 +21,28 @@ const ButtonBoxStyles = StyleSheet.create({
 		width: '100%',
 		display: 'flex',
 	},
+	
 	rightContainer: {
+		flex: 1,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-end',
 		marginRight: 15,
-		marginLeft: 150
+		marginLeft: 150,
 	},
 	leftContainer: {
+		flex: 1,
 		position: 'absolute',
 		justifyContent: 'flex-end',
 		alignItems: 'flex-start',
 		marginLeft: 15,
-	}
+	},
+
 })
+
 
 const ScoreCardButtonStyles = StyleSheet.create({
 	container: {
-		height: 180,
+		height: 160,
 		width: 160,
 		shadowOpacity: 0,
 		borderWidth: 1,
@@ -43,15 +50,24 @@ const ScoreCardButtonStyles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 8
+		marginTop: 12,
+		marginBottom: 12
 	},
+
+	CardContent: {
+		textAlign: 'center',
+		top: 11,
+		fontSize: 16,
+		lineHeight: 20
+	},
+
 	image: {
-		height: 130,
-		width: 158,
-		backgroundColor: 'black',
+		height: 110,
+		width: 160,
+		backgroundColor: '#afbed3',
 	},
 	button: {
-		backgroundColor: '#24296f'
+		
 	}
 })
 

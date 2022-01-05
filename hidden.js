@@ -1,5 +1,5 @@
-import { APOLLO_URI } from '@env'
+// import { APOLLO_URI } from '@env'
 
-export default {
-    APOLLO_URI
-};
+// export default {
+//     APOLLO_URI
+// };

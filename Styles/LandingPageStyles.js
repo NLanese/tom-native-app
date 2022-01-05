@@ -1,3 +1,4 @@
+import { relayStylePagination } from '@apollo/client/utilities';
 import { StyleSheet } from 'react-native';
 
 const LandingStyles = StyleSheet.create({
@@ -19,12 +20,7 @@ const LogoStyles = StyleSheet.create({
 
 const SignInBoxStyles = StyleSheet.create({
 	container: {
-		backgroundColor: '#ffffff',
-		height: 260,
-		width: '90%',
-		borderRadius: 10,
-		paddingTop: 10,
-		marginTop: 100,
+		marginTop: 40,
 		shadowColor: '#ffffff',
 		shadowOffset: {
 			width: 0,
@@ -33,29 +29,22 @@ const SignInBoxStyles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 6,
 	},
+
+	loginContents: {
+		top: 30,
+		height: 65,
+		width: 340,
+	},
+
+	signUpContents: {
+		// backgroundColor: "red",
+		marginTop: 10,
+		bottom: 10,
+		height: 500,
+	}
 });
 
 const EmailStyles = StyleSheet.create({
-	container: {
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	text: {
-		marginTop: -5,
-		marginBottom: -10,
-		fontSize: 24,
-		fontWeight: 'bold'
-	},
-	// input: {
-	// 	// backgroundColor: '#02020A',
-	// 	color: '#ffffff',
-	// 	height: 40,
-	// 	width: 225,
-	// 	margin: 12,
-	// 	// borderWidth: 1,
-	// 	// borderRadius: 10,
-	// 	fontSize: 14
-	// },
 	input: {
 		backgroundColor: '#f1f1f1'
 	}
@@ -84,7 +73,7 @@ const ButtonStyles = StyleSheet.create({
 	signUpSubmitButton: {
 		height: 35,
 		width: 200,
-		backgroundColor: '#02020A',
+		backgroundColor: 'white',
 		marginBottom: 75,
 		marginTop: 10,
 		// borderRadius: 20,
@@ -96,19 +85,7 @@ const ButtonStyles = StyleSheet.create({
 		// shadowOpacity: 0.25,
 		// shadowRadius: 6,
 	},
-	// logInButton: {
-	// 	backgroundColor: '#02020A',
-	// 	width: 200,
-	// 	borderRadius: 20,
-	// 	// marginTop: 10,
-	// 	shadowColor: '#02020A',
-	// 	shadowOffset: {
-	// 		width: 0,
-	// 		height: 2,
-	// 	},
-	// 	shadowOpacity: 0.65,
-	// 	shadowRadius: 6,
-	// },
+
 	logInButton: {
 		height: 50,
 		display: 'flex',
@@ -120,16 +97,22 @@ const ButtonStyles = StyleSheet.create({
 		height: 50,
 		display: 'flex',
 		justifyContent: 'center',
-		backgroundColor: '#ffcb05',
+		backgroundColor: 'white',
 		marginTop: 175,
 		shadowOpacity: 0.0,
 	},
+
+	signUpButtonText: {
+		color: "black"
+	},
+	 
 	button: {
 		borderRadius: 25,
 	},
 });
 
-const SignUpModal = StyleSheet.create({
+const SignUpModalStyles = StyleSheet.create({
+
 	centeredView: {
 		flex: 1,
 		justifyContent: 'center',
@@ -137,10 +120,17 @@ const SignUpModal = StyleSheet.create({
 		marginTop: 100,
 		marginBottom: 75
 	},
-	modalView: {
+
+	outsideModal: {
+		display: "flex",
+		backgroundColor: "black",
+		color: "black"
+	},
+	 
+	modal: {
 		width: 300,
 		height: 200,
-		backgroundColor: '#02020A',
+		backgroundColor: 'black',
 		borderRadius: 20,
 		shadowColor: '#000',
 		shadowOffset: {
@@ -152,47 +142,54 @@ const SignUpModal = StyleSheet.create({
 		elevation: 5,
 		paddingTop: 20
 	},
+
 	insideModalView: {
+		backgroundColor: "black",
+		top: 0,
+		width: 370,
+		height: 650,
 		display: 'flex',
 		alignItems: 'center'
-	},	
-	button: {
-		borderRadius: 20,
-		marginBottom: 100,
 	},
-	textStyle: {
-		color: '#ffffff',
-		fontWeight: 'bold',
-		textAlign: 'center',
+
+	container: {
+		margin: 0,
 	},
-	modalText: {
-		marginBottom: 5,
-		textAlign: 'center',
-		color: '#ffffff',
-	},
+
 	modalTitle: {
+		marginTop: 15,
+		top: 0,
 		marginBottom: 5,
 		textAlign: 'center',
 		color: '#ffffff',
 		fontWeight: 'bold',
 		fontSize: 24
 	},
+
 	modalSubTitle: {
 		marginBottom: 5,
 		textAlign: 'center',
 		color: '#ffffff',
 		fontSize: 12,
-		marginBottom: 25
+		marginBottom: 10
 	},
-	input: {
-		backgroundColor: '#ffffff',
-		color: '#02020A',
-		height: 40,
-		width: 225,
-		marginBottom: 15,
-		borderWidth: 1,
-		borderRadius: 10,
+
+	inputField: {
+        flex: 1,
+        marginTop: 5,
+        backgroundColor: '#f1f1f1',
+		width: '80%',	
+		top: 0,
+		height: 45,
+		paddingVertical: 10,
 	},
+
+	submitbutton: {
+		marginTop: 10,
+		flex: 2
+	}
+
+
 });
 
 export {
@@ -201,5 +198,5 @@ export {
 	SignInBoxStyles,
 	EmailStyles,
 	ButtonStyles,
-	SignUpModal,
+	SignUpModalStyles,
 };

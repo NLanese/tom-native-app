@@ -3,6 +3,7 @@ import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
 import { View } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
+import { HomeStyles } from '../../Styles/HomeStyles';
 
 const Home = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
@@ -12,7 +13,7 @@ const Home = () => {
     }, [])
 
     return (
-        <View> 
+        <View style={HomeStyles.container}> 
             <ButtonBox />
         </View>
     )
