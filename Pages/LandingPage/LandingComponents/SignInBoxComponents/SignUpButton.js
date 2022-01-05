@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../../../../GraphQL/operations';
 import { ButtonStyles, SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
-import { Modal,  Button } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import SignUpModal from './SignUpModal';
 import {  Portal,  Provider } from 'react-native-paper';
 
@@ -14,6 +14,7 @@ const SignUpButton = () => {
 		useMutation(SIGNUP);
 
     const [modalVisible, setModalVisible] = useState(false);
+	
 	const [buttonLoading, setButtonLoading] = useState(false);
 
 	const handleInput = (id, information) => {
