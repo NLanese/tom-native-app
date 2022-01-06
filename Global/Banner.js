@@ -5,7 +5,7 @@ import { Appbar, Avatar, Modal, Button, Protal } from 'react-native-paper';
 import { useHistory } from 'react-router-native';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
-import BannerModal from "./BannerComponents/BannerModal";
+import BannerDropdown from "./BannerComponents/BannerDropdown";
 
 const Banner = () => {
   const [visible, setVisible] = useState(false)
@@ -21,7 +21,7 @@ const Banner = () => {
 
   return (
     <View>
-      <BannerModal visible={visible} handleModal={handleModal}/>
+      <BannerDropdown visible={visible} handleModal={handleModal}/>
 
       <View style={styles.topBar}></View>
 

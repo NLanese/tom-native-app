@@ -11,7 +11,7 @@ const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUse
 
     return(
         <View>
-            <Modal animationType='slide' transparent={true} visible={props.modalVisible} /* style={SignUpModal.modal} */>
+            <Modal animationType='slide' transparent={true} visible={modalVisible} /* style={SignUpModal.modal} */>
 
                 <View style={SignUpModalStyles.centeredView}>
                     <View style={SignUpModalStyles.modalView}>
@@ -33,13 +33,13 @@ const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUse
                             <Text style={SignUpModalStyles.modalTitle}> Tom App Sign Up! </Text>
                             <Text style={SignUpModalStyles.modalSubTitle}> Please enter the proper information below! </Text>
 
-                            <UpdateField field="firstname" handleInput={props.handleInput} />
-                            <UpdateField field="lastname" handleInput={props.handleInput} />
-                            <UpdateField field="email" handleInput={props.handleInput} />
-                            <UpdateField field="phoneNumber" handleInput={props.handleInput} />
-                            <UpdateField field="adminEmail" handleInput={props.handleInput} />
-                            <UpdateField field="password" handleInput={props.handleInput} />
-                            <UpdateField field="confirmPassword" handleInput={props.handleInput} />
+                            <UpdateField field="firstname" handleInput={handleInput} />
+                            <UpdateField field="lastname" handleInput={handleInput} />
+                            <UpdateField field="email" handleInput={handleInput} />
+                            <UpdateField field="phoneNumber" handleInput={handleInput} />
+                            <UpdateField field="adminEmail" handleInput={handleInput} />
+                            <UpdateField field="password" handleInput={handleInput} />
+                            <UpdateField field="confirmPassword" handleInput={handleInput} />
 
                             <View style={SignUpModalStyles.submitbutton}>
                                 <Button
@@ -82,7 +82,7 @@ const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUse
                                                 },
                                             },
                                         });
-                                        setModalVisible(!props.modalVisible);
+                                        setModalVisible(!modalVisible);
                                     }}
                                 > Sign up </Button>
                             </View>

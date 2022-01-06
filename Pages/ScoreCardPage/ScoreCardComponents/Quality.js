@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from "@apollo/client";
+import { SafetyAndComplianceStyles } from '../../../Styles/ScoreCardStyles'
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
  
@@ -13,17 +14,6 @@ const Quality = () => {
     useEffect(() => {
         if (!loading && data) {
             setQueryData(data.getDriversForScorecardQuality)
-        }
-    }, [data])
-
-    console.log(queryData)
-
-    const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE)
-    const [queryData, setQueryData] = useState({})
-
-    useEffect( async () => {
-        if (!loading && data) {
-            await setQueryData(data.getDriversForDspForSafetyAndCompliance)
         }
     }, [data])
 
