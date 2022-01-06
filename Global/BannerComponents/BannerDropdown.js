@@ -5,8 +5,11 @@ import { View, Text } from 'react-native'
 import { DropdownStyles } from '../../Styles/GlobalStyles'
 import { Portal, Modal } from 'react-native-paper'
 import AccountInformationButton from "./BannerDropdownComponents/AccountInformationButton";
+import MessageWithAdminButton from "./BannerDropdownComponents/MessageWithAdminButton";
+import EmployeeChatroomButton from "./BannerDropdownComponents/EmployeeChatroomButton";
+import SignOutButton from "./BannerDropdownComponents/SignOutButton";
 
-const BannerDropdown = ({ visible, handleModal }) => {
+const BannerDropdown = ({ visible, handleModal, handleLoggedIn }) => {
     const [userData] = useRecoilState(userState)
 
     return (
@@ -23,6 +26,14 @@ const BannerDropdown = ({ visible, handleModal }) => {
 
                     <View>
                         <AccountInformationButton handleModal={handleModal}/>
+                        <MessageWithAdminButton handleModal={handleModal} />
+                        <EmployeeChatroomButton handleModal={handleModal} />
+                    </View>
+
+                    <View style={DropdownStyles.divider}/>
+
+                    <View>
+                        <SignOutButton handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
                     </View>
 
                 </Modal>

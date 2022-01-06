@@ -24,6 +24,7 @@ const DropdownStyles = StyleSheet.create({
     divider: {
         borderBottomColor: 'black',
         borderBottomWidth: 1.25,
+        marginTop: 5,
     },
     accountInformationButton: {
         height: 50,
@@ -31,6 +32,7 @@ const DropdownStyles = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: 'white',
 		marginTop: 5,
+        height: 30
     },
     accountInformationButtonText: {
         color: 'black',

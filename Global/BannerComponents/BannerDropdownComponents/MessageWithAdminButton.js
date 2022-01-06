@@ -4,13 +4,13 @@ import { Button } from 'react-native-paper';
 import { DropdownStyles } from '../../../Styles/GlobalStyles';
 import { useHistory } from 'react-router-native';
 
-const AccountInformationButton = ({ handleModal }) => {
+const MessageWithAdminButton = ({ handleModal }) => {
     const [buttonLoading, setButtonLoading] = useState(false)
     let history = useHistory()
 
     const handleSubmit = async () => {
         await setButtonLoading(true)
-        await history.push('/account_information')
+        await history.push('/messages')
         await handleModal()
     }
 
@@ -25,10 +25,10 @@ const AccountInformationButton = ({ handleModal }) => {
                     labelStyle={DropdownStyles.accountInformationButtonText}
                     onPress={() => handleSubmit()} 
                 >
-                    My Profile
+                    Boss Talk
                 </Button>
        </View> 
     );
 }
 
-export default AccountInformationButton;
+export default MessageWithAdminButton;

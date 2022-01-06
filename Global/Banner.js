@@ -7,7 +7,7 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
 
-const Banner = () => {
+const Banner = ({ handleLoggedIn }) => {
   const [visible, setVisible] = useState(false)
   const [website] = useRecoilState(websiteState)
   let history = useHistory()
@@ -21,7 +21,7 @@ const Banner = () => {
 
   return (
     <View>
-      <BannerDropdown visible={visible} handleModal={handleModal}/>
+      <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
 
       <View style={styles.topBar}></View>
 

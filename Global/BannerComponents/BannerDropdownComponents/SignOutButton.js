@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native'
+import { userState } from '../../../Recoil/atoms';
+import { useRecoilState } from 'recoil';
 import { Button } from 'react-native-paper';
 import { DropdownStyles } from '../../../Styles/GlobalStyles';
 import { useHistory } from 'react-router-native';
 
-const AccountInformationButton = ({ handleModal }) => {
+const SignOutButton = ({ handleModal, handleLoggedIn }) => {
+    const [userData, setUserData] = useRecoilState(userState)
     const [buttonLoading, setButtonLoading] = useState(false)
     let history = useHistory()
 
     const handleSubmit = async () => {
         await setButtonLoading(true)
-        await history.push('/account_information')
+        await setUserData({})
+        await handleLoggedIn(false)
+        await history.push('/')
         await handleModal()
     }
 
@@ -25,10 +30,10 @@ const AccountInformationButton = ({ handleModal }) => {
                     labelStyle={DropdownStyles.accountInformationButtonText}
                     onPress={() => handleSubmit()} 
                 >
-                    My Profile
+                    Sign Out
                 </Button>
        </View> 
     );
 }
 
-export default AccountInformationButton;
+export default SignOutButton;
