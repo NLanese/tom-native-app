@@ -1,11 +1,27 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
+import { QualityStyles } from "../../../../Styles/ScoreCardStyles";
 
 const EmployeeQuality = ({driverData}) => {
 
+    if (driverData.delivery_completion_rate == null){
+        driverData.delivery_completion_rate = 0
+    }
+    if (driverData.delivered_and_recieved == null){
+        driverData.delivered_and_recieved = 0
+    }
+    if (driverData.photo_on_delivery == null){
+        driverData.photo_on_delivery = 0
+    }
+    if (driverData.call_compliance == null){
+        driverData.call_compliance = 0
+    }
+    if (driverData.scan_compliance == null){
+        driverData.scan_compliance = 0
+    }
 
     return(
-        <View style={SafetyAndComplianceStyles.topThreeEmployeeCard}>
+        <View style={QualityStyles.topThreeEmployeeCard}>
 
             <View>
                 <View>
@@ -30,11 +46,11 @@ const EmployeeQuality = ({driverData}) => {
             </View>
             <View>
                 <Text>Call Compliance</Text>
-                <Text>{driverData.photo_on_delivery}</Text>
+                <Text>{driverData.call_compliance}</Text>
             </View>
             <View>
                 <Text>Scan Compliance</Text>
-                <Text>{driverData.photo_on_delivery}</Text>
+                <Text>{driverData.scan_compliance}</Text>
             </View>
 
         </View>

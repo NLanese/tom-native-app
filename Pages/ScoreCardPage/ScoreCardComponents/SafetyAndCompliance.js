@@ -17,7 +17,7 @@ const SafetyAndCompliance =  () => {
     }, [data])
 
 
-    function renderTopThree(topThreeSafetyAndComplianceDrivers){
+    const renderTopThree = (topThreeSafetyAndComplianceDrivers) => {
         let i = 0
         return topThreeSafetyAndComplianceDrivers.map( (driverData) => {
             i++
@@ -32,9 +32,11 @@ const SafetyAndCompliance =  () => {
             </View>
         )
     } else {
-        let topThree = [queryData[0], queryData[1], queryData[2]]
-        console.log(topThree)
 
+        let allData = [...queryData]
+        let topThree = allData.splice(0, 3)
+        let remainingEmployees = allData.splice(3, allData.length)
+        
         return(
             <View style={SafetyAndComplianceStyles.container}>
                 <Text>Top Three Leaders</Text> 

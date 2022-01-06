@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
+import { Avatar } from 'react-native-paper';
 import { SafetyAndComplianceStyles } from "../../../../Styles/ScoreCardStyles";
 
 const EmployeeSafetyAndCompliance = ({driverData}) => {

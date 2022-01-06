@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from "@apollo/client";
-import { SafetyAndComplianceStyles } from '../../../Styles/ScoreCardStyles'
+import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
+import EmployeeQuality from "./InformationComponents/EmployeeQuality";
  
 
 
@@ -17,11 +18,11 @@ const Quality = () => {
         }
     }, [data])
 
-    function renderTopThree(topThreeQualityDrivers){
+    const renderTopThree = (topThreeQualityDrivers) => {
         let i = 0
         return topThreeQualityDrivers.map( (driverData) => {
             i++
-            return <EmployeeSafetyAndCompliance driverData={driverData} rank={i} />
+            return <EmployeeQuality driverData={driverData} key={i} />
         })
     }
 
@@ -32,15 +33,17 @@ const Quality = () => {
             </View>
         )
     } else {
-        let topThree = [queryData[0], queryData[1], queryData[2]]
+        let allData = [...queryData]
+        let topThree = allData.splice(0, 3)
+        let remainingEmployees = allData.splice(3, allData.length)
         
         return(
-            <View style={SafetyAndComplianceStyles.container}>
+            <View style={QualityStyles.container}>
                 <Text>Top Three Leaders</Text> 
-                <View style={SafetyAndComplianceStyles.topThree}>
+                <View style={QualityStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <View style={SafetyAndComplianceStyles.remainders}>
+                <View style={QualityStyles.remainders}>
                 </View>
             </View>
 
