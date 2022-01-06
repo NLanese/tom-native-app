@@ -7,7 +7,7 @@ import { SignUpModalStyles } from '../../../../Styles/LandingPageStyles';
 
 
 
-const SignUpModal = (props) => {
+const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUserData}) => {
 
     return(
         <View>
@@ -24,7 +24,7 @@ const SignUpModal = (props) => {
                                     left: 160
                                 }}
                                 onPress={() => {
-                                    props.setModalVisible(!props.modalVisible)}
+                                    setModalVisible(!modalVisible)}
                                 }
                                 size={30}
                                 color={"white"}
@@ -60,9 +60,9 @@ const SignUpModal = (props) => {
                                     }}
                                     onPress={ async () => {
                                         // handleButtonLoading()
-                                        let userData = props.getUserData
+                                        let userData = getUserData
                                         console.log(userData)
-                                        props.signupCommand({
+                                        signupCommand({
                                             variables: {
                                                 signupInput: {
                                                     email: userData.email,

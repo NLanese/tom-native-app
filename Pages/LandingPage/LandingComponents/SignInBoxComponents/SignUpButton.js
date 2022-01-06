@@ -14,7 +14,7 @@ const SignUpButton = () => {
 		useMutation(SIGNUP);
 
     const [modalVisible, setModalVisible] = useState(false);
-	
+
 	const [buttonLoading, setButtonLoading] = useState(false);
 
 	const handleInput = (id, information) => {
@@ -31,7 +31,6 @@ const SignUpButton = () => {
 	useEffect(() => {
 		console.log(loading)
 		if (loading !== false) {
-			console.log('loading hit')
 			setButtonLoading(true)
 		}
 	}, [loading])
@@ -58,7 +57,7 @@ const SignUpButton = () => {
 				onPress={() => setModalVisible(!modalVisible)} >
 					Sign Up
 			</Button>
-			<SignUpModal setModalVisible={setModalVisible} modalVisible={modalVisible} handleInput={handleInput} signupCommand={signup} getUserData={userData}/> 
+			<SignUpModal setModalVisible={setModalVisible} modalVisible={modalVisible} handleInput={handleInput} signup={signup} getUserData={userData}/> 
 		</View>
 		);
 };

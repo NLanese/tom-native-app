@@ -51,7 +51,44 @@ const QualityStyles = StyleSheet.create({
 })
 
 const SafetyAndComplianceStyles = StyleSheet.create({
+	container: {
+		display: "flex",
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: '100%',
+		// borderWidth: 5
+	},
 
+	topThree: {
+		flex: 4,
+		marginTop: "3%",
+		display: "flex",
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: '100%',
+		// borderWidth: 5
+	},
+
+	remainders: {
+		flex: 2,
+		marginTop: "3%",
+		display: "flex",
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+
+	topThreeEmployeeCard: {
+		flex: 2,
+		position: "relative",
+		height: 270,
+		width: 350,
+		marginBottom: 2,
+		borderWidth: 1,
+		borderColor: 'black'
+	}
 })
 
 const EmployeeSafetyAndComplianceStyles = StyleSheet.create({

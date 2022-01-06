@@ -18,6 +18,15 @@ const Quality = () => {
 
     console.log(queryData)
 
+    const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE)
+    const [queryData, setQueryData] = useState({})
+
+    useEffect( async () => {
+        if (!loading && data) {
+            await setQueryData(data.getDriversForDspForSafetyAndCompliance)
+        }
+    }, [data])
+
     function renderTopThree(topThreeQualityDrivers){
         let i = 0
         return topThreeQualityDrivers.map( (driverData) => {
@@ -33,11 +42,18 @@ const Quality = () => {
             </View>
         )
     } else {
+        let topThree = [queryData[0], queryData[1], queryData[2]]
+        
         return(
-            <View>
-                <Text>Quality</Text>
+            <View style={SafetyAndComplianceStyles.container}>
+                <Text>Top Three Leaders</Text> 
+                <View style={SafetyAndComplianceStyles.topThree}>
+                    {renderTopThree(topThree)}
+                </View>
+                <View style={SafetyAndComplianceStyles.remainders}>
+                </View>
             </View>
-    
+
         )
     }
 }
