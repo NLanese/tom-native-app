@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { websiteState } from '../Recoil/atoms'
+import { userState, websiteState } from '../Recoil/atoms'
 import { Appbar, Avatar, Modal, Button, Protal } from 'react-native-paper';
 import { useHistory } from 'react-router-native';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
+import Bell from "./BannerComponents/Bell";
+import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
 
 const Banner = ({ handleLoggedIn }) => {
   const [visible, setVisible] = useState(false)
+  const [notifiedVisible, setNotifiedVisiable] = useState(false)
   const [website] = useRecoilState(websiteState)
   let history = useHistory()
 
@@ -16,12 +19,18 @@ const Banner = ({ handleLoggedIn }) => {
     setVisible(!visible)
   }
 
-  console.log('----------------')
-  console.log(visible)
+  const handleNotifiedModal = () => {
+    setNotifiedVisiable(!notifiedVisible)
+  }
+
+  // console.log('----------------')
+  // console.log(visible)
+  // console.log(notifiedVisible)
 
   return (
     <View>
       <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
+      <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} />
 
       <View style={styles.topBar}></View>
 
@@ -54,18 +63,16 @@ const Banner = ({ handleLoggedIn }) => {
               onPress={() => history.push('/home')}
             />
 
-            <Appbar.Action
-              color='white'
-              style={styles.actionBar}
-              icon="bell"
-            />
+            <Pressable onPress={() => handleNotifiedModal()}>
+              <Bell styles={styles} />
+            
+            </Pressable>
 
             <Pressable onPress={() => handleModal()}>
               <Avatar.Image
                 source={SomeDudesFace}
                 size={32}
               />
-
             </Pressable>
           </View>
 
