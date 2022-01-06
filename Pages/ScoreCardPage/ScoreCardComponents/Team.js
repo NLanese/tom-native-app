@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import TopThreeTeamEmployees from "./InformationComponents/TopThreeTeamEmployee";
 import { ActivityIndicator } from "react-native-paper";
+import { TeamStyles } from "../../../Styles/ScoreCardStyles";
 
 const Team = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDSPFORTEAM)
@@ -16,31 +17,20 @@ const Team = () => {
         }
     }, [data])
 
-    console.log(queryData)
-
-    const sortTeamEmployees = (teamEmployees) => {
-        //sort the array
-        //split the array into two. New array will look like...
-            // [ [top, three, teamEmployees], [other, teamEmployees]]
-            return [ [1, 2, 3], [4, 5, 6]]
+    
+    const renderTopThree = (topThreeTeam) => {
+        let i = 0
+        return topThreeTeam.map( (driverData) => {
+            i++
+            return <TopThreeTeamEmployees driverData={driverData} key={i} rank={i} />
+        })
     }
 
-    let topThreeAndOthers = sortTeamEmployees()
-
-    const renderTeamEmployees = (topThreeAndOthers, arr) => {
-        let component = null
-        let i = 1
-        return topThreeAndOthers[index].map( (driver) => {
-            if (arr = 0){
-                component = <TopThreeTeamEmployees driverData={driver} rank={i}/>
-            }
-            else {
-                component = <TeamEmployees driverData={dirver} rank={i}/>
-            }
+    const renderOthers = (otherEmployees) => {
+        let i = 3
+        return otherEmployees.map( (driverData) => {
             i++
-            return(
-                component
-            )
+            return <TeamEmployees driverData={driverData} key={i} rank={i} />
         })
     }
 
@@ -51,14 +41,21 @@ const Team = () => {
             </View>
         )
     } else {
+
+        let allData = [...queryData]
+        let topThree = allData.splice(0, 3)
+        let otherEmployees = allData.splice(3, allData.length)
+    
         return(
-            <View>
+            <View style={TeamStyles.container}>
                 <Text>Team</Text>
-                <View>
-                    {/* {renderTeamEmployees(topThreeAndOthers, 0)} */}
+                <View style={TeamStyles.topThree}>
+                    {renderTopThree(topThree)}
                 </View>
-                <View>
-                    {/* {renderTeamEmployees(topThreeAndOthers, 0)} */}
+                <View style={TeamStyles.remainders}>
+                    <ScrollView>
+                        {renderOthers(otherEmployees)}
+                    </ScrollView>
                 </View>
             </View>
     
