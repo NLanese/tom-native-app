@@ -81,7 +81,7 @@ export default function App() {
 
                 {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
                 
-                <Banner />
+                <Banner handleLoggedIn={handleLoggedIn}/>
 
                 {loggedIn === true ? (
                   <Switch>

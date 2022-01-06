@@ -9,6 +9,7 @@ import { SettingsStyles } from "../../../Styles/SettingStyles";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 import { AccountInformationStyles } from "../../../Styles/SettingStyles";
+import { ActivityIndicator } from "react-native-paper";
 
 const AccountInformation = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
@@ -29,11 +30,10 @@ const AccountInformation = () => {
             setUserData(queryData)
     }, [queryData])
 
-
     if (!queryData.firstname) {
         return (
-            <View style={SettingsStyles.container}>
-                <Text> LOADING!!</Text>
+            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
+                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
             </View>
         )
     } else {
