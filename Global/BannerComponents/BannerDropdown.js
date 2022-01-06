@@ -1,15 +1,30 @@
 import React from "react";
+import { userState } from '../../Recoil/atoms'
+import { useRecoilState } from "recoil";
 import { View, Text } from 'react-native'
+import { DropdownStyles } from '../../Styles/GlobalStyles'
 import { Portal, Modal } from 'react-native-paper'
-
-const containerStyle = {backgroundColor: 'white', padding: 20, position: 'absolute', top: 50, right: 0, margin: 0, width: 200};
+import AccountInformationButton from "./BannerDropdownComponents/AccountInformationButton";
 
 const BannerDropdown = ({ visible, handleModal }) => {
+    const [userData] = useRecoilState(userState)
+
     return (
         <View>
             <Portal>
-                <Modal visible={visible} onDismiss={handleModal} contentContainerStyle={containerStyle}>
-                    <Text>Example Dropdown.  Click outside this area to dismiss.</Text>
+                <Modal visible={visible} onDismiss={handleModal} contentContainerStyle={DropdownStyles.container}>
+                    
+                    <View>
+                        <Text style={DropdownStyles.titleText}>Signed in as:</Text>
+                        <Text style={DropdownStyles.titleName}>{userData.firstname} {userData.lastname}</Text>
+                    </View>
+                    
+                    <View style={DropdownStyles.divider}/>
+
+                    <View>
+                        <AccountInformationButton handleModal={handleModal}/>
+                    </View>
+
                 </Modal>
             </Portal>
         </View>

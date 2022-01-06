@@ -69,10 +69,10 @@ const GETDRIVERDATA = gql`
     adminId
     adminFirstname
     adminLastname
-    adminPhonenumber
     adminEmail
     adminAccountStanding
     adminApproved
+    adminPhoneNumber
   }
 }
 `

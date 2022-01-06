@@ -16,6 +16,7 @@ const AccountInformation = () => {
     const [userData, setUserData] = useRecoilState(userState)
 
     useEffect(() => {
+        console.log('hit')
         refetch()
     }, [])
 
@@ -28,6 +29,9 @@ const AccountInformation = () => {
     useEffect(() => {
             setUserData(queryData)
     }, [queryData])
+
+    console.log(data)
+    console.log(loading)
 
 
     if (!queryData.firstname) {
