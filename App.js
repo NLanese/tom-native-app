@@ -43,7 +43,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.52:5001/graphql'
+	uri: 'http://10.0.0.46:5001/graphql'
 });
 
 // Auth for token

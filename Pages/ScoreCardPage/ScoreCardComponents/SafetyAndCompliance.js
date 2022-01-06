@@ -2,32 +2,25 @@ import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE } from "../../../GraphQL/operations";
- 
 import EmployeeSafetyAndCompliance from "./InformationComponents/EmployeeSafetyAndCompliance";
+import { SafetyAndComplianceStyles } from "../../../Styles/ScoreCardStyles";
 
-const SafetyAndCompliance = () => {
+const SafetyAndCompliance =  () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE)
     const [queryData, setQueryData] = useState({})
 
-    useEffect(() => {
+    useEffect( async () => {
         if (!loading && data) {
-            setQueryData(data.getDriversForDspForSafetyAndCompliance)
+            await setQueryData(data.getDriversForDspForSafetyAndCompliance)
         }
     }, [data])
 
-    console.log(queryData)
-    
-    // some function to go through all drivers and determine the top three
-    // Employee Safety Ratings. It will then return one <EmployeeSafetyAndCompliance />
-    // component for each
-
-    let topThree = [{key: 1}, {key: 2}, {key: 3}]
 
     function renderTopThree(topThreeSafetyAndComplianceDrivers){
         let i = 0
         return topThreeSafetyAndComplianceDrivers.map( (driverData) => {
             i++
-            return <EmployeeSafetyAndCompliance driverData={driverData} rank={i} />
+            return <EmployeeSafetyAndCompliance driverData={driverData} key={i} />
         })
     }
 
@@ -38,12 +31,18 @@ const SafetyAndCompliance = () => {
             </View>
         )
     } else {
+        let topThree = [queryData[0], queryData[1], queryData[2]]
+        console.log(topThree)
+
         return(
-            <View>
-                <View>
-                    <Text>Safety and Compliance</Text>
+            <View style={SafetyAndComplianceStyles.container}>
+                <Text>Top Three Leaders</Text> 
+                <View style={SafetyAndComplianceStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
+                <View style={SafetyAndComplianceStyles.remainders}>
+                </View>
+
             </View>
         )
     }
