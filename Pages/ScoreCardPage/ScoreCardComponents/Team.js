@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
- 
+import { GETDRIVERSFORDSPFORTEAM } from "../../../GraphQL/operations";
+import { useQuery } from "@apollo/client";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import TopThreeTeamEmployees from "./InformationComponents/TopThreeTeamEmployee";
+import { ActivityIndicator } from "react-native-paper";
 
 const Team = () => {
+    const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDSPFORTEAM)
+    const [queryData, setQueryData] = useState({})
 
-    function sortTeamEmployees(teamEmployees){
+    useEffect(() => {
+        if (!loading && data) {
+            setQueryData(data.getDriversForDspForTeam)
+        }
+    }, [data])
+
+    console.log(queryData)
+
+    const sortTeamEmployees = (teamEmployees) => {
         //sort the array
         //split the array into two. New array will look like...
             // [ [top, three, teamEmployees], [other, teamEmployees]]
@@ -15,7 +27,7 @@ const Team = () => {
 
     let topThreeAndOthers = sortTeamEmployees()
 
-    function renderTeamEmployees(topThreeAndOthers, arr){
+    const renderTeamEmployees = (topThreeAndOthers, arr) => {
         let component = null
         let i = 1
         return topThreeAndOthers[index].map( (driver) => {
@@ -32,17 +44,26 @@ const Team = () => {
         })
     }
 
-    return(
-        <View>
-            <Text>Team</Text>
-            <View>
-                {renderTeamEmployees(topThreeAndOthers, 0)}
+    if (!queryData[0]) {
+        return (
+            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
+                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
             </View>
+        )
+    } else {
+        return(
             <View>
-                {renderTeamEmployees(topThreeAndOthers, 0)}
+                <Text>Team</Text>
+                <View>
+                    {/* {renderTeamEmployees(topThreeAndOthers, 0)} */}
+                </View>
+                <View>
+                    {/* {renderTeamEmployees(topThreeAndOthers, 0)} */}
+                </View>
             </View>
-        </View>
+    
+        )
+    }
 
-    )
 }
 export default Team

@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
+import { useQuery } from "@apollo/client";
+import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
+import { ActivityIndicator } from "react-native-paper";
  
 
 
 const Quality = () => {
+    const { loading, error, data, refetch } = useQuery(GETDRIVERSFORSCORECARDQUALITY)
+    const [queryData, setQueryData] = useState({})
+
+    useEffect(() => {
+        if (!loading && data) {
+            setQueryData(data.getDriversForScorecardQuality)
+        }
+    }, [data])
+
+    console.log(queryData)
 
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE)
     const [queryData, setQueryData] = useState({})
@@ -24,14 +37,13 @@ const Quality = () => {
 
     if (!queryData[0]) {
         return (
-            <View>
-                <Text>Loading</Text>
+            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
+                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
             </View>
         )
     } else {
         let topThree = [queryData[0], queryData[1], queryData[2]]
-        console.log(topThree)
-
+        
         return(
             <View style={SafetyAndComplianceStyles.container}>
                 <Text>Top Three Leaders</Text> 
@@ -40,8 +52,8 @@ const Quality = () => {
                 </View>
                 <View style={SafetyAndComplianceStyles.remainders}>
                 </View>
-
             </View>
+
         )
     }
 }

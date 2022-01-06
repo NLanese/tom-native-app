@@ -33,6 +33,18 @@ const LOGIN = gql`
 }
 `;
 
+const UPDATEDRIVER = gql`
+  mutation UpdateDriver($updateDriver: UpdateDriver) {
+  updateDriver(updateDriver: $updateDriver) {
+    firstname
+    lastname
+    email
+    phoneNumber
+    password
+  }
+}
+`
+
 const CREATEACCIDENT = gql`
   mutation Mutation($name: String!, $location: String!) {
   createAccident(name: $name, location: $location) {
@@ -94,16 +106,72 @@ const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
 }
 `
 
-const UPDATEDRIVER = gql`
-  mutation UpdateDriver($updateDriver: UpdateDriver) {
-  updateDriver(updateDriver: $updateDriver) {
+const GETDRIVERSFORDSPFORTEAM = gql`
+  query Query {
+  getDriversForDspForTeam {
+    id
+    createdAt
     firstname
     lastname
     email
     phoneNumber
-    password
+    employeeId
+    fico
+    netradyne
+    delivery_associate
+    seatbelt_and_speeding
+    defects
+    customer_delivery_feedback
+    delivered_and_recieved
+    delivery_completion_rate
+    photo_on_delivery
+    call_compliance
+    scan_compliance
+    has_many_accidents
+    belongs_to_team
+    dsp_name
+    dsp_shortcode
   }
 }
 `
 
-export { SIGNUP, LOGIN, CREATEACCIDENT, GETDRIVERDATA, UPDATEDRIVER, GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE }
+const GETDRIVERSFORSCORECARDQUALITY = gql`
+  query Query {
+  getDriversForScorecardQuality {
+    id
+    createdAt
+    firstname
+    lastname
+    email
+    phoneNumber
+    employeeId
+    fico
+    netradyne
+    delivery_associate
+    seatbelt_and_speeding
+    defects
+    customer_delivery_feedback
+    delivered_and_recieved
+    delivery_completion_rate
+    photo_on_delivery
+    call_compliance
+    scan_compliance
+    has_many_accidents
+    belongs_to_team
+    dsp_name
+    dsp_shortcode
+  }
+}
+`
+
+
+export {  
+  SIGNUP, 
+  LOGIN, 
+  CREATEACCIDENT, 
+  GETDRIVERDATA, 
+  UPDATEDRIVER, 
+  GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE,
+  GETDRIVERSFORDSPFORTEAM,
+  GETDRIVERSFORSCORECARDQUALITY
+}

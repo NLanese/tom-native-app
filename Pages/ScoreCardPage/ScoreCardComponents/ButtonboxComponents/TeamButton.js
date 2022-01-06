@@ -22,7 +22,7 @@ const QualityButton = () => {
                 style={ButtonStyles.logInButton}
                 onPress={ async () => {
                     handleButtonLoading()
-                    history.push("/quality")
+                    history.push("/team")
                 } }
             >
                 Team

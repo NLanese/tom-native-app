@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
-import { Appbar, Avatar } from 'react-native-paper';
+import { Appbar, Avatar, Modal, Button, Protal } from 'react-native-paper';
 import { useHistory } from 'react-router-native';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
+import BannerModal from "./BannerComponents/BannerModal";
 
-const BannerComponent = () => {
+const Banner = () => {
+  const [visible, setVisible] = useState(false)
   const [website] = useRecoilState(websiteState)
   let history = useHistory()
 
+  const handleModal = () => {
+    setVisible(!visible)
+  }
+
+  console.log('----------------')
+  console.log(visible)
+
   return (
     <View>
+      <BannerModal visible={visible} handleModal={handleModal}/>
+
       <View style={styles.topBar}></View>
 
         <Appbar style={styles.bottom}>
@@ -49,10 +60,13 @@ const BannerComponent = () => {
               icon="bell"
             />
 
-            <Avatar.Image
-              source={SomeDudesFace}
-              size={32}
-            />
+            <Pressable onPress={() => handleModal()}>
+              <Avatar.Image
+                source={SomeDudesFace}
+                size={32}
+              />
+
+            </Pressable>
           </View>
 
         </Appbar>
@@ -60,7 +74,7 @@ const BannerComponent = () => {
   )
 }
 
-export default BannerComponent
+export default Banner
 
 const styles = StyleSheet.create({
     bottom: {
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
     rightIcons: {
       position: 'absolute',
       width: 110,
-      marginLeft: 262,
+      marginLeft: 252,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end',
