@@ -4,17 +4,19 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 
 const TopThreeTeamEmployees = ({driverData, key}) => {
 
-    if (driverData.defects == null){
-        driverData.defects = 0
+    let data = {...driverData}
+
+    if (data.defects == null){
+        data.defects = 0
     }
-    if (driverData.customer_delivery_feedback == null){
-        driverData.customer_delivery_feedback = 0
+    if (data.customer_delivery_feedback == null){
+        data.customer_delivery_feedback = 0
     }
 
     return(
-        <View>
+        <Card>
             <View>
-                <Text>{driverData.firstname} {driverData.lastname}</Text>
+                <Text>{data.firstname} {data.lastname}</Text>
             </View>
             <View>
                 <Text>Imagine an Icon was Here</Text>
@@ -25,13 +27,13 @@ const TopThreeTeamEmployees = ({driverData, key}) => {
             </View>
             <View>
                 <Text>Defects</Text>
-                <Text>{driverData.defects}</Text>
+                <Text>{data.defects}</Text>
             </View>
             <View>
                 <Text>Customer Feedback</Text>
-                <Text>{driverData.customer_delivery_feedback}</Text>
+                <Text>{data.customer_delivery_feedback}</Text>
             </View>
-        </View>
+        </Card>
     )
 }
 export default TopThreeTeamEmployees

@@ -45,6 +45,12 @@ const UPDATEDRIVER = gql`
 }
 `
 
+// const NOTIFIEDTOFALSE = gql`
+//   mutation notifiedToFalse(){
+//     notifiedToFalse($)
+//   }
+// `
+
 const CREATEACCIDENT = gql`
   mutation Mutation($name: String!, $location: String!) {
   createAccident(name: $name, location: $location) {
@@ -163,6 +169,26 @@ const GETDRIVERSFORSCORECARDQUALITY = gql`
   }
 }
 `
+const GETNOTIFIED = gql`
+  query Query {
+  getDriver {
+    notified
+  }
+}`
+
+const GETNOTIFIEDMESSAGES = gql`
+  query Query {
+    getNotifiedMessages {
+      id
+      createdAt
+      read
+      content
+      from
+      type
+      driverId
+      adminId
+    }
+}`
 
 
 export {  
@@ -173,5 +199,7 @@ export {
   UPDATEDRIVER, 
   GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE,
   GETDRIVERSFORDSPFORTEAM,
-  GETDRIVERSFORSCORECARDQUALITY
+  GETDRIVERSFORSCORECARDQUALITY,
+  GETNOTIFIED,
+  GETNOTIFIEDMESSAGES
 }
