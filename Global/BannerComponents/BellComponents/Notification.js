@@ -1,33 +1,41 @@
 import React from "react";
 import { View, Text } from 'react-native'
-import { Avatar } from 'react-native-paper';
+import { Avatar, Icon } from 'react-native-paper';
 import { DropdownStyles } from "../../../Styles/GlobalStyles";
 
-const Notifiction = ({notifiction}) => {
+const Notification = ({notification}) => {
     
     const renderReadIndicator = (read) => {
-        if (!read){
-            return(<Avatar.Icomn size={10} color='red'></Avatar.Icomn>)
-        }
-        else{
-            return(<Avatar.Icomn size={10} color='grey'></Avatar.Icomn>)
-        }
+        // if (!read){
+        //     return(
+        //         <View>
+        //             <Avatar.Icon size={10} color='red'></Avatar.Icon>)
+        //         </View>
+        //     )
+        // }
+        // else{
+        //     return(
+        //         <View>
+        //             <Avatar.Icon size={10} color='red'></Avatar.Icon>)
+        //         </View>
+        //     )
+        // }
     }
 
     return(
         <View>
             <View>
-                {renderReadIndicator(notifiction.read)}
+                {renderReadIndicator(notification.read)}
             </View>
             <View>
-                <Text>{notifiction.type} Notification</Text>
-                <Text>From {notifiction.from}</Text>
+                <Text>{notification.type} Notification</Text>
+                <Text>From {notification.from}</Text>
             </View>
             <View>
-                <Text>{notifiction.content}</Text>
+                <Text>{notification.content}</Text>
             </View>
         </View>
     )
 }
 
-export default Notifiction
+export default Notification

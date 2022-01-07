@@ -17,88 +17,140 @@ import { ActivityIndicator } from "react-native-paper";
 /* onPress will take you to Notifiactions.js which will show all notificaiton of the pass */
 
 const Bell = () => {
-  console.log("===========================================================================")
-  const [userData, setUserData] = useRecoilState(userState)
-  const { loading, error, dataSetNotified, refetch } = useQuery(GETNOTIFIED)
-  const { loading2, error2, notifiedMessages, refetch2 } = useQuery(GETNOTIFIEDMESSAGES)
-  const [notifiedVisible, setNotifiedVisible] = useState(false) 
 
-  const handleNotifiedModal = () => {
-    setNotifiedVisible(!notifiedVisible)
-  }
+  console.log("\n\n\n\n\n===========================================================================")
+    console.log("hit 1")
+  // const [userData, setUserData] = useRecoilState(userState)
+    console.log("hit 2")
+    const [notifiedVisible, setNotifiedVisible] = useState(false) 
+    console.log("hit 3")
 
-  const removeNotification = () => [ 
-    setUserData(...userData, notified=false)
+    // const { loading, error, dataSetNotified, refetch } = useQuery(GETNOTIFIED)
+    // const { loading2, error2, notifiedMessages, refetch2 } = useQuery(GETNOTIFIEDMESSAGES)
+    
+    let dataSetNotified = true
+    console.log("hit 4")
+    let notifiedMessages = [
+      {
+      "id": "1",
+      "createdAt": "2022-01-06T18:18:32.591Z",
+      "read": false,
+      "content": "The quick brown fox swiftly jumped over the lazy dog",
+      "from": "ERIK",
+      "type": "message",
+      "driverId": 1,
+      "adminId": null,
+      "driver": null,
+      "admin": null
+    },
+    {
+      "id": "2",
+      "createdAt": "2022-01-06T18:26:46.255Z",
+      "read": false,
+      "content": "This should sent a Notifed Message",
+      "from": "ERIK",
+      "type": "message",
+      "driverId": 1,
+      "adminId": null,
+      "driver": null,
+      "admin": null
+    },
+    {
+      "id": "3",
+      "createdAt": "2022-01-06T18:36:02.654Z",
+      "read": false,
+      "content": "fuck it, whatever, message",
+      "from": "ERIK",
+      "type": "message",
+      "driverId": 1,
+      "adminId": null,
+      "driver": null,
+      "admin": null
+    },
+    {
+      "id": "4",
+      "createdAt": "2022-01-07T00:47:14.886Z",
+      "read": false,
+      "content": "Hey, did it work?",
+      "from": "ERIK",
+      "type": "message",
+      "driverId": 1,
+      "adminId": null,
+      "driver": null,
+      "admin": null
+    }
   ]
+    console.log("hit 5")
 
-  useEffect(() => {
-    console.log("\nBell, Testing useEffect conditions")
-    console.log(!loading && dataSetNotified && !loading2 && notifiedMessages)
-    if (!loading && dataSetNotified && !loading2 && notifiedMessages) {
-        console.log("\nBell, inside useeffect")
-        console.log(dataSetNotified)
+    const handleNotifiedModal = () => {
+      setNotifiedVisible(!notifiedVisible)
     }
-  }, [dataSetNotified, notifiedMessages])
 
-  if ( dataSetNotified && notifiedMessages ){
+    console.log("hit 6")
 
-    console.log("\n Bell.js line 46/47")
-    console.log(dataSetNotified)
-    console.log(notifiedMessages)
+    const removeNotification = () => [ 
+      // setUserData(...userData, notified=false)
+      dataSetNotified = false
+    ]
+    console.log("hit 7")
 
-    if (notifiedData){
+    // useEffect(() => {
+    //   console.log("\nBell, Testing useEffect conditions")
+    //   console.log(!loading && dataSetNotified && !loading2 && notifiedMessages)
+    //   if (!loading && dataSetNotified && !loading2 && notifiedMessages) {
+    //       console.log("\nBell, inside useeffect")
+    //       console.log(dataSetNotified)
+    //   }
+    // }, [dataSetNotified, notifiedMessages])
 
-      console.log("\nBell.js line 52/53")
-      console.log("Printing the notifiedMessages")
-      console.log(notifiedMessages)
+    if ( dataSetNotified && notifiedMessages ){
 
-      return (
-        <View>
-            <Appbar.Action
-              color='red'
-              style={styles.actionBar}
-              icon="bell"
-              onPress={() => {
-                removeNotification()
-                setNotifiedVisible(true)}
-              }
-            />
-            <View>
-              <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} notifiedMessages={notifiedMessages}/>
-            </View>
-        </View>
-      );
+      if (dataSetNotified){
+
+        return (
+          <View>
+              <Appbar.Action
+                color='red'
+                style={styles.actionBar}
+                icon="bell"
+                onPress={() => {
+                  removeNotification()
+                  setNotifiedVisible(true)
+                }}
+              />
+              <View>
+                <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} notifiedMessages={notifiedMessages}/>
+              </View>
+          </View>
+        )
+      }
+      else{
+        return (
+          <View>
+              <Appbar.Action
+                color='white'
+                style={styles.actionBar}
+                icon="bell"
+                onPress={() => {
+                  setNotifiedVisible(true)
+                }}
+              />
+              <View>
+              <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} notifiedMessages="None"/>
+              </View>
+          </View>
+          
+        );
+      }
+    } 
+    else {
+        return (
+          <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
+              <ActivityIndicator animating={true} size={24} color={'white'} style={{padding: 3, marginRight: 8}}/>
+          </View>
+        )
     }
-    else{
-      console.log("\nBell.js line 82")
-      console.log("No New Notifications")
-      return (
-        <View>
-            <Appbar.Action
-              color='white'
-              style={styles.actionBar}
-              icon="bell"
-              onPress={() => {
-                setNotifiedVisible(true)}
-              }
-            />
-            <View>
-            <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} notifiedMessages="None"/>
-            </View>
-        </View>
-        
-      );
-    }
-  } 
-  else {
-    console.log("loading")
-      return (
-        <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
-            <ActivityIndicator animating={true} size={24} color={'white'} style={{padding: 3, marginRight: 8}}/>
-        </View>
-      )
   }
-}
 
 const styles = StyleSheet.create({
   actionBar: {

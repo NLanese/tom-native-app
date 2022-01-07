@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { Portal, Modal } from 'react-native-paper'
 import { DropdownStyles } from "../../../Styles/GlobalStyles";
 import ViewNotificationsButtom from "../ButtonBox/ViewNotificationsButton";
+import Notification from "./Notification";
 
 
 const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }) => {
@@ -13,8 +14,11 @@ const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }
         }
         else{
             if (notifiedMessages.length > 3){
+                console.log("More Than three")
                 const topThree = () => {
-                    return notifiedMessages.splice(0, 3).map( (notification) => {
+                    let key = 1
+                    return notifiedMessages.splice(0, 3).map( (notification, key) => {
+                        key++
                         return <Notification notification={notification} />
                     })
                 }
@@ -40,7 +44,7 @@ const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }
     return (
         <View>
             <Portal>
-            <Modal visible={notifiedVisible} onDismiss={handleNotifiedModal} contentContainerStyle={DropdownStyles.container}>
+            <Modal visible={notifiedVisible} onDismiss={() => handleNotifiedModal} contentContainerStyle={DropdownStyles.container}>
                     <View>
                         {renderNotifications(notifiedMessages)}
                     </View>

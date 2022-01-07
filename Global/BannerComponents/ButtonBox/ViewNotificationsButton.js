@@ -10,7 +10,7 @@ const ViewNotificationsButton = () => {
             <Button 
                 onPress={() => {history.push("/view_notifications")}}
 				title='View Notifications'
-				color='#ffffff'
+				color='black'
 				accessibilityLabel='ViewNotifications'
             />
         </View>
