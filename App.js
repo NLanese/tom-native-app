@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import hidden from './hidden';
 import { Portal, Provider as PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
+import DismissKeyboard from './Global/DismissKeyboard';
 import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
@@ -77,8 +78,9 @@ export default function App() {
       <RecoilRoot>
         <ApolloProvider client={client}>
           <PaperProvider>
-
             <View style={AppStyles.container}>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+             <View>
 
                 {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
                 
@@ -129,8 +131,9 @@ export default function App() {
                   </Switch>
                 ) : null}
               <StatusBar style="auto" />
+              </View>
+            </TouchableWithoutFeedback>
             </View>
-
           </PaperProvider>
         </ApolloProvider>
       </RecoilRoot>
