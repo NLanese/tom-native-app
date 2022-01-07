@@ -11,7 +11,7 @@ import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
 
 const Banner = ({ handleLoggedIn }) => {
   const [visible, setVisible] = useState(false)
-  const [notifiedVisible, setNotifiedVisiable] = useState(false)
+  const [notifiedVisible, setNotifiedVisible] = useState(false)
   const [website] = useRecoilState(websiteState)
   let history = useHistory()
 
@@ -20,12 +20,8 @@ const Banner = ({ handleLoggedIn }) => {
   }
 
   const handleNotifiedModal = () => {
-    setNotifiedVisiable(!notifiedVisible)
+    setNotifiedVisible(!notifiedVisible)
   }
-
-  // console.log('----------------')
-  // console.log(visible)
-  // console.log(notifiedVisible)
 
   return (
     <View>

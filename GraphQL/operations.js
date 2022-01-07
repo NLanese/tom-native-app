@@ -178,16 +178,14 @@ const GETNOTIFIED = gql`
 
 const GETNOTIFIEDMESSAGES = gql`
   query Query {
-    getNotifiedMessages {
-      id
-      createdAt
-      read
-      content
-      from
-      type
-      driverId
-      adminId
-    }
+  getNotifiedMessages {
+    id
+    createdAt
+    read
+    content
+    from
+    type
+  }
 }`
 
 
