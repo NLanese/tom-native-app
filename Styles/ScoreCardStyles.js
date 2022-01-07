@@ -1,4 +1,12 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
+
+let cardWidth = maxWidth - (maxWidth * 0.03)
+let topCardHeight = (maxHeight * 0.14)
+let bottomCardHeight = (maxHeight * 0.063)
+
 
 const ScoreCardStyles = StyleSheet.create({
     container: {
@@ -57,9 +65,8 @@ const QualityStyles = StyleSheet.create({
 	},
 
 	topThree: {
-		flex: 4,
+		flex: 3,
 		marginTop: "3%",
-		display: "flex",
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -86,32 +93,78 @@ const QualityStyles = StyleSheet.create({
 		borderColor: 'black'
 	},
 
-	cardContent: {
-		display: "flex",
-		// flexDirection: "column",
-		justifyContent: "flex-start",
-	},
 	cardTop: {
+		height: topCardHeight,
+		borderBottomColor: 'black',
+		borderBottomWidth: 0.5
+	},
+
+	iconSpace: {
+		position: 'relative',
+		left: 0,
+		top: 0,
+		height: '100%',
+		width: '20%',
 		borderWidth: 1,
-		borderColor: "blue",
-		height: 80
-		// flex: 3
+		borderColor: 'pink',
+	},
+
+	nameSpace: {
+		position: 'absolute',
+		marginLeft: '20%',
+		top: '30%',
+		height: '70%',
+		alignItems: 'center',
+	},
+
+	employeeName: {
+		textAlign: 'center',
+		fontSize: 30,
+		fontWeight: '300'
 	},
 
 	cardBottm: {
-		borderWidth: 1,
-		borderColor: "cyan",
+		height: bottomCardHeight,
 		flexDirection: "row"
 		// flex: 1
 	},
 
 	dcr: {
-
+		alignItems: 'center',
+		width: '10%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
 	},
 	dar: {
-
+		alignItems: 'center',
+		width: '10%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
 	},
 
+	pod: {
+		alignItems: 'center',
+		width: '10%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
+	},
+
+	callCompliance: {
+		alignItems: 'center',
+		width: '35%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
+	},
+
+	scanCompliance: {
+		alignItems: 'center',
+		width: '35%',
+		height: '100%',
+	}
 
 })
 
