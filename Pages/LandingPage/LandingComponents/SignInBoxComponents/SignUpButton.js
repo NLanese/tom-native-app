@@ -29,7 +29,6 @@ const SignUpButton = () => {
 	}
 	
 	useEffect(() => {
-		console.log(loading)
 		if (loading !== false) {
 			setButtonLoading(true)
 		}

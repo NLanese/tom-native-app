@@ -44,7 +44,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://10.0.0.46:5001/graphql'
+	uri: 'http://192.168.1.52:5001/graphql'
 });
 
 // Auth for token
@@ -82,7 +82,9 @@ export default function App() {
 
                 {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
                 
-                <Banner handleLoggedIn={handleLoggedIn}/>
+                {loggedIn === true ? (
+                  <Banner handleLoggedIn={handleLoggedIn}/>
+                ) : null}
 
                 {loggedIn === true ? (
                   <Switch>
