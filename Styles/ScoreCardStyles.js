@@ -84,7 +84,35 @@ const QualityStyles = StyleSheet.create({
 		marginBottom: 2,
 		borderWidth: 1,
 		borderColor: 'black'
-	}
+	},
+
+	cardContent: {
+		display: "flex",
+		// flexDirection: "column",
+		justifyContent: "flex-start",
+	},
+	cardTop: {
+		borderWidth: 1,
+		borderColor: "blue",
+		height: 80
+		// flex: 3
+	},
+
+	cardBottm: {
+		borderWidth: 1,
+		borderColor: "cyan",
+		flexDirection: "row"
+		// flex: 1
+	},
+
+	dcr: {
+
+	},
+	dar: {
+
+	},
+
+
 })
 
 const SafetyAndComplianceStyles = StyleSheet.create({
