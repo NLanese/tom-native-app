@@ -1,20 +1,23 @@
 import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const CommunicationStyles = StyleSheet.create({ 
 
     container: {
-        flex: 7,
-        // flexDirection: 'column',
-        marginRight: 2,
-        marginLeft: 2,
+        height: maxHeight - 75,
+        display: "flex",
+        flexDirection: 'column',
         // borderWidth: 20,
         // borderColor: 'green'
     },
 
     thread:{
-        flex: 6,
-        // borderColor: 'red',
-        // borderWidth: 2
+        flex: 1,
+        borderColor: 'red',
+        borderWidth: 2
     },
 
     newMessageAddress: {

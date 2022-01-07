@@ -17,7 +17,7 @@ const Communication = () => {
     const [newMessage, setNewMessage] = useState("")
 
     const renderMessageFeed = (messageData) => {
-        return messageData.map( (message) => {
+        return messageData.map( (message, key) => {
             let propFrom = ""
             if (message.from == userData.firstname){
                 propFrom = "You"
@@ -25,8 +25,9 @@ const Communication = () => {
             else{
                 propFrom = message.from
             }
+            key++
             return(
-                <Message from={propFrom} content={message.content} dateSent={message.createdAt}/>
+                <Message from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
             )
         })
     }
@@ -49,7 +50,7 @@ const Communication = () => {
         console.log(userData)
         return (
             <View style={CommunicationStyles.container}>
-                <ScrollView style={CommunicationStyles.thread}>
+                <ScrollView containerStyle={CommunicationStyles.thread}>
                     {renderMessageFeed(messageData)}
                 </ScrollView>
                 <View style={CommunicationStyles.createMessage}>
