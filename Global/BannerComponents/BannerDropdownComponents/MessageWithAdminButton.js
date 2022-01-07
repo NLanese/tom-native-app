@@ -10,7 +10,7 @@ const MessageWithAdminButton = ({ handleModal }) => {
 
     const handleSubmit = async () => {
         await setButtonLoading(true)
-        await history.push('/messages')
+        await history.push('/admin_messages')
         await handleModal()
     }
 
