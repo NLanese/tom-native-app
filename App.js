@@ -111,7 +111,7 @@ export default function App() {
 
                     <Route exact path='/reporting' component={Reporting} />
                     <Route exact path='/productivity' component={Productivity} /> 
-                    <Route exact path='/communication' component={Communication} />
+                    <Route exact path='/admin_messages' component={Communication} />
                     <Route exact path='/analytics' component={Analytics} />
 
 

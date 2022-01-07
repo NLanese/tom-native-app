@@ -188,6 +188,17 @@ const GETNOTIFIEDMESSAGES = gql`
   }
 }`
 
+const GETDRIVERMESSAGESWITHADMIN = gql`
+  query Query {
+  getMessageWithAdmin {
+    id
+    createdAt
+    content
+    from
+  }
+}
+`
+
 
 export {  
   SIGNUP, 
@@ -199,7 +210,8 @@ export {
   GETDRIVERSFORDSPFORTEAM,
   GETDRIVERSFORSCORECARDQUALITY,
   GETNOTIFIED,
-  GETNOTIFIEDMESSAGES
+  GETNOTIFIEDMESSAGES,
+  GETDRIVERMESSAGESWITHADMIN
 }
 
 

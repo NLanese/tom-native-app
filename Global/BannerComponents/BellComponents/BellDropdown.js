@@ -4,12 +4,11 @@ import { Portal, Modal } from 'react-native-paper'
 import { DropdownStyles } from "../../../Styles/GlobalStyles";
 import ViewNotificationsButtom from "../ButtonBox/ViewNotificationsButton";
 import Notification from "./Notification";
-import { useQuery } from "@apollo/client";
-import { GETNOTIFIEDMESSAGES } from "../../../GraphQL/operations";
+
 
 
 const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }) => {
-    console.log(notifiedMessages)
+    // console.log(notifiedMessages)
     
     // const renderNotifications = (data) => {
     //     if (data == "None" || data === 'undefined' || data == null){
