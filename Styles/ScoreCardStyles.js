@@ -175,18 +175,15 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
-		// borderWidth: 5
 	},
 
 	topThree: {
-		flex: 4,
+		flex: 3,
 		marginTop: "3%",
-		display: "flex",
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
-		// borderWidth: 5
 	},
 
 	remainders: {
@@ -206,7 +203,66 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		marginBottom: 2,
 		borderWidth: 1,
 		borderColor: 'black'
-	}
+	},
+
+	cardTop: {
+		height: topCardHeight,
+		borderBottomColor: 'black',
+		borderBottomWidth: 0.5
+	},
+
+	iconSpace: {
+		position: 'relative',
+		left: 0,
+		top: 0,
+		height: '100%',
+		width: '20%',
+		borderWidth: 1,
+		borderColor: 'pink',
+	},
+
+	nameSpace: {
+		position: 'absolute',
+		marginLeft: '20%',
+		top: '30%',
+		height: '70%',
+		alignItems: 'center',
+	},
+
+	employeeName: {
+		textAlign: 'center',
+		fontSize: 30,
+		fontWeight: '300'
+	},
+
+	cardBottm: {
+		height: bottomCardHeight,
+		flexDirection: "row"
+	},
+
+	fico: {
+		alignItems: 'center',
+		width: '20%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
+	},
+
+	seatbeltAndSpeeding: {
+		alignItems: 'center',
+		width: '45%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
+	},
+
+	netradyne: {
+		alignItems: 'center',
+		width: '35%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
+	},
 })
 
 const TeamStyles = StyleSheet.create({
@@ -216,18 +272,15 @@ const TeamStyles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
-		// borderWidth: 5
 	},
 
 	topThree: {
-		flex: 4,
+		flex: 3,
 		marginTop: "3%",
-		display: "flex",
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
-		// borderWidth: 5
 	},
 
 	remainders: {
@@ -247,7 +300,59 @@ const TeamStyles = StyleSheet.create({
 		marginBottom: 2,
 		borderWidth: 1,
 		borderColor: 'black'
-	}
+	},
+
+	cardTop: {
+		height: topCardHeight,
+		borderBottomColor: 'black',
+		borderBottomWidth: 0.5
+	},
+
+	iconSpace: {
+		position: 'relative',
+		left: 0,
+		top: 0,
+		height: '100%',
+		width: '20%',
+		borderWidth: 1,
+		borderColor: 'pink',
+	},
+
+	nameSpace: {
+		position: 'absolute',
+		marginLeft: '20%',
+		top: '30%',
+		height: '70%',
+		alignItems: 'center',
+	},
+
+	employeeName: {
+		textAlign: 'center',
+		fontSize: 30,
+		fontWeight: '300'
+	},
+
+	cardBottm: {
+		height: bottomCardHeight,
+		flexDirection: "row"
+	},
+
+	defect: {
+		alignItems: 'center',
+		width: '30%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderLeftWidth: 1,
+		borderColor: 'black',
+	},
+
+	customerFeedback: {
+		alignItems: 'center',
+		width: '45%',
+		height: '100%',
+		borderRightWidth: 1,
+		borderColor: 'black',
+	},
 })
 
 

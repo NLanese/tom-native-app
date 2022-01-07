@@ -23,29 +23,30 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
     return(
         <Card style={SafetyAndComplianceStyles.topThreeEmployeeCard}>
 
-            <View>
-                <View>
-                    <Text>{data.firstname} {data.lastname}</Text>
-                </View>
-                <View>
-                    <Text>Imagine an Icon was Here</Text>
-                    {/* Icon Here */}
-                </View>
+        <View style={SafetyAndComplianceStyles.cardTop}>
+            <View style={SafetyAndComplianceStyles.iconSpace}>
+                <Text >Imagine an Icon was Here</Text>
+                {/* Icon Here */}
             </View>
-            <View>
+            <View style={SafetyAndComplianceStyles.nameSpace}>
+                <Text style={SafetyAndComplianceStyles.employeeName}>{data.firstname} {data.lastname}</Text>
+            </View>
+        </View>
+        <View style={SafetyAndComplianceStyles.cardBottm}>
+            <View style={SafetyAndComplianceStyles.fico}>
                 <Text>FICO</Text>
                 <Text>{data.fico}</Text>
             </View>
-            <View>
-                <Text>Seatbelt and Speedings</Text>
+            <View style={SafetyAndComplianceStyles.seatbeltAndSpeeding}>
+                <Text>Seabelt and Speeding</Text>
                 <Text>{data.seatbelt_and_speeding}</Text>
             </View>
-            <View>
-                <Text>Netradyne</Text>
+            <View style={SafetyAndComplianceStyles.netradyne}>
+                <Text>netradyne</Text>
                 <Text>{data.netradyne}</Text>
             </View>
-
-        </Card>
+        </View>
+    </Card>
     )
 }
 export default EmployeeSafetyAndCompliance
