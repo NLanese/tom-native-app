@@ -5,7 +5,7 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 const TeamEmployees = ({driverData}) => {
 
     return(
-        <View>
+        <Card>
             <View>
                 {key}
             </View>
@@ -15,7 +15,7 @@ const TeamEmployees = ({driverData}) => {
             <View>
                 <Text>{driverData.firstname} {driverData.lastname}</Text>
             </View>
-        </View>
+        </Card>
     )
 }
 export default TeamEmployees
