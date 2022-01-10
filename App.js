@@ -8,7 +8,6 @@ import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
-import DismissKeyboard from './Global/DismissKeyboard';
 import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
@@ -45,7 +44,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://10.0.0.46:5001/graphql'
+	uri: 'http://192.168.1.62:5001/graphql'
 });
 
 // Auth for token

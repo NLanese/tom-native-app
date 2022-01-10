@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { userState, websiteState } from '../Recoil/atoms'
-import { Appbar, Avatar, Modal, Button, Protal } from 'react-native-paper';
+import { websiteState } from '../Recoil/atoms'
+import { Appbar, Avatar } from 'react-native-paper';
 import { useHistory } from 'react-router-native';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'

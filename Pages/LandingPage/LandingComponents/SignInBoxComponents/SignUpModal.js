@@ -45,7 +45,6 @@ const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUse
                                 <Button
                                     title='Submit!'
                                     accessibilityLabel='Submit!'
-                                    // loading={buttonLoading}
                                     titleStyle={{
                                          fontWeight: '700',
                                          color: "white" 
@@ -59,26 +58,16 @@ const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUse
                                         color: "white"
                                     }}
                                     onPress={ async () => {
-                                        // handleButtonLoading()
                                         let userData = getUserData
-                                        console.log(userData)
                                         signupCommand({
                                             variables: {
                                                 signupInput: {
                                                     email: userData.email,
-                                                    // username: "BanjawanjaweenaWannies",
                                                     password: userData.password,
                                                     firstname: userData.firstname,
                                                     lastname: userData.lastname,
                                                     phoneNumber: userData.phoneNumber,
                                                     adminEmail: userData.adminEmail
-                                                    // email: "user4",
-                                                    // username: "name3000",
-                                                    // password: "123Wer!",
-                                                    // firstname: "LeBurrn",
-                                                    // lastname: "Jummz",
-                                                    // phoneNumber: "123-456-7899",
-                                                    // adminEmail: "admin1"
                                                 },
                                             },
                                         });

@@ -11,17 +11,6 @@ const ReportAnAccidentButton = () => {
         <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/leadership_notified")}}>
                 <Card.Cover source={require('../../../../assets/report-accident.jpg')} style={ScoreCardStyles.image}/>
-                {/* <Card.Actions
-                    style={ScoreCardButtonStyles.button}
-                >
-                    <View>
-                        <Button
-                            color="black"
-                        >
-                        REPORT AN ACCIDENT
-                        </Button>
-                    </View>
-                </Card.Actions> */}
                 <Card.Content>
                     <Title
                         style={ScoreCardStyles.CardContent}

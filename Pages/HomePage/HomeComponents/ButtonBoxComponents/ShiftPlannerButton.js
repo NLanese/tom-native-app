@@ -12,17 +12,6 @@ const ShiftPlannerButton = () => {
         <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/shift_planner")}}>
                 <Card.Cover source={require('../../../../assets/shift-planner.jpg')} style={ScoreCardStyles.image}/>
-                {/* <Card.Actions
-                    style={ScoreCardButtonStyles.button}
-                >
-                    <View>
-                        <Button
-                            color="black"
-                        >
-                           SHIFT PLANNER
-                        </Button>
-                    </View>
-                </Card.Actions> */}
                 <Card.Content>
                     <Title
                         style={ScoreCardStyles.CardContent}

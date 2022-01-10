@@ -42,7 +42,7 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
                 <Text>{data.seatbelt_and_speeding}</Text>
             </View>
             <View style={SafetyAndComplianceStyles.netradyne}>
-                <Text>netradyne</Text>
+                <Text>Netradyne</Text>
                 <Text>{data.netradyne}</Text>
             </View>
         </View>

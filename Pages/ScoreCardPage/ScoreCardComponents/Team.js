@@ -17,7 +17,15 @@ const Team = () => {
         }
     }, [data])
 
-    
+    function determineTopThree(data){
+        let returnData = [...data]
+        return returnData.splice(0, 3)
+    } 
+    function determineOthers(data){
+        let returnData = [...data]
+        return returnData.splice(3)
+    } 
+
     const renderTopThree = (topThreeTeam) => {
         let i = 0
         return topThreeTeam.map( (driverData) => {
@@ -25,7 +33,6 @@ const Team = () => {
             return <TopThreeTeamEmployees driverData={driverData} key={i} rank={i} />
         })
     }
-
     const renderOthers = (otherEmployees) => {
         let i = 3
         return otherEmployees.map( (driverData) => {
@@ -42,9 +49,8 @@ const Team = () => {
         )
     } else {
 
-        let allData = [...queryData]
-        let topThree = allData.splice(0, 3)
-        let otherEmployees = allData.splice(3, allData.length)
+        let topThree = determineTopThree(queryData)
+        let others = determineOthers(queryData)
     
         return(
             <View style={TeamStyles.container}>
@@ -52,11 +58,9 @@ const Team = () => {
                 <View style={TeamStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <View style={TeamStyles.remainders}>
-                    <ScrollView>
-                        {renderOthers(otherEmployees)}
-                    </ScrollView>
-                </View>
+                <ScrollView contentContainerStyle={TeamStyles.remainders}>
+                        <View>{renderOthers(others)}</View>
+                </ScrollView>
             </View>
     
         )

@@ -47,7 +47,6 @@ const Communication = () => {
 
 
     if (messageData[0]) {
-        console.log(userData)
         return (
             <View style={CommunicationStyles.container}>
                 <ScrollView containerStyle={CommunicationStyles.thread}>

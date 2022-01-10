@@ -34,17 +34,6 @@ const SignUpButton = () => {
 		}
 	}, [loading])
 
-	// useEffect(() => {
-	// 	console.log('data hit')
-	// }, [data])
-
-	// useEffect(() => {
-	// 	if (typeof data === undefined) {
-	// 		console.log('errror hit')
-	// 		setButtonLoading(false)
-	// 	}
-	// }, [error])
-
     return (
 		<View style={SignUpModalStyles.container}>
 			<Button 

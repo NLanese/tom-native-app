@@ -4,7 +4,7 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 import { TeamStyles } from "../../../../Styles/ScoreCardStyles";
 import Team from "../Team";
 
-const TopThreeTeamEmployees = ({driverData, key, rank}) => {
+const TopThreeTeamEmployees = ({driverData, rank}) => {
 
     let color = ""
     if (rank == 1){
@@ -41,14 +41,14 @@ const TopThreeTeamEmployees = ({driverData, key, rank}) => {
         <View style={TeamStyles.cardBottm}>
             <View style={{
                 width: '25%',
-                height: '100%',
+                height: '86%',
                 backgroundColor: color
             }}>
 
             </View>
             <View style={TeamStyles.defect}>
                 <Text>Defects</Text>
-                <Text>{data.seatbelt_and_speeding}</Text>
+                <Text>{data.defects}</Text>
             </View>
             <View style={TeamStyles.customerFeedback}>
                 <Text>Customer Feedback</Text>

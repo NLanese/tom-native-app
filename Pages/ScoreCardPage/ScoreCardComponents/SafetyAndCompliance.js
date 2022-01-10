@@ -5,6 +5,7 @@ import { GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE } from "../../../GraphQL/operati
 import EmployeeSafetyAndCompliance from "./InformationComponents/EmployeeSafetyAndCompliance";
 import { SafetyAndComplianceStyles } from "../../../Styles/ScoreCardStyles";
 import { ActivityIndicator } from "react-native-paper";
+import TeamEmployees from "./InformationComponents/TeamEmployee";
 
 const SafetyAndCompliance =  () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE)
@@ -25,6 +26,14 @@ const SafetyAndCompliance =  () => {
         })
     }
 
+    const renderOthers = (otherEmployees) => {
+        let i = 3
+        return otherEmployees.map( (driverData) => {
+            i++
+            return <TeamEmployees driverData={driverData} key={i} rank={i} />
+        })
+    }
+
     if (!queryData[0]) {
         return (
             <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
@@ -35,6 +44,7 @@ const SafetyAndCompliance =  () => {
 
         let allData = [...queryData]
         let topThree = allData.splice(0, 3)
+        allData = [...queryData]
         let remainingEmployees = allData.splice(3, allData.length)
         
         return(
@@ -44,6 +54,7 @@ const SafetyAndCompliance =  () => {
                     {renderTopThree(topThree)}
                 </View>
                 <View style={SafetyAndComplianceStyles.remainders}>
+                    {renderOthers(remainingEmployees)}
                 </View>
             </View>
         )

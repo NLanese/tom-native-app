@@ -11,17 +11,6 @@ const ProductivityButton = () => {
         <View style={ScoreCardStyles.container}>
             <Card onPress={() => {history.push("/productivity")}}>
                 <Card.Cover source={require('../../../../assets/productivity.jpg')} style={ScoreCardStyles.image}/>
-                {/* <Card.Actions
-                    style={ScoreCardButtonStyles.button}
-                >
-                    <View>
-                        <Button
-                            color="black"
-                        >
-                        PRODUCTIVITY
-                        </Button>
-                    </View>
-                </Card.Actions> */}
                 <Card.Content>
                     <Title
                         style={ScoreCardStyles.CardContent}

@@ -58,31 +58,27 @@ const QualityStyles = StyleSheet.create({
 	container: {
 		display: "flex",
 		flexDirection: 'column',
-		justifyContent: 'center',
+		// justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
-		// borderWidth: 5
 	},
-
 	topThree: {
-		flex: 3,
-		marginTop: "3%",
+		height: maxHeight * 0.61,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100%',
-		// borderWidth: 5
+		borderColor: 'green',
+		borderWidth: 3
 	},
-
 	remainders: {
-		flex: 2,
-		marginTop: "3%",
-		display: "flex",
-		flexDirection: 'column',
-		justifyContent: 'center',
+		marginTop: (maxHeight * 0.01),
+		height: maxHeight * .25,
+		width: maxWidth,
+		marginBottom: "2%",
 		alignItems: 'center',
+		borderWidth: 3,
+		borderColor: "red"
 	},
-
 	topThreeEmployeeCard: {
 		flex: 2,
 		position: "relative",
@@ -92,13 +88,11 @@ const QualityStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'black'
 	},
-
 	cardTop: {
 		height: topCardHeight,
 		borderBottomColor: 'black',
 		borderBottomWidth: 0.5
 	},
-
 	iconSpace: {
 		position: 'relative',
 		left: 0,
@@ -108,7 +102,6 @@ const QualityStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'pink',
 	},
-
 	nameSpace: {
 		position: 'absolute',
 		marginLeft: '20%',
@@ -116,19 +109,15 @@ const QualityStyles = StyleSheet.create({
 		height: '70%',
 		alignItems: 'center',
 	},
-
 	employeeName: {
 		textAlign: 'center',
 		fontSize: 30,
 		fontWeight: '300'
 	},
-
 	cardBottm: {
 		height: bottomCardHeight,
 		flexDirection: "row"
-		// flex: 1
 	},
-
 	dcr: {
 		alignItems: 'center',
 		width: '10%',
@@ -143,7 +132,6 @@ const QualityStyles = StyleSheet.create({
 		borderRightWidth: 1,
 		borderColor: 'black',
 	},
-
 	pod: {
 		alignItems: 'center',
 		width: '10%',
@@ -151,7 +139,6 @@ const QualityStyles = StyleSheet.create({
 		borderRightWidth: 1,
 		borderColor: 'black',
 	},
-
 	callCompliance: {
 		alignItems: 'center',
 		width: '35%',
@@ -159,42 +146,38 @@ const QualityStyles = StyleSheet.create({
 		borderRightWidth: 1,
 		borderColor: 'black',
 	},
-
 	scanCompliance: {
 		alignItems: 'center',
 		width: '35%',
 		height: '100%',
 	}
-
 })
 
 const SafetyAndComplianceStyles = StyleSheet.create({
 	container: {
 		display: "flex",
 		flexDirection: 'column',
-		justifyContent: 'center',
+		// justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
 	},
-
 	topThree: {
-		flex: 3,
-		marginTop: "3%",
+		height: maxHeight * 0.61,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100%',
+		// borderColor: 'green',
+		// borderWidth: 3
 	},
-
 	remainders: {
-		flex: 2,
-		marginTop: "3%",
-		display: "flex",
-		flexDirection: 'column',
-		justifyContent: 'center',
+		marginTop: (maxHeight * 0.01),
+		height: maxHeight * .25,
+		width: maxWidth,
+		marginBottom: "2%",
 		alignItems: 'center',
+		// borderWidth: 3,
+		// borderColor: "red"
 	},
-
 	topThreeEmployeeCard: {
 		flex: 2,
 		position: "relative",
@@ -204,13 +187,11 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'black'
 	},
-
 	cardTop: {
 		height: topCardHeight,
 		borderBottomColor: 'black',
 		borderBottomWidth: 0.5
 	},
-
 	iconSpace: {
 		position: 'relative',
 		left: 0,
@@ -220,7 +201,6 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'pink',
 	},
-
 	nameSpace: {
 		position: 'absolute',
 		marginLeft: '20%',
@@ -228,13 +208,11 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		height: '70%',
 		alignItems: 'center',
 	},
-
 	employeeName: {
 		textAlign: 'center',
 		fontSize: 30,
 		fontWeight: '300'
 	},
-
 	cardBottm: {
 		height: bottomCardHeight,
 		flexDirection: "row"
@@ -273,25 +251,23 @@ const TeamStyles = StyleSheet.create({
 		alignItems: 'center',
 		height: '100%',
 	},
-
 	topThree: {
-		flex: 3,
-		marginTop: "3%",
+		height: maxHeight * 0.61,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100%',
+		// borderColor: 'green',
+		// borderWidth: 3
 	},
-
 	remainders: {
-		flex: 2,
-		marginTop: "3%",
-		display: "flex",
-		flexDirection: 'column',
-		justifyContent: 'center',
+		marginTop: (maxHeight * 0.01),
+		height: maxHeight * .25,
+		width: maxWidth,
+		marginBottom: "2%",
 		alignItems: 'center',
+		borderWidth: 3,
+		// borderColor: "red"
 	},
-
 	topThreeEmployeeCard: {
 		flex: 2,
 		position: "relative",
@@ -301,13 +277,11 @@ const TeamStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'black'
 	},
-
 	cardTop: {
 		height: topCardHeight,
 		borderBottomColor: 'black',
 		borderBottomWidth: 0.5
 	},
-
 	iconSpace: {
 		position: 'relative',
 		left: 0,
@@ -317,7 +291,6 @@ const TeamStyles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: 'pink',
 	},
-
 	nameSpace: {
 		position: 'absolute',
 		marginLeft: '20%',
@@ -325,34 +298,55 @@ const TeamStyles = StyleSheet.create({
 		height: '70%',
 		alignItems: 'center',
 	},
-
 	employeeName: {
 		textAlign: 'center',
 		fontSize: 30,
 		fontWeight: '300'
 	},
-
 	cardBottm: {
 		height: bottomCardHeight,
 		flexDirection: "row"
 	},
-
 	defect: {
 		alignItems: 'center',
 		width: '30%',
-		height: '100%',
+		height: '86%',
 		borderRightWidth: 1,
 		borderLeftWidth: 1,
 		borderColor: 'black',
 	},
-
 	customerFeedback: {
 		alignItems: 'center',
 		width: '45%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderColor: 'black',
+		height: '90%',
 	},
+	employeeCard :{
+		top: 0,
+		marginBottom: maxHeight * 0.005,
+		borderColor: "black",
+		borderWidth: 1,
+		justifyContent: 'center',
+		height: (maxHeight * 0.065),
+		width: maxWidth - (maxWidth * 0.03)
+	},
+
+	rank: {
+		backgroundColor: 'grey',
+		left: maxWidth - (maxWidth * 0.99),
+		top: maxHeight - (maxHeight * .994),
+		width: (maxHeight * 0.065) * 0.7,
+		height: (maxHeight * 0.065) * 0.7,
+		borderRadius: 100,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+
+	employeeNameplate: {
+		left: maxWidth - (maxWidth * 0.85),
+		top: -maxHeight + (maxHeight * 0.965)
+	}
+
 })
 
 

@@ -5,6 +5,8 @@ import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
+import TeamEmployees from "./InformationComponents/TeamEmployee";
+
  
 
 
@@ -18,11 +20,28 @@ const Quality = () => {
         }
     }, [data])
 
+    function determineTopThree(data){
+        let returnData = [...data]
+        return returnData.splice(0, 3)
+    } 
+    function determineOthers(data){
+        let returnData = [...data]
+        return returnData.splice(3)
+    } 
+
     const renderTopThree = (topThreeQualityDrivers) => {
         let i = 0
         return topThreeQualityDrivers.map( (driverData) => {
             i++
             return <EmployeeQuality driverData={driverData} key={i} />
+        })
+    }
+
+    const renderOthers = (otherEmployees) => {
+        let i = 3
+        return otherEmployees.map( (driverData) => {
+            i++
+            return <TeamEmployees driverData={driverData} key={i} rank={i} />
         })
     }
 
@@ -33,17 +52,18 @@ const Quality = () => {
             </View>
         )
     } else {
-        let allData = [...queryData]
-        let topThree = allData.splice(0, 3)
-        let remainingEmployees = allData.splice(3, allData.length)
         
+        let topThree = determineTopThree(queryData)
+        let others = determineOthers(queryData)
+
         return(
             <View style={QualityStyles.container}>
-                <Text>Top Three Leaders</Text> 
+                <Text style={QualityStyles.title}>Top Three Leaders</Text> 
                 <View style={QualityStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
                 <View style={QualityStyles.remainders}>
+                    {renderOthers(others)}            
                 </View>
             </View>
 
