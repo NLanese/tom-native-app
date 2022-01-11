@@ -58,13 +58,15 @@ const Quality = () => {
 
         return(
             <View style={QualityStyles.container}>
-                <Text style={QualityStyles.title}>Top Three Leaders</Text> 
+                <View style={{width: '100%'}}>
+                    <Text style={QualityStyles.leadersTitle}>Top Three Leaders</Text>
+                </View> 
                 <View style={QualityStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <View style={QualityStyles.remainders}>
+                <ScrollView contentContainerStyle={QualityStyles.remainders}>
                     {renderOthers(others)}            
-                </View>
+                </ScrollView>
             </View>
 
         )

@@ -54,7 +54,9 @@ const Team = () => {
     
         return(
             <View style={TeamStyles.container}>
-                <Text>Team</Text>
+                <View style={{width: '100%'}}>
+                    <Text style={TeamStyles.leadersTitle}>Top Three Leaders</Text>
+                </View> 
                 <View style={TeamStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>

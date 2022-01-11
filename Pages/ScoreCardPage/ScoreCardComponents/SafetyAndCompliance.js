@@ -49,13 +49,15 @@ const SafetyAndCompliance =  () => {
         
         return(
             <View style={SafetyAndComplianceStyles.container}>
-                <Text>Top Three Leaders</Text> 
+                <View style={{width: '100%'}}>
+                    <Text style={SafetyAndComplianceStyles.leadersTitle}>Top Three Leaders</Text>
+                </View> 
                 <View style={SafetyAndComplianceStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <View style={SafetyAndComplianceStyles.remainders}>
+                <ScrollView contentContainerStyle={SafetyAndComplianceStyles.remainders}>
                     {renderOthers(remainingEmployees)}
-                </View>
+                </ScrollView>
             </View>
         )
     }

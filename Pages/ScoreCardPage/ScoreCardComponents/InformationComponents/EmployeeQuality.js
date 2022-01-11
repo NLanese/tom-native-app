@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { QualityStyles } from "../../../../Styles/ScoreCardStyles";
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Avatar } from 'react-native-paper';
+import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
+
 
 
 const EmployeeQuality = ({driverData}) => {
@@ -29,8 +31,10 @@ const EmployeeQuality = ({driverData}) => {
 
             <View style={QualityStyles.cardTop}>
                 <View style={QualityStyles.iconSpace}>
-                    <Text >Imagine an Icon was Here</Text>
-                    {/* Icon Here */}
+                    <Avatar.Image
+                        source={SomeDudesFace}
+                        size={64}
+                    />
                 </View>
                 <View style={QualityStyles.nameSpace}>
                     <Text style={QualityStyles.employeeName}>{data.firstname} {data.lastname}</Text>
@@ -38,24 +42,24 @@ const EmployeeQuality = ({driverData}) => {
             </View>
             <View style={QualityStyles.cardBottm}>
                 <View style={QualityStyles.dcr}>
-                    <Text>DCR</Text>
-                    <Text>{data.delivery_completion_rate}</Text>
+                    <Text style={QualityStyles.statTitle}>DCR</Text>
+                    <Text style={QualityStyles.statValue}>{data.delivery_completion_rate}%</Text>
                 </View>
                 <View style={QualityStyles.dar}>
-                    <Text>DAR</Text>
-                    <Text>{data.delivered_and_recieved}</Text>
+                    <Text style={QualityStyles.statTitle}>DAR</Text>
+                    <Text style={QualityStyles.statValue}>{data.delivered_and_recieved}</Text>
                 </View>
                 <View style={QualityStyles.pod}>
-                    <Text>POD</Text>
-                    <Text>{data.photo_on_delivery}</Text>
+                    <Text style={QualityStyles.statTitle}>POD</Text>
+                    <Text style={QualityStyles.statValue}>{data.photo_on_delivery}</Text>
                 </View>
                 <View style={QualityStyles.callCompliance}>
-                    <Text>Call Compliance</Text>
-                    <Text>{data.call_compliance}</Text>
+                    <Text style={QualityStyles.statTitle}>Call Compliance</Text>
+                    <Text style={QualityStyles.statValue}>{data.call_compliance}%</Text>
                 </View>
                 <View style={QualityStyles.scanCompliance}>
-                    <Text>Scan Compliance</Text>
-                    <Text>{data.scan_compliance}</Text>
+                    <Text style={QualityStyles.statTitle}>Scan Compliance</Text>
+                    <Text style={QualityStyles.statValue}>{data.scan_compliance}%</Text>
                 </View>
             </View>
 

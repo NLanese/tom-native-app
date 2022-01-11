@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
-import { Avatar } from 'react-native-paper';
 import { SafetyAndComplianceStyles } from "../../../../Styles/ScoreCardStyles";
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Avatar} from 'react-native-paper';
+import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 
 
 
@@ -20,13 +20,17 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
         data.netradyne = 0
     }
 
+    data.seatbelt_and_speeding = data.seatbelt_and_speeding * 0.01
+
     return(
         <Card style={SafetyAndComplianceStyles.topThreeEmployeeCard}>
 
         <View style={SafetyAndComplianceStyles.cardTop}>
             <View style={SafetyAndComplianceStyles.iconSpace}>
-                <Text >Imagine an Icon was Here</Text>
-                {/* Icon Here */}
+                  <Avatar.Image
+                        source={SomeDudesFace}
+                        size={64}
+                    />
             </View>
             <View style={SafetyAndComplianceStyles.nameSpace}>
                 <Text style={SafetyAndComplianceStyles.employeeName}>{data.firstname} {data.lastname}</Text>
@@ -34,16 +38,16 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
         </View>
         <View style={SafetyAndComplianceStyles.cardBottm}>
             <View style={SafetyAndComplianceStyles.fico}>
-                <Text>FICO</Text>
-                <Text>{data.fico}</Text>
+                <Text style={SafetyAndComplianceStyles.statTitle}>FICO</Text>
+                <Text style={SafetyAndComplianceStyles.statValue}>{data.fico}</Text>
             </View>
             <View style={SafetyAndComplianceStyles.seatbeltAndSpeeding}>
-                <Text>Seabelt and Speeding</Text>
-                <Text>{data.seatbelt_and_speeding}</Text>
+                <Text style={SafetyAndComplianceStyles.statTitle}>Seatbelt and Speeding</Text>
+                <Text style={SafetyAndComplianceStyles.statValue}>{data.seatbelt_and_speeding}</Text>
             </View>
             <View style={SafetyAndComplianceStyles.netradyne}>
-                <Text>Netradyne</Text>
-                <Text>{data.netradyne}</Text>
+                <Text style={SafetyAndComplianceStyles.statTitle}>Netradyne</Text>
+                <Text style={SafetyAndComplianceStyles.statValue}>{data.netradyne}</Text>
             </View>
         </View>
     </Card>

@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, ScrollView } from 'react-native'
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { View, Text } from 'react-native'
+import { Card, Avatar } from 'react-native-paper';
 import { TeamStyles } from "../../../../Styles/ScoreCardStyles";
-import Team from "../Team";
+import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
+
 
 const TopThreeTeamEmployees = ({driverData, rank}) => {
 
@@ -31,8 +32,10 @@ const TopThreeTeamEmployees = ({driverData, rank}) => {
 
         <View style={TeamStyles.cardTop}>
             <View style={TeamStyles.iconSpace}>
-                <Text >Imagine an Icon was Here</Text>
-                {/* Icon Here */}
+            <Avatar.Image
+                source={SomeDudesFace}
+                size={64}
+              />
             </View>
             <View style={TeamStyles.nameSpace}>
                 <Text style={TeamStyles.employeeName}>{data.firstname} {data.lastname}</Text>
@@ -41,18 +44,19 @@ const TopThreeTeamEmployees = ({driverData, rank}) => {
         <View style={TeamStyles.cardBottm}>
             <View style={{
                 width: '25%',
-                height: '86%',
-                backgroundColor: color
+                height: '100%',
+                borderBottomLeftRadius: 3,
+                backgroundColor: color,
             }}>
 
             </View>
             <View style={TeamStyles.defect}>
-                <Text>Defects</Text>
-                <Text>{data.defects}</Text>
+                <Text style={TeamStyles.statTitle}>Defects</Text>
+                <Text style={TeamStyles.statValue}>{data.defects}</Text>
             </View>
             <View style={TeamStyles.customerFeedback}>
-                <Text>Customer Feedback</Text>
-                <Text>{data.netradyne}</Text>
+                <Text style={TeamStyles.statTitle}>Customer Feedback</Text>
+                <Text style={TeamStyles.statValue}>{data.netradyne}</Text>
             </View>
         </View>
     </Card>
