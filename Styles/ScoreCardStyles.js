@@ -56,9 +56,8 @@ const ScoreCardStyles = StyleSheet.create({
 
 const QualityStyles = StyleSheet.create({
 	container: {
-		display: "flex",
+		marginTop: 4,
 		flexDirection: 'column',
-		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
 	},
@@ -70,9 +69,7 @@ const QualityStyles = StyleSheet.create({
 	},
 
 	leadersTitle: {
-		backgroundColor: '#F9f9f9',
 		fontWeight: '600',
-		marginTop: 3,
 		marginLeft: maxWidth * 0.04,
 		marginBottom: 6,
 		fontSize: 18,
@@ -80,44 +77,54 @@ const QualityStyles = StyleSheet.create({
 
 	remainders: {
 		marginTop: (maxHeight * 0.01),
-		height: maxHeight * .25,
+		// height: maxHeight * .25,
 		width: maxWidth,
 		marginBottom: "2%",
 		alignItems: 'center',
 	},
 	topThreeEmployeeCard: {
-		flex: 2,
-		position: "relative",
-		height: 270,
+		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
-		borderWidth: 0.3,
-		borderColor: 'grey'
+		borderWidth: 1,
+		borderColor: '#E2E8F1'
 	},
 	cardTop: {
 		height: topCardHeight,
-		borderBottomColor: 'grey',
-		borderBottomWidth: 0.3
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1
+	},
+	topRank: {
+		backgroundColor: '#E2E8F1',
+		left: -(maxWidth * 0.93),
+		top: -(maxHeight * 0.135),
+		width: (maxHeight * 0.065) * 0.7,
+		height: (maxHeight * 0.065) * 0.7,
+		borderRadius: 100,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	iconSpace: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'relative',
-		left: 0,
+		left: maxWidth * 0.06,
 		top: 0,
 		height: '100%',
 		width: '20%',
 	},
 	nameSpace: {
 		position: 'absolute',
-		marginLeft: '20%',
+		marginLeft: '25%',
 		top: '30%',
 		height: '70%',
 		alignItems: 'center',
 	},
 	employeeName: {
 		textAlign: 'center',
-		fontSize: 30,
+		justifyContent: 'center',
+		fontSize: 25,
 		fontWeight: '300'
 	},
 	cardBottm: {
@@ -128,29 +135,29 @@ const QualityStyles = StyleSheet.create({
 		alignItems: 'center',
 		width: '15%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 	dar: {
 		alignItems: 'center',
 		width: '15%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 	pod: {
 		alignItems: 'center',
 		width: '15%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 	callCompliance: {
 		alignItems: 'center',
 		width: '25%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 	scanCompliance: {
 		alignItems: 'center',
@@ -171,9 +178,8 @@ const QualityStyles = StyleSheet.create({
 
 const SafetyAndComplianceStyles = StyleSheet.create({
 	container: {
-		display: "flex",
+		marginTop: 4,
 		flexDirection: 'column',
-		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
 	},
@@ -185,54 +191,62 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 	},
 
 	leadersTitle: {
-		backgroundColor: '#F9f9f9',
 		fontWeight: '600',
-		marginTop: 3,
 		marginLeft: maxWidth * 0.04,
 		marginBottom: 6,
 		fontSize: 18,
 	},
 
 	remainders: {
-		// marginTop: (maxHeight * 0.01),
-		height: maxHeight * .25,
+		marginTop: (maxHeight * 0.01),
+		// height: maxHeight * .25,
 		width: maxWidth,
 		marginBottom: "2%",
 		alignItems: 'center',
 	},
 	topThreeEmployeeCard: {
-		flex: 2,
-		position: "relative",
-		height: 270,
+		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
-		borderWidth: 0.3,
-		borderColor: 'grey'
+		borderWidth: 1,
+		borderColor: '#E2E8F1'
 	},
 	cardTop: {
 		height: topCardHeight,
-		borderBottomColor: 'grey',
-		borderBottomWidth: 0.3
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1
+	},
+	topRank: {
+		backgroundColor: '#E2E8F1',
+		left: -(maxWidth * 0.93),
+		top: -(maxHeight * 0.135),
+		width: (maxHeight * 0.065) * 0.7,
+		height: (maxHeight * 0.065) * 0.7,
+		borderRadius: 100,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	iconSpace: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'relative',
-		left: 0,
+		left: maxWidth * 0.06,
 		top: 0,
 		height: '100%',
 		width: '20%',
 	},
 	nameSpace: {
 		position: 'absolute',
-		marginLeft: '20%',
+		marginLeft: '25%',
 		top: '30%',
 		height: '70%',
 		alignItems: 'center',
 	},
 	employeeName: {
 		textAlign: 'center',
-		fontSize: 30,
+		justifyContent: 'center',
+		fontSize: 25,
 		fontWeight: '300'
 	},
 	cardBottm: {
@@ -244,16 +258,16 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		alignItems: 'center',
 		width: '20%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 
 	seatbeltAndSpeeding: {
 		alignItems: 'center',
 		width: '45%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 
 	netradyne: {
@@ -275,9 +289,8 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 
 const TeamStyles = StyleSheet.create({
 	container: {
-		display: "flex",
+		marginTop: 4,
 		flexDirection: 'column',
-		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
 	},
@@ -289,54 +302,63 @@ const TeamStyles = StyleSheet.create({
 	},
 
 	leadersTitle: {
-		backgroundColor: '#F9f9f9',
 		fontWeight: '600',
-		marginTop: 3,
 		marginLeft: maxWidth * 0.04,
 		marginBottom: 6,
+		marginTop: 6,
 		fontSize: 18,
 	},
 
 	remainders: {
-		// marginTop: (maxHeight * 0.01),
-		height: maxHeight * .25,
+		marginTop: (maxHeight * 0.01),
+		// height: maxHeight * .25,
 		width: maxWidth,
 		marginBottom: "2%",
 		alignItems: 'center',
 	},
 	topThreeEmployeeCard: {
-		flex: 2,
-		position: "relative",
-		height: 270,
+		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
-		marginBottom: 10,
-		borderWidth: 0.3,
-		borderColor: 'grey'
+		marginBottom: 1,
+		borderWidth: 1,
+		borderColor: '#E2E8F1'
 	},
 	cardTop: {
 		height: topCardHeight,
-		borderBottomColor: 'grey',
-		borderBottomWidth: 0.3
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1
+	},
+	topRank: {
+		backgroundColor: '#E2E8F1',
+		left: -(maxWidth * 0.93),
+		top: -(maxHeight * 0.135),
+		width: (maxHeight * 0.065) * 0.7,
+		height: (maxHeight * 0.065) * 0.7,
+		borderRadius: 100,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	iconSpace: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'relative',
-		left: 0,
+		left: maxWidth * 0.06,
 		top: 0,
 		height: '100%',
 		width: '20%',
 	},
 	nameSpace: {
 		position: 'absolute',
-		marginLeft: '20%',
+		marginLeft: '25%',
 		top: '30%',
 		height: '70%',
 		alignItems: 'center',
 	},
 	employeeName: {
 		textAlign: 'center',
-		fontSize: 30,
+		justifyContent: 'center',
+		fontSize: 25,
 		fontWeight: '300'
 	},
 	cardBottm: {
@@ -347,9 +369,9 @@ const TeamStyles = StyleSheet.create({
 		alignItems: 'center',
 		width: '30%',
 		height: '100%',
-		borderRightWidth: 0.3,
-		borderLeftWidth: 0.3,
-		borderColor: 'grey',
+		borderRightWidth: 1,
+		borderLeftWidth: 1,
+		borderColor: '#E2E8F1',
 	},
 	customerFeedback: {
 		alignItems: 'center',
@@ -359,16 +381,16 @@ const TeamStyles = StyleSheet.create({
 	employeeCard :{
 		top: 0,
 		marginBottom: 10,
-		borderColor: "silver",
-		borderWidth: 0.3,
+		borderColor: "#E2E8F1",
+		borderWidth: 1,
 		justifyContent: 'center',
 		height: (maxHeight * 0.065),
 		width: maxWidth - (maxWidth * 0.05)
 	},
 
 	rank: {
-		backgroundColor: 'silver',
-		left: maxWidth - (maxWidth * 0.99),
+		backgroundColor: '#E2E8F1',
+		left: maxWidth * .02,
 		top: maxHeight - (maxHeight * .994),
 		width: (maxHeight * 0.065) * 0.7,
 		height: (maxHeight * 0.065) * 0.7,
@@ -380,11 +402,12 @@ const TeamStyles = StyleSheet.create({
 
 	employeeNameplate: {
 		// left: maxWidth - (maxWidth * 0.68),
-		top: -maxHeight + (maxHeight * 0.965),
+		top: 0 - (maxHeight * 0.025),
 	},
 
 	employeeNameTag: {
-		textAlign: 'center'
+		left: maxWidth * 0.29
+		// textAlign: 'center'
 	},
 
 	statTitle: {
@@ -396,6 +419,11 @@ const TeamStyles = StyleSheet.create({
 		marginTop: 3,
 		fontSize: 20,
 		fontWeight: '600'
+	},
+
+	smallIcon: {
+		top: 0 - (maxHeight * 0.063),
+		left: maxWidth * 0.15
 	}
 
 })

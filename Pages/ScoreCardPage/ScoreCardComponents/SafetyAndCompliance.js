@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, FlatList } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE } from "../../../GraphQL/operations";
 import EmployeeSafetyAndCompliance from "./InformationComponents/EmployeeSafetyAndCompliance";
@@ -22,7 +22,7 @@ const SafetyAndCompliance =  () => {
         let i = 0
         return topThreeSafetyAndComplianceDrivers.map( (driverData) => {
             i++
-            return <EmployeeSafetyAndCompliance driverData={driverData} key={i} />
+            return <EmployeeSafetyAndCompliance driverData={driverData} key={i} rank={1} />
         })
     }
 
@@ -48,6 +48,7 @@ const SafetyAndCompliance =  () => {
         let remainingEmployees = allData.splice(3, allData.length)
         
         return(
+            <FlatList>
             <View style={SafetyAndComplianceStyles.container}>
                 <View style={{width: '100%'}}>
                     <Text style={SafetyAndComplianceStyles.leadersTitle}>Top Three Leaders</Text>
@@ -55,10 +56,14 @@ const SafetyAndCompliance =  () => {
                 <View style={SafetyAndComplianceStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <ScrollView contentContainerStyle={SafetyAndComplianceStyles.remainders}>
+                <View style={{width: '100%'}}>
+                    <Text style={SafetyAndComplianceStyles.leadersTitle}>Employees</Text>
+                </View> 
+                <View style={SafetyAndComplianceStyles.remainders}>
                     {renderOthers(remainingEmployees)}
-                </ScrollView>
+                </View>
             </View>
+            </FlatList>
         )
     }
 }

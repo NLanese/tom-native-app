@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, FlatList } from 'react-native'
 import { GETDRIVERSFORDSPFORTEAM } from "../../../GraphQL/operations";
 import { useQuery } from "@apollo/client";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
@@ -53,6 +53,7 @@ const Team = () => {
         let others = determineOthers(queryData)
     
         return(
+            <FlatList>
             <View style={TeamStyles.container}>
                 <View style={{width: '100%'}}>
                     <Text style={TeamStyles.leadersTitle}>Top Three Leaders</Text>
@@ -60,10 +61,14 @@ const Team = () => {
                 <View style={TeamStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <ScrollView contentContainerStyle={TeamStyles.remainders}>
+                <View style={{width: '100%'}}>
+                    <Text style={TeamStyles.leadersTitle}>Employees</Text>
+                </View> 
+                <View contentContainerStyle={TeamStyles.remainders}>
                         <View>{renderOthers(others)}</View>
-                </ScrollView>
+                </View>
             </View>
+            </FlatList>
     
         )
     }

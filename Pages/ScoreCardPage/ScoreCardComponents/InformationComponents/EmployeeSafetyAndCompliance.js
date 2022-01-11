@@ -6,7 +6,7 @@ import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 
 
 
-const EmployeeSafetyAndCompliance = ({driverData}) => {
+const EmployeeSafetyAndCompliance = ({driverData, rank}) => {
 
     let data = {...driverData}
 
@@ -21,6 +21,8 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
     }
 
     data.seatbelt_and_speeding = data.seatbelt_and_speeding * 0.01
+    data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
+    data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
 
     return(
         <Card style={SafetyAndComplianceStyles.topThreeEmployeeCard}>
@@ -29,7 +31,7 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
             <View style={SafetyAndComplianceStyles.iconSpace}>
                   <Avatar.Image
                         source={SomeDudesFace}
-                        size={64}
+                        size={80}
                     />
             </View>
             <View style={SafetyAndComplianceStyles.nameSpace}>
@@ -49,6 +51,11 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
                 <Text style={SafetyAndComplianceStyles.statTitle}>Netradyne</Text>
                 <Text style={SafetyAndComplianceStyles.statValue}>{data.netradyne}</Text>
             </View>
+
+            <View style={SafetyAndComplianceStyles.topRank}>
+                <Text style={{fontWeight: '800'}}>{rank}</Text>
+            </View>
+
         </View>
     </Card>
     )

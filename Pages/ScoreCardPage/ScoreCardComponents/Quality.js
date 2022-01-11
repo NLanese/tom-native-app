@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
@@ -33,7 +33,7 @@ const Quality = () => {
         let i = 0
         return topThreeQualityDrivers.map( (driverData) => {
             i++
-            return <EmployeeQuality driverData={driverData} key={i} />
+            return <EmployeeQuality driverData={driverData} key={i} rank={i}/>
         })
     }
 
@@ -57,6 +57,8 @@ const Quality = () => {
         let others = determineOthers(queryData)
 
         return(
+            <View style={{flex: 0}}>
+            <ScrollView style={{borderColor: 'red', borderWidth: 3}}>
             <View style={QualityStyles.container}>
                 <View style={{width: '100%'}}>
                     <Text style={QualityStyles.leadersTitle}>Top Three Leaders</Text>
@@ -64,11 +66,15 @@ const Quality = () => {
                 <View style={QualityStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <ScrollView contentContainerStyle={QualityStyles.remainders}>
+                <View style={{width: '100%'}}>
+                    <Text style={QualityStyles.leadersTitle}>Employees</Text>
+                </View> 
+                <View style={QualityStyles.remainders}>
                     {renderOthers(others)}            
-                </ScrollView>
+                </View>
             </View>
-
+            </ScrollView>
+            </View>
         )
     }
 }

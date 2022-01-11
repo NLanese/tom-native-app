@@ -6,7 +6,7 @@ import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 
 
 
-const EmployeeQuality = ({driverData}) => {
+const EmployeeQuality = ({driverData, rank}) => {
 
     let data = {...driverData}
 
@@ -26,6 +26,9 @@ const EmployeeQuality = ({driverData}) => {
         data.scan_compliance = 0
     }
 
+    data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
+    data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
+
     return(
         <Card style={QualityStyles.topThreeEmployeeCard}>
 
@@ -33,7 +36,7 @@ const EmployeeQuality = ({driverData}) => {
                 <View style={QualityStyles.iconSpace}>
                     <Avatar.Image
                         source={SomeDudesFace}
-                        size={64}
+                        size={80}
                     />
                 </View>
                 <View style={QualityStyles.nameSpace}>
@@ -61,6 +64,11 @@ const EmployeeQuality = ({driverData}) => {
                     <Text style={QualityStyles.statTitle}>Scan Compliance</Text>
                     <Text style={QualityStyles.statValue}>{data.scan_compliance}%</Text>
                 </View>
+                
+                <View style={QualityStyles.topRank}>
+                    <Text style={{fontWeight: '800'}}>{rank}</Text>
+                </View>
+
             </View>
 
         </Card>

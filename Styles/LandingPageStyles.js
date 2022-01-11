@@ -37,7 +37,6 @@ const SignInBoxStyles = StyleSheet.create({
 	},
 
 	signUpContents: {
-		// backgroundColor: "red",
 		marginTop: 10,
 		bottom: 10,
 		height: 500,
