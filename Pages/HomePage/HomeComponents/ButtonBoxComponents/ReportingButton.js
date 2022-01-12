@@ -7,7 +7,7 @@ const ReportingButton = () => {
     let history = useHistory()
 
     return (
-        <View style={ButtonBoxStyles.scoreCardButton}>
+        <View style={ButtonBoxStyles.homeButtons}>
             <Button 
                 onPress={() => {history.push("/reporting")}}
 				title='Reporting'

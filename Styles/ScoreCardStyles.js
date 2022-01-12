@@ -417,10 +417,10 @@ const TeamStyles = StyleSheet.create({
 const ButtonBox = StyleSheet.create({
 	container: {
 		width: 340,	
-		backgroundColor: '#f1f1f1'
+		height: 169
 	},
 	button: {
-		height: 140,
+		height: 169,
 		display: 'flex',
 		justifyContent: 'center',
 		backgroundColor: 'white',
@@ -430,7 +430,8 @@ const ButtonBox = StyleSheet.create({
 		color: 'black'
 	},
 	text:{
-		color: 'black'
+		color: 'black',
+		fontSize: 14
 	}
 })
 

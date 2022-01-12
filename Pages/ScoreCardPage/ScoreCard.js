@@ -18,7 +18,7 @@ const ScoreCard = () => {
 
 
     return (
-        <View style={{alignItems: 'center', backgroundColor: '#f1f1f1', height: '100%'}}>          
+        <View style={{alignItems: 'center', backgroundColor: '#f9f9f9', height: '100%'}}>          
             <View style={{marginBottom: spaces, marginTop: spaces}}>
                 <QualityButton />
             </View>  

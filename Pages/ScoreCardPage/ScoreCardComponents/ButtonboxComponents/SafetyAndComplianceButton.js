@@ -1,9 +1,8 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 import { ButtonBox } from "../../../../Styles/ScoreCardStyles";
 
 const SafetyAndComplianceButton = () => {
@@ -16,6 +15,10 @@ const SafetyAndComplianceButton = () => {
 	}
 
     return (
+        <TouchableOpacity onPress={() => {
+            handleButtonLoading()
+            history.push("/safetyandcompliance")
+        }}>
         <View style={ButtonBox.container}>
             <Button 
                 mode="text"
@@ -30,6 +33,7 @@ const SafetyAndComplianceButton = () => {
                 <Text style={ButtonBox.text}>Safety and Compliance</Text>
             </Button>
         </View>
+        </TouchableOpacity>
     )
 }
 

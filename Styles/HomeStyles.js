@@ -27,9 +27,10 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 
 	cardContainer:{
-		flex: 1,
-		marginBottom: maxWidth * 0.2,
+		// flex: 1,
+		height: maxHeight * 0.3,
 		width: maxWidth * 0.44,
+		marginBottom: maxWidth * 0.06
 	},
 
 	card: {
@@ -42,7 +43,7 @@ const ButtonBoxStyles = StyleSheet.create({
 	image: {
 		position: 'relative',
 		display: 'flex',
-		height: '80%',
+		height: '70%',
 		width: "100%",
 	},
 	
@@ -52,8 +53,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginTop: maxHeight * 0.1,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.7,
-		display: 'flex',
-		justifyContent: 'flex-start',
+		// borderWidth: 2
 	},
 	leftContainer: {
 		position: "absolute",
@@ -61,9 +61,12 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginTop: maxHeight * 0.1,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.7,
-		display: 'flex',
-		justifyContent: 'flex-start',
+		// borderWidth: 2
 	},
+
+	homeButtons:{
+		marginTop: maxWidth * 0.03,
+	}
 
 })
 

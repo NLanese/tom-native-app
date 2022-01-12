@@ -67,7 +67,7 @@ const Bell = () => {
       return (
         <View>
           <Appbar.Action
-            color='white'
+            color='black'
             style={styles.actionBar}
             icon="bell"
             onPress={() => {
