@@ -58,7 +58,7 @@ const Quality = () => {
 
         return(
             <View style={{flex: 0}}>
-            <ScrollView style={{borderColor: 'red', borderWidth: 3}}>
+            <ScrollView bounces={false}>
             <View style={QualityStyles.container}>
                 <View style={{width: '100%'}}>
                     <Text style={QualityStyles.leadersTitle}>Top Three Leaders</Text>

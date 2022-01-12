@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles'
 import Email from './SignInBoxComponents/Email'
 import Password from './SignInBoxComponents/Password'
@@ -20,10 +20,14 @@ const SignInBox = ({ handleLoggedIn }) => {
 
     return (
         <View style={SignInBoxStyles.container}>
-            <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} /></View>
-            <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} /></View>
-            <View style={SignInBoxStyles.loginContents}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
-            <View style={SignInBoxStyles.signUpContents}><SignUpButton /></View>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{borderColor: 'red', borderWidth: 2}}>
+            <View>
+                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} /></View>
+                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} /></View>
+                <View style={SignInBoxStyles.loginContents}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
+                <View style={SignInBoxStyles.signUpContents}><SignUpButton /></View>
+            </View>
+        </TouchableWithoutFeedback>  
         </View>
     );
 };

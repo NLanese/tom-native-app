@@ -78,7 +78,7 @@ export default function App() {
         <ApolloProvider client={client}>
           <PaperProvider>
             <View style={AppStyles.container}>
-            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            
              <View>
 
                 {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
@@ -131,7 +131,7 @@ export default function App() {
                 ) : null}
               <StatusBar style="auto" />
               </View>
-            </TouchableWithoutFeedback>
+            
             </View>
           </PaperProvider>
         </ApolloProvider>

@@ -27,9 +27,6 @@ const Message = ({from, content, dateSent}) => {
             <View style={styleTag}>
                 <View style={MessageStyles.container}>
                     <View>
-                        <Text>{from}</Text>
-                    </View>
-                    <View>
                         <Text>{content}</Text>
                     </View>
                     <View>
@@ -45,19 +42,29 @@ export default Message
 
 const MessageStyles = StyleSheet.create({
     yourMessages: {
-        borderWidth: 1,
+        borderWidth: .3,
         borderRadius: 20,
         marginLeft: 35,
-        marginTop: 5,
-        backgroundColor: '#eff7fa'
+        marginTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: '#d6c0ea',
+        borderColor: "#d6c0ea",
     },
     
     adminMessages: {
-        borderWidth: 1,
+        borderWidth: .3,
         borderRadius: 20,
         marginRight: 35,
-        marginTop: 5,
-        backgroundColor: "#d6c0ea"
+        marginTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: "#E2E8F1",
+        borderColor: "#E2E8F1",
     },
 
     container:{

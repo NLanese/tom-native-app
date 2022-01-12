@@ -48,7 +48,7 @@ const SafetyAndCompliance =  () => {
         let remainingEmployees = allData.splice(3, allData.length)
         
         return(
-            <FlatList>
+            <ScrollView bounces={false}>
             <View style={SafetyAndComplianceStyles.container}>
                 <View style={{width: '100%'}}>
                     <Text style={SafetyAndComplianceStyles.leadersTitle}>Top Three Leaders</Text>
@@ -63,7 +63,7 @@ const SafetyAndCompliance =  () => {
                     {renderOthers(remainingEmployees)}
                 </View>
             </View>
-            </FlatList>
+            </ScrollView>
         )
     }
 }

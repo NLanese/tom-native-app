@@ -53,7 +53,7 @@ const Team = () => {
         let others = determineOthers(queryData)
     
         return(
-            <FlatList>
+            <ScrollView bounces={false}>
             <View style={TeamStyles.container}>
                 <View style={{width: '100%'}}>
                     <Text style={TeamStyles.leadersTitle}>Top Three Leaders</Text>
@@ -68,7 +68,7 @@ const Team = () => {
                         <View>{renderOthers(others)}</View>
                 </View>
             </View>
-            </FlatList>
+            </ScrollView>
     
         )
     }

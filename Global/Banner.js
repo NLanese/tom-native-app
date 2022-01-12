@@ -82,6 +82,7 @@ export default Banner
 const styles = StyleSheet.create({
     bottom: {
       height: 50,
+      shadowOpacity: 0,
       position: 'relative',
       top: 0,
       left: 0,

@@ -1,4 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
+
 
 const SettingsStyles = StyleSheet.create({
     container: {
@@ -58,15 +63,20 @@ const EditAccountInformationStyles = StyleSheet.create({
     },
     InputsField: {
         justifyContent: 'center',
-        width: '100%',
-        height: '90%'
+        width: maxWidth * .90,
+        height: '90%',
+        top: -10
+    },
+    button: {
+        marginTop: 15,
+        backgroundColor: 'white'
     }
 })
 
 const UpdateFieldStyles = StyleSheet.create({
     Input: {
         flex: 1,
-        marginTop: 8,
+        marginTop: 3,
         backgroundColor: '#f1f1f1'
     }
 })

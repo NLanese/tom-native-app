@@ -8,6 +8,7 @@ const DropdownStyles = StyleSheet.create({
         top: 50, 
         right: 0, 
         margin: 0, 
+        shadowOpacity: 0,
         width: 180,
         display: 'flex',
         justifyContent: 'center',

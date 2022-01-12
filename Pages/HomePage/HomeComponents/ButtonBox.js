@@ -5,8 +5,6 @@ import ScoreCardButton from './ButtonBoxComponents/ScoreCardButton'
 import ShiftPlannerButton from './ButtonBoxComponents/ShiftPlannerButton'
 import ReportAnAccidentButton from './ButtonBoxComponents/ReportAnAccidentButton'
 import ProductivityButton from './ButtonBoxComponents/ProductivityButton';
-import CommunicationButton from './ButtonBoxComponents/CommunicationButton'
-import SettingsButton from './ButtonBoxComponents/SettingsButton';
 
 const ButtonBox = () => {
 

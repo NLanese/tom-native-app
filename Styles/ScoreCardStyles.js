@@ -9,54 +9,22 @@ let bottomCardHeight = (maxHeight * 0.069)
 
 
 const ScoreCardStyles = StyleSheet.create({
-    container: {
-		height: 160,
-		width: 160,
-		shadowOpacity: 0,
-		borderWidth: 1,
-		borderColor: '#f1f1f1',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginTop: 12,
-		marginBottom: 12
+	container: {
+		width: "100%",
+		height: maxHeight * 0.20,
+		position: 'relative',
+		marginTop: maxWidth * 0.01
 	},
 
-	rightContainer: {
-		flex: 1,
-		justifyContent: 'flex-start',
-		alignItems: 'flex-end',
-		marginRight: 15,
-		marginLeft: 150,
-	},
-    
-	leftContainer: {
-		flex: 1,
-		position: 'absolute',
-		justifyContent: 'flex-end',
-		alignItems: 'flex-start',
-		marginLeft: 15,
-	},
-
-    image: {
-		height: 110,
-		width: 160,
-		backgroundColor: '#afbed3',
-	},
-
-    CardContent: {
+	CardContent: {
 		textAlign: 'center',
-		top: 11,
-		fontSize: 16,
-		lineHeight: 20
+		fontSize: 15
 	},
-
-
 })
 
 const QualityStyles = StyleSheet.create({
 	container: {
-		marginTop: 4,
+		marginTop: 10,
 		flexDirection: 'column',
 		alignItems: 'center',
 		height: '100%',
@@ -77,16 +45,17 @@ const QualityStyles = StyleSheet.create({
 
 	remainders: {
 		marginTop: (maxHeight * 0.01),
-		// height: maxHeight * .25,
 		width: maxWidth,
 		marginBottom: "2%",
 		alignItems: 'center',
+		marginBottom: 30
 	},
 	topThreeEmployeeCard: {
 		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
-		borderWidth: 1,
+		shadowOpacity: 0,
+		// borderWidth: 1,
 		borderColor: '#E2E8F1'
 	},
 	cardTop: {
@@ -136,6 +105,7 @@ const QualityStyles = StyleSheet.create({
 		width: '15%',
 		height: '100%',
 		borderRightWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 	dar: {
@@ -143,6 +113,7 @@ const QualityStyles = StyleSheet.create({
 		width: '15%',
 		height: '100%',
 		borderRightWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 	pod: {
@@ -150,6 +121,7 @@ const QualityStyles = StyleSheet.create({
 		width: '15%',
 		height: '100%',
 		borderRightWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 	callCompliance: {
@@ -157,9 +129,12 @@ const QualityStyles = StyleSheet.create({
 		width: '25%',
 		height: '100%',
 		borderRightWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 	scanCompliance: {
+		borderColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		alignItems: 'center',
 		width: '30%',
 		height: '100%',
@@ -178,7 +153,7 @@ const QualityStyles = StyleSheet.create({
 
 const SafetyAndComplianceStyles = StyleSheet.create({
 	container: {
-		marginTop: 4,
+		marginTop: 10,
 		flexDirection: 'column',
 		alignItems: 'center',
 		height: '100%',
@@ -199,16 +174,17 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 
 	remainders: {
 		marginTop: (maxHeight * 0.01),
-		// height: maxHeight * .25,
 		width: maxWidth,
 		marginBottom: "2%",
 		alignItems: 'center',
+		marginBottom: 30
 	},
 	topThreeEmployeeCard: {
 		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
-		borderWidth: 1,
+		shadowOpacity: 0,
+		// borderWidth: 1,
 		borderColor: '#E2E8F1'
 	},
 	cardTop: {
@@ -259,6 +235,7 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		width: '20%',
 		height: '100%',
 		borderRightWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 
@@ -267,13 +244,16 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		width: '45%',
 		height: '100%',
 		borderRightWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 
 	netradyne: {
 		alignItems: 'center',
 		width: '35%',
-		height: '90%',
+		borderBottomWidth: 1,
+		borderColor: '#E2E8F1',
+		height: '100%',
 	},
 	statTitle: {
 		fontSize: 10,
@@ -289,7 +269,7 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 
 const TeamStyles = StyleSheet.create({
 	container: {
-		marginTop: 4,
+		marginTop: 10,
 		flexDirection: 'column',
 		alignItems: 'center',
 		height: '100%',
@@ -305,22 +285,22 @@ const TeamStyles = StyleSheet.create({
 		fontWeight: '600',
 		marginLeft: maxWidth * 0.04,
 		marginBottom: 6,
-		marginTop: 6,
 		fontSize: 18,
 	},
 
 	remainders: {
 		marginTop: (maxHeight * 0.01),
-		// height: maxHeight * .25,
 		width: maxWidth,
 		marginBottom: "2%",
 		alignItems: 'center',
+		marginBottom: 30
 	},
 	topThreeEmployeeCard: {
 		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
-		marginBottom: 1,
-		borderWidth: 1,
+		marginBottom: 10,
+		shadowOpacity: 0,
+		// borderWidth: 1,
 		borderColor: '#E2E8F1'
 	},
 	cardTop: {
@@ -371,21 +351,27 @@ const TeamStyles = StyleSheet.create({
 		height: '100%',
 		borderRightWidth: 1,
 		borderLeftWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
 	customerFeedback: {
+		borderBottomWidth: 1,
+		borderColor: '#E2E8F1',
 		alignItems: 'center',
 		width: '45%',
-		height: '90%',
+		height: '100%',
 	},
 	employeeCard :{
 		top: 0,
 		marginBottom: 10,
 		borderColor: "#E2E8F1",
-		borderWidth: 1,
+		borderTopWidth: 1,
+		borderBottomWidth: 1,
 		justifyContent: 'center',
 		height: (maxHeight * 0.065),
-		width: maxWidth - (maxWidth * 0.05)
+		width: maxWidth - (maxWidth * 0.05),
+		shadowOpacity: 0,
+
 	},
 
 	rank: {
@@ -428,12 +414,31 @@ const TeamStyles = StyleSheet.create({
 
 })
 
-
+const ButtonBox = StyleSheet.create({
+	container: {
+		width: 340,	
+		backgroundColor: '#f1f1f1'
+	},
+	button: {
+		height: 140,
+		display: 'flex',
+		justifyContent: 'center',
+		backgroundColor: 'white',
+		marginTop: 5,
+		borderWidth: 0.5,
+		borderColor: "grey",
+		color: 'black'
+	},
+	text:{
+		color: 'black'
+	}
+})
 
 
 export { 
     ScoreCardStyles, 
     QualityStyles, 
     SafetyAndComplianceStyles, 
-	TeamStyles
+	TeamStyles,
+	ButtonBox
 }

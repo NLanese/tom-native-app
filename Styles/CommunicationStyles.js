@@ -8,7 +8,7 @@ const CommunicationStyles = StyleSheet.create({
 
     container: {
         height: maxHeight - 75,
-        display: "flex",
+        // display: "flex",
         flexDirection: 'column',
         // borderWidth: 20,
         // borderColor: 'green'
@@ -17,17 +17,23 @@ const CommunicationStyles = StyleSheet.create({
     thread:{
         flex: 1,
         borderColor: 'red',
-        borderWidth: 2
+        borderWidth: 2,
+    },
+
+    threadContainer: {
+        paddingRight: 10,
+        paddingLeft: 10
     },
 
     newMessageAddress: {
-        backgroundColor: "#eff7fa"
+        backgroundColor: "#eff7fa",
+        width: maxWidth
     },
 
     createMessage: {
         borderTopWidth: 3,
-        height: 75,
-        bottom: 0
+        top: maxHeight * .75,
+        position: 'absolute'
     }
 })
 

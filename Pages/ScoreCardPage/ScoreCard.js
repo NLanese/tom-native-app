@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View } from 'react-native'
+import { View, Dimensions } from 'react-native'
 import { websiteState } from '../../Recoil/atoms'
 import { useRecoilState } from 'recoil'
 import QualityButton from "./ScoreCardComponents/ButtonboxComponents/QualityButton";
@@ -13,11 +13,21 @@ const ScoreCard = () => {
         setWebsite('Scorecard')
     }, [])
 
+    let maxWidth= Dimensions.get('window').width
+    let spaces = (maxWidth - 340) / 2
+
+
     return (
-        <View>            
-            <QualityButton />
-            <SafetyAndComplianceButton />
-            <TeamButton />
+        <View style={{alignItems: 'center', backgroundColor: '#f1f1f1', height: '100%'}}>          
+            <View style={{marginBottom: spaces, marginTop: spaces}}>
+                <QualityButton />
+            </View>  
+            <View style={{marginBottom: spaces}}>
+                <SafetyAndComplianceButton />
+            </View>  
+            <View style={{marginBottom: spaces}}>
+                <TeamButton />
+            </View>  
         </View>
     )
 }

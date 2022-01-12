@@ -49,15 +49,16 @@ const Communication = () => {
     if (messageData[0]) {
         return (
             <View style={CommunicationStyles.container}>
-                <ScrollView containerStyle={CommunicationStyles.thread}>
-                    {renderMessageFeed(messageData)}
-                </ScrollView>
+                <View style={CommunicationStyles.threadContainer}>
+                    <ScrollView containerStyle={CommunicationStyles.thread}>
+                        {renderMessageFeed(messageData)}
+                    </ScrollView>
+                </View>
                 <View style={CommunicationStyles.createMessage}>
                     <View style={CommunicationStyles.newMessageAddress}>
                         <Text>New Message to {userData.adminFirstname} {userData.adminLastname}</Text>
                     </View>
                     <TextInput
-                        // style={UpdateFieldStyles.Input}
                         selectionColor='#24296f'
                         activeOutlineColor='#24296f'
                         activeUnderlineColor='#24296f'

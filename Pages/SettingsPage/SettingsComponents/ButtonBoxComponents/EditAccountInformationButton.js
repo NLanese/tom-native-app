@@ -16,14 +16,15 @@ const EditAccountInformationButton = () => {
 
     return (
         <View >
-            <Button
-                mode="outlined"
+            <Button 
+                mode="contained"
                 loading={buttonLoading}
                 style={ButtonStyles.logInButton}
-                onPress={ async () => {
+                titleStyle={{color: "white"}}
+                onPress={() => {
                     handleButtonLoading()
                     history.push("/edit_account_information")
-                } }
+                }}
             >
                 Edit Account Information
             </Button>
