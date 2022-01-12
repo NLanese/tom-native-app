@@ -20,12 +20,6 @@ const CommunicationStyles = StyleSheet.create({
         paddingLeft: 10
     },
 
-    input:{
-        height: maxHeight * 0.08,
-        width: maxWidth - 10,
-        marginRight: 5
-        // borderWidth: 1,
-    }
 
 })
 
