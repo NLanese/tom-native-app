@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { GETNOTIFIED } from "../../GraphQL/operations";
 import { GETNOTIFIEDMESSAGES } from "../../GraphQL/operations";
 import BellDropdown from "./BellComponents/BellDropdown";
 import { useQuery } from "@apollo/client";
 import { ActivityIndicator } from "react-native-paper";
+
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const Bell = () => {
   const [notified, setNotified] = useState(false)
@@ -42,19 +46,31 @@ const Bell = () => {
     setNotified(false)
   }
 
-  if ( notifiedMessages[0] ){
+  if ( !loading && !error && data ){
     if (notified === true){
+      console.log("notifed!")
       return (
         <View>
           <Appbar.Action
-            color='red'
-            style={styles.actionBar}
+            color='black'
+            style={styles.actionBarNoti}
             icon="bell"
             onPress={() => {
               setNotifiedVisible(true)
               removeNotification()
             }}
           />
+
+          <View style={{
+              backgroundColor: 'red',
+              color: 'red',
+              top: -maxHeight * 0.05,
+              left: maxWidth * 0.023,
+              height: 10,
+              width: 10,
+              borderRadius: 100
+          }}>
+          </View>
 
           <View>
             <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} notifiedMessages={notifiedMessages}/>
@@ -64,6 +80,7 @@ const Bell = () => {
       )
     }
     else if (notified === false) {
+      console.log("No notifications!")
       return (
         <View>
           <Appbar.Action
@@ -83,6 +100,7 @@ const Bell = () => {
     }
   } 
   else {
+    console.log(data)
       return (
         <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
             <ActivityIndicator animating={true} size={24} color={'white'} style={{padding: 3, marginRight: 8}}/>
@@ -92,6 +110,12 @@ const Bell = () => {
 }
 
 const styles = StyleSheet.create({
+  actionBarNoti: {
+    position: 'relative',
+    top: maxHeight * 0.009,
+    color: '#570de4', 
+    left: -3
+  },
   actionBar: {
     position: 'relative',
     top: 0,

@@ -19,7 +19,11 @@ const CommunicationStyles = StyleSheet.create({
         paddingRight: 10,
         paddingLeft: 10
     },
-
+    sendButton: {
+        backgroundColor: "#E2E8F1",
+        position: 'absolute',
+        width: '10000000%',
+    }
 
 })
 

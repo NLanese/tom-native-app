@@ -94,6 +94,7 @@ const QualityStyles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		fontSize: 25,
+		marginLeft: 10,
 		fontWeight: '300'
 	},
 	cardBottm: {
@@ -223,7 +224,10 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		fontSize: 25,
-		fontWeight: '300'
+		fontWeight: '300',
+		marginLeft: 10,
+		// borderWidth: 3
+
 	},
 	cardBottm: {
 		height: bottomCardHeight,
@@ -339,7 +343,8 @@ const TeamStyles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		fontSize: 25,
-		fontWeight: '300'
+		marginLeft: 10,
+		fontWeight: '300',
 	},
 	cardBottm: {
 		height: bottomCardHeight,

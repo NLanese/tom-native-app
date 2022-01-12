@@ -22,7 +22,7 @@ const SafetyAndCompliance =  () => {
         let i = 0
         return topThreeSafetyAndComplianceDrivers.map( (driverData) => {
             i++
-            return <EmployeeSafetyAndCompliance driverData={driverData} key={i} rank={1} />
+            return <EmployeeSafetyAndCompliance driverData={driverData} key={i} rank={i} />
         })
     }
 
@@ -48,6 +48,7 @@ const SafetyAndCompliance =  () => {
         let remainingEmployees = allData.splice(3, allData.length)
         
         return(
+            <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
             <ScrollView bounces={false}>
             <View style={SafetyAndComplianceStyles.container}>
                 <View style={{width: '100%'}}>
@@ -64,6 +65,7 @@ const SafetyAndCompliance =  () => {
                 </View>
             </View>
             </ScrollView>
+            </View>
         )
     }
 }

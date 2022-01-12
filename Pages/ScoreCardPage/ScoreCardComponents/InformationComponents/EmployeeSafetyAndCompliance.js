@@ -20,7 +20,6 @@ const EmployeeSafetyAndCompliance = ({driverData, rank}) => {
         data.netradyne = 0
     }
 
-    data.seatbelt_and_speeding = data.seatbelt_and_speeding * 0.01
     data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
     data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
 

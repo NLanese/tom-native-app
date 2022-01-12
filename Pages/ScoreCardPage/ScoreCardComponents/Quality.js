@@ -57,7 +57,7 @@ const Quality = () => {
         let others = determineOthers(queryData)
 
         return(
-            <View style={{flex: 0}}>
+            <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
             <ScrollView bounces={false}>
             <View style={QualityStyles.container}>
                 <View style={{width: '100%'}}>
