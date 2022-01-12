@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
+import TeamEmployees from "./InformationComponents/TeamEmployee";
+
  
 
 
@@ -18,11 +20,28 @@ const Quality = () => {
         }
     }, [data])
 
+    function determineTopThree(data){
+        let returnData = [...data]
+        return returnData.splice(0, 3)
+    } 
+    function determineOthers(data){
+        let returnData = [...data]
+        return returnData.splice(3)
+    } 
+
     const renderTopThree = (topThreeQualityDrivers) => {
         let i = 0
         return topThreeQualityDrivers.map( (driverData) => {
             i++
-            return <EmployeeQuality driverData={driverData} key={i} />
+            return <EmployeeQuality driverData={driverData} key={i} rank={i}/>
+        })
+    }
+
+    const renderOthers = (otherEmployees) => {
+        let i = 3
+        return otherEmployees.map( (driverData) => {
+            i++
+            return <TeamEmployees driverData={driverData} key={i} rank={i} />
         })
     }
 
@@ -33,20 +52,29 @@ const Quality = () => {
             </View>
         )
     } else {
-        let allData = [...queryData]
-        let topThree = allData.splice(0, 3)
-        let remainingEmployees = allData.splice(3, allData.length)
         
+        let topThree = determineTopThree(queryData)
+        let others = determineOthers(queryData)
+
         return(
+            <View style={{flex: 0}}>
+            <ScrollView bounces={false}>
             <View style={QualityStyles.container}>
-                <Text>Top Three Leaders</Text> 
+                <View style={{width: '100%'}}>
+                    <Text style={QualityStyles.leadersTitle}>Top Three Leaders</Text>
+                </View> 
                 <View style={QualityStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
+                <View style={{width: '100%'}}>
+                    <Text style={QualityStyles.leadersTitle}>Employees</Text>
+                </View> 
                 <View style={QualityStyles.remainders}>
+                    {renderOthers(others)}            
                 </View>
             </View>
-
+            </ScrollView>
+            </View>
         )
     }
 }

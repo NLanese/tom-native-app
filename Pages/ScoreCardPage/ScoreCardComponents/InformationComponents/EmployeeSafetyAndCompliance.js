@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
-import { Avatar } from 'react-native-paper';
 import { SafetyAndComplianceStyles } from "../../../../Styles/ScoreCardStyles";
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Avatar} from 'react-native-paper';
+import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 
 
 
-const EmployeeSafetyAndCompliance = ({driverData}) => {
+const EmployeeSafetyAndCompliance = ({driverData, rank}) => {
 
     let data = {...driverData}
 
@@ -20,32 +20,44 @@ const EmployeeSafetyAndCompliance = ({driverData}) => {
         data.netradyne = 0
     }
 
+    data.seatbelt_and_speeding = data.seatbelt_and_speeding * 0.01
+    data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
+    data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
+
     return(
         <Card style={SafetyAndComplianceStyles.topThreeEmployeeCard}>
 
-            <View>
-                <View>
-                    <Text>{data.firstname} {data.lastname}</Text>
-                </View>
-                <View>
-                    <Text>Imagine an Icon was Here</Text>
-                    {/* Icon Here */}
-                </View>
+        <View style={SafetyAndComplianceStyles.cardTop}>
+            <View style={SafetyAndComplianceStyles.iconSpace}>
+                  <Avatar.Image
+                        source={SomeDudesFace}
+                        size={80}
+                    />
             </View>
-            <View>
-                <Text>FICO</Text>
-                <Text>{data.fico}</Text>
+            <View style={SafetyAndComplianceStyles.nameSpace}>
+                <Text style={SafetyAndComplianceStyles.employeeName}>{data.firstname} {data.lastname}</Text>
             </View>
-            <View>
-                <Text>Seatbelt and Speedings</Text>
-                <Text>{data.seatbelt_and_speeding}</Text>
+        </View>
+        <View style={SafetyAndComplianceStyles.cardBottm}>
+            <View style={SafetyAndComplianceStyles.fico}>
+                <Text style={SafetyAndComplianceStyles.statTitle}>FICO</Text>
+                <Text style={SafetyAndComplianceStyles.statValue}>{data.fico}</Text>
             </View>
-            <View>
-                <Text>Netradyne</Text>
-                <Text>{data.netradyne}</Text>
+            <View style={SafetyAndComplianceStyles.seatbeltAndSpeeding}>
+                <Text style={SafetyAndComplianceStyles.statTitle}>Seatbelt and Speeding</Text>
+                <Text style={SafetyAndComplianceStyles.statValue}>{data.seatbelt_and_speeding}</Text>
+            </View>
+            <View style={SafetyAndComplianceStyles.netradyne}>
+                <Text style={SafetyAndComplianceStyles.statTitle}>Netradyne</Text>
+                <Text style={SafetyAndComplianceStyles.statValue}>{data.netradyne}</Text>
             </View>
 
-        </Card>
+            <View style={SafetyAndComplianceStyles.topRank}>
+                <Text style={{fontWeight: '800'}}>{rank}</Text>
+            </View>
+
+        </View>
+    </Card>
     )
 }
 export default EmployeeSafetyAndCompliance

@@ -33,58 +33,6 @@ const Bell = () => {
     }
   }, [refresh])
 
-    
-  //   const notifiedMessages = [
-  //     {
-  //     "id": "1",
-  //     "createdAt": "2022-01-06T18:18:32.591Z",
-  //     "read": false,
-  //     "content": "The quick brown fox swiftly jumped over the lazy dog",
-  //     "from": "ERIK",
-  //     "type": "message",
-  //     "driverId": 1,
-  //     "adminId": null,
-  //     "driver": null,
-  //     "admin": null
-  //   },
-  //   {
-  //     "id": "2",
-  //     "createdAt": "2022-01-06T18:26:46.255Z",
-  //     "read": false,
-  //     "content": "This should sent a Notifed Message",
-  //     "from": "ERIK",
-  //     "type": "message",
-  //     "driverId": 1,
-  //     "adminId": null,
-  //     "driver": null,
-  //     "admin": null
-  //   },
-  //   {
-  //     "id": "3",
-  //     "createdAt": "2022-01-06T18:36:02.654Z",
-  //     "read": false,
-  //     "content": "fuck it, whatever, message",
-  //     "from": "ERIK",
-  //     "type": "message",
-  //     "driverId": 1,
-  //     "adminId": null,
-  //     "driver": null,
-  //     "admin": null
-  //   },
-  //   {
-  //     "id": "4",
-  //     "createdAt": "2022-01-07T00:47:14.886Z",
-  //     "read": false,
-  //     "content": "Hey, did it work?",
-  //     "from": "ERIK",
-  //     "type": "message",
-  //     "driverId": 1,
-  //     "adminId": null,
-  //     "driver": null,
-  //     "admin": null
-  //   }
-  // ]
-
   const handleNotifiedModal = () => {
     setNotifiedVisible(!notifiedVisible)
   }

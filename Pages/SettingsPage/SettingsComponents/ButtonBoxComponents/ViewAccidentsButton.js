@@ -16,16 +16,17 @@ const ViewAccidentsButton = () => {
 
     return (
         <View >
-            <Button
-                mode="outlined"
+            <Button 
+                mode="contained"
                 loading={buttonLoading}
                 style={ButtonStyles.logInButton}
-                onPress={ async () => {
+                titleStyle={{color: "white"}}
+                onPress={() => {
                     handleButtonLoading()
                     history.push("/view_accidents")
-                } }
+                }}
             >
-                View Accidents
+                View Acccidents
             </Button>
         </View>
     )

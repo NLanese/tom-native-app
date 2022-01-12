@@ -16,14 +16,15 @@ const AccountInformation = () => {
 
     return (
         <View >
-            <Button
-                mode="outlined"
+            <Button 
+                mode="contained"
                 loading={buttonLoading}
                 style={ButtonStyles.logInButton}
-                onPress={ async () => {
+                titleStyle={{color: "white"}}
+                onPress={() => {
                     handleButtonLoading()
                     history.push("/account_information")
-                } }
+                }}
             >
                 Account Information
             </Button>

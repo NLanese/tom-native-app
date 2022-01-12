@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { QualityStyles } from "../../../../Styles/ScoreCardStyles";
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Avatar } from 'react-native-paper';
+import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 
 
-const EmployeeQuality = ({driverData}) => {
+
+const EmployeeQuality = ({driverData, rank}) => {
 
     let data = {...driverData}
 
@@ -24,37 +26,49 @@ const EmployeeQuality = ({driverData}) => {
         data.scan_compliance = 0
     }
 
+    data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
+    data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
+
     return(
         <Card style={QualityStyles.topThreeEmployeeCard}>
 
-            <View>
-                <View>
-                    <Text>{data.firstname} {data.lastname}</Text>
+            <View style={QualityStyles.cardTop}>
+                <View style={QualityStyles.iconSpace}>
+                    <Avatar.Image
+                        source={SomeDudesFace}
+                        size={80}
+                    />
                 </View>
-                <View>
-                    <Text>Imagine an Icon was Here</Text>
-                    {/* Icon Here */}
+                <View style={QualityStyles.nameSpace}>
+                    <Text style={QualityStyles.employeeName}>{data.firstname} {data.lastname}</Text>
                 </View>
             </View>
-            <View>
-                <Text>DCR</Text>
-                <Text>{data.delivery_completion_rate}</Text>
-            </View>
-            <View>
-                <Text>DAR</Text>
-                <Text>{data.delivered_and_recieved}</Text>
-            </View>
-            <View>
-                <Text>POD</Text>
-                <Text>{data.photo_on_delivery}</Text>
-            </View>
-            <View>
-                <Text>Call Compliance</Text>
-                <Text>{data.call_compliance}</Text>
-            </View>
-            <View>
-                <Text>Scan Compliance</Text>
-                <Text>{data.scan_compliance}</Text>
+            <View style={QualityStyles.cardBottm}>
+                <View style={QualityStyles.dcr}>
+                    <Text style={QualityStyles.statTitle}>DCR</Text>
+                    <Text style={QualityStyles.statValue}>{data.delivery_completion_rate}%</Text>
+                </View>
+                <View style={QualityStyles.dar}>
+                    <Text style={QualityStyles.statTitle}>DAR</Text>
+                    <Text style={QualityStyles.statValue}>{data.delivered_and_recieved}</Text>
+                </View>
+                <View style={QualityStyles.pod}>
+                    <Text style={QualityStyles.statTitle}>POD</Text>
+                    <Text style={QualityStyles.statValue}>{data.photo_on_delivery}</Text>
+                </View>
+                <View style={QualityStyles.callCompliance}>
+                    <Text style={QualityStyles.statTitle}>Call Compliance</Text>
+                    <Text style={QualityStyles.statValue}>{data.call_compliance}%</Text>
+                </View>
+                <View style={QualityStyles.scanCompliance}>
+                    <Text style={QualityStyles.statTitle}>Scan Compliance</Text>
+                    <Text style={QualityStyles.statValue}>{data.scan_compliance}%</Text>
+                </View>
+                
+                <View style={QualityStyles.topRank}>
+                    <Text style={{fontWeight: '800'}}>{rank}</Text>
+                </View>
+
             </View>
 
         </Card>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, FlatList } from 'react-native'
 import { GETDRIVERSFORDSPFORTEAM } from "../../../GraphQL/operations";
 import { useQuery } from "@apollo/client";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
@@ -17,7 +17,15 @@ const Team = () => {
         }
     }, [data])
 
-    
+    function determineTopThree(data){
+        let returnData = [...data]
+        return returnData.splice(0, 3)
+    } 
+    function determineOthers(data){
+        let returnData = [...data]
+        return returnData.splice(3)
+    } 
+
     const renderTopThree = (topThreeTeam) => {
         let i = 0
         return topThreeTeam.map( (driverData) => {
@@ -25,7 +33,6 @@ const Team = () => {
             return <TopThreeTeamEmployees driverData={driverData} key={i} rank={i} />
         })
     }
-
     const renderOthers = (otherEmployees) => {
         let i = 3
         return otherEmployees.map( (driverData) => {
@@ -42,22 +49,26 @@ const Team = () => {
         )
     } else {
 
-        let allData = [...queryData]
-        let topThree = allData.splice(0, 3)
-        let otherEmployees = allData.splice(3, allData.length)
+        let topThree = determineTopThree(queryData)
+        let others = determineOthers(queryData)
     
         return(
+            <ScrollView bounces={false}>
             <View style={TeamStyles.container}>
-                <Text>Team</Text>
+                <View style={{width: '100%'}}>
+                    <Text style={TeamStyles.leadersTitle}>Top Three Leaders</Text>
+                </View> 
                 <View style={TeamStyles.topThree}>
                     {renderTopThree(topThree)}
                 </View>
-                <View style={TeamStyles.remainders}>
-                    <ScrollView>
-                        {renderOthers(otherEmployees)}
-                    </ScrollView>
+                <View style={{width: '100%'}}>
+                    <Text style={TeamStyles.leadersTitle}>Employees</Text>
+                </View> 
+                <View contentContainerStyle={TeamStyles.remainders}>
+                        <View>{renderOthers(others)}</View>
                 </View>
             </View>
+            </ScrollView>
     
         )
     }

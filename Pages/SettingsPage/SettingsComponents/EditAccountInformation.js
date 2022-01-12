@@ -83,57 +83,7 @@ const EditAccountInformation = () => {
     return (
         <View style={EditAccountInformationStyles.container}>
             
-            <View style={EditAccountInformationStyles.InputsField}>
-                {/* <TextInput style={EditAccountInformationStyles.Input}
-                    placeholder={getUser.firstname}
-                    name='firstname'
-                    // style={}
-                    onChangeText={(firstname) => {
-                        handleInput('firstname', firstname)
-                    }}
-                    />
-                <TextInput style={EditAccountInformationStyles.Input}
-                    placeholder={getUser.lastname}
-                    name='lastname'
-                    // style={}
-                    onChangeText={(lastname) => {
-                        handleInput('lastname', lastname)
-                    }}
-                    />
-                <TextInput style={EditAccountInformationStyles.Input}
-                    placeholder={getUser.email}
-                    name='email'
-                    // style={}
-                    onChangeText={(email) => {
-                        handleInput('email', email)
-                    }}
-                    />
-                <TextInput style={EditAccountInformationStyles.Input}
-                    placeholder={getUser.phoneNumber}
-                    name='phoneNumber'
-                    // style={}
-                    onChangeText={(phoneNumber) => {
-                        handleInput('phoneNumber', phoneNumber)
-                    }}
-                    />
-                <TextInput style={EditAccountInformationStyles.Input}
-                    placeholder="password"
-                    name='password'
-                    // style={}
-                    onChangeText={(password) => {
-                        handleInput('password', password)
-                    }}
-                    />        
-                <TextInput style={EditAccountInformationStyles.Input}
-                    placeholder="password"
-                    name='confirmPassword'
-                    // style={}
-                    onChangeText={(confirmPassword) => {
-                        handleInput('confirmPassword', confirmPassword)
-                    }}
-                    />       */}
-
-                
+            <View style={EditAccountInformationStyles.InputsField}>                
                 <UpdateField value={getUser.firstname} field="firstname" handleInput={handleInput} />
                 <UpdateField value={getUser.lastname} field="lastname" handleInput={handleInput} />
                 <UpdateField value={getUser.email} field="email" handleInput={handleInput} />
@@ -142,11 +92,12 @@ const EditAccountInformation = () => {
                 <UpdateField value={getUser.passowrd} field="confirmPassword" handleInput={handleInput} />
 
 
-                <View style>
+                <View style={EditAccountInformationStyles.button}>
                     <Button 
-                        mode="outlined"
+                        mode="contained"
                         loading={buttonLoading}
                         style={ButtonStyles.logInButton}
+                        titleStyle={{color: "white"}}
                         onPress={() => {
                             handleButtonLoading()
                             handleSubmission(editData)

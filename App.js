@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import hidden from './hidden';
 import { Portal, Provider as PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -44,7 +44,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.52:5001/graphql'
+	uri: 'http://192.168.1.62:5001/graphql'
 });
 
 // Auth for token
@@ -77,8 +77,9 @@ export default function App() {
       <RecoilRoot>
         <ApolloProvider client={client}>
           <PaperProvider>
-
             <View style={AppStyles.container}>
+            
+             <View>
 
                 {loggedIn === false ? (<LandingPage handleLoggedIn={handleLoggedIn}/>) : null}
                 
@@ -129,8 +130,9 @@ export default function App() {
                   </Switch>
                 ) : null}
               <StatusBar style="auto" />
+              </View>
+            
             </View>
-
           </PaperProvider>
         </ApolloProvider>
       </RecoilRoot>

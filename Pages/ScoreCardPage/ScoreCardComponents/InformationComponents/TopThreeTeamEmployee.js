@@ -1,8 +1,22 @@
 import React from "react";
-import { View, Text, ScrollView } from 'react-native'
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { View, Text } from 'react-native'
+import { Card, Avatar } from 'react-native-paper';
+import { TeamStyles } from "../../../../Styles/ScoreCardStyles";
+import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 
-const TopThreeTeamEmployees = ({driverData, key}) => {
+
+const TopThreeTeamEmployees = ({driverData, rank}) => {
+
+    let color = ""
+    if (rank == 1){
+        color = 'green'
+    }
+    else if (rank == 2){
+        color = "yellow"
+    }
+    else if (rank == 3){
+        color = "red"
+    }
 
     let data = {...driverData}
 
@@ -13,27 +27,45 @@ const TopThreeTeamEmployees = ({driverData, key}) => {
         data.customer_delivery_feedback = 0
     }
 
+    data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
+    data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
+
     return(
-        <Card>
-            <View>
-                <Text>{data.firstname} {data.lastname}</Text>
+        <Card style={TeamStyles.topThreeEmployeeCard}>
+
+        <View style={TeamStyles.cardTop}>
+            <View style={TeamStyles.iconSpace}>
+            <Avatar.Image
+                source={SomeDudesFace}
+                size={80}
+              />
             </View>
-            <View>
-                <Text>Imagine an Icon was Here</Text>
-                {/* Icon Here */}
+            <View style={TeamStyles.nameSpace}>
+                <Text style={TeamStyles.employeeName}>{data.firstname} {data.lastname}</Text>
             </View>
-            <View>
-                {/* Color Bar */}
+        </View>
+        <View style={TeamStyles.cardBottm}>
+            <View style={{
+                width: '25%',
+                height: '100%',
+                borderBottomLeftRadius: 3,
+                backgroundColor: color,
+            }}>
+
             </View>
-            <View>
-                <Text>Defects</Text>
-                <Text>{data.defects}</Text>
+            <View style={TeamStyles.defect}>
+                <Text style={TeamStyles.statTitle}>Defects</Text>
+                <Text style={TeamStyles.statValue}>{data.defects}</Text>
             </View>
-            <View>
-                <Text>Customer Feedback</Text>
-                <Text>{data.customer_delivery_feedback}</Text>
+            <View style={TeamStyles.customerFeedback}>
+                <Text style={TeamStyles.statTitle}>Customer Feedback</Text>
+                <Text style={TeamStyles.statValue}>{data.netradyne}</Text>
             </View>
-        </Card>
+            <View style={TeamStyles.topRank}>
+                <Text style={{fontWeight: '800'}}>{rank}</Text>
+            </View>
+        </View>
+    </Card>
     )
 }
 export default TopThreeTeamEmployees

@@ -11,18 +11,6 @@ const CommunicationButton = () => {
         <View style={ScoreCardButtonStyles.container}>
             <Card onPress={() => {history.push("/communication")}}>
                 <Card.Cover source={require('../../../../assets/communication.png')} style={ScoreCardButtonStyles.image}/>
-                {/* <Card.Actions
-                    style={ScoreCardButtonStyles.button}
-                >
-                    <View>
-                        <Button
-                            
-                            color="black"
-                        >
-                        COMMUNICATION
-                        </Button>
-                    </View>
-                </Card.Actions> */}
                 <Card.Content>
                     <Title
                         style={ScoreCardButtonStyles.CardContent}

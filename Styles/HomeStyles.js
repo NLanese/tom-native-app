@@ -1,11 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from "react-native";
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const HomeStyles = StyleSheet.create({
 	container: {
 		display: 'flex',
 		height: '100%',
 		backgroundColor: '#F9f9f9',
-		height: '100%'
+		height: '100%',
 	},	
 	logo: {
 		resizeMode: 'stretch',
@@ -13,29 +16,53 @@ const HomeStyles = StyleSheet.create({
 		height: 85,
 		marginTop: 50
 	  }
-});
+})
 
 const ButtonBoxStyles = StyleSheet.create({
 	container: {
-		// marginTop: 10,
-		marginTop: 110,
+		backgroundColor: '#F9f9f9',
 		width: '100%',
+		height: '100%',
 		display: 'flex',
+	},
+
+	cardContainer:{
+		flex: 1,
+		marginBottom: maxWidth * 0.2,
+		width: maxWidth * 0.44,
+	},
+
+	card: {
+		position: 'relative',
+		display: 'flex',
+		height: maxHeight * 0.1,
+		width: '100%',
+	},
+
+	image: {
+		position: 'relative',
+		display: 'flex',
+		height: '80%',
+		width: "100%",
 	},
 	
 	rightContainer: {
-		flex: 1,
+		position: "absolute",
+		right: maxWidth * 0.03,
+		marginTop: maxHeight * 0.1,
+		width: maxWidth * 0.45,
+		height: maxHeight * 0.7,
+		display: 'flex',
 		justifyContent: 'flex-start',
-		alignItems: 'flex-end',
-		marginRight: 15,
-		marginLeft: 150,
 	},
 	leftContainer: {
-		flex: 1,
-		position: 'absolute',
-		justifyContent: 'flex-end',
-		alignItems: 'flex-start',
-		marginLeft: 15,
+		position: "absolute",
+		left: maxWidth * 0.03,
+		marginTop: maxHeight * 0.1,
+		width: maxWidth * 0.45,
+		height: maxHeight * 0.7,
+		display: 'flex',
+		justifyContent: 'flex-start',
 	},
 
 })

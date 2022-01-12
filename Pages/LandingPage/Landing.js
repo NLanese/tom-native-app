@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { LandingStyles } from '../../Styles/LandingPageStyles';
 import SignInBox from './LandingComponents/SignInBox'
 import Title from './LandingComponents/Title';
@@ -7,9 +7,12 @@ import Title from './LandingComponents/Title';
 const LandingPage = ({ handleLoggedIn }) => {
     return (
         <View style={LandingStyles.container}>
-            <Title />
-
-			<SignInBox handleLoggedIn={handleLoggedIn}/>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View>
+                    <Title />
+                    <SignInBox handleLoggedIn={handleLoggedIn}/>
+                </View>
+            </TouchableWithoutFeedback>
         </View>
     );
 };
