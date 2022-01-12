@@ -38,7 +38,7 @@ import Banner from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
-import ViewNotifications from './Global/BannerComponents/BellComponents/ViewNotifications'
+import Notifications from './Pages/NotificationPage/Notification'
 
 let state;
 
@@ -92,7 +92,7 @@ export default function App() {
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/shift_planner' component={ShiftPlanner} />
 
-                    <Route exact path='/view_notifications' component={ViewNotifications} />
+                    <Route exact path='/view_notifications' component={Notifications} />
 
                     <Route exact path='/leadership_notified' component={LeadershipNotified} />
                       <Route exact path='/police_contacted' component={PoliceContacted} />
