@@ -39,33 +39,50 @@ const ButtonBoxStyles = StyleSheet.create({
 		height: maxHeight * 0.1,
 		width: '100%',
 	},
-
-	image: {
-		position: 'relative',
-		display: 'flex',
-		height: '70%',
-		width: "100%",
-	},
 	
 	rightContainer: {
 		position: "absolute",
 		right: maxWidth * 0.03,
-		marginTop: maxHeight * 0.1,
+		marginTop: maxHeight * 0.05,
 		width: maxWidth * 0.45,
-		height: maxHeight * 0.7,
-		// borderWidth: 2
+		height: maxHeight * 0.8,
+		borderWidth: 2
 	},
+
 	leftContainer: {
 		position: "absolute",
 		left: maxWidth * 0.03,
-		marginTop: maxHeight * 0.1,
+		marginTop: maxHeight * 0.05,
 		width: maxWidth * 0.45,
-		height: maxHeight * 0.7,
-		// borderWidth: 2
+		height: maxHeight * 0.8,
+		borderWidth: 2
 	},
 
 	homeButtons:{
 		marginTop: maxWidth * 0.03,
+	},
+
+	clickable: {
+		height: maxHeight * 0.2,
+		width: '96%',
+		marginLeft: '9%',
+		marginBottom: maxHeight * 0.09
+	},
+
+	image: {
+		alignContent: 'center',
+		height: maxHeight * 0.18,
+		width: '82%',
+		borderWidth: 3
+	},
+
+	label: {
+		width: '100%',
+		// borderWidth: 2,
+		textAlign: 'center',
+		alignItems: 'center',
+		marginTop: 10,
+		left: -maxWidth * 0.035
 	}
 
 })

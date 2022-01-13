@@ -88,6 +88,19 @@ const Communication = () => {
         }
     }
 
+    const makeLowerCase = (word) => {
+        return word[0] + word.slice(1).toLowerCase()
+    }
+
+    const handleSendMessage = () => {
+        if (newMessage.length > 0){
+            console.log("Send Message Function in Progress!")
+        }
+        else{
+            console.log("No message")
+        }
+    }
+
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
             'keyboardDidShow',
@@ -121,6 +134,7 @@ const Communication = () => {
 
 
     if (!loading && !error && data) {
+
         return (
             <View style={CommunicationStyles.container}>
                 <View style={CommunicationStyles.threadLabel}>
@@ -131,7 +145,7 @@ const Communication = () => {
                         />
                     </View>
                     <View style={CommunicationStyles.labelName}>
-                        <Text>Admin {userData.adminFirstname} {userData.adminLastname}</Text>
+                        <Text>Admin {makeLowerCase(userData.adminFirstname)} {makeLowerCase(userData.adminLastname)}</Text>
                     </View>
                 </View >
                 <View style={CommunicationStyles.threadContainer}>
@@ -158,7 +172,7 @@ const Communication = () => {
                             setNewMessage(input)
                         }}
                     />
-                    <TouchableWithoutFeedback >
+                    <TouchableWithoutFeedback onPress={ () => handleSendMessage() }>
                         <View style={CommunicationStyles.sendButton}>
                             <Text style={{textAlign: 'center', fontWeight: '800'}}>
                                 Send
