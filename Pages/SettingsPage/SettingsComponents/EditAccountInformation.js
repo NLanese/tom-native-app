@@ -32,7 +32,6 @@ const EditAccountInformation = () => {
 
     const handleSubmission = async () => {
         let user = editData
-        console.log(user)
         let previousState = getUser
         if (user.passowrd){
             if (user.password.length > 7 && user.password != user.confirmPassword){

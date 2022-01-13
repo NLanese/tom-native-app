@@ -34,11 +34,6 @@ const ReportAnAccident = () => {
         }
     }, [data])
 
-    // useEffect(() => {
-    //     console.log(dataD)
-    //     console.log(errorD)
-    //     console.log(loadingD)
-    // }, [errorD, dataD, loadingD])
 
     return (
         <View style={ReportAnAccidentStyles.container}>
@@ -50,10 +45,6 @@ const ReportAnAccident = () => {
                         variables: {
                             name: accidentData.name,
                             location: accidentData.location
-                            // usingSafety: accidentData.usingSafety,
-                            // safetyFailed: accidentData.safetyFailed,
-                            // numberPackageCarried: parseInt(accidentData.numberPackageCarried),
-                            // safetyEquipmentUsed: accidentData.safetyEquipmentUsed
                         }
                     })
                 }}

@@ -48,7 +48,6 @@ const Bell = () => {
 
   if ( !loading && !error && data ){
     if (notified === true){
-      console.log("notifed!")
       return (
         <View>
           <Appbar.Action
@@ -80,7 +79,6 @@ const Bell = () => {
       )
     }
     else if (notified === false) {
-      console.log("No notifications!")
       return (
         <View>
           <Appbar.Action
@@ -100,7 +98,6 @@ const Bell = () => {
     }
   } 
   else {
-    console.log(data)
       return (
         <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
             <ActivityIndicator animating={true} size={24} color={'white'} style={{padding: 3, marginRight: 8}}/>

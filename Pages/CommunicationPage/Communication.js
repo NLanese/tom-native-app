@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, StyleSheet, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native'
-import { TextInput } from 'react-native-paper';
+import { TextInput, Avatar } from 'react-native-paper';
 import { useQuery } from "@apollo/client";
 import { userState } from '../../Recoil/atoms'
 import { useMutation } from '@apollo/client';
@@ -9,6 +9,8 @@ import { GETDRIVERMESSAGESWITHADMIN, SENDMESSAGETOADMIN } from "../../GraphQL/op
 import { ActivityIndicator } from "react-native-paper";
 import Message from "./CommunicationComponents.js/Message";
 import { CommunicationStyles } from "../../Styles/CommunicationStyles";
+import SomeDudesFace from '../../assets/SomeDudesFace.jpeg'
+
 
 
 let maxWidth= Dimensions.get('window').width
@@ -51,24 +53,23 @@ const Communication = () => {
             return StyleSheet.create({
                 height: determineInputHeight(message),
                 top: determineInputTop(message),
-                marginLeft: 5
             })
         }
         else{
             return StyleSheet.create({
                 height: maxHeight * 0.05,
-                top: maxHeight * .82,
+                top: -maxHeight * 0.0099,
                 marginLeft: 5,
             })
         }
     } 
 
     const determineInputHeight = (message) => {
-        if (message.length > 72){
-            return maxHeight * 0.12
-        }
-        else if (message.length > 108){
+        if (message.length > 168){
             return maxHeight * 0.2
+        }
+        else if (message.length > 69){
+            return maxHeight * 0.12
         }
         else{
             return maxHeight * 0.08
@@ -76,14 +77,14 @@ const Communication = () => {
     }
 
     const determineInputTop = (message) => {
-        if (message.length > 72){
-            return maxHeight * 0.36
+        if (message.length > 168){
+            return -maxHeight * 0.52
         }
-        else if (message.length > 102){
-            return maxHeight * 0.3
+        else if (message.length > 69){
+            return -maxHeight * 0.44
         }
         else{
-            return maxHeight * 0.41
+            return -maxHeight * 0.4 
         }
     }
 
@@ -122,10 +123,23 @@ const Communication = () => {
     if (!loading && !error && data) {
         return (
             <View style={CommunicationStyles.container}>
+                <View style={CommunicationStyles.threadLabel}>
+                    <View style={CommunicationStyles.labelAvatar}>
+                        <Avatar.Image
+                            source={SomeDudesFace}
+                            size={40}
+                        />
+                    </View>
+                    <View style={CommunicationStyles.labelName}>
+                        <Text>Admin {userData.adminFirstname} {userData.adminLastname}</Text>
+                    </View>
+                </View >
                 <View style={CommunicationStyles.threadContainer}>
-                    <ScrollView containerStyle={CommunicationStyles.thread}>
-                        {renderMessageFeed(messageData)}
-                    </ScrollView>
+                    <View style={CommunicationStyles.thread}>
+                        <ScrollView containerStyle={CommunicationStyles.thread}>
+                            {renderMessageFeed(messageData)}
+                        </ScrollView>
+                    </View>
                 </View>
                 <View style={determineKeyboardStyle(KeyboardVisible, newMessage)}>
                     <TextInput
@@ -135,7 +149,7 @@ const Communication = () => {
                         style={{
                             height: determineInputHeight(newMessage),
                             width: maxWidth - 60,
-                            marginRight: 5
+                            marginRight: 5,
                         }}
                         selectionColor='#24296f'
                         activeOutlineColor='#24296f'
@@ -146,7 +160,7 @@ const Communication = () => {
                     />
                     <TouchableWithoutFeedback >
                         <View style={CommunicationStyles.sendButton}>
-                            <Text>
+                            <Text style={{textAlign: 'center', fontWeight: '800'}}>
                                 Send
                             </Text>
                         </View>

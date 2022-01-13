@@ -30,8 +30,6 @@ const TopThreeTeamEmployees = ({driverData, rank}) => {
     data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
     data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
 
-    console.log(data)
-
     return(
         <Card style={TeamStyles.topThreeEmployeeCard}>
 
