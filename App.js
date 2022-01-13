@@ -47,7 +47,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'https://warm-retreat-50469.herokuapp.com//graphql'
+	uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
 
 // Auth for token
@@ -77,34 +77,40 @@ export default function App() {
 		setloggedIn(!loggedIn)
 	}
 
+  console.log(loggedIn)
+
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>
-      <RecoilRoot>
-        <PaperProvider>
-          <View style={AppStyles.container}>
-      <Stack.Navigator>
+        <RecoilRoot>
+          <PaperProvider>
+            <View style={AppStyles.container}>
 
+              {/* {loggedIn === true ? (<Banner handleLoggedIn={handleLoggedIn} />) : null} */}
+
+              <Stack.Navigator screenOptions={{headerShown: false}}>
           
-          
-          {loggedIn === false ? (<Stack.Screen name="/">
-          {props => <LandingPage handleLoggedIn={handleLoggedIn} />}
-          </Stack.Screen>) : null}
-          
-          {/* {loggedIn === true ? (
-            <Banner handleLoggedIn={handleLoggedIn}/>
-            ) : null} */}
+                {loggedIn === false ? (<Stack.Screen name="/">
+                  {props => <LandingPage handleLoggedIn={handleLoggedIn}  />}
+                </Stack.Screen>) : null}
             
-            {/* <Stack.Screen name="Home" component={Banner} /> */}
-            <Stack.Screen name="home">
-              {props => <Home {...props} />}
-            </Stack.Screen>
+                <Stack.Screen name="home">
+                  {props => <Home {...props} handleLoggedIn={handleLoggedIn} />}
+                </Stack.Screen>
+
+                <Stack.Screen name='analytics'>
+                  {props => <Analytics />}
+                </Stack.Screen>
+
+                <Stack.Screen name='score_card'>
+                  {props => <ScoreCard />}
+                </Stack.Screen>
             
-      </Stack.Navigator>
-              </View>
-            </PaperProvider>
-      </RecoilRoot>
-    </ApolloProvider>
+              </Stack.Navigator>
+            </View>
+          </PaperProvider>
+        </RecoilRoot>
+      </ApolloProvider>
     </NavigationContainer>
   );
 }

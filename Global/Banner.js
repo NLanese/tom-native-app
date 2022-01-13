@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
 import { Appbar, Avatar } from 'react-native-paper';
-import { useHistory } from 'react-router-native';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
@@ -13,7 +13,7 @@ const Banner = ({ handleLoggedIn }) => {
   const [visible, setVisible] = useState(false)
   const [notifiedVisible, setNotifiedVisible] = useState(false)
   const [website] = useRecoilState(websiteState)
-  let history = useHistory()
+  const navigation = useNavigation()
 
   const handleModal = () => {
     setVisible(!visible)
@@ -36,7 +36,7 @@ const Banner = ({ handleLoggedIn }) => {
             <Appbar.BackAction 
               color="white"
               size={20}
-              onPress={() => history.goBack()} 
+              onPress={() => navigation.goBack()} 
             />
 
             <Appbar.Content 
@@ -56,7 +56,7 @@ const Banner = ({ handleLoggedIn }) => {
               color='white'
               style={styles.actionBarHome}
               icon="home-variant"
-              onPress={() => history.push('/home')}
+              onPress={() => navigation.navigate('home')}
             />
 
             <Pressable onPress={() => handleNotifiedModal()}>

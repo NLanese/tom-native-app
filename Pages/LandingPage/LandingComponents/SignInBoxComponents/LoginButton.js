@@ -8,7 +8,6 @@ import { ButtonStyles } from '../../../../Styles/LandingPageStyles';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';
 import stateChange from '../../../../Hooks/handleToken'
-import { withNavigation } from 'react-navigation'
 import { useNavigation } from '@react-navigation/native';
 
 const LoginButton = ({ userData, handleLoggedIn }) => {
@@ -16,7 +15,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 		useMutation(LOGIN);
 	const [buttonLoading, setButtonLoading] = useState(false)
 	const [user, setUser] = useRecoilState(userState);
-	let history = useHistory();
 	const navigation = useNavigation()
 
 	useEffect( async () => {
@@ -24,7 +22,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 			await setUser(data.signinDriver)
 			await stateChange(data.signinDriver.token);
 			await handleLoggedIn()
-			// await navigation.navigate("home");
+			await navigation.navigate("home");
 		}
 	}, [data])
 
@@ -41,14 +39,13 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 					loading={buttonLoading} 
 					style={ButtonStyles.logInButton}
 					onPress={ async () => {
-						navigation.navigate("home")
-						// await handleButtonLoading()
-						// await login({
-						// 	variables: {
-						// 		email: userData.email,
-						// 		password: userData.password,
-						// 	},
-						// });
+						await handleButtonLoading()
+						await login({
+							variables: {
+								email: userData.email,
+								password: userData.password,
+							},
+						});
 					}}
 				>
 						Login
