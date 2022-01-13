@@ -4,7 +4,7 @@ import { LandingStyles } from '../../Styles/LandingPageStyles';
 import SignInBox from './LandingComponents/SignInBox'
 import Title from './LandingComponents/Title';
 
-const LandingPage = ({ handleLoggedIn }) => {
+const LandingPage = ({ handleLoggedIn, navigation }) => {
     return (
         <View style={LandingStyles.container}>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
