@@ -1,9 +1,8 @@
 import React from "react"
 import { useHistory } from 'react-router-native';
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 import { ButtonBox } from "../../../../Styles/ScoreCardStyles";
 
 const QualityButton = () => {
@@ -16,6 +15,10 @@ const QualityButton = () => {
 	}
 
     return (
+        <TouchableOpacity onPress={() => {
+            handleButtonLoading()
+            history.push("/team")
+        }}>
         <View style={ButtonBox.container}>
             <Button 
                 mode="outline"
@@ -30,6 +33,7 @@ const QualityButton = () => {
                 <Text style={ButtonBox.text}>Team</Text>
             </Button>
         </View>
+        </TouchableOpacity>
     )
 }
 

@@ -20,7 +20,6 @@ const SignUpButton = () => {
 	const handleInput = (id, information) => {
 		const input = { ...userData };
 		input[id] = information;
-		console.log(information)
 		setUserData(input);
 	};
 

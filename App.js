@@ -1,9 +1,9 @@
 import "react-native-gesture-handler"
 import React, { useState } from 'react';
-import hidden from './hidden';
-import { Portal, Provider as PaperProvider } from 'react-native-paper';
+import * as Sharing from 'expo-sharing';
+import { Provider as PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
-import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View } from 'react-native';
 import { AppStyles } from './Styles/AppStyles';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
 import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
-import { NativeRouter, Route, Link, Switch,	NativeModules } from 'react-router-native';
+import { NativeRouter, Route, Switch } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
