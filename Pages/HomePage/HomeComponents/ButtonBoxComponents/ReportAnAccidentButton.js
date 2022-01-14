@@ -6,7 +6,7 @@ import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 const ReportAnAccidentButton = () => {
-    let history = useHistory()
+    // let history = useHistory()
     let maxWidth= Dimensions.get('window').width
     let maxHeight= Dimensions.get('window').height
     const navigation = useNavigation()

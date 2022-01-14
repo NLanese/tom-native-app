@@ -10,6 +10,7 @@ import { ActivityIndicator } from "react-native-paper";
 import Message from "./CommunicationComponents.js/Message";
 import { CommunicationStyles } from "../../Styles/CommunicationStyles";
 import SomeDudesFace from '../../assets/SomeDudesFace.jpeg'
+import Banner from '../../Global/Banner'
 
 
 
@@ -92,15 +93,21 @@ const Communication = () => {
         return word[0] + word.slice(1).toLowerCase()
     }
 
-    const handleSendMessage = () => {
+    const handleSendMessage = async (msg) => {
         if (newMessage.length > 0){
-            console.log("Send Message Function in Progress!")
+            console.log(msg)
+            await sendMessage({
+                variables: {
+                    content: msg
+                }
+            })
         }
         else{
             console.log("No message")
         }
     }
 
+    // KEYBOAARD SETTINGS
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
             'keyboardDidShow',
@@ -126,16 +133,20 @@ const Communication = () => {
         }, 500)
     }, [])
     
+
     useEffect(() => {
         if (!loading && data) {
+            console.log(data)
             setMessageData(data.getMessageWithAdmin)
         }
-    }, [refresh])
+    }, [refresh, data])
 
 
     if (!loading && !error && data) {
 
         return (
+        <View>
+            <Banner />
             <View style={CommunicationStyles.container}>
                 <View style={CommunicationStyles.threadLabel}>
                     <View style={CommunicationStyles.labelAvatar}>
@@ -172,7 +183,7 @@ const Communication = () => {
                             setNewMessage(input)
                         }}
                     />
-                    <TouchableWithoutFeedback onPress={ () => handleSendMessage() }>
+                    <TouchableWithoutFeedback onPress={ () => handleSendMessage(newMessage) }>
                         <View style={CommunicationStyles.sendButton}>
                             <Text style={{textAlign: 'center', fontWeight: '800'}}>
                                 Send
@@ -181,6 +192,7 @@ const Communication = () => {
                     </TouchableWithoutFeedback>
                 </View>
             </View>
+        </View>
         )
     } else {
         return (

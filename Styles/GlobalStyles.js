@@ -1,4 +1,9 @@
-import { StyleSheet } from 'react-native';
+//GlobalStyles.js
+
+import { StyleSheet, Dimensions } from "react-native";
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const DropdownStyles = StyleSheet.create({
     container: {
@@ -29,16 +34,35 @@ const DropdownStyles = StyleSheet.create({
     },
     accountInformationButton: {
         height: 50,
-		display: 'flex',
-		justifyContent: 'center',
-		backgroundColor: 'white',
-		marginTop: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        marginTop: 5,
         height: 30
     },
     accountInformationButtonText: {
         color: 'black',
         fontSize: 10,
-    }
+    },
+    notificationLabel:{
+        fontSize: 12,
+    },
+    notificationContent:{
+        flex: 1,
+    },
+    smallDivider: {
+        borderBottomColor: 'black',
+        borderBottomWidth: 0.75,
+        marginTop: 5,
+    },
+    notificationBox: {
+        // borderWidth: 0.5,
+        backgroundColor: '#E2E8F1',
+        borderRadius: 10,
+        padding: 4,
+        height: maxHeight * 0.12,
+        marginTop: maxHeight * 0.006
+    },
 })
 
 export {
