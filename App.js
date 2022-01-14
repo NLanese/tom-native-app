@@ -47,7 +47,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'https://warm-retreat-50469.herokuapp.com//graphql'
+	uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
 
 // Auth for token
@@ -80,31 +80,85 @@ export default function App() {
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>
-      <RecoilRoot>
-        <PaperProvider>
-          <View style={AppStyles.container}>
-      <Stack.Navigator>
+        <RecoilRoot>
+          <PaperProvider>
+            <View style={AppStyles.container}>
 
+              {/* {loggedIn === true ? (<Banner handleLoggedIn={handleLoggedIn} />) : null} */}
+
+              <Stack.Navigator screenOptions={{headerShown: false}}>
           
-          
-          {loggedIn === false ? (<Stack.Screen name="/">
-          {props => <LandingPage handleLoggedIn={handleLoggedIn} />}
-          </Stack.Screen>) : null}
-          
-          {/* {loggedIn === true ? (
-            <Banner handleLoggedIn={handleLoggedIn}/>
-            ) : null} */}
+                {loggedIn === false ? (
+                <Stack.Screen name="/">
+                  {props => <LandingPage handleLoggedIn={handleLoggedIn}  />}
+                </Stack.Screen>
+                ) : null}
             
-            {/* <Stack.Screen name="Home" component={Banner} /> */}
-            <Stack.Screen name="home">
-              {props => <Home {...props} />}
-            </Stack.Screen>
+                <Stack.Screen name="home">
+                  {props => <Home {...props} handleLoggedIn={handleLoggedIn} />}
+                </Stack.Screen>
+
+                <Stack.Screen name='analytics'>
+                  {props => <Analytics />}
+                </Stack.Screen>
+
+                <Stack.Screen name='score_card'>
+                  {props => <ScoreCard />}
+                </Stack.Screen>
+
+                <Stack.Screen name='account_information'>
+                  {props => <AccountInformation />}
+                </Stack.Screen>
+
+                <Stack.Screen name='messages'>
+                  {props => <Communication />}
+                </Stack.Screen>
+
+                <Stack.Screen name='admin_messages'>
+                  {props => <Communication />}
+                </Stack.Screen>
+
+                <Stack.Screen name='shift_planner'>
+                  {props => <ShiftPlanner />}
+                </Stack.Screen>
+
+                <Stack.Screen name='settings'>
+                  {props => <Settings />}
+                </Stack.Screen>
+
+                <Stack.Screen name='reporting'>
+                  {props => <Reporting />}
+                </Stack.Screen>
+
+                <Stack.Screen name='view_notifications'>
+                  {props => <Notifications />}
+                </Stack.Screen>
+
+                <Stack.Screen name='leadership_notified'>
+                  {props => <LeadershipNotified />}
+                </Stack.Screen>
+
+                <Stack.Screen name='productivity'>
+                  {props => <Productivity />}
+                </Stack.Screen>
+
+                <Stack.Screen name='quality'>
+                  {props => <Quality />}
+                </Stack.Screen>
+
+                <Stack.Screen name='safety_and_compliance'>
+                  {props => <SafetyAndCompliance />}
+                </Stack.Screen>
+
+                <Stack.Screen name='team'>
+                  {props => <Team />}
+                </Stack.Screen>
             
-      </Stack.Navigator>
-              </View>
-            </PaperProvider>
-      </RecoilRoot>
-    </ApolloProvider>
+              </Stack.Navigator>
+            </View>
+          </PaperProvider>
+        </RecoilRoot>
+      </ApolloProvider>
     </NavigationContainer>
   );
 }

@@ -1,13 +1,12 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 import { useState } from "react";
 import { ButtonBox } from "../../../../Styles/ScoreCardStyles";
 
 const QualityButton = () => {
-    let history = useHistory()
-
+    const navigation = useNavigation()
 
     const [buttonLoading, setButtonLoading] = useState(false)
 	const handleButtonLoading = async () => {
@@ -17,7 +16,7 @@ const QualityButton = () => {
     return (
         <TouchableOpacity onPress={() => {
             handleButtonLoading()
-            history.push("/team")
+            navigation.navigate("team")
         }}>
         <View style={ButtonBox.container}>
             <Button 
@@ -27,7 +26,7 @@ const QualityButton = () => {
                 titleStyle={{color: "black"}}
                 onPress={() => {
                     handleButtonLoading()
-                    history.push("/team")
+                    navigation.navigate("team")
                 }}
             >
                 <Text style={ButtonBox.text}>Team</Text>

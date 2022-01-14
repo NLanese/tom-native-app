@@ -6,6 +6,7 @@ import EmployeeSafetyAndCompliance from "./InformationComponents/EmployeeSafetyA
 import { SafetyAndComplianceStyles } from "../../../Styles/ScoreCardStyles";
 import { ActivityIndicator } from "react-native-paper";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
+import Banner from "../../../Global/Banner";
 
 const SafetyAndCompliance =  () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE)
@@ -49,6 +50,7 @@ const SafetyAndCompliance =  () => {
         
         return(
             <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
+            <Banner />
             <ScrollView bounces={false}>
             <View style={SafetyAndComplianceStyles.container}>
                 <View style={{width: '100%'}}>

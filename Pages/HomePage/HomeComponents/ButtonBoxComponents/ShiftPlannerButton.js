@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, Image, Text } from 'react-native'
 import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { Button, Card, Title } from 'react-native-paper';
@@ -8,7 +8,7 @@ import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 
 const ShiftPlannerButton = () => {
-    let history = useHistory()
+    const navigation = useNavigation()
 
     return (
         // <View style={ButtonBoxStyles.cardContainer}>
@@ -24,7 +24,7 @@ const ShiftPlannerButton = () => {
         //     </Card>
         // </View>
         <View style={ButtonBoxStyles.clickable}>
-            <TouchableOpacity onPress={() => {history.push("/shift_planner")}}>
+            <TouchableOpacity onPress={() => {navigation.navigate("shift_planner")}}>
                 <View >
                     <Image 
                         style={ButtonBoxStyles.image}

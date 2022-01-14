@@ -4,8 +4,9 @@ import { useRecoilState } from 'recoil';
 import { View } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles } from '../../Styles/HomeStyles';
+import Banner from '../../Global/Banner';
 
-const Home = () => {
+const Home = ({ handleLoggedIn }) => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     useEffect(() => {
@@ -14,6 +15,7 @@ const Home = () => {
 
     return (
         <View style={HomeStyles.container}> 
+            <Banner handleLoggedIn={handleLoggedIn}/>
             <ButtonBox />
         </View>
     )

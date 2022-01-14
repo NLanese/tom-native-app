@@ -7,6 +7,8 @@ import ReportAnAccidentButton from './ButtonBoxComponents/ReportAnAccidentButton
 import ProductivityButton from './ButtonBoxComponents/ProductivityButton';
 import CommunicationButton from './ButtonBoxComponents/CommunicationButton';
 import SettingsButton from './ButtonBoxComponents/SettingsButton';
+import Communication from '../../CommunicationPage/Communication';
+
 
 const ButtonBox = () => {
 

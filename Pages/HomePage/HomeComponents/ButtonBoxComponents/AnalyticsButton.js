@@ -1,15 +1,15 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from '@react-navigation/native';
 import { View, Button } from 'react-native'
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 const AnalyticsButton = () => {
-    let history = useHistory()
+    const navigation = useNavigation()
 
     return (
         <View style={ButtonBoxStyles.AnalyticsButton}>
             <Button 
-                onPress={() => {history.push("/analytics")}}
+                onPress={() => {navigation.navigate("analytics")}}
 				title='Analytics'
 				color='#ffffff'
 				accessibilityLabel='Analytics'

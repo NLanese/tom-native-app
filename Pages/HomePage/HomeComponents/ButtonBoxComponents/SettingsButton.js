@@ -1,18 +1,17 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, Image, Text } from 'react-native'
 import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { Button, Card } from 'react-native-paper';
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 
-
 const SettingsButton = () => {
-    let history = useHistory()
+    const navigation = useNavigation()
 
     return (
         <View style={ButtonBoxStyles.clickable}>
-        <TouchableOpacity onPress={() => {history.push("/settings")}}>
+        <TouchableOpacity onPress={() => {navigation.navigate("settings")}}>
             <View>
                 <Image 
                     style={ButtonBoxStyles.image}
