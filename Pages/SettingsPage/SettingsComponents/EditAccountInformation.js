@@ -4,16 +4,17 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
-import { useHistory } from "react-router-native";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text } from 'react-native'
 import { Button } from 'react-native-paper';
 import { EditAccountInformationStyles } from "../../../Styles/SettingStyles";
 import { ButtonStyles } from "../../../Styles/LandingPageStyles";
 import UpdateField from "./InformationComponents/UpdateField";
+import Banner from "../../../Global/Banner";
 
 
 const EditAccountInformation = () => {
-    let history = useHistory()
+    const navigation = useNavigation()
     const [updateDriver, { loading: loading, error: error, data: data }] = useMutation(UPDATEDRIVER);
     const [getUser, setUser] = useRecoilState(userState)
     const [editData, setEditData] = useState({})
@@ -76,11 +77,12 @@ const EditAccountInformation = () => {
                 }
             })
         }
-        await history.push('/account_information')
+        await navigation.navigate('account_information')
     }
 
     return (
         <View style={EditAccountInformationStyles.container}>
+            <Banner />
             
             <View style={EditAccountInformationStyles.InputsField}>                
                 <UpdateField value={getUser.firstname} field="firstname" handleInput={handleInput} />

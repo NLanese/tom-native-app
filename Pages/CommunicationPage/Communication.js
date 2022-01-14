@@ -12,8 +12,6 @@ import { CommunicationStyles } from "../../Styles/CommunicationStyles";
 import SomeDudesFace from '../../assets/SomeDudesFace.jpeg'
 import Banner from '../../Global/Banner'
 
-
-
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
@@ -143,11 +141,12 @@ const Communication = () => {
 
 
     if (!loading && !error && data) {
-
         return (
         <View>
             <Banner />
             <View style={CommunicationStyles.container}>
+                <Banner />
+
                 <View style={CommunicationStyles.threadLabel}>
                     <View style={CommunicationStyles.labelAvatar}>
                         <Avatar.Image
