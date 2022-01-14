@@ -17,7 +17,7 @@ let maxHeight= Dimensions.get('window').height
 
 const Communication = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERMESSAGESWITHADMIN)
-    const [sendMessage, { loadingMsg: loadingMsg, errorMsg: errorMsg, dataMsg: dataMsg }] =
+    const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] =
         useMutation(SENDMESSAGETOADMIN);
 
     const [refresh, setRefresh] = useState(false)
@@ -25,6 +25,12 @@ const Communication = () => {
     const [userData] = useRecoilState(userState)
     const [newMessage, setNewMessage] = useState("")
     const [KeyboardVisible, setKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        if (!loadingMsg && dataMsg) {
+            refetch()
+        }
+    }, [dataMsg])
 
     
     const renderMessageFeed = (messageData) => {
@@ -93,7 +99,6 @@ const Communication = () => {
 
     const handleSendMessage = async (msg) => {
         if (newMessage.length > 0){
-            console.log(msg)
             await sendMessage({
                 variables: {
                     content: msg
@@ -134,7 +139,6 @@ const Communication = () => {
 
     useEffect(() => {
         if (!loading && data) {
-            console.log(data)
             setMessageData(data.getMessageWithAdmin)
         }
     }, [refresh, data])
