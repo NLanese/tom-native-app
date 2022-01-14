@@ -27,6 +27,8 @@ const Communication = () => {
     const [userData] = useRecoilState(userState)
     const [newMessage, setNewMessage] = useState("")
     const [KeyboardVisible, setKeyboardVisible] = useState(false);
+    const scrollViewRef = useRef();
+
 
     useEffect(() => {
         if (!loadingMsg && dataMsg) {
@@ -81,7 +83,7 @@ const Communication = () => {
         if (message.length > 168){
             return maxHeight * 0.2
         }
-        else if (message.length > 69){
+        else if (message.length > 61){
             return maxHeight * 0.12
         }
         else{
@@ -93,7 +95,7 @@ const Communication = () => {
         if (message.length > 168){
             return -maxHeight * 0.52
         }
-        else if (message.length > 69){
+        else if (message.length > 61){
             return -maxHeight * 0.44
         }
         else{
@@ -153,7 +155,6 @@ const Communication = () => {
 
 
     if (!loading && !error && data) {
-        const scrollViewRef = useRef();
         return (
         <View>
             <Banner />
