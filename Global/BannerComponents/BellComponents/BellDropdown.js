@@ -53,7 +53,8 @@ const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }
             <Portal>
                 <Modal visible={notifiedVisible} onDismiss={handleNotifiedModal} contentContainerStyle={DropdownStyles.container}>
                     <View>
-                        <Text>Notifications</Text>
+                        <Text style={{textAlign: 'center'}}>Notifications</Text>
+                        <View style={DropdownStyles.divider}/>
                         {notifiedMessages ? renderNotifications(notifiedMessages) : null }
                     </View>
 

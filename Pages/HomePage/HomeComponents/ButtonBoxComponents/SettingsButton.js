@@ -18,7 +18,7 @@ const SettingsButton = () => {
                     source={require('../../../../assets/settings-icon.jpeg')}/>
             </View> 
             <View style={ButtonBoxStyles.label}>
-                <Text style={{textAlign: 'center'}}>Communication</Text>
+                <Text style={{textAlign: 'center'}}>Settings</Text>
             </View>
         </TouchableOpacity>
     </View>

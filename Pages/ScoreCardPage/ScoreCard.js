@@ -7,6 +7,9 @@ import SafetyAndComplianceButton from "./ScoreCardComponents/ButtonboxComponents
 import TeamButton from "./ScoreCardComponents/ButtonboxComponents/TeamButton";
 import Banner from "../../Global/Banner";
 
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
+
 const ScoreCard = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
@@ -20,8 +23,9 @@ const ScoreCard = () => {
 
     return (
         <View style={{alignItems: 'center', backgroundColor: '#f9f9f9', height: '100%'}}> 
+        <View style={{ width: maxWidth}}>
             <Banner />
-
+        </View>
             <View style={{marginBottom: spaces, marginTop: spaces}}>
                 <QualityButton />
             </View>  
