@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { View, Text, ScrollView, StyleSheet, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { TextInput, Avatar } from 'react-native-paper';
 import { useQuery } from "@apollo/client";
@@ -39,7 +39,7 @@ const Communication = () => {
         if (Object.keys(messageData) < 1){
             return null
         }else{
-            return messageData.map( (message, key) => {
+            const messages = messageData.map( (message, key) => {
                 let propFrom = ""
                 if (message.from == userData.firstname){
                     propFrom = "You"
@@ -52,6 +52,12 @@ const Communication = () => {
                     <Message from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
                 )
             })
+            return (<View> 
+                        <View>
+                        {messages}
+                        </View>
+                        <View style={{height: 50}}/>
+                    </View>)
         }
     }
 
@@ -147,7 +153,7 @@ const Communication = () => {
 
 
     if (!loading && !error && data) {
-
+        const scrollViewRef = useRef();
         return (
         <View>
             <Banner />
@@ -165,7 +171,12 @@ const Communication = () => {
                 </View >
                 <View style={CommunicationStyles.threadContainer}>
                     <View style={CommunicationStyles.thread}>
-                        <ScrollView containerStyle={CommunicationStyles.thread}>
+                        <ScrollView 
+                            containerStyle={CommunicationStyles.thread}
+                            ref={scrollViewRef}
+                            onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+                            // onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})}
+                        >
                             {renderMessageFeed(messageData)}
                         </ScrollView>
                     </View>
