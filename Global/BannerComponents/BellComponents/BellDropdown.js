@@ -27,12 +27,13 @@ const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }
                 <View>
                     {topThree.map((message) => {
                         if (message.type === 'message') {
-                            let preview = message.content.slice(0, 10)
+                            let preview = message.content
 
                             return (
-                                <View key={message.id}>
-                                    <Text>You have a new message from: {message.from}</Text>
-                                    <Text>Preview: {preview}</Text>
+                                <View key={message.id} style={DropdownStyles.notificationBox}>
+                                    <Text>Message from: {message.from}</Text>
+                                    <View style={DropdownStyles.smallDivider} />
+                                    <Text>{preview}</Text>
                                 </View>
                             )
                         }
@@ -49,15 +50,14 @@ const BellDropdown = ({ notifiedVisible, handleNotifiedModal, notifiedMessages }
     }
 
     return (
-        <View>
+        <View style={{width: '110%', alignItems: 'center'}}>
             <Portal>
                 <Modal visible={notifiedVisible} onDismiss={handleNotifiedModal} contentContainerStyle={DropdownStyles.container}>
-                    <View>
+                    <View >
                         <Text style={{textAlign: 'center'}}>Notifications</Text>
                         <View style={DropdownStyles.divider}/>
                         {notifiedMessages ? renderNotifications(notifiedMessages) : null }
                     </View>
-
                     <View>
                         <ViewNotificationsButtom  handleNotifiedModal={handleNotifiedModal}/>
                     </View>
