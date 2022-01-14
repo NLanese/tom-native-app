@@ -10,7 +10,7 @@ const SafetyAndComplianceButton = () => {
 
     const [buttonLoading, setButtonLoading] = useState(false)
 	const handleButtonLoading = async () => {
-		await setButtonLoading(!buttonLoading)
+		// await setButtonLoading(!buttonLoading)
 	}
 
     return (
