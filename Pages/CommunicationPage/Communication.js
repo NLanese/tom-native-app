@@ -83,7 +83,7 @@ const Communication = () => {
         if (message.length > 168){
             return maxHeight * 0.2
         }
-        else if (message.length > 61){
+        else if (message.length > 69){
             return maxHeight * 0.12
         }
         else{
@@ -114,6 +114,7 @@ const Communication = () => {
                     content: msg
                 }
             })
+            await setNewMessage("")
         }
         else{
             console.log("No message")
@@ -198,6 +199,7 @@ const Communication = () => {
                         onChangeText={(input) => {
                             setNewMessage(input)
                         }}
+                        value={newMessage}
                     />
                     <TouchableWithoutFeedback onPress={ () => handleSendMessage(newMessage) }>
                         <View style={CommunicationStyles.sendButton}>

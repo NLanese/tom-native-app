@@ -47,9 +47,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql'
-
-	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
+	// uri: 'http://192.168.1.62:5001/graphql'
+	uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
 
 // Auth for token
