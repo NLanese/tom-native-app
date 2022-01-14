@@ -1,12 +1,12 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, Image, Text } from 'react-native'
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 const ReportAnAccidentButton = () => {
-    let history = useHistory()
+    const navigation = useNavigation()
 
     return (
         // <View style={ButtonBoxStyles.cardContainer}>
@@ -22,7 +22,7 @@ const ReportAnAccidentButton = () => {
         //     </Card>
         // </View>
     <View style={ButtonBoxStyles.clickable}>
-        <TouchableOpacity onPress={() => {history.push("/leadership_notified")}}>
+        <TouchableOpacity onPress={() => {navigation.navigate("leadership_notified")}}>
             <View>
                 <Image 
                     style={ButtonBoxStyles.image}

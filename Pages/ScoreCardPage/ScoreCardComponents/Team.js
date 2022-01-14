@@ -6,6 +6,7 @@ import TeamEmployees from "./InformationComponents/TeamEmployee";
 import TopThreeTeamEmployees from "./InformationComponents/TopThreeTeamEmployee";
 import { ActivityIndicator } from "react-native-paper";
 import { TeamStyles } from "../../../Styles/ScoreCardStyles";
+import Banner from "../../../Global/Banner";
 
 const Team = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORDSPFORTEAM)
@@ -54,6 +55,8 @@ const Team = () => {
     
         return(
             <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
+            <Banner />
+
             <ScrollView bounces={false}>
             <View style={TeamStyles.container}>
                 <View style={{width: '100%'}}>

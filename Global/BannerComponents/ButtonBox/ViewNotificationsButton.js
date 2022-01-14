@@ -1,16 +1,16 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native"
 import { View, Button } from 'react-native'
 
 const ViewNotificationsButton = ({ handleNotifiedModal }) => {
-    let history = useHistory()
+    const navigation = useNavigation()
 
     return (
         <View>
             <Button 
                 onPress={() => {
                     handleNotifiedModal()
-                    history.push("/view_notifications")
+                    navigation.navigate("view_notifications")
                 }}
 				title='View Notifications'
 				color='black'

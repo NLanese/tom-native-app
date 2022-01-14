@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil'
 import QualityButton from "./ScoreCardComponents/ButtonboxComponents/QualityButton";
 import SafetyAndComplianceButton from "./ScoreCardComponents/ButtonboxComponents/SafetyAndComplianceButton";
 import TeamButton from "./ScoreCardComponents/ButtonboxComponents/TeamButton";
+import Banner from "../../Global/Banner";
 
 const ScoreCard = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
@@ -18,7 +19,9 @@ const ScoreCard = () => {
 
 
     return (
-        <View style={{alignItems: 'center', backgroundColor: '#f9f9f9', height: '100%'}}>          
+        <View style={{alignItems: 'center', backgroundColor: '#f9f9f9', height: '100%'}}> 
+            <Banner />
+
             <View style={{marginBottom: spaces, marginTop: spaces}}>
                 <QualityButton />
             </View>  

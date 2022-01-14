@@ -4,18 +4,18 @@ import { userState } from '../../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
 import { Button } from 'react-native-paper';
 import { DropdownStyles } from '../../../Styles/GlobalStyles';
-import { useHistory } from 'react-router-native';
+import { useNavigation } from '@react-navigation/native';
 
 const SignOutButton = ({ handleModal, handleLoggedIn }) => {
     const [userData, setUserData] = useRecoilState(userState)
     const [buttonLoading, setButtonLoading] = useState(false)
-    let history = useHistory()
+    const navigation = useNavigation()
 
     const handleSubmit = async () => {
         await setButtonLoading(true)
         await setUserData({})
         await handleLoggedIn(false)
-        await history.push('/')
+        await navigation.navigate('/')
         await handleModal()
     }
 
