@@ -14,7 +14,7 @@ const Message = ({from, content, dateSent}) => {
     let hour = time.split(":")[0]
     let min = time.split(":")[1]
     let am_pm = "AM"
-    hour = parseInt(hour, 10)
+    hour = parseInt(hour, 10) - 5
     if (hour > 12){
         hour = hour - 12
         am_pm = "PM"
