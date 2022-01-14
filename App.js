@@ -153,6 +153,18 @@ export default function App() {
                 <Stack.Screen name='team'>
                   {props => <Team />}
                 </Stack.Screen>
+
+                <Stack.Screen name='view_accidents'>
+                  {props => <ViewAccidents />}
+                </Stack.Screen>
+
+                <Stack.Screen name='edit_account_information'>
+                  {props => <EditAccountInformation />}
+                </Stack.Screen>
+
+                <Stack.Screen name='account_settings'>
+                  {props => <AccountSettings />}
+                </Stack.Screen>
             
               </Stack.Navigator>
             </View>
