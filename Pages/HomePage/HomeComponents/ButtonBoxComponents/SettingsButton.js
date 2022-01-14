@@ -1,16 +1,15 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native";
 import { View } from 'react-native'
 import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { Button, Card } from 'react-native-paper';
 
-
 const SettingsButton = () => {
-    let history = useHistory()
+    const navigation = useNavigation()
 
     return (
         <View style={ScoreCardStyles.container}>
-            <Card onPress={() => {history.push("/settings")}}>
+            <Card onPress={() => {navigation.navigate("settings")}}>
                 <Card.Cover source={require('../../../../assets/settings.png')} style={ScoreCardStyles.image}/>
                 <Card.Actions
                     style={ScoreCardStyles.button}

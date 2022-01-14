@@ -24,7 +24,7 @@ const TopThreeTeamEmployees = ({driverData, rank}) => {
         data.defects = 0
     }
     if (data.customer_delivery_feedback == null){
-        data.customer_delivery_feedback = 0
+        data.customer_delivery_feedback = "No Reviews"
     }
 
     data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
@@ -59,7 +59,7 @@ const TopThreeTeamEmployees = ({driverData, rank}) => {
             </View>
             <View style={TeamStyles.customerFeedback}>
                 <Text style={TeamStyles.statTitle}>Customer Feedback</Text>
-                <Text style={TeamStyles.statValue}>{data.netradyne}</Text>
+                <Text style={TeamStyles.statValue}>{data.customer_delivery_feedback}</Text>
             </View>
             <View style={TeamStyles.topRank}>
                 <Text style={{fontWeight: '800'}}>{rank}</Text>

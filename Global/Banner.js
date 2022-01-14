@@ -34,7 +34,7 @@ const Banner = ({ handleLoggedIn }) => {
           <View style={styles.leftIcons}>
 
             <Appbar.BackAction 
-              color="white"
+              color="black"
               size={20}
               onPress={() => navigation.goBack()} 
             />
@@ -43,6 +43,7 @@ const Banner = ({ handleLoggedIn }) => {
               top={10}
               left={-15}
               title={website} 
+              color='black'
               style={styles.title}
             />
           </View>
@@ -53,7 +54,7 @@ const Banner = ({ handleLoggedIn }) => {
           <View style={styles.rightIcons}>
 
           <Appbar.Action
-              color='white'
+              color='black'
               style={styles.actionBarHome}
               icon="home-variant"
               onPress={() => navigation.navigate('home')}
@@ -88,13 +89,14 @@ const styles = StyleSheet.create({
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: '#570de4',
+      backgroundColor: '#f9f9f9',
       display: 'flex',
     },
 
     leftIcons: {
       width: 245,
       flexDirection: 'row',
+      color: 'black'
       // backgroundColor: "red"
     },
 
@@ -126,7 +128,7 @@ const styles = StyleSheet.create({
     actionBar: {
       position: 'relative',
       top: 0,
-      color: '#570de4', 
+      color: 'silver', 
       left: -3
     },
 
@@ -147,11 +149,12 @@ const styles = StyleSheet.create({
       position: 'relative',
       top: 0,
       height: 20,
-      backgroundColor: '#570de4',
+      backgroundColor: '#f9f9f9',
     },
 
     title: {
-      top: '2%'
+      top: '2%',
+      color: 'black'
     },
 
     test: {

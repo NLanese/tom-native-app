@@ -1,14 +1,12 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
-import { View, Text } from 'react-native'
+import { useNavigation } from "@react-navigation/native";
+import { View, Text, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 import { ButtonBox } from "../../../../Styles/ScoreCardStyles";
 
 const QualityButton = () => {
-    let history = useHistory()
-
+    const navigation = useNavigation()
 
     const [buttonLoading, setButtonLoading] = useState(false)
 	const handleButtonLoading = async () => {
@@ -16,20 +14,27 @@ const QualityButton = () => {
 	}
 
     return (
+
+        <TouchableOpacity onPress={() => {
+            handleButtonLoading()
+            navigation.navigate("quality")
+        }}>
         <View style={ButtonBox.container}>
             <Button 
+                height={169}
                 mode="outline"
                 loading={buttonLoading}
                 style={ButtonBox.button}
                 titleStyle={{color: "white"}}
                 onPress={() => {
                     handleButtonLoading()
-                    history.push("/quality")
+                    navigation.navigate("quality")
                 }}
             >
                 <Text style={ButtonBox.text}>Quality</Text>
             </Button>
         </View>
+        </TouchableOpacity>
     )
 }
 

@@ -1,14 +1,12 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
-import { View, Text } from 'react-native'
+import { useNavigation } from "@react-navigation/native";
+import { View, Text, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 import { ButtonBox } from "../../../../Styles/ScoreCardStyles";
 
 const SafetyAndComplianceButton = () => {
-    let history = useHistory()
-
+    const navigation = useNavigation()
 
     const [buttonLoading, setButtonLoading] = useState(false)
 	const handleButtonLoading = async () => {
@@ -16,6 +14,10 @@ const SafetyAndComplianceButton = () => {
 	}
 
     return (
+        <TouchableOpacity onPress={() => {
+            handleButtonLoading()
+            navigation.navigate("safety_and_compliance")
+        }}>
         <View style={ButtonBox.container}>
             <Button 
                 mode="text"
@@ -24,12 +26,13 @@ const SafetyAndComplianceButton = () => {
                 titleStyle={{color: "white"}}
                 onPress={() => {
                     handleButtonLoading()
-                    history.push("/safetyandcompliance")
+                    navigation.navigate("safety_and_compliance")
                 }}
             >
                 <Text style={ButtonBox.text}>Safety and Compliance</Text>
             </Button>
         </View>
+        </TouchableOpacity>
     )
 }
 

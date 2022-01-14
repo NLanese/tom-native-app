@@ -6,9 +6,7 @@ import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
-
- 
-
+import Banner from "../../../Global/Banner";
 
 const Quality = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORSCORECARDQUALITY)
@@ -57,7 +55,9 @@ const Quality = () => {
         let others = determineOthers(queryData)
 
         return(
-            <View style={{flex: 0}}>
+            <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
+            <Banner />
+
             <ScrollView bounces={false}>
             <View style={QualityStyles.container}>
                 <View style={{width: '100%'}}>

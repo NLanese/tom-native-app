@@ -94,6 +94,7 @@ const QualityStyles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		fontSize: 25,
+		marginLeft: 10,
 		fontWeight: '300'
 	},
 	cardBottm: {
@@ -223,7 +224,10 @@ const SafetyAndComplianceStyles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		fontSize: 25,
-		fontWeight: '300'
+		fontWeight: '300',
+		marginLeft: 10,
+		// borderWidth: 3
+
 	},
 	cardBottm: {
 		height: bottomCardHeight,
@@ -339,7 +343,8 @@ const TeamStyles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		fontSize: 25,
-		fontWeight: '300'
+		marginLeft: 10,
+		fontWeight: '300',
 	},
 	cardBottm: {
 		height: bottomCardHeight,
@@ -417,10 +422,10 @@ const TeamStyles = StyleSheet.create({
 const ButtonBox = StyleSheet.create({
 	container: {
 		width: 340,	
-		backgroundColor: '#f1f1f1'
+		height: 169
 	},
 	button: {
-		height: 140,
+		height: 169,
 		display: 'flex',
 		justifyContent: 'center',
 		backgroundColor: 'white',
@@ -430,7 +435,8 @@ const ButtonBox = StyleSheet.create({
 		color: 'black'
 	},
 	text:{
-		color: 'black'
+		color: 'black',
+		fontSize: 14
 	}
 })
 

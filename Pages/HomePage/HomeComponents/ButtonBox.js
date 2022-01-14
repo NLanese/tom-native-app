@@ -5,6 +5,7 @@ import ScoreCardButton from './ButtonBoxComponents/ScoreCardButton'
 import ShiftPlannerButton from './ButtonBoxComponents/ShiftPlannerButton'
 import ReportAnAccidentButton from './ButtonBoxComponents/ReportAnAccidentButton'
 import ProductivityButton from './ButtonBoxComponents/ProductivityButton';
+import Communication from '../../CommunicationPage/Communication';
 
 const ButtonBox = () => {
 
@@ -12,12 +13,13 @@ const ButtonBox = () => {
         <View style={ButtonBoxStyles.container}>
             <View style={ButtonBoxStyles.leftContainer}>
                 <ScoreCardButton />
-                <ReportAnAccidentButton />
+                <ProductivityButton />
+                <Communication />
             </View>
 
             <View style={ButtonBoxStyles.rightContainer}>
+                <ReportAnAccidentButton />
                 <ShiftPlannerButton />
-                <ProductivityButton />
             </View>
         </View>
     )

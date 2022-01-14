@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { View } from 'react-native'
 import { Button } from 'react-native-paper';
 import { DropdownStyles } from '../../../Styles/GlobalStyles';
-import { useHistory } from 'react-router-native';
+import { useNavigation } from '@react-navigation/native';
 
 const EmployeeChatroomButton = ({ handleModal }) => {
     const [buttonLoading, setButtonLoading] = useState(false)
-    let history = useHistory()
+    const navigation = useNavigation()
 
     const handleSubmit = async () => {
         await setButtonLoading(true)
-        await history.push('/messages')
+        await navigation.navigate('messages')
         await handleModal()
     }
 

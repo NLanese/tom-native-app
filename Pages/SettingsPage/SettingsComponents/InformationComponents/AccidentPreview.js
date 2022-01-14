@@ -4,7 +4,6 @@ import { settingsAccidents } from "../../../Styles/SettingStyles";
 import { Link } from "react-router-dom";
 // props.acc will have all of the acciden
 const AccidentPreview = (props) => {
-    console.log(props)
     function renderAccidentStatus(deletedStatus){
         if (deletedStatus){
             return "Deleted"
@@ -26,13 +25,13 @@ const AccidentPreview = (props) => {
         }
     }
     function generateViewPath(accident){
-        return /accidents/${accident.id}/view
+        return `/accidents/${accident.id}/view`
     }
     return(
         <View style={settingsAccidents.preview}>
             <View style={settingsAccidents.accidentDetails}>
-                <Text style={settingsAccidents.text}>Accident Number: {${props.accidentData.id}}</Text>
-                <Text style={settingsAccidents.text}>Accident Title: {${props.accidentData.name}}</Text>
+                <Text style={settingsAccidents.text}>Accident Number: {`${props.accidentData.id}`}</Text>
+                <Text style={settingsAccidents.text}>Accident Title: {`${props.accidentData.name}`}</Text>
                 <Text style={settingsAccidents.text}>Accident Record Status: {renderAccidentStatus(props.accidentData.deleted)}</Text>
                 <Text style={settingsAccidents.text}>{determineAccidentTypes(props.accidentData)} </Text>
             </View>

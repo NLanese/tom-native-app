@@ -6,6 +6,20 @@ import { View, Text } from "react-native";
 const Message = ({from, content, dateSent}) => {
 
     let styleTag = ""
+    // let rightNow = Date.now()
+    // dateSent = dateSent.toDateString()
+    let month = dateSent.split("-")[1]
+    let day = dateSent.split("-")[2].split("T")[0]
+    let time = dateSent.split("-")[2].split("T")[1].split(".")[0]
+    let hour = time.split(":")[0]
+    let min = time.split(":")[1]
+    let am_pm = "AM"
+    hour = parseInt(hour, 10)
+    if (hour > 12){
+        hour = hour - 12
+        am_pm = "PM"
+    }
+    let fullTimeObj = (month + "-" + day + " " + hour + ":" + min + am_pm)
     if (from == "You"){
         styleTag = MessageStyles.yourMessages
         return(
@@ -15,7 +29,7 @@ const Message = ({from, content, dateSent}) => {
                         <Text>{content}</Text>
                     </View>
                     <View>
-                        <Text>{dateSent}</Text>
+                     <Text style={{color: 'grey'}}>{fullTimeObj}</Text>
                     </View>
                 </View>
             </View>
@@ -30,7 +44,7 @@ const Message = ({from, content, dateSent}) => {
                         <Text>{content}</Text>
                     </View>
                     <View>
-                        <Text>{dateSent}</Text>
+                        <Text style={{color: 'grey'}}>{fullTimeObj}</Text>
                     </View>
                 </View>
             </View>

@@ -199,6 +199,14 @@ const GETDRIVERMESSAGESWITHADMIN = gql`
 }
 `
 
+const SENDMESSAGETOADMIN = gql`
+  mutation Mutation($content: String!) {
+      sendMessageToAdmin(content: $content) {
+        id
+    }
+}
+`
+
 
 export {  
   SIGNUP, 
@@ -211,7 +219,8 @@ export {
   GETDRIVERSFORSCORECARDQUALITY,
   GETNOTIFIED,
   GETNOTIFIEDMESSAGES,
-  GETDRIVERMESSAGESWITHADMIN
+  GETDRIVERMESSAGESWITHADMIN,
+  SENDMESSAGETOADMIN
 }
 
 
