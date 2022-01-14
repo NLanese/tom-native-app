@@ -46,7 +46,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginTop: maxHeight * 0.05,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.8,
-		borderWidth: 2
+		// borderWidth: 2
 	},
 
 	leftContainer: {
@@ -55,7 +55,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginTop: maxHeight * 0.05,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.8,
-		borderWidth: 2
+		// borderWidth: 2
 	},
 
 	homeButtons:{
@@ -73,7 +73,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		alignContent: 'center',
 		height: maxHeight * 0.18,
 		width: '82%',
-		borderWidth: 3
+		// borderWidth: 3
 	},
 
 	label: {

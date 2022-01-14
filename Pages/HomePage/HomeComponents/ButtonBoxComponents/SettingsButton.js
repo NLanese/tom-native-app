@@ -1,29 +1,27 @@
 import React from "react"
 import { useNavigation } from "@react-navigation/native";
-import { View } from 'react-native'
+import { View, TouchableOpacity, Image, Text } from 'react-native'
 import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
 import { Button, Card } from 'react-native-paper';
+import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
+
 
 const SettingsButton = () => {
     const navigation = useNavigation()
 
     return (
-        <View style={ScoreCardStyles.container}>
-            <Card onPress={() => {navigation.navigate("settings")}}>
-                <Card.Cover source={require('../../../../assets/settings.png')} style={ScoreCardStyles.image}/>
-                <Card.Actions
-                    style={ScoreCardStyles.button}
-                >
-                    <View>
-                        <Button
-                            color="black"
-                        >
-                           Settings
-                        </Button>
-                    </View>
-                </Card.Actions>
-            </Card>
-        </View>
+        <View style={ButtonBoxStyles.clickable}>
+        <TouchableOpacity onPress={() => {navigation.navigate("settings")}}>
+            <View>
+                <Image 
+                    style={ButtonBoxStyles.image}
+                    source={require('../../../../assets/settings-icon.jpeg')}/>
+            </View> 
+            <View style={ButtonBoxStyles.label}>
+                <Text style={{textAlign: 'center'}}>Communication</Text>
+            </View>
+        </TouchableOpacity>
+    </View>
     )
 }
 
