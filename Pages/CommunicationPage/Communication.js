@@ -145,7 +145,6 @@ const Communication = () => {
         <View>
             <Banner />
             <View style={CommunicationStyles.container}>
-                <Banner />
 
                 <View style={CommunicationStyles.threadLabel}>
                     <View style={CommunicationStyles.labelAvatar}>
