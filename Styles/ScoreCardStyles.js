@@ -441,10 +441,38 @@ const ButtonBox = StyleSheet.create({
 })
 
 
+const LeaderboardStyles = StyleSheet.create({
+
+}),
+
+const PersonalLeaderboardStyles = StyleSheet.create({
+	container: {
+
+	},
+	namePlate: {
+
+	},
+	nametag: {
+
+	},
+	nameText: {
+
+	},
+	statsheet:{
+
+	},
+	drivingStats: {
+		
+	}
+})
+
+
 export { 
     ScoreCardStyles, 
     QualityStyles, 
     SafetyAndComplianceStyles, 
 	TeamStyles,
-	ButtonBox
+	ButtonBox,
+	LeaderboardStyles,
+	PersonalLeaderboardStyles
 }
