@@ -115,6 +115,7 @@ const Communication = () => {
                 }
             })
             await setNewMessage("")
+            await setKeyboardVisible(false);
         }
         else{
             console.log("No message")
