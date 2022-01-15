@@ -447,6 +447,8 @@ const ButtonBox = StyleSheet.create({
 
 const PersonalLeaderboardStyles = StyleSheet.create({
 	scoreContainer: {
+		backgroundColor: '#f9f9f9',
+		height: maxHeight,
 		borderWidth: 0.1
 	},
 	namePlate: {
@@ -478,7 +480,7 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	keys: {
 		height: maxHeight * .1,
 		padding: maxWidth * 0.02,
-		borderWidth: 0.5,
+		// borderWidth: 0.5,
 	},
 	keyTitle: {
 		width: maxWidth * 0.10,
@@ -509,17 +511,14 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		top: -maxHeight * 0.109,
 	},
 	keyText:{
-		// borderWidth: 0.5,
 		top: -11,
 		left: 12
 	},
 	statsheet:{
-		// top: maxHeight * 0.1,
 		paddingLeft: maxWidth * 0.005,
 		paddingRight: maxWidth * 0.005
 	},
 	sectionTitle: {
-		// borderWidth: 3,
 		paddingTop: maxHeight * 0.005,
 		paddingBottom: maxHeight * 0.04,
 		marginBottom: maxHeight * 0.01,
@@ -530,20 +529,29 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		fontWeight: '600'
 	},
 	drivingStats: {
-		backgroundColor: '#e9e9e9',
+		backgroundColor: 'white',
 		borderWidth: 2,
 		borderColor: '#E2E8F1',
 		width: maxWidth * 0.5,
 		height: maxHeight * 0.3,
 	},
 	serviceStats:{
-		backgroundColor: '#e9e9e9',
+		backgroundColor: 'white',
 		borderWidth: 2,
 		borderColor: '#E2E8F1',
 		left: maxWidth * 0.5,
 		top: -maxHeight * 0.418,
 		width: maxWidth * 0.5,
 		height: maxHeight * 0.3,
+	},
+	overalls: {
+		backgroundColor: 'white',
+		borderWidth: 2,
+		borderColor: '#E2E8F1',
+		left: 0,
+		top: -maxHeight * 0.415,
+		width: maxWidth * 0.98,
+		height: maxHeight * 0.15,
 	},
 	drivingStatsLabels: {
 		textAlign: 'center'
@@ -570,15 +578,12 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	speedingValue:{
-		// position: 'absolute',
-		// borderWidth: 0.5,
 		top: -maxHeight * 0.05,
 		left: '53%',
 		width: '47%',
 		height: maxHeight * 0.03,
 	},
 	distractionLabel:{
-		// position: 'absolute',
 		borderBottomWidth: 0.5,
 		top: -maxHeight * 0.03,
 		left: '53%',
@@ -586,43 +591,34 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	distractionValue:{
-		// position: 'absolute',
-		// borderWidth: 0.5,
 		top: -maxHeight * 0.03,
 		left: '53%',
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	followingLabel:{
-		// position: 'absolute',
 		borderBottomWidth: 0.5,
 		top: -maxHeight * 0.09,
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	followValue:{
-		// position: 'absolute',
-		// borderWidth: 0.5,
 		top: -maxHeight * 0.09,
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	signalLabel:{
-		// position: 'absolute',
 		borderBottomWidth: 0.5,
 		top: -maxHeight * 0.07,
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	signalValue:{
-		// position: 'absolute',
-		// borderWidth: 0.5,
 		top: -maxHeight * 0.07,
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	ficoLabel:{
-		// position: 'absolute',
 		borderBottomWidth: 0.5,
 		top: -maxHeight * 0.13,
 		left: '53%',
@@ -630,8 +626,6 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	ficoValue:{
-		// position: 'absolute',
-		// borderWidth: 0.5,
 		top: -maxHeight * 0.13,
 		left: '53%',
 		width: '45%',
@@ -654,7 +648,6 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	},
 	podValue: {
 		top: maxHeight * 0.042,
-		// top: maxHeight * 0.01,
 	},
 	cdfLabel: {
 		top: maxHeight * 0.07,
@@ -664,8 +657,47 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	},
 	cdfValue: {
 		top: maxHeight * 0.07,
-		// top: maxHeight * 0.01,
 	},
+	netradyneLabel:{
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 0.5,
+	},
+	netradyneValue: {
+		width: maxWidth * 0.29
+	},
+	defectLabel:{
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.0556,
+		left: maxWidth * 0.32
+	},
+	defectValue: {
+		width: maxWidth * 0.29,
+		top: -maxHeight * 0.0556,
+		left: maxWidth * 0.32
+	},
+	deliveryLabel:{
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.1108,
+		left: maxWidth * 0.64
+	},
+	deliveryValue: {
+		width: maxWidth * 0.29,
+		top: -maxHeight * 0.1108,
+		left: maxWidth * 0.64
+	},
+	buttonBox: {
+		top: maxHeight * 0.22,
+		left: maxWidth * 0.2,
+		width: maxWidth * 0.6,
+		height: maxHeight * 0.1,
+		justifyContent: 'center',
+		// borderWidth: 0.3
+	}
 })
 
 

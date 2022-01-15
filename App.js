@@ -110,6 +110,10 @@ export default function App() {
                   {props => <PersonalScoreCard />}
                 </Stack.Screen>
 
+                <Stack.Screen name='leaderboards'>
+                  {props => <ScoreCard />}
+                </Stack.Screen>
+
                 <Stack.Screen name='account_information'>
                   {props => <AccountInformation />}
                 </Stack.Screen>
