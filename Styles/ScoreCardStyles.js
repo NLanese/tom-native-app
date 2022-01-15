@@ -441,29 +441,130 @@ const ButtonBox = StyleSheet.create({
 })
 
 
-const LeaderboardStyles = StyleSheet.create({
+// const LeaderboardStyles = StyleSheet.create({
 
-}),
+// }),
 
 const PersonalLeaderboardStyles = StyleSheet.create({
-	container: {
-
+	scoreContainer: {
+		borderWidth: 0.1
 	},
 	namePlate: {
-
+		// borderWidth: 0.5,
+		height: maxHeight * 0.1
 	},
 	nametag: {
-
+		position: 'absolute',
+		// borderWidth: 0.5,
+		height: maxHeight * 0.1,
+		width: maxWidth * 0.5,
+		justifyContent: 'center',
+		paddingLeft: maxWidth * 0.02,
 	},
 	nameText: {
-
+		fontSize: 18,
+	},
+	createdAt: {
+		position: 'absolute',
+		top: 0,
+		left: maxWidth * 0.52,
+		height: maxHeight * 0.1,
+		width: maxWidth * 0.48,
+		paddingRight: maxWidth * 0.02,
+		justifyContent: 'center',
+	},
+	createdAtText:{
+		textAlign: 'right',
+		fontSize: 18,
 	},
 	statsheet:{
-
+		paddingLeft: maxWidth * 0.005,
+		paddingRight: maxWidth * 0.005
+	},
+	sectionTitle: {
+		// borderWidth: 3,
+		paddingTop: maxHeight * 0.005,
+		paddingBottom: maxHeight * 0.04,
+		marginBottom: maxHeight * 0.01,
+		width: '100%',
+		height: '9%',
+		backgroundColor: '#E2E8F1',
+		textAlign: 'center'
 	},
 	drivingStats: {
-		
-	}
+		// paddingLeft: '1%',
+		// paddingRight: '1%',
+		borderWidth: 2,
+		borderColor: '#E2E8F1',
+		width: maxWidth * 0.5,
+		height: maxHeight * 0.35,
+		// alignItems: 'center'
+	},
+	drivingStatsLabels: {
+		textAlign: 'center'
+	},
+	drivingStatsValue: {
+		textAlign: 'center'
+	},
+
+	seatbeltLabel:{
+		// position: 'absolute',
+		borderBottomWidth: 0.5,
+		width: '47%',
+		height: maxHeight * 0.03,
+	},
+	seatbeltValue:{
+		// position: 'absolute',
+		// borderBottomWidth: 0.5,
+		width: '47%',
+		height: maxHeight * 0.03,
+	},
+	speedingLabel:{
+		// position: 'absolute',
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.06,
+		left: '53%',
+		width: '47%',
+		height: maxHeight * 0.03,
+	},
+	speedingValue:{
+		// position: 'absolute',
+		// borderWidth: 0.5,
+		top: -maxHeight * 0.06,
+		left: '53%',
+		width: '47%',
+		height: maxHeight * 0.03,
+	},
+	distractionLabel:{
+		// position: 'absolute',
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.05,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	distractionValue:{
+		// position: 'absolute',
+		// borderWidth: 0.5,
+		top: -maxHeight * 0.05,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	followingLabel:{
+		// position: 'absolute',
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.11,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	followValue:{
+		// position: 'absolute',
+		// borderWidth: 0.5,
+		top: -maxHeight * 0.11,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
 })
 
 
@@ -473,6 +574,6 @@ export {
     SafetyAndComplianceStyles, 
 	TeamStyles,
 	ButtonBox,
-	LeaderboardStyles,
+	// LeaderboardStyles,
 	PersonalLeaderboardStyles
 }

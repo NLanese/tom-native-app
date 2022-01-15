@@ -1,5 +1,5 @@
 const dateObj = (dateSent, timeZone='EST') => {
-    let year = dateSent.split()
+    let year = dateSent.split("-")[0]
     let month = dateSent.split("-")[1]
     let day = dateSent.split("-")[2].split("T")[0]
     let time = dateSent.split("-")[2].split("T")[1].split(".")[0]

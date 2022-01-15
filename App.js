@@ -13,7 +13,10 @@ import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Switch } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
+
+import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
+
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
 import Reporting from './Pages/ReportingPage/Reporting'
@@ -104,7 +107,7 @@ export default function App() {
                 </Stack.Screen>
 
                 <Stack.Screen name='score_card'>
-                  {props => <ScoreCard />}
+                  {props => <PersonalScoreCard />}
                 </Stack.Screen>
 
                 <Stack.Screen name='account_information'>
