@@ -450,12 +450,10 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		borderWidth: 0.1
 	},
 	namePlate: {
-		// borderWidth: 0.5,
 		height: maxHeight * 0.1
 	},
 	nametag: {
 		position: 'absolute',
-		// borderWidth: 0.5,
 		height: maxHeight * 0.1,
 		width: maxWidth * 0.5,
 		justifyContent: 'center',
@@ -477,7 +475,46 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		textAlign: 'right',
 		fontSize: 18,
 	},
+	keys: {
+		height: maxHeight * .1,
+		padding: maxWidth * 0.02,
+		borderWidth: 0.5,
+	},
+	keyTitle: {
+		width: maxWidth * 0.10,
+		borderBottomWidth: 0.5
+	},
+	keyContent:{
+		marginTop: maxHeight * 0.02,
+		display: 'flex'
+	},
+	fantasticContent:{
+		width: maxWidth * 0.25,
+		height: maxHeight * 0.04
+	},
+	goodContent:{
+		width: maxWidth * 0.25,
+		left: maxWidth * 0.3,
+		top: -maxHeight * 0.04
+	},
+	fairContent:{
+		width: maxWidth * 0.25,
+		left: maxWidth * 0.58,
+		top: -maxHeight * 0.075,
+
+	},
+	subparContent: {
+		width: maxWidth * 0.25,
+		left: maxWidth * 0.8,
+		top: -maxHeight * 0.109,
+	},
+	keyText:{
+		// borderWidth: 0.5,
+		top: -11,
+		left: 12
+	},
 	statsheet:{
+		// top: maxHeight * 0.1,
 		paddingLeft: maxWidth * 0.005,
 		paddingRight: maxWidth * 0.005
 	},
@@ -489,48 +526,53 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		width: '100%',
 		height: '9%',
 		backgroundColor: '#E2E8F1',
-		textAlign: 'center'
+		textAlign: 'center',
+		fontWeight: '600'
 	},
 	drivingStats: {
-		// paddingLeft: '1%',
-		// paddingRight: '1%',
+		backgroundColor: '#e9e9e9',
 		borderWidth: 2,
 		borderColor: '#E2E8F1',
 		width: maxWidth * 0.5,
-		height: maxHeight * 0.35,
-		// alignItems: 'center'
+		height: maxHeight * 0.3,
+	},
+	serviceStats:{
+		backgroundColor: '#e9e9e9',
+		borderWidth: 2,
+		borderColor: '#E2E8F1',
+		left: maxWidth * 0.5,
+		top: -maxHeight * 0.418,
+		width: maxWidth * 0.5,
+		height: maxHeight * 0.3,
 	},
 	drivingStatsLabels: {
 		textAlign: 'center'
 	},
 	drivingStatsValue: {
-		textAlign: 'center'
+		textAlign: 'center',
 	},
-
 	seatbeltLabel:{
-		// position: 'absolute',
 		borderBottomWidth: 0.5,
-		width: '47%',
+		top: maxHeight * 0.01,
+		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	seatbeltValue:{
-		// position: 'absolute',
-		// borderBottomWidth: 0.5,
-		width: '47%',
+		top: maxHeight * 0.01,
+		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	speedingLabel:{
-		// position: 'absolute',
 		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.06,
+		top: -maxHeight * 0.05,
 		left: '53%',
-		width: '47%',
+		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	speedingValue:{
 		// position: 'absolute',
 		// borderWidth: 0.5,
-		top: -maxHeight * 0.06,
+		top: -maxHeight * 0.05,
 		left: '53%',
 		width: '47%',
 		height: maxHeight * 0.03,
@@ -538,7 +580,7 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	distractionLabel:{
 		// position: 'absolute',
 		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.05,
+		top: -maxHeight * 0.03,
 		left: '53%',
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -546,7 +588,7 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	distractionValue:{
 		// position: 'absolute',
 		// borderWidth: 0.5,
-		top: -maxHeight * 0.05,
+		top: -maxHeight * 0.03,
 		left: '53%',
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -554,16 +596,75 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	followingLabel:{
 		// position: 'absolute',
 		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.11,
+		top: -maxHeight * 0.09,
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
 	followValue:{
 		// position: 'absolute',
 		// borderWidth: 0.5,
-		top: -maxHeight * 0.11,
+		top: -maxHeight * 0.09,
 		width: '45%',
 		height: maxHeight * 0.03,
+	},
+	signalLabel:{
+		// position: 'absolute',
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.07,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	signalValue:{
+		// position: 'absolute',
+		// borderWidth: 0.5,
+		top: -maxHeight * 0.07,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	ficoLabel:{
+		// position: 'absolute',
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.13,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	ficoValue:{
+		// position: 'absolute',
+		// borderWidth: 0.5,
+		top: -maxHeight * 0.13,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	dcrLabel: {
+		top: maxHeight * 0.0132,
+		width: '90%',
+		left: '5%',
+		borderBottomWidth: 0.5,
+	},
+	dcrValue: {
+		top: maxHeight * 0.01,
+	},
+	podLabel: {
+		top: maxHeight * 0.042,
+		width: '90%',
+		left: '5%',
+		borderBottomWidth: 0.5,
+	},
+	podValue: {
+		top: maxHeight * 0.042,
+		// top: maxHeight * 0.01,
+	},
+	cdfLabel: {
+		top: maxHeight * 0.07,
+		width: '90%',
+		left: '5%',
+		borderBottomWidth: 0.5,
+	},
+	cdfValue: {
+		top: maxHeight * 0.07,
+		// top: maxHeight * 0.01,
 	},
 })
 
