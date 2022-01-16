@@ -30,27 +30,46 @@ const QualityStyles = StyleSheet.create({
 		height: '100%',
 	},
 	topThree: {
-		height: maxHeight * 0.68,
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
 
+	},
+	sortBy: {
+		marginTop: maxHeight * 0.01,
+		marginLeft: maxWidth * 0.02,
+		borderBottomWidth: 2,
+		borderBottomColor: '#E2E8F1',
+		height: maxHeight * 0.05,
+		justifyContent: 'center'
+	},
+	sortByButton: {
+		left: maxWidth * 0.2,
+		top: -maxHeight * 0.034,
+		padding: 2,
+		width: maxWidth * 0.5,
+		height: maxWidth * 0.07,
+		borderColor: 'grey',
+		borderWidth: 1,
+	},
+	sortText:{
+		fontSize: 20
+	},
+	dropArrowBox: {
+		top: -maxWidth * 0.06,
+		left: maxWidth * 0.4,
+		width: maxWidth * 0.089,
+		height: maxWidth * 0.089,
+		// backgroundColor: 'red'
+	},
 	leadersTitle: {
-		fontWeight: '600',
-		marginLeft: maxWidth * 0.04,
-		marginBottom: 6,
-		fontSize: 18,
+		borderBottomWidth: 0.5,
+		height: maxHeight * 0.06,
+		fontSize: 20,
+		marginLeft: maxWidth * 0.02
 	},
 
 	remainders: {
-		marginTop: (maxHeight * 0.01),
-		width: maxWidth,
-		marginBottom: "2%",
-		alignItems: 'center',
-		marginBottom: 30
+
 	},
-	topThreeEmployeeCard: {
+	topThreeEmployeeCard: {	
 		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
