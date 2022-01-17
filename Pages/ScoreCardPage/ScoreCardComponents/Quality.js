@@ -11,6 +11,13 @@ import Banner from "../../../Global/Banner";
 const Quality = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORSCORECARDQUALITY)
     const [queryData, setQueryData] = useState({})
+    // query for dsp preferences
+
+
+    const fakeDspPreferences = ({
+        topCards: 5,
+        stopAt: 20
+    })
 
     useEffect(() => {
         if (!loading && data) {
@@ -18,29 +25,36 @@ const Quality = () => {
         }
     }, [data])
 
-    function determineTopThree(data){
-        let returnData = [...data]
-        return returnData.splice(0, 3)
-    } 
-    function determineOthers(data){
-        let returnData = [...data]
-        return returnData.splice(3)
-    } 
-
-    const renderTopThree = (topThreeQualityDrivers) => {
+    const renderTopAndOthers = (allDrivers, topNum=3, stopAt) => {
         let i = 0
-        return topThreeQualityDrivers.map( (driverData) => {
-            i++
-            return <EmployeeQuality driverData={driverData} key={i} rank={i}/>
-        })
-    }
-
-    const renderOthers = (otherEmployees) => {
-        let i = 3
-        return otherEmployees.map( (driverData) => {
-            i++
-            return <TeamEmployees driverData={driverData} key={i} rank={i} />
-        })
+        const topCards = (
+            <View style={QualityStyles.topThree}>
+                {allDrivers.slice(0, topNum).map( (driver) => {
+                    i++
+                    return <EmployeeQuality driverData={driver} key={i} rank={i} />
+                })}
+            </View>
+        )
+        const otherCards =(
+                <View>
+                    {allDrivers.slice(topNum, (stopAt - topNum)).map( (driver) => {
+                        i++
+                        return <TeamEmployees driverData={driver} key={i} rank={i} />
+                    })}
+                </View>
+        )
+        return (
+            <View style={QualityStyles.container}>
+                <View style={{width: '100%'}}>
+                    <Text style={QualityStyles.leadersTitle}>Top {topNum} Leaders</Text>
+                </View> 
+                {topCards}
+                <View style={{width: '100%'}}>
+                    <Text style={QualityStyles.leadersTitle}>Employees</Text>
+                </View> 
+                {otherCards}
+            </View>
+        )
     }
 
     if (!queryData[0]) {
@@ -50,29 +64,12 @@ const Quality = () => {
             </View>
         )
     } else {
-        
-        let topThree = determineTopThree(queryData)
-        let others = determineOthers(queryData)
-
         return(
             <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
             <Banner />
 
             <ScrollView bounces={false}>
-            <View style={QualityStyles.container}>
-                <View style={{width: '100%'}}>
-                    <Text style={QualityStyles.leadersTitle}>Top Three Leaders</Text>
-                </View> 
-                <View style={QualityStyles.topThree}>
-                    {renderTopThree(topThree)}
-                </View>
-                <View style={{width: '100%'}}>
-                    <Text style={QualityStyles.leadersTitle}>Employees</Text>
-                </View> 
-                <View style={QualityStyles.remainders}>
-                    {renderOthers(others)}            
-                </View>
-            </View>
+                {renderTopAndOthers(queryData, fakeDspPreferences.topCards, fakeDspPreferences.stopAt)}
             </ScrollView>
             </View>
         )

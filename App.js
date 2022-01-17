@@ -13,7 +13,10 @@ import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Switch } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
+
+import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
+
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
 import Reporting from './Pages/ReportingPage/Reporting'
@@ -47,9 +50,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql'
-
-	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
+	// uri: 'http://192.168.1.62:5001/graphql'
+	uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
 
 // Auth for token
@@ -105,6 +107,10 @@ export default function App() {
                 </Stack.Screen>
 
                 <Stack.Screen name='score_card'>
+                  {props => <PersonalScoreCard />}
+                </Stack.Screen>
+
+                <Stack.Screen name='leaderboards'>
                   {props => <ScoreCard />}
                 </Stack.Screen>
 

@@ -441,10 +441,272 @@ const ButtonBox = StyleSheet.create({
 })
 
 
+// const LeaderboardStyles = StyleSheet.create({
+
+// }),
+
+const PersonalLeaderboardStyles = StyleSheet.create({
+	scoreContainer: {
+		backgroundColor: '#f9f9f9',
+		height: maxHeight,
+		borderWidth: 0.1
+	},
+	namePlate: {
+		height: maxHeight * 0.1
+	},
+	nametag: {
+		position: 'absolute',
+		height: maxHeight * 0.1,
+		width: maxWidth * 0.5,
+		justifyContent: 'center',
+		paddingLeft: maxWidth * 0.02,
+	},
+	nameText: {
+		fontSize: 18,
+	},
+	createdAt: {
+		position: 'absolute',
+		top: 0,
+		left: maxWidth * 0.52,
+		height: maxHeight * 0.1,
+		width: maxWidth * 0.48,
+		paddingRight: maxWidth * 0.02,
+		justifyContent: 'center',
+	},
+	createdAtText:{
+		textAlign: 'right',
+		fontSize: 18,
+	},
+	keys: {
+		height: maxHeight * .1,
+		padding: maxWidth * 0.02,
+		// borderWidth: 0.5,
+	},
+	keyTitle: {
+		width: maxWidth * 0.10,
+		borderBottomWidth: 0.5
+	},
+	keyContent:{
+		marginTop: maxHeight * 0.02,
+		display: 'flex'
+	},
+	fantasticContent:{
+		width: maxWidth * 0.25,
+		height: maxHeight * 0.04
+	},
+	goodContent:{
+		width: maxWidth * 0.25,
+		left: maxWidth * 0.3,
+		top: -maxHeight * 0.04
+	},
+	fairContent:{
+		width: maxWidth * 0.25,
+		left: maxWidth * 0.58,
+		top: -maxHeight * 0.075,
+
+	},
+	subparContent: {
+		width: maxWidth * 0.25,
+		left: maxWidth * 0.8,
+		top: -maxHeight * 0.109,
+	},
+	keyText:{
+		top: -11,
+		left: 12
+	},
+	statsheet:{
+		paddingLeft: maxWidth * 0.005,
+		paddingRight: maxWidth * 0.005
+	},
+	sectionTitle: {
+		paddingTop: maxHeight * 0.005,
+		paddingBottom: maxHeight * 0.04,
+		marginBottom: maxHeight * 0.01,
+		width: '100%',
+		height: '9%',
+		backgroundColor: '#E2E8F1',
+		textAlign: 'center',
+		fontWeight: '600'
+	},
+	drivingStats: {
+		backgroundColor: 'white',
+		borderWidth: 2,
+		borderColor: '#E2E8F1',
+		width: maxWidth * 0.5,
+		height: maxHeight * 0.3,
+	},
+	serviceStats:{
+		backgroundColor: 'white',
+		borderWidth: 2,
+		borderColor: '#E2E8F1',
+		left: maxWidth * 0.5,
+		top: -maxHeight * 0.418,
+		width: maxWidth * 0.5,
+		height: maxHeight * 0.3,
+	},
+	overalls: {
+		backgroundColor: 'white',
+		borderWidth: 2,
+		borderColor: '#E2E8F1',
+		left: 0,
+		top: -maxHeight * 0.415,
+		width: maxWidth * 0.98,
+		height: maxHeight * 0.15,
+	},
+	drivingStatsLabels: {
+		textAlign: 'center'
+	},
+	drivingStatsValue: {
+		textAlign: 'center',
+	},
+	seatbeltLabel:{
+		borderBottomWidth: 0.5,
+		top: maxHeight * 0.01,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	seatbeltValue:{
+		top: maxHeight * 0.01,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	speedingLabel:{
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.05,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	speedingValue:{
+		top: -maxHeight * 0.05,
+		left: '53%',
+		width: '47%',
+		height: maxHeight * 0.03,
+	},
+	distractionLabel:{
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.03,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	distractionValue:{
+		top: -maxHeight * 0.03,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	followingLabel:{
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.09,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	followValue:{
+		top: -maxHeight * 0.09,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	signalLabel:{
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.07,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	signalValue:{
+		top: -maxHeight * 0.07,
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	ficoLabel:{
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.13,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	ficoValue:{
+		top: -maxHeight * 0.13,
+		left: '53%',
+		width: '45%',
+		height: maxHeight * 0.03,
+	},
+	dcrLabel: {
+		top: maxHeight * 0.0132,
+		width: '90%',
+		left: '5%',
+		borderBottomWidth: 0.5,
+	},
+	dcrValue: {
+		top: maxHeight * 0.01,
+	},
+	podLabel: {
+		top: maxHeight * 0.042,
+		width: '90%',
+		left: '5%',
+		borderBottomWidth: 0.5,
+	},
+	podValue: {
+		top: maxHeight * 0.042,
+	},
+	cdfLabel: {
+		top: maxHeight * 0.07,
+		width: '90%',
+		left: '5%',
+		borderBottomWidth: 0.5,
+	},
+	cdfValue: {
+		top: maxHeight * 0.07,
+	},
+	netradyneLabel:{
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 0.5,
+	},
+	netradyneValue: {
+		width: maxWidth * 0.29
+	},
+	defectLabel:{
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.0556,
+		left: maxWidth * 0.32
+	},
+	defectValue: {
+		width: maxWidth * 0.29,
+		top: -maxHeight * 0.0556,
+		left: maxWidth * 0.32
+	},
+	deliveryLabel:{
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 0.5,
+		top: -maxHeight * 0.1108,
+		left: maxWidth * 0.64
+	},
+	deliveryValue: {
+		width: maxWidth * 0.29,
+		top: -maxHeight * 0.1108,
+		left: maxWidth * 0.64
+	},
+	buttonBox: {
+		top: maxHeight * 0.22,
+		left: maxWidth * 0.2,
+		width: maxWidth * 0.6,
+		height: maxHeight * 0.1,
+		justifyContent: 'center',
+		// borderWidth: 0.3
+	}
+})
+
+
 export { 
     ScoreCardStyles, 
     QualityStyles, 
     SafetyAndComplianceStyles, 
 	TeamStyles,
-	ButtonBox
+	ButtonBox,
+	// LeaderboardStyles,
+	PersonalLeaderboardStyles
 }
