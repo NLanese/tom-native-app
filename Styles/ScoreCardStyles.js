@@ -29,9 +29,6 @@ const QualityStyles = StyleSheet.create({
 		alignItems: 'center',
 		height: '100%',
 	},
-	topThree: {
-
-	},
 	sortBy: {
 		marginTop: maxHeight * 0.01,
 		marginLeft: maxWidth * 0.02,
@@ -53,7 +50,7 @@ const QualityStyles = StyleSheet.create({
 		fontSize: 20
 	},
 	dropArrowBox: {
-		top: -maxWidth * 0.06,
+		top: '-125%',
 		left: maxWidth * 0.4,
 		width: maxWidth * 0.089,
 		height: maxWidth * 0.089,
@@ -573,13 +570,16 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.15,
 	},
 	drivingStatsLabels: {
-		textAlign: 'center'
+		textAlign: 'center',
+		color: "grey",
+		fontSize: 10
 	},
 	drivingStatsValue: {
 		textAlign: 'center',
 	},
 	seatbeltLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: maxHeight * 0.01,
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -590,20 +590,40 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	speedingLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.05,
 		left: '53%',
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
+	arrowIcon:{
+		justifyContent: 'center',
+		alignItems: 'center',
+		// borderWidth: 1,
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.05,
+		left: '80%',
+		top: '-90%'
+	},
+	arrowIcon2:{
+		justifyContent: 'center',
+		alignItems: 'center',
+		// borderWidth: 1,
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.05,
+		left: '80%',
+		top: '-45%'
+	},
 	speedingValue:{
 		top: -maxHeight * 0.05,
-		left: '53%',
+		left: '52%',
 		width: '47%',
 		height: maxHeight * 0.03,
 	},
 	distractionLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.03,
 		left: '53%',
 		width: '45%',
@@ -616,7 +636,8 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	followingLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.09,
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -627,7 +648,8 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	signalLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.07,
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -638,7 +660,8 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	ficoLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.13,
 		left: '53%',
 		width: '45%',
@@ -650,63 +673,76 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
-	dcrLabel: {
-		top: maxHeight * 0.0132,
+	scLabel: {
+		height: maxHeight * 0.03,
+		borderBottomColor: '#E2E8F1',
+		top: maxHeight * 0.009,
 		width: '90%',
 		left: '5%',
-		borderBottomWidth: 0.5,
+		borderBottomWidth: 1,
 	},
-	dcrValue: {
-		top: maxHeight * 0.01,
+	scValue: {
+		top: maxHeight * 0.0132,
 	},
 	podLabel: {
-		top: maxHeight * 0.042,
+		height: maxHeight * 0.03,
+		borderBottomColor: '#E2E8F1',
+		top: maxHeight * 0.00,
 		width: '90%',
 		left: '5%',
-		borderBottomWidth: 0.5,
+		borderBottomWidth: 1,
 	},
 	podValue: {
-		top: maxHeight * 0.042,
+		top: maxHeight * 0.00,
 	},
 	cdfLabel: {
-		top: maxHeight * 0.07,
+		height: maxHeight * 0.03,
+		borderBottomColor: '#E2E8F1',
+		top: -maxHeight * 0.0089,
 		width: '90%',
-		left: '5%',
-		borderBottomWidth: 0.5,
+		left: '3%',
+		borderBottomWidth: 1,
 	},
 	cdfValue: {
-		top: maxHeight * 0.07,
+		top: -maxHeight * 0.0089,
 	},
-	netradyneLabel:{
+	completionLabel: {
+		borderBottomColor: '#E2E8F1',
+		marginLeft: maxWidth * 0.025,
+		top: maxHeight * 0.01,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 1
+	},
+	completionValue: {
+		marginLeft: maxWidth * 0.025,
+		top: maxHeight * 0.01,
+		width: maxWidth * 0.29,
+		// borderBottomWidth: 0.5
+	},
+	totalLabel:{
+		borderBottomColor: '#E2E8F1',
 		height: maxHeight * 0.03,
 		width: maxWidth * 0.29,
-		borderBottomWidth: 0.5,
+		borderBottomWidth: 1,
+		top: -maxHeight * 0.05,
+		left: maxWidth * 0.33
 	},
-	netradyneValue: {
-		width: maxWidth * 0.29
-	},
-	defectLabel:{
-		height: maxHeight * 0.03,
+	totalValue: {
 		width: maxWidth * 0.29,
-		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.0556,
+		top: -maxHeight * 0.05,
 		left: maxWidth * 0.32
 	},
-	defectValue: {
-		width: maxWidth * 0.29,
-		top: -maxHeight * 0.0556,
-		left: maxWidth * 0.32
-	},
-	deliveryLabel:{
+	tierLabel:{
+		borderBottomColor: '#E2E8F1',
 		height: maxHeight * 0.03,
 		width: maxWidth * 0.29,
-		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.1108,
+		borderBottomWidth: 1,
+		top: -maxHeight * 0.11,
 		left: maxWidth * 0.64
 	},
-	deliveryValue: {
+	tierValue: {
 		width: maxWidth * 0.29,
-		top: -maxHeight * 0.1108,
+		top: -maxHeight * 0.11,
 		left: maxWidth * 0.64
 	},
 	buttonBox: {

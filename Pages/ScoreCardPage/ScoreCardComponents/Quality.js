@@ -7,6 +7,7 @@ import { ActivityIndicator, Icon, Button} from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import Banner from "../../../Global/Banner";
+import colorTextBasedOnValue from "../../../Hooks/colorTextBasedOffValue";
 
 const Quality = () => {
 
@@ -18,9 +19,24 @@ const Quality = () => {
 
 
     const fakeDspPreferences = ({
-        topCards: 5,
-        stopAt: 20
+        topCards: 30,
+        stopAt: 20,
+        fico: {fantastic: 800, good: 700, fair: 600},
+        seatbelt: {fantastic: 0.05, good: 0.15, fair: 0.3},
+        speeding: {fantastic: 0.05, good: .15, fair: 0.3},
+        distraction: {fantastic: 0.05, good: .15, fair: 0.3},
+        follow: {fantastic: 0.05, good: .15, fair: 0.3},
+        signal: {fantastic: 0.05, good: .15, fair: 0.3},
+        dcr: {fantastic: 95, good: 90, fair: 80},
+        scan_compliance: {fantastic: 95, good: 90, fair: 85},
     })
+    
+    const textColors = {
+        fantastic: '#116530',
+        good: '#21B6A8',
+        fair: '#FF8300',
+        subpar: '#BA0F30'
+    }
 
     const returnSortedList = (allDrivers, sortBy) => {
         if (sortBy == 'fico' || sortBy == 'scan_compliance' || sortBy == 'deliveries' || sortBy == 'customer_delivery_feedback' || 'delivery_completion_rate'){
