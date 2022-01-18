@@ -7,61 +7,61 @@ import { StatStyles } from "../../../../Styles/ScoreCardStyles";
 const BottomCard = ({sortBy, data}) => {
 
     // 0 - DCR
-    let dcr = (<View style={StatStyles.dcr}>
+    let dcr = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>DCR</Text>
         <Text style={StatStyles.statValue}>{data.deliveryCompletionRate}%</Text>
     </View>)
 
     // 1 - DAR
-    let dar = (<View style={StatStyles.dar}>
+    let dar = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>DAR</Text>
         <Text style={StatStyles.statValue}>{data.deliveredAndRecieved}</Text>
     </View>)
 
     // 2 - POD
-    let pod = (<View style={StatStyles.pod}>
+    let pod = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>POD</Text>
         <Text style={StatStyles.statValue}>{data.photoOnDelivery}%</Text>                
     </View>)
 
     // 3 - CC
-    let cc = (<View style={StatStyles.callCompliance}>
+    let cc = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Call Compliance</Text>
         <Text style={StatStyles.statValue}>{data.callCompliance}%</Text>                
     </View>)
 
     // 4 - SC
-    let sc = (<View style={StatStyles.scanCompliance}>
+    let sc = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Scan Compliance</Text>
         <Text style={StatStyles.statValue}>{data.scanCompliance}%</Text>                
     </View>)
 
     // 5 - fico
-    let fico = (<View style={StatStyles.fico}>
+    let fico = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>FICO</Text>
         <Text style={StatStyles.statValue}>{data.fico}</Text>
     </View>)
 
     // 6 - Seatbelt
-    let seatbelt = (<View style={StatStyles.seatbeltOffRate}>
+    let seatbelt = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Seatbelt</Text>
         <Text style={StatStyles.statValue}>{data.seatbeltOffRate}</Text>
     </View>)
 
     // 7 - Speeding
-    let speeding = (<View style={StatStyles.speedingEvent}>
+    let speeding = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Speeding</Text>
         <Text style={StatStyles.statValue}>{data.speedingEvent}</Text>
     </View>)
 
     // 8 - Defects
-    let defects = (<View style={StatStyles.defect}>
+    let defects = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Defects</Text>
         <Text style={StatStyles.statValue}>{data.defects}</Text>
     </View>)
 
     // 9 - cdf
-    let cdf = (<View style={StatStyles.customerFeedback}>
+    let cdf = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Customer Feedback</Text>
         <Text style={StatStyles.statValue}>{data.customerDeliveryFeedback}</Text>
     </View>)

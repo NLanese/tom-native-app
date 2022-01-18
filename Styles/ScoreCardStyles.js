@@ -201,6 +201,13 @@ const StatStyles = StyleSheet.create({
 		marginTop: 3,
 		fontWeight: '600',
 		fontSize: 16,
+	},
+	stat: {
+		width: maxWidth * 0.3,
+		height: '98%',
+		alignItems: 'center',
+		borderLeftWidth: 1,
+		borderColor: '#E2E8F1',
 	}
 
 })
