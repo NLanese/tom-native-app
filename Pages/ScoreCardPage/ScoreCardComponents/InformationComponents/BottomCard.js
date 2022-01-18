@@ -1,106 +1,105 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
-import { QualityStyles } from "../../../../Styles/ScoreCardStyles"
-import { SafetyAndComplianceStyles } from "../../../../Styles/ScoreCardStyles"
-import { TeamStyles } from "../../../../Styles/ScoreCardStyles"
+import { StatStyles } from "../../../../Styles/ScoreCardStyles";
+
 
 
 const BottomCard = ({sortBy, data}) => {
 
     // 0 - DCR
-    let dcr = (<View style={QualityStyles.dcr}>
-        <Text style={QualityStyles.statTitle}>DCR</Text>
-        <Text style={QualityStyles.statValue}>{data.deliveryCompletionRate}%</Text>
+    let dcr = (<View style={StatStyles.dcr}>
+        <Text style={StatStyles.statTitle}>DCR</Text>
+        <Text style={StatStyles.statValue}>{data.deliveryCompletionRate}%</Text>
     </View>)
 
     // 1 - DAR
-    let dar = (<View style={QualityStyles.dar}>
-        <Text style={QualityStyles.statTitle}>DAR</Text>
-        <Text style={QualityStyles.statValue}>{data.deliveredAndRecieved}</Text>
+    let dar = (<View style={StatStyles.dar}>
+        <Text style={StatStyles.statTitle}>DAR</Text>
+        <Text style={StatStyles.statValue}>{data.deliveredAndRecieved}</Text>
     </View>)
 
     // 2 - POD
-    let pod = (<View style={QualityStyles.pod}>
-        <Text style={QualityStyles.statTitle}>POD</Text>
-        <Text style={QualityStyles.statValue}>{data.photoOnDelivery}%</Text>                
+    let pod = (<View style={StatStyles.pod}>
+        <Text style={StatStyles.statTitle}>POD</Text>
+        <Text style={StatStyles.statValue}>{data.photoOnDelivery}%</Text>                
     </View>)
 
     // 3 - CC
-    let cc = (<View style={QualityStyles.callCompliance}>
-        <Text style={QualityStyles.statTitle}>Call Compliance</Text>
-        <Text style={QualityStyles.statValue}>{data.callCompliance}%</Text>                
+    let cc = (<View style={StatStyles.callCompliance}>
+        <Text style={StatStyles.statTitle}>Call Compliance</Text>
+        <Text style={StatStyles.statValue}>{data.callCompliance}%</Text>                
     </View>)
 
     // 4 - SC
-    let sc = (<View style={QualityStyles.scanCompliance}>
-        <Text style={QualityStyles.statTitle}>Scan Compliance</Text>
-        <Text style={QualityStyles.statValue}>{data.scanCompliance}%</Text>                
+    let sc = (<View style={StatStyles.scanCompliance}>
+        <Text style={StatStyles.statTitle}>Scan Compliance</Text>
+        <Text style={StatStyles.statValue}>{data.scanCompliance}%</Text>                
     </View>)
 
     // 5 - fico
-    let fico = (<View style={SafetyAndComplianceStyles.fico}>
-        <Text style={SafetyAndComplianceStyles.statTitle}>FICO</Text>
-        <Text style={SafetyAndComplianceStyles.statValue}>{data.fico}</Text>
+    let fico = (<View style={StatStyles.fico}>
+        <Text style={StatStyles.statTitle}>FICO</Text>
+        <Text style={StatStyles.statValue}>{data.fico}</Text>
     </View>)
 
     // 6 - Seatbelt
-    let seatbelt = (<View style={SafetyAndComplianceStyles.seatbeltOffRate}>
-        <Text style={SafetyAndComplianceStyles.statTitle}>Seatbelt</Text>
-        <Text style={SafetyAndComplianceStyles.statValue}>{data.seatbeltOffRate}</Text>
+    let seatbelt = (<View style={StatStyles.seatbeltOffRate}>
+        <Text style={StatStyles.statTitle}>Seatbelt</Text>
+        <Text style={StatStyles.statValue}>{data.seatbeltOffRate}</Text>
     </View>)
 
     // 7 - Speeding
-    let speeding = (<View style={SafetyAndComplianceStyles.speedingEvent}>
-        <Text style={SafetyAndComplianceStyles.statTitle}>Speeding</Text>
-        <Text style={SafetyAndComplianceStyles.statValue}>{data.speedingEvent}</Text>
+    let speeding = (<View style={StatStyles.speedingEvent}>
+        <Text style={StatStyles.statTitle}>Speeding</Text>
+        <Text style={StatStyles.statValue}>{data.speedingEvent}</Text>
     </View>)
 
     // 8 - Defects
-    let defects = (<View style={TeamStyles.defect}>
-        <Text style={TeamStyles.statTitle}>Defects</Text>
-        <Text style={TeamStyles.statValue}>{data.defects}</Text>
+    let defects = (<View style={StatStyles.defect}>
+        <Text style={StatStyles.statTitle}>Defects</Text>
+        <Text style={StatStyles.statValue}>{data.defects}</Text>
     </View>)
 
     // 9 - cdf
-    let cdf = (<View style={TeamStyles.customerFeedback}>
-        <Text style={TeamStyles.statTitle}>Customer Feedback</Text>
-        <Text style={TeamStyles.statValue}>{data.customerDeliveryFeedback}</Text>
+    let cdf = (<View style={StatStyles.customerFeedback}>
+        <Text style={StatStyles.statTitle}>Customer Feedback</Text>
+        <Text style={StatStyles.statValue}>{data.customerDeliveryFeedback}</Text>
     </View>)
     
     let handleSort = (sortBy) => {
         let returnArray = ""
-        if (sortBy == "dcr"){
+        if (sortBy == "Delivery Completion Rate"){
             returnArray = [dcr, dar, pod, cc, sc, fico, seatbelt, speeding, defects, cdf]
         }
-        else if (sortBy == 'dar'){
+        else if (sortBy == 'Delivered and Recieved'){
             returnArray = [dar, pod, cc, sc, fico, seatbelt, speeding, defects, cdf, dcr]
         }
-        else if (sortBy == 'pod'){
+        else if (sortBy == 'Photo Rate'){
             returnArray = [pod, cc, sc, fico, seatbelt, speeding, defects, cdf, dcr, dar]
         }
-        else if (sortBy == 'cc'){
+        else if (sortBy == 'Call Compliance'){
             returnArray = [cc, sc, fico, seatbelt, speeding, defects, cdf, dcr, dar, pod]
         }
-        else if (sortBy == 'sc'){
+        else if (sortBy == 'Scan Compliance'){
             returnArray = [sc, fico, seatbelt, speeding, defects, cdf, dcr, dar, pod, cc]
         }
-        else if (sortBy == 'fico'){
+        else if (sortBy == 'FICO'){
             returnArray = [fico, seatbelt, speeding, defects, cdf, dcr, dar, pod, cc, sc]
         }
-        else if (sortBy == 'seatbelt'){
+        else if (sortBy == 'Seatbelt'){
             returnArray = [seatbelt, speeding, defects, cdf, dcr, dar, pod, cc, sc, fico]
         }
-        else if (sortBy == 'speeding'){
+        else if (sortBy == 'Speeding'){
             returnArray = [speeding, defects, cdf, dcr, dar, pod, cc, sc, fico, seatbelt]
         }
-        else if (sortBy == 'defects'){
+        else if (sortBy == 'Defects'){
             returnArray = [defects, cdf, dcr, dar, pod, cc, sc, fico, seatbelt, speeding]
         }
-        else if (sortBy == 'cdf'){
+        else if (sortBy == 'Customer Delivery Feedback'){
             returnArray = [cdf, dcr, dar, pod, cc, sc, fico, seatbelt, speeding, defects]
         }
         else {
-            returnArray = defaultDriversSort
+            returnArray = null
         }
         return returnArray
     }
@@ -109,7 +108,7 @@ const BottomCard = ({sortBy, data}) => {
         let returnArray = handleSort(sortBy)
         return returnArray.map( (stat) => {
             return(
-                <View>
+                <View >
                     {stat}
                 </View>
             )

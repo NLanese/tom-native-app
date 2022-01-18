@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { QualityStyles } from "../../../../Styles/ScoreCardStyles"
+import { SortingStyles } from "../../../../Styles/ScoreCardStyles";
 import { View, Text, TouchableWithoutFeedback } from 'react-native'
-import { ActivityIndicator, Icon, Button, Modal} from "react-native-paper";
+import { Portal, Button, Modal} from "react-native-paper";
+import PropSort from "./PropSort";
 
 
 const SortbyButton = ({dropVisibility, handleDropDownClick, sortBy, setSortBy}) => {
@@ -10,17 +11,28 @@ const SortbyButton = ({dropVisibility, handleDropDownClick, sortBy, setSortBy}) 
 
     return(
         <View>
-            <Text style={QualityStyles.sortText}>Sort By</Text>
+            <Text style={SortingStyles.sortText}>Sort By</Text>
             <TouchableWithoutFeedback onPress={() => handleDropDownClick()}>
-                <View style={QualityStyles.sortByButton}>
+                <View style={SortingStyles.sortByButton}>
                     <Text style={{fontSize: 16}}>{sortBy}</Text>
-                    <Button style={QualityStyles.dropArrowBox} icon='arrow-down-bold-box-outline' color='black' size={50}/>
+                    <Button style={SortingStyles.dropArrowBox} icon='arrow-down-bold-box-outline' color='black' size={50}/>
                 </View>
             </TouchableWithoutFeedback>
             <View>
-                <Modal visible={dropVisibility} onDismiss={handleDropDownClick} >
-                    
+                <Portal>
+                <Modal visible={dropVisibility} onDismiss={handleDropDownClick} contentContainerStyle={SortingStyles.modal}>
+                    <PropSort propName={'Delivery Completion Rate'} setSortBy={setSortBy} />
+                    <PropSort propName={'Delivered And Recieved'} setSortBy={setSortBy} />
+                    <PropSort propName={'Photo Rate'} setSortBy={setSortBy} />
+                    <PropSort propName={'Call Compliance'} setSortBy={setSortBy} />
+                    <PropSort propName={'Scan Compliance'} setSortBy={setSortBy} />
+                    <PropSort propName={'FICO'} setSortBy={setSortBy} />
+                    <PropSort propName={'Seatbelt'} setSortBy={setSortBy} />
+                    <PropSort propName={'Speeding'} setSortBy={setSortBy} />
+                    <PropSort propName={'Defects'} setSortBy={setSortBy} />
+                    <PropSort propName={'Customer Delivery Feedback'} setSortBy={setSortBy} />
                 </Modal>
+                </Portal>
             </View>
         </View>
     )

@@ -62,7 +62,7 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
                 <View style={QualityStyles.iconSpace}>
                     <Avatar.Image
                         source={SomeDudesFace}
-                        size={80}
+                        size={65}
                     />
                 </View>
                 <View style={QualityStyles.nameSpace}>

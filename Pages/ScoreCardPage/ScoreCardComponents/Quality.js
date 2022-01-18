@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { QualityStyles } from '../../../Styles/ScoreCardStyles'
+import { SortingStyles } from "../../../Styles/ScoreCardStyles";
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
@@ -12,10 +13,9 @@ import SortbyButton from "./ButtonboxComponents/SortByButton";
 const Quality = () => {
 
     const { loading, error, data, refetch } = useQuery(GETDRIVERSFORSCORECARDQUALITY)
-    // Query for DSP PReferences
-
+    // Add a Query for DSP PReferences
     const [queryData, setQueryData] = useState({})
-    const [sortBy, setSortBy] = useState("fico")
+    const [sortBy, setSortBy] = useState("FICO")
     const [dropVisibility, setDropVisibility] = useState(false)
 
 
@@ -32,12 +32,6 @@ const Quality = () => {
         scan_compliance: {fantastic: 95, good: 90, fair: 85},
     })
     
-    const textColors = {
-        fantastic: '#116530',
-        good: '#21B6A8',
-        fair: '#FF8300',
-        subpar: '#BA0F30'
-    }
 
     // Returns all of the drivers sorted by a specific parameter
     const returnSortedList = (allDrivers, sortBy) => {
@@ -52,7 +46,7 @@ const Quality = () => {
             } )
         }
     }
-
+    
     // Runs after query is recieved completely
     useEffect(() => {
         if (!loading && data) {
@@ -113,7 +107,7 @@ const Quality = () => {
         return(
             <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
                 <Banner />
-                <View style={QualityStyles.sortBy}>
+                <View style={SortingStyles.sortBy}>
                     <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
                 </View>
                 <ScrollView bounces={false}>

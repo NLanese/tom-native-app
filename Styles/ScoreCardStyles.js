@@ -4,8 +4,8 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 let cardWidth = maxWidth - (maxWidth * 0.03)
-let topCardHeight = (maxHeight * 0.14)
-let bottomCardHeight = (maxHeight * 0.069)
+let topCardHeight = (maxHeight * 0.13)
+let bottomCardHeight = (maxHeight * 0.09)
 
 
 const ScoreCardStyles = StyleSheet.create({
@@ -22,15 +22,7 @@ const ScoreCardStyles = StyleSheet.create({
 	},
 })
 
-
-
-const QualityStyles = StyleSheet.create({
-	container: {
-		marginTop: 10,
-		flexDirection: 'column',
-		alignItems: 'center',
-		height: '100%',
-	},
+const SortingStyles = StyleSheet.create({
 	sortBy: {
 		marginTop: maxHeight * 0.01,
 		marginLeft: maxWidth * 0.02,
@@ -43,7 +35,7 @@ const QualityStyles = StyleSheet.create({
 		left: maxWidth * 0.2,
 		top: -maxHeight * 0.034,
 		padding: 2,
-		width: maxWidth * 0.5,
+		width: maxWidth * 0.7,
 		height: maxWidth * 0.07,
 		borderColor: 'grey',
 		borderWidth: 1,
@@ -53,37 +45,62 @@ const QualityStyles = StyleSheet.create({
 	},
 	dropArrowBox: {
 		top: '-125%',
-		left: maxWidth * 0.4,
+		left: maxWidth * 0.6,
 		width: maxWidth * 0.089,
 		height: maxWidth * 0.089,
-		// backgroundColor: 'red'
 	},
+	modal: {
+		backgroundColor: 'white',
+		top: -maxHeight * 0.135,
+		left: maxHeight * 0.1245,
+		width: maxWidth * 0.7,
+		paddingTop: maxHeight * 0.01
+	},
+
+	propDrop: {
+		// height: '10%'
+		paddingLeft: maxWidth * 0.02,
+		paddingBottom: maxHeight * 0.01,
+		marginTop: maxHeight * 0.01,
+		borderBottomWidth: 1,
+		borderColor: '#E2E8F1',
+
+	}
+})
+
+const QualityStyles = StyleSheet.create({
+	// DONE AND GOOD
+	container: {
+		marginTop: 10,
+		flexDirection: 'column',
+		alignItems: 'center',
+		height: '100%',
+	},
+	// DONE AND GOOD
 	leadersTitle: {
 		borderBottomWidth: 0.5,
 		height: maxHeight * 0.06,
 		fontSize: 20,
 		marginLeft: maxWidth * 0.02
 	},
-
-	remainders: {
-
-	},
+	// DONE AND GOOD
 	topThreeEmployeeCard: {	
 		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
 		shadowOpacity: 0,
-		// borderWidth: 1,
 		borderColor: '#E2E8F1'
 	},
+	// DONE AND GOOD
 	cardTop: {
 		height: topCardHeight,
 		borderBottomColor: '#E2E8F1',
 		borderBottomWidth: 1
 	},
+	// DONE AND GOOD
 	topRank: {
 		backgroundColor: '#E2E8F1',
-		left: -(maxWidth * 0.93),
+		left: -(maxWidth * 0.87),
 		top: -(maxHeight * 0.135),
 		width: (maxHeight * 0.065) * 0.7,
 		height: (maxHeight * 0.065) * 0.7,
@@ -92,22 +109,25 @@ const QualityStyles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	// DONE AND GOOD
 	iconSpace: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'relative',
-		left: maxWidth * 0.06,
+		left: maxWidth * 0.02,
 		top: 0,
 		height: '100%',
 		width: '20%',
 	},
+	// DONE AND GOOD
 	nameSpace: {
 		position: 'absolute',
-		marginLeft: '25%',
+		marginLeft: '20%',
 		top: '30%',
 		height: '70%',
 		alignItems: 'center',
 	},
+	// DONE AND GOOD
 	employeeName: {
 		textAlign: 'center',
 		justifyContent: 'center',
@@ -115,6 +135,7 @@ const QualityStyles = StyleSheet.create({
 		marginLeft: 10,
 		fontWeight: '300'
 	},
+	// DONE AND GOOD
 	cardBottm: {
 		height: bottomCardHeight,
 		flexDirection: "row"
@@ -168,6 +189,20 @@ const QualityStyles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 16,
 	}
+})
+
+const StatStyles = StyleSheet.create({
+	statTitle: {
+		fontSize: 10,
+		color: "grey",
+		marginTop: 4
+	},
+	statValue:{
+		marginTop: 3,
+		fontWeight: '600',
+		fontSize: 16,
+	}
+
 })
 
 const SafetyAndComplianceStyles = StyleSheet.create({
@@ -761,10 +796,13 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 
 export { 
     ScoreCardStyles, 
+	SortingStyles,
+	StatStyles,
     QualityStyles, 
     SafetyAndComplianceStyles, 
 	TeamStyles,
 	ButtonBox,
 	// LeaderboardStyles,
-	PersonalLeaderboardStyles
+	PersonalLeaderboardStyles,
+	
 }
