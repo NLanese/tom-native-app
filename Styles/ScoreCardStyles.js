@@ -22,6 +22,8 @@ const ScoreCardStyles = StyleSheet.create({
 	},
 })
 
+
+
 const QualityStyles = StyleSheet.create({
 	container: {
 		marginTop: 10,
@@ -714,6 +716,7 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		borderBottomWidth: 1
 	},
 	completionValue: {
+		height: maxHeight * 0.03,
 		marginLeft: maxWidth * 0.025,
 		top: maxHeight * 0.01,
 		width: maxWidth * 0.29,

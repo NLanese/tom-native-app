@@ -40,8 +40,8 @@ import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/Edit
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 import Banner from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
-import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
-import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
+// import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
+// import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -154,13 +154,13 @@ export default function App() {
                   {props => <Quality />}
                 </Stack.Screen>
 
-                <Stack.Screen name='safety_and_compliance'>
+                {/* <Stack.Screen name='safety_and_compliance'>
                   {props => <SafetyAndCompliance />}
                 </Stack.Screen>
 
                 <Stack.Screen name='team'>
                   {props => <Team />}
-                </Stack.Screen>
+                </Stack.Screen> */}
             
               </Stack.Navigator>
             </View>

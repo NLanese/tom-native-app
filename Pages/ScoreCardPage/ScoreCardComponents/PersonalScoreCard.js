@@ -63,53 +63,40 @@ const PersonalScoreCard = () => {
         let icon = ""
         thisWeek = parseFloat(thisWeek, 10)
         lastWeek = parseFloat(lastWeek, 10)
-        // console.log("This Week: " + thisWeek)
-        // console.log("Last Week " + lastWeek)
-        // console.log("Percent Difference: " + thisWeek / lastWeek )
+
         if (asc){
             if (thisWeek > lastWeek){
                 if (thisWeek > (1.65 * lastWeek)){
-                    console.log((1.65 * lastWeek) + " is less than " + thisWeek)
-                    icon="chevron-triple-up"
                 }
                 else if (thisWeek > (1.4 * lastWeek)){
-                    console.log((1.4 * lastWeek) + " is less than " + thisWeek)
                     icon="chevron-double-up"
                 }
                 else{
-                    console.log((1.1 * lastWeek) + " is less than " + thisWeek)
                     icon="chevron-up"
                 }
                 return (<IconButton icon={icon} color='green' size={15}/>)
             }
             else{
                 if (lastWeek > 1.65 * thisWeek){
-                    // console.log((1.65 * thisWeek) + " is less than " + lastWeek)
                     icon="chevron-triple-down"
                 }
                 else if (thisWeek > 1.4 * lastWeek){
-                    // console.log((1.4 * thisWeek) + " is less than " + lastWeek)
                     icon="chevron-double-down"
                 }
                 else{
-                    // console.log((1.1 * thisWeek) + " is less than " + lastWeek)
                     icon="chevrone-down"
                 }
                 return (<IconButton icon={icon} color='green' size={15}/>)
             }
         } else {
-            console.log("DESCENDING")
             if (thisWeek < lastWeek){
                 if (thisWeek * 1.65  < lastWeek){
-                    // console.log(thisWeek * 1.65 + " is less than " + lastWeek)
                     icon="chevron-triple-up"
                 }
                 else if (thisWeek * 1.4 < lastWeek){
-                    // console.log(thisWeek * 1.4 + " is less than " + lastWeek)
                     icon="chevron-double-up"
                 }
                 else{
-                    // console.log(thisWeek * 1.1 + " is less than " + lastWeek)
                     icon="chevron-up"
                 }
                 return (<IconButton icon={icon} color='green' size={15}/>)
@@ -124,8 +111,6 @@ const PersonalScoreCard = () => {
                 else{
                     icon="chevron-down"
                 }
-                console.log(icon)
-                console.log("------------\n\n")
                 return (<IconButton icon={icon} color='red' size={15} />)
             }
         }
@@ -154,8 +139,6 @@ const PersonalScoreCard = () => {
         }
         return (<Text style={{textAlign: 'center', color: color, fontWeight: '600', fontSize: 16,}}>{tier}</Text>)
     }
-
-    console.log(lastWeekData)
 
     return(
         <View>

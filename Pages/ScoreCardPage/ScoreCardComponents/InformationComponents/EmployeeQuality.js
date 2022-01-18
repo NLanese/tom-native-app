@@ -4,6 +4,7 @@ import { QualityStyles } from "../../../../Styles/ScoreCardStyles";
 import { Card, Avatar } from 'react-native-paper';
 import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
 import colorTextBasedOnValue from "../../../../Hooks/colorTextBasedOffValue";
+import BottomCard from "./BottomCard";
 
 
 const dspPreferences = ({
@@ -31,7 +32,7 @@ const textColors = {
 
 
 
-const EmployeeQuality = ({driverData, rank}) => {
+const EmployeeQuality = ({driverData, sortBy, rank}) => {
 
     let data = {...driverData}
 
@@ -69,27 +70,7 @@ const EmployeeQuality = ({driverData, rank}) => {
                 </View>
             </View>
             <View style={QualityStyles.cardBottm}>
-                <View style={QualityStyles.dcr}>
-                    <Text style={QualityStyles.statTitle}>DCR</Text>
-                    <Text style={localStyles(data.delivery_completion_rate, 'dcr', true).statValue}>{data.delivery_completion_rate}%</Text>
-                </View>
-                <View style={QualityStyles.dar}>
-                    <Text style={QualityStyles.statTitle}>DAR</Text>
-                    <Text style={localStyles(data.delivered_and_recieved, 'dar', true).statValue}>{data.delivered_and_recieved}</Text>
-                </View>
-                <View style={QualityStyles.pod}>
-                    <Text style={QualityStyles.statTitle}>POD</Text>
-                    <Text style={localStyles(data.photo_on_delivery, 'pod', true).statValue}>{data.photo_on_delivery}%</Text>                
-                </View>
-                <View style={QualityStyles.callCompliance}>
-                    <Text style={QualityStyles.statTitle}>Call Compliance</Text>
-                    <Text style={localStyles(data.call_compliance, 'call_compliance', true).statValue}>{data.call_compliance}%</Text>                
-                </View>
-                <View style={QualityStyles.scanCompliance}>
-                    <Text style={QualityStyles.statTitle}>Scan Compliance</Text>
-                    <Text style={localStyles(data.call_compliance, 'scan_compliance', true).statValue}>{data.scan_compliance}%</Text>                
-                </View>
-                
+                <BottomCard sortBy={sortBy} data={data} />
                 <View style={QualityStyles.topRank}>
                     <Text style={{fontWeight: '800'}}>{rank}</Text>
                 </View>
@@ -106,6 +87,6 @@ const localStyles = (value, valName, startAtTop) => StyleSheet.create({
         marginTop: 3,
 		fontWeight: '600',
 		fontSize: 16,
-        color: colorTextBasedOnValue(value, valName, startAtTop, dspPreferences, textColors)
+        // color: colorTextBasedOnValue(value, valName, startAtTop, dspPreferences, textColors)
     }
 })

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, TouchableWithoutFeedback} from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
-import { ActivityIndicator, Icon, Button} from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import Banner from "../../../Global/Banner";
-import colorTextBasedOnValue from "../../../Hooks/colorTextBasedOffValue";
+import SortbyButton from "./ButtonboxComponents/SortByButton";
 
 const Quality = () => {
 
@@ -16,6 +16,7 @@ const Quality = () => {
 
     const [queryData, setQueryData] = useState({})
     const [sortBy, setSortBy] = useState("fico")
+    const [dropVisibility, setDropVisibility] = useState(false)
 
 
     const fakeDspPreferences = ({
@@ -38,8 +39,9 @@ const Quality = () => {
         subpar: '#BA0F30'
     }
 
+    // Returns all of the drivers sorted by a specific parameter
     const returnSortedList = (allDrivers, sortBy) => {
-        if (sortBy == 'fico' || sortBy == 'scan_compliance' || sortBy == 'deliveries' || sortBy == 'customer_delivery_feedback' || 'delivery_completion_rate'){
+        if (sortBy == 'fico' || sortBy == 'scanCompliance' || sortBy == 'deliveries' || sortBy == 'customerDeliveryFeedback' || 'deliveryCompletionRate'){
             return allDrivers.sort( (a, b) => {
                 b[sortBy] - a[sortBy]
             } )
@@ -51,19 +53,24 @@ const Quality = () => {
         }
     }
 
+    // Runs after query is recieved completely
     useEffect(() => {
         if (!loading && data) {
             setQueryData(data.getDriversForScorecardQuality)
         }
     }, [data])
 
+    // Takes DSP Preferences and renders x amount of top cards, stopping at y cards total
+    // allDrivers = array of drivers
+    // topNum is the top amount of cards
+    // stopAt is the limit of how many cards you will allow to render
     const renderTopAndOthers = (allDrivers, topNum=3, stopAt) => {
         let i = 0
         const topCards = (
             <View style={QualityStyles.topThree}>
                 {allDrivers.slice(0, topNum).map( (driver) => {
                     i++
-                    return <EmployeeQuality driverData={driver} key={i} rank={i} />
+                    return <EmployeeQuality driverData={driver} sortBy={sortBy} key={i} rank={i} />
                 })}
             </View>
         )
@@ -89,24 +96,25 @@ const Quality = () => {
         )
     }
 
+    const handleDropDownClick = () => {
+        setDropVisibility(!dropVisibility)
+    }
+
+    // If the data is not yet loaded
     if (!queryData[0]) {
         return (
             <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
                 <ActivityIndicator animating={true} size='large' color={'#570de4'} />
             </View>
         )
-    } else {
+    } 
+    // If the data IS loaded
+    else {
         return(
             <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
                 <Banner />
                 <View style={QualityStyles.sortBy}>
-                    <Text style={QualityStyles.sortText}>Sort By</Text>
-                    <TouchableWithoutFeedback >
-                        <View style={QualityStyles.sortByButton}>
-                            <Text style={{fontSize: 16}}>{sortBy}</Text>
-                            <Button style={QualityStyles.dropArrowBox} icon='arrow-down-bold-box-outline' color='black' size={50}/>
-                        </View>
-                    </TouchableWithoutFeedback>
+                    <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
                 </View>
                 <ScrollView bounces={false}>
                     {renderTopAndOthers(queryData, fakeDspPreferences.topCards, fakeDspPreferences.stopAt)}
