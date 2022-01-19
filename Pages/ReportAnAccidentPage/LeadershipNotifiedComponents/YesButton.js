@@ -8,7 +8,7 @@ const YesButton = () => {
     return (
         <View>
             <Button 
-                onPress={() => history.push('/police_contacted')}
+                // onPress={() => history.push('/police_contacted')}
                 title="Yes"
             />
         </View>

@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 import { AccountInformationStyles } from "../../../Styles/SettingStyles";
 import { ActivityIndicator } from "react-native-paper";
+import Banner from "../../../Global/Banner";
 
 const AccountInformation = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
@@ -38,7 +39,9 @@ const AccountInformation = () => {
         )
     } else {
         return (
-            <View style={SettingsStyles.container}>    
+            <View style={SettingsStyles.container}>
+                <Banner />
+
                 <View style={AccountInformationStyles.container}>
                     <AdminAndUserInformation userData={userData}/>
                 </View>
