@@ -4,8 +4,8 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 let cardWidth = maxWidth - (maxWidth * 0.03)
-let topCardHeight = (maxHeight * 0.14)
-let bottomCardHeight = (maxHeight * 0.069)
+let topCardHeight = (maxHeight * 0.13)
+let bottomCardHeight = (maxHeight * 0.09)
 
 
 const ScoreCardStyles = StyleSheet.create({
@@ -22,50 +22,85 @@ const ScoreCardStyles = StyleSheet.create({
 	},
 })
 
+const SortingStyles = StyleSheet.create({
+	sortBy: {
+		marginTop: maxHeight * 0.01,
+		marginLeft: maxWidth * 0.02,
+		borderBottomWidth: 2,
+		borderBottomColor: '#E2E8F1',
+		height: maxHeight * 0.05,
+		justifyContent: 'center'
+	},
+	sortByButton: {
+		left: maxWidth * 0.2,
+		top: -maxHeight * 0.034,
+		padding: 2,
+		width: maxWidth * 0.7,
+		height: maxWidth * 0.07,
+		borderColor: 'grey',
+		borderWidth: 1,
+	},
+	sortText:{
+		fontSize: 20
+	},
+	dropArrowBox: {
+		top: '-125%',
+		left: maxWidth * 0.6,
+		width: maxWidth * 0.089,
+		height: maxWidth * 0.089,
+	},
+	modal: {
+		backgroundColor: 'white',
+		top: -maxHeight * 0.135,
+		left: maxHeight * 0.1245,
+		width: maxWidth * 0.7,
+		paddingTop: maxHeight * 0.01
+	},
+
+	propDrop: {
+		// height: '10%'
+		paddingLeft: maxWidth * 0.02,
+		paddingBottom: maxHeight * 0.01,
+		marginTop: maxHeight * 0.01,
+		borderBottomWidth: 1,
+		borderColor: '#E2E8F1',
+
+	}
+})
+
 const QualityStyles = StyleSheet.create({
+	// DONE AND GOOD
 	container: {
 		marginTop: 10,
 		flexDirection: 'column',
 		alignItems: 'center',
 		height: '100%',
 	},
-	topThree: {
-		height: maxHeight * 0.68,
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-
+	// DONE AND GOOD
 	leadersTitle: {
-		fontWeight: '600',
-		marginLeft: maxWidth * 0.04,
-		marginBottom: 6,
-		fontSize: 18,
+		borderBottomWidth: 0.5,
+		height: maxHeight * 0.06,
+		fontSize: 20,
+		marginLeft: maxWidth * 0.02
 	},
-
-	remainders: {
-		marginTop: (maxHeight * 0.01),
-		width: maxWidth,
-		marginBottom: "2%",
-		alignItems: 'center',
-		marginBottom: 30
-	},
-	topThreeEmployeeCard: {
+	// DONE AND GOOD
+	topThreeEmployeeCard: {	
 		height: topCardHeight + bottomCardHeight,
 		width: maxWidth * 0.95,
 		marginBottom: 10,
 		shadowOpacity: 0,
-		// borderWidth: 1,
 		borderColor: '#E2E8F1'
 	},
+	// DONE AND GOOD
 	cardTop: {
 		height: topCardHeight,
 		borderBottomColor: '#E2E8F1',
 		borderBottomWidth: 1
 	},
+	// DONE AND GOOD
 	topRank: {
 		backgroundColor: '#E2E8F1',
-		left: -(maxWidth * 0.93),
+		left: -(maxWidth * 0.87),
 		top: -(maxHeight * 0.135),
 		width: (maxHeight * 0.065) * 0.7,
 		height: (maxHeight * 0.065) * 0.7,
@@ -74,22 +109,25 @@ const QualityStyles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	// DONE AND GOOD
 	iconSpace: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'relative',
-		left: maxWidth * 0.06,
+		left: maxWidth * 0.02,
 		top: 0,
 		height: '100%',
 		width: '20%',
 	},
+	// DONE AND GOOD
 	nameSpace: {
 		position: 'absolute',
-		marginLeft: '25%',
+		marginLeft: '20%',
 		top: '30%',
 		height: '70%',
 		alignItems: 'center',
 	},
+	// DONE AND GOOD
 	employeeName: {
 		textAlign: 'center',
 		justifyContent: 'center',
@@ -97,6 +135,7 @@ const QualityStyles = StyleSheet.create({
 		marginLeft: 10,
 		fontWeight: '300'
 	},
+	// DONE AND GOOD
 	cardBottm: {
 		height: bottomCardHeight,
 		flexDirection: "row"
@@ -150,6 +189,27 @@ const QualityStyles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 16,
 	}
+})
+
+const StatStyles = StyleSheet.create({
+	statTitle: {
+		fontSize: 10,
+		color: "grey",
+		marginTop: 4
+	},
+	statValue:{
+		marginTop: 3,
+		fontWeight: '600',
+		fontSize: 16,
+	},
+	stat: {
+		width: maxWidth * 0.3,
+		height: '98%',
+		alignItems: 'center',
+		borderLeftWidth: 1,
+		borderColor: '#E2E8F1',
+	}
+
 })
 
 const SafetyAndComplianceStyles = StyleSheet.create({
@@ -554,13 +614,16 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.15,
 	},
 	drivingStatsLabels: {
-		textAlign: 'center'
+		textAlign: 'center',
+		color: "grey",
+		fontSize: 10
 	},
 	drivingStatsValue: {
 		textAlign: 'center',
 	},
 	seatbeltLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: maxHeight * 0.01,
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -571,20 +634,40 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	speedingLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.05,
 		left: '53%',
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
+	arrowIcon:{
+		justifyContent: 'center',
+		alignItems: 'center',
+		// borderWidth: 1,
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.05,
+		left: '80%',
+		top: '-90%'
+	},
+	arrowIcon2:{
+		justifyContent: 'center',
+		alignItems: 'center',
+		// borderWidth: 1,
+		height: maxHeight * 0.03,
+		width: maxWidth * 0.05,
+		left: '80%',
+		top: '-45%'
+	},
 	speedingValue:{
 		top: -maxHeight * 0.05,
-		left: '53%',
+		left: '52%',
 		width: '47%',
 		height: maxHeight * 0.03,
 	},
 	distractionLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.03,
 		left: '53%',
 		width: '45%',
@@ -597,7 +680,8 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	followingLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.09,
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -608,7 +692,8 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	signalLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.07,
 		width: '45%',
 		height: maxHeight * 0.03,
@@ -619,7 +704,8 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		height: maxHeight * 0.03,
 	},
 	ficoLabel:{
-		borderBottomWidth: 0.5,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 1,
 		top: -maxHeight * 0.13,
 		left: '53%',
 		width: '45%',
@@ -631,63 +717,77 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		width: '45%',
 		height: maxHeight * 0.03,
 	},
-	dcrLabel: {
-		top: maxHeight * 0.0132,
+	scLabel: {
+		height: maxHeight * 0.03,
+		borderBottomColor: '#E2E8F1',
+		top: maxHeight * 0.009,
 		width: '90%',
 		left: '5%',
-		borderBottomWidth: 0.5,
+		borderBottomWidth: 1,
 	},
-	dcrValue: {
-		top: maxHeight * 0.01,
+	scValue: {
+		top: maxHeight * 0.0132,
 	},
 	podLabel: {
-		top: maxHeight * 0.042,
+		height: maxHeight * 0.03,
+		borderBottomColor: '#E2E8F1',
+		top: maxHeight * 0.00,
 		width: '90%',
 		left: '5%',
-		borderBottomWidth: 0.5,
+		borderBottomWidth: 1,
 	},
 	podValue: {
-		top: maxHeight * 0.042,
+		top: maxHeight * 0.00,
 	},
 	cdfLabel: {
-		top: maxHeight * 0.07,
+		height: maxHeight * 0.03,
+		borderBottomColor: '#E2E8F1',
+		top: -maxHeight * 0.0089,
 		width: '90%',
-		left: '5%',
-		borderBottomWidth: 0.5,
+		left: '3%',
+		borderBottomWidth: 1,
 	},
 	cdfValue: {
-		top: maxHeight * 0.07,
+		top: -maxHeight * 0.0089,
 	},
-	netradyneLabel:{
+	completionLabel: {
+		borderBottomColor: '#E2E8F1',
+		marginLeft: maxWidth * 0.025,
+		top: maxHeight * 0.01,
+		width: maxWidth * 0.29,
+		borderBottomWidth: 1
+	},
+	completionValue: {
+		height: maxHeight * 0.03,
+		marginLeft: maxWidth * 0.025,
+		top: maxHeight * 0.01,
+		width: maxWidth * 0.29,
+		// borderBottomWidth: 0.5
+	},
+	totalLabel:{
+		borderBottomColor: '#E2E8F1',
 		height: maxHeight * 0.03,
 		width: maxWidth * 0.29,
-		borderBottomWidth: 0.5,
+		borderBottomWidth: 1,
+		top: -maxHeight * 0.05,
+		left: maxWidth * 0.33
 	},
-	netradyneValue: {
-		width: maxWidth * 0.29
-	},
-	defectLabel:{
-		height: maxHeight * 0.03,
+	totalValue: {
 		width: maxWidth * 0.29,
-		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.0556,
+		top: -maxHeight * 0.05,
 		left: maxWidth * 0.32
 	},
-	defectValue: {
-		width: maxWidth * 0.29,
-		top: -maxHeight * 0.0556,
-		left: maxWidth * 0.32
-	},
-	deliveryLabel:{
+	tierLabel:{
+		borderBottomColor: '#E2E8F1',
 		height: maxHeight * 0.03,
 		width: maxWidth * 0.29,
-		borderBottomWidth: 0.5,
-		top: -maxHeight * 0.1108,
+		borderBottomWidth: 1,
+		top: -maxHeight * 0.11,
 		left: maxWidth * 0.64
 	},
-	deliveryValue: {
+	tierValue: {
 		width: maxWidth * 0.29,
-		top: -maxHeight * 0.1108,
+		top: -maxHeight * 0.11,
 		left: maxWidth * 0.64
 	},
 	buttonBox: {
@@ -703,10 +803,13 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 
 export { 
     ScoreCardStyles, 
+	SortingStyles,
+	StatStyles,
     QualityStyles, 
     SafetyAndComplianceStyles, 
 	TeamStyles,
 	ButtonBox,
 	// LeaderboardStyles,
-	PersonalLeaderboardStyles
+	PersonalLeaderboardStyles,
+	
 }

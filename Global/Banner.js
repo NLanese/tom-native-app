@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
 import { Appbar, Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
 import Bell from "./BannerComponents/Bell";

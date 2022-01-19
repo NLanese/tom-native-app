@@ -1,12 +1,38 @@
 import React from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { QualityStyles } from "../../../../Styles/ScoreCardStyles";
 import { Card, Avatar } from 'react-native-paper';
 import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
+import colorTextBasedOnValue from "../../../../Hooks/colorTextBasedOffValue";
+import BottomCard from "./BottomCard";
+
+
+const dspPreferences = ({
+    topCards: 5,
+    stopAt: 20,
+    fico: {fantastic: 800, good: 700, fair: 600},
+    seatbelt: {fantastic: 0.05, good: 0.15, fair: 0.3},
+    speeding: {fantastic: 0.05, good: .15, fair: 0.3},
+    distraction: {fantastic: 0.05, good: .15, fair: 0.3},
+    follow: {fantastic: 0.05, good: .15, fair: 0.3},
+    signal: {fantastic: 0.05, good: .15, fair: 0.3},
+    dcr: {fantastic: 95, good: 90, fair: 80},
+    dar: {fantastic: 95, good: 90, fair: 80},
+    pod: {fantastic: 95, good: 90, fair: 80},
+    scan_compliance: {fantastic: 95, good: 90, fair: 85},
+    call_compliance: {fantastic: 95, good: 90, fair: 85},
+})
+
+const textColors = {
+    fantastic: '#116530',
+    good: '#21B6A8',
+    fair: '#FF8300',
+    subpar: '#BA0F30'
+}
 
 
 
-const EmployeeQuality = ({driverData, rank}) => {
+const EmployeeQuality = ({driverData, sortBy, rank}) => {
 
     let data = {...driverData}
 
@@ -36,7 +62,7 @@ const EmployeeQuality = ({driverData, rank}) => {
                 <View style={QualityStyles.iconSpace}>
                     <Avatar.Image
                         source={SomeDudesFace}
-                        size={80}
+                        size={65}
                     />
                 </View>
                 <View style={QualityStyles.nameSpace}>
@@ -44,27 +70,7 @@ const EmployeeQuality = ({driverData, rank}) => {
                 </View>
             </View>
             <View style={QualityStyles.cardBottm}>
-                <View style={QualityStyles.dcr}>
-                    <Text style={QualityStyles.statTitle}>DCR</Text>
-                    <Text style={QualityStyles.statValue}>{data.delivery_completion_rate}%</Text>
-                </View>
-                <View style={QualityStyles.dar}>
-                    <Text style={QualityStyles.statTitle}>DAR</Text>
-                    <Text style={QualityStyles.statValue}>{data.delivered_and_recieved}</Text>
-                </View>
-                <View style={QualityStyles.pod}>
-                    <Text style={QualityStyles.statTitle}>POD</Text>
-                    <Text style={QualityStyles.statValue}>{data.photo_on_delivery}</Text>
-                </View>
-                <View style={QualityStyles.callCompliance}>
-                    <Text style={QualityStyles.statTitle}>Call Compliance</Text>
-                    <Text style={QualityStyles.statValue}>{data.call_compliance}%</Text>
-                </View>
-                <View style={QualityStyles.scanCompliance}>
-                    <Text style={QualityStyles.statTitle}>Scan Compliance</Text>
-                    <Text style={QualityStyles.statValue}>{data.scan_compliance}%</Text>
-                </View>
-                
+                <BottomCard sortBy={sortBy} data={data} />
                 <View style={QualityStyles.topRank}>
                     <Text style={{fontWeight: '800'}}>{rank}</Text>
                 </View>
@@ -75,3 +81,12 @@ const EmployeeQuality = ({driverData, rank}) => {
     )
 }
 export default EmployeeQuality
+
+const localStyles = (value, valName, startAtTop) => StyleSheet.create({
+    statValue:{
+        marginTop: 3,
+		fontWeight: '600',
+		fontSize: 16,
+        // color: colorTextBasedOnValue(value, valName, startAtTop, dspPreferences, textColors)
+    }
+})
