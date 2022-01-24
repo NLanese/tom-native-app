@@ -190,7 +190,6 @@ const QualityStyles = StyleSheet.create({
 		fontSize: 16,
 	}
 })
-
 const StatStyles = StyleSheet.create({
 	statTitle: {
 		fontSize: 10,
@@ -198,7 +197,7 @@ const StatStyles = StyleSheet.create({
 		marginTop: 4
 	},
 	statValue:{
-		marginTop: 3,
+		marginTop: maxHeight * 0.018,
 		fontWeight: '600',
 		fontSize: 16,
 	},
@@ -211,221 +210,8 @@ const StatStyles = StyleSheet.create({
 	}
 
 })
-
-const SafetyAndComplianceStyles = StyleSheet.create({
-	container: {
-		marginTop: 10,
-		flexDirection: 'column',
-		alignItems: 'center',
-		height: '100%',
-	},
-	topThree: {
-		height: maxHeight * 0.68,
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-
-	leadersTitle: {
-		fontWeight: '600',
-		marginLeft: maxWidth * 0.04,
-		marginBottom: 6,
-		fontSize: 18,
-	},
-
-	remainders: {
-		marginTop: (maxHeight * 0.01),
-		width: maxWidth,
-		marginBottom: "2%",
-		alignItems: 'center',
-		marginBottom: 30
-	},
-	topThreeEmployeeCard: {
-		height: topCardHeight + bottomCardHeight,
-		width: maxWidth * 0.95,
-		marginBottom: 10,
-		shadowOpacity: 0,
-		// borderWidth: 1,
-		borderColor: '#E2E8F1'
-	},
-	cardTop: {
-		height: topCardHeight,
-		borderBottomColor: '#E2E8F1',
-		borderBottomWidth: 1
-	},
-	topRank: {
-		backgroundColor: '#E2E8F1',
-		left: -(maxWidth * 0.93),
-		top: -(maxHeight * 0.135),
-		width: (maxHeight * 0.065) * 0.7,
-		height: (maxHeight * 0.065) * 0.7,
-		borderRadius: 100,
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	iconSpace: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		position: 'relative',
-		left: maxWidth * 0.06,
-		top: 0,
-		height: '100%',
-		width: '20%',
-	},
-	nameSpace: {
-		position: 'absolute',
-		marginLeft: '25%',
-		top: '30%',
-		height: '70%',
-		alignItems: 'center',
-	},
-	employeeName: {
-		textAlign: 'center',
-		justifyContent: 'center',
-		fontSize: 25,
-		fontWeight: '300',
-		marginLeft: 10,
-		// borderWidth: 3
-
-	},
-	cardBottm: {
-		height: bottomCardHeight,
-		flexDirection: "row"
-	},
-
-	fico: {
-		alignItems: 'center',
-		width: '20%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-	},
-
-	seatbeltAndSpeeding: {
-		alignItems: 'center',
-		width: '45%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-	},
-
-	netradyne: {
-		alignItems: 'center',
-		width: '35%',
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-		height: '100%',
-	},
-	statTitle: {
-		fontSize: 10,
-		color: "grey",
-		marginTop: 4
-	},
-	statValue:{
-		marginTop: 3,
-		fontWeight: '600',
-		fontSize: 18
-	}
-})
-
 const TeamStyles = StyleSheet.create({
-	container: {
-		marginTop: 10,
-		flexDirection: 'column',
-		alignItems: 'center',
-		height: '100%',
-	},
-	topThree: {
-		height: maxHeight * 0.68,
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
 
-	leadersTitle: {
-		fontWeight: '600',
-		marginLeft: maxWidth * 0.04,
-		marginBottom: 6,
-		fontSize: 18,
-	},
-
-	remainders: {
-		marginTop: (maxHeight * 0.01),
-		width: maxWidth,
-		marginBottom: "2%",
-		alignItems: 'center',
-		marginBottom: 30
-	},
-	topThreeEmployeeCard: {
-		height: topCardHeight + bottomCardHeight,
-		width: maxWidth * 0.95,
-		marginBottom: 10,
-		shadowOpacity: 0,
-		// borderWidth: 1,
-		borderColor: '#E2E8F1'
-	},
-	cardTop: {
-		height: topCardHeight,
-		borderBottomColor: '#E2E8F1',
-		borderBottomWidth: 1
-	},
-	topRank: {
-		backgroundColor: '#E2E8F1',
-		left: -(maxWidth * 0.93),
-		top: -(maxHeight * 0.135),
-		width: (maxHeight * 0.065) * 0.7,
-		height: (maxHeight * 0.065) * 0.7,
-		borderRadius: 100,
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	iconSpace: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		position: 'relative',
-		left: maxWidth * 0.06,
-		top: 0,
-		height: '100%',
-		width: '20%',
-	},
-	nameSpace: {
-		position: 'absolute',
-		marginLeft: '25%',
-		top: '30%',
-		height: '70%',
-		alignItems: 'center',
-	},
-	employeeName: {
-		textAlign: 'center',
-		justifyContent: 'center',
-		fontSize: 25,
-		marginLeft: 10,
-		fontWeight: '300',
-	},
-	cardBottm: {
-		height: bottomCardHeight,
-		flexDirection: "row"
-	},
-	defect: {
-		alignItems: 'center',
-		width: '30%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderLeftWidth: 1,
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-	},
-	customerFeedback: {
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-		alignItems: 'center',
-		width: '45%',
-		height: '100%',
-	},
 	employeeCard :{
 		top: 0,
 		marginBottom: 10,
@@ -436,9 +222,7 @@ const TeamStyles = StyleSheet.create({
 		height: (maxHeight * 0.065),
 		width: maxWidth - (maxWidth * 0.05),
 		shadowOpacity: 0,
-
 	},
-
 	rank: {
 		backgroundColor: '#E2E8F1',
 		left: maxWidth * .02,
@@ -478,7 +262,6 @@ const TeamStyles = StyleSheet.create({
 	}
 
 })
-
 const ButtonBox = StyleSheet.create({
 	container: {
 		width: 340,	
@@ -499,12 +282,6 @@ const ButtonBox = StyleSheet.create({
 		fontSize: 14
 	}
 })
-
-
-// const LeaderboardStyles = StyleSheet.create({
-
-// }),
-
 const PersonalLeaderboardStyles = StyleSheet.create({
 	scoreContainer: {
 		backgroundColor: '#f9f9f9',
@@ -544,7 +321,7 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 	},
 	keyTitle: {
 		width: maxWidth * 0.10,
-		borderBottomWidth: 0.5
+		// borderBottomWidth: 0.3
 	},
 	keyContent:{
 		marginTop: maxHeight * 0.02,
@@ -599,9 +376,9 @@ const PersonalLeaderboardStyles = StyleSheet.create({
 		backgroundColor: 'white',
 		borderWidth: 2,
 		borderColor: '#E2E8F1',
-		left: maxWidth * 0.5,
+		left: maxWidth * 0.50,
 		top: -maxHeight * 0.418,
-		width: maxWidth * 0.5,
+		width: maxWidth * 0.48,
 		height: maxHeight * 0.3,
 	},
 	overalls: {
@@ -806,10 +583,8 @@ export {
 	SortingStyles,
 	StatStyles,
     QualityStyles, 
-    SafetyAndComplianceStyles, 
 	TeamStyles,
 	ButtonBox,
-	// LeaderboardStyles,
 	PersonalLeaderboardStyles,
 	
 }

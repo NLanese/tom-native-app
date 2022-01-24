@@ -19,8 +19,9 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	useEffect( async () => {
 		if (!loading && data) {
-			await setUser(data.signinDriver)
-			await stateChange(data.signinDriver.token);
+			console.log(data)
+			await setUser(data.driverSignIn)
+			await stateChange(data.driverSignIn.token);
 			await handleLoggedIn()
 			await navigation.navigate("home");
 		}
@@ -45,7 +46,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 								email: userData.email,
 								password: userData.password,
 							},
-						});
+						})
 					}}
 				>
 						Login

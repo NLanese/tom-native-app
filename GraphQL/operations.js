@@ -12,23 +12,114 @@ const SIGNUP = gql`
 `;
 
 const LOGIN = gql`
-	mutation Mutation($email: String!, $password: String!) {
-  signinDriver(email: $email, password: $password) {
+  mutation Mutation($email: String!, $password: String!) {
+  driverSignIn(email: $email, password: $password) {
     id
+    createdAt
+    role
+    token
     firstname
     lastname
     email
     password
     phoneNumber
-    token
-    employeeId
-    adminId
-    adminFirstname
-    adminLastname
-    adminEmail
-    adminAccountStanding
-    adminApproved
-    adminPhoneNumber
+    profilePick
+    transporterId
+    locked
+    deleted
+    notified
+    owner {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+    }
+    accidents {
+      id
+      name
+    }
+    admins {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+    }
+    vehicle {
+      id
+      vehicle_number
+      amazon_logo
+    }
+    messages {
+      id
+      createdAt
+      content
+      from
+    }
+    NotifiedMessages {
+
+      createdAt
+      read
+      content
+      from
+      type
+    }
+    dsp {
+      id
+      name
+      createdAt
+      shortcode
+      timeZone
+      ficoLimits
+      seatbeltLimits
+      speedingLimits
+      distractionLimits
+      followLimits
+      deliveryCompletionRateLimits
+      signalLimits
+      scanComplianceLimits
+      callComplianceLimits
+      deliveryNotRecievedLimits
+      photoOnDeliveryLimits
+      topCardLimits
+      smallCardLimits
+      feedbackNotifications
+      autoSend
+      paid
+      accountStanding
+    }
+    weeklyReport {
+      createdAt
+      date
+      hadAccident
+      feedbackMessage
+      feedbackStatus
+      acknowledged
+      acknowledgedAt
+      rank
+      tier
+      delivered
+      keyFocusArea
+      fico
+      seatbeltOffRate
+      speedingEventRate
+      distractionsRate
+      followingDistanceRate
+      signalViolationsRate
+      deliveryCompletionRate
+      deliveryNotRecieved
+      callCompliance
+      photoOnDelivery
+      scanCompliance
+      attendedDeliveryAccuracy
+      netradyne
+      deliveryAssociate
+      defects
+      customerDeliveryFeedback
+      hasManyAccidents
+      belongsToTeam
+    }
   }
 }
 `;
@@ -65,20 +156,131 @@ const GETDRIVERDATA = gql`
   query Query {
   getDriver {
     id
+    createdAt
+    role
+    token
     firstname
     lastname
     email
     password
     phoneNumber
-    token
-    employeeId
-    adminId
-    adminFirstname
-    adminLastname
-    adminEmail
-    adminAccountStanding
-    adminApproved
-    adminPhoneNumber
+    profilePick
+    transporterId
+    locked
+    deleted
+    notified
+    owner {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+    }
+    accidents {
+      id
+      name
+      createdAt
+    }
+    admins {
+      id
+      firstname
+      email
+      lastname
+      phoneNumber
+      locked
+      deleted
+    }
+    vehicle {
+      id
+      vehicle_number
+    }
+    messages {
+      id
+      createdAt
+      content
+      from
+      admin {
+        id
+        firstname
+        lastname
+        email
+        phoneNumber
+      }
+    }
+    NotifiedMessages {
+      id
+      createdAt
+      read
+      content
+      from
+      type
+      driverId
+      adminId
+    }
+    dsp {
+      createdAt
+      id
+      name
+      shortcode
+      timeZone
+      ficoLimits
+      seatbeltLimits
+      speedingLimits
+      distractionLimits
+      followLimits
+      deliveryCompletionRateLimits
+      signalLimits
+      scanComplianceLimits
+      callComplianceLimits
+      deliveryNotRecievedLimits
+      photoOnDeliveryLimits
+      topCardLimits
+      smallCardLimits
+      feedbackNotifications
+      autoSend
+      paid
+      driver {
+        id
+        firstname
+        lastname
+        email
+        phoneNumber
+      }
+    }
+    weeklyReport {
+      id
+      createdAt
+      date
+      hadAccident
+      feedbackMessage
+      feedbackStatus
+      acknowledged
+      acknowledgedAt
+      rank
+      tier
+      delivered
+      keyFocusArea
+      fico
+      seatbeltOffRate
+      speedingEventRate
+      distractionsRate
+      followingDistanceRate
+      signalViolationsRate
+      deliveryCompletionRate
+      deliveryNotRecieved
+      photoOnDelivery
+      callCompliance
+      scanCompliance
+      attendedDeliveryAccuracy
+      netradyne
+      deliveryAssociate
+      defects
+      customerDeliveryFeedback
+      hasManyAccidents
+      belongsToTeam
+      attendence
+      productivity
+    }
   }
 }
 `

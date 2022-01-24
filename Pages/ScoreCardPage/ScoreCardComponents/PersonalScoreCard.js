@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { Button, Icon, IconButton } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
-import { useQuery } from "@apollo/client";
 import dateObj from "../../../Hooks/handleDateTime";
 import nameObj from '../../../Hooks/handleNameCaseChange'
 import colorTextBasedOnValue from "../../../Hooks/colorTextBasedOffValue";
