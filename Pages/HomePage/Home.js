@@ -40,7 +40,7 @@ const Home = ({ handleLoggedIn }) => {
 
     return (
         <View style={HomeStyles.container}> 
-            <Portal>
+            {/* <Portal> */}
                 <Banner handleLoggedIn={handleLoggedIn}/>
                 <ButtonBox />
                 <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
@@ -69,7 +69,7 @@ const Home = ({ handleLoggedIn }) => {
                         </View>
                     </View>
                 </Modal>
-            </Portal>
+            {/* </Portal> */}
         </View>
     )
 }
