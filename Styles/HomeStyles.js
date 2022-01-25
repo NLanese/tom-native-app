@@ -15,7 +15,45 @@ const HomeStyles = StyleSheet.create({
 		width: 200,
 		height: 85,
 		marginTop: 50
-	  }
+	  },
+	weeklyNotificationModal:{
+		width: maxWidth * 0.8,
+		left: maxWidth * 0.1
+	},
+	notificationModalContent:{
+		width: maxWidth * 0.8,
+		height: maxHeight * 0.6,
+		backgroundColor: "#f9f9f9",
+		borderRadius: 50,
+	},
+	weeklyNotificationTitleSpace:{
+		width: maxWidth * 0.6,
+		left: maxWidth * 0.1,
+		paddingTop: maxHeight * 0.03,
+		paddingBottom: maxHeight * 0.01,
+		borderBottomColor: '#E2E8F1',
+		borderBottomWidth: 4,
+		alignItems: 'center',
+	},
+	weeklyNotificationTitle:{
+		fontSize: 16,
+	},
+	weeklyNotificationMessage:{
+		borderWidth: 1,
+		width: maxWidth * 0.7,
+		height: maxHeight * 0.35,
+		left: maxWidth * 0.05,
+		top: maxHeight * 0.02
+	},
+	acknowledgeContainter:{
+		top: maxHeight * 0.05,
+		left: maxWidth * 0.1,
+		width: maxWidth * 0.6,
+		// borderWidth: 1,
+	},
+	acknowledgeCheck:{
+
+	}
 })
 
 const ButtonBoxStyles = StyleSheet.create({
