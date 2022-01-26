@@ -19,7 +19,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	useEffect( async () => {
 		if (!loading && data) {
-			console.log(data)
 			await setUser(data.driverSignIn)
 			await stateChange(data.driverSignIn.token);
 			await handleLoggedIn()

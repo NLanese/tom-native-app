@@ -12,26 +12,10 @@ import SortbyButton from "./ButtonboxComponents/SortByButton";
 
 const Quality = () => {
 
-    const { loading, error, data, refetch } = useQuery(GETDRIVERSFORSCORECARDQUALITY)
     // Add a Query for DSP PReferences
     const [queryData, setQueryData] = useState({})
     const [sortBy, setSortBy] = useState("FICO")
     const [dropVisibility, setDropVisibility] = useState(false)
-
-
-    const fakeDspPreferences = ({
-        topCards: 30,
-        stopAt: 20,
-        fico: {fantastic: 800, good: 700, fair: 600},
-        seatbelt: {fantastic: 0.05, good: 0.15, fair: 0.3},
-        speeding: {fantastic: 0.05, good: .15, fair: 0.3},
-        distraction: {fantastic: 0.05, good: .15, fair: 0.3},
-        follow: {fantastic: 0.05, good: .15, fair: 0.3},
-        signal: {fantastic: 0.05, good: .15, fair: 0.3},
-        dcr: {fantastic: 95, good: 90, fair: 80},
-        scan_compliance: {fantastic: 95, good: 90, fair: 85},
-    })
-    
 
     // Returns all of the drivers sorted by a specific parameter
     const returnSortedList = (allDrivers, sortBy) => {
@@ -47,12 +31,14 @@ const Quality = () => {
         }
     }
     
-    // Runs after query is recieved completely
-    useEffect(() => {
-        if (!loading && data) {
-            setQueryData(data.getDriversForScorecardQuality)
-        }
-    }, [data])
+    // Runs after query is recieved completely REPAIR
+    
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         setQueryData(data.getDriversForScorecardQuality)
+    //     }
+    // }, [data])
+
 
     // Takes DSP Preferences and renders x amount of top cards, stopping at y cards total
     // allDrivers = array of drivers

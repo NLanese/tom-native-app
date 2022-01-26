@@ -7,9 +7,65 @@ import nameObj from '../../../Hooks/handleNameCaseChange'
 import colorTextBasedOnValue from "../../../Hooks/colorTextBasedOffValue";
 import Banner from "../../../Global/Banner";
 import { PersonalLeaderboardStyles } from "../../../Styles/ScoreCardStyles";
+import { useRecoilState } from 'recoil'
+import { userState } from "../../../Recoil/atoms";
 
 const PersonalScoreCard = () => {
     const navigation = useNavigation()
+
+    const [user, setUser] = useRecoilState(userState);
+    
+
+
+    const textColors ={
+        fantastic: '#116530',
+        good: '#21B6A8',
+        fair: '#FF8300',
+        subpar: '#BA0F30'
+    }
+
+    const Styles = (value, name=null, startAtTop=null) =>  StyleSheet.create({
+        coloredLabel:{
+            textAlign: 'center',
+            fontWeight: '600',
+            fontSize: 16,
+            color: colorTextBasedOnValue(value, name, startAtTop, dspPreferences, textColors)
+        },
+        coloredLine:{
+            textAlign: 'center',
+            borderColor: colorTextBasedOnValue(value, name, startAtTop, dspPreferences, textColors),
+            borderBottomWidth: 0.5
+        }
+    })
+    const colors = (color) => StyleSheet.create({
+        dot: {
+            height: 6,
+            width: 6,
+            borderRadius: 100,
+            backgroundColor: color
+        }
+    })
+    
+    console.log(user)
+
+    const ficoLims = user.dsp.ficoLimits
+    const seatbeltLims = user.dsp.seatbeltLimits
+    const speedingLims = user.dsp.speedingLimits
+    const distractionLims = user.dsp.distractionLimits
+    const followLims = user.dsp.followLimits
+    const signalLims = user.dsp.signalLimits
+    const dcrLims = user.dsp.deliveryCompletionRateLimits
+    const scanLims = user.dsp.scanComplianceLimits
+    const dspPreferences = {
+        fico: ficoLims,
+        seatbelt: seatbeltLims,
+        speeding: speedingLims,
+        distraction: distractionLims,
+        follow: followLims,
+        signal: signalLims,
+        dcr: dcrLims,
+        scan_compliance: scanLims,
+}
 
 
     const fakeQuery = {
@@ -19,11 +75,11 @@ const PersonalScoreCard = () => {
             "firstname": "DWYANE",                        // good
             "lastname": "WADE",                           // good
             "createdAt": "2022-01-12T19:23:14.022Z",      // good
-            "seatbelt": "0.02",                           // good
-            "speeding": "0.42",                           // good
-            "distractions_rate": "0.17",                  // good
-            "following_distance_rate": "0.06",            // good
-            "signal_violations_rate": "0.11",             // good
+            "seatbelt": "2",                           // good
+            "speeding": "42",                           // good
+            "distractions_rate": "17",                  // good
+            "following_distance_rate": "6",            // good
+            "signal_violations_rate": "11",             // good
             "delivery_completion_rate": "100",            // good
             "scan_compliance": "95",                      // good
             "photo_on_delivery": "92",                    // good
@@ -189,14 +245,14 @@ const PersonalScoreCard = () => {
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Seatbelt Off</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.seatbeltValue}>
-                            <Text style={Styles(userData.seatbelt, 'seatbelt', false).coloredLabel}>{fakeUser.seatbelt}</Text>
+                            <Text style={Styles(userData.seatbelt, 'seatbelt', false).coloredLabel}>{fakeUser.seatbelt}%</Text>
                             <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.seatbelt, lastWeekData.seatbelt, false)}</View>
                         </View>
                         <View style={PersonalLeaderboardStyles.speedingLabel}>
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Speedings</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.speedingValue}>
-                            <Text style={Styles(userData.speeding, 'speeding', false).coloredLabel}>{fakeUser.speeding}</Text>
+                            <Text style={Styles(userData.speeding, 'speeding', false).coloredLabel}>{fakeUser.speeding}%</Text>
                             <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.speeding, lastWeekData.speeding, false)}</View>
                         </View>
                     </View>
@@ -204,21 +260,21 @@ const PersonalScoreCard = () => {
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Distracted</Text>
                     </View>
                     <View style={PersonalLeaderboardStyles.distractionValue}>
-                        <Text style={Styles(userData.distractions_rate, 'distraction', false).coloredLabel}>{fakeUser.distractions_rate}</Text>
+                        <Text style={Styles(userData.distractions_rate, 'distraction', false).coloredLabel}>{fakeUser.distractions_rate}%</Text>
                         <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.distractions_rate, lastWeekData.distractions_rate, false)}</View>
                     </View>
                     <View style={PersonalLeaderboardStyles.followingLabel}>
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Close Follows</Text>
                     </View>
                     <View style={PersonalLeaderboardStyles.followValue}>
-                        <Text style={Styles(userData.following_distance_rate, 'follow', false).coloredLabel}>{fakeUser.following_distance_rate}</Text>
+                        <Text style={Styles(userData.following_distance_rate, 'follow', false).coloredLabel}>{fakeUser.following_distance_rate}%</Text>
                         <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.following_distance_rate, lastWeekData.following_distance_rate, false)}</View>
                     </View>
                     <View style={PersonalLeaderboardStyles.signalLabel}>
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Signal Violation</Text>
                     </View>
                     <View style={PersonalLeaderboardStyles.signalValue}>
-                        <Text style={Styles(userData.signal_violations_rate, 'signal', false).coloredLabel}>{userData.signal_violations_rate}</Text>
+                        <Text style={Styles(userData.signal_violations_rate, 'signal', false).coloredLabel}>{userData.signal_violations_rate}%</Text>
                         <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.signal_violations_rate, lastWeekData.signal_violations_rate, false)}</View>
                     </View>
                     <View style={PersonalLeaderboardStyles.ficoLabel}>
@@ -300,45 +356,7 @@ const PersonalScoreCard = () => {
     )
 }
 
-const dspPreferences = {
-    fico: {fantastic: 800, good: 700, fair: 600},
-    seatbelt: {fantastic: 0.05, good: 0.15, fair: 0.3},
-    speeding: {fantastic: 0.05, good: .15, fair: 0.3},
-    distraction: {fantastic: 0.05, good: .15, fair: 0.3},
-    follow: {fantastic: 0.05, good: .15, fair: 0.3},
-    signal: {fantastic: 0.05, good: .15, fair: 0.3},
-    dcr: {fantastic: 95, good: 90, fair: 80},
-    scan_compliance: {fantastic: 95, good: 90, fair: 85},
-}
 
-const textColors ={
-    fantastic: '#116530',
-    good: '#21B6A8',
-    fair: '#FF8300',
-    subpar: '#BA0F30'
-}
 
-const Styles = (value, name=null, startAtTop=null) =>  StyleSheet.create({
-    coloredLabel:{
-        textAlign: 'center',
-        fontWeight: '600',
-		fontSize: 16,
-        color: colorTextBasedOnValue(value, name, startAtTop, dspPreferences, textColors)
-    },
-    coloredLine:{
-        textAlign: 'center',
-        borderColor: colorTextBasedOnValue(value, name, startAtTop, dspPreferences, textColors),
-        borderBottomWidth: 0.5
-    }
-})
-
-const colors = (color) => StyleSheet.create({
-    dot: {
-        height: 6,
-        width: 6,
-        borderRadius: 100,
-        backgroundColor: color
-    }
-})
 
 export default PersonalScoreCard
