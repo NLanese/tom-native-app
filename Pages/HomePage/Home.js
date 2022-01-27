@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { userState } from '../../Recoil/atoms';
 import { Portal, Modal, Button, IconButton } from 'react-native-paper'
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
@@ -12,14 +13,22 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 const Home = ({ handleLoggedIn }) => {
-    const [website, setWebsite] = useRecoilState(websiteState)
+    const [user, setUser] = useRecoilState(userState)
 
+
+    let initVisible = false
+    if (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged){
+        initVisible = true
+    }
+
+
+    const [website, setWebsite] = useRecoilState(websiteState)
     const [acknowledged, setAcknowledged] = useState(false)
-    const [modalVisible, setModalVisible] = useState(true)
+    const [modalVisible, setModalVisible] = useState(initVisible)
     const [exitDisabled, setExitDisabled] = useState(true)
 
+
     const handleAcknowledge = () => {
-        console.log("hit")
         setAcknowledged(true)
         setExitDisabled(false)
         // handle ReadAt Mutation
@@ -38,18 +47,23 @@ const Home = ({ handleLoggedIn }) => {
         setWebsite('Home')
     }, [])
 
+    let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
+
     return (
         <View style={HomeStyles.container}> 
             {/* <Portal> */}
                 <Banner handleLoggedIn={handleLoggedIn}/>
                 <ButtonBox />
+
+
+
                 <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
                     <View style={HomeStyles.notificationModalContent}>
                         <View style={HomeStyles.weeklyNotificationTitleSpace}>
                             <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Report Message:</Text>
                         </View>
                         <View style={HomeStyles.weeklyNotificationMessage}>
-
+                            <Text>{weeklyReportObj.feedbackMessage}</Text>
                         </View>
                         <View style={HomeStyles.acknowledgeContainter}>
                             <Text>I Acknowledge this message</Text>

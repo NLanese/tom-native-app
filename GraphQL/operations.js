@@ -33,11 +33,31 @@ const LOGIN = gql`
       firstname
       lastname
       email
+      password
       phoneNumber
     }
     accidents {
       id
+      driver {
+        id
+      }
       name
+      location
+      hitPerson {
+        id
+      }
+      collision {
+        id
+      }
+      injuryAccident {
+        id
+      }
+      propertyAccident {
+        id
+      }
+      injuryReport {
+        id
+      }
     }
     admins {
       id
@@ -45,30 +65,39 @@ const LOGIN = gql`
       lastname
       email
       phoneNumber
+      profilePick
     }
     vehicle {
       id
-      vehicle_number
       amazon_logo
+      vehicle_number
+    }
+    notifiedMessages {
+      id
+      read
+      createdAt
+      content
+      from
+      type
     }
     messages {
       id
       createdAt
       content
       from
-    }
-    NotifiedMessages {
-
-      createdAt
-      read
-      content
-      from
-      type
+      admin {
+        id
+        firstname
+        lastname
+        email
+        phoneNumber
+        profilePick
+      }
     }
     dsp {
       id
-      name
       createdAt
+      name
       shortcode
       timeZone
       ficoLimits
@@ -76,8 +105,8 @@ const LOGIN = gql`
       speedingLimits
       distractionLimits
       followLimits
-      deliveryCompletionRateLimits
       signalLimits
+      deliveryCompletionRateLimits
       scanComplianceLimits
       callComplianceLimits
       deliveryNotRecievedLimits
@@ -85,15 +114,13 @@ const LOGIN = gql`
       topCardLimits
       smallCardLimits
       feedbackNotifications
-      autoSend
-      paid
-      accountStanding
     }
     weeklyReport {
       createdAt
       date
       hadAccident
       feedbackMessage
+      feedbackMessageSent
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -108,17 +135,22 @@ const LOGIN = gql`
       followingDistanceRate
       signalViolationsRate
       deliveryCompletionRate
-      deliveryNotRecieved
-      callCompliance
+      deliveredAndRecieved
       photoOnDelivery
+      callCompliance
       scanCompliance
       attendedDeliveryAccuracy
+      dnr
+      podOpps
+      ccOpps
       netradyne
       deliveryAssociate
       defects
       customerDeliveryFeedback
       hasManyAccidents
       belongsToTeam
+      attendence
+      productivity
     }
   }
 }
