@@ -17,7 +17,6 @@ let maxHeight= Dimensions.get('window').height
 const Home = ({ handleLoggedIn }) => {
     const [user, setUser] = useRecoilState(userState)
 
-
     let initVisible = false
     if (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged){
         initVisible = true
@@ -35,7 +34,6 @@ const Home = ({ handleLoggedIn }) => {
     const handleAcknowledge = async (report) => {
         await setAcknowledged(true)
         await setExitDisabled(false)
-        console.log(report.id)
         await sendAcknowledge({
             variables:{
                 reportId: report.id
