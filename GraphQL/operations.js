@@ -10,7 +10,6 @@ const SIGNUP = gql`
   }
 }
 `;
-
 const LOGIN = gql`
   mutation Mutation($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
@@ -116,6 +115,7 @@ const LOGIN = gql`
       feedbackNotifications
     }
     weeklyReport {
+      id
       createdAt
       date
       hadAccident
@@ -155,7 +155,6 @@ const LOGIN = gql`
   }
 }
 `;
-
 const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
@@ -167,13 +166,11 @@ const UPDATEDRIVER = gql`
   }
 }
 `
-
 // const NOTIFIEDTOFALSE = gql`
 //   mutation notifiedToFalse(){
 //     notifiedToFalse($)
 //   }
 // `
-
 const CREATEACCIDENT = gql`
   mutation Mutation($name: String!, $location: String!) {
   createAccident(name: $name, location: $location) {
@@ -183,7 +180,6 @@ const CREATEACCIDENT = gql`
   }
 }
 `;
-
 const GETDRIVERDATA = gql`
   query Query {
   getDriver {
@@ -316,7 +312,6 @@ const GETDRIVERDATA = gql`
   }
 }
 `
-
 const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
   query Query {
   getDriversForDspForSafetyAndCompliance {
@@ -345,7 +340,6 @@ const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
   }
 }
 `
-
 const GETDRIVERSFORDSPFORTEAM = gql`
   query Query {
   getDriversForDspForTeam {
@@ -374,7 +368,6 @@ const GETDRIVERSFORDSPFORTEAM = gql`
   }
 }
 `
-
 const GETDRIVERSFORSCORECARDQUALITY = gql`
   query Query {
   getDriversForScorecardQuality {
@@ -409,7 +402,6 @@ const GETNOTIFIED = gql`
     notified
   }
 }`
-
 const GETNOTIFIEDMESSAGES = gql`
   query Query {
   getNotifiedMessages {
@@ -421,7 +413,6 @@ const GETNOTIFIEDMESSAGES = gql`
     type
   }
 }`
-
 const GETDRIVERMESSAGESWITHADMIN = gql`
   query Query {
   getMessageWithAdmin {
@@ -432,7 +423,6 @@ const GETDRIVERMESSAGESWITHADMIN = gql`
   }
 }
 `
-
 const SENDMESSAGETOADMIN = gql`
   mutation Mutation($content: String!) {
       sendMessageToAdmin(content: $content) {
@@ -440,6 +430,15 @@ const SENDMESSAGETOADMIN = gql`
     }
 }
 `
+const DRIVERACKNOWLEDGEFEEDBACKMESSAGE = gql`
+mutation Mutation($reportId: String!) {
+  driverAcknowledgeFeedbackMessage(reportId: $reportId) {
+    id
+  }
+}
+`
+
+
 
 
 export {  
@@ -454,7 +453,8 @@ export {
   GETNOTIFIED,
   GETNOTIFIEDMESSAGES,
   GETDRIVERMESSAGESWITHADMIN,
-  SENDMESSAGETOADMIN
+  SENDMESSAGETOADMIN,
+  DRIVERACKNOWLEDGEFEEDBACKMESSAGE
 }
 
 

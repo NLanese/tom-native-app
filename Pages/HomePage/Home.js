@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { userState } from '../../Recoil/atoms';
+import { useMutation } from '@apollo/client';
+import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
 import { Portal, Modal, Button, IconButton } from 'react-native-paper'
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
@@ -27,10 +29,18 @@ const Home = ({ handleLoggedIn }) => {
     const [modalVisible, setModalVisible] = useState(initVisible)
     const [exitDisabled, setExitDisabled] = useState(true)
 
+    const [sendAcknowledge, { loading: loading, error: error, data: data }] =
+		useMutation(DRIVERACKNOWLEDGEFEEDBACKMESSAGE);
 
-    const handleAcknowledge = () => {
-        setAcknowledged(true)
-        setExitDisabled(false)
+    const handleAcknowledge = async (report) => {
+        await setAcknowledged(true)
+        await setExitDisabled(false)
+        console.log(report.id)
+        await sendAcknowledge({
+            variables:{
+                reportId: report.id
+            }
+        })
         // handle ReadAt Mutation
     }
 
@@ -67,7 +77,7 @@ const Home = ({ handleLoggedIn }) => {
                         </View>
                         <View style={HomeStyles.acknowledgeContainter}>
                             <Text>I Acknowledge this message</Text>
-                                <TouchableOpacity onPress={() => {handleAcknowledge()}}>
+                                <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
                                     <View style={{width: 30, height: 30, borderWidth: 1, left: maxHeight * 0.29, top: maxHeight * -0.038}}>
                                             {renderCheck()}
                                     </View>
