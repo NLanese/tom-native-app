@@ -8,6 +8,7 @@ import ProductivityButton from './ButtonBoxComponents/ProductivityButton';
 import CommunicationButton from './ButtonBoxComponents/CommunicationButton';
 import SettingsButton from './ButtonBoxComponents/SettingsButton';
 import Communication from '../../CommunicationPage/Communication';
+import RosterButton from './ButtonBoxComponents/RosterButton';
 
 
 const ButtonBox = () => {
@@ -23,7 +24,7 @@ const ButtonBox = () => {
             <View style={ButtonBoxStyles.rightContainer}>
                 <ReportAnAccidentButton />
                 <ShiftPlannerButton />
-                <SettingsButton />
+                <RosterButton />
 
             </View>
         </View>

@@ -6,15 +6,7 @@ import { StatStyles } from "../../../../Styles/ScoreCardStyles";
 
 const BottomCard = ({sortBy, rawData}) => {
 
-
-
-    console.log('----------------------------------------------')
-    console.log('----------------------------------------------')
-    console.log('----------------------------------------------')
-
-    console.log(rawData)
     let data = {...rawData[0]}
-    console.log(data.fico)
 
     // 0 - DCR
     let dcr = (<View style={StatStyles.stat}>
@@ -116,9 +108,11 @@ const BottomCard = ({sortBy, rawData}) => {
 
     const renderReturnArray = (sortBy) => {
         let returnArray = handleSort(sortBy)
+        let i = 0
         return returnArray.map( (stat) => {
+            i++
             return(
-                <View >
+                <View key={i}>
                     {stat}
                 </View>
             )

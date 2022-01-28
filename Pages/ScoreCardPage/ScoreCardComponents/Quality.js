@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { useRecoilState } from "recoil";
 import { userState } from "../../../Recoil/atoms";
@@ -11,6 +11,7 @@ import EmployeeQuality from "./InformationComponents/EmployeeQuality";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import Banner from "../../../Global/Banner";
 import SortbyButton from "./ButtonboxComponents/SortByButton";
+import Loading from "../../../Global/Loading";
 
 const Quality = () => {
 
@@ -108,9 +109,7 @@ const Quality = () => {
     // If the data is not yet loaded
     if (loading) {
         return (
-            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
-                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
-            </View>
+            <Loading />
         )
     } 
     // If the data IS loaded

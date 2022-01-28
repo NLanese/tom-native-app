@@ -445,6 +445,7 @@ query Query {
       firstname
       lastname
       profilePick
+      createdAt
       weeklyReport {
         rank
         tier
