@@ -5,8 +5,6 @@ import { SortingStyles } from "../../../../Styles/ScoreCardStyles"
 
 
 const handleSortPress = (propName, setSortBy) => {
-    console.log("You have clicked")
-    console.log(propName)
     setSortBy(propName)
 }
 

@@ -437,7 +437,42 @@ mutation Mutation($reportId: String!) {
   }
 }
 `
-
+const DRIVERSGETDRIVERSFROMDSP = gql`
+query Query {
+  driverGetDriversFromDsp {
+    drivers {
+      id
+      firstname
+      lastname
+      profilePick
+      createdAt
+      weeklyReport {
+        rank
+        tier
+        delivered
+        fico
+        seatbeltOffRate
+        speedingEventRate
+        distractionsRate
+        followingDistanceRate
+        signalViolationsRate
+        deliveryCompletionRate
+        deliveredAndRecieved
+        photoOnDelivery
+        callCompliance
+        scanCompliance
+        attendedDeliveryAccuracy
+        dnr
+        podOpps
+        ccOpps
+        netradyne
+        defects
+        customerDeliveryFeedback
+      }
+    }
+  }
+}
+`
 
 
 
@@ -454,7 +489,8 @@ export {
   GETNOTIFIEDMESSAGES,
   GETDRIVERMESSAGESWITHADMIN,
   SENDMESSAGETOADMIN,
-  DRIVERACKNOWLEDGEFEEDBACKMESSAGE
+  DRIVERACKNOWLEDGEFEEDBACKMESSAGE,
+  DRIVERSGETDRIVERSFROMDSP
 }
 
 

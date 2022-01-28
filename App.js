@@ -45,6 +45,7 @@ import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Roster from './Pages/Roster/Roster'
 
 let state;
 
@@ -128,6 +129,10 @@ export default function App() {
 
                 <Stack.Screen name='shift_planner'>
                   {props => <ShiftPlanner />}
+                </Stack.Screen>
+
+                <Stack.Screen name='roster'>
+                  {props => <Roster />}
                 </Stack.Screen>
 
                 <Stack.Screen name='settings'>

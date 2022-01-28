@@ -1,21 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
+import { useRecoilState } from "recoil";
+import { userState } from "../../../Recoil/atoms";
 import { useQuery } from "@apollo/client";
+import { DRIVERSGETDRIVERSFROMDSP } from "../../../GraphQL/operations";
 import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { SortingStyles } from "../../../Styles/ScoreCardStyles";
-import { GETDRIVERSFORSCORECARDQUALITY } from "../../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
 import EmployeeQuality from "./InformationComponents/EmployeeQuality";
 import TeamEmployees from "./InformationComponents/TeamEmployee";
 import Banner from "../../../Global/Banner";
 import SortbyButton from "./ButtonboxComponents/SortByButton";
+import Loading from "../../../Global/Loading";
 
 const Quality = () => {
 
-    // Add a Query for DSP PReferences
-    const [queryData, setQueryData] = useState({})
+    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
+    const [user, setUser] = useRecoilState(userState)
     const [sortBy, setSortBy] = useState("FICO")
     const [dropVisibility, setDropVisibility] = useState(false)
+
+    // Sets up the DSP Limits
+    const ficoLims = user.dsp.ficoLimits
+    const seatbeltLims = user.dsp.seatbeltLimits
+    const speedingLims = user.dsp.speedingLimits
+    const distractionLims = user.dsp.distractionLimits
+    const followLims = user.dsp.followLimits
+    const signalLims = user.dsp.signalLimits
+    const dcrLims = user.dsp.deliveryCompletionRateLimits
+    const scanLims = user.dsp.scanComplianceLimits
+    const cdfLims = user.dsp.customerDeliveryFeedbackLimits
+    const dspPreferences = {
+        fico: ficoLims,
+        seatbelt: seatbeltLims,
+        speeding: speedingLims,
+        distraction: distractionLims,
+        follow: followLims,
+        signal: signalLims,
+        dcr: dcrLims,
+        scan_compliance: scanLims,
+        cdf: cdfLims
+    }
 
     // Returns all of the drivers sorted by a specific parameter
     const returnSortedList = (allDrivers, sortBy) => {
@@ -44,7 +69,8 @@ const Quality = () => {
     // allDrivers = array of drivers
     // topNum is the top amount of cards
     // stopAt is the limit of how many cards you will allow to render
-    const renderTopAndOthers = (allDrivers, topNum=3, stopAt) => {
+    const renderTopAndOthers = (allDriversRaw, topNum=3, stopAt) => {
+        let allDrivers = [...allDriversRaw.driverGetDriversFromDsp.drivers]
         let i = 0
         const topCards = (
             <View style={QualityStyles.topThree}>
@@ -81,11 +107,9 @@ const Quality = () => {
     }
 
     // If the data is not yet loaded
-    if (!queryData[0]) {
+    if (loading) {
         return (
-            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
-                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
-            </View>
+            <Loading />
         )
     } 
     // If the data IS loaded
@@ -97,7 +121,7 @@ const Quality = () => {
                     <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
                 </View>
                 <ScrollView bounces={false}>
-                    {renderTopAndOthers(queryData, fakeDspPreferences.topCards, fakeDspPreferences.stopAt)}
+                    {renderTopAndOthers(queryData, user.dsp.topCardLimits, (user.dsp.smallCardLimits + user.dsp.topCardLimits))}
                 </ScrollView>
             </View>
         )

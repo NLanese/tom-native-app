@@ -4,7 +4,9 @@ import { StatStyles } from "../../../../Styles/ScoreCardStyles";
 
 
 
-const BottomCard = ({sortBy, data}) => {
+const BottomCard = ({sortBy, rawData}) => {
+
+    let data = {...rawData[0]}
 
     // 0 - DCR
     let dcr = (<View style={StatStyles.stat}>
@@ -51,7 +53,7 @@ const BottomCard = ({sortBy, data}) => {
     // 7 - Speeding
     let speeding = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statTitle}>Speeding</Text>
-        <Text style={StatStyles.statValue}>{data.speedingEvent}</Text>
+        <Text style={StatStyles.statValue}>{data.speedingEventRate}</Text>
     </View>)
 
     // 8 - Defects
@@ -106,9 +108,11 @@ const BottomCard = ({sortBy, data}) => {
 
     const renderReturnArray = (sortBy) => {
         let returnArray = handleSort(sortBy)
+        let i = 0
         return returnArray.map( (stat) => {
+            i++
             return(
-                <View >
+                <View key={i}>
                     {stat}
                 </View>
             )

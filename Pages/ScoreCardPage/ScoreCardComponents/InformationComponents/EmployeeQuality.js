@@ -36,24 +36,29 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
 
     let data = {...driverData}
 
-    if (data.delivery_completion_rate == null){
-        data.delivery_completion_rate = 0
+    if (data.deliveryCompletionRate == null){
+        data.deliveryCompletionRate = 0
     }
-    if (data.delivered_and_recieved == null){
-        data.delivered_and_recieved = 0
+    if (data.deliveredAndRecieved == null){
+        data.deliveredAndRecieved = 0
     }
-    if (data.photo_on_delivery == null){
-        data.photo_on_delivery = 0
+    if (data.photoOnDelivery == null){
+        data.photoOnDelivery = 0
     }
-    if (data.call_compliance == null){
-        data.call_compliance = 0
+    if (data.callCompliance == null){
+        data.callCompliance = 0
     }
-    if (data.scan_compliance == null){
-        data.scan_compliance = 0
+    if (data.scanCompliance == null){
+        data.scanCompliance = 0
     }
 
     data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
     data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()
+
+    // if (rank == 1){
+    //     console.log("First one")
+    //     console.log(data.weeklyReport)
+    // }
 
     return(
         <Card style={QualityStyles.topThreeEmployeeCard}>
@@ -70,7 +75,7 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
                 </View>
             </View>
             <View style={QualityStyles.cardBottm}>
-                <BottomCard sortBy={sortBy} data={data} />
+                <BottomCard sortBy={sortBy} rawData={data.weeklyReport} />
                 <View style={QualityStyles.topRank}>
                     <Text style={{fontWeight: '800'}}>{rank}</Text>
                 </View>
