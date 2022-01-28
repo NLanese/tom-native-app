@@ -13,9 +13,9 @@ const SignOutButton = ({ handleModal, handleLoggedIn }) => {
 
     const handleSubmit = async () => {
         await setButtonLoading(true)
-        await setUserData({})
         await handleLoggedIn(false)
         await navigation.navigate('/')
+        await setUserData({})
         await handleModal()
     }
 

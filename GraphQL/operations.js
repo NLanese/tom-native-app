@@ -10,7 +10,6 @@ const SIGNUP = gql`
   }
 }
 `;
-
 const LOGIN = gql`
   mutation Mutation($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
@@ -33,11 +32,31 @@ const LOGIN = gql`
       firstname
       lastname
       email
+      password
       phoneNumber
     }
     accidents {
       id
+      driver {
+        id
+      }
       name
+      location
+      hitPerson {
+        id
+      }
+      collision {
+        id
+      }
+      injuryAccident {
+        id
+      }
+      propertyAccident {
+        id
+      }
+      injuryReport {
+        id
+      }
     }
     admins {
       id
@@ -45,30 +64,39 @@ const LOGIN = gql`
       lastname
       email
       phoneNumber
+      profilePick
     }
     vehicle {
       id
-      vehicle_number
       amazon_logo
+      vehicle_number
+    }
+    notifiedMessages {
+      id
+      read
+      createdAt
+      content
+      from
+      type
     }
     messages {
       id
       createdAt
       content
       from
-    }
-    NotifiedMessages {
-
-      createdAt
-      read
-      content
-      from
-      type
+      admin {
+        id
+        firstname
+        lastname
+        email
+        phoneNumber
+        profilePick
+      }
     }
     dsp {
       id
-      name
       createdAt
+      name
       shortcode
       timeZone
       ficoLimits
@@ -76,8 +104,8 @@ const LOGIN = gql`
       speedingLimits
       distractionLimits
       followLimits
-      deliveryCompletionRateLimits
       signalLimits
+      deliveryCompletionRateLimits
       scanComplianceLimits
       callComplianceLimits
       deliveryNotRecievedLimits
@@ -85,15 +113,14 @@ const LOGIN = gql`
       topCardLimits
       smallCardLimits
       feedbackNotifications
-      autoSend
-      paid
-      accountStanding
     }
     weeklyReport {
+      id
       createdAt
       date
       hadAccident
       feedbackMessage
+      feedbackMessageSent
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -108,22 +135,26 @@ const LOGIN = gql`
       followingDistanceRate
       signalViolationsRate
       deliveryCompletionRate
-      deliveryNotRecieved
-      callCompliance
+      deliveredAndRecieved
       photoOnDelivery
+      callCompliance
       scanCompliance
       attendedDeliveryAccuracy
+      dnr
+      podOpps
+      ccOpps
       netradyne
       deliveryAssociate
       defects
       customerDeliveryFeedback
       hasManyAccidents
       belongsToTeam
+      attendence
+      productivity
     }
   }
 }
 `;
-
 const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
@@ -135,13 +166,11 @@ const UPDATEDRIVER = gql`
   }
 }
 `
-
 // const NOTIFIEDTOFALSE = gql`
 //   mutation notifiedToFalse(){
 //     notifiedToFalse($)
 //   }
 // `
-
 const CREATEACCIDENT = gql`
   mutation Mutation($name: String!, $location: String!) {
   createAccident(name: $name, location: $location) {
@@ -151,7 +180,6 @@ const CREATEACCIDENT = gql`
   }
 }
 `;
-
 const GETDRIVERDATA = gql`
   query Query {
   getDriver {
@@ -284,7 +312,6 @@ const GETDRIVERDATA = gql`
   }
 }
 `
-
 const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
   query Query {
   getDriversForDspForSafetyAndCompliance {
@@ -313,7 +340,6 @@ const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
   }
 }
 `
-
 const GETDRIVERSFORDSPFORTEAM = gql`
   query Query {
   getDriversForDspForTeam {
@@ -342,7 +368,6 @@ const GETDRIVERSFORDSPFORTEAM = gql`
   }
 }
 `
-
 const GETDRIVERSFORSCORECARDQUALITY = gql`
   query Query {
   getDriversForScorecardQuality {
@@ -377,7 +402,6 @@ const GETNOTIFIED = gql`
     notified
   }
 }`
-
 const GETNOTIFIEDMESSAGES = gql`
   query Query {
   getNotifiedMessages {
@@ -389,7 +413,6 @@ const GETNOTIFIEDMESSAGES = gql`
     type
   }
 }`
-
 const GETDRIVERMESSAGESWITHADMIN = gql`
   query Query {
   getMessageWithAdmin {
@@ -400,7 +423,6 @@ const GETDRIVERMESSAGESWITHADMIN = gql`
   }
 }
 `
-
 const SENDMESSAGETOADMIN = gql`
   mutation Mutation($content: String!) {
       sendMessageToAdmin(content: $content) {
@@ -408,6 +430,15 @@ const SENDMESSAGETOADMIN = gql`
     }
 }
 `
+const DRIVERACKNOWLEDGEFEEDBACKMESSAGE = gql`
+mutation Mutation($reportId: String!) {
+  driverAcknowledgeFeedbackMessage(reportId: $reportId) {
+    id
+  }
+}
+`
+
+
 
 
 export {  
@@ -422,7 +453,8 @@ export {
   GETNOTIFIED,
   GETNOTIFIEDMESSAGES,
   GETDRIVERMESSAGESWITHADMIN,
-  SENDMESSAGETOADMIN
+  SENDMESSAGETOADMIN,
+  DRIVERACKNOWLEDGEFEEDBACKMESSAGE
 }
 
 

@@ -14,16 +14,15 @@ const PersonalScoreCard = () => {
     const navigation = useNavigation()
 
     const [user, setUser] = useRecoilState(userState);
-    
 
 
+    // Colors and Local Dynamic Styles
     const textColors ={
         fantastic: '#116530',
         good: '#21B6A8',
         fair: '#FF8300',
         subpar: '#BA0F30'
     }
-
     const Styles = (value, name=null, startAtTop=null) =>  StyleSheet.create({
         coloredLabel:{
             textAlign: 'center',
@@ -45,9 +44,25 @@ const PersonalScoreCard = () => {
             backgroundColor: color
         }
     })
-    
-    console.log(user)
+    const renderOverallTier = (tier) => {
+        let color = ""
+        if (tier == 'Fantastic'){
+            color = '#116530'
+        }
+        else if (tier == 'Good'){
+            color = '#21B6A8'
+        }
+        else if (tier == "Fair"){
+            color = '#FF8300'
+        }
+        else {
+            color = '#BA0F30'
+        }
+        return (<Text style={{textAlign: 'center', color: color, fontWeight: '600', fontSize: 16,}}>{tier}</Text>)
+    }
 
+
+    // Sets up the DSP Limits
     const ficoLims = user.dsp.ficoLimits
     const seatbeltLims = user.dsp.seatbeltLimits
     const speedingLims = user.dsp.speedingLimits
@@ -56,6 +71,7 @@ const PersonalScoreCard = () => {
     const signalLims = user.dsp.signalLimits
     const dcrLims = user.dsp.deliveryCompletionRateLimits
     const scanLims = user.dsp.scanComplianceLimits
+    const cdfLims = user.dsp.customerDeliveryFeedbackLimits
     const dspPreferences = {
         fico: ficoLims,
         seatbelt: seatbeltLims,
@@ -65,69 +81,35 @@ const PersonalScoreCard = () => {
         signal: signalLims,
         dcr: dcrLims,
         scan_compliance: scanLims,
-}
-
-
-    const fakeQuery = {
-        "data": {
-          "getDriver": {
-            "fico": "802",                                 // good
-            "firstname": "DWYANE",                        // good
-            "lastname": "WADE",                           // good
-            "createdAt": "2022-01-12T19:23:14.022Z",      // good
-            "seatbelt": "2",                           // good
-            "speeding": "42",                           // good
-            "distractions_rate": "17",                  // good
-            "following_distance_rate": "6",            // good
-            "signal_violations_rate": "11",             // good
-            "delivery_completion_rate": "100",            // good
-            "scan_compliance": "95",                      // good
-            "photo_on_delivery": "92",                    // good
-            "customer_delivery_feedback": "78",           // good
-            "deliveries": "103",
-            "overall_tier": "Good",
-            "dnr": null
-          }
-        }
+        cdf: cdfLims
     }
 
-    const fakeLastWeek = {
-        "data": {
-          "getDriver": {
-            "fico": "740",                                 // good
-            "firstname": "DWYANE",                        // good
-            "lastname": "WADE",                           // good
-            "createdAt": "2022-01-12T19:23:14.022Z",      // good
-            "seatbelt": "0.12",                           // good
-            "speeding": "0.14",                           // good
-            "distractions_rate": "0.20",                  // good
-            "following_distance_rate": "0.1",            // good
-            "signal_violations_rate": "0.01",             // good
-            "delivery_completion_rate": "99",            // good
-            "scan_compliance": "100",                      // good
-            "photo_on_delivery": "100",                    // good
-            "customer_delivery_feedback": "64",           // good
-            "deliveries": "99",
-            "overall_tier": "Good",
-            "dnr": null
-          }
-        }
-    }
 
+    // In charge of rendering the arrows that indicate progression/regression
     const renderArrowIcon = (thisWeek, lastWeek, asc) => {
         let icon = ""
+        if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
+            return null
+        }
         thisWeek = parseFloat(thisWeek, 10)
         lastWeek = parseFloat(lastWeek, 10)
 
         if (asc){
+            if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
+                return null
+            }
             if (thisWeek > lastWeek){
                 if (thisWeek > (1.65 * lastWeek)){
+                    icon="chevron-triple-up"
                 }
                 else if (thisWeek > (1.4 * lastWeek)){
                     icon="chevron-double-up"
                 }
-                else{
+                else if (thisWeek > (1.1 * lastWeek)){
                     icon="chevron-up"
+                }
+                else{
+                    icon=""
                 }
                 return (<IconButton icon={icon} color='green' size={15}/>)
             }
@@ -139,11 +121,14 @@ const PersonalScoreCard = () => {
                     icon="chevron-double-down"
                 }
                 else{
-                    icon="chevrone-down"
+                    icon="chevron-down"
                 }
                 return (<IconButton icon={icon} color='green' size={15}/>)
             }
         } else {
+            if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
+                return null
+            }
             if (thisWeek < lastWeek){
                 if (thisWeek * 1.65  < lastWeek){
                     icon="chevron-triple-up"
@@ -171,29 +156,21 @@ const PersonalScoreCard = () => {
         }
     }
 
-    const fakeUser = fakeQuery.data.getDriver
-
-    const userData = fakeUser
-    const lastWeekData = fakeLastWeek.data.getDriver
-
-    const names = {...nameObj(fakeUser.firstname, fakeUser.lastname)}
-
-    const renderOverallTier = (tier) => {
-        let color = ""
-        if (tier == 'Fantastic'){
-            color = '#116530'
-        }
-        else if (tier == 'Good'){
-            color = '#21B6A8'
-        }
-        else if (tier == "Fair"){
-            color = '#FF8300'
-        }
-        else {
-            color = '#BA0F30'
-        }
-        return (<Text style={{textAlign: 'center', color: color, fontWeight: '600', fontSize: 16,}}>{tier}</Text>)
+    // Sets up the user and user's last week scores
+    const userData = user.weeklyReport[user.weeklyReport.length - 1]
+    let lastWeekData = null
+    if (user.weeklyReport.length >= 2){
+        lastWeekData = user.weeklyReport[user.weeklyReport.length - 2]
     }
+    else{
+        lastWeekData = userData
+    }
+
+
+    const names = {...nameObj(user.firstname, user.lastname)}
+
+
+
 
     return(
         <View>
@@ -204,7 +181,7 @@ const PersonalScoreCard = () => {
                     <Text style={PersonalLeaderboardStyles.nameText}>{names.first} {names.last}</Text>
                 </View>
                 <View style={PersonalLeaderboardStyles.createdAt}>
-                    <Text style={PersonalLeaderboardStyles.createdAtText}>Driving Since             {dateObj(fakeUser.createdAt).month}-{dateObj(fakeUser.createdAt).day}  {dateObj(fakeUser.createdAt).year}</Text>
+                    <Text style={PersonalLeaderboardStyles.createdAtText}>Driving Since             {dateObj(user.createdAt).month}-{dateObj(user.createdAt).day}  {dateObj(user.createdAt).year}</Text>
                 </View>
             </View>
             <View style={{borderWidth: 2, borderColor: '#E2E8F1', width: '80%', marginLeft: '10%'}} />
@@ -245,37 +222,37 @@ const PersonalScoreCard = () => {
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Seatbelt Off</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.seatbeltValue}>
-                            <Text style={Styles(userData.seatbelt, 'seatbelt', false).coloredLabel}>{fakeUser.seatbelt}%</Text>
-                            <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.seatbelt, lastWeekData.seatbelt, false)}</View>
+                            <Text style={Styles(userData.seatbeltOffRate, 'seatbelt', false).coloredLabel}>{userData.seatbeltOffRate}%</Text>
+                            <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.seatbeltOffRate, lastWeekData.seatbeltOffRate, false)}</View>
                         </View>
                         <View style={PersonalLeaderboardStyles.speedingLabel}>
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Speedings</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.speedingValue}>
-                            <Text style={Styles(userData.speeding, 'speeding', false).coloredLabel}>{fakeUser.speeding}%</Text>
-                            <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.speeding, lastWeekData.speeding, false)}</View>
+                            <Text style={Styles(userData.speedingEventRate, 'speeding', false).coloredLabel}>{userData.speedingEventRate}%</Text>
+                            <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.speedingEventRate, lastWeekData.speedingEventRate, false)}</View>
                         </View>
                     </View>
                     <View style={PersonalLeaderboardStyles.distractionLabel}>
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Distracted</Text>
                     </View>
                     <View style={PersonalLeaderboardStyles.distractionValue}>
-                        <Text style={Styles(userData.distractions_rate, 'distraction', false).coloredLabel}>{fakeUser.distractions_rate}%</Text>
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.distractions_rate, lastWeekData.distractions_rate, false)}</View>
+                        <Text style={Styles(userData.distractionsRate, 'distraction', false).coloredLabel}>{userData.distractionsRate}%</Text>
+                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.distractionsRate, lastWeekData.distractionsRate, false)}</View>
                     </View>
                     <View style={PersonalLeaderboardStyles.followingLabel}>
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Close Follows</Text>
                     </View>
                     <View style={PersonalLeaderboardStyles.followValue}>
-                        <Text style={Styles(userData.following_distance_rate, 'follow', false).coloredLabel}>{fakeUser.following_distance_rate}%</Text>
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.following_distance_rate, lastWeekData.following_distance_rate, false)}</View>
+                        <Text style={Styles(userData.followingDistanceRate, 'follow', false).coloredLabel}>{userData.followingDistanceRate}%</Text>
+                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.followingDistanceRate, lastWeekData.followingDistanceRate, false)}</View>
                     </View>
                     <View style={PersonalLeaderboardStyles.signalLabel}>
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Signal Violation</Text>
                     </View>
                     <View style={PersonalLeaderboardStyles.signalValue}>
-                        <Text style={Styles(userData.signal_violations_rate, 'signal', false).coloredLabel}>{userData.signal_violations_rate}%</Text>
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.signal_violations_rate, lastWeekData.signal_violations_rate, false)}</View>
+                        <Text style={Styles(userData.signalViolationsRate, 'signal', false).coloredLabel}>{userData.signalViolationsRate}%</Text>
+                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.signalViolationsRate, lastWeekData.signalViolationsRate, false)}</View>
                     </View>
                     <View style={PersonalLeaderboardStyles.ficoLabel}>
                         <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>FICO</Text>
@@ -290,23 +267,23 @@ const PersonalScoreCard = () => {
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Scan Compliance</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.scValue}>
-                            <Text style={Styles(userData.scan_compliance, 'scan_compliance', true).coloredLabel}>{userData.scan_compliance}%</Text>
-                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.scan_compliance, lastWeekData.scan_compliance, false)}</View>
+                            <Text style={Styles(userData.scanCompliance, 'scan_compliance', true).coloredLabel}>{userData.scanCompliance}%</Text>
+                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.scanCompliance, lastWeekData.scanCompliance, false)}</View>
                         </View>
                         <View style={PersonalLeaderboardStyles.podLabel}>
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Photo on Delivery Rate</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.podValue}>
-                            <Text style={Styles(userData.photo_on_delivery, 'dcr', true).coloredLabel}>{userData.photo_on_delivery}%</Text>
-                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.photo_on_delivery, lastWeekData.photo_on_delivery, false)}</View>
+                            <Text style={Styles(userData.photoOnDelivery, 'dcr', true).coloredLabel}>{userData.photoOnDelivery}%</Text>
+                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.photoOnDelivery, lastWeekData.photoOnDelivery, false)}</View>
                         </View>
-                        <View style={PersonalLeaderboardStyles.cdfLabel}>
+                        {/* <View style={PersonalLeaderboardStyles.cdfLabel}>
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Customer Feedback</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.cdfValue}>
-                            <Text style={Styles(userData.customer_delivery_feedback, 'dcr', true).coloredLabel}>{userData.customer_delivery_feedback}%</Text>
-                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.customer_delivery_feedback, lastWeekData.customer_delivery_feedback, false)}</View>
-                        </View>
+                            <Text style={Styles(userData.customerDeliveryFeedback, 'cdf', true).coloredLabel}>{userData.customerDeliveryFeedback}%</Text>
+                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.customerDeliveryFeedback, lastWeekData.customerDeliveryFeedback, false)}</View>
+                        </View> */}
                     </View>
                     <View style={PersonalLeaderboardStyles.overalls}>
                         <Text style={PersonalLeaderboardStyles.sectionTitle}>Weekly Report Card</Text>
@@ -314,19 +291,19 @@ const PersonalScoreCard = () => {
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Completion</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.completionValue}>
-                            <Text style={Styles(userData.delivery_completion_rate, 'dcr', true).coloredLabel}>{userData.delivery_completion_rate}%</Text>
+                            <Text style={Styles(userData.deliveryCompletionRate, 'dcr', true).coloredLabel}>{userData.deliveryCompletionRate}%</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.totalLabel}>
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Total Deliveries</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.totalValue}>
-                            <Text style={{textAlign: 'center', fontWeight: '600', fontSize: 16,}}>{userData.deliveries}</Text>
+                            <Text style={{textAlign: 'center', fontWeight: '600', fontSize: 16,}}>{userData.delivered}</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.tierLabel}>
                             <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Overall Tier</Text>
                         </View>
                         <View style={PersonalLeaderboardStyles.tierValue}>
-                            {renderOverallTier(userData.overall_tier)}
+                            {renderOverallTier(userData.tier)}
                         </View>
                     </View>
                 </View>
