@@ -17,6 +17,7 @@ import stateChange from './Hooks/handleToken'
 import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 
+import ShiftLanding from "./Pages/ShiftPlannerPage/ShiftLanding";
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
 import Reporting from './Pages/ReportingPage/Reporting'
@@ -46,6 +47,7 @@ import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Roster from './Pages/Roster/Roster'
+import Inspection from './Pages/InspectionPage/Inspection'
 
 let state;
 
@@ -111,6 +113,10 @@ export default function App() {
                   {props => <PersonalScoreCard />}
                 </Stack.Screen>
 
+                <Stack.Screen name='inspection'>
+                  {props => <Inspection />}
+                </Stack.Screen>
+
                 <Stack.Screen name='leaderboards'>
                   {props => <ScoreCard />}
                 </Stack.Screen>
@@ -128,7 +134,7 @@ export default function App() {
                 </Stack.Screen>
 
                 <Stack.Screen name='shift_planner'>
-                  {props => <ShiftPlanner />}
+                  {props => <ShiftLanding />}
                 </Stack.Screen>
 
                 <Stack.Screen name='roster'>

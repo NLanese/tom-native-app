@@ -11,9 +11,6 @@ const TeamEmployees = ({driverData, rank}) => {
         return name[0] + name.slice(1).toLowerCase()
     }
 
-    // driverData.firstname = driverData.firstname[0] + driverData.firstname.slice(1).toLowerCase()
-    // driverData.lastname = driverData.lastname[0] + driverData.lastname.slice(1).toLowerCase()
-
     let name = lowerCaseNameMaker(driverData.firstname) + " " + lowerCaseNameMaker(driverData.lastname)
 
     return(

@@ -12,7 +12,7 @@ import { AccountInformationStyles } from "../../../Styles/SettingStyles";
 import { ActivityIndicator } from "react-native-paper";
 
 const AccountInformation = () => {
-    const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
+    // const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
     const [queryData, setQueryData] = useState({})
     const [userData, setUserData] = useRecoilState(userState)
 

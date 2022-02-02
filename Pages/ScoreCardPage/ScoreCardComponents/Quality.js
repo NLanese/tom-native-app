@@ -82,7 +82,7 @@ const Quality = () => {
         )
         const otherCards =(
                 <View>
-                    {allDrivers.slice(topNum, (stopAt - topNum)).map( (driver) => {
+                    {allDrivers.slice(topNum, (stopAt)).map( (driver) => {
                         i++
                         return <TeamEmployees driverData={driver} key={i} rank={i} />
                     })}
