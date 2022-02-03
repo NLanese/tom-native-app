@@ -20,7 +20,7 @@ const dateObj = (dateSent, timeZone='EST') => {
         timeZoneAdjustment = -7
     }
     else {
-        throw new Error("Error: Invalid TimeZone Entered!")
+        throw new Error("Error: Invalid DSP TimeZone!")
     }
     hour = parseInt(hour, 10) - timeZoneAdjustment
     if (hour < 1){

@@ -1,14 +1,12 @@
 import React from "react"
-import { useHistory } from 'react-router-native';
+import { useNavigation } from "@react-navigation/native";
 import { View } from 'react-native'
 import { Button } from 'react-native-paper';
 import { useState } from "react";
 import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
 
 const AccountInformation = () => {
-    let history = useHistory()
-
-
+    const navigation = useNavigation()
     const [buttonLoading, setButtonLoading] = useState(false)
 	const handleButtonLoading = async () => {
 		await setButtonLoading(!buttonLoading)
@@ -22,8 +20,8 @@ const AccountInformation = () => {
                 style={ButtonStyles.logInButton}
                 titleStyle={{color: "white"}}
                 onPress={() => {
-                    handleButtonLoading()
-                    history.push("/account_information")
+                    // handleButtonLoading()
+                    navigation.navigate("account_information")
                 }}
             >
                 Account Information
