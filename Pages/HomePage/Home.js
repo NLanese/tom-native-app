@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { userState } from '../../Recoil/atoms';
 import { useMutation } from '@apollo/client';
 import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
+import { Layout } from '@ui-kitten/components';
 import { Portal, Modal, Button, IconButton } from 'react-native-paper'
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
@@ -58,41 +59,43 @@ const Home = ({ handleLoggedIn }) => {
     let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
 
     return (
-        <View style={HomeStyles.container}> 
-            {/* <Portal> */}
-                <Banner handleLoggedIn={handleLoggedIn}/>
-                <ButtonBox />
+        <Layout>
+            <View style={HomeStyles.container}> 
+                {/* <Portal> */}
+                    <Banner handleLoggedIn={handleLoggedIn}/>
+                    <ButtonBox />
 
 
 
-                <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
-                    <View style={HomeStyles.notificationModalContent}>
-                        <View style={HomeStyles.weeklyNotificationTitleSpace}>
-                            <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Report Message:</Text>
-                        </View>
-                        <View style={HomeStyles.weeklyNotificationMessage}>
-                            <Text>{weeklyReportObj.feedbackMessage}</Text>
-                        </View>
-                        <View style={HomeStyles.acknowledgeContainter}>
-                            <Text>I Acknowledge this message</Text>
-                                <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
-                                    <View style={{width: 30, height: 30, borderWidth: 1, left: maxHeight * 0.29, top: maxHeight * -0.038}}>
-                                            {renderCheck()}
-                                    </View>
-                                </TouchableOpacity>
-                            <View style={{borderWidth: 0.3, top: maxHeight * -0.026}}>
-                                <Button 
-                                    onPress={() => setModalVisible(false)}
-                                    mode='contained'
-                                    disabled={exitDisabled}>
-                                    Exit 
-                                </Button>
+                    <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
+                        <View style={HomeStyles.notificationModalContent}>
+                            <View style={HomeStyles.weeklyNotificationTitleSpace}>
+                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Report Message:</Text>
+                            </View>
+                            <View style={HomeStyles.weeklyNotificationMessage}>
+                                <Text>{weeklyReportObj.feedbackMessage}</Text>
+                            </View>
+                            <View style={HomeStyles.acknowledgeContainter}>
+                                <Text>I Acknowledge this message</Text>
+                                    <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
+                                        <View style={{width: 30, height: 30, borderWidth: 1, left: maxHeight * 0.29, top: maxHeight * -0.038}}>
+                                                {renderCheck()}
+                                        </View>
+                                    </TouchableOpacity>
+                                <View style={{borderWidth: 0.3, top: maxHeight * -0.026}}>
+                                    <Button 
+                                        onPress={() => setModalVisible(false)}
+                                        mode='contained'
+                                        disabled={exitDisabled}>
+                                        Exit 
+                                    </Button>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </Modal>
-            {/* </Portal> */}
-        </View>
+                    </Modal>
+                {/* </Portal> */}
+            </View>
+        </Layout>
     )
 }
 
