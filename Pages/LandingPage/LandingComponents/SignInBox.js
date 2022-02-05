@@ -5,8 +5,7 @@ import Email from './SignInBoxComponents/Email'
 import Password from './SignInBoxComponents/Password'
 import LoginButton from './SignInBoxComponents/LoginButton'
 import SignUpButton from './SignInBoxComponents/SignUpButton'
-import {  Portal,  Provider } from 'react-native-paper';
-import { SignUpModalStyles } from '../../../Styles/LandingPageStyles';
+
 
 
 const SignInBox = ({ handleLoggedIn }) => {

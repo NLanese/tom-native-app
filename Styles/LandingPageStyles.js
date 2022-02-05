@@ -1,51 +1,67 @@
 import { relayStylePagination } from '@apollo/client/utilities';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const LandingStyles = StyleSheet.create({
 	container: {
         display: 'flex',
         alignItems: 'center',
         height: "100%",
+		backgroundColor: "green"
     },
+	titleIcon: {
+		width: maxWidth * 0.2,
+		marginLeft: maxWidth * 0.4,
+		alignItems: 'center'
+	}
 })
 
 const LogoStyles = StyleSheet.create({
 	logo: {
 		resizeMode: 'stretch',
-		width: 200,
-		height: 85,
-		marginTop: 50
+		width: 90,
+		height: 55,
+		marginTop: 60,
 	  }
 })
 
 const SignInBoxStyles = StyleSheet.create({
 	container: {
-		marginTop: 100,
-		shadowColor: '#ffffff',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 6,
+		marginTop: maxHeight * 0.03,
 	},
 
 	loginContents: {
-		top: 30,
 		height: 65,
-		width: 340,
+		width: maxWidth,
+		marginBottom: 15
 	},
 
-	signUpContents: {
-		marginTop: 10,
-		bottom: 10,
-		height: 500,
+	titleBox: {
+		width: maxWidth * 0.20,
+		height: maxHeight * 0.06,
+
+		marginLeft: maxWidth * 0.4,
+		marginBottom: maxHeight * 0.05,
+		// borderColor: 'black',
+		// borderWidth: 1,
+		// backgroundColor: 'red',
+	},
+
+	titleText: {
+		// fontFamily: "Gilroy-Heavy",
+		fontSize: 30
 	}
+
 });
 
 const EmailStyles = StyleSheet.create({
 	input: {
-		backgroundColor: '#f1f1f1'
+		backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+		width: maxWidth * 0.75,
+		height: maxHeight * 0.1,
+		marginLeft: maxWidth * 0.125,
 	}
 });
 
@@ -75,14 +91,6 @@ const ButtonStyles = StyleSheet.create({
 		backgroundColor: 'white',
 		marginBottom: 75,
 		marginTop: 10,
-		// borderRadius: 20,
-		// shadowColor: '#02020A',
-		// shadowOffset: {
-		// 	width: 0,
-		// 	height: 2,
-		// },
-		// shadowOpacity: 0.25,
-		// shadowRadius: 6,
 	},
 
 	logInButton: {
@@ -111,68 +119,6 @@ const ButtonStyles = StyleSheet.create({
 });
 
 const SignUpModalStyles = StyleSheet.create({
-
-	centeredView: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginTop: 100,
-		marginBottom: 75
-	},
-
-	outsideModal: {
-		display: "flex",
-		backgroundColor: "black",
-		color: "black"
-	},
-	 
-	modal: {
-		width: 300,
-		height: 200,
-		backgroundColor: 'black',
-		borderRadius: 20,
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 4,
-		elevation: 5,
-		paddingTop: 20
-	},
-
-	insideModalView: {
-		backgroundColor: "black",
-		top: 0,
-		width: 370,
-		height: 650,
-		display: 'flex',
-		alignItems: 'center'
-	},
-
-	container: {
-		margin: 0,
-	},
-
-	modalTitle: {
-		marginTop: 15,
-		top: 0,
-		marginBottom: 5,
-		textAlign: 'center',
-		color: '#ffffff',
-		fontWeight: 'bold',
-		fontSize: 24
-	},
-
-	modalSubTitle: {
-		marginBottom: 5,
-		textAlign: 'center',
-		color: '#ffffff',
-		fontSize: 12,
-		marginBottom: 10
-	},
-
 	inputField: {
         flex: 1,
         marginTop: 0,
@@ -187,10 +133,30 @@ const SignUpModalStyles = StyleSheet.create({
 	submitbutton: {
 		marginTop: 10,
 		flex: 2
-	}
+	},
 
 
 });
+
+const LandingPageStyles = StyleSheet.create({
+	container: {
+		width: maxWidth,
+		height: maxHeight,
+	},
+	tabBarContainer: {
+		marginTop: maxHeight * 0.045,
+		marginLeft: maxWidth * 0.075,
+		marginBottom: maxHeight * 0.06,
+
+		borderWidth: 1,
+		borderColor: 'black',
+		width: maxWidth * 0.85,
+	},
+	tabBar: {
+		backgroundColor: 'rgba(52, 52, 52, 0.0) !important',
+		
+	}
+})
 
 export {
 	LandingStyles,
@@ -199,4 +165,5 @@ export {
 	EmailStyles,
 	ButtonStyles,
 	SignUpModalStyles,
+	LandingPageStyles
 };

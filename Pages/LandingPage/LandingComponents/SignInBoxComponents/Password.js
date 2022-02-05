@@ -1,17 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { Input } from '@ui-kitten/components';
 import { EmailStyles } from '../../../../Styles/LandingPageStyles';
 
 const Password = ({ handleInput }) => {
     return (
         <View>
-            <TextInput
+            <Input
                 style={EmailStyles.input}
-                selectionColor='black'
-                activeOutlineColor='black'
-                activeUnderlineColor='black'
-                label='Password'
+                size={'large'}
+                placeholder='Password'
+                secureTextEntry={true}
                 onChangeText={password => {
                     handleInput('password', password)
                 }}

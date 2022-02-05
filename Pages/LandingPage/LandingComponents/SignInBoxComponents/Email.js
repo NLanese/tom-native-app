@@ -1,17 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { Input } from '@ui-kitten/components';
 import { EmailStyles } from '../../../../Styles/LandingPageStyles';
 
-const UserName = ({ handleInput }) => {
+const Email = ({ handleInput }) => {
     return (
         <View>
-            <TextInput
+            <Input
                 style={EmailStyles.input}
-                selectionColor='black'
-                activeOutlineColor='black'
-                activeUnderlineColor='black'
-                label='Email'
+                size={'large'}
+                placeholder='Email'
                 onChangeText={email => {
                     handleInput('email', email)
                 }}
@@ -20,4 +18,4 @@ const UserName = ({ handleInput }) => {
     );
 };
 
-export default UserName;
+export default Email;

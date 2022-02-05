@@ -1,16 +1,18 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { LandingStyles } from '../../Styles/LandingPageStyles';
-import SignInBox from './LandingComponents/SignInBox'
+import LandingPageContainer from './LandingComponents/LandingPageContainer';
 import Title from './LandingComponents/Title';
 
-const LandingPage = ({ handleLoggedIn, navigation }) => {
+const LandingPage = ({ handleLoggedIn }) => {
     return (
         <View style={LandingStyles.container}>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View>
-                    <Title />
-                    <SignInBox handleLoggedIn={handleLoggedIn}/>
+                    <View style={LandingStyles.titleIcon}>
+                        <Title />
+                    </View>
+                    <LandingPageContainer handleLoggedIn={handleLoggedIn} />
                 </View>
             </TouchableWithoutFeedback>
         </View>

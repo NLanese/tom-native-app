@@ -55,7 +55,6 @@ const HomeStyles = StyleSheet.create({
 
 	}
 })
-
 const ButtonBoxStyles = StyleSheet.create({
 	container: {
 		backgroundColor: '#F9f9f9',
@@ -124,7 +123,6 @@ const ButtonBoxStyles = StyleSheet.create({
 	}
 
 })
-
 
 const ScoreCardButtonStyles = StyleSheet.create({
 	container: {
