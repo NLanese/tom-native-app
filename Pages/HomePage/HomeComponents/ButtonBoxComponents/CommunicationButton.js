@@ -12,13 +12,13 @@ const CommunicationButton = () => {
     return (
         <View style={ButtonBoxStyles.clickable}>
         <TouchableOpacity onPress={() => {navigation.navigate("messages")}}>
-            <View>
+            <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
                     style={ButtonBoxStyles.image}
                     source={require('../../../../assets/Communication.jpeg')}/>
             </View> 
-            <View style={ButtonBoxStyles.label}>
-                <Text style={{textAlign: 'center'}}>Communication</Text>
+            <View style={{ marginTop: '-30%' }}>
+                <Text style={ButtonBoxStyles.label}>Communication</Text>
             </View>
         </TouchableOpacity>
     </View>

@@ -14,24 +14,19 @@ const ScoreCardButton = () => {
     return (
     <View style={ButtonBoxStyles.clickable}>
         <TouchableOpacity onPress={() => {navigation.navigate("score_card")}}>
-            <View>
+            <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
                     style={{
                         alignContent: 'center',
-                        height: maxHeight * 0.187,
-                        width: '82%',
-                        marginLeft: maxHeight * 0.0
+                        top: '20%',
+                        height: '40%',
+                        width: '42%',
+                        marginLeft: '29%'
                     }}
                     source={require('../../../../assets/scorecard-icon.jpeg')}/>
             </View> 
-            <View style={{
-                width: '100%',
-                textAlign: 'center',
-                alignItems: 'center',
-                marginTop: 6,
-                left: -maxWidth * 0.035
-            }}>
-                <Text style={{textAlign: 'center'}}>Scorecard</Text>
+            <View style={{ marginTop: '-30%' }}>
+                <Text style={ButtonBoxStyles.label}>Scorecard</Text>
             </View>
         </TouchableOpacity>
     </View>

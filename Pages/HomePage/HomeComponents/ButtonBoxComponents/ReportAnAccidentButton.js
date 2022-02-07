@@ -12,25 +12,13 @@ const ReportAnAccidentButton = () => {
     return (
     <View style={ButtonBoxStyles.clickable}>
         <TouchableOpacity onPress={() => {navigation.navigate("leadership_notified")}}>
-            <View>
+            <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
-                    style={{
-                        alignContent: 'center',
-                        height: maxHeight * 0.183,
-                        width: '82%',
-                        marginLeft: maxHeight * 0.025
-                    }}
+                    style={ButtonBoxStyles.image}
                     source={require('../../../../assets/reporting-icon.jpeg')}/>
             </View> 
-            <View style={{
-                width: '100%',
-                // borderWidth: 2,
-                textAlign: 'center',
-                alignItems: 'center',
-                marginTop: 8,
-                left: -maxWidth * 0.035
-            }}>
-                <Text style={{textAlign: 'center'}}>Report an Accident</Text>
+            <View style={{ marginTop: '-30%' }}>
+                <Text style={ButtonBoxStyles.label}>Report an Accident</Text>
             </View>
         </TouchableOpacity>
     </View>

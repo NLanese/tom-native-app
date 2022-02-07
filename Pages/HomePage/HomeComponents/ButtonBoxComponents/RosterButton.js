@@ -12,24 +12,13 @@ const RosterButton = () => {
     return (
         <View style={ButtonBoxStyles.clickable}>
         <TouchableOpacity onPress={() => {navigation.navigate("roster")}}>
-            <View>
+        <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
-                    style={{		
-                        alignContent: 'center',
-                        top: maxHeight * -0.04,
-                        height: maxHeight * 0.255,
-                        width: '82%',}}
+                    style={ButtonBoxStyles.image}
                     source={require('../../../../assets/roster-icon.jpeg')}/>
             </View> 
-            <View style={{
-                		width: '100%',
-                        textAlign: 'center',
-                        alignItems: 'center',
-                        marginTop: 0,
-                        top: maxHeight * -0.06,
-                        left: -maxWidth * 0.035
-            }}>
-                <Text style={{textAlign: 'center'}}>Roster</Text>
+            <View style={{ marginTop: '-30%' }}>
+                <Text style={ButtonBoxStyles.label}>Roster</Text>
             </View>
         </TouchableOpacity>
     </View>

@@ -20,8 +20,8 @@ const ScoreCardStyles = StyleSheet.create({
 
 const SortingStyles = StyleSheet.create({
 	sortByContainer: {
-		position: 'absolute',
-		marginTop: '25%',
+		// position: 'absolute',
+		marginTop: '2.5%',
 		marginLeft: '68%',
 	},
 	sortBy: {
@@ -32,18 +32,20 @@ const SortingStyles = StyleSheet.create({
 		height: maxHeight * 0.05,
 		justifyContent: 'center'
 	},
-	sortByButton: {
-
+	touchable: {
+		height: maxHeight * 0.08,
+		marginTop: -maxHeight * 0.04
 	},
 	sortText:{
+		marginTop: maxHeight * 0.01,
 		fontSize: 16,
 		fontWeight: '600',
 		color: 'grey'
 	},
 	sortIcon:{
-		position: 'relative',
+		// position: 'relative',
 		marginLeft: maxWidth * 0.12,
-		marginTop: maxHeight * -0.03
+		marginTop: maxHeight * 0.0
 	},
 	modal: {
 		backgroundColor: 'white',
@@ -57,7 +59,7 @@ const SortingStyles = StyleSheet.create({
 		// height: '5%',
 		paddingLeft: maxWidth * 0.02,
 		paddingBottom: maxHeight * 0.01,
-		marginTop: maxHeight * 0.01,
+		paddingTop: maxHeight * 0.01,
 		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	},
@@ -66,7 +68,7 @@ const SortingStyles = StyleSheet.create({
 		backgroundColor: '#dedede',
 		paddingLeft: maxWidth * 0.02,
 		paddingBottom: maxHeight * 0.01,
-		marginTop: maxHeight * 0.01,
+		paddingTop: maxHeight * 0.01,
 		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
 	}
@@ -87,9 +89,10 @@ const QualityStyles = StyleSheet.create({
 	},
 //-----------------------------
 	titleBox: {
-		marginTop: maxHeight * 0.05,
+		marginTop: maxHeight * -0.07,
 		marginLeft: maxWidth * 0.07,
-		marginBottom: maxHeight * 0.03
+		marginBottom: maxHeight * 0.03,
+		width: maxWidth * 0.6,
 	},	
 	mainTitle: {
 		fontSize: 30,

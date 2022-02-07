@@ -7,7 +7,6 @@ const HomeStyles = StyleSheet.create({
 	container: {
 		display: 'flex',
 		height: '100%',
-		backgroundColor: '#F9f9f9',
 		height: '100%',
 	},	
 	logo: {
@@ -57,46 +56,27 @@ const HomeStyles = StyleSheet.create({
 })
 const ButtonBoxStyles = StyleSheet.create({
 	container: {
-		backgroundColor: '#F9f9f9',
+		backgroundColor: "#eaeaea",
 		width: '100%',
 		height: '100%',
 		display: 'flex',
 	},
-
-	cardContainer:{
-		// flex: 1,
-		height: maxHeight * 0.3,
-		width: maxWidth * 0.44,
-		marginBottom: maxWidth * 0.06
-	},
-
-	card: {
-		position: 'relative',
-		display: 'flex',
-		height: maxHeight * 0.1,
-		width: '100%',
-	},
 	
 	rightContainer: {
 		position: "absolute",
-		right: maxWidth * 0.03,
-		marginTop: maxHeight * 0.05,
+		right: maxWidth * 0.07,
+		marginTop: maxHeight * 0.02,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.8,
-		// borderWidth: 2
 	},
 
 	leftContainer: {
 		position: "absolute",
-		left: maxWidth * 0.03,
-		marginTop: maxHeight * 0.05,
+		left: maxWidth * -0.00,
+		marginTop: maxHeight * 0.02,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.8,
 		// borderWidth: 2
-	},
-
-	homeButtons:{
-		marginTop: maxWidth * 0.03,
 	},
 
 	clickable: {
@@ -106,20 +86,27 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginBottom: maxHeight * 0.09
 	},
 
+	buttonCard: {
+		backgroundColor: 'white',
+
+		height: maxHeight * 0.26,
+		width: maxHeight * 0.24,
+
+		borderRadius: 30
+	},
+
 	image: {
 		alignContent: 'center',
-		height: maxHeight * 0.18,
-		width: '82%',
-		// borderWidth: 3
+		top: '20%',
+		height: '40%',
+		width: '42%',
+		marginLeft: '29%'
 	},
 
 	label: {
-		width: '100%',
-		// borderWidth: 2,
-		textAlign: 'center',
-		alignItems: 'center',
-		marginTop: 10,
-		left: -maxWidth * 0.035
+		textAlign: 'center', 
+		color: 'grey', 
+		fontWeight: '700'
 	}
 
 })

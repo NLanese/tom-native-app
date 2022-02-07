@@ -9,6 +9,7 @@ const PropSort = ({index, propName, setSortBy, setTracker, selected}) => {
 
     const handleSortPress = () => {
         setSortBy(propName)
+        console.log(index)
         setTracker(index)
     }
 
