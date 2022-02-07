@@ -1,6 +1,8 @@
 import "react-native-gesture-handler"
 import React, { useState } from 'react';
 import * as Sharing from 'expo-sharing';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
@@ -53,7 +55,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql'
+	uri: 'http://192.168.1.203:5001/graphql'
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
 
@@ -88,106 +90,104 @@ export default function App() {
     <NavigationContainer>
       <ApolloProvider client={client}>
         <RecoilRoot>
-          <PaperProvider>
-            <View style={AppStyles.container}>
+          <ApplicationProvider {...eva} theme={eva.light}>
+            <PaperProvider>
+              <View style={AppStyles.container}>
 
-              {/* {loggedIn === true ? (<Banner handleLoggedIn={handleLoggedIn} />) : null} */}
+                {/* {loggedIn === true ? (<Banner handleLoggedIn={handleLoggedIn} />) : null} */}
 
-              <Stack.Navigator screenOptions={{headerShown: false}}>
-          
-                {loggedIn === false ? (
-                <Stack.Screen name="/">
-                  {props => <LandingPage handleLoggedIn={handleLoggedIn}  />}
-                </Stack.Screen>
-                ) : null}
+                <Stack.Navigator screenOptions={{headerShown: false}}>
             
-                <Stack.Screen name="home">
-                  {props => <Home {...props} handleLoggedIn={handleLoggedIn} />}
-                </Stack.Screen>
+                  {loggedIn === false ? (
+                  <Stack.Screen name="/">
+                    {props => <LandingPage handleLoggedIn={handleLoggedIn}  />}
+                  </Stack.Screen>
+                  ) : null}
+              
+                  <Stack.Screen name="home">
+                    {props => <Home {...props} handleLoggedIn={handleLoggedIn} />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='analytics'>
-                  {props => <Analytics />}
-                </Stack.Screen>
+                  <Stack.Screen name='analytics'>
+                    {props => <Analytics />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='score_card'>
-                  {props => <PersonalScoreCard />}
-                </Stack.Screen>
+                  <Stack.Screen name='score_card'>
+                    {props => <PersonalScoreCard />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='inspection'>
-                  {props => <Inspection />}
-                </Stack.Screen>
+                  <Stack.Screen name='leaderboards'>
+                    {props => <ScoreCard />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='leaderboards'>
-                  {props => <ScoreCard />}
-                </Stack.Screen>
+                  <Stack.Screen name='account_information'>
+                    {props => <AccountInformation />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='account_information'>
-                  {props => <AccountInformation />}
-                </Stack.Screen>
+                  <Stack.Screen name='messages'>
+                    {props => <Communication />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='messages'>
-                  {props => <Communication />}
-                </Stack.Screen>
+                  <Stack.Screen name='admin_messages'>
+                    {props => <Communication />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='admin_messages'>
-                  {props => <Communication />}
-                </Stack.Screen>
+                  <Stack.Screen name='shift_planner'>
+                    {props => <ShiftPlanner />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='shift_planner'>
-                  {props => <ShiftLanding />}
-                </Stack.Screen>
+                  <Stack.Screen name='roster'>
+                    {props => <Roster />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='roster'>
-                  {props => <Roster />}
-                </Stack.Screen>
+                  <Stack.Screen name='settings'>
+                    {props => <Settings />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='settings'>
-                  {props => <Settings />}
-                </Stack.Screen>
+                  <Stack.Screen name='reporting'>
+                    {props => <Reporting />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='reporting'>
-                  {props => <Reporting />}
-                </Stack.Screen>
+                  <Stack.Screen name='view_notifications'>
+                    {props => <Notifications />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='view_notifications'>
-                  {props => <Notifications />}
-                </Stack.Screen>
+                  <Stack.Screen name='leadership_notified'>
+                    {props => <LeadershipNotified />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='leadership_notified'>
-                  {props => <LeadershipNotified />}
-                </Stack.Screen>
+                  <Stack.Screen name='productivity'>
+                    {props => <Productivity />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='productivity'>
-                  {props => <Productivity />}
-                </Stack.Screen>
+                  <Stack.Screen name='quality'>
+                    {props => <Quality />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='quality'>
-                  {props => <Quality />}
-                </Stack.Screen>
+                  {/* <Stack.Screen name='safety_and_compliance'>
+                    {props => <SafetyAndCompliance />}
+                  </Stack.Screen>
 
-                {/* <Stack.Screen name='safety_and_compliance'>
-                  {props => <SafetyAndCompliance />}
-                </Stack.Screen>
+                  <Stack.Screen name='team'>
+                    {props => <Team />}
+                  </Stack.Screen> */}
 
-                <Stack.Screen name='team'>
-                  {props => <Team />}
-                </Stack.Screen> */}
+                  <Stack.Screen name='view_accidents'>
+                    {props => <ViewAccidents />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='view_accidents'>
-                  {props => <ViewAccidents />}
-                </Stack.Screen>
+                  <Stack.Screen name='edit_account_information'>
+                    {props => <EditAccountInformation />}
+                  </Stack.Screen>
 
-                <Stack.Screen name='edit_account_information'>
-                  {props => <EditAccountInformation />}
-                </Stack.Screen>
-
-                <Stack.Screen name='account_settings'>
-                  {props => <AccountSettings />}
-                </Stack.Screen>
-            
-              </Stack.Navigator>
-            </View>
-          </PaperProvider>
+                  <Stack.Screen name='account_settings'>
+                    {props => <AccountSettings />}
+                  </Stack.Screen>
+              
+                </Stack.Navigator>
+              </View>
+            </PaperProvider>
+          </ApplicationProvider>
         </RecoilRoot>
       </ApolloProvider>
     </NavigationContainer>
