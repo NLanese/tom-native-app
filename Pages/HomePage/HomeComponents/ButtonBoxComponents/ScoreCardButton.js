@@ -26,7 +26,6 @@ const ScoreCardButton = () => {
             </View> 
             <View style={{
                 width: '100%',
-                // borderWidth: 2,
                 textAlign: 'center',
                 alignItems: 'center',
                 marginTop: 6,

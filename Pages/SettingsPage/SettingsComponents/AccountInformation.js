@@ -13,7 +13,7 @@ import { ActivityIndicator } from "react-native-paper";
 import Banner from "../../../Global/Banner";
 
 const AccountInformation = () => {
-    const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
+    // const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
     const [queryData, setQueryData] = useState({})
     const [userData, setUserData] = useRecoilState(userState)
 

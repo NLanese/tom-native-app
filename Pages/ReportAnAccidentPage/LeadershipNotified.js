@@ -9,15 +9,13 @@ const LeadershipNotified = () => {
 
 
     return (
-        <View> 
-            <Banner />
-                       
+        <View>  
+            <Banner />          
             <View style={LeadershipNotifiedStyles.container}>
 
                 <Text style={LeadershipNotifiedStyles.text}>
                     Before we start, have you notified your leadership?
                 </Text>
-
                 <YesButton />
                 <NoButton />
             </View>

@@ -58,6 +58,19 @@ const Home = ({ handleLoggedIn }) => {
 
     let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
 
+    // ALL FOR TESTING -------------------
+    console.log('\n\n\n\n\n\n')
+    const relevantDSP = {...user.dsp}
+    console.log(relevantDSP.timeZone)
+
+    const relevantUser = {user: {
+        notified: user.notified,
+        messages: user.messages,
+        role: user.role
+    }}
+    console.log(relevantUser)
+    // -----------------------------------
+
     return (
         <Layout>
             <View style={HomeStyles.container}> 

@@ -308,7 +308,6 @@ const PersonalScoreCard = () => {
                     </View>
                 </View>
                 <TouchableOpacity onPress={() => {
-                    // handleButtonLoading()
                     navigation.navigate("leaderboard")
                 }}>
                     <View style={PersonalLeaderboardStyles.buttonBox}>
@@ -319,7 +318,6 @@ const PersonalScoreCard = () => {
                             style={{justifyContent: 'center', shadowOpacity: 0}}
                             titleStyle={{color: "white"}}
                             onPress={() => {
-                                // handleButtonLoading()
                                 navigation.navigate("quality")
                             }}
                         >

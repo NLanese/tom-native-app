@@ -22,6 +22,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 			await setUser(data.driverSignIn)
 			await stateChange(data.driverSignIn.token);
 			await handleLoggedIn()
+			console.log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n NEW LOGIN')
 			await navigation.navigate("home");
 		}
 	}, [data])

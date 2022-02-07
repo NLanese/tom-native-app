@@ -1,8 +1,6 @@
 import React from "react"
 import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, Image, Text, Dimensions } from 'react-native'
-import { ScoreCardStyles } from "../../../../Styles/ScoreCardStyles";
-import { Button, Card } from 'react-native-paper';
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 let maxWidth= Dimensions.get('window').width
