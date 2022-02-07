@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
-import { TabBar, Tab, Layout, Text } from '@ui-kitten/components';
+import { TabBar, Tab, Text } from '@ui-kitten/components';
 
 import LoginScreen from './LoginScreen';
+
 
 const LandingPageContainer = ({handleLoggedIn}) => {
 
@@ -11,7 +12,7 @@ const LandingPageContainer = ({handleLoggedIn}) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
 
     // Tracks user input
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState({email: "", password: ""})
 
 
     // Sends user input to the use state above
@@ -39,12 +40,22 @@ const LandingPageContainer = ({handleLoggedIn}) => {
         <View style={LandingPageStyles.container}>
             <View style={LandingPageStyles.tabBarContainer}>
                 <TabBar
+                    indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
+                    tabBarStyle={LandingPageStyles.loginTab}
                     style={LandingPageStyles.tabBar}
                     selectedIndex={selectedIndex}
                     onSelect={index => setSelectedIndex(index)}
                 >
-                    <Tab title="Login" />
-                    <Tab title='Sign Up' />
+                    <Tab 
+                        title="Login" 
+                        tabBarStyle={LandingPageStyles.loginTab}
+                        indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
+                        tabBarStyle={LandingPageStyles.loginTab}/>
+                    <Tab 
+                        title='Sign Up' 
+                        tabBarStyle={LandingPageStyles.signUpTab}
+                        indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
+                        tabBarStyle={LandingPageStyles.loginTab}/>
                 </TabBar>
             </View>
             <View>

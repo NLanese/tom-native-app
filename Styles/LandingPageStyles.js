@@ -5,11 +5,16 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 const LandingStyles = StyleSheet.create({
+	backdrop: {
+		flex: 1,
+		position: 'relative',
+		resizeMode: 'cover'
+	},	
 	container: {
         display: 'flex',
         alignItems: 'center',
         height: "100%",
-		backgroundColor: "green"
+		// backgroundColor: "green"
     },
 	titleIcon: {
 		width: maxWidth * 0.2,
@@ -28,42 +33,53 @@ const LogoStyles = StyleSheet.create({
 })
 
 const SignInBoxStyles = StyleSheet.create({
+	// ---------------------------------
 	container: {
 		marginTop: maxHeight * 0.03,
 	},
-
+	// ---------------------------------
+	loginButton: {
+		marginLeft: maxWidth * 0.7
+	},
 	loginContents: {
 		height: 65,
 		width: maxWidth,
 		marginBottom: 15
 	},
-
+	// ---------------------------------
 	titleBox: {
 		width: maxWidth * 0.20,
 		height: maxHeight * 0.06,
 
 		marginLeft: maxWidth * 0.4,
 		marginBottom: maxHeight * 0.05,
-		// borderColor: 'black',
-		// borderWidth: 1,
-		// backgroundColor: 'red',
 	},
-
 	titleText: {
 		// fontFamily: "Gilroy-Heavy",
-		fontSize: 30
+		fontSize: 30,
+		color: 'white'
+	},
+	// ---------------------------------
+	rememberMe: {
+		marginTop: -300
+	},
+	rememberToggle: {
+		width: 50,
+		height: 30,
+		borderRadius: 30,
+		backgroundColor: '#d4d4d4',
+
+		marginTop: maxHeight * -0.084,
+		marginLeft: maxWidth * 0.08,
+	},
+	rememberMeTextBox: {
+		position: 'absolute',
+		marginTop: maxHeight * -0.076,
+		marginLeft: maxWidth * 0.25
 	}
 
 });
 
-const EmailStyles = StyleSheet.create({
-	input: {
-		backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
-		width: maxWidth * 0.75,
-		height: maxHeight * 0.1,
-		marginLeft: maxWidth * 0.125,
-	}
-});
 
 const ButtonStyles = StyleSheet.create({
 	container: {
@@ -93,13 +109,6 @@ const ButtonStyles = StyleSheet.create({
 		marginTop: 10,
 	},
 
-	logInButton: {
-		height: 50,
-		display: 'flex',
-		justifyContent: 'center',
-		backgroundColor: 'black',
-		marginTop: 5
-	},
 	signUpButton: {
 		height: 50,
 		display: 'flex',
@@ -118,25 +127,6 @@ const ButtonStyles = StyleSheet.create({
 	},
 });
 
-const SignUpModalStyles = StyleSheet.create({
-	inputField: {
-        flex: 1,
-        marginTop: 0,
-		marginBottom: 2,
-        backgroundColor: '#f1f1f1',
-		width: '80%',	
-		top: 0,
-		height: 45,
-		paddingVertical: -5,
-	},
-
-	submitbutton: {
-		marginTop: 10,
-		flex: 2
-	},
-
-
-});
 
 const LandingPageStyles = StyleSheet.create({
 	container: {
@@ -145,16 +135,19 @@ const LandingPageStyles = StyleSheet.create({
 	},
 	tabBarContainer: {
 		marginTop: maxHeight * 0.045,
-		marginLeft: maxWidth * 0.075,
+		marginLeft: maxWidth * 0.03,
 		marginBottom: maxHeight * 0.06,
-
-		borderWidth: 1,
-		borderColor: 'black',
-		width: maxWidth * 0.85,
 	},
 	tabBar: {
-		backgroundColor: 'rgba(52, 52, 52, 0.0) !important',
-		
+		backgroundColor: 'rgba(52, 52, 52, 0.1) !important',
+	},
+	loginTab: {
+		borderBottomColor: "white",
+		color: 'white',
+	},
+	signUpTab: {
+		borderBottomColor: "white",
+		color: 'white',
 	}
 })
 
@@ -162,8 +155,6 @@ export {
 	LandingStyles,
 	LogoStyles,
 	SignInBoxStyles,
-	EmailStyles,
 	ButtonStyles,
-	SignUpModalStyles,
 	LandingPageStyles
 };

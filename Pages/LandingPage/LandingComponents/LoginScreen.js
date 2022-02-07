@@ -21,11 +21,16 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                 </View>
                 <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} /></View>
                 <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} /></View>
-                <View style={SignInBoxStyles.loginContents}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
-                <View>
-                    <Toggle checked={checked} onChange={() => setChecked(!checked)}>
-                        {`Remember Me`}
-                    </Toggle>
+                <View style={SignInBoxStyles.loginButton}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
+                <View syle={SignInBoxStyles.rememberMe}>
+                    <View style={SignInBoxStyles.rememberMeTextBox}>
+                        <Text style={{color: '#f9f9f9', fontSize: 16, fontWeight: '600'}}>Remember Me</Text>
+                    </View>
+                    <Toggle 
+                        checked={checked} 
+                        onChange={() => setChecked(!checked)} 
+                        style={SignInBoxStyles.rememberToggle}
+                    />
                 </View>
             </View>
         </TouchableWithoutFeedback>  

@@ -1,20 +1,25 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard, ImageBackground, Image } from 'react-native';
 import { LandingStyles } from '../../Styles/LandingPageStyles';
 import LandingPageContainer from './LandingComponents/LandingPageContainer';
 import Title from './LandingComponents/Title';
 
+import backgroundImage from '../../assets/loginBackground.png'
+
+
 const LandingPage = ({ handleLoggedIn }) => {
     return (
         <View style={LandingStyles.container}>
-            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                <View>
-                    <View style={LandingStyles.titleIcon}>
-                        <Title />
+            <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={{backgroundColor: 'rgba(52, 52, 52, 0.2) !important',}}>
+                        <View style={LandingStyles.titleIcon}>
+                            <Title />
+                        </View>
+                        <LandingPageContainer handleLoggedIn={handleLoggedIn} />
                     </View>
-                    <LandingPageContainer handleLoggedIn={handleLoggedIn} />
-                </View>
-            </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </ImageBackground>
         </View>
     );
 };

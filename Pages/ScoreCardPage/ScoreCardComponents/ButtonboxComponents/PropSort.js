@@ -4,16 +4,26 @@ import { Text, View } from "react-native"
 import { SortingStyles } from "../../../../Styles/ScoreCardStyles"
 
 
-const handleSortPress = (propName, setSortBy) => {
-    setSortBy(propName)
-}
 
+const PropSort = ({index, propName, setSortBy, setTracker, selected}) => {
 
-const PropSort = ({propName, setSortBy}) => {
+    const handleSortPress = () => {
+        setSortBy(propName)
+        setTracker(index)
+    }
+
+    const renderStyle = () => {
+        if (selected){
+            return SortingStyles.activePropDrop
+        }
+        else{
+            return SortingStyles.propDrop
+        }
+    }
 
     return(
         <TouchableHighlight onPress={() => handleSortPress(propName, setSortBy) }>
-            <View style={SortingStyles.propDrop}>
+            <View style={renderStyle()}>
                 <Text>{propName}</Text>
             </View>
         </TouchableHighlight>

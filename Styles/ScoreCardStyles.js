@@ -3,10 +3,6 @@ import { StyleSheet, Dimensions } from "react-native";
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
-let cardWidth = maxWidth - (maxWidth * 0.03)
-let topCardHeight = (maxHeight * 0.13)
-let bottomCardHeight = (maxHeight * 0.09)
-
 
 const ScoreCardStyles = StyleSheet.create({
 	container: {
@@ -23,6 +19,11 @@ const ScoreCardStyles = StyleSheet.create({
 })
 
 const SortingStyles = StyleSheet.create({
+	sortByContainer: {
+		position: 'absolute',
+		marginTop: '25%',
+		marginLeft: '68%',
+	},
 	sortBy: {
 		marginTop: maxHeight * 0.01,
 		marginLeft: maxWidth * 0.02,
@@ -32,181 +33,168 @@ const SortingStyles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	sortByButton: {
-		left: maxWidth * 0.2,
-		top: -maxHeight * 0.034,
-		padding: 2,
-		width: maxWidth * 0.7,
-		height: maxWidth * 0.07,
-		borderColor: 'grey',
-		borderWidth: 1,
+
 	},
 	sortText:{
-		fontSize: 20
+		fontSize: 16,
+		fontWeight: '600',
+		color: 'grey'
 	},
-	dropArrowBox: {
-		top: '-125%',
-		left: maxWidth * 0.6,
-		width: maxWidth * 0.089,
-		height: maxWidth * 0.089,
+	sortIcon:{
+		position: 'relative',
+		marginLeft: maxWidth * 0.12,
+		marginTop: maxHeight * -0.03
 	},
 	modal: {
 		backgroundColor: 'white',
-		top: -maxHeight * 0.135,
-		left: maxHeight * 0.1245,
-		width: maxWidth * 0.7,
+		top: -maxHeight * 0.045,
+		left: maxWidth * 0.4,
+		width: maxWidth * 0.6,
 		paddingTop: maxHeight * 0.01
 	},
 
 	propDrop: {
-		// height: '10%'
+		// height: '5%',
 		paddingLeft: maxWidth * 0.02,
 		paddingBottom: maxHeight * 0.01,
 		marginTop: maxHeight * 0.01,
 		borderBottomWidth: 1,
 		borderColor: '#E2E8F1',
-
+	},
+	activePropDrop: {
+		// height: '5%',
+		backgroundColor: '#dedede',
+		paddingLeft: maxWidth * 0.02,
+		paddingBottom: maxHeight * 0.01,
+		marginTop: maxHeight * 0.01,
+		borderBottomWidth: 1,
+		borderColor: '#E2E8F1',
 	}
 })
 
 const QualityStyles = StyleSheet.create({
-	// DONE AND GOOD
+
+//-----------------------------
 	container: {
 		marginTop: 10,
 		flexDirection: 'column',
 		alignItems: 'center',
 		height: '100%',
 	},
-	// DONE AND GOOD
-	leadersTitle: {
-		borderBottomWidth: 0.5,
-		height: maxHeight * 0.06,
-		fontSize: 20,
-		marginLeft: maxWidth * 0.02
+	listContainer: {
+		width: maxWidth * .88,
+		marginLeft: maxWidth * 0.06,
 	},
-	// DONE AND GOOD
+//-----------------------------
+	titleBox: {
+		marginTop: maxHeight * 0.05,
+		marginLeft: maxWidth * 0.07,
+		marginBottom: maxHeight * 0.03
+	},	
+	mainTitle: {
+		fontSize: 30,
+		fontWeight: '700'
+	},
+	subTitle: {
+		color: 'grey'
+	},
+//-----------------------------
 	topThreeEmployeeCard: {	
-		height: topCardHeight + bottomCardHeight,
-		width: maxWidth * 0.95,
-		marginBottom: 10,
+		height: maxHeight * 0.25,
+		width: maxWidth * 0.90,
+
+		paddingLeft: 20,
+		borderRadius: 40,
+
+		marginBottom: 20,
+
 		shadowOpacity: 0,
-		borderColor: '#E2E8F1'
 	},
-	// DONE AND GOOD
 	cardTop: {
-		height: topCardHeight,
-		borderBottomColor: '#E2E8F1',
-		borderBottomWidth: 1
+		height: '45%',
 	},
-	// DONE AND GOOD
-	topRank: {
-		backgroundColor: '#E2E8F1',
-		left: -(maxWidth * 0.87),
-		top: -(maxHeight * 0.135),
-		width: (maxHeight * 0.065) * 0.7,
-		height: (maxHeight * 0.065) * 0.7,
-		borderRadius: 100,
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center'
+	cardBottm: {
+		borderColor: '#E2E8F1',
+		borderTopWidth: 3,
+
+		backgroundColor: 'white',
+		flexDirection: "row",
+		marginTop: '1%',
+		height: '45%',
+		width: '90%'
 	},
-	// DONE AND GOOD
+//---------------------------------
 	iconSpace: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		position: 'relative',
-		left: maxWidth * 0.02,
-		top: 0,
+
+		position: 'absolute',
+
+		left: '20%',
+		top: '15%',
 		height: '100%',
 		width: '20%',
 	},
-	// DONE AND GOOD
 	nameSpace: {
 		position: 'absolute',
-		marginLeft: '20%',
-		top: '30%',
-		height: '70%',
+		top: '50%',
+		height: '30%',
+		left: '40%',
 		alignItems: 'center',
 	},
-	// DONE AND GOOD
 	employeeName: {
-		textAlign: 'center',
-		justifyContent: 'center',
-		fontSize: 25,
-		marginLeft: 10,
+		fontSize: 18,
 		fontWeight: '300'
 	},
-	// DONE AND GOOD
-	cardBottm: {
-		height: bottomCardHeight,
-		flexDirection: "row"
-	},
-	dcr: {
-		alignItems: 'center',
-		width: '15%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderBottomWidth: 1,
+	topRank: {
 		borderColor: '#E2E8F1',
-	},
-	dar: {
+		borderWidth: 4,
+		borderRadius: 100,
+
 		alignItems: 'center',
-		width: '15%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
+		justifyContent: 'center',
+
+		width: '16.5%',
+		height: '68%',
+
+		top: '26%',
+		left: '3%',
 	},
-	pod: {
-		alignItems: 'center',
-		width: '15%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-	},
-	callCompliance: {
-		alignItems: 'center',
-		width: '25%',
-		height: '100%',
-		borderRightWidth: 1,
-		borderBottomWidth: 1,
-		borderColor: '#E2E8F1',
-	},
-	scanCompliance: {
-		borderColor: '#E2E8F1',
-		borderBottomWidth: 1,
-		alignItems: 'center',
-		width: '30%',
-		height: '100%',
-	},
-	statTitle: {
-		fontSize: 10,
-		color: "grey",
-		marginTop: 4
-	},
-	statValue:{
-		marginTop: 3,
-		fontWeight: '600',
-		fontSize: 16,
-	}
 })
+
 const StatStyles = StyleSheet.create({
 	statTitle: {
-		fontSize: 10,
+		fontSize: 12,
+		fontWeight: `400`,
 		color: "grey",
-		marginTop: 4
+		marginTop: 4,
+		marginLeft: 20
+
 	},
 	statValue:{
 		marginTop: maxHeight * 0.018,
 		fontWeight: '600',
-		fontSize: 16,
+		fontSize: 22,
+		marginLeft: 20
+
 	},
 	stat: {
-		width: maxWidth * 0.3,
+		padding: 5,
 		height: '98%',
-		alignItems: 'center',
-		borderLeftWidth: 1,
-		borderColor: '#E2E8F1',
+
+		marginRight: 15,
+
+		alignItems: 'flex-start',
+	},
+
+	divider: {
+		borderLeftWidth: 3,
+		// backgroundColor: 'red',
+		width: 2,
+		marginRight: maxWidth * 0.05,
+		top: '-70%',
+		height: '60%',
+		borderColor: '#E2E8F1'
 	}
 
 })
