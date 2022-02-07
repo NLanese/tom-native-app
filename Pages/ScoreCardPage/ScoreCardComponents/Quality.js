@@ -68,7 +68,7 @@ const Quality = () => {
     // Takes DSP Preferences and renders x amount of top cards, stopping at y cards total
     // allDrivers = array of drivers
     // topNum is the top amount of cards
-    // stopAt is the limit of how many cards you will allow to render
+    // stopAt is the limit of how many cards you will allow to render. if top cards = 2 and small = 5, stop at = 7.
     const renderTopAndOthers = (allDriversRaw, topNum=3, stopAt) => {
         let allDrivers = [...allDriversRaw.driverGetDriversFromDsp.drivers]
         let i = 0
@@ -90,13 +90,7 @@ const Quality = () => {
         )
         return (
             <View style={QualityStyles.container}>
-                <View style={{width: '100%'}}>
-                    <Text style={QualityStyles.leadersTitle}>Top {topNum} Leaders</Text>
-                </View> 
                 {topCards}
-                <View style={{width: '100%'}}>
-                    <Text style={QualityStyles.leadersTitle}>Employees</Text>
-                </View> 
                 {otherCards}
             </View>
         )
@@ -115,12 +109,16 @@ const Quality = () => {
     // If the data IS loaded
     else {
         return(
-            <View style={{flex: 0, backgroundColor: "#f9f9f9"}}>
+            <View style={{flex: 0, backgroundColor: "#eaeaea"}}>
                 <Banner />
-                <View style={SortingStyles.sortBy}>
+                <View style={SortingStyles.sortByContainer}>
                     <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
                 </View>
-                <ScrollView bounces={false}>
+                <View style={QualityStyles.titleBox}>
+                    <Text style={QualityStyles.mainTitle}>Scorecard</Text>
+                    <Text style={QualityStyles.subTitle}>Leaderboard</Text>
+                </View>
+                <ScrollView bounces={false} style={QualityStyles.listContainer}>
                     {renderTopAndOthers(queryData, user.dsp.topCardLimits, (user.dsp.smallCardLimits + user.dsp.topCardLimits))}
                 </ScrollView>
             </View>

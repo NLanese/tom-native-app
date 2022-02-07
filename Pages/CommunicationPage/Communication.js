@@ -54,7 +54,7 @@ const Communication = () => {
             })
             return (<View> 
                         <View>
-                        {messages}
+                            {messages}
                         </View>
                         <View style={{height: 50}}/>
                     </View>)

@@ -40,19 +40,19 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
                 <View style={QualityStyles.iconSpace}>
                     <Avatar.Image
                         source={SomeDudesFace}
-                        size={65}
+                        size={45}
                     />
+                </View>
+                <View style={QualityStyles.topRank}>
+                    <Text style={{fontWeight: '800'}}>{rank}</Text>
                 </View>
                 <View style={QualityStyles.nameSpace}>
                     <Text style={QualityStyles.employeeName}>{data.firstname} {data.lastname}</Text>
                 </View>
             </View>
+
             <View style={QualityStyles.cardBottm}>
                 <BottomCard sortBy={sortBy} rawData={data.weeklyReport} />
-                <View style={QualityStyles.topRank}>
-                    <Text style={{fontWeight: '800'}}>{rank}</Text>
-                </View>
-
             </View>
 
         </Card>

@@ -473,7 +473,21 @@ query Query {
   }
 }
 `
-
+const DRIVERSGETSHIFTPLANNER = gql`
+  query Query {
+  driverGetShiftPlaner {
+    shiftPlanners {
+      id
+      phoneId
+      deviceId
+      cxNumber
+      vehicleId
+      message
+      date
+    }
+  }
+}
+`
 
 
 export {  
@@ -490,7 +504,8 @@ export {
   GETDRIVERMESSAGESWITHADMIN,
   SENDMESSAGETOADMIN,
   DRIVERACKNOWLEDGEFEEDBACKMESSAGE,
-  DRIVERSGETDRIVERSFROMDSP
+  DRIVERSGETDRIVERSFROMDSP,
+  DRIVERSGETSHIFTPLANNER
 }
 
 

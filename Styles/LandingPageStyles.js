@@ -1,53 +1,85 @@
 import { relayStylePagination } from '@apollo/client/utilities';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const LandingStyles = StyleSheet.create({
+	backdrop: {
+		flex: 1,
+		position: 'relative',
+		resizeMode: 'cover'
+	},	
 	container: {
         display: 'flex',
         alignItems: 'center',
         height: "100%",
+		// backgroundColor: "green"
     },
+	titleIcon: {
+		width: maxWidth * 0.2,
+		marginLeft: maxWidth * 0.4,
+		alignItems: 'center'
+	}
 })
 
 const LogoStyles = StyleSheet.create({
 	logo: {
 		resizeMode: 'stretch',
-		width: 200,
-		height: 85,
-		marginTop: 50
+		width: 90,
+		height: 55,
+		marginTop: 60,
 	  }
 })
 
 const SignInBoxStyles = StyleSheet.create({
+	// ---------------------------------
 	container: {
-		marginTop: 100,
-		shadowColor: '#ffffff',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 6,
+		marginTop: maxHeight * 0.03,
 	},
-
+	// ---------------------------------
+	loginButton: {
+		marginLeft: maxWidth * 0.7
+	},
 	loginContents: {
-		top: 30,
 		height: 65,
-		width: 340,
+		width: maxWidth,
+		marginBottom: 15
 	},
+	// ---------------------------------
+	titleBox: {
+		width: maxWidth * 0.20,
+		height: maxHeight * 0.06,
 
-	signUpContents: {
-		marginTop: 10,
-		bottom: 10,
-		height: 500,
+		marginLeft: maxWidth * 0.4,
+		marginBottom: maxHeight * 0.05,
+	},
+	titleText: {
+		// fontFamily: "Gilroy-Heavy",
+		fontSize: 30,
+		color: 'white'
+	},
+	// ---------------------------------
+	rememberMe: {
+		marginTop: -300
+	},
+	rememberToggle: {
+		width: 50,
+		height: 30,
+		borderRadius: 30,
+		backgroundColor: '#d4d4d4',
+
+		marginTop: maxHeight * -0.084,
+		marginLeft: maxWidth * 0.08,
+	},
+	rememberMeTextBox: {
+		position: 'absolute',
+		marginTop: maxHeight * -0.076,
+		marginLeft: maxWidth * 0.25
 	}
+
 });
 
-const EmailStyles = StyleSheet.create({
-	input: {
-		backgroundColor: '#f1f1f1'
-	}
-});
 
 const ButtonStyles = StyleSheet.create({
 	container: {
@@ -75,23 +107,8 @@ const ButtonStyles = StyleSheet.create({
 		backgroundColor: 'white',
 		marginBottom: 75,
 		marginTop: 10,
-		// borderRadius: 20,
-		// shadowColor: '#02020A',
-		// shadowOffset: {
-		// 	width: 0,
-		// 	height: 2,
-		// },
-		// shadowOpacity: 0.25,
-		// shadowRadius: 6,
 	},
 
-	logInButton: {
-		height: 50,
-		display: 'flex',
-		justifyContent: 'center',
-		backgroundColor: 'black',
-		marginTop: 5
-	},
 	signUpButton: {
 		height: 50,
 		display: 'flex',
@@ -110,93 +127,34 @@ const ButtonStyles = StyleSheet.create({
 	},
 });
 
-const SignUpModalStyles = StyleSheet.create({
 
-	centeredView: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginTop: 100,
-		marginBottom: 75
-	},
-
-	outsideModal: {
-		display: "flex",
-		backgroundColor: "black",
-		color: "black"
-	},
-	 
-	modal: {
-		width: 300,
-		height: 200,
-		backgroundColor: 'black',
-		borderRadius: 20,
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 4,
-		elevation: 5,
-		paddingTop: 20
-	},
-
-	insideModalView: {
-		backgroundColor: "black",
-		top: 0,
-		width: 370,
-		height: 650,
-		display: 'flex',
-		alignItems: 'center'
-	},
-
+const LandingPageStyles = StyleSheet.create({
 	container: {
-		margin: 0,
+		width: maxWidth,
+		height: maxHeight,
 	},
-
-	modalTitle: {
-		marginTop: 15,
-		top: 0,
-		marginBottom: 5,
-		textAlign: 'center',
-		color: '#ffffff',
-		fontWeight: 'bold',
-		fontSize: 24
+	tabBarContainer: {
+		marginTop: maxHeight * 0.045,
+		marginLeft: maxWidth * 0.03,
+		marginBottom: maxHeight * 0.06,
 	},
-
-	modalSubTitle: {
-		marginBottom: 5,
-		textAlign: 'center',
-		color: '#ffffff',
-		fontSize: 12,
-		marginBottom: 10
+	tabBar: {
+		backgroundColor: 'rgba(52, 52, 52, 0.1) !important',
 	},
-
-	inputField: {
-        flex: 1,
-        marginTop: 0,
-		marginBottom: 2,
-        backgroundColor: '#f1f1f1',
-		width: '80%',	
-		top: 0,
-		height: 45,
-		paddingVertical: -5,
+	loginTab: {
+		borderBottomColor: "white",
+		color: 'white',
 	},
-
-	submitbutton: {
-		marginTop: 10,
-		flex: 2
+	signUpTab: {
+		borderBottomColor: "white",
+		color: 'white',
 	}
-
-
-});
+})
 
 export {
 	LandingStyles,
 	LogoStyles,
 	SignInBoxStyles,
-	EmailStyles,
 	ButtonStyles,
-	SignUpModalStyles,
+	LandingPageStyles
 };

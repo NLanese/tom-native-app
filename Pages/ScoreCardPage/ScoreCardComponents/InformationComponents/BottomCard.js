@@ -1,4 +1,5 @@
 import React from "react";
+import removecomingSoon from "./removeComingSoon";
 import { View, Text, ScrollView } from 'react-native'
 import { StatStyles } from "../../../../Styles/ScoreCardStyles";
 
@@ -10,62 +11,72 @@ const BottomCard = ({sortBy, rawData}) => {
 
     // 0 - DCR
     let dcr = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statTitle}>DCR</Text>
-        <Text style={StatStyles.statValue}>{data.deliveryCompletionRate}%</Text>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.deliveryCompletionRate)}%</Text>
+        <Text style={StatStyles.statTitle}>Delivery Completion</Text>
+        <View style={StatStyles.divider} />
     </View>)
 
     // 1 - DAR
     let dar = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statTitle}>DAR</Text>
-        <Text style={StatStyles.statValue}>{data.deliveredAndRecieved}</Text>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.deliveredAndRecieved)}</Text>
+        <Text style={StatStyles.statTitle}>Dedlivered And Recieved</Text>
+        <View style={StatStyles.divider} />
     </View>)
 
     // 2 - POD
     let pod = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statTitle}>POD</Text>
-        <Text style={StatStyles.statValue}>{data.photoOnDelivery}%</Text>                
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.photoOnDelivery)}%</Text>     
+        <Text style={StatStyles.statTitle}>Photo on Delivery Rate</Text> 
+        <View style={StatStyles.divider} />          
     </View>)
 
     // 3 - CC
     let cc = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statTitle}>Call Compliance</Text>
-        <Text style={StatStyles.statValue}>{data.callCompliance}%</Text>                
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.callCompliance)}%</Text> 
+        <Text style={StatStyles.statTitle}>Call Compliance</Text>   
+        <View style={StatStyles.divider} />            
     </View>)
 
     // 4 - SC
     let sc = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statTitle}>Scan Compliance</Text>
-        <Text style={StatStyles.statValue}>{data.scanCompliance}%</Text>                
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.scanCompliance)}%</Text>
+        <Text style={StatStyles.statTitle}>Scan Compliance</Text>   
+        <View style={StatStyles.divider} />             
     </View>)
 
     // 5 - fico
     let fico = (<View style={StatStyles.stat}>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.fico)}</Text>
         <Text style={StatStyles.statTitle}>FICO</Text>
-        <Text style={StatStyles.statValue}>{data.fico}</Text>
+        <View style={StatStyles.divider} />
     </View>)
 
     // 6 - Seatbelt
     let seatbelt = (<View style={StatStyles.stat}>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.seatbeltOffRate)}</Text>
         <Text style={StatStyles.statTitle}>Seatbelt</Text>
-        <Text style={StatStyles.statValue}>{data.seatbeltOffRate}</Text>
+        <View style={StatStyles.divider} />
     </View>)
 
     // 7 - Speeding
     let speeding = (<View style={StatStyles.stat}>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.speedingEventRate)}</Text>
         <Text style={StatStyles.statTitle}>Speeding</Text>
-        <Text style={StatStyles.statValue}>{data.speedingEventRate}</Text>
+        <View style={StatStyles.divider} />
     </View>)
 
     // 8 - Defects
     let defects = (<View style={StatStyles.stat}>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.defects)}</Text>
         <Text style={StatStyles.statTitle}>Defects</Text>
-        <Text style={StatStyles.statValue}>{data.defects}</Text>
+        <View style={StatStyles.divider} />
     </View>)
 
     // 9 - cdf
     let cdf = (<View style={StatStyles.stat}>
+        <Text style={StatStyles.statValue}>{removecomingSoon(data.customerDeliveryFeedback)}</Text>
         <Text style={StatStyles.statTitle}>Customer Feedback</Text>
-        <Text style={StatStyles.statValue}>{data.customerDeliveryFeedback}</Text>
+        <View style={StatStyles.divider} />
     </View>)
     
     let handleSort = (sortBy) => {
@@ -120,7 +131,7 @@ const BottomCard = ({sortBy, rawData}) => {
     }
 
     return(
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} persistentScrollbar={true}>
             {renderReturnArray(sortBy)}
         </ScrollView>
     )
