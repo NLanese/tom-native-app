@@ -10,13 +10,13 @@ const ProductivityButton = () => {
     return (
     <View style={ButtonBoxStyles.clickable}>
         <TouchableOpacity onPress={() => {navigation.navigate("productivity")}}>
-            <View>
+            <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
                     style={ButtonBoxStyles.image}
                     source={require('../../../../assets/productivity-icon.jpeg')}/>
             </View> 
-            <View style={ButtonBoxStyles.label}>
-                <Text style={{textAlign: 'center'}}>Productivity</Text>
+            <View style={{ marginTop: '-30%' }}>
+                <Text style={ButtonBoxStyles.label}>Productivity</Text>
             </View>
         </TouchableOpacity>
     </View>

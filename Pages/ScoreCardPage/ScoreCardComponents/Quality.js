@@ -97,6 +97,7 @@ const Quality = () => {
     }
 
     const handleDropDownClick = () => {
+        console.log("hit")
         setDropVisibility(!dropVisibility)
     }
 
