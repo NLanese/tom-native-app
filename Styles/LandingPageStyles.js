@@ -48,10 +48,10 @@ const SignInBoxStyles = StyleSheet.create({
 	},
 	// ---------------------------------
 	titleBox: {
-		width: maxWidth * 0.20,
+		width: maxWidth * 0.30,
 		height: maxHeight * 0.06,
 
-		marginLeft: maxWidth * 0.4,
+		marginLeft: maxWidth * 0.35,
 		marginBottom: maxHeight * 0.05,
 	},
 	titleText: {

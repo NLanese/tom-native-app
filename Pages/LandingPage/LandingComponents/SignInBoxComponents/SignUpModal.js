@@ -37,7 +37,7 @@ const SignUpModal = ({setModalVisible, modalVisible, handleInput, signup, getUse
                             <UpdateField field="lastname" handleInput={handleInput} />
                             <UpdateField field="email" handleInput={handleInput} />
                             <UpdateField field="phoneNumber" handleInput={handleInput} />
-                            <UpdateField field="adminEmail" handleInput={handleInput} />
+                            <UpdateField field="signUpToken" handleInput={handleInput} />
                             <UpdateField field="password" handleInput={handleInput} />
                             <UpdateField field="confirmPassword" handleInput={handleInput} />
 

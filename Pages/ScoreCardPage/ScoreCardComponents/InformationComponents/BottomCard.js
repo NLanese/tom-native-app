@@ -7,7 +7,14 @@ import { StatStyles } from "../../../../Styles/ScoreCardStyles";
 
 const BottomCard = ({sortBy, rawData}) => {
 
-    let data = {...rawData[0]}
+    let data 
+    // if (rawData.isArray){
+        data = rawData[0]
+    // }
+    // else{
+        // data = {...rawData}
+        // console.log(data)
+    // }
 
     // 0 - DCR
     let dcr = (<View style={StatStyles.stat}>

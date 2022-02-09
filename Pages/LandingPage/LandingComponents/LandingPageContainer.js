@@ -4,6 +4,7 @@ import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
 import { TabBar, Tab, Text } from '@ui-kitten/components';
 
 import LoginScreen from './LoginScreen';
+import SignupScreen from './SingupScreen';
 
 
 const LandingPageContainer = ({handleLoggedIn}) => {
@@ -32,7 +33,7 @@ const LandingPageContainer = ({handleLoggedIn}) => {
                 />
         }
         else if (selectedIndex == 1){
-            console.log("herro!")
+            return <SignupScreen />
         }
     }
 

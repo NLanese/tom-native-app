@@ -1,16 +1,22 @@
 import "react-native-gesture-handler"
 import React, { useState } from 'react';
 import * as Sharing from 'expo-sharing';
+
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Text } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+
+
 import { Provider as PaperProvider } from 'react-native-paper';
-import { StatusBar } from 'expo-status-bar';
+
 import { View } from 'react-native';
+
 import { AppStyles } from './Styles/AppStyles';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
+
 import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import { NativeRouter, Route, Switch } from 'react-router-native';
@@ -51,6 +57,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Roster from './Pages/Roster/Roster'
 import Inspection from './Pages/InspectionPage/Inspection'
 
+import { useFonts } from 'expo-font' 
+
 let state;
 
 // Create HttpLink for Apollo
@@ -81,6 +89,19 @@ const client = new ApolloClient({
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    GilroyBlack: require('./assets/fonts/Gilroy-Black.ttf'),
+    GilroyBold: require('./assets/fonts/Gilroy-Bold.ttf'),
+    GilroyExtraBold: require('./assets/fonts/Gilroy-ExtraBold.ttf'),
+    GilroyHeavy: require('./assets/fonts/Gilroy-Heavy.ttf'),
+    GilroyLight: require('./assets/fonts/Gilroy-Light.ttf'),
+    GilroyMedium: require('./assets/fonts/Gilroy-Medium.ttf'),
+    GilroyRegular: require('./assets/fonts/Gilroy-Regular.ttf'),
+    GilroySemiBold: require('./assets/fonts/Gilroy-SemiBold.ttf'),
+    GilroyThin: require('./assets/fonts/Gilroy-Thin.ttf'),
+    GilroyUltraLight: require('./assets/fonts/Gilroy-UltraLight.ttf'),
+  })
   const [loggedIn, setloggedIn] = useState(false)
 
 	const handleLoggedIn = () => {
@@ -88,10 +109,14 @@ export default function App() {
 		setloggedIn(!loggedIn)
 	}
 
+  if(!loaded){
+    return null
+  }
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>
         <RecoilRoot>
+          <IconRegistry icons={EvaIconsPack} />
           <ApplicationProvider {...eva} theme={eva.light}>
             <PaperProvider>
               <View style={AppStyles.container}>

@@ -11,15 +11,18 @@ const Email = ({ handleInput }) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.2) !important',
+            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
             borderColor: 'white',
+            borderWidth: 3,
+            borderRadius: 15,
             marginLeft: maxWidth * 0.125,
             width: '75%',
             height: '100%',
         },
         inactiveInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.2) !important',
-            borderColor: 'rgba(52, 52, 52, 0.2) !important',
+            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+            borderColor: 'rgba(52, 52, 52, 0.3) !important',
+            borderRadius: 15,
             marginLeft: maxWidth * 0.125,
             width: '75%',
             height: '100%',
@@ -52,7 +55,7 @@ const Email = ({ handleInput }) => {
                 size={'large'}
                 placeholder='Password'
                 placeholderTextColor={determineStyle().color}
-                textStyle={{color: determineStyle().color}}
+                textStyle={{color: determineStyle().color, fontSize: 18}}
                 onChangeText={email => {
                     handleInput('password', email)
                 }}

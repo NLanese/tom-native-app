@@ -10,6 +10,7 @@ import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles } from '../../Styles/HomeStyles';
 import Banner from '../../Global/Banner';
+import nameObj from '../../Hooks/handleNameCaseChange'
 
 
 let maxWidth= Dimensions.get('window').width
@@ -57,28 +58,20 @@ const Home = ({ handleLoggedIn }) => {
     }, [])
 
     let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
+    let name = nameObj(user.firstname, user.lastname)
 
-    // ALL FOR TESTING -------------------
-    console.log('\n\n\n\n\n\n')
-    const relevantDSP = {...user.dsp}
-    console.log(relevantDSP.timeZone)
-
-    const relevantUser = {user: {
-        notified: user.notified,
-        messages: user.messages,
-        role: user.role
-    }}
-    console.log(relevantUser)
-    // -----------------------------------
 
     return (
         <Layout>
             <View style={HomeStyles.container}> 
                 {/* <Portal> */}
                     <Banner handleLoggedIn={handleLoggedIn}/>
-                    <ButtonBox />
-
-
+                    <View style={HomeStyles.titleBox}>
+                        <Text style={HomeStyles.title}>Welcome</Text>
+                        <Text style={HomeStyles.subTitle}>Hi, {name.first}</Text>
+                    </View>
+                    
+                    <ButtonBox user={user}/>
 
                     <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
                         <View style={HomeStyles.notificationModalContent}>

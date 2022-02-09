@@ -8,7 +8,20 @@ const HomeStyles = StyleSheet.create({
 		display: 'flex',
 		height: '100%',
 		height: '100%',
+		backgroundColor: "#eaeaea",
 	},	
+	titleBox: {
+		marginLeft: '10%',
+		marginTop: '5%'
+	},
+	title: {
+		fontFamily: 'GilroyBold',
+		fontSize: 35
+	},
+	subTitle: {
+		fontFamily: 'GilroySemiBold',
+		color: 'grey'
+	},
 	logo: {
 		resizeMode: 'stretch',
 		width: 200,
@@ -55,13 +68,14 @@ const HomeStyles = StyleSheet.create({
 	}
 })
 const ButtonBoxStyles = StyleSheet.create({
+//-----------------------------------------
 	container: {
 		backgroundColor: "#eaeaea",
+		marginLeft: '-0.5%',
 		width: '100%',
 		height: '100%',
 		display: 'flex',
-	},
-	
+	},	
 	rightContainer: {
 		position: "absolute",
 		right: maxWidth * 0.07,
@@ -69,44 +83,83 @@ const ButtonBoxStyles = StyleSheet.create({
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.8,
 	},
-
 	leftContainer: {
 		position: "absolute",
-		left: maxWidth * -0.00,
+		left: maxWidth * 0.01,
 		marginTop: maxHeight * 0.02,
 		width: maxWidth * 0.45,
 		height: maxHeight * 0.8,
-		// borderWidth: 2
 	},
-
+//-------------------------------------
 	clickable: {
 		height: maxHeight * 0.2,
 		width: '96%',
 		marginLeft: '9%',
-		marginBottom: maxHeight * 0.09
+		marginBottom: maxHeight * 0.023
 	},
-
 	buttonCard: {
 		backgroundColor: 'white',
 
-		height: maxHeight * 0.26,
+		height: maxHeight * 0.20,
 		width: maxHeight * 0.24,
 
 		borderRadius: 30
 	},
-
+//-------------------------------------
 	image: {
 		alignContent: 'center',
 		top: '20%',
-		height: '40%',
+		height: '50%',
 		width: '42%',
 		marginLeft: '29%'
 	},
-
 	label: {
+		marginTop: '10%',
 		textAlign: 'center', 
 		color: 'grey', 
 		fontWeight: '700'
+	},
+//-------------------------------------
+	scorecard: {
+		// marginTop: '95%',
+		// marginLeft: '5%'
+	},
+	scoreTitleBox: {
+		position: 'absolute',
+		marginTop: '-10%',
+		zIndex: 10
+		// marginLeft: '6%'
+	},
+	scoreTitle: {
+		fontFamily: 'GilroyBold',
+		fontSize: 20,
+		position: 'absolute'
+	},
+//-----------------------------------
+	bottomTouch: {
+		position: 'absolute',
+		paddingTop: '10%',
+		// borderWidth: 2,
+		// borderColor: 'black',
+		// backgroundColor: 'rgba(0,0,0,0)',
+		marginTop: '83%',
+		marginLeft: '5%',
+		height: '28%',
+		zIndex: 1
+	},
+	arrowBox: {
+		position: 'absolute',
+		marginTop: '83%',
+		marginLeft: '85%',
+	},
+	arrow: {
+		height: 30,
+		width: 35
+	},
+	arrowIcon: {
+		width: 20,
+		height: 20,
+		backgroundColor: 'red',
 	}
 
 })

@@ -72,7 +72,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	// Enables or disables the Login Button
 	const ableToLogIn = () => {
-		console.log(userData)
 		if (userData.username != "" && userData.password.length > 5 ){
 			return true
 		}
