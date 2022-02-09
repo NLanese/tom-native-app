@@ -7,10 +7,6 @@ import colorTextBasedOnValue from "../../../../Hooks/colorTextBasedOffValue";
 import BottomCard from "./BottomCard";
 import { LinearGradient } from 'expo-linear-gradient'
 
-
-
-
-
 const EmployeeQuality = ({driverData, sortBy, rank}) => {
 
     let data = {...driverData}

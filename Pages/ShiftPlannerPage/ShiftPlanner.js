@@ -7,7 +7,9 @@ import Banner from '../../Global/Banner'
 import { ShiftPlannerStyles } from "../../Styles/ShiftPlannerStyles";
 import dateObj from "../../Hooks/handleDateTime";
 import { userState } from "../../Recoil/atoms";
-import ShiftInfo from "./ShiftInfo";
+import ShiftInfo from "../ScrappedPages/ShiftInfo";
+import Loading from "../../Global/Loading";
+import NoShifts from "./NoShifts";
 
 const ShiftPlanner = () => {
     const { loading, error, data, refetch } = useQuery(DRIVERSGETSHIFTPLANNER)
@@ -24,23 +26,42 @@ const ShiftPlanner = () => {
         user = {...rawUser}
     }
 
-    let today = Date.now()
-    // const todaysDate = ((today.getMonth() + 1) + "-" + today.getDate())
+    // Gets the current date
+    const d = new Date();
+    let year = d.getUTCFullYear
+    let month = d.getUTCMonth();
+    let day = d.getUTCDate();
 
+    // Loading screen if not finished with querying the data
+    if (loading || !data){
+        return <Loading />
+    }    
 
+    // Redirects if there are no current ShiftPlanner Tables populated
+    if (data.length == 0){
+        return(<NoShifts />)
+    }
+
+    // Redirects if there is no shift planner data for this current day
+    // Also creates several time based objects 
+    let dbTime = data[data.length-1].date
+    let dbDateObj = dateObj(dbTime, "UTC")
+    if (`${dbDateObj.year}-${dbDateObj.month}-${dbDateObj.day}` !== `${year}-${month}-${day}`){
+        return (<NoShifts />)
+    }
 
     return (
         <View>
             <Banner />
             <View style={ShiftPlannerStyles.dateContainer}>
-                <Text>Today's Date {today}</Text>
+                <Text>Today's Date {`${year}-${month}-${day}`}</Text>
             </View>
             <View style={ShiftPlannerStyles.shiftInfo}>
                 <View>
-                    <ShiftInfo name="Phone ID Number" value={1} />
-                    <ShiftInfo name="Device ID Number" value={"27-D"} />
-                    <ShiftInfo name="CX Number" value={"2683-001"} />
-                    <ShiftInfo name="Vehicle Number" value={"PS7-83Z"} />
+                    <ShiftInfo name="Phone ID Number" value={data.phoneId} />
+                    <ShiftInfo name="Device ID Number" value={data.deviceId} />
+                    <ShiftInfo name="CX Number" value={data.cxNumber} />
+                    <ShiftInfo name="Vehicle Number" value={data.vehicleId} />
                 </View>
             </View>
             <View>
@@ -48,7 +69,7 @@ const ShiftPlanner = () => {
                     <Text>Daily Message:</Text>
                 </View>
                 <View>
-                    <Text>This is an example daily message!</Text>
+                    <Text>{data.message}</Text>
                 </View>
             </View>
         </View>

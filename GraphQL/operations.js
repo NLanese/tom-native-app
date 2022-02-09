@@ -476,15 +476,14 @@ query Query {
 const DRIVERSGETSHIFTPLANNER = gql`
   query Query {
   driverGetShiftPlaner {
-    shiftPlanners {
-      id
-      phoneId
-      deviceId
-      cxNumber
-      vehicleId
-      message
-      date
-    }
+    id
+    createdAt
+    date
+    phoneId
+    deviceId
+    vehicleId
+    cxNumber
+    message
   }
 }
 `

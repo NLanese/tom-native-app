@@ -154,7 +154,6 @@ const QualityStyles = StyleSheet.create({
 		position: 'absolute',
 		width: '140%',
 		height: '140%',
-		// borderWidth: 0.1,
 		borderRadius: 100
 	},
 	rankPos: {
