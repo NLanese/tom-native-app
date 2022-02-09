@@ -15,16 +15,16 @@ const Email = ({ handleInput }) => {
             borderColor: 'white',
             borderWidth: 3,
             borderRadius: 15,
-            width: maxWidth * 0.75,
-            height: maxHeight * 0.1,
+            width: '85%',
+            height: '100%',
             marginLeft: maxWidth * 0.125,
         },
         inactiveInput: {
             backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
             borderColor: 'rgba(52, 52, 52, 0.3) !important',
             borderRadius: 15,
-            width: maxWidth * 0.75,
-            height: maxHeight * 0.1,
+            width: '85%',
+            height: '100%',
             marginLeft: maxWidth * 0.125,
         }
     })

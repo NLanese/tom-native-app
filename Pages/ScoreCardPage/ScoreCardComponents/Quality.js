@@ -97,7 +97,6 @@ const Quality = () => {
     }
 
     const handleDropDownClick = () => {
-        console.log("hit")
         setDropVisibility(!dropVisibility)
     }
 
@@ -117,7 +116,7 @@ const Quality = () => {
                 </View>
                 <View style={QualityStyles.titleBox}>
                     <Text style={QualityStyles.mainTitle}>Scorecard</Text>
-                    <Text style={QualityStyles.subTitle}>Leaderboard</Text>
+                    <Text style={QualityStyles.subTitle}>LEADERBOARD</Text>
                 </View>
                 <ScrollView bounces={false} style={QualityStyles.listContainer}>
                     {renderTopAndOthers(queryData, user.dsp.topCardLimits, (user.dsp.smallCardLimits + user.dsp.topCardLimits))}

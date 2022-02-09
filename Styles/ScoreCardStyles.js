@@ -99,8 +99,9 @@ const QualityStyles = StyleSheet.create({
 		fontFamily: 'GilroyBold'
 	},
 	subTitle: {
+		fontSize: 12,
 		fontFamily: 'GilroyLight',
-		color: '#0a0a0a'
+		color: 'grey'
 	},
 //-----------------------------
 	topThreeEmployeeCard: {	
@@ -112,7 +113,9 @@ const QualityStyles = StyleSheet.create({
 
 		marginBottom: 20,
 
-		shadowOpacity: 0,
+		shadowColor: '#000000',
+		shadowOffset: {width: .5, height: 3},
+		shadowOpacity: 0.09
 	},
 	cardTop: {
 		height: '45%',
@@ -195,8 +198,8 @@ const StatStyles = StyleSheet.create({
 		borderLeftWidth: 3,
 		width: 2,
 		marginRight: maxWidth * 0.05,
-		top: '-80%',
-		height: '80%',
+		top: '-60%',
+		height: '60%',
 		borderColor: '#E2E8F1'
 	}
 

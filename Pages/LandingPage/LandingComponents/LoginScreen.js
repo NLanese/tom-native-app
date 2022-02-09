@@ -24,7 +24,7 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                 <View style={SignInBoxStyles.loginButton}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
                 <View syle={SignInBoxStyles.rememberMe}>
                     <View style={SignInBoxStyles.rememberMeTextBox}>
-                        <Text style={{color: '#f9f9f9', fontSize: 16, fontWeight: '600'}}>Remember Me</Text>
+                        <Text style={{color: '#f9f9f9', fontSize: 16, fontFamily: 'GilroySemiBold'}}>Remember Me</Text>
                     </View>
                     <Toggle 
                         checked={checked} 

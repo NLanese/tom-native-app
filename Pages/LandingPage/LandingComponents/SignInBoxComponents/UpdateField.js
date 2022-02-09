@@ -74,6 +74,7 @@ const UpdateField = (props) => {
             onEndEditing={() => setActive(false)}
             placeholder={labelMaker(props.field)}
             name={props.field}
+            placeholderTextColor={determineStyle().color}
             style={determineStyle().style}
             textStyle={{color: determineStyle().color, fontSize: 18}}
             onChangeText={(input) => {

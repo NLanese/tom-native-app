@@ -48,12 +48,12 @@ const LandingPageContainer = ({handleLoggedIn}) => {
                     onSelect={index => setSelectedIndex(index)}
                 >
                     <Tab 
-                        title="Login" 
+                        title="LOGIN" 
                         tabBarStyle={LandingPageStyles.loginTab}
                         indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
                         tabBarStyle={LandingPageStyles.loginTab}/>
                     <Tab 
-                        title='Sign Up' 
+                        title='SIGNUP' 
                         tabBarStyle={LandingPageStyles.signUpTab}
                         indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
                         tabBarStyle={LandingPageStyles.loginTab}/>

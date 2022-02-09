@@ -11,7 +11,7 @@ const HomeStyles = StyleSheet.create({
 		backgroundColor: "#eaeaea",
 	},	
 	titleBox: {
-		marginLeft: '10%',
+		marginLeft: '7%',
 		marginTop: '5%'
 	},
 	title: {
@@ -103,7 +103,11 @@ const ButtonBoxStyles = StyleSheet.create({
 		height: maxHeight * 0.20,
 		width: maxHeight * 0.24,
 
-		borderRadius: 30
+		borderRadius: 30,
+
+		shadowColor: '#000000',
+		shadowOffset: {width: 0.5, height: 2},
+		shadowOpacity: 0.3
 	},
 //-------------------------------------
 	image: {
@@ -126,9 +130,10 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 	scoreTitleBox: {
 		position: 'absolute',
+		width: '100%',
 		marginTop: '-10%',
-		zIndex: 10
-		// marginLeft: '6%'
+		zIndex: 10,
+		marginLeft: '2.4%'
 	},
 	scoreTitle: {
 		fontFamily: 'GilroyBold',
@@ -150,7 +155,7 @@ const ButtonBoxStyles = StyleSheet.create({
 	arrowBox: {
 		position: 'absolute',
 		marginTop: '83%',
-		marginLeft: '85%',
+		marginLeft: '87%',
 	},
 	arrow: {
 		height: 30,

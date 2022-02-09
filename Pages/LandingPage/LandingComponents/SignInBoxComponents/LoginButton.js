@@ -25,7 +25,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	const navigation = useNavigation()
 
 	const handleSubmit = async () => {
-		console.log("hit")
 		await handleButtonLoading()
 		await login({
 			variables: {
@@ -56,7 +55,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	// Handles the data changes and reroutes to the logged-in home page
 	useEffect( async () => {
 		if (!loading && data) {
-			console.log("hit")
 			await setUser(data.driverSignIn)
 			await stateChange(data.driverSignIn.token);
 			await handleLoggedIn()
