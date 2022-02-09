@@ -149,13 +149,13 @@ const LandingPageStyles = StyleSheet.create({
 		width: '100%',
 		fontFamily: 'GilroyLight'
 	},
-	loginTab: {
-		borderBottomColor: "white",
-		color: 'white',
+	inactiveTab: {
+		borderBottomColor: "grey",
+		borderBottomWidth: 3,
 	},
-	signUpTab: {
+	activeTab: {
 		borderBottomColor: "white",
-		color: 'white',
+		borderBottomWidth: 3,
 	}
 })
 

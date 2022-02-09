@@ -142,6 +142,26 @@ const QualityStyles = StyleSheet.create({
 		height: '100%',
 		width: '20%',
 	},
+	gradientCover: {
+		marginLeft: 1.1,
+		marginTop: 1,
+		backgroundColor: 'white',
+		borderRadius: 100,
+		height: '120%',
+		width: '120%',
+	},
+	gradient: {
+		position: 'absolute',
+		width: '140%',
+		height: '140%',
+		// borderWidth: 0.1,
+		borderRadius: 100
+	},
+	rankPos: {
+		width: '20%',
+		marginTop: '20%',
+		marginLeft:'35%'
+	},
 	nameSpace: {
 		position: 'absolute',
 		top: '45%',
@@ -154,7 +174,7 @@ const QualityStyles = StyleSheet.create({
 		fontFamily: 'GilroySemiBold'
 		},
 	topRank: {
-		borderColor: '#E2E8F1',
+		borderColor: 'transparent',
 		borderWidth: 4,
 		borderRadius: 100,
 
