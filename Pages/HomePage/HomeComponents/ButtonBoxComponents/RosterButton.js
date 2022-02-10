@@ -14,7 +14,13 @@ const RosterButton = () => {
         <TouchableOpacity onPress={() => {navigation.navigate("roster")}}>
         <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
-                    style={ButtonBoxStyles.image}
+                    style={{
+                        alignContent: 'center',
+                        top: '16%',
+                        height: '65%',
+                        width: '50%',
+                        marginLeft: '25%'
+                    }}
                     source={require('../../../../assets/roster-icon.jpeg')}/>
             </View> 
             <View style={{ marginTop: '-30%' }}>

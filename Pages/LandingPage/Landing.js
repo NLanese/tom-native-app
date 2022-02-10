@@ -9,18 +9,18 @@ import backgroundImage from '../../assets/loginBackground.png'
 
 const LandingPage = ({ handleLoggedIn }) => {
     return (
-        <View style={LandingStyles.container}>
-            <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
-                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                    <View style={{backgroundColor: 'rgba(52, 52, 52, 0.2) !important',}}>
-                        <View style={LandingStyles.titleIcon}>
-                            <Title />
+               <View style={LandingStyles.container}>
+                <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
+                    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                        <View style={{backgroundColor: 'rgba(52, 52, 52, 0.4) !important',}}>
+                            <View style={LandingStyles.titleIcon}>
+                                <Title />
+                            </View>
+                            <LandingPageContainer handleLoggedIn={handleLoggedIn} />
                         </View>
-                        <LandingPageContainer handleLoggedIn={handleLoggedIn} />
-                    </View>
-                </TouchableWithoutFeedback>
-            </ImageBackground>
-        </View>
+                    </TouchableWithoutFeedback>
+                </ImageBackground>
+            </View>
     );
 };
 

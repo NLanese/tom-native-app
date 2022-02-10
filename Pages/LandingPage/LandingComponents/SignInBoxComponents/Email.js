@@ -11,17 +11,20 @@ const Email = ({ handleInput }) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.2) !important',
+            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
             borderColor: 'white',
-            width: maxWidth * 0.75,
-            height: maxHeight * 0.1,
+            borderWidth: 3,
+            borderRadius: 15,
+            width: '85%',
+            height: '100%',
             marginLeft: maxWidth * 0.125,
         },
         inactiveInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.2) !important',
-            borderColor: 'rgba(52, 52, 52, 0.2) !important',
-            width: maxWidth * 0.75,
-            height: maxHeight * 0.1,
+            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+            borderColor: 'rgba(52, 52, 52, 0.3) !important',
+            borderRadius: 15,
+            width: '85%',
+            height: '100%',
             marginLeft: maxWidth * 0.125,
         }
     })
@@ -52,7 +55,7 @@ const Email = ({ handleInput }) => {
                 size={'large'}
                 placeholder='Email'
                 placeholderTextColor={determineStyle().color}
-                textStyle={{color: determineStyle().color}}
+                textStyle={{color: determineStyle().color, fontSize: 18}}
                 onChangeText={email => {
                     handleInput('email', email)
                 }}

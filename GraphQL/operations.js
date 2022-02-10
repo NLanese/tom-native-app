@@ -58,7 +58,7 @@ const LOGIN = gql`
         id
       }
     }
-    admins {
+    managers {
       id
       firstname
       lastname
@@ -84,7 +84,7 @@ const LOGIN = gql`
       createdAt
       content
       from
-      admin {
+      manager {
         id
         firstname
         lastname
@@ -209,7 +209,7 @@ const GETDRIVERDATA = gql`
       name
       createdAt
     }
-    admins {
+    managers {
       id
       firstname
       email
@@ -227,7 +227,7 @@ const GETDRIVERDATA = gql`
       createdAt
       content
       from
-      admin {
+      manager {
         id
         firstname
         lastname
@@ -476,15 +476,14 @@ query Query {
 const DRIVERSGETSHIFTPLANNER = gql`
   query Query {
   driverGetShiftPlaner {
-    shiftPlanners {
-      id
-      phoneId
-      deviceId
-      cxNumber
-      vehicleId
-      message
-      date
-    }
+    id
+    createdAt
+    date
+    phoneId
+    deviceId
+    vehicleId
+    cxNumber
+    message
   }
 }
 `

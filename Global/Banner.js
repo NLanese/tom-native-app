@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Pressable } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
-import Bell from "./BannerComponents/Bell";
+// import Bell from "./BannerComponents/Bell";
 import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
 
 const Banner = ({ handleLoggedIn }) => {
@@ -60,10 +60,10 @@ const Banner = ({ handleLoggedIn }) => {
               onPress={() => navigation.navigate('home')}
             />
 
-            <Pressable onPress={() => handleNotifiedModal()}>
+            {/* <Pressable onPress={() => handleNotifiedModal()}>
               <Bell styles={styles} />
             
-            </Pressable>
+            </Pressable> */}
 
             <Pressable onPress={() => handleModal()}>
               <Avatar.Image

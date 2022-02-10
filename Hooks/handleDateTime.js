@@ -19,6 +19,9 @@ const dateObj = (dateSent, timeZone='EST') => {
     else if (timeZoneAdjustment == 'MT'){
         timeZoneAdjustment = -7
     }
+    else if (timeZoneAdjustment == 'UTC'){
+        timeZoneAdjustment = 0
+    }
     else {
         throw new Error("Error: Invalid DSP TimeZone!")
     }

@@ -44,24 +44,27 @@ const SignInBoxStyles = StyleSheet.create({
 	loginContents: {
 		height: 65,
 		width: maxWidth,
-		marginBottom: 15
+		marginBottom: 15,
+		marginLeft: '-5%'
 	},
 	// ---------------------------------
 	titleBox: {
-		width: maxWidth * 0.20,
+		width: maxWidth * 0.30,
 		height: maxHeight * 0.06,
 
-		marginLeft: maxWidth * 0.4,
+		marginLeft: maxWidth * 0.35,
 		marginBottom: maxHeight * 0.05,
 	},
 	titleText: {
-		// fontFamily: "Gilroy-Heavy",
+		textAlign: 'center',
+		fontFamily: "GilroyBold",
 		fontSize: 30,
 		color: 'white'
 	},
 	// ---------------------------------
 	rememberMe: {
-		marginTop: -300
+		marginTop: -300,
+		fontFamily: 'GilroyLight'
 	},
 	rememberToggle: {
 		width: 50,
@@ -74,7 +77,7 @@ const SignInBoxStyles = StyleSheet.create({
 	},
 	rememberMeTextBox: {
 		position: 'absolute',
-		marginTop: maxHeight * -0.076,
+		marginTop: maxHeight * -0.073,
 		marginLeft: maxWidth * 0.25
 	}
 
@@ -134,20 +137,25 @@ const LandingPageStyles = StyleSheet.create({
 		height: maxHeight,
 	},
 	tabBarContainer: {
-		marginTop: maxHeight * 0.045,
-		marginLeft: maxWidth * 0.03,
-		marginBottom: maxHeight * 0.06,
+		// alignItems: 'center',
+		marginLeft: '10%',
+		marginTop: '10%',
+		width: '80%',
+		height: '6%',
+		color: 'white'
 	},
 	tabBar: {
 		backgroundColor: 'rgba(52, 52, 52, 0.1) !important',
+		width: '100%',
+		fontFamily: 'GilroyLight'
 	},
-	loginTab: {
-		borderBottomColor: "white",
-		color: 'white',
+	inactiveTab: {
+		borderBottomColor: "grey",
+		borderBottomWidth: 3,
 	},
-	signUpTab: {
+	activeTab: {
 		borderBottomColor: "white",
-		color: 'white',
+		borderBottomWidth: 3,
 	}
 })
 

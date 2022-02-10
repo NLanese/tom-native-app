@@ -19,9 +19,6 @@ const Roster = () => {
         let i = 0
         return list.map( (driver) => {
             i++
-            if ( i === 1){
-                console.log(driver)
-            }
             const namer = nameObj(driver.firstname, driver.lastname)
             const date = dateObj(driver.createdAt, user.dsp.timezone)
             return(

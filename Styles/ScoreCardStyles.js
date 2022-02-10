@@ -96,14 +96,16 @@ const QualityStyles = StyleSheet.create({
 	},	
 	mainTitle: {
 		fontSize: 30,
-		fontWeight: '700'
+		fontFamily: 'GilroyBold'
 	},
 	subTitle: {
+		fontSize: 12,
+		fontFamily: 'GilroyLight',
 		color: 'grey'
 	},
 //-----------------------------
 	topThreeEmployeeCard: {	
-		height: maxHeight * 0.25,
+		height: maxHeight * 0.24,
 		width: maxWidth * 0.90,
 
 		paddingLeft: 20,
@@ -111,7 +113,9 @@ const QualityStyles = StyleSheet.create({
 
 		marginBottom: 20,
 
-		shadowOpacity: 0,
+		shadowColor: '#000000',
+		shadowOffset: {width: .5, height: 3},
+		shadowOpacity: 0.09
 	},
 	cardTop: {
 		height: '45%',
@@ -123,7 +127,7 @@ const QualityStyles = StyleSheet.create({
 		backgroundColor: 'white',
 		flexDirection: "row",
 		marginTop: '1%',
-		height: '45%',
+		height: '50%',
 		width: '90%'
 	},
 //---------------------------------
@@ -134,31 +138,50 @@ const QualityStyles = StyleSheet.create({
 		position: 'absolute',
 
 		left: '20%',
-		top: '15%',
+		top: '8%',
 		height: '100%',
 		width: '20%',
 	},
+	gradientCover: {
+		marginLeft: 1.1,
+		marginTop: 1,
+		backgroundColor: 'white',
+		borderRadius: 100,
+		height: '120%',
+		width: '120%',
+	},
+	gradient: {
+		position: 'absolute',
+		width: '140%',
+		height: '140%',
+		borderRadius: 100
+	},
+	rankPos: {
+		width: '20%',
+		marginTop: '20%',
+		marginLeft:'35%'
+	},
 	nameSpace: {
 		position: 'absolute',
-		top: '50%',
-		height: '30%',
+		top: '45%',
+		height: '40%',
 		left: '40%',
 		alignItems: 'center',
 	},
 	employeeName: {
 		fontSize: 18,
-		fontWeight: '300'
-	},
+		fontFamily: 'GilroySemiBold'
+		},
 	topRank: {
-		borderColor: '#E2E8F1',
+		borderColor: 'transparent',
 		borderWidth: 4,
 		borderRadius: 100,
 
 		alignItems: 'center',
 		justifyContent: 'center',
 
-		width: '16.5%',
-		height: '68%',
+		width: '13%',
+		height: '57%',
 
 		top: '26%',
 		left: '3%',
@@ -167,23 +190,23 @@ const QualityStyles = StyleSheet.create({
 
 const StatStyles = StyleSheet.create({
 	statTitle: {
-		fontSize: 12,
-		fontWeight: `400`,
+		fontSize: 14,
+		fontFamily: 'GilroySemiBold',
 		color: "grey",
-		marginTop: 4,
+		marginTop: 0,
 		marginLeft: 20
 
 	},
 	statValue:{
-		marginTop: maxHeight * 0.018,
-		fontWeight: '600',
+		marginTop: maxHeight * 0.030,
+		fontFamily: 'GilroyBold',
 		fontSize: 22,
 		marginLeft: 20
 
 	},
 	stat: {
 		padding: 5,
-		height: '98%',
+		height: '100%',
 
 		marginRight: 15,
 
@@ -192,10 +215,9 @@ const StatStyles = StyleSheet.create({
 
 	divider: {
 		borderLeftWidth: 3,
-		// backgroundColor: 'red',
 		width: 2,
 		marginRight: maxWidth * 0.05,
-		top: '-70%',
+		top: '-60%',
 		height: '60%',
 		borderColor: '#E2E8F1'
 	}
@@ -271,7 +293,7 @@ const ButtonBox = StyleSheet.create({
 	text:{
 		color: 'black',
 		fontSize: 14
-	}
+	},
 })
 const PersonalLeaderboardStyles = StyleSheet.create({
 	scoreContainer: {
