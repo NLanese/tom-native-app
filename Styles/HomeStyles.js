@@ -3,24 +3,49 @@ import { StyleSheet, Dimensions } from "react-native";
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
+let sideDistance = ((maxWidth - 300) * 1.15) / 3
+let middleDistance = sideDistance * .70
+
+
+console.log(maxWidth)
+console.log(sideDistance)
+console.log(middleDistance)
+
 const HomeStyles = StyleSheet.create({
 	container: {
-		display: 'flex',
 		height: '100%',
 		height: '100%',
 		backgroundColor: "#eaeaea",
+
+		// borderColor: 'red',
+		// borderWidth: 5,
 	},	
 	titleBox: {
-		marginLeft: '7%',
-		marginTop: '5%'
+		marginLeft: 30,
+		marginTop: 23,
+		width: 200,
+
+		// borderColor: 'green',
+		// borderWidth: 2,
+	},
+	subTitleBox: {
+		marginLeft: 30,
+		marginBottom: 34,
+		width: 200,
+
+		// borderColor: 'red',
+		// borderWidth: 2,
 	},
 	title: {
 		fontFamily: 'GilroyBold',
-		fontSize: 35
+		color: "#444444",
+		fontSize: 30
 	},
 	subTitle: {
 		fontFamily: 'GilroySemiBold',
-		color: 'grey'
+		fontSize: 10,
+		letterSpacing: 2,
+		color: '#888888'
 	},
 	logo: {
 		resizeMode: 'stretch',
@@ -30,7 +55,8 @@ const HomeStyles = StyleSheet.create({
 	  },
 	weeklyNotificationModal:{
 		width: maxWidth * 0.8,
-		left: maxWidth * 0.1
+		left: maxWidth * 0.1,
+		top: maxHeight * -0.3
 	},
 	notificationModalContent:{
 		width: maxWidth * 0.8,
@@ -71,91 +97,108 @@ const ButtonBoxStyles = StyleSheet.create({
 //-----------------------------------------
 	container: {
 		backgroundColor: "#eaeaea",
-		marginLeft: '-0.5%',
 		width: '100%',
 		height: '100%',
 		display: 'flex',
+		flexDirection: 'row'
 	},	
 	rightContainer: {
-		position: "absolute",
-		right: maxWidth * 0.07,
-		marginTop: maxHeight * 0.02,
-		width: maxWidth * 0.45,
+		position: "relative",
+		alignItems: 'center',
+
+		width: 150,
 		height: maxHeight * 0.8,
+
+		marginTop: maxHeight * 0.02,
+		marginRight: 0
+
+		// borderColor: 'blue',
+		// borderWidth: 2,		
 	},
 	leftContainer: {
-		position: "absolute",
-		left: maxWidth * 0.01,
-		marginTop: maxHeight * 0.02,
-		width: maxWidth * 0.45,
+		position: "relative",
+		alignItems: 'center',
+
+		width: 150,
 		height: maxHeight * 0.8,
+
+		marginTop: maxHeight * 0.02,
+		marginLeft: sideDistance - 3,
+		marginRight: middleDistance,
+
+		// borderColor: 'green',
+		// borderWidth: 2,		
 	},
 //-------------------------------------
 	clickable: {
 		height: maxHeight * 0.2,
-		width: '96%',
-		marginLeft: '9%',
-		marginBottom: maxHeight * 0.023
+		width: 150,
+		marginBottom: middleDistance
 	},
 	buttonCard: {
 		backgroundColor: 'white',
 
-		height: maxHeight * 0.20,
-		width: maxHeight * 0.24,
+		height: 140,
+		width: 150,
 
 		borderRadius: 30,
 
 		shadowColor: '#000000',
-		shadowOffset: {width: 0.5, height: 2},
-		shadowOpacity: 0.3
+		shadowOffset: {width: .4, height: 4},
+		shadowOpacity: 0.02
 	},
 //-------------------------------------
 	image: {
 		alignContent: 'center',
-		top: '20%',
-		height: '50%',
-		width: '42%',
-		marginLeft: '29%'
+		top: '30%',
+		height: 45,
+		width: 45,
+		marginLeft: 52.5
 	},
 	label: {
 		marginTop: '10%',
-		textAlign: 'center', 
-		color: 'grey', 
+		textAlign: 'center',
+		fontSize: 10,
+		letterSpacing: 2, 
+		color: '#888888', 
 		fontWeight: '700'
 	},
 //-------------------------------------
 	scorecard: {
-		// marginTop: '95%',
-		// marginLeft: '5%'
+		marginTop: '-3%',
+		marginLeft: '5%'
 	},
 	scoreTitleBox: {
-		position: 'absolute',
 		width: '100%',
-		marginTop: '-10%',
+		height: 30,
 		zIndex: 10,
-		marginLeft: '2.4%'
+		marginLeft: 30,
+		
+	},
+	scoreSubTitleBox: {
+		width: '100%',
+		height: 40,
+		zIndex: 10,
+		marginLeft: 30,
 	},
 	scoreTitle: {
 		fontFamily: 'GilroyBold',
-		fontSize: 20,
+		color: "#444444",
+		fontSize: 30,
 		position: 'absolute'
 	},
-//-----------------------------------
-	bottomTouch: {
+	scoreSubTitle: {
+		fontFamily: 'GilroyBold',
+		color: "#888888",
+		letterSpacing: 2,
+		fontSize: 10,
 		position: 'absolute',
-		paddingTop: '10%',
-		// borderWidth: 2,
-		// borderColor: 'black',
-		// backgroundColor: 'rgba(0,0,0,0)',
-		marginTop: '83%',
-		marginLeft: '5%',
-		height: '28%',
-		zIndex: 1
 	},
+//-----------------------------------
 	arrowBox: {
 		position: 'absolute',
-		marginTop: '83%',
-		marginLeft: '87%',
+		marginTop: '92%',
+		marginLeft: '83%',
 	},
 	arrow: {
 		height: 30,
@@ -165,8 +208,15 @@ const ButtonBoxStyles = StyleSheet.create({
 		width: 20,
 		height: 20,
 		backgroundColor: 'red',
-	}
+	},
+//-----------------------------------
+	bottomTouch: {
+		marginTop: maxHeight * .79,
+		position: 'absolute',
 
+		borderColor: 'black',
+		// borderWidth: 2
+	},
 })
 
 const ScoreCardButtonStyles = StyleSheet.create({

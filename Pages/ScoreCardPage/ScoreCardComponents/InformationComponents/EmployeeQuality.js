@@ -32,21 +32,21 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
 
 
     return(
-        <Card style={QualityStyles.topThreeEmployeeCard}>
+        <View style={QualityStyles.topThreeEmployeeCard}>
 
             <View style={QualityStyles.cardTop}>
                 <View style={QualityStyles.iconSpace}>
                     <Avatar.Image
                         source={SomeDudesFace}
-                        size={45}
+                        size={35}
                     />
                 </View>
                 <View style={QualityStyles.topRank}>
                     <View style={QualityStyles.gradient}>
-                        <LinearGradient pointerEvents={"none"} start={{x: 0, y: 1}} end={{x: 0, y: 0}} colors={['#15A1F1', '#534FFF']} style={{height: '100%', width: '100%', borderRadius: 22}} /> 
+                        <LinearGradient pointerEvents={"none"} start={{x: 0, y: 0.6}} end={{x: 0, y: 0}} colors={['#15A1F1', '#534FFF']} style={{height: '100%', width: '100%', borderRadius: 17}} /> 
                     </View>
                     <View style={QualityStyles.gradientCover}>
-                        <View style={QualityStyles.rankPos}><Text style={{fontFamily: "GilroyMedium", color: '#534FFF', fontSize: 24, textAlign: 'center'}}>{rank}</Text></View>
+                        <View style={QualityStyles.rankPos}><Text style={{fontFamily: "GilroyBold", color: '#534FFF', fontSize: 22, textAlign: 'center'}}>{rank}</Text></View>
                     </View>
                 </View>
                 <View style={QualityStyles.nameSpace}>
@@ -58,7 +58,7 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
                 <BottomCard sortBy={sortBy} rawData={data.weeklyReport} />
             </View>
 
-        </Card>
+        </View>
     )
 }
 export default EmployeeQuality

@@ -16,15 +16,15 @@ const RosterButton = () => {
                 <Image 
                     style={{
                         alignContent: 'center',
-                        top: '16%',
-                        height: '65%',
-                        width: '50%',
-                        marginLeft: '25%'
+                        top: '30%',
+                        height: 60,
+                        width: 60,
+                        marginLeft: 42.5
                     }}
                     source={require('../../../../assets/roster-icon.jpeg')}/>
             </View> 
             <View style={{ marginTop: '-30%' }}>
-                <Text style={ButtonBoxStyles.label}>Roster</Text>
+                <Text style={ButtonBoxStyles.label}>ROSTER</Text>
             </View>
         </TouchableOpacity>
     </View>

@@ -18,7 +18,7 @@ const ReportAnAccidentButton = () => {
                     source={require('../../../../assets/reporting-icon.jpeg')}/>
             </View> 
             <View style={{ marginTop: '-30%' }}>
-                <Text style={ButtonBoxStyles.label}>Report an Accident</Text>
+                <Text style={ButtonBoxStyles.label}>REPORT AN ACCIDENT</Text>
             </View>
         </TouchableOpacity>
     </View>

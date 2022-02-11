@@ -21,11 +21,11 @@ const ButtonBox = ({user}) => {
 
     return (
         <View style={ButtonBoxStyles.container}>
+            
             <View style={ButtonBoxStyles.leftContainer}>
                 {/* <ScoreCardButton /> */}
                 <RosterButton />
                 <ProductivityButton />
-                {/* <CommunicationButton /> */}
             </View>
 
             <View style={ButtonBoxStyles.rightContainer}>
@@ -35,16 +35,6 @@ const ButtonBox = ({user}) => {
             <View style={ButtonBoxStyles.arrowBox}>
                 <Image source={arrowIcon} style={ButtonBoxStyles.arrow}/>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("score_card")} style={ButtonBoxStyles.bottomTouch}> 
-                <View> 
-                    <View style={ButtonBoxStyles.scoreTitleBox}>
-                        <Text style={ButtonBoxStyles.scoreTitle}>Leaderboard and Scorecard</Text>
-                    </View>
-                    <View style={ButtonBoxStyles.scorecard}>
-                        <EmployeeQuality driverData={user} sortBy={"FICO"} rank={1} />
-                    </View>
-                </View>
-            </TouchableOpacity>
         </View>
     )
 }

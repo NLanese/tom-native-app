@@ -15,108 +15,100 @@ const BottomCard = ({sortBy, rawData}) => {
         // data = {...rawData}
         // console.log(data)
     // }
-
+    let divider = (
+        <View style={StatStyles.divider} />
+    )
     // 0 - DCR
     let dcr = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.deliveryCompletionRate)}%</Text>
         <Text style={StatStyles.statTitle}>Delivery Completion</Text>
-        <View style={StatStyles.divider} />
     </View>)
 
     // 1 - DAR
     let dar = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.deliveredAndRecieved)}</Text>
         <Text style={StatStyles.statTitle}>Dedlivered And Recieved</Text>
-        <View style={StatStyles.divider} />
     </View>)
 
     // 2 - POD
     let pod = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.photoOnDelivery)}%</Text>     
         <Text style={StatStyles.statTitle}>Photo on Delivery Rate</Text> 
-        <View style={StatStyles.divider} />          
     </View>)
 
     // 3 - CC
     let cc = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.callCompliance)}%</Text> 
         <Text style={StatStyles.statTitle}>Call Compliance</Text>   
-        <View style={StatStyles.divider} />            
     </View>)
 
     // 4 - SC
     let sc = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.scanCompliance)}%</Text>
         <Text style={StatStyles.statTitle}>Scan Compliance</Text>   
-        <View style={StatStyles.divider} />             
     </View>)
 
     // 5 - fico
     let fico = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.fico)}</Text>
         <Text style={StatStyles.statTitle}>FICO</Text>
-        <View style={StatStyles.divider} />
     </View>)
 
     // 6 - Seatbelt
     let seatbelt = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.seatbeltOffRate)}</Text>
         <Text style={StatStyles.statTitle}>Seatbelt</Text>
-        <View style={StatStyles.divider} />
     </View>)
 
     // 7 - Speeding
     let speeding = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.speedingEventRate)}</Text>
         <Text style={StatStyles.statTitle}>Speeding</Text>
-        <View style={StatStyles.divider} />
     </View>)
 
     // 8 - Defects
     let defects = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.defects)}</Text>
         <Text style={StatStyles.statTitle}>Defects</Text>
-        <View style={StatStyles.divider} />
     </View>)
 
     // 9 - cdf
     let cdf = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.customerDeliveryFeedback)}</Text>
         <Text style={StatStyles.statTitle}>Customer Feedback</Text>
-        <View style={StatStyles.divider} />
     </View>)
     
     let handleSort = (sortBy) => {
         let returnArray = ""
         if (sortBy == "Delivery Completion Rate"){
-            returnArray = [dcr, dar, pod, cc, sc, fico, seatbelt, speeding, defects, cdf]
+            returnArray = [dcr, divider, dar, divider, pod, divider, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf]
         }
         else if (sortBy == 'Delivered and Recieved'){
-            returnArray = [dar, pod, cc, sc, fico, seatbelt, speeding, defects, cdf, dcr]
+            returnArray = [dar, divider, pod, divider, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr]
         }
         else if (sortBy == 'Photo Rate'){
-            returnArray = [pod, cc, sc, fico, seatbelt, speeding, defects, cdf, dcr, dar]
+            returnArray = [pod, divider, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar]
         }
         else if (sortBy == 'Call Compliance'){
-            returnArray = [cc, sc, fico, seatbelt, speeding, defects, cdf, dcr, dar, pod]
+            returnArray = [cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod]
         }
         else if (sortBy == 'Scan Compliance'){
-            returnArray = [sc, fico, seatbelt, speeding, defects, cdf, dcr, dar, pod, cc]
+            returnArray = [sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, divider, cc]
         }
         else if (sortBy == 'FICO'){
-            returnArray = [fico, seatbelt, speeding, defects, cdf, dcr, dar, pod, cc, sc]
+            returnArray = [fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, divider, cc, divider, sc,]
         }
         else if (sortBy == 'Seatbelt'){
-            returnArray = [seatbelt, speeding, defects, cdf, dcr, dar, pod, cc, sc, fico]
+            returnArray = [seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico]
         }
         else if (sortBy == 'Speeding'){
-            returnArray = [speeding, defects, cdf, dcr, dar, pod, cc, sc, fico, seatbelt]
+            returnArray = [speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico, divider, seatbelt]
         }
         else if (sortBy == 'Defects'){
-            returnArray = [defects, cdf, dcr, dar, pod, cc, sc, fico, seatbelt, speeding]
+            returnArray = [defects, divider, cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding]
         }
         else if (sortBy == 'Customer Delivery Feedback'){
-            returnArray = [cdf, dcr, dar, pod, cc, sc, fico, seatbelt, speeding, defects]
+            returnArray = [cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects]
         }
         else {
             returnArray = null
