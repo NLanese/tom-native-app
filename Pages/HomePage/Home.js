@@ -44,12 +44,11 @@ const Home = ({ handleLoggedIn }) => {
                 reportId: report.id
             }
         })
-        // handle ReadAt Mutation
     }
 
     const renderCheck = () => {
         if (acknowledged){
-            return <IconButton icon="check-bold" size={35} style={{left: maxWidth * -0.048, top: maxHeight * -0.027}}/>
+            return null
         }
         else{
             return null
@@ -65,14 +64,14 @@ const Home = ({ handleLoggedIn }) => {
 
 
     return (
+        <View>
+            <Banner handleLoggedIn={handleLoggedIn}/>
             <ScrollView style={HomeStyles.container}> 
-                {/* <Portal> */}
-                    <Banner handleLoggedIn={handleLoggedIn}/>
                     <View style={HomeStyles.titleBox}>
                         <Text style={HomeStyles.title}>Welcome</Text>
                     </View>
                     <View style={HomeStyles.subTitleBox}>
-                        <Text style={HomeStyles.subTitle}>Hi, {name.first}</Text>
+                        <Text style={HomeStyles.subTitle}>HI, {user.firstname}</Text>
                     </View>
                     
                     <ButtonBox user={user}/>
@@ -91,21 +90,26 @@ const Home = ({ handleLoggedIn }) => {
                         </View>
                     </TouchableOpacity>
 
+                    <View style={{marignTop: 20, height: 1, width: 1, backgroundColor: '#eaeaea'}}></View>
+
+
                     <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
                         <View style={HomeStyles.notificationModalContent}>
                             <View style={HomeStyles.weeklyNotificationTitleSpace}>
-                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Report Message:</Text>
+                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status:</Text>
                             </View>
                             <View style={HomeStyles.weeklyNotificationMessage}>
-                                <Text>{weeklyReportObj.feedbackMessage}</Text>
+                                <Text style={HomeStyles.messageText}>{weeklyReportObj.feedbackMessage}</Text>
                             </View>
                             <View style={HomeStyles.acknowledgeContainter}>
-                                <Text>I Acknowledge this message</Text>
-                                    <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
-                                        <View style={{width: 30, height: 30, borderWidth: 1, left: maxHeight * 0.29, top: maxHeight * -0.038}}>
-                                                {renderCheck()}
-                                        </View>
-                                    </TouchableOpacity>
+                                <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
+                                    <View style={HomeStyles.checkBox}>
+                                            {renderCheck()}
+                                    </View>
+                                </TouchableOpacity>
+                                <View>
+                                    <Text>I Acknowledge this message</Text>
+                                </View>
                                 <View style={{borderWidth: 0.3, top: maxHeight * -0.026}}>
                                     <Button 
                                         onPress={() => setModalVisible(false)}
@@ -117,8 +121,8 @@ const Home = ({ handleLoggedIn }) => {
                             </View>
                         </View>
                     </Modal>
-                {/* </Portal> */}
             </ScrollView>
+        </View>
         )
 }
 

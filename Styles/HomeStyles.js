@@ -6,10 +6,16 @@ let maxHeight= Dimensions.get('window').height
 let sideDistance = ((maxWidth - 300) * 1.15) / 3
 let middleDistance = sideDistance * .70
 
+//-------------
 
-console.log(maxWidth)
-console.log(sideDistance)
-console.log(middleDistance)
+let modalSideDistance = (maxWidth - 318)
+modalSideDistance = modalSideDistance / 2
+
+//------------
+
+let modalContentSideDistance = (326 - 243)
+modalContentSideDistance = modalContentSideDistance / 2
+
 
 const HomeStyles = StyleSheet.create({
 	container: {
@@ -20,6 +26,7 @@ const HomeStyles = StyleSheet.create({
 		// borderColor: 'red',
 		// borderWidth: 5,
 	},	
+//------------------------------------
 	titleBox: {
 		marginLeft: 30,
 		marginTop: 23,
@@ -47,50 +54,67 @@ const HomeStyles = StyleSheet.create({
 		letterSpacing: 2,
 		color: '#888888'
 	},
+//-------------------------------------
 	logo: {
 		resizeMode: 'stretch',
 		width: 200,
 		height: 85,
 		marginTop: 50
 	  },
+//-------------------------------------
 	weeklyNotificationModal:{
-		width: maxWidth * 0.8,
-		left: maxWidth * 0.1,
-		top: maxHeight * -0.3
+		height: 326,
+		width: 318,
+
+		marginTop: maxHeight * 0.20
 	},
 	notificationModalContent:{
-		width: maxWidth * 0.8,
+		width: 318,
+		height: 326,
+
+		left: modalSideDistance,
+
 		height: maxHeight * 0.6,
 		backgroundColor: "#f9f9f9",
 		borderRadius: 50,
 	},
+//--------------------------------------
 	weeklyNotificationTitleSpace:{
-		width: maxWidth * 0.6,
-		left: maxWidth * 0.1,
-		paddingTop: maxHeight * 0.03,
-		paddingBottom: maxHeight * 0.01,
-		borderBottomColor: '#E2E8F1',
-		borderBottomWidth: 4,
+		marginTop: 36,
+		marginBottom: 32,
 		alignItems: 'center',
 	},
 	weeklyNotificationTitle:{
-		fontSize: 16,
+		fontFamily: 'GilroyBold',
+		fontSize: 25,
+
+		letterSpacing: -0.5,
 	},
 	weeklyNotificationMessage:{
-		borderWidth: 1,
-		width: maxWidth * 0.7,
-		height: maxHeight * 0.35,
-		left: maxWidth * 0.05,
-		top: maxHeight * 0.02
+		width: 243,
+		height: 140,
+		// borderColor: 'black',
+		// borderWidth: 2,
+		marginLeft: modalContentSideDistance,
 	},
+	messageText: {
+		color: '#888888',
+		fontFamily: 'GilroyMedium',
+		lineHeight: 20,
+	},
+//---------------------------------------
 	acknowledgeContainter:{
 		top: maxHeight * 0.05,
 		left: maxWidth * 0.1,
 		width: maxWidth * 0.6,
-		// borderWidth: 1,
 	},
-	acknowledgeCheck:{
-
+	checkBox: {
+		height: 22,
+		width: 22,
+		
+		borderColor: '#888888',
+		borderWidth: 1.5,
+		borderRadius: 5
 	}
 })
 const ButtonBoxStyles = StyleSheet.create({
@@ -98,7 +122,7 @@ const ButtonBoxStyles = StyleSheet.create({
 	container: {
 		backgroundColor: "#eaeaea",
 		width: '100%',
-		height: '100%',
+		height: maxHeight + 20,
 		display: 'flex',
 		flexDirection: 'row'
 	},	
@@ -109,7 +133,6 @@ const ButtonBoxStyles = StyleSheet.create({
 		width: 150,
 		height: maxHeight * 0.8,
 
-		marginTop: maxHeight * 0.02,
 		marginRight: 0
 
 		// borderColor: 'blue',
@@ -122,7 +145,6 @@ const ButtonBoxStyles = StyleSheet.create({
 		width: 150,
 		height: maxHeight * 0.8,
 
-		marginTop: maxHeight * 0.02,
 		marginLeft: sideDistance - 3,
 		marginRight: middleDistance,
 
@@ -156,7 +178,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginLeft: 52.5
 	},
 	label: {
-		marginTop: '10%',
+		marginTop: '7%',
 		textAlign: 'center',
 		fontSize: 10,
 		letterSpacing: 2, 
@@ -188,16 +210,16 @@ const ButtonBoxStyles = StyleSheet.create({
 		position: 'absolute'
 	},
 	scoreSubTitle: {
-		fontFamily: 'GilroyBold',
-		color: "#888888",
-		letterSpacing: 2,
+		fontFamily: 'GilroySemiBold',
 		fontSize: 10,
+		letterSpacing: 2,
+		color: '#888888',
 		position: 'absolute',
 	},
 //-----------------------------------
 	arrowBox: {
 		position: 'absolute',
-		marginTop: '92%',
+		marginTop: '85%',
 		marginLeft: '83%',
 	},
 	arrow: {
@@ -211,14 +233,17 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 //-----------------------------------
 	bottomTouch: {
-		marginTop: maxHeight * .79,
+		marginTop: maxHeight * .63,
+		marginLeft: 0,
+		marginBottom: 20,
+
+		height: 60,
 		position: 'absolute',
 
-		borderColor: 'black',
+		// borderColor: 'black',
 		// borderWidth: 2
 	},
 })
-
 const ScoreCardButtonStyles = StyleSheet.create({
 	container: {
 		height: 160,

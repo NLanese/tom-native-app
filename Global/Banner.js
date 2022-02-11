@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
       marginTop: maxHeight * .026,
       shadowOpacity: 0,
       position: 'relative',
-      backgroundColor: '#f9f9f9',
+      backgroundColor: 'white',
       display: 'flex',
       alignItems: 'center'
     },
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
       position: 'absolute',
       width: '100%',
       height: maxHeight * .026,
-      backgroundColor: '#f9f9f9',
+      backgroundColor: 'white',
     },
 //------------------------------------
     leftIcons: {

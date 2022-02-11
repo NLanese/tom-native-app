@@ -30,7 +30,7 @@ import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
 import Reporting from './Pages/ReportingPage/Reporting'
 import Productivity from './Pages/ProductivityPage/Productivity'
-import Communication from './Pages/CommunicationPage/Communication'
+import Chatrooms from './Pages/CommunicationPage/Chatrooms'
 import Analytics from './Pages/AnalyticsPage/Analytics'
 import Settings from './Pages/SettingsPage/Settings'
 import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
@@ -47,7 +47,6 @@ import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
 import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
-import Banner from './Global/Banner';
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 // import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
 // import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
@@ -63,8 +62,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://10.0.0.46:5001/graphql'     // Home
+	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  // uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -153,7 +152,7 @@ export default function App() {
                   </Stack.Screen>
 
                   <Stack.Screen name='messages'>
-                    {props => <Communication />}
+                    {props => <Chatrooms />}
                   </Stack.Screen>
 
                   <Stack.Screen name='admin_messages'>

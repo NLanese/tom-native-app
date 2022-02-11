@@ -15,7 +15,7 @@ import Banner from '../../Global/Banner'
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
-const Communication = () => {
+const Thread = () => {
     const { loading, error, data, refetch } = useQuery(GETDRIVERMESSAGESWITHADMIN)
     const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] =
         useMutation(SENDMESSAGETOADMIN);
@@ -221,4 +221,4 @@ const Communication = () => {
     }
 }
 
-export default Communication
+export default Thread
