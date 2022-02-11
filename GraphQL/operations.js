@@ -27,6 +27,7 @@ const LOGIN = gql`
     locked
     deleted
     notified
+
     owner {
       id
       firstname
@@ -35,6 +36,7 @@ const LOGIN = gql`
       password
       phoneNumber
     }
+
     accidents {
       id
       driver {
@@ -58,6 +60,7 @@ const LOGIN = gql`
         id
       }
     }
+
     managers {
       id
       firstname
@@ -66,11 +69,13 @@ const LOGIN = gql`
       phoneNumber
       profilePick
     }
+
     vehicle {
       id
       amazon_logo
       vehicle_number
     }
+
     notifiedMessages {
       id
       read
@@ -79,6 +84,7 @@ const LOGIN = gql`
       from
       type
     }
+
     messages {
       id
       createdAt
@@ -93,6 +99,37 @@ const LOGIN = gql`
         profilePick
       }
     }
+
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      managers {
+        id
+        role
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      owner {
+        id
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+      }
+    }
+    
     dsp {
       id
       createdAt
@@ -186,78 +223,96 @@ const GETDRIVERDATA = gql`
     id
     createdAt
     role
-    token
     firstname
     lastname
+    token
     email
-    password
     phoneNumber
     profilePick
     transporterId
+    muted
     locked
-    deleted
-    notified
+
     owner {
       id
+      role
       firstname
       lastname
       email
       phoneNumber
+      profilePick
     }
+
     accidents {
       id
-      name
       createdAt
-    }
-    managers {
-      id
-      firstname
-      email
-      lastname
-      phoneNumber
-      locked
-      deleted
-    }
-    vehicle {
-      id
-      vehicle_number
-    }
-    messages {
-      id
-      createdAt
-      content
-      from
-      manager {
+      driver {
         id
         firstname
         lastname
-        email
-        phoneNumber
       }
+      name
     }
-    NotifiedMessages {
+
+    managers {
+      idNH8FRVGGYBCZ
+      createdAt
+      role
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
+
+    vehicle {
+      id
+      vehicle_number
+      amazon_logo
+    }
+
+    chatrooms {
       id
       createdAt
-      read
-      content
-      from
-      type
-      driverId
-      adminId
+      chatroomName
+      guests
+      chatroomOwner
+      managers {
+        id
+        role
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      owner {
+        id
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+      }
     }
+
     dsp {
-      createdAt
       id
       name
       shortcode
-      timeZone
       ficoLimits
+      timeZone
       seatbeltLimits
       speedingLimits
       distractionLimits
       followLimits
-      deliveryCompletionRateLimits
       signalLimits
+      deliveryCompletionRateLimits
       scanComplianceLimits
       callComplianceLimits
       deliveryNotRecievedLimits
@@ -265,49 +320,16 @@ const GETDRIVERDATA = gql`
       topCardLimits
       smallCardLimits
       feedbackNotifications
-      autoSend
-      paid
-      driver {
-        id
-        firstname
-        lastname
-        email
-        phoneNumber
-      }
     }
-    weeklyReport {
+    shiftPlanners {
       id
-      createdAt
       date
-      hadAccident
-      feedbackMessage
-      feedbackStatus
-      acknowledged
-      acknowledgedAt
-      rank
-      tier
-      delivered
-      keyFocusArea
-      fico
-      seatbeltOffRate
-      speedingEventRate
-      distractionsRate
-      followingDistanceRate
-      signalViolationsRate
-      deliveryCompletionRate
-      deliveryNotRecieved
-      photoOnDelivery
-      callCompliance
-      scanCompliance
-      attendedDeliveryAccuracy
-      netradyne
-      deliveryAssociate
-      defects
-      customerDeliveryFeedback
-      hasManyAccidents
-      belongsToTeam
-      attendence
-      productivity
+      phoneId
+      deviceId
+      vehicleId
+      cxNumber
+      message
+      createdAt
     }
   }
 }

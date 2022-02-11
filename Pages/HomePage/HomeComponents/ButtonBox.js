@@ -9,7 +9,6 @@ import ReportAnAccidentButton from './ButtonBoxComponents/ReportAnAccidentButton
 import ProductivityButton from './ButtonBoxComponents/ProductivityButton';
 import CommunicationButton from './ButtonBoxComponents/CommunicationButton';
 import SettingsButton from './ButtonBoxComponents/SettingsButton';
-import Communication from '../../CommunicationPage/Communication';
 import RosterButton from './ButtonBoxComponents/RosterButton';
 import EmployeeQuality from '../../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
 import arrowIcon from '../../../assets/arrowTopRight.png'
@@ -25,7 +24,8 @@ const ButtonBox = ({user}) => {
             <View style={ButtonBoxStyles.leftContainer}>
                 {/* <ScoreCardButton /> */}
                 <RosterButton />
-                <ProductivityButton />
+                <CommunicationButton />
+                {/* <ProductivityButton /> */}
             </View>
 
             <View style={ButtonBoxStyles.rightContainer}>

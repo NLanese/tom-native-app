@@ -18,7 +18,7 @@ const CommunicationButton = () => {
                     source={require('../../../../assets/Communication.jpeg')}/>
             </View> 
             <View style={{ marginTop: '-30%' }}>
-                <Text style={ButtonBoxStyles.label}>Communication</Text>
+                <Text style={ButtonBoxStyles.label}>COMMUNICATION</Text>
             </View>
         </TouchableOpacity>
     </View>

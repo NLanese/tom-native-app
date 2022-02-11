@@ -58,7 +58,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 			await setUser(data.driverSignIn)
 			await stateChange(data.driverSignIn.token);
 			await handleLoggedIn()
-			await navigation.navigate("/home");
+			await navigation.navigate("/");
 		}
 	}, [data])
 
