@@ -19,12 +19,9 @@ const SortbyButton = ({dropVisibility, handleDropDownClick, sortBy, setSortBy}) 
             return false
         }
     }
-
-    console.log(tracker)
-
     return(
         <View>
-            <Text style={SortingStyles.sortText}>Sort By</Text>
+        <View style={SortingStyles.sortTitleBox}><Text style={SortingStyles.sortText}>Sort By</Text></View>
             <TouchableWithoutFeedback onPress={() => handleDropDownClick()} >
                 <View style={SortingStyles.touchable}>
                     <Image source={sortByIcon} style={SortingStyles.sortIcon}/>

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { userState } from '../../Recoil/atoms';
 import { useMutation } from '@apollo/client';
+import { useNavigation } from '@react-navigation/native';
 import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
-import { Layout } from '@ui-kitten/components';
-import { Portal, Modal, Button, IconButton } from 'react-native-paper'
+import { Modal, Button, IconButton } from 'react-native-paper'
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
-import { HomeStyles } from '../../Styles/HomeStyles';
+import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
+import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
 
@@ -17,6 +18,8 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 const Home = ({ handleLoggedIn }) => {
+	const navigation = useNavigation()
+
     const [user, setUser] = useRecoilState(userState)
 
     let initVisible = false
@@ -62,16 +65,31 @@ const Home = ({ handleLoggedIn }) => {
 
 
     return (
-        <Layout>
-            <View style={HomeStyles.container}> 
+            <ScrollView style={HomeStyles.container}> 
                 {/* <Portal> */}
                     <Banner handleLoggedIn={handleLoggedIn}/>
                     <View style={HomeStyles.titleBox}>
                         <Text style={HomeStyles.title}>Welcome</Text>
+                    </View>
+                    <View style={HomeStyles.subTitleBox}>
                         <Text style={HomeStyles.subTitle}>Hi, {name.first}</Text>
                     </View>
                     
                     <ButtonBox user={user}/>
+
+                    <TouchableOpacity onPress={() => navigation.navigate("score_card")} style={ButtonBoxStyles.bottomTouch}> 
+                        <View > 
+                            <View style={ButtonBoxStyles.scoreTitleBox}>
+                                <Text style={ButtonBoxStyles.scoreTitle}>Scorecard</Text>
+                            </View>
+                            <View style={ButtonBoxStyles.scoreSubTitleBox}>
+                                <Text style={ButtonBoxStyles.scoreSubTitle}>AND LEADERBOARD</Text>
+                            </View>
+                            <View style={ButtonBoxStyles.scorecard}>
+                                <EmployeeQuality driverData={user} sortBy={"FICO"} rank={1} />
+                            </View>
+                        </View>
+                    </TouchableOpacity>
 
                     <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
                         <View style={HomeStyles.notificationModalContent}>
@@ -100,9 +118,8 @@ const Home = ({ handleLoggedIn }) => {
                         </View>
                     </Modal>
                 {/* </Portal> */}
-            </View>
-        </Layout>
-    )
+            </ScrollView>
+        )
 }
 
 export default Home

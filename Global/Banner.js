@@ -3,11 +3,15 @@ import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
 import { Appbar, Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable, Dimensions, Image, Text } from 'react-native';
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
-// import Bell from "./BannerComponents/Bell";
+import Bell from "./BannerComponents/Bell";
 import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
+import arrowBack from '../assets/arrowBack.png'
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 const Banner = ({ handleLoggedIn }) => {
   const [visible, setVisible] = useState(false)
@@ -25,50 +29,45 @@ const Banner = ({ handleLoggedIn }) => {
 
   return (
     <View>
+      <View style={styles.topBar}></View>
       <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
       <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} />
-
-      <View style={styles.topBar}></View>
-
         <Appbar style={styles.bottom}>
+
           <View style={styles.leftIcons}>
-
-            <Appbar.BackAction 
-              color="black"
-              size={20}
-              onPress={() => navigation.goBack()} 
-            />
-
-            <Appbar.Content 
-              top={10}
-              left={-15}
-              title={website} 
-              color='black'
-              style={styles.title}
-            />
-          </View>
-                  
-          <View style={styles.centerIcon}>
-          </View>
-
-          <View style={styles.rightIcons}>
-
-          <Appbar.Action
+            <Pressable onPress={() => navigation.goBack()}>
+              <Image source={arrowBack} style={{ height: 30, width: 40}}/>
+            </Pressable>
+            
+            <Appbar.Action
               color='black'
               style={styles.actionBarHome}
               icon="home-variant"
               onPress={() => navigation.navigate('home')}
             />
+          </View>
+                  
+          <View style={styles.centerIcon}>
+            <View style={styles.titleBox}>
+              <Text style={styles.title}>{website}</Text>
+            </View>
+            {/* <Appbar.Content 
+                style={{justifyContent: 'center', marginTop: '46.8%'}}
+                title={website} 
+                titleStyle={{fontFamily: 'GilroyMedium'}}
+                color='black'
+                style={styles.title}
+            /> */}
+          </View>
 
+          <View style={styles.rightIcons}>
             {/* <Pressable onPress={() => handleNotifiedModal()}>
               <Bell styles={styles} />
-            
             </Pressable> */}
-
             <Pressable onPress={() => handleModal()}>
               <Avatar.Image
                 source={SomeDudesFace}
-                size={32}
+                size={40}
               />
             </Pressable>
           </View>
@@ -82,84 +81,65 @@ export default Banner
 
 const styles = StyleSheet.create({
     bottom: {
-      height: 50,
+      alignContent: 'center',
+      height: maxHeight * .100,
+      marginTop: maxHeight * .026,
       shadowOpacity: 0,
       position: 'relative',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
       backgroundColor: '#f9f9f9',
       display: 'flex',
+      alignItems: 'center'
     },
-
-    leftIcons: {
-      width: 245,
-      flexDirection: 'row',
-      color: 'black'
-      // backgroundColor: "red"
-    },
-
-    rightIcons: {
+    topBar: {
+      marginTop: '-%',
       position: 'absolute',
-      width: 110,
-      marginLeft: 252,
+      width: '100%',
+      height: maxHeight * .026,
+      backgroundColor: '#f9f9f9',
+    },
+//------------------------------------
+    leftIcons: {
+      marginLeft: '8%',
+      height: '100%',
+      width: '25%',
+      position: 'absolute',
+      flexDirection: 'row',
+      color: 'black',
+      // backgroundColor: "red",
+      alignItems: 'center',
+    },
+    rightIcons: {
+      height: '100%',
+      position: 'absolute',
+      width: '33%',
+      marginLeft: '66%',
+      marginRight: '8%',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end',
       // backgroundColor: "green"
     },
-
     centerIcon: {
+      height: '100%',
+      width: '33%',
       position: 'absolute',
-      width: 150,
       alignItems: 'center',
-      backgroundColor: "yellow"
-      // marginLeft: 120
+      // backgroundColor: "yellow",
+      marginLeft: maxWidth * 0.322,
+      paddingTop: '3%'
     },
+//--------------------------------------------
 
-    centerText: {
-      fontSize: 16,
-      top: 14,
-      fontWeight: "700",
-      color: 'white'
+    titleBox: {
+      marginTop: '15%',
+      height: '20%'
     },
-
-    actionBar: {
-      position: 'relative',
-      top: 0,
-      color: 'silver', 
-      left: -3
-    },
-
-    actionBarHome: {
-      // position: 'relative',
-      left: '2%',
-      color: '#570de4' 
-    },
-
-    actionBarHome: {
-      position: 'relative',
-      top: 0,
-      left: 7,
-      color: '#570de4' 
-    },
-
-    topBar: {
-      position: 'relative',
-      top: 0,
-      height: 20,
-      backgroundColor: '#f9f9f9',
-    },
-
     title: {
-      top: '2%',
-      color: 'black'
+      textAlign: 'center',
+      fontFamily: 'GilroyMedium',
+      color: '#444444',
+      fontSize: 12,
+      height: '100%',
     },
 
-    test: {
-      height: 75,
-      width: 75,
-      backgroundColor: "red"
-    }
   });

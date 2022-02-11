@@ -20,32 +20,37 @@ const ScoreCardStyles = StyleSheet.create({
 
 const SortingStyles = StyleSheet.create({
 	sortByContainer: {
-		// position: 'absolute',
-		marginTop: '2.5%',
-		marginLeft: '68%',
-	},
-	sortBy: {
-		marginTop: maxHeight * 0.01,
-		marginLeft: maxWidth * 0.02,
-		borderBottomWidth: 2,
-		borderBottomColor: '#E2E8F1',
-		height: maxHeight * 0.05,
-		justifyContent: 'center'
+		position: 'absolute',
+		paddingLeft: 6,
+		marginTop: maxHeight * 0.030 ,
+		marginLeft: maxWidth * .64,
+		zIndex: 3,
+
+		// borderColor: 'red',
+		// borderWidth: 2
 	},
 	touchable: {
 		height: maxHeight * 0.08,
-		marginTop: -maxHeight * 0.04
+		width: '40%',
+
+		marginLeft: '68%',
+		marginTop: '-19%',
+
+		// borderColor: 'blue',
+		// borderWidth: 2
+	},
+	sortTitleBox:{
+		marginLeft: 10
 	},
 	sortText:{
 		marginTop: maxHeight * 0.01,
-		fontSize: 16,
+		fontSize: 11,
 		fontWeight: '600',
-		color: 'grey'
+		color: '#BBBBBB'
 	},
 	sortIcon:{
-		// position: 'relative',
-		marginLeft: maxWidth * 0.12,
-		marginTop: maxHeight * 0.0
+		height: 19,
+		width: 19,
 	},
 	modal: {
 		backgroundColor: 'white',
@@ -89,19 +94,23 @@ const QualityStyles = StyleSheet.create({
 	},
 //-----------------------------
 	titleBox: {
-		marginTop: maxHeight * -0.07,
-		marginLeft: maxWidth * 0.07,
+		marginTop: 23,
+		// marginLeft: 30,
 		marginBottom: maxHeight * 0.03,
 		width: maxWidth * 0.6,
 	},	
 	mainTitle: {
 		fontSize: 30,
-		fontFamily: 'GilroyBold'
+		letterSpacing: -0.5,
+		fontFamily: 'GilroyBold',
+		color: "#444444"
 	},
 	subTitle: {
-		fontSize: 12,
-		fontFamily: 'GilroyLight',
-		color: 'grey'
+		lineHeight: 16,
+		fontSize: 10,
+		letterSpacing: 2,
+		fontFamily: 'GilroyBold',
+		color: '#888888'
 	},
 //-----------------------------
 	topThreeEmployeeCard: {	
@@ -109,26 +118,45 @@ const QualityStyles = StyleSheet.create({
 		width: maxWidth * 0.90,
 
 		paddingLeft: 20,
-		borderRadius: 40,
+		borderRadius: 28,
 
-		marginBottom: 20,
+		marginBottom: 15,
+
+		backgroundColor: 'white',
 
 		shadowColor: '#000000',
-		shadowOffset: {width: .5, height: 3},
-		shadowOpacity: 0.09
+		shadowOffset: {width: .4, height: 4},
+		shadowOpacity: 0.02
 	},
+	smallCard: {	
+		height: maxHeight * 0.10,
+		width: maxWidth * 0.90,
+
+		paddingLeft: 20,
+		borderRadius: 14,
+
+		marginBottom: 15,
+
+		// shadowColor: '#000000',
+		// shadowOffset: {width: .5, height: 3},
+		// shadowOpacity: 0.09
+	},
+//-----------------------------
 	cardTop: {
 		height: '45%',
 	},
+	smallCardTop: {
+	},
 	cardBottm: {
-		borderColor: '#E2E8F1',
-		borderTopWidth: 3,
+		borderColor: '#DDDDDD',
+		borderTopWidth: 1,
 
 		backgroundColor: 'white',
 		flexDirection: "row",
 		marginTop: '1%',
 		height: '50%',
-		width: '90%'
+		left: '7.5%',
+		width: '85%'
 	},
 //---------------------------------
 	iconSpace: {
@@ -137,41 +165,43 @@ const QualityStyles = StyleSheet.create({
 
 		position: 'absolute',
 
-		left: '20%',
-		top: '8%',
+		left: '14%',
+		top: '6%',
 		height: '100%',
 		width: '20%',
 	},
-	gradientCover: {
-		marginLeft: 1.1,
-		marginTop: 1,
-		backgroundColor: 'white',
-		borderRadius: 100,
-		height: '120%',
-		width: '120%',
-	},
-	gradient: {
+	smallIconSpace: {
+		alignItems: 'center',
+		justifyContent: 'center',
+
 		position: 'absolute',
-		width: '140%',
-		height: '140%',
-		borderRadius: 100
-	},
-	rankPos: {
+
+		left: '14%',
+		top: '39%',
+		height: '100%',
 		width: '20%',
-		marginTop: '20%',
-		marginLeft:'35%'
 	},
+// ----------------------------------
 	nameSpace: {
 		position: 'absolute',
 		top: '45%',
 		height: '40%',
-		left: '40%',
+		left: '34%',
+		alignItems: 'center',
+	},
+	smallNameSpace: {
+		position: 'absolute',
+		top: '75%',
+		height: '40%',
+		left: '34%',
 		alignItems: 'center',
 	},
 	employeeName: {
-		fontSize: 18,
-		fontFamily: 'GilroySemiBold'
+		fontSize: 14,
+		fontFamily: 'GilroyBold',
+		color: '#444444'
 		},
+// --------------------------------
 	topRank: {
 		borderColor: 'transparent',
 		borderWidth: 4,
@@ -184,28 +214,63 @@ const QualityStyles = StyleSheet.create({
 		height: '57%',
 
 		top: '26%',
+		left: '2.2%',
+	},
+	smallTopRank: {
+		borderColor: 'transparent',
+		borderWidth: 4,
+		borderRadius: 100,
+
+		alignItems: 'center',
+		justifyContent: 'center',
+
+		width: '13%',
+		height: '57%',
+
+		top: '56%',
 		left: '3%',
+	},
+// ----------------------------------
+	gradientCover: {
+		marginLeft: 0,
+		marginTop: 0,
+		backgroundColor: 'white',
+		borderRadius: 100,
+		height: 27,
+		width: 27,
+	},
+	gradient: {
+		position: 'absolute',
+		width: 35,
+		height: 35,
+		borderRadius: 0
+	},
+	rankPos: {
+		width: '100%',
+		marginTop: '13%',
 	},
 })
 
 const StatStyles = StyleSheet.create({
 	statTitle: {
-		fontSize: 14,
+		fontSize: 10,
 		fontFamily: 'GilroySemiBold',
-		color: "grey",
+		color: "#888888",
 		marginTop: 0,
-		marginLeft: 20
 
 	},
 	statValue:{
-		marginTop: maxHeight * 0.030,
+		marginTop: maxHeight * 0.03,
+		height: '38%',
 		fontFamily: 'GilroyBold',
-		fontSize: 22,
-		marginLeft: 20
+		fontSize: 25,
+		letterSpacing: -0.5,
+		color: "#444444"
+		// backgroundColor: 'green'
 
 	},
 	stat: {
-		padding: 5,
+		// padding: 5,
 		height: '100%',
 
 		marginRight: 15,
@@ -214,12 +279,12 @@ const StatStyles = StyleSheet.create({
 	},
 
 	divider: {
-		borderLeftWidth: 3,
-		width: 2,
-		marginRight: maxWidth * 0.05,
-		top: '-60%',
+		borderLeftWidth: 1,
+		width: 1,
+		marginRight: 18,
+		top: '20%',
 		height: '60%',
-		borderColor: '#E2E8F1'
+		borderColor: '#DDDDDD'
 	}
 
 })

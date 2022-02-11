@@ -72,6 +72,7 @@ const Quality = () => {
     const renderTopAndOthers = (allDriversRaw, topNum=3, stopAt) => {
         let allDrivers = [...allDriversRaw.driverGetDriversFromDsp.drivers]
         let i = 0
+        allDrivers = returnSortedList(allDrivers, sortBy)
         const topCards = (
             <View style={QualityStyles.topThree}>
                 {allDrivers.slice(0, topNum).map( (driver) => {
@@ -109,16 +110,16 @@ const Quality = () => {
     // If the data IS loaded
     else {
         return(
-            <View style={{flex: 0, backgroundColor: "#eaeaea"}}>
+            <View style={{flex: 0, backgroundColor: "#f2f2f2"}}>
                 <Banner />
-                <View style={SortingStyles.sortByContainer}>
-                    <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
-                </View>
-                <View style={QualityStyles.titleBox}>
-                    <Text style={QualityStyles.mainTitle}>Scorecard</Text>
-                    <Text style={QualityStyles.subTitle}>LEADERBOARD</Text>
-                </View>
                 <ScrollView bounces={false} style={QualityStyles.listContainer}>
+                    <View style={SortingStyles.sortByContainer}>
+                        <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
+                    </View>
+                    <View style={QualityStyles.titleBox}>
+                        <Text style={QualityStyles.mainTitle}>Leaderboard</Text>
+                        <Text style={QualityStyles.subTitle}>OUR TOP PERFROMERS</Text>
+                    </View>
                     {renderTopAndOthers(queryData, user.dsp.topCardLimits, (user.dsp.smallCardLimits + user.dsp.topCardLimits))}
                 </ScrollView>
             </View>

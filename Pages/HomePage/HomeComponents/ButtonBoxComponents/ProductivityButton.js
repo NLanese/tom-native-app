@@ -16,7 +16,7 @@ const ProductivityButton = () => {
                     source={require('../../../../assets/productivity-icon.jpeg')}/>
             </View> 
             <View style={{ marginTop: '-30%' }}>
-                <Text style={ButtonBoxStyles.label}>Productivity</Text>
+                <Text style={ButtonBoxStyles.label}>PRODUCTIVITY</Text>
             </View>
         </TouchableOpacity>
     </View>
