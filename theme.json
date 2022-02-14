@@ -1,0 +1,8 @@
+{
+    "color-info-100": "#EEEEEE", 
+    "color-info-transparent-100": "rgba(238, 238, 238, 0.50)",
+    "color-info-default": "$color-info-transparent-100",
+    "color-info-default-border": "$color-info-transparent-100",
+    "color-info-active": "$color-info-100",
+    "color-info-active-border": "$color-info-100",
+}

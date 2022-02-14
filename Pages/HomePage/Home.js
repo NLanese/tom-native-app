@@ -3,7 +3,7 @@ import { userState } from '../../Recoil/atoms';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
-import { Modal, Button, IconButton } from 'react-native-paper'
+import { Modal, Button } from '@ui-kitten/components';
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
 import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native';

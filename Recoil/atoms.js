@@ -5,6 +5,11 @@ export const userState = atom({
 	default: false,
 });
 
+export const threadState = atom({
+	key: 'threadState',
+	default: false,
+});
+
 export const websiteState = atom({
 	key: 'website',
 	default: 'Landing',

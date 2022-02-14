@@ -13,7 +13,7 @@ import arrowBack from '../assets/arrowBack.png'
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
-const Banner = ({ handleLoggedIn }) => {
+const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   const [visible, setVisible] = useState(false)
   const [notifiedVisible, setNotifiedVisible] = useState(false)
   const [website] = useRecoilState(websiteState)
@@ -25,6 +25,16 @@ const Banner = ({ handleLoggedIn }) => {
 
   const handleNotifiedModal = () => {
     setNotifiedVisible(!notifiedVisible)
+  }
+
+  const handleBackClick = () => {
+    if (setActiveThread !== null){
+      setActiveThread(null)
+      navigation.navigate('home')
+    }
+    else{
+      navigation.navigate('home')
+    }
   }
 
   return (
@@ -43,7 +53,7 @@ const Banner = ({ handleLoggedIn }) => {
               color='black'
               style={styles.actionBarHome}
               icon="home-variant"
-              onPress={() => navigation.navigate('home')}
+              onPress={() => handleBackClick()}
             />
           </View>
                   
@@ -51,13 +61,6 @@ const Banner = ({ handleLoggedIn }) => {
             <View style={styles.titleBox}>
               <Text style={styles.title}>{website}</Text>
             </View>
-            {/* <Appbar.Content 
-                style={{justifyContent: 'center', marginTop: '46.8%'}}
-                title={website} 
-                titleStyle={{fontFamily: 'GilroyMedium'}}
-                color='black'
-                style={styles.title}
-            /> */}
           </View>
 
           <View style={styles.rightIcons}>

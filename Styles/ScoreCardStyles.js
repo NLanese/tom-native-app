@@ -136,10 +136,6 @@ const QualityStyles = StyleSheet.create({
 		borderRadius: 14,
 
 		marginBottom: 15,
-
-		// shadowColor: '#000000',
-		// shadowOffset: {width: .5, height: 3},
-		// shadowOpacity: 0.09
 	},
 //-----------------------------
 	cardTop: {

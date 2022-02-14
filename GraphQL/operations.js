@@ -271,35 +271,35 @@ const GETDRIVERDATA = gql`
       amazon_logo
     }
 
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      managers {
-        id
-        role
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      owner {
-        id
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      messages {
-        id
-        createdAt
-        content
-        from
-        visable
-      }
-    }
+    # chatrooms {
+    #   id
+    #   createdAt
+    #   chatroomName
+    #   guests
+    #   chatroomOwner
+    #   managers {
+    #     id
+    #     role
+    #     firstname
+    #     lastname
+    #     profilePick
+    #     phoneNumber
+    #   }
+    #   owner {
+    #     id
+    #     firstname
+    #     lastname
+    #     profilePick
+    #     phoneNumber
+    #   }
+    #   messages {
+    #     id
+    #     createdAt
+    #     content
+    #     from
+    #     visable
+    #   }
+    # }
 
     dsp {
       id
@@ -435,23 +435,7 @@ const GETNOTIFIEDMESSAGES = gql`
     type
   }
 }`
-const GETDRIVERMESSAGESWITHADMIN = gql`
-  query Query {
-  getMessageWithAdmin {
-    id
-    createdAt
-    content
-    from
-  }
-}
-`
-const SENDMESSAGETOADMIN = gql`
-  mutation Mutation($content: String!) {
-      sendMessageToAdmin(content: $content) {
-        id
-    }
-}
-`
+
 const DRIVERACKNOWLEDGEFEEDBACKMESSAGE = gql`
 mutation Mutation($reportId: String!) {
   driverAcknowledgeFeedbackMessage(reportId: $reportId) {
@@ -510,6 +494,14 @@ const DRIVERSGETSHIFTPLANNER = gql`
 }
 `
 
+const DRIVERSENDMESSAGE = gql`
+mutation Mutation($content: String!, $chatroomId: String!, $role: String!) {
+  dynamicSendMessage(content: $content, chatroomId: $chatroomId, role: $role) {
+    id
+  }
+}
+`
+
 
 export {  
   SIGNUP, 
@@ -522,11 +514,10 @@ export {
   GETDRIVERSFORSCORECARDQUALITY,
   GETNOTIFIED,
   GETNOTIFIEDMESSAGES,
-  GETDRIVERMESSAGESWITHADMIN,
-  SENDMESSAGETOADMIN,
   DRIVERACKNOWLEDGEFEEDBACKMESSAGE,
   DRIVERSGETDRIVERSFROMDSP,
-  DRIVERSGETSHIFTPLANNER
+  DRIVERSGETSHIFTPLANNER,
+  DRIVERSENDMESSAGE
 }
 
 
