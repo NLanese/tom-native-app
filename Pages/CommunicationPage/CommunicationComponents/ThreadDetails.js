@@ -39,7 +39,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     // Returns an array of case fixed names
     const getChatroomNames = () => {
         return chatroom.guests.map( (guest, index) => {
-            if (guest === null){
+            if (typeof(guest) == 'undefined'){
                 return null
             }
             let caseFixed = nameObj(guest.firstname, guest.lastname)
@@ -52,6 +52,9 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     // uses getChatroomNames to generate a card for each guest
     const renderChatroomNames = () => {
         let namesList = getChatroomNames().map( (guest, index) => {
+            if (typeof(guest) == 'undefined' || guest === null){
+                return null
+            }
             return(
                 <View style={ThreadDetailStyles.nameCard}>
                     <Text style={ThreadDetailStyles.nameText}>{guest.name}</Text>
@@ -109,7 +112,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
                     return guest
                 }
             })
-            console.log(newGuestList.length)
+            console.log(newGuestList)
             setActiveThread({...activeThread, guests: newGuestList})
         })
     }
