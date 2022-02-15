@@ -86,11 +86,11 @@ const Chatrooms = () => {
             )
         }
         return list.map( (chatroom, index) => {
-            if (index < chatroom.length - 1){
+            if (index < list.length - 1){
                 return(
                     <View>
                         <ThreadCard chatroom={chatroom} key={index}/>
-                        <View style={ChatroomsStyles.divider} />
+                        <View style={ChatroomsStyles.divider} key={index + ".0"}/>
                     </View>
                 )
             }
@@ -110,6 +110,7 @@ const Chatrooms = () => {
         )
     }
     
+    let scrollHeight = (user.chatrooms.length * 80) + 200
     return(
         <View>
             {/* BANNER */}
@@ -132,39 +133,43 @@ const Chatrooms = () => {
             </View>
 
             {/* THREAD HOLDER */}
-            <ScrollView >
+            <View style={{}}> 
+                <ScrollView contentContainerStyle={{height: scrollHeight}}>
 
-                 {/* EVERYONE */}
-                 <View style={ChatroomsStyles.chatroomBox}>
-                     <View style={ChatroomsStyles.chatroomTitleBox}>
-                         <Text style={ChatroomsStyles.chatroomBoxTitleText}>EVERYONE</Text>
-                     </View>
-                     <View>
-                        {generateChatCards(findChatsBy("everyone"))}
-                     </View>
-                 </View>
+                    {/* EVERYONE */}
+                    <View style={ChatroomsStyles.chatroomBox}>
+                        <View style={ChatroomsStyles.chatroomTitleBox}>
+                            <Text style={ChatroomsStyles.chatroomBoxTitleText}>EVERYONE</Text>
+                        </View>
+                        <View>
+                            {generateChatCards(findChatsBy("everyone"))}
+                        </View>
+                    </View>
 
-                 {/* ACTIVE */}
-                 <View style={ChatroomsStyles.chatroomBox}>
-                     <View style={ChatroomsStyles.chatroomBoxTitleBox}>
-                         <Text style={ChatroomsStyles.chatroomBoxTitleText}>ACTIVE</Text>
-                     </View>
-                     <View>
-                        {generateChatCards(findChatsBy("active"))}
-                     </View>
-                 </View>
+                    {/* ACTIVE */}
+                    <View style={ChatroomsStyles.chatroomBox}>
+                        <View style={ChatroomsStyles.chatroomBoxTitleBox}>
+                            <Text style={ChatroomsStyles.chatroomBoxTitleText}>ACTIVE</Text>
+                        </View>
+                        <View>
+                            {generateChatCards(findChatsBy("active"))}
+                        </View>
+                    </View>
 
-                 {/* INACTIVE */}
-                 <View style={ChatroomsStyles.chatroomBox}>
-                     <View style={ChatroomsStyles.chatroomBoxTitleBox}>
-                         <Text style={ChatroomsStyles.chatroomBoxTitleText}>CONVERSATIONS</Text>
-                     </View>
-                     <View>
-                        {generateChatCards(findChatsBy("inactive"))}
-                     </View>
-                 </View>
-                
-            </ScrollView>
+                    {/* INACTIVE */}
+                    <View style={ChatroomsStyles.chatroomBox}>
+                        <View style={ChatroomsStyles.chatroomBoxTitleBox}>
+                            <Text style={ChatroomsStyles.chatroomBoxTitleText}>CONVERSATIONS</Text>
+                        </View>
+                        <View>
+                            {generateChatCards(findChatsBy("inactive"))}
+                        </View>
+                    </View>
+                    
+                </ScrollView>
+                <View style={{height: 30}} />
+            </View>
+
 
             {/* NEW CHATROOM BUTTON */}
             <View style={ChatroomsStyles.addButtonBox}>

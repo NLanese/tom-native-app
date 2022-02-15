@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { ContactStyles } from "../../../Styles/CommunicationStyles";
 import { View, Text, ScrollView, TouchableOpacity, Touchable } from 'react-native'
 import { Modal } from "@ui-kitten/components";
@@ -42,8 +42,11 @@ const Contacts = ({creating}) => {
         // Keeps track of contents in the search bar
         const [searchVal, setSearchVal] = useState("")
 
-        //Triggers or cancels the Modal
+        // Triggers or cancels the Modal
         const [modalVisible, setModalVisible] = useState("")
+
+        // Tracks whether or not changes have been submitted. Guards useEffect
+        const[changesMade, setChangesMade] = useState(false)
 // -------------------- Recoil and UseState ----------------------
 
 
@@ -155,20 +158,33 @@ const Contacts = ({creating}) => {
 
     const handleSubmission = async (chatName) => {
         if (user.role == "DRIVER"){
-            await driverCreateChat({
+            setChangesMade(true)
+            const newThread =  driverCreateChat({
                 variables: {
                     guests: newGuests,
                     chatroomName: chatName
                 }
-            }).then( async(thread) => {
-                await setThread(thread)
-                await navigation.navigate("message-thread")
             })
+            setThread(newThread)
         }
     }
-
-
 // -------------------------- Handlers ---------------------------
+
+// ------------------------- UseEffects --------------------------
+
+    useEffect (async () => {
+        console.log("hit")
+        console.log(newThread)
+        // if (changesMade && !loading){
+        //     setTimeout(() => {
+        //         console.log(thread)
+        //         navigation.navigate('message-thread')
+        //     }, 500)
+        // }
+    }, [thread])
+
+// ------------------------- UseEffects --------------------------
+
 
     if (!loading && queryData){
         let allDrivers = [...queryData.driverGetDriversFromDsp.drivers]

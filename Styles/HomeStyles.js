@@ -66,7 +66,7 @@ const HomeStyles = StyleSheet.create({
 		height: 326,
 		width: 318,
 
-		marginTop: maxHeight * 0.20
+		// marginTop: maxHeight * 0.20
 	},
 	notificationModalContent:{
 		width: 318,

@@ -27,7 +27,6 @@ const Home = ({ handleLoggedIn }) => {
         initVisible = true
     }
 
-
     const [website, setWebsite] = useRecoilState(websiteState)
     const [acknowledged, setAcknowledged] = useState(false)
     const [modalVisible, setModalVisible] = useState(initVisible)

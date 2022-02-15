@@ -116,8 +116,6 @@ export default function App() {
 		setloggedIn(!loggedIn)
 	}
 
-  const [activeThread, setActiveThread] = useState({test: "yes"})
-
   const handleThreadSelection = (chatroom) => {
     setActiveThread(chatroom)
   }
@@ -162,11 +160,11 @@ export default function App() {
                   </Stack.Screen>
 
                   <Stack.Screen name='messages'>
-                    {props => <Chatrooms {...props} setActiveThread={handleThreadSelection}/>}
+                    {props => <Chatrooms {...props} />}
                   </Stack.Screen>
 
                   <Stack.Screen name='message-thread'>
-                    {props => <MessageThread {...props} activeThread={activeThread} setActiveThread={handleThreadSelection}/>}
+                    {props => <MessageThread {...props} />}
                   </Stack.Screen>
 
                   <Stack.Screen name='admin_messages'>
