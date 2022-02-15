@@ -41,7 +41,7 @@ const ThreadCard = ({chatroom}) => {
     
 
     return(
-        <View> 
+        <View style={{height: 'auto'}}> 
             <TouchableOpacity onPress={() => selectThread()}>
             <View>
                 <View style={{width: 40, height: 40, borderRadius: 100, backgroundColor: 'black', marginBottom: 17, marginTop: 24}} />

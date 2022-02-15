@@ -70,8 +70,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://10.0.0.46:5001/graphql'     // Home
+	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  // uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -115,8 +115,6 @@ export default function App() {
 		state = stateChange('')
 		setloggedIn(!loggedIn)
 	}
-
-  const [activeThread, setActiveThread] = useState({test: "yes"})
 
   const handleThreadSelection = (chatroom) => {
     setActiveThread(chatroom)
@@ -162,11 +160,11 @@ export default function App() {
                   </Stack.Screen>
 
                   <Stack.Screen name='messages'>
-                    {props => <Chatrooms {...props} setActiveThread={handleThreadSelection}/>}
+                    {props => <Chatrooms {...props} />}
                   </Stack.Screen>
 
                   <Stack.Screen name='message-thread'>
-                    {props => <MessageThread {...props} activeThread={activeThread} setActiveThread={handleThreadSelection}/>}
+                    {props => <MessageThread {...props} />}
                   </Stack.Screen>
 
                   <Stack.Screen name='admin_messages'>

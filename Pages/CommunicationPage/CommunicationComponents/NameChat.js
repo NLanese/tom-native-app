@@ -23,7 +23,7 @@ const NameChat = ({handleSubmission, setModalVisible}) => {
                     <Text style={ContactStyles.modalButtonText}>Continue</Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleSubmission(chatName)}>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
             <View style={ContactStyles.modalCancel}>
                     <Text style={ContactStyles.modalButtonText}>Cancel</Text>
                 </View>

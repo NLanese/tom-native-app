@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, View, Text, TouchableOpacity } from "react-native";
 import { Modal } from "@ui-kitten/components";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../Recoil/atoms";
+
+import { useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { DYNAMICREMOVEDRIVERFROMCHATROOM, GETDRIVERDATA } from "../../../GraphQL/operations";
+
+
 import nameObj from "../../../Hooks/handleNameCaseChange";
+
 import { ThreadDetailStyles } from "../../../Styles/CommunicationStyles";
 
 import AddContactButton from "./AddContactButton";
 
-const ThreadDetails = ({chatroom, setModalVisible}) => {
+const ThreadDetails = ({chatroom, setModalVisible, setThread}) => {
+
+// -------------- Mutations and Queries ----------------
+const {loading: loading, error: error, data: queryData, refetch: refetch} = useQuery(GETDRIVERDATA)
+
+const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DYNAMICREMOVEDRIVERFROMCHATROOM);
+
+// -------------- Mutations and Queries ----------------
+
 
 //--------------- Recoil and Local State ---------------
-    const [user] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userState)
+
+    // Tracks when chat guests have been removed. Enables useEffect refresh
+    const [removal, setRemoval] = useState(false)
+
 //--------------- Recoil and Local State ---------------
+
 
 //----------------- Rendering Functions -----------------
 
@@ -21,7 +40,9 @@ const ThreadDetails = ({chatroom, setModalVisible}) => {
     const getChatroomNames = () => {
         return chatroom.guests.map( (guest, index) => {
             let caseFixed = nameObj(guest.firstname, guest.lastname)
-            return (caseFixed.first + " " + caseFixed.last)
+            let guestId = guest.id
+            let name = (caseFixed.first + " " + caseFixed.last)
+            return {name: name, id: guestId}
         } )
     }
 
@@ -30,8 +51,8 @@ const ThreadDetails = ({chatroom, setModalVisible}) => {
         let namesList = getChatroomNames().map( (guest, index) => {
             return(
                 <View style={ThreadDetailStyles.nameCard}>
-                    <Text style={ThreadDetailStyles.nameText}>{guest}</Text>
-                    {renderRemoveButtons()}
+                    <Text style={ThreadDetailStyles.nameText}>{guest.name}</Text>
+                    {renderRemoveButtons(guest.id)}
                 </View>
             )
         })
@@ -46,11 +67,11 @@ const ThreadDetails = ({chatroom, setModalVisible}) => {
     }
 
     // Checks if you are the chatroom owner. If so, renders remove buttons
-    const renderRemoveButtons = () => {
-        if (chatroom.chatroomOwner.id == user.id){
+    const renderRemoveButtons = (guestId) => {
+        if (chatroom.chatroomOwner.id == user.id && guestId != user.id){
             return(
                 <View>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => handleRemoval(guestId)}>
                         <View style={ThreadDetailStyles.removeBox}>
                             <Text style={ThreadDetailStyles.removeText}>Remove</Text>
                         </View>
@@ -73,6 +94,39 @@ const ThreadDetails = ({chatroom, setModalVisible}) => {
         }
     }
 //----------------- Rendering Functions -----------------
+
+//---------------------- Handlers -----------------------
+
+    const handleRemoval = async (removedId) => {
+        console.log(user.role)
+        console.log(chatroom.id)
+        console.log(removedId)
+        await removeFromChat({
+            variables: {
+                role: user.role,
+                chatroomId: chatroom.id,
+                guestId: removedId
+            }
+        })
+        console.log("hit1")
+        setRemoval(true)
+    }
+
+//---------------------- Handlers -----------------------
+
+
+//--------------------- useEffects ----------------------
+
+    useEffect( async () => {
+        if (removal){
+            console.log("hit2")
+            await refetch()
+            console.log(queryData.getDriver.weeklyReport)
+            await setUser(queryData)
+        }
+    }, [removal])
+
+//--------------------- useEffects ----------------------
 
 
     return(

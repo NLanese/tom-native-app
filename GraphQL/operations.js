@@ -203,11 +203,6 @@ const UPDATEDRIVER = gql`
   }
 }
 `
-// const NOTIFIEDTOFALSE = gql`
-//   mutation notifiedToFalse(){
-//     notifiedToFalse($)
-//   }
-// `
 const CREATEACCIDENT = gql`
   mutation Mutation($name: String!, $location: String!) {
   createAccident(name: $name, location: $location) {
@@ -223,41 +218,53 @@ const GETDRIVERDATA = gql`
     id
     createdAt
     role
+    token
     firstname
     lastname
-    token
     email
+    password
     phoneNumber
     profilePick
     transporterId
-    muted
     locked
+    deleted
+    notified
 
     owner {
       id
-      role
       firstname
       lastname
       email
+      password
       phoneNumber
-      profilePick
     }
 
     accidents {
       id
-      createdAt
       driver {
         id
-        firstname
-        lastname
       }
       name
+      location
+      hitPerson {
+        id
+      }
+      collision {
+        id
+      }
+      injuryAccident {
+        id
+      }
+      propertyAccident {
+        id
+      }
+      injuryReport {
+        id
+      }
     }
 
     managers {
-      idNH8FRVGGYBCZ
-      createdAt
-      role
+      id
       firstname
       lastname
       email
@@ -267,46 +274,71 @@ const GETDRIVERDATA = gql`
 
     vehicle {
       id
-      vehicle_number
       amazon_logo
+      vehicle_number
     }
 
-    # chatrooms {
-    #   id
-    #   createdAt
-    #   chatroomName
-    #   guests
-    #   chatroomOwner
-    #   managers {
-    #     id
-    #     role
-    #     firstname
-    #     lastname
-    #     profilePick
-    #     phoneNumber
-    #   }
-    #   owner {
-    #     id
-    #     firstname
-    #     lastname
-    #     profilePick
-    #     phoneNumber
-    #   }
-    #   messages {
-    #     id
-    #     createdAt
-    #     content
-    #     from
-    #     visable
-    #   }
-    # }
+    notifiedMessages {
+      id
+      read
+      createdAt
+      content
+      from
+      type
+    }
 
+    messages {
+      id
+      createdAt
+      content
+      from
+      manager {
+        id
+        firstname
+        lastname
+        email
+        phoneNumber
+        profilePick
+      }
+    }
+
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      managers {
+        id
+        role
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      owner {
+        id
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+      }
+    }
+    
     dsp {
       id
+      createdAt
       name
       shortcode
-      ficoLimits
       timeZone
+      ficoLimits
       seatbeltLimits
       speedingLimits
       distractionLimits
@@ -321,44 +353,44 @@ const GETDRIVERDATA = gql`
       smallCardLimits
       feedbackNotifications
     }
-    shiftPlanners {
+    weeklyReport {
       id
-      date
-      phoneId
-      deviceId
-      vehicleId
-      cxNumber
-      message
       createdAt
+      date
+      hadAccident
+      feedbackMessage
+      feedbackMessageSent
+      feedbackStatus
+      acknowledged
+      acknowledgedAt
+      rank
+      tier
+      delivered
+      keyFocusArea
+      fico
+      seatbeltOffRate
+      speedingEventRate
+      distractionsRate
+      followingDistanceRate
+      signalViolationsRate
+      deliveryCompletionRate
+      deliveredAndRecieved
+      photoOnDelivery
+      callCompliance
+      scanCompliance
+      attendedDeliveryAccuracy
+      dnr
+      podOpps
+      ccOpps
+      netradyne
+      deliveryAssociate
+      defects
+      customerDeliveryFeedback
+      hasManyAccidents
+      belongsToTeam
+      attendence
+      productivity
     }
-  }
-}
-`
-const GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE = gql`
-  query Query {
-  getDriversForDspForSafetyAndCompliance {
-    id
-    createdAt
-    firstname
-    lastname
-    email
-    phoneNumber
-    employeeId
-    fico
-    netradyne
-    delivery_associate
-    seatbelt_and_speeding
-    defects
-    customer_delivery_feedback
-    delivered_and_recieved
-    delivery_completion_rate
-    photo_on_delivery
-    call_compliance
-    scan_compliance
-    has_many_accidents
-    belongs_to_team
-    dsp_name
-    dsp_shortcode
   }
 }
 `
@@ -435,7 +467,6 @@ const GETNOTIFIEDMESSAGES = gql`
     type
   }
 }`
-
 const DRIVERACKNOWLEDGEFEEDBACKMESSAGE = gql`
 mutation Mutation($reportId: String!) {
   driverAcknowledgeFeedbackMessage(reportId: $reportId) {
@@ -494,13 +525,50 @@ const DRIVERSGETSHIFTPLANNER = gql`
 }
 `
 const DRIVERSENDMESSAGE = gql`
-mutation Mutation($content: String!, $chatroomId: String!, $role: String!) {
-  dynamicSendMessage(content: $content, chatroomId: $chatroomId, role: $role) {
-    id
+mutation Mutation($chatroomId: String!, $content: String!) {
+  driverSendMessage(chatroomId: $chatroomId, content: $content) {
+    chatroom {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      owner {
+        id
+        firstname
+        lastname
+        phoneNumber
+        profilePick
+      }
+      managers {
+        id
+        role
+        firstname
+        lastname
+        phoneNumber
+        profilePick
+      }
+      drivers {
+        id
+        firstname
+        lastname
+        email
+        phoneNumber
+        role
+      }
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+        reported
+        reportedBy
+      }
+    }
   }
 }
 `
-
 const DRIVERCREATECHATROOM = gql`
 mutation Mutation($guests: [JSON]!, $chatroomName: String!) {
   driverCreateChatroom(guests: $guests, chatroomName: $chatroomName) {
@@ -547,6 +615,46 @@ mutation Mutation($guests: [JSON]!, $chatroomName: String!) {
   }
 }
 `
+const DYNAMICREMOVEDRIVERFROMCHATROOM = gql`
+mutation Mutation($role: String!, $chatroomId: String!, $guestId: String!) {
+  dynamicRemoveDriverFromChatroom(role: $role, chatroomId: $chatroomId, guestId: $guestId) {
+    id
+  }
+}
+`
+const GETDRIVERCHATROOMS = gql`
+  query Query {
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      managers {
+        id
+        role
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      owner {
+        id
+        firstname
+        lastname
+        profilePick
+        phoneNumber
+      }
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+      }
+    }
+  }
+`
 
 
 export {  
@@ -555,7 +663,6 @@ export {
   CREATEACCIDENT, 
   GETDRIVERDATA, 
   UPDATEDRIVER, 
-  GETDRIVERSFORDPSFORSAFETYANDCOMPLIANCE,
   GETDRIVERSFORDSPFORTEAM,
   GETDRIVERSFORSCORECARDQUALITY,
   GETNOTIFIED,
@@ -565,6 +672,8 @@ export {
   DRIVERSGETSHIFTPLANNER,
   DRIVERSENDMESSAGE,
   DRIVERCREATECHATROOM,
+  DYNAMICREMOVEDRIVERFROMCHATROOM,
+  GETDRIVERCHATROOMS
 }
 
 

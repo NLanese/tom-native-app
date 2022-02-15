@@ -11,11 +11,12 @@ import { useMutation } from '@apollo/client';
 import { useRecoilState } from "recoil";
 import { threadState } from "../../Recoil/atoms";
 
-import { DRIVERSENDMESSAGE } from "../../GraphQL/operations";
+import { DRIVERSENDMESSAGE, GETDRIVERCHATROOMS } from "../../GraphQL/operations";
 
 import Message from "./CommunicationComponents/Message";
 import Banner from '../../Global/Banner'
 import ThreadDetails from "./CommunicationComponents/ThreadDetails"
+import Loading from "../../Global/Loading"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -27,8 +28,11 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 // ---------------------- Mutations and Queries ------------------------
 
 
-// Recoil for thread Data
-const [activeThread, setActiveThread] = useRecoilState(threadState);
+    // Recoil for thread Data
+    const [activeThread, setActiveThread] = useRecoilState(threadState);
+
+    // Tracks message sending status
+    const [updating, setUpdating] = useState(false)
 
 // -------------------- Pre Mounting Functions -------------------------
     // Tracks the contents of any current message
@@ -117,6 +121,8 @@ const [activeThread, setActiveThread] = useRecoilState(threadState);
         };
       }, []);
 
+    // Handles rerender
+
     // Generates all of the messages
     const renderMessageFeed = (messageData) => {
         if (messageData === null){
@@ -160,15 +166,22 @@ const [activeThread, setActiveThread] = useRecoilState(threadState);
     }
 
     const handleSendMessage = async () => {
+        console.log(activeThread.id)
         if (newMessage.length > 0){
-            await sendMessage({
+             return sendMessage({
                 variables: {
                     chatroomId: activeThread.id,
                     content: newMessage
                 }
+            }).then( async (newMessageThread) => {
+                await setUpdating(true)
+                await setNewMessage("")
+                await setKeyboardVisible(false);
+                await setActiveThread(newMessageThread)
+            }).then( async() => {
+                await console.log(activeThread)
+                await setUpdating(false)
             })
-            await setNewMessage("")
-            await setKeyboardVisible(false);
         }
         else{
         }
@@ -176,6 +189,11 @@ const [activeThread, setActiveThread] = useRecoilState(threadState);
 
 
 // ---------------------- MAIN RENDER METHOD -----------------------
+    if (updating){
+        return(
+            <Loading />
+        )
+    }
     return(
         <View>
             <Banner />
@@ -183,7 +201,7 @@ const [activeThread, setActiveThread] = useRecoilState(threadState);
 
                 {/* INFORMATION MODAL */}
                 <Modal visible={modalvisible}>
-                        <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} />
+                        <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread}/>
                 </Modal>
 
                 {/* Chatroom Label */}
@@ -207,6 +225,7 @@ const [activeThread, setActiveThread] = useRecoilState(threadState);
                         >
                             {renderMessageFeed(activeThread.messages)}
                         </ScrollView>
+                        <View style={{height: 30}} />
                     </View>
                 </View>
 
