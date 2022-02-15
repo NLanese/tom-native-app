@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Touchable } from 'react-native'
 import { useQuery } from "@apollo/client";
 import { DRIVERSGETDRIVERSFROMDSP } from "../../GraphQL/operations";
 import Banner from "../../Global/Banner";
@@ -10,7 +10,7 @@ import dateObj from "../../Hooks/handleDateTime";
 import { useRecoilState } from 'recoil'
 import { userState } from "../../Recoil/atoms";
 
-const Roster = () => {
+const Roster = ({contacts}) => {
     const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
     const [user, setUser] = useRecoilState(userState);
 

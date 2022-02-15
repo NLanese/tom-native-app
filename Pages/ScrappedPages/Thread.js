@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { userState } from '../../Recoil/atoms'
 import { useMutation } from '@apollo/client';
 import { useRecoilState } from "recoil";
-import { GETDRIVERMESSAGESWITHADMIN, SENDMESSAGETOADMIN } from "../../GraphQL/operations";
+import { SENDMESSAGETOADMIN } from "../../GraphQL/operations";
 import { ActivityIndicator } from "react-native-paper";
 import Message from "./CommunicationComponents.js/Message";
 import { CommunicationStyles } from "../../Styles/CommunicationStyles";
@@ -16,7 +16,8 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 const Thread = () => {
-    const { loading, error, data, refetch } = useQuery(GETDRIVERMESSAGESWITHADMIN)
+
+    // SEND MUTATION
     const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] =
         useMutation(SENDMESSAGETOADMIN);
 
@@ -40,6 +41,8 @@ const Thread = () => {
             return null
         }else{
             const messages = messageData.map( (message, key) => {
+
+                // Renders sender name
                 let propFrom = ""
                 if (message.from == userData.firstname){
                     propFrom = "You"
@@ -47,20 +50,26 @@ const Thread = () => {
                 else{
                     propFrom = message.from
                 }
-                key++
+
+                // Calls upon Message Component
                 return(
                     <Message from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
                 )
             })
+
+            // Renders the Message Component and Name Label
             return (<View> 
                         <View>
                             {messages}
                         </View>
                         <View style={{height: 50}}/>
-                    </View>)
+                    </View>
+                    )
         }
     }
 
+
+    // Adjusts the height of the text input box, based on how long the text is
     const determineKeyboardStyle = (status, message) => {
         if (status){
             return StyleSheet.create({
@@ -116,7 +125,6 @@ const Thread = () => {
             await setKeyboardVisible(false);
         }
         else{
-            console.log("No message")
         }
     }
 
@@ -147,11 +155,11 @@ const Thread = () => {
     }, [])
     
 
-    useEffect(() => {
-        if (!loading && data) {
-            setMessageData(data.getMessageWithAdmin)
-        }
-    }, [refresh, data])
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         setMessageData(data.getMessageWithAdmin)
+    //     }
+    // }, [refresh, data])
 
 
     if (!loading && !error && data) {

@@ -4,22 +4,24 @@ import * as Sharing from 'expo-sharing';
 
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry, Text } from '@ui-kitten/components';
+import { default as theme } from './theme.json'; // <-- Import app theme
+import { default as mapping } from './mapping.json'; // <-- Import app mapping
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
-
 import { Provider as PaperProvider } from 'react-native-paper';
+import { RecoilRoot } from 'recoil';
 
 import { View } from 'react-native';
+import { useEffect } from "react";
 
 import { AppStyles } from './Styles/AppStyles';
-import { RecoilRoot } from 'recoil';
+
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
 
 import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
-import { NativeRouter, Route, Switch } from 'react-router-native';
 import stateChange from './Hooks/handleToken'
 
 import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
@@ -27,14 +29,22 @@ import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 
 import ShiftLanding from "./Pages/ShiftPlannerPage/ShiftLanding";
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
+
 import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
 import Reporting from './Pages/ReportingPage/Reporting'
+
 import Productivity from './Pages/ProductivityPage/Productivity'
+
 import Chatrooms from './Pages/CommunicationPage/Chatrooms'
+import MessageThread from "./Pages/CommunicationPage/MessageThread";
+import Contacts from "./Pages/CommunicationPage/CommunicationComponents/Contacts"
+
 import Analytics from './Pages/AnalyticsPage/Analytics'
+
 import Settings from './Pages/SettingsPage/Settings'
 import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
 import AccountSettings from './Pages/SettingsPage/SettingsComponents/AccountSettings'
+
 import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
 import ReportCollision from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportCollision'
 import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryAccident'
@@ -48,8 +58,6 @@ import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
-// import SafetyAndCompliance from './Pages/ScoreCardPage/ScoreCardComponents/SafetyAndCompliance'
-// import Team from './Pages/ScoreCardPage/ScoreCardComponents/Team'
 import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -108,6 +116,12 @@ export default function App() {
 		setloggedIn(!loggedIn)
 	}
 
+  const [activeThread, setActiveThread] = useState({test: "yes"})
+
+  const handleThreadSelection = (chatroom) => {
+    setActiveThread(chatroom)
+  }
+
   if(!loaded){
     return null
   }
@@ -116,13 +130,9 @@ export default function App() {
       <ApolloProvider client={client}>
         <RecoilRoot>
           <IconRegistry icons={EvaIconsPack} />
-          <ApplicationProvider {...eva} theme={eva.light}>
-          {/* <ApplicationProvider> */}
+          <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
             <PaperProvider>
               <View style={AppStyles.container}>
-
-                {/* {loggedIn === true ? (<Banner handleLoggedIn={handleLoggedIn} />) : null} */}
-
                 <Stack.Navigator screenOptions={{headerShown: false}}>
             
                   {loggedIn === false ? (
@@ -152,7 +162,11 @@ export default function App() {
                   </Stack.Screen>
 
                   <Stack.Screen name='messages'>
-                    {props => <Chatrooms />}
+                    {props => <Chatrooms {...props} setActiveThread={handleThreadSelection}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='message-thread'>
+                    {props => <MessageThread {...props} activeThread={activeThread} setActiveThread={handleThreadSelection}/>}
                   </Stack.Screen>
 
                   <Stack.Screen name='admin_messages'>
@@ -165,6 +179,14 @@ export default function App() {
 
                   <Stack.Screen name='roster'>
                     {props => <Roster />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='contacts'>
+                    {props => <Contacts creating={false} /> }
+                  </Stack.Screen>
+
+                  <Stack.Screen name='create-chat'>
+                    {props => <Contacts creating={true} />}
                   </Stack.Screen>
 
                   <Stack.Screen name='settings'>
@@ -190,14 +212,6 @@ export default function App() {
                   <Stack.Screen name='quality'>
                     {props => <Quality />}
                   </Stack.Screen>
-
-                  {/* <Stack.Screen name='safety_and_compliance'>
-                    {props => <SafetyAndCompliance />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='team'>
-                    {props => <Team />}
-                  </Stack.Screen> */}
 
                   <Stack.Screen name='view_accidents'>
                     {props => <ViewAccidents />}
