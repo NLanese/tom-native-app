@@ -110,7 +110,7 @@ const Chatrooms = () => {
         )
     }
     
-    let scrollHeight = (user.chatrooms.length * 80) + 200
+    let scrollHeight = (user.chatrooms.length * 100) + 450
     return(
         <View>
             {/* BANNER */}

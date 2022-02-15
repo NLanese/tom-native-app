@@ -33,7 +33,7 @@ const Contacts = ({creating}) => {
         // Gets User
         const [user, setUser] = useRecoilState(userState);
         // Gets Thread
-        const [thread, setThread] = useRecoilState(threadState)
+        const [activeThread, setActiveThread] = useRecoilState(threadState)
     
     // UseState
         // keeps track of driver contacts added to groupchat
@@ -92,7 +92,7 @@ const Contacts = ({creating}) => {
                 })
             }
         } else {
-            let newThread = thread.map((driver) =>{ return driver })
+            let newThread = activeThread.map((driver) =>{ return driver })
             newThread = [...newThread, newGuests]
             newThread.forEach( (driver) => {
                 if (driver.id === selected.id){
@@ -156,32 +156,33 @@ const Contacts = ({creating}) => {
         }
     }
 
-    const handleSubmission = async (chatName) => {
-        if (user.role == "DRIVER"){
+    const handleSubmission = (chatName) => {
+        handleMutation(chatName).then( (resolved) => {
+            setActiveThread(resolved.data.driverCreateChatroom)
             setChangesMade(true)
-            const newThread =  driverCreateChat({
-                variables: {
-                    guests: newGuests,
-                    chatroomName: chatName
-                }
-            })
-            setThread(newThread)
-        }
+        })
+    }
+
+    const handleMutation = async (chatName) => {
+        return driverCreateChat({
+            variables: {
+                guests: newGuests,
+                chatroomName: chatName
+            }
+        })
     }
 // -------------------------- Handlers ---------------------------
 
 // ------------------------- UseEffects --------------------------
 
     useEffect (async () => {
-        console.log("hit")
-        console.log(newThread)
-        // if (changesMade && !loading){
-        //     setTimeout(() => {
-        //         console.log(thread)
-        //         navigation.navigate('message-thread')
-        //     }, 500)
-        // }
-    }, [thread])
+        if (changesMade && !loading){
+            setTimeout(() => {
+                setModalVisible(false)
+                navigation.navigate('message-thread')
+            }, 500)
+        }
+    }, [activeThread])
 
 // ------------------------- UseEffects --------------------------
 
