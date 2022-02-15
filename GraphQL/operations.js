@@ -494,8 +494,8 @@ const DRIVERSGETSHIFTPLANNER = gql`
 }
 `
 const DRIVERSENDMESSAGE = gql`
-mutation Mutation($content: String!, $chatroomId: String!, $role: String!) {
-  dynamicSendMessage(content: $content, chatroomId: $chatroomId, role: $role) {
+mutation Mutation($content: String!, $chatroomId: String!) {
+  driverSendMessage(content: $content, chatroomId: $chatroomId) {
     id
   }
 }
