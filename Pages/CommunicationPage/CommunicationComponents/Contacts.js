@@ -1,20 +1,31 @@
 import React, {useState} from "react";
+import { ContactStyles } from "../../../Styles/CommunicationStyles";
 import { View, Text, ScrollView, TouchableOpacity, Touchable } from 'react-native'
+import { Modal } from "@ui-kitten/components";
+import { useNavigation } from "@react-navigation/native";
+
 import { useQuery } from "@apollo/client";
-import { DRIVERSGETDRIVERSFROMDSP } from "../../../GraphQL/operations";
+import { useMutation } from "@apollo/client";
+import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM } from "../../../GraphQL/operations";
+
 import Banner from "../../../Global/Banner";
 import Loading from "../../../Global/Loading";
 import SearchBar from "./SearchBar";
-import { ContactStyles } from "../../../Styles/CommunicationStyles";
-import nameObj from "../../../Hooks/handleNameCaseChange";
-import dateObj from "../../../Hooks/handleDateTime";
+import NameChat from "./NameChat";
+
 import { useRecoilState } from 'recoil'
 import { threadState, userState } from "../../../Recoil/atoms";
 
+import nameObj from "../../../Hooks/handleNameCaseChange";
+
 const Contacts = ({creating}) => {
+    const navigation = useNavigation()
 
     // Gets all Drivers from DSP
     const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
+
+
+    const [driverCreateChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DRIVERCREATECHATROOM);
 
 
 // -------------------- Recoil and UseState ----------------------
@@ -30,6 +41,9 @@ const Contacts = ({creating}) => {
         
         // Keeps track of contents in the search bar
         const [searchVal, setSearchVal] = useState("")
+
+        //Triggers or cancels the Modal
+        const [modalVisible, setModalVisible] = useState("")
 // -------------------- Recoil and UseState ----------------------
 
 
@@ -44,18 +58,18 @@ const Contacts = ({creating}) => {
                 <View style={ContactStyles.card} key={i}>
                     <View style={ContactStyles.image}><Text>Image</Text></View>
                     <View style={ContactStyles.nameView}><Text style={ContactStyles.title}>{namer.first} {namer.last} </Text></View>
-                    {determineAddOrRemove(driver.id)}
+                    {determineAddOrRemove(driver)}
                     <View style={ContactStyles.divider} />
                 </View>
             )
         }))
     }
 
-    const determineAddOrRemove = (selectedId) => {
+    const determineAddOrRemove = (selected) => {
         let returnComponent
         returnComponent = () => {
             return(
-                <TouchableOpacity style={ContactStyles.addButton} onPress={() => handleAddClick(selectedId)}>
+                <TouchableOpacity style={ContactStyles.addButton} onPress={() => handleAddClick(selected)}>
                     <View><Text style={ContactStyles.addText}>Add</Text></View>
                 </TouchableOpacity>
             )
@@ -63,10 +77,10 @@ const Contacts = ({creating}) => {
         if (creating){
             if (newGuests.length > 0){
                 newGuests.forEach( (driver) => {
-                    if (driver === selectedId){
+                    if (driver.id === selected.id){
                         returnComponent = () => {
                             return(
-                                <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selectedId)}>
+                                <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
                                     <View><Text style={ContactStyles.removeText}>Remove</Text></View>
                                 </TouchableOpacity>
                             )
@@ -78,10 +92,10 @@ const Contacts = ({creating}) => {
             let newThread = thread.map((driver) =>{ return driver })
             newThread = [...newThread, newGuests]
             newThread.forEach( (driver) => {
-                if (driver.id === selectedId){
+                if (driver.id === selected.id){
                     returnComponent = () => {
                         return(
-                            <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selectedId)}>
+                            <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
                                 <View><Text style={ContactStyles.removeText}>Remove</Text></View>
                             </TouchableOpacity>
                         )
@@ -91,11 +105,27 @@ const Contacts = ({creating}) => {
         }
         return returnComponent()
     }
+
+    const filterBasedOffSearch = (list) => {
+        let filteredList = []
+        if (searchVal == ""){
+            return list
+        }
+        else{
+            let filterString = searchVal.toUpperCase()
+            list.forEach( (driver) => {
+                if (driver.firstname.includes(filterString) || driver.lastname.includes(filterString)){
+                    filteredList.push(driver)
+                }
+            })
+            return filteredList
+        }
+    }
+
 // --------------- Rendering and Generating Functions ------------   
 
 
 // -------------------------- Handlers ---------------------------
-
     const handleAddClick = (selectedId) => {
         setNewGuests([...newGuests, selectedId])
         console.log(newGuests)
@@ -117,21 +147,26 @@ const Contacts = ({creating}) => {
         setSearchVal(content)
     }
 
-    const filterBasedOffSearch = (list) => {
-        let filteredList = []
-        if (searchVal == ""){
-            return list
-        }
-        else{
-            let filterString = searchVal.toUpperCase()
-            list.forEach( (driver) => {
-                if (driver.firstname.includes(filterString) || driver.lastname.includes(filterString)){
-                    filteredList.push(driver)
-                }
-            })
-            return filteredList
+    const handleDoneClick = () => {
+        if (newGuests.length > 0){
+            setModalVisible(true)
         }
     }
+
+    const handleSubmission = async (chatName) => {
+        if (user.role == "DRIVER"){
+            await driverCreateChat({
+                variables: {
+                    guests: newGuests,
+                    chatroomName: chatName
+                }
+            }).then( async(thread) => {
+                await setThread(thread)
+                await navigation.navigate("message-thread")
+            })
+        }
+    }
+
 
 // -------------------------- Handlers ---------------------------
 
@@ -151,10 +186,17 @@ const Contacts = ({creating}) => {
                     </ScrollView>
                 </View>
                 <View style={ContactStyles.footer}>
-                <View style={ContactStyles.completeSelection}>
-                    <Text style={ContactStyles.doneText}>Done</Text>
+                    <TouchableOpacity onPress={() => handleDoneClick()}>  
+                        <View style={ContactStyles.completeSelection}>
+                            <Text style={ContactStyles.doneText}>Done</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                </View>
+                <Modal visible={modalVisible}  backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                    <View>
+                        <NameChat handleSubmission={handleSubmission} setModalVisible={setModalVisible} />
+                    </View>
+                </Modal>
             </View>
         )
     }
