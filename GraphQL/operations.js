@@ -515,7 +515,20 @@ const DRIVERSGETSHIFTPLANNER = gql`
   driverGetShiftPlaner {
     id
     createdAt
-    date
+    sundayDate
+    sundayHours
+    mondayDate
+    mondayHours
+    tuesdayDate
+    tuesdayHours
+    wednesdayDate
+    wednesdayHours
+    thursdayDate
+    thursdayHours
+    fridayDate
+    fridayHours
+    saturdayDate
+    saturdayHours
     phoneId
     deviceId
     vehicleId
