@@ -135,7 +135,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 // Renders sender name
                 let propFrom = ""
-                if (message.from == userData.firstname){
+                if (message.from.id == user.id ){
                     propFrom = "You"
                 }
                 else{
@@ -165,26 +165,25 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         setModalVisible(true)
     }
 
-    const handleSendMessage = async () => {
+    const handleSendMessage = () => {
         console.log(activeThread.id)
         if (newMessage.length > 0){
-             return sendMessage({
-                variables: {
-                    chatroomId: activeThread.id,
-                    content: newMessage
-                }
-            }).then( async (newMessageThread) => {
-                await setUpdating(true)
-                await setNewMessage("")
-                await setKeyboardVisible(false);
-                await setActiveThread(newMessageThread)
-            }).then( async() => {
-                await console.log(activeThread)
-                await setUpdating(false)
+             handleMutation().then( (resolved) => {
+                setNewMessage("")
+                setActiveThread(resolved.data.driverSendMessage.chatroom)
             })
         }
         else{
         }
+    }
+
+    const handleMutation = async () => {
+        return sendMessage({
+            variables: {
+                chatroomId: activeThread.id,
+                content: newMessage
+            }
+        })
     }
 
 
@@ -201,7 +200,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 {/* INFORMATION MODAL */}
                 <Modal visible={modalvisible}>
-                        <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread}/>
+                        <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
                 </Modal>
 
                 {/* Chatroom Label */}

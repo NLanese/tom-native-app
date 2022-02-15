@@ -15,7 +15,7 @@ import { ThreadDetailStyles } from "../../../Styles/CommunicationStyles";
 
 import AddContactButton from "./AddContactButton";
 
-const ThreadDetails = ({chatroom, setModalVisible, setThread}) => {
+const ThreadDetails = ({chatroom, setModalVisible, setActiveThread, activeThread}) => {
 
 // -------------- Mutations and Queries ----------------
 const {loading: loading, error: error, data: queryData, refetch: refetch} = useQuery(GETDRIVERDATA)
@@ -39,6 +39,9 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     // Returns an array of case fixed names
     const getChatroomNames = () => {
         return chatroom.guests.map( (guest, index) => {
+            if (guest === null){
+                return null
+            }
             let caseFixed = nameObj(guest.firstname, guest.lastname)
             let guestId = guest.id
             let name = (caseFixed.first + " " + caseFixed.last)
@@ -97,19 +100,28 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
 //---------------------- Handlers -----------------------
 
-    const handleRemoval = async (removedId) => {
-        console.log(user.role)
-        console.log(chatroom.id)
-        console.log(removedId)
-        await removeFromChat({
+    const handleRemoval = (removedId) => {
+        handleRemovalMutation(removedId).then( (resolved) => {
+            let newGuestList = activeThread.guests
+            console.log(newGuestList.length)
+            newGuestList = newGuestList.map((guest) => {
+                if (guest.id !== removedId){
+                    return guest
+                }
+            })
+            console.log(newGuestList.length)
+            setActiveThread({...activeThread, guests: newGuestList})
+        })
+    }
+
+    const handleRemovalMutation = async (removedId) => {
+        return removeFromChat({
             variables: {
                 role: user.role,
                 chatroomId: chatroom.id,
                 guestId: removedId
             }
         })
-        console.log("hit1")
-        setRemoval(true)
     }
 
 //---------------------- Handlers -----------------------
@@ -117,14 +129,14 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
 //--------------------- useEffects ----------------------
 
-    useEffect( async () => {
-        if (removal){
-            console.log("hit2")
-            await refetch()
-            console.log(queryData.getDriver.weeklyReport)
-            await setUser(queryData)
-        }
-    }, [removal])
+    // useEffect( async () => {
+    //     if (removal){
+    //         console.log("hit2")
+    //         await refetch()
+    //         console.log(queryData.getDriver.weeklyReport)
+    //         await setUser(queryData)
+    //     }
+    // }, [removal])
 
 //--------------------- useEffects ----------------------
 
