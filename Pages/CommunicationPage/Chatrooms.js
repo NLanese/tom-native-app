@@ -5,6 +5,7 @@ import Banner from "../../Global/Banner";
 import { ChatroomsStyles, ThreadCardStyles } from "../../Styles/CommunicationStyles";
 import { useRecoilState } from "recoil";
 import { userState } from "../../Recoil/atoms";
+import { useMutation } from "@apollo/client";
 import ThreadCard from "./CommunicationComponents/ThreadCard";
 import dateObj from "../../Hooks/handleDateTime";
 import NewChatroomButton from "./CommunicationComponents/NewChatroomButton";
@@ -164,7 +165,7 @@ const Chatrooms = () => {
                  </View>
                 
             </ScrollView>
-            
+
             {/* NEW CHATROOM BUTTON */}
             <View style={ChatroomsStyles.addButtonBox}>
                 <NewChatroomButton />

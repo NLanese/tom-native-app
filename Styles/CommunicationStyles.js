@@ -291,6 +291,55 @@ const ContactStyles = StyleSheet.create({
         borderColor: '#DDDDDD',
         width: threadBoxWidth,
     },
+//-----------------------------------------
+    modalContainer: {
+        backgroundColor: 'white',
+        height: 275,
+        width: 300,
+        borderRadius: 20
+    },
+    modalTitleBox: {
+        marginTop: 20,
+        marginBottom: 30,
+        alignItems: 'center',
+    },
+    modalTitleText: {
+        fontFamily: "GilroySemiBold",
+        fontSize: 16,
+        letterSpacing: 1,
+        color: '#444444'
+    },
+    modalInput: {
+        width: '80%',
+        marginLeft: '10%'
+    },
+    modalContinue: {
+        marginTop: 20,
+        left: '30%',
+        width: '40%',
+        height: 40,
+        backgroundColor: '#534FFF',
+        borderColor: '#876FFF',
+        borderWidth: 3,
+        borderRadius: 5
+    },
+    modalCancel: {
+        marginTop: 20,
+        left: '30%',
+        width: '40%',
+        height: 40,
+        backgroundColor: 'red',
+        borderColor: 'darkred',
+        borderWidth: 3,
+        borderRadius: 5
+    },
+    modalButtonText: {
+        fontFamily: "GilroyMedium",
+        fontSize: 15,
+        color: "#DDDDDD",
+        textAlign: 'center',
+        marginTop: 8
+    }
 })
 
 export{

@@ -493,11 +493,57 @@ const DRIVERSGETSHIFTPLANNER = gql`
   }
 }
 `
-
 const DRIVERSENDMESSAGE = gql`
 mutation Mutation($content: String!, $chatroomId: String!, $role: String!) {
   dynamicSendMessage(content: $content, chatroomId: $chatroomId, role: $role) {
     id
+  }
+}
+`
+
+const DRIVERCREATECHATROOM = gql`
+mutation Mutation($guests: [JSON]!, $chatroomName: String!) {
+  driverCreateChatroom(guests: $guests, chatroomName: $chatroomName) {
+    id
+    createdAt
+    guests
+    chatroomName
+    chatroomOwner
+    driverJoinOnSignUp
+    messages {
+      id
+      createdAt
+      content
+      from
+      visable
+      reported
+      reportedBy
+    }
+    managers {
+      id
+      role
+      firstname
+      lastname
+      profilePick
+      phoneNumber
+    }
+    owner {
+      id
+      role
+      firstname
+      lastname
+      email
+      profilePick
+      phoneNumber
+    }
+    drivers {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
   }
 }
 `
@@ -517,7 +563,8 @@ export {
   DRIVERACKNOWLEDGEFEEDBACKMESSAGE,
   DRIVERSGETDRIVERSFROMDSP,
   DRIVERSGETSHIFTPLANNER,
-  DRIVERSENDMESSAGE
+  DRIVERSENDMESSAGE,
+  DRIVERCREATECHATROOM,
 }
 
 
