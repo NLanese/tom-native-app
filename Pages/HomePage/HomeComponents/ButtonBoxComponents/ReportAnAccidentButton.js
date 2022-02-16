@@ -15,7 +15,7 @@ const ReportAnAccidentButton = () => {
             <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
                     style={ButtonBoxStyles.image}
-                    source={require('../../../../assets/reporting-icon.jpeg')}/>
+                    source={require('../../../../assets/reporting-icon.png')}/>
             </View> 
             <View style={{ marginTop: '-30%' }}>
                 <Text style={ButtonBoxStyles.label}>REPORT AN ACCIDENT</Text>

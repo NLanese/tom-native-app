@@ -221,13 +221,24 @@ const ContactStyles = StyleSheet.create({
         backgroundColor: 'white',
         height: maxHeight * 0.337
     },
-    completeSelection: {
+    doneTouchBounds: {
         position: 'absolute',
-        backgroundColor: '#534FFF',
+        // backgroundColor: '#534FFF',
         height: 40,
         width: maxWidth * 0.2,
         marginTop: "5%",
         marginLeft: maxWidth * .4,
+        borderColor: 'red',
+        // borderWidth: 3,
+        borderRadius: 5
+    },
+    completeSelection: {
+        position: 'absolute',
+        backgroundColor: '#534FFF',
+        height: 45,
+        width: maxWidth * 0.2,
+        marginTop: "5%",
+        // marginLeft: maxWidth * .4,
         borderColor: '#876FFF',
         borderWidth: 3,
         borderRadius: 5
@@ -236,7 +247,8 @@ const ContactStyles = StyleSheet.create({
         fontFamily: "GilroyBold",
         fontSize: 16,
         textAlign: 'center',
-        marginTop: 10
+        marginTop: 12,
+        color: "#DDDDDD"
     },
 //-----------------------------------------
     card:{ 

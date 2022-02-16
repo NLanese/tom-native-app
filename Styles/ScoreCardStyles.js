@@ -94,7 +94,7 @@ const QualityStyles = StyleSheet.create({
 	},
 //-----------------------------
 	titleBox: {
-		marginTop: 23,
+		marginTop: 30,
 		// marginLeft: 30,
 		marginBottom: maxHeight * 0.03,
 		width: maxWidth * 0.6,
@@ -125,8 +125,9 @@ const QualityStyles = StyleSheet.create({
 		backgroundColor: 'white',
 
 		shadowColor: '#000000',
-		shadowOffset: {width: .4, height: 4},
-		shadowOpacity: 0.02
+		shadowOffset: {width: 0, height: 15},
+		shadowOpacity: 0.05,
+		shadowRadius: 20
 	},
 	smallCard: {	
 		height: maxHeight * 0.10,
