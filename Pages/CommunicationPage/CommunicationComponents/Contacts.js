@@ -166,6 +166,8 @@ const Contacts = ({creating}) => {
             })
             setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
+            navigation.navigate("message-thread")
+            setModalVisible(false)
         })
     }
 

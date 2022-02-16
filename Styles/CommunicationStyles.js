@@ -223,13 +223,11 @@ const ContactStyles = StyleSheet.create({
     },
     doneTouchBounds: {
         position: 'absolute',
-        // backgroundColor: '#534FFF',
         height: 40,
         width: maxWidth * 0.2,
         marginTop: "5%",
         marginLeft: maxWidth * .4,
         borderColor: 'red',
-        // borderWidth: 3,
         borderRadius: 5
     },
     completeSelection: {
@@ -238,7 +236,6 @@ const ContactStyles = StyleSheet.create({
         height: 45,
         width: maxWidth * 0.2,
         marginTop: "5%",
-        // marginLeft: maxWidth * .4,
         borderColor: '#876FFF',
         borderWidth: 3,
         borderRadius: 5
@@ -325,10 +322,13 @@ const ContactStyles = StyleSheet.create({
         width: '80%',
         marginLeft: '10%'
     },
-    modalContinue: {
+    continueTouch: {
         marginTop: 20,
         left: '30%',
         width: '40%',
+        height: 40,
+    },
+    modalContinue: {
         height: 40,
         backgroundColor: '#534FFF',
         borderColor: '#876FFF',

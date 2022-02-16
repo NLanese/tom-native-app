@@ -13,54 +13,74 @@ const SIGNUP = gql`
 const LOGIN = gql`
   mutation Mutation($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
+    token
     id
     createdAt
     role
-    token
     firstname
     lastname
     email
-    password
     phoneNumber
     profilePick
     transporterId
+    muted
     locked
     deleted
     notified
-
     owner {
       id
       firstname
       lastname
       email
-      password
       phoneNumber
+      profilePick
     }
-
     accidents {
       id
-      driver {
-        id
-      }
+      createdAt
       name
+      date
+      time
       location
-      hitPerson {
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      weather
+      general_pictures
+      rushed_prior
+      extra_info
+      distracted
+      actions_before_accidents
+      deleted
+      unsafe_conditions
+      filled
+      collisionAccident {
         id
-      }
-      collision {
-        id
-      }
-      injuryAccident {
-        id
+        specific_pictures
+        contact_info
+        extra_info
       }
       propertyAccident {
         id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
       }
-      injuryReport {
+      injuryAccident {
         id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
       }
     }
-
     managers {
       id
       firstname
@@ -69,67 +89,27 @@ const LOGIN = gql`
       phoneNumber
       profilePick
     }
-
     vehicle {
       id
-      amazon_logo
       vehicle_number
+      amazon_logo
     }
-
     notifiedMessages {
       id
-      read
       createdAt
+      read
       content
       from
       type
-    }
-
-    messages {
-      id
-      createdAt
-      content
-      from
       manager {
         id
         firstname
         lastname
+        phoneNumber
+        profilePick
         email
-        phoneNumber
-        profilePick
       }
     }
-
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      managers {
-        id
-        role
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      owner {
-        id
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      messages {
-        id
-        createdAt
-        content
-        from
-        visable
-      }
-    }
-    
     dsp {
       id
       createdAt
@@ -145,11 +125,12 @@ const LOGIN = gql`
       deliveryCompletionRateLimits
       scanComplianceLimits
       callComplianceLimits
-      deliveryNotRecievedLimits
       photoOnDeliveryLimits
+      deliveryNotRecievedLimits
       topCardLimits
       smallCardLimits
       feedbackNotifications
+      paid
     }
     weeklyReport {
       id
@@ -166,28 +147,69 @@ const LOGIN = gql`
       delivered
       keyFocusArea
       fico
-      seatbeltOffRate
       speedingEventRate
+      seatbeltOffRate
       distractionsRate
       followingDistanceRate
       signalViolationsRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
-      callCompliance
       scanCompliance
+      callCompliance
       attendedDeliveryAccuracy
       dnr
       podOpps
       ccOpps
       netradyne
-      deliveryAssociate
       defects
+      deliveryAssociate
       customerDeliveryFeedback
       hasManyAccidents
       belongsToTeam
       attendence
       productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+        reported
+        reportedBy
+      }
+    }
+    shiftPlanners {
+      id
+      createdAt
+      sundayDate
+      sundayHours
+      mondayDate
+      mondayHours
+      thursdayDate
+      wednesdayHours
+      wednesdayDate
+      tuesdayHours
+      tuesdayDate
+      thursdayHours
+      fridayDate
+      fridayHours
+      saturdayDate
+      saturdayHours
+      weekStartDate
+      weekEndDate
+      phoneId
+      deviceId
+      vehicleId
+      cxNumber
+      message
     }
   }
 }
@@ -215,54 +237,74 @@ const CREATEACCIDENT = gql`
 const GETDRIVERDATA = gql`
   query Query {
   getDriver {
+    token
     id
     createdAt
     role
-    token
     firstname
     lastname
     email
-    password
     phoneNumber
     profilePick
     transporterId
+    muted
     locked
     deleted
     notified
-
     owner {
       id
       firstname
       lastname
       email
-      password
       phoneNumber
+      profilePick
     }
-
     accidents {
       id
-      driver {
-        id
-      }
+      createdAt
       name
+      date
+      time
       location
-      hitPerson {
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      weather
+      general_pictures
+      rushed_prior
+      extra_info
+      distracted
+      actions_before_accidents
+      deleted
+      unsafe_conditions
+      filled
+      collisionAccident {
         id
-      }
-      collision {
-        id
-      }
-      injuryAccident {
-        id
+        specific_pictures
+        contact_info
+        extra_info
       }
       propertyAccident {
         id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
       }
-      injuryReport {
+      injuryAccident {
         id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
       }
     }
-
     managers {
       id
       firstname
@@ -271,67 +313,27 @@ const GETDRIVERDATA = gql`
       phoneNumber
       profilePick
     }
-
     vehicle {
       id
-      amazon_logo
       vehicle_number
+      amazon_logo
     }
-
     notifiedMessages {
       id
-      read
       createdAt
+      read
       content
       from
       type
-    }
-
-    messages {
-      id
-      createdAt
-      content
-      from
       manager {
         id
         firstname
         lastname
+        phoneNumber
+        profilePick
         email
-        phoneNumber
-        profilePick
       }
     }
-
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      managers {
-        id
-        role
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      owner {
-        id
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      messages {
-        id
-        createdAt
-        content
-        from
-        visable
-      }
-    }
-    
     dsp {
       id
       createdAt
@@ -347,11 +349,12 @@ const GETDRIVERDATA = gql`
       deliveryCompletionRateLimits
       scanComplianceLimits
       callComplianceLimits
-      deliveryNotRecievedLimits
       photoOnDeliveryLimits
+      deliveryNotRecievedLimits
       topCardLimits
       smallCardLimits
       feedbackNotifications
+      paid
     }
     weeklyReport {
       id
@@ -368,28 +371,69 @@ const GETDRIVERDATA = gql`
       delivered
       keyFocusArea
       fico
-      seatbeltOffRate
       speedingEventRate
+      seatbeltOffRate
       distractionsRate
       followingDistanceRate
       signalViolationsRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
-      callCompliance
       scanCompliance
+      callCompliance
       attendedDeliveryAccuracy
       dnr
       podOpps
       ccOpps
       netradyne
-      deliveryAssociate
       defects
+      deliveryAssociate
       customerDeliveryFeedback
       hasManyAccidents
       belongsToTeam
       attendence
       productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+        reported
+        reportedBy
+      }
+    }
+    shiftPlanners {
+      id
+      createdAt
+      sundayDate
+      sundayHours
+      mondayDate
+      mondayHours
+      thursdayDate
+      wednesdayHours
+      wednesdayDate
+      tuesdayHours
+      tuesdayDate
+      thursdayHours
+      fridayDate
+      fridayHours
+      saturdayDate
+      saturdayHours
+      weekStartDate
+      weekEndDate
+      phoneId
+      deviceId
+      vehicleId
+      cxNumber
+      message
     }
   }
 }

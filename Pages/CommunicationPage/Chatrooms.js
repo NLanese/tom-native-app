@@ -37,8 +37,6 @@ const Chatrooms = () => {
 
     // Comparmentalizes the chatrooms
     const findChatsBy = (filter) => {
-        console.log(user.chatrooms[3].chatroomName)
-        console.log(user.chatrooms[3].messages)
         let rArray = []
         if (filter == "everyone"){
             user.chatrooms.forEach( (chatroom) =>{
@@ -52,13 +50,11 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages !== null){
-
-                        console.log("-=-=-=-=-=-=-=-=-=-=-=-")
-                        console.log(chatroom.messages)
-                        console.log("-=-=-=-=-=-=-=-=-=-=-=-")
-
-                        if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
+                    console.log(chatroom.messages.length)
+                    if (chatroom.messages !== null && chatroom.messages.length > 0){
+                        let latestText = chatroom.messages.length - 1
+                        if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
+                            console.log(chatroom.chatroomName + " is active since its messages are from today")
                             rArray.push(chatroom)
                         }
                     }
@@ -70,11 +66,13 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages === null){
+                    if (chatroom.messages === null || chatroom.messages.length == 0){
+                        console.log(chatroom.chatroomName + " is inactive since its messages are null")
                         rArray.push(chatroom)
                     }
                     else{
-                        if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day !== d.getUTCDate()){
+                        let latestText = chatroom.messages.length - 1
+                        if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day != d.getUTCDate()){
                             rArray.push(chatroom)
                         }
                     }
