@@ -20,7 +20,6 @@ const Chatrooms = () => {
         // Handles the user data
         let user
         if (rawUser.isArray){
-            console.log("was array")
             user = rawUser[rawUser.length - 2]
         }
         else{
@@ -50,11 +49,9 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    console.log(chatroom.messages.length)
                     if (chatroom.messages !== null && chatroom.messages.length > 0){
                         let latestText = chatroom.messages.length - 1
                         if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
-                            console.log(chatroom.chatroomName + " is active since its messages are from today")
                             rArray.push(chatroom)
                         }
                     }
@@ -67,7 +64,6 @@ const Chatrooms = () => {
                 }
                 else{
                     if (chatroom.messages === null || chatroom.messages.length == 0){
-                        console.log(chatroom.chatroomName + " is inactive since its messages are null")
                         rArray.push(chatroom)
                     }
                     else{

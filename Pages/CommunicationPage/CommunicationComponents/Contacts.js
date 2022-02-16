@@ -148,21 +148,29 @@ const Contacts = ({creating}) => {
     }
 
     const handleDoneClick = () => {
-        console.log("done click")
         if (newGuests.length > 0){
             setModalVisible(true)
         }
     }
 
     const handleSubmission = (chatName) => {
+        if (chatName.length < 1){
+            return null
+        }
         handleMutation(chatName).then( (resolved) => {
-            setActiveThread(resolved.data.driverCreateChatroom)
+            let newActiveThread = resolved.data.driverCreateChatroom // creates new thread JSON from mutation data
+            setActiveThread(newActiveThread)
             let oldThreads = user.chatrooms
-            let revisedThreads = [resolved.data.driverCreateChatroom]
-            oldThreads.forEach( chat => {
-                if (chat.id !== activeThread.id){
+            oldThreads.forEach( (thread, index) => {
+            })
+            let revisedThreads = [newActiveThread]
+            oldThreads.forEach( (chat, index) => {
+                if (chat.id != newActiveThread.id){
                     revisedThreads.push(chat)
                 }
+            })
+            revisedThreads.forEach( thread => {
+                console.log(thread.chatroomName)
             })
             setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
