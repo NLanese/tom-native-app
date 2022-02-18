@@ -106,13 +106,11 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     const handleRemoval = (removedId) => {
         handleRemovalMutation(removedId).then( (resolved) => {
             let newGuestList = activeThread.guests
-            console.log(newGuestList.length)
             newGuestList = newGuestList.map((guest) => {
                 if (guest.id !== removedId){
                     return guest
                 }
             })
-            console.log(newGuestList)
             setActiveThread({...activeThread, guests: newGuestList})
         })
     }

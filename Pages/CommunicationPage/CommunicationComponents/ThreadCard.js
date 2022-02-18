@@ -18,10 +18,11 @@ const ThreadCard = ({chatroom}) => {
         if (chatroom.messages === null || chatroom.messages.length < 1){
             return "No Messages"
         }
-        if (chatroom.messages[0].content.split("").length > 70){
-            return (chatroom.messages[0].content.slice(0, 70) + "...")
+        let latestText = chatroom.messages.length - 1
+        if (chatroom.messages[latestText].content.split("").length > 70){
+            return (chatroom.messages[latestText].content.slice(0, 70) + "...")
         }
-        return chatroom.messages[0].content
+        return chatroom.messages[latestText].content
     }
 
     // Generates the group chat name title

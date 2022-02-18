@@ -29,13 +29,14 @@ const HomeStyles = StyleSheet.create({
 //------------------------------------
 	titleBox: {
 		marginLeft: 30,
-		marginTop: 23,
+		marginTop: 30,
 		width: 200,
 
 		// borderColor: 'green',
 		// borderWidth: 2,
 	},
 	subTitleBox: {
+		marginTop: 4,
 		marginLeft: 30,
 		marginBottom: 34,
 		width: 200,
@@ -166,15 +167,16 @@ const ButtonBoxStyles = StyleSheet.create({
 		borderRadius: 30,
 
 		shadowColor: '#000000',
-		shadowOffset: {width: .4, height: 4},
-		shadowOpacity: 0.02
+		shadowOffset: {width: 0, height: 15},
+		shadowOpacity: 0.05,
+		shadowRadius: 20
 	},
 //-------------------------------------
 	image: {
 		alignContent: 'center',
 		top: '30%',
-		height: 45,
-		width: 45,
+		height: 50,
+		width: 48,
 		marginLeft: 52.5
 	},
 	label: {

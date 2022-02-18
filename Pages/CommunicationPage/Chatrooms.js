@@ -20,7 +20,8 @@ const Chatrooms = () => {
         // Handles the user data
         let user
         if (rawUser.isArray){
-            user = rawUser[0]
+            console.log("was array")
+            user = rawUser[rawUser.length - 2]
         }
         else{
             user = {...rawUser}
@@ -36,6 +37,8 @@ const Chatrooms = () => {
 
     // Comparmentalizes the chatrooms
     const findChatsBy = (filter) => {
+        console.log(user.chatrooms[3].chatroomName)
+        console.log(user.chatrooms[3].messages)
         let rArray = []
         if (filter == "everyone"){
             user.chatrooms.forEach( (chatroom) =>{
@@ -50,6 +53,11 @@ const Chatrooms = () => {
                 }
                 else{
                     if (chatroom.messages !== null){
+
+                        console.log("-=-=-=-=-=-=-=-=-=-=-=-")
+                        console.log(chatroom.messages)
+                        console.log("-=-=-=-=-=-=-=-=-=-=-=-")
+
                         if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
                             rArray.push(chatroom)
                         }
@@ -90,7 +98,7 @@ const Chatrooms = () => {
                 return(
                     <View>
                         <ThreadCard chatroom={chatroom} key={index}/>
-                        <View style={ChatroomsStyles.divider} key={index + ".0"}/>
+                        <View style={ChatroomsStyles.divider} key={index + "b"}/>
                     </View>
                 )
             }

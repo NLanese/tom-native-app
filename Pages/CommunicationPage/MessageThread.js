@@ -42,7 +42,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     const [KeyboardVisible, setKeyboardVisible] = useState(false);
 
     // Gets User State from Recoil
-    const [user] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userState)
 
     const [modalvisible, setModalVisible] = useState(false)
 
@@ -166,11 +166,21 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     }
 
     const handleSendMessage = () => {
-        console.log(activeThread.id)
         if (newMessage.length > 0){
              handleMutation().then( (resolved) => {
                 setNewMessage("")
-                setActiveThread(resolved.data.driverSendMessage.chatroom)
+                let newActiveThread = resolved.data.driverSendMessage.chatroom
+                setActiveThread(newActiveThread)
+                let updatedThreads = [newActiveThread]
+                user.chatrooms.forEach( (chat) => {
+                    if (chat.id == newActiveThread.id){
+                        console.log("Skipping " + newActiveThread.chatroomName)
+                    }
+                    else {
+                        updatedThreads.push(chat)
+                    }
+                })
+                setUser({...user, chatrooms: updatedThreads})
             })
         }
         else{

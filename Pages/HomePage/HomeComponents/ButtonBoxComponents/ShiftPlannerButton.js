@@ -18,7 +18,7 @@ const ShiftPlannerButton = () => {
                 <View style={ButtonBoxStyles.buttonCard}>
                     <Image 
                         style={ButtonBoxStyles.image}
-                        source={require('../../../../assets/shift-planner-icon.jpeg')}/>
+                        source={require('../../../../assets/shift-planner.png')}/>
                 </View> 
                 <View style={{ marginTop: '-30%' }}>
                     <Text style={ButtonBoxStyles.label}>SHIFT PLANNER</Text>

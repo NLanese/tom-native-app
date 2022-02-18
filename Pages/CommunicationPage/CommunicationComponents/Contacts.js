@@ -131,18 +131,15 @@ const Contacts = ({creating}) => {
 // -------------------------- Handlers ---------------------------
     const handleAddClick = (selectedId) => {
         setNewGuests([...newGuests, selectedId])
-        console.log(newGuests)
     }
 
     const handleRemoveClick = (selectedId) => {
-        console.log(selectedId)
         let newestVersion = []
         newGuests.forEach( (guest) => {
             if (guest !== selectedId){
                 newestVersion.push(guest)
             }
         })
-        console.log(newestVersion)
         setNewGuests(newestVersion)
     }
 
@@ -151,6 +148,7 @@ const Contacts = ({creating}) => {
     }
 
     const handleDoneClick = () => {
+        console.log("done click")
         if (newGuests.length > 0){
             setModalVisible(true)
         }
@@ -159,6 +157,14 @@ const Contacts = ({creating}) => {
     const handleSubmission = (chatName) => {
         handleMutation(chatName).then( (resolved) => {
             setActiveThread(resolved.data.driverCreateChatroom)
+            let oldThreads = user.chatrooms
+            let revisedThreads = [resolved.data.driverCreateChatroom]
+            oldThreads.forEach( chat => {
+                if (chat.id !== activeThread.id){
+                    revisedThreads.push(chat)
+                }
+            })
+            setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
         })
     }
@@ -178,8 +184,7 @@ const Contacts = ({creating}) => {
     useEffect (async () => {
         if (changesMade && !loading){
             setTimeout(() => {
-                setModalVisible(false)
-                navigation.navigate('message-thread')
+                
             }, 500)
         }
     }, [activeThread])
@@ -192,28 +197,33 @@ const Contacts = ({creating}) => {
         return (
             <View>
                 <Banner />
+
                 <View style={ContactStyles.header}>
                     <View style={ContactStyles.searchBar}>
                         <SearchBar setSearch={handleSetSearch} />
                     </View>
                 </View>
+
                 <View style={ContactStyles.scrollContainer}>
                     <ScrollView contentContainerStyle={ContactStyles.container}>
                         {renderRoster(filterBasedOffSearch(allDrivers))}
                     </ScrollView>
                 </View>
+
                 <View style={ContactStyles.footer}>
-                    <TouchableOpacity onPress={() => handleDoneClick()}>  
+                    <TouchableOpacity onPress={() => handleDoneClick()} style={ContactStyles.doneTouchBounds}>  
                         <View style={ContactStyles.completeSelection}>
                             <Text style={ContactStyles.doneText}>Done</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+
                 <Modal visible={modalVisible}  backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
                     <View>
                         <NameChat handleSubmission={handleSubmission} setModalVisible={setModalVisible} />
                     </View>
                 </Modal>
+
             </View>
         )
     }
