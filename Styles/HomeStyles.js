@@ -6,12 +6,6 @@ let maxHeight= Dimensions.get('window').height
 let sideDistance = ((maxWidth - 300) * 1.15) / 3
 let middleDistance = sideDistance * .70
 
-//-------------
-
-let modalSideDistance = (maxWidth - 318)
-modalSideDistance = modalSideDistance / 2
-
-//------------
 
 let modalContentSideDistance = (326 - 243)
 modalContentSideDistance = modalContentSideDistance / 2
@@ -31,18 +25,12 @@ const HomeStyles = StyleSheet.create({
 		marginLeft: 30,
 		marginTop: 30,
 		width: 200,
-
-		// borderColor: 'green',
-		// borderWidth: 2,
 	},
 	subTitleBox: {
 		marginTop: 4,
 		marginLeft: 30,
 		marginBottom: 34,
 		width: 200,
-
-		// borderColor: 'red',
-		// borderWidth: 2,
 	},
 	title: {
 		fontFamily: 'GilroyBold',
@@ -64,18 +52,16 @@ const HomeStyles = StyleSheet.create({
 	  },
 //-------------------------------------
 	weeklyNotificationModal:{
-		height: 326,
+		position: 'absolute',
+		height: 226,
 		width: 318,
-
-		// marginTop: maxHeight * 0.20
 	},
 	notificationModalContent:{
-		width: 318,
+		width: maxWidth - 60,
 		height: 326,
 
-		left: modalSideDistance,
+		left: 0,
 
-		height: maxHeight * 0.6,
 		backgroundColor: "#f9f9f9",
 		borderRadius: 50,
 	},
@@ -93,10 +79,10 @@ const HomeStyles = StyleSheet.create({
 	},
 	weeklyNotificationMessage:{
 		width: 243,
-		height: 140,
-		// borderColor: 'black',
-		// borderWidth: 2,
-		marginLeft: modalContentSideDistance,
+		paddingBottom: 10,
+		marginBottom: 5,
+		marginLeft: 38,
+		// borderWidth: 2
 	},
 	messageText: {
 		color: '#888888',
@@ -105,17 +91,28 @@ const HomeStyles = StyleSheet.create({
 	},
 //---------------------------------------
 	acknowledgeContainter:{
-		top: maxHeight * 0.05,
-		left: maxWidth * 0.1,
-		width: maxWidth * 0.6,
+		left: '10%',
+		width: '80%',
 	},
 	checkBox: {
 		height: 22,
 		width: 22,
+
+		marginTop: 21,
 		
 		borderColor: '#888888',
-		borderWidth: 1.5,
+		borderWidth: 2,
 		borderRadius: 5
+	},
+	acknowledgedBox: {
+		marginTop: -15,
+		marginLeft: 33
+	},
+	acknowledgedText: {
+		fontFamily: "GilroyRegular",
+		fontSize: 11,
+		letterSpacing: 3,
+		color: "#888888",
 	}
 })
 const ButtonBoxStyles = StyleSheet.create({

@@ -6,7 +6,7 @@ import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
 import { Modal, Button } from '@ui-kitten/components';
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
 import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
@@ -45,12 +45,27 @@ const Home = ({ handleLoggedIn }) => {
         })
     }
 
+    const handleModalClose = () => {
+        if (acknowledged){
+            setModalVisible(false)
+        }
+    }
+
     const renderCheck = () => {
         if (acknowledged){
-            return null
+            return <View style={{backgroundColor: '#534FFF', height: '100%'}}/>
         }
         else{
             return null
+        }
+    }
+
+    const renderButton = () => {
+        if (acknowledged){
+            return(<Image source={require("../../assets/check-button.png")} style={{height: 50, width: 50}}/>)
+        }
+        else{
+            return(<Image source={require("../../assets/inactiveCheck.jpg")} style={{height: 50, width: 50}}/>)
         }
     }
 
@@ -92,7 +107,11 @@ const Home = ({ handleLoggedIn }) => {
                     <View style={{marignTop: 20, height: 1, width: 1, backgroundColor: '#eaeaea'}}></View>
 
 
-                    <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
+                    <Modal 
+                        visible={modalVisible} 
+                        style={HomeStyles.weeklyNotificationModal}
+                        backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+                    >
                         <View style={HomeStyles.notificationModalContent}>
                             <View style={HomeStyles.weeklyNotificationTitleSpace}>
                                 <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status:</Text>
@@ -106,16 +125,13 @@ const Home = ({ handleLoggedIn }) => {
                                             {renderCheck()}
                                     </View>
                                 </TouchableOpacity>
-                                <View>
-                                    <Text>I Acknowledge this message</Text>
+                                <View style={HomeStyles.acknowledgedBox}>
+                                    <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
                                 </View>
-                                <View style={{borderWidth: 0.3, top: maxHeight * -0.026}}>
-                                    <Button 
-                                        onPress={() => setModalVisible(false)}
-                                        mode='contained'
-                                        disabled={exitDisabled}>
-                                        Exit 
-                                    </Button>
+                                <View style={{width: 50, marginLeft: '80%', marginTop: -30}}>
+                                    <TouchableOpacity onPress={() => handleModalClose()}>
+                                        {renderButton()}     
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
