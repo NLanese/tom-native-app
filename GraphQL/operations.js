@@ -24,43 +24,18 @@ const LOGIN = gql`
     phoneNumber
     profilePick
     transporterId
+    muted
     locked
     deleted
     notified
-
     owner {
       id
       firstname
       lastname
       email
-      password
       phoneNumber
+      profilePick
     }
-
-    accidents {
-      id
-      driver {
-        id
-      }
-      name
-      location
-      hitPerson {
-        id
-      }
-      collision {
-        id
-      }
-      injuryAccident {
-        id
-      }
-      propertyAccident {
-        id
-      }
-      injuryReport {
-        id
-      }
-    }
-
     managers {
       id
       firstname
@@ -69,75 +44,19 @@ const LOGIN = gql`
       phoneNumber
       profilePick
     }
-
     vehicle {
       id
-      amazon_logo
       vehicle_number
+      amazon_logo
     }
-
-    notifiedMessages {
-      id
-      read
-      createdAt
-      content
-      from
-      type
-    }
-
-    messages {
-      id
-      createdAt
-      content
-      from
-      manager {
-        id
-        firstname
-        lastname
-        email
-        phoneNumber
-        profilePick
-      }
-    }
-
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      managers {
-        id
-        role
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      owner {
-        id
-        firstname
-        lastname
-        profilePick
-        phoneNumber
-      }
-      messages {
-        id
-        createdAt
-        content
-        from
-        visable
-      }
-    }
-    
     dsp {
       id
       createdAt
       name
       shortcode
       timeZone
-      ficoLimits
       seatbeltLimits
+      ficoLimits
       speedingLimits
       distractionLimits
       followLimits
@@ -148,16 +67,19 @@ const LOGIN = gql`
       deliveryNotRecievedLimits
       photoOnDeliveryLimits
       topCardLimits
+      autoSend
       smallCardLimits
       feedbackNotifications
+      accountStanding
+      paid
     }
     weeklyReport {
       id
       createdAt
       date
       hadAccident
-      feedbackMessage
       feedbackMessageSent
+      feedbackMessage
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -169,8 +91,8 @@ const LOGIN = gql`
       seatbeltOffRate
       speedingEventRate
       distractionsRate
-      followingDistanceRate
       signalViolationsRate
+      followingDistanceRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
@@ -183,11 +105,105 @@ const LOGIN = gql`
       netradyne
       deliveryAssociate
       defects
-      customerDeliveryFeedback
       hasManyAccidents
+      customerDeliveryFeedback
       belongsToTeam
       attendence
       productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+        reported
+        reportedBy
+      }
+    }
+    shiftPlanners {
+      id
+      createdAt
+      sundayDate
+      sundayHours
+      mondayDate
+      mondayHours
+      tuesdayHours
+      tuesdayDate
+      wednesdayDate
+      wednesdayHours
+      thursdayDate
+      thursdayHours
+      fridayDate
+      fridayHours
+      saturdayDate
+      saturdayHours
+      weekStartDate
+      weekEndDate
+      phoneId
+      vehicleId
+      cxNumber
+      deviceId
+      message
+    }
+    accidents {
+      id
+      name
+      date
+      time
+      location
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      general_pictures
+      weather
+      rushed_prior
+      distracted
+      extra_info
+      actions_before_accidents
+      unsafe_conditions
+      collisionAccident {
+        id
+        specific_pictures
+        contact_info
+        extra_info
+        injuryAccident {
+          id
+          medical_attention
+          immediate_attention
+          injury
+          contact_info
+          specific_pictures
+          pain_level
+          extra_info
+        }
+      }
+      injuryAccident {
+        id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
+      }
+      propertyAccident {
+        id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
+      }
     }
   }
 }

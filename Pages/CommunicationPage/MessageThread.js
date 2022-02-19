@@ -42,7 +42,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     const [KeyboardVisible, setKeyboardVisible] = useState(false);
 
     // Gets User State from Recoil
-    const [user] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userState)
 
     const [modalvisible, setModalVisible] = useState(false)
 
@@ -128,35 +128,31 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         if (messageData === null){
             return <Text>No Messages</Text>
         }
-        if (Object.keys(messageData) < 1){
-            return null
-        }else{
-            const messages = messageData.map( (message, key) => {
+        const messages = messageData.map( (message, key) => {
 
-                // Renders sender name
-                let propFrom = ""
-                if (message.from.id == user.id ){
-                    propFrom = "You"
-                }
-                else{
-                    propFrom = message.from
-                }
+            // Renders sender name
+            let propFrom = ""
+            if (message.from.id == user.id ){
+                propFrom = "You"
+            }
+            else{
+                propFrom = message.from
+            }
 
-                // Calls upon Message Component
-                return(
-                    <Message setActiveThread={setActiveThread} from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
-                )
-            })
+            // Calls upon Message Component
+            return(
+                <Message setActiveThread={setActiveThread} from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
+            )
+        })
 
-            // Renders the Message Component and Name Label
-            return (<View> 
-                        <View>
-                            {messages}
-                        </View>
-                        <View style={{height: 50}}/>
+        // Renders the Message Component and Name Label
+        return (<View> 
+                    <View>
+                        {messages}
                     </View>
-                    )
-        }
+                    <View style={{height: 50}}/>
+                </View>
+        )
     }
 // ----------------- Render / Styling Functions ------------------------
 
@@ -166,14 +162,31 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     }
 
     const handleSendMessage = () => {
-        console.log(activeThread.id)
         if (newMessage.length > 0){
-             handleMutation().then( (resolved) => {
-                setNewMessage("")
-                setActiveThread(resolved.data.driverSendMessage.chatroom)
+             handleMutation().then( (resolved) => { // This line fixed all the promise issues
+                setNewMessage("") // clears current message input
+                let newActiveThread = resolved.data.driverSendMessage.chatroom // creates new thread JSON from mutation data
+                setActiveThread(newActiveThread) // Sets current thread to match the new one
+
+                // changes the entire user state, leaving all over threads untouched but updating the current one
+                let updatedThreads = [newActiveThread]
+                console.log(user.chatrooms.length)
+                user.chatrooms.forEach( (chat) => {
+                    if (chat.id == newActiveThread.id){
+                    }
+                    else {
+                        updatedThreads.push(chat)
+                    }
+                })
+                console.log(updatedThreads.length)
+
+
+                // changes the main recoil state
+                setUser({...user, chatrooms: updatedThreads})
             })
         }
         else{
+            // Throw Error Handling for no input or just do nothing, we'll see
         }
     }
 

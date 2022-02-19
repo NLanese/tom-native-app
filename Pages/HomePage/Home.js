@@ -3,16 +3,16 @@ import { userState } from '../../Recoil/atoms';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
-import { Modal, Button } from '@ui-kitten/components';
+import { Modal, Button, CheckBox } from '@ui-kitten/components';
 import { websiteState } from '../../Recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
 import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
-
+import WeeklyBottomCard from './HomeComponents/weeklyModalBottom'
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -32,12 +32,16 @@ const Home = ({ handleLoggedIn }) => {
     const [modalVisible, setModalVisible] = useState(initVisible)
     const [exitDisabled, setExitDisabled] = useState(true)
 
+    const [buttonLoading, setButtonLoading] = useState(false)
+    const [buttonHeight, setButtonHeight] = useState(0)
+
     const [sendAcknowledge, { loading: loading, error: error, data: data }] =
 		useMutation(DRIVERACKNOWLEDGEFEEDBACKMESSAGE);
 
     const handleAcknowledge = async (report) => {
         await setAcknowledged(true)
         await setExitDisabled(false)
+        await setButtonLoading(true)
         await sendAcknowledge({
             variables:{
                 reportId: report.id
@@ -45,12 +49,26 @@ const Home = ({ handleLoggedIn }) => {
         })
     }
 
-    const renderCheck = () => {
+    const handleModalClose = () => {
         if (acknowledged){
-            return null
+            setModalVisible(false)
+        }
+    }
+
+
+    const renderButton = () => {
+        if (acknowledged){
+            return(
+                <View>
+                    <View style={{position: 'absolute', height: (50 - buttonHeight), zIndex: 20, overflow: 'hidden',}}>
+                        <Image source={require("../../assets/check-button-inactive.png")} style={{height: 50, width: 50}}/>
+                    </View>
+                    <Image source={require("../../assets/check-button.png")} style={{height: 50, width: 50}}/>
+                </View>
+            )
         }
         else{
-            return null
+            return(<Image source={require("../../assets/check-button-inactive.png")} style={{height: 50, width: 50}}/>)
         }
     }
 
@@ -61,6 +79,17 @@ const Home = ({ handleLoggedIn }) => {
     let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
     let name = nameObj(user.firstname, user.lastname)
 
+
+    if (buttonLoading){
+        setTimeout(() => {
+            if (buttonHeight < 50){
+                setButtonHeight(buttonHeight + 5)
+            }
+            else{
+                setButtonLoading(false)
+            }
+        }, 0.5)
+    }
 
     return (
         <View>
@@ -92,32 +121,40 @@ const Home = ({ handleLoggedIn }) => {
                     <View style={{marignTop: 20, height: 1, width: 1, backgroundColor: '#eaeaea'}}></View>
 
 
-                    <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
+                    <Modal 
+                        visible={modalVisible} 
+                        style={HomeStyles.weeklyNotificationModal}
+                        backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+                    >
                         <View style={HomeStyles.notificationModalContent}>
                             <View style={HomeStyles.weeklyNotificationTitleSpace}>
-                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status:</Text>
+                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status</Text>
                             </View>
                             <View style={HomeStyles.weeklyNotificationMessage}>
                                 <Text style={HomeStyles.messageText}>{weeklyReportObj.feedbackMessage}</Text>
                             </View>
                             <View style={HomeStyles.acknowledgeContainter}>
-                                <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
+                                {/* <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
                                     <View style={HomeStyles.checkBox}>
                                             {renderCheck()}
                                     </View>
-                                </TouchableOpacity>
-                                <View>
-                                    <Text>I Acknowledge this message</Text>
+                                </TouchableOpacity> */}
+                                <CheckBox
+                                    checked={acknowledged}
+                                    onChange={() => handleAcknowledge()}>
+                                </CheckBox>
+                                <View style={HomeStyles.acknowledgedBox}>
+                                    <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
                                 </View>
-                                <View style={{borderWidth: 0.3, top: maxHeight * -0.026}}>
-                                    <Button 
-                                        onPress={() => setModalVisible(false)}
-                                        mode='contained'
-                                        disabled={exitDisabled}>
-                                        Exit 
-                                    </Button>
+                                <View style={{width: 50, marginLeft: '80%', marginTop: -30}}>
+                                    <TouchableOpacity onPress={() => handleModalClose()}>
+                                        {renderButton()}     
+                                    </TouchableOpacity>
                                 </View>
                             </View>
+                        </View>
+                        <View style={{position: 'absolute', marginTop: 240, paddingLeft: 8, paddingRight: 8}}>
+                            <WeeklyBottomCard data={user} />
                         </View>
                     </Modal>
             </ScrollView>

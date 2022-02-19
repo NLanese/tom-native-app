@@ -12,7 +12,6 @@ import Loading from "../../Global/Loading";
 import NoShifts from "./NoShifts";
 
 const ShiftPlanner = () => {
-    const { loading, error, data, refetch } = useQuery(DRIVERSGETSHIFTPLANNER)
     const [shiftPlannerData, setShiftPlannerData] = useState()
 
     // Recoil
@@ -27,22 +26,24 @@ const ShiftPlanner = () => {
         user = {...rawUser}
     }
 
+    console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-\n" + user + "\n=-=-=-=-=-=-=-=-=-=-=-=-")
+
     // Gets the current date
     const d = new Date();
     let year = d.getUTCFullYear
     let month = d.getUTCMonth();
     let day = d.getUTCDate();
 
-    useEffect(() => {
-        refetch()
-    }, [])
+    // useEffect(() => {
+    //     refetch()
+    // }, [])
 
-    useEffect(() => {
-        if (!loading && data) {
-            console.log(data.driverGetShiftPlanner)
-            setShiftPlannerData(data.driverGetShiftPlanner)
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         console.log(data.driverGetShiftPlanner)
+    //         setShiftPlannerData(data.driverGetShiftPlanner)
+    //     }
+    // }, [data])
 
     // Loading screen if not finished with querying the data
     if (loading || !data){

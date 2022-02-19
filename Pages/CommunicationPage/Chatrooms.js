@@ -20,7 +20,7 @@ const Chatrooms = () => {
         // Handles the user data
         let user
         if (rawUser.isArray){
-            user = rawUser[0]
+            user = rawUser[rawUser.length - 2]
         }
         else{
             user = {...rawUser}
@@ -49,8 +49,9 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages !== null){
-                        if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
+                    if (chatroom.messages !== null && chatroom.messages.length > 0){
+                        let latestText = chatroom.messages.length - 1
+                        if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
                             rArray.push(chatroom)
                         }
                     }
@@ -62,11 +63,12 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages === null){
+                    if (chatroom.messages === null || chatroom.messages.length == 0){
                         rArray.push(chatroom)
                     }
                     else{
-                        if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day !== d.getUTCDate()){
+                        let latestText = chatroom.messages.length - 1
+                        if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day != d.getUTCDate()){
                             rArray.push(chatroom)
                         }
                     }
@@ -90,7 +92,7 @@ const Chatrooms = () => {
                 return(
                     <View>
                         <ThreadCard chatroom={chatroom} key={index}/>
-                        <View style={ChatroomsStyles.divider} key={index + ".0"}/>
+                        <View style={ChatroomsStyles.divider} key={index + "b"}/>
                     </View>
                 )
             }

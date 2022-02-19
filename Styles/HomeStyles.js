@@ -6,12 +6,6 @@ let maxHeight= Dimensions.get('window').height
 let sideDistance = ((maxWidth - 300) * 1.15) / 3
 let middleDistance = sideDistance * .70
 
-//-------------
-
-let modalSideDistance = (maxWidth - 318)
-modalSideDistance = modalSideDistance / 2
-
-//------------
 
 let modalContentSideDistance = (326 - 243)
 modalContentSideDistance = modalContentSideDistance / 2
@@ -29,19 +23,14 @@ const HomeStyles = StyleSheet.create({
 //------------------------------------
 	titleBox: {
 		marginLeft: 30,
-		marginTop: 23,
+		marginTop: 30,
 		width: 200,
-
-		// borderColor: 'green',
-		// borderWidth: 2,
 	},
 	subTitleBox: {
+		marginTop: 4,
 		marginLeft: 30,
 		marginBottom: 34,
 		width: 200,
-
-		// borderColor: 'red',
-		// borderWidth: 2,
 	},
 	title: {
 		fontFamily: 'GilroyBold',
@@ -63,18 +52,17 @@ const HomeStyles = StyleSheet.create({
 	  },
 //-------------------------------------
 	weeklyNotificationModal:{
-		height: 326,
+		position: 'absolute',
+		marginTop: -50,
+		height: 226,
 		width: 318,
-
-		// marginTop: maxHeight * 0.20
 	},
 	notificationModalContent:{
-		width: 318,
+		width: maxWidth - 60,
 		height: 326,
 
-		left: modalSideDistance,
+		left: 0,
 
-		height: maxHeight * 0.6,
 		backgroundColor: "#f9f9f9",
 		borderRadius: 50,
 	},
@@ -92,10 +80,10 @@ const HomeStyles = StyleSheet.create({
 	},
 	weeklyNotificationMessage:{
 		width: 243,
-		height: 140,
-		// borderColor: 'black',
-		// borderWidth: 2,
-		marginLeft: modalContentSideDistance,
+		paddingBottom: 10,
+		marginBottom: 5,
+		marginLeft: 38,
+		// borderWidth: 2
 	},
 	messageText: {
 		color: '#888888',
@@ -104,17 +92,28 @@ const HomeStyles = StyleSheet.create({
 	},
 //---------------------------------------
 	acknowledgeContainter:{
-		top: maxHeight * 0.05,
-		left: maxWidth * 0.1,
-		width: maxWidth * 0.6,
+		left: '10%',
+		width: '80%',
 	},
 	checkBox: {
 		height: 22,
 		width: 22,
+
+		marginTop: 21,
 		
 		borderColor: '#888888',
-		borderWidth: 1.5,
+		borderWidth: 2,
 		borderRadius: 5
+	},
+	acknowledgedBox: {
+		marginTop: -15,
+		marginLeft: 33
+	},
+	acknowledgedText: {
+		fontFamily: "GilroyRegular",
+		fontSize: 11,
+		letterSpacing: 3,
+		color: "#888888",
 	}
 })
 const ButtonBoxStyles = StyleSheet.create({
@@ -131,31 +130,23 @@ const ButtonBoxStyles = StyleSheet.create({
 		alignItems: 'center',
 
 		width: 150,
-		height: maxHeight * 0.8,
 
-		marginRight: 0
-
-		// borderColor: 'blue',
-		// borderWidth: 2,		
+		marginRight: 0	
 	},
 	leftContainer: {
 		position: "relative",
 		alignItems: 'center',
 
 		width: 150,
-		height: maxHeight * 0.8,
 
 		marginLeft: sideDistance - 3,
 		marginRight: middleDistance,
-
-		// borderColor: 'green',
-		// borderWidth: 2,		
+		
 	},
 //-------------------------------------
 	clickable: {
 		height: maxHeight * 0.2,
 		width: 150,
-		marginBottom: middleDistance
 	},
 	buttonCard: {
 		backgroundColor: 'white',
@@ -166,15 +157,16 @@ const ButtonBoxStyles = StyleSheet.create({
 		borderRadius: 30,
 
 		shadowColor: '#000000',
-		shadowOffset: {width: .4, height: 4},
-		shadowOpacity: 0.02
+		shadowOffset: {width: 0, height: 15},
+		shadowOpacity: 0.05,
+		shadowRadius: 20
 	},
 //-------------------------------------
 	image: {
 		alignContent: 'center',
 		top: '30%',
-		height: 45,
-		width: 45,
+		height: 50,
+		width: 48,
 		marginLeft: 52.5
 	},
 	label: {
@@ -223,8 +215,10 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginLeft: '83%',
 	},
 	arrow: {
+		marginTop: maxHeight * .025,
 		height: 30,
-		width: 35
+		width: 35,
+		position: 'absolute'
 	},
 	arrowIcon: {
 		width: 20,
@@ -233,7 +227,7 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 //-----------------------------------
 	bottomTouch: {
-		marginTop: maxHeight * .63,
+		marginTop: maxHeight * .55,
 		marginLeft: 0,
 		marginBottom: 20,
 

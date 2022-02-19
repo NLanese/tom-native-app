@@ -18,7 +18,7 @@ const NameChat = ({handleSubmission, setModalVisible}) => {
                     placeholder={"Enter a Chat Name"}
                 />
             </View>
-            <TouchableOpacity onPress={() => handleSubmission(chatName)}>
+            <TouchableOpacity onPress={() => handleSubmission(chatName)} style={ContactStyles.continueTouch}>
                 <View style={ContactStyles.modalContinue}>
                     <Text style={ContactStyles.modalButtonText}>Continue</Text>
                 </View>
