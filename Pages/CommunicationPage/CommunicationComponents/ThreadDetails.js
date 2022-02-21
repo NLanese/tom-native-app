@@ -66,7 +66,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
             }
             addedIds.push(guest.id)
             return(
-                <View style={ThreadDetailStyles.nameCard}>
+                <View style={ThreadDetailStyles.nameCard} key={index}>
                     <Text style={ThreadDetailStyles.nameText}>{guest.name}</Text>
                     {renderRemoveButtons(guest.id)}
                 </View>
