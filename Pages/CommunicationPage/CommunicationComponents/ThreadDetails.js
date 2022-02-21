@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { ScrollView, View, Text, TouchableOpacity, TextInput } from "react-native";
 import { Modal } from "@ui-kitten/components";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../Recoil/atoms";
@@ -26,10 +26,15 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
 
 //--------------- Recoil and Local State ---------------
+
+    // User Recoil
     const [user, setUser] = useRecoilState(userState)
 
     // Tracks when chat guests have been removed. Enables useEffect refresh
     const [removal, setRemoval] = useState(false)
+
+    // Tracks Chat Renaming
+    const [newName, setNewName] = useState("")
 
 //--------------- Recoil and Local State ---------------
 
@@ -159,6 +164,15 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
                     <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
                 </View>
                 {renderChatroomNames()}
+            </View>
+            <View>
+                <Text>Chatroom Name</Text>
+                <TextInput
+                    onChange={(value) => setNewName(value)}
+                />
+                <TouchableOpacity>
+                    <Text>Rename Chat</Text>
+                </TouchableOpacity>
             </View>
             {renderAddContacts()}
 

@@ -42,11 +42,11 @@ const Home = ({ handleLoggedIn }) => {
         await setAcknowledged(true)
         await setExitDisabled(false)
         await setButtonLoading(true)
-        await sendAcknowledge({
-            variables:{
-                reportId: report.id
-            }
-        })
+        // await sendAcknowledge({
+        //     variables:{
+        //         reportId: report.id
+        //     }
+        // })
     }
 
     const handleModalClose = () => {
