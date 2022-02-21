@@ -128,8 +128,8 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         if (messageData === null){
             return <Text>No Messages</Text>
         }
+      
         const messages = messageData.map( (message, key) => {
-
             // Renders sender name
             let propFrom = ""
             if (message.from.id == user.id ){
