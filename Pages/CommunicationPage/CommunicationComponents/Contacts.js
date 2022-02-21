@@ -47,6 +47,9 @@ const Contacts = ({creating}) => {
 
         // Tracks whether or not changes have been submitted. Guards useEffect
         const[changesMade, setChangesMade] = useState(false)
+
+        // For Add Contacts only
+        const [newAddThread, setNewAddThread] = useState("")
 // -------------------- Recoil and UseState ----------------------
 
 
@@ -92,19 +95,29 @@ const Contacts = ({creating}) => {
                 })
             }
         } else {
-            let newThread = activeThread.map((driver) =>{ return driver })
-            newThread = [...newThread, newGuests]
-            newThread.forEach( (driver) => {
-                if (driver.id === selected.id){
-                    returnComponent = () => {
-                        return(
-                            <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
-                                <View><Text style={ContactStyles.removeText}>Remove</Text></View>
-                            </TouchableOpacity>
-                        )
+            let newThread = activeThread.guests.map((driver) =>{ return driver })
+            if (newThread.length > 0){
+                newThread.forEach( (driver) => {
+                    if (driver.id === selected.id){
+                        if (driver.id === user.id){
+                            returnComponent = () => {
+                                return(
+                                    null
+                                )
+                            }
+                        }
+                        else{
+                            returnComponent = () => {
+                                return(
+                                    <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
+                                        <View><Text style={ContactStyles.removeText}>Remove</Text></View>
+                                    </TouchableOpacity>
+                                )
+                            }
+                        }
                     }
-                }
-            })
+                })
+            }
         }
         return returnComponent()
     }
@@ -129,8 +142,11 @@ const Contacts = ({creating}) => {
 
 
 // -------------------------- Handlers ---------------------------
-    const handleAddClick = (selectedId) => {
-        setNewGuests([...newGuests, selectedId])
+    const handleAddClick = (selected) => {
+        setNewGuests([...newGuests, selected])
+        if (!creating){
+            activeThread.guests = [...activeThread.guests, selected]
+        }
     }
 
     const handleRemoveClick = (selectedId) => {
@@ -148,6 +164,9 @@ const Contacts = ({creating}) => {
     }
 
     const handleDoneClick = () => {
+        if (!creating){
+            // Add Mutation
+        }
         if (newGuests.length > 0){
             setModalVisible(true)
         }

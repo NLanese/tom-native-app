@@ -128,35 +128,31 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         if (messageData === null){
             return <Text>No Messages</Text>
         }
-        // if (Object.keys(messageData) < 1){
-        //     return null
-        // }else{
-            const messages = messageData.map( (message, key) => {
+      
+        const messages = messageData.map( (message, key) => {
+            // Renders sender name
+            let propFrom = ""
+            if (message.from.id == user.id ){
+                propFrom = "You"
+            }
+            else{
+                propFrom = message.from
+            }
 
-                // Renders sender name
-                let propFrom = ""
-                if (message.from.id == user.id ){
-                    propFrom = "You"
-                }
-                else{
-                    propFrom = message.from
-                }
+            // Calls upon Message Component
+            return(
+                <Message setActiveThread={setActiveThread} from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
+            )
+        })
 
-                // Calls upon Message Component
-                return(
-                    <Message setActiveThread={setActiveThread} from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
-                )
-            })
-
-            // Renders the Message Component and Name Label
-            return (<View> 
-                        <View>
-                            {messages}
-                        </View>
-                        <View style={{height: 50}}/>
+        // Renders the Message Component and Name Label
+        return (<View> 
+                    <View>
+                        {messages}
                     </View>
-                    )
-        // }
+                    <View style={{height: 50}}/>
+                </View>
+        )
     }
 // ----------------- Render / Styling Functions ------------------------
 

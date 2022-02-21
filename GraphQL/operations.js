@@ -116,8 +116,8 @@ const LOGIN = gql`
       name
       shortcode
       timeZone
-      ficoLimits
       seatbeltLimits
+      ficoLimits
       speedingLimits
       distractionLimits
       followLimits
@@ -128,8 +128,10 @@ const LOGIN = gql`
       photoOnDeliveryLimits
       deliveryNotRecievedLimits
       topCardLimits
+      autoSend
       smallCardLimits
       feedbackNotifications
+      accountStanding
       paid
     }
     weeklyReport {
@@ -137,8 +139,8 @@ const LOGIN = gql`
       createdAt
       date
       hadAccident
-      feedbackMessage
       feedbackMessageSent
+      feedbackMessage
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -150,8 +152,8 @@ const LOGIN = gql`
       speedingEventRate
       seatbeltOffRate
       distractionsRate
-      followingDistanceRate
       signalViolationsRate
+      followingDistanceRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
@@ -166,6 +168,7 @@ const LOGIN = gql`
       deliveryAssociate
       customerDeliveryFeedback
       hasManyAccidents
+      customerDeliveryFeedback
       belongsToTeam
       attendence
       productivity
@@ -193,11 +196,11 @@ const LOGIN = gql`
       sundayHours
       mondayDate
       mondayHours
-      thursdayDate
-      wednesdayHours
-      wednesdayDate
       tuesdayHours
       tuesdayDate
+      wednesdayDate
+      wednesdayHours
+      thursdayDate
       thursdayHours
       fridayDate
       fridayHours
@@ -206,10 +209,63 @@ const LOGIN = gql`
       weekStartDate
       weekEndDate
       phoneId
-      deviceId
       vehicleId
       cxNumber
+      deviceId
       message
+    }
+    accidents {
+      id
+      name
+      date
+      time
+      location
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      general_pictures
+      weather
+      rushed_prior
+      distracted
+      extra_info
+      actions_before_accidents
+      unsafe_conditions
+      collisionAccident {
+        id
+        specific_pictures
+        contact_info
+        extra_info
+        injuryAccident {
+          id
+          medical_attention
+          immediate_attention
+          injury
+          contact_info
+          specific_pictures
+          pain_level
+          extra_info
+        }
+      }
+      injuryAccident {
+        id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
+      }
+      propertyAccident {
+        id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
+      }
     }
   }
 }

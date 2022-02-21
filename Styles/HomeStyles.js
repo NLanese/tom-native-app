@@ -53,6 +53,7 @@ const HomeStyles = StyleSheet.create({
 //-------------------------------------
 	weeklyNotificationModal:{
 		position: 'absolute',
+		marginTop: -50,
 		height: 226,
 		width: 318,
 	},
@@ -129,31 +130,23 @@ const ButtonBoxStyles = StyleSheet.create({
 		alignItems: 'center',
 
 		width: 150,
-		height: maxHeight * 0.8,
 
-		marginRight: 0
-
-		// borderColor: 'blue',
-		// borderWidth: 2,		
+		marginRight: 0	
 	},
 	leftContainer: {
 		position: "relative",
 		alignItems: 'center',
 
 		width: 150,
-		height: maxHeight * 0.8,
 
 		marginLeft: sideDistance - 3,
 		marginRight: middleDistance,
-
-		// borderColor: 'green',
-		// borderWidth: 2,		
+		
 	},
 //-------------------------------------
 	clickable: {
 		height: maxHeight * 0.2,
 		width: 150,
-		marginBottom: middleDistance
 	},
 	buttonCard: {
 		backgroundColor: 'white',
@@ -222,8 +215,10 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginLeft: '83%',
 	},
 	arrow: {
+		marginTop: maxHeight * .025,
 		height: 30,
-		width: 35
+		width: 35,
+		position: 'absolute'
 	},
 	arrowIcon: {
 		width: 20,
@@ -232,7 +227,7 @@ const ButtonBoxStyles = StyleSheet.create({
 	},
 //-----------------------------------
 	bottomTouch: {
-		marginTop: maxHeight * .63,
+		marginTop: maxHeight * .55,
 		marginLeft: 0,
 		marginBottom: 20,
 
