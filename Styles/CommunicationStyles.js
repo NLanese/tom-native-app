@@ -197,6 +197,16 @@ const ThreadDetailStyles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 50,
         width: '100%',
+    },
+    addContactsButton: {
+        backgroundColor: '#534FFF',
+        padding: 10,
+        borderRadius: 10
+    },
+    addContactsText: {
+        fontFamily: 'GilroyBold',
+        fontSize: 14,
+        color: '#DDDDDD'
     }
 })
 

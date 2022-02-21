@@ -51,10 +51,15 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
     // uses getChatroomNames to generate a card for each guest
     const renderChatroomNames = () => {
+        let addedIds = []
         let namesList = getChatroomNames().map( (guest, index) => {
             if (typeof(guest) == 'undefined' || guest === null){
                 return null
             }
+            if (addedIds.includes(guest.id)){
+                return null
+            }
+            addedIds.push(guest.id)
             return(
                 <View style={ThreadDetailStyles.nameCard}>
                     <Text style={ThreadDetailStyles.nameText}>{guest.name}</Text>
@@ -93,7 +98,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     // Checks if you are the chatroom owner, if so renders the add contacts button
     const renderAddContacts = () => {
         if (chatroom.chatroomOwner.id == user.id){
-            return( <AddContactButton /> )
+            return( <AddContactButton setModalVisible={setModalVisible}/> )
         }
         else{
             return null
