@@ -4,14 +4,14 @@ import { View, TouchableOpacity, Image, Text, Dimensions } from 'react-native'
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 const ReportAnAccidentButton = () => {
-    let maxWidth= Dimensions.get('window').width
-    let maxHeight= Dimensions.get('window').height
+    let maxWidth = Dimensions.get('window').width
+    let maxHeight = Dimensions.get('window').height
     const navigation = useNavigation()
 
 
     return (
     <View style={ButtonBoxStyles.clickable}>
-        <TouchableOpacity onPress={() => {navigation.navigate("leadership_notified")}}>
+        <TouchableOpacity onPress={() => {navigation.navigate("raa_landing")}}>
             <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
                     style={ButtonBoxStyles.image}
