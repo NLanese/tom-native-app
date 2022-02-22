@@ -769,6 +769,43 @@ const GETDRIVERCHATROOMS = gql`
   }
 `
 
+const DRIVERCREATEACCIDENT = gql`
+  mutation Mutation($name: String!, $date: String!, $time: String!, $location: String!) {
+  driverCreateAccident(name: $name, date: $date, time: $time, location: $location) {
+    id
+    name
+    date
+    time
+    location
+  }
+}
+`
+
+const DRIVERCREATECOLLISIONACCIDENT = gql`
+  mutation DriverCreateCollisionAccident($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
+  driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specificPictures, contact_info: $contactInfo, extra_info: $extraInfo) {
+    id
+    specific_pictures
+    contact_info
+    extra_info
+  }
+}`
+
+const DRIVERCREATEINJURYACCIDENT = gql`
+  mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!) {
+  driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo) {
+    id
+    medical_attention
+    immediate_attention
+    injury
+    contact_info
+    specific_pictures
+    pain_level
+    extra_info
+  }
+}
+`
+
 
 export {  
   SIGNUP, 
@@ -785,6 +822,9 @@ export {
   DRIVERSGETSHIFTPLANNER,
   DRIVERSENDMESSAGE,
   DRIVERCREATECHATROOM,
+  DRIVERCREATEACCIDENT,
+  DRIVERCREATEINJURYACCIDENT,
+  DRIVERCREATECOLLISIONACCIDENT,
   DYNAMICREMOVEDRIVERFROMCHATROOM,
   GETDRIVERCHATROOMS
 }
