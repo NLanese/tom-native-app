@@ -5,20 +5,25 @@ import LandingPageContainer from './LandingComponents/LandingPageContainer';
 import Title from './LandingComponents/Title';
 
 import backgroundImage from '../../assets/loginBackground.png'
+import gradient from '../../assets/black-to-clear-screen-gradient.png'
 
 
 const LandingPage = ({ handleLoggedIn }) => {
     return (
                <View style={LandingStyles.container}>
                 <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
+                <ImageBackground style={LandingStyles.gradient} source={gradient} resizeMode='cover'>
                     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                         <View style={{backgroundColor: 'rgba(52, 52, 52, 0.4) !important',}}>
                             <View style={LandingStyles.titleIcon}>
-                                <Title />
+                                {/* <Title /> */}
                             </View>
-                            <LandingPageContainer handleLoggedIn={handleLoggedIn} />
+                            <View style={LandingStyles.contents}>
+                                <LandingPageContainer handleLoggedIn={handleLoggedIn} />
+                            </View>
                         </View>
                     </TouchableWithoutFeedback>
+                </ImageBackground>
                 </ImageBackground>
             </View>
     );

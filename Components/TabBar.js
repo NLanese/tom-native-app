@@ -1,92 +1,199 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 
-const defaultActiveTab = StyleSheet.create({
+
+const defaultActiveTab = ({
     borderBottomWidth: 4,
     borderBottomColor: 'white'
 })
-const defaultInactiveTab = StyleSheet.create({
+const defaultInactiveTab = ({
     borderBottomWidth: 4,
     borderBottomColor: 'grey'
 })
-const defaultActiveText = StyleSheet.create({
-    fontSize: 12,
-    color: 'white'
+const defaultActiveText = ({
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    marginRight: 8,
+    marginLeft: 8,
+    marginBottom: 4
 })
-const defaultInactiveText = StyleSheet.create({
-    fontSize: 12,
-    color: 'white'
+const defaultInactiveText = ({
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'grey',
+    marginRight: 8,
+    marginLeft: 8,
+    marginBottom: 4,
 })
 
 
 const TabBar = ({
     tabsArray, // An array of all the tab titles (strings)
 
-    styleActive = defaultActiveTab, // What style each tab bar will have when it is active
-    styleInactive = defaultInactiveTab, // What style each tab bar will have when it is inactive
+    styleActive = false, // What style each tab bar will have when it is active
+    styleInactive = false, // What style each tab bar will have when it is inactive
 
-    tabTextStyleActive = defaultActiveText, // What style each tab bar's title will have when it is active
-    tabTextStyleInactive = defaultInactiveText, // What style each tab bar's title will have when it is inactive
+    tabTextStyleActive = false, // What style each tab bar's title will have when it is active
+    tabTextStyleInactive = false, // What style each tab bar's title will have when it is inactive
 
-    height = 75, // Determines the height of the tab bar
-    width = 300, // Determines width of the tab bar
-    borderRadius = 0, // Determines Border Radius
+    height = false, // Determines the height of the tab bar
+    width = false, // Determines width of the tab bar
+    borderRadius = false, // Determines Border Radius
 
-    onChangeIndex = function(index){ return null }, // Method to run whenever a different tab is selected. TAKES THE INDEX SELECTED AS A PARAMETER
-    startIndex = 0, // Determines which index starts off selected. Defaults to 0 (first tab)
+    onChangeIndex = false, // Method to run whenever a different tab is selected. TAKES THE INDEX SELECTED AS A PARAMETER
+    startIndex = false, // Determines which index starts off selected. Defaults to 0 (first tab)
 }) => {
 
-    const tabContainer = StyleSheet.create({
+
+// --------------------------------------------------- //
+//                                                     //
+//                 DEFAULT SETTINGS                    //
+//               No Function Default                   //
+//v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v//       
+    if (!tabsArray){
+        throw new Error("Error! <TabBar> Components need a tabsArray prop. This will be an array of strings to be displayed as the Tab Titles")
+    }
+    if (!height){
+        height = 75
+    }
+    if (!width){
+        width = 250
+    }
+    if (!styleActive){
+        styleActive = defaultActiveTab
+    }
+    if (!styleInactive){
+        styleInactive = defaultInactiveTab
+    }
+    if (!tabTextStyleActive){
+        tabTextStyleActive = defaultActiveText
+    }
+    if (!tabTextStyleInactive){
+        tabTextStyleInactive = defaultInactiveText
+    }
+    if (!borderRadius){
+        borderRadius = 3
+    }
+    if (!startIndex){
+        startIndex = 0
+    }
+    if (startIndex > tabsArray.length){
+        throw new Error("Error: <TabBar> cannot have a startIndex prop that is larger than the tabArray prop's length!")
+    }
+
+
+
+// --------------------------------------------------- //
+//                                                     //
+//                   LOCAL STATES                      //
+//               with Function Default                 //
+//v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v// 
+
+    const [selectedIndex, setSelectedIndex] = useState(startIndex)
+
+    if (!onChangeIndex){
+        onChangeIndex = (index) => {
+            return null
+        } 
+    }
+
+
+// --------------------------------------------------- //
+//                                                     //
+//                DETERMINING STYLES                   //
+//                                                     //
+//v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v//   
+
+    // The Outter Container Style
+    const tabContainer = ({
         height: height,
-        width: width,
+        width: 'auto',
         borderRadius: borderRadius,
-        flex: 1, 
-        flexDirection: 'row'
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
     })
 
-    const [selectedIndex, setSelectedIndex] = useEffect(startIndex)
+    // Creates the official Style Object
+    const Styles = StyleSheet.create({
+        styleActive: {...styleActive},
+        styleInactive: {...styleInactive},
+        tabTextStyleActive: {...tabTextStyleActive},
+        tabTextStyleInactive: {...tabTextStyleInactive},
+        tabContainer: {...tabContainer}
+    })
 
-    handleSelection = () => {
-        index = parseInt(index, 10)
+
+    // Renders the Active and Inactive Tab Styles
+    const determineTabStyles = (index) => {
+        if (index == selectedIndex){
+            return {...Styles.styleActive}
+        }
+        else{
+            return {...Styles.styleInactive}
+        }
+    }
+
+    // Renders the Active and Inactive Text Styles
+    const determineTextStyles = (index) => {
+        if (index == selectedIndex){
+            return Styles.tabTextStyleActive
+        }
+        else{
+            return Styles.tabTextStyleInactive
+        }
+    }
+
+
+
+    
+// --------------------------------------------------- //
+//                                                     //
+//                      HANDLERS                       //
+//                                                     //
+//v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v// 
+
+    const handleSelection = (index) => {
+        console.log(index)
         setSelectedIndex(index)
         onChangeIndex(index)
     }
 
-    determineTabStyles = (index, tabCount) => {
-        if (parseInt(index, 10) == selectedIndex){
-            return {...styleActive, flex: 1, flexDirection: 'row'}
-        }
-        else{
-            return {...styleInactive, flex: 1, flexDirection: 'row'}
-        }
-    }
 
-    determineTextStyles = (index) => {
-        if (parseInt(index, 10) == selectedIndex){
-            return tabTextStyleActive
-        }
-        else{
-            return tabTextStyleInactive
-        }
-    }
+// --------------------------------------------------- //
+//                                                     //
+//                RENDERING FUNCTIONS                  //
+//                                                     //
+//v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v//    
 
-    renderTabs = () => {
-        length = tabsArray.length
+    const renderTabs = () => {
         return tabsArray.map( (tab, index = 0) => {
-
             return(
-                <Pressable onPress={(index) => handleSelection(index)}>
-                    <View key={index} style={determineTabStyles(index, tabCount)}>
-                        <Text style={determineTextStyles(index)}>{tab}</Text>
+                <Pressable onPress={() => handleSelection(index)} key={index}>
+                    <View style={determineTabStyles(index)}>
+                        <View>
+                            <Text style={determineTextStyles(index)}>{tab}</Text>
+                        </View>
                     </View>
                 </Pressable>
             )
         } )
     }
+
+
+
+
+// --------------------------------------------------- //
+//                                                     //
+//                  MAIN RENDERING                     //
+//                                                     //
+//v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v// 
+
     return(
-        <View style={tabContainer}>
-            {renderTabs}
+        <View style={{...Styles.tabContainer, display: 'flex'}}>
+            {renderTabs()}
         </View>
     )
 }
