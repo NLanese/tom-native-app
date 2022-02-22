@@ -90,9 +90,9 @@ const Chatrooms = () => {
         return list.map( (chatroom, index) => {
             if (index < list.length - 1){
                 return(
-                    <View>
-                        <ThreadCard chatroom={chatroom} key={index}/>
-                        <View style={ChatroomsStyles.divider} key={index + "b"}/>
+                    <View key={`${index}.00`}>
+                        <ThreadCard chatroom={chatroom} key={`${index}.10`}/>
+                        <View style={ChatroomsStyles.divider} key={`${index}.1.5`}/>
                     </View>
                 )
             }

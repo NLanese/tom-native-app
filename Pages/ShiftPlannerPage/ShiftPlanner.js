@@ -26,81 +26,64 @@ const ShiftPlanner = () => {
         user = {...rawUser}
     }
 
-    console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-\n" + user + "\n=-=-=-=-=-=-=-=-=-=-=-=-")
-
     // Gets the current date
     const d = new Date();
     let year = d.getUTCFullYear
     let month = d.getUTCMonth();
     let day = d.getUTCDate();
 
-    // useEffect(() => {
-    //     refetch()
-    // }, [])
-
-    // useEffect(() => {
-    //     if (!loading && data) {
-    //         console.log(data.driverGetShiftPlanner)
-    //         setShiftPlannerData(data.driverGetShiftPlanner)
-    //     }
-    // }, [data])
-
-    // Loading screen if not finished with querying the data
-    if (loading || !data){
-        return <Loading />
-    }    
-
+ 
+    console.log(user.shiftPlanners)
     // Redirects if there are no current ShiftPlanner Tables populated
-    if (data.length == 0){
+    if (user.shiftPlanners === null){
+        console.log("null")
         return(<NoShifts />)
     }
+    else if (user.shiftPlanners.length < 1){
+        console.log("Not null")
+        return(<NoShifts />)
+    }
+    else {
 
-    // Redirects if there is no shift planner data for this current day
-    // Also creates several time based objects 
-    // let dbTime = data[data.length-1].date
-    // let dbDateObj = dateObj(dbTime, "UTC")
-    // if (`${dbDateObj.year}-${dbDateObj.month}-${dbDateObj.day}` !== `${year}-${month}-${day}`){
-    //     return (<NoShifts />)
-    // }
-    console.log(data.driverGetShiftPlaner[0])
-    return (
-        <View>
-            <Banner />
-            <View style={ShiftPlannerStyles.dateContainer}>
-                <Text>Today's Date {`${year}-${month}-${day}`}</Text>
-            </View>
-            <View style={ShiftPlannerStyles.shiftInfo}>
-                <ScrollView>
-                    <ShiftInfo name="Sunday Date" value={data.driverGetShiftPlaner[0].sundayDate} />
-                    <ShiftInfo name="Sunday Hours" value={data.driverGetShiftPlaner[0].sundayHours} />
-                    <ShiftInfo name="Monday Date" value={data.driverGetShiftPlaner[0].mondayDate} />
-                    <ShiftInfo name="Monday Hours" value={data.driverGetShiftPlaner[0].mondayHours} />
-                    <ShiftInfo name="Tuesday Date" value={data.driverGetShiftPlaner[0].tuesdayDate} />
-                    <ShiftInfo name="Tuesday Hours" value={data.driverGetShiftPlaner[0].tuesdayHours} />
-                    <ShiftInfo name="wednesday Date" value={data.driverGetShiftPlaner[0].wednesdayDate} />
-                    <ShiftInfo name="wednesday Hours" value={data.driverGetShiftPlaner[0].wednesdayHours} />
-                    <ShiftInfo name="Thursday Date" value={data.driverGetShiftPlaner[0].thursdayDate} />
-                    <ShiftInfo name="Thursday Hours" value={data.driverGetShiftPlaner[0].thursdayHours} />
-                    <ShiftInfo name="Friday Date" value={data.driverGetShiftPlaner[0].fridayDate} />
-                    <ShiftInfo name="Friday Hours" value={data.driverGetShiftPlaner[0].fridayHours} />
-                    <ShiftInfo name="Saturday Date" value={data.driverGetShiftPlaner[0].saturdayDate} />
-                    <ShiftInfo name="Saturday Hours" value={data.driverGetShiftPlaner[0].saturdayHours} />
-                    <ShiftInfo name="Phone ID Number" value={data.driverGetShiftPlaner[0].phoneId} />
-                    <ShiftInfo name="Device ID Number" value={data.driverGetShiftPlaner[0].deviceId} />
-                    <ShiftInfo name="CX Number" value={data.driverGetShiftPlaner[0].cxNumber} />
-                    <ShiftInfo name="Vehicle Number" value={data.driverGetShiftPlaner[0].vehicleId} />
-                </ScrollView>
-            </View>
+        return (
             <View>
-                <View>
-                    <Text>Daily Message:</Text>
+                <Banner />
+                <View style={ShiftPlannerStyles.dateContainer}>
+                    <Text>Today's Date {`${year}-${month}-${day}`}</Text>
+                </View>
+                <View style={ShiftPlannerStyles.shiftInfo}>
+                    <ScrollView>
+                        <ShiftInfo name="Sunday Date" value={user.shiftPlanners.sundayDate} />
+                        <ShiftInfo name="Sunday Hours" value={user.shiftPlanners.sundayHours} />
+                        <ShiftInfo name="Monday Date" value={user.shiftPlanners.mondayDate} />
+                        <ShiftInfo name="Monday Hours" value={user.shiftPlanners.mondayHours} />
+                        <ShiftInfo name="Tuesday Date" value={user.shiftPlanners.tuesdayDate} />
+                        <ShiftInfo name="Tuesday Hours" value={user.shiftPlanners.tuesdayHours} />
+                        <ShiftInfo name="wednesday Date" value={user.shiftPlanners.wednesdayDate} />
+                        <ShiftInfo name="wednesday Hours" value={user.shiftPlanners.wednesdayHours} />
+                        <ShiftInfo name="Thursday Date" value={user.shiftPlanners.thursdayDate} />
+                        <ShiftInfo name="Thursday Hours" value={user.shiftPlanners.thursdayHours} />
+                        <ShiftInfo name="Friday Date" value={user.shiftPlanners.fridayDate} />
+                        <ShiftInfo name="Friday Hours" value={user.shiftPlanners.fridayHours} />
+                        <ShiftInfo name="Saturday Date" value={user.shiftPlanners.saturdayDate} />
+                        <ShiftInfo name="Saturday Hours" value={user.shiftPlanners.saturdayHours} />
+                        <ShiftInfo name="Phone ID Number" value={user.shiftPlanners.phoneId} />
+                        <ShiftInfo name="Device ID Number" value={user.shiftPlanners.deviceId} />
+                        <ShiftInfo name="CX Number" value={user.shiftPlanners.cxNumber} />
+                        <ShiftInfo name="Vehicle Number" value={user.shiftPlanners.vehicleId} />
+                    </ScrollView>
                 </View>
                 <View>
-                    <Text>{data.message}</Text>
+                    <View>
+                        <Text>Daily Message:</Text>
+                    </View>
+                    <View>
+                        <Text>{data.message}</Text>
+                    </View>
                 </View>
             </View>
-        </View>
-    )
+        )
+    }
 }
 
 export default ShiftPlanner
