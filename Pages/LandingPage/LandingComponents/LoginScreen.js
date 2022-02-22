@@ -32,6 +32,12 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                         style={SignInBoxStyles.rememberToggle}
                     />
                 </View>
+                <View style={SignInBoxStyles.forgotPasswordSpace}>
+                    <View style={SignInBoxStyles.divider} />
+                    <View style={SignInBoxStyles.forgotBox}>
+                        <Text style={SignInBoxStyles.forgotPasswordText}>Forgot Password?</Text>
+                    </View>
+                </View>
             </View>
         </TouchableWithoutFeedback>  
         </View>

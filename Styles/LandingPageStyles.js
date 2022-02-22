@@ -10,6 +10,11 @@ const LandingStyles = StyleSheet.create({
 		position: 'relative',
 		resizeMode: 'cover'
 	},	
+	gradient: {
+		zIndex: 3,
+		position: 'relative',
+		resizeMode: 'cover'
+	},	
 	container: {
         display: 'flex',
         alignItems: 'center',
@@ -20,6 +25,10 @@ const LandingStyles = StyleSheet.create({
 		width: maxWidth * 0.2,
 		marginLeft: maxWidth * 0.4,
 		alignItems: 'center'
+	},
+	contents: {
+		position: 'relative',
+		marginTop: maxHeight * 0.132
 	}
 })
 
@@ -72,12 +81,12 @@ const SignInBoxStyles = StyleSheet.create({
 		borderRadius: 30,
 		backgroundColor: '#d4d4d4',
 
-		marginTop: maxHeight * -0.084,
+		marginTop: maxHeight * -0.074,
 		marginLeft: maxWidth * 0.08,
 	},
 	rememberMeTextBox: {
 		position: 'absolute',
-		marginTop: maxHeight * -0.073,
+		marginTop: maxHeight * -0.063,
 		marginLeft: maxWidth * 0.25
 	}
 

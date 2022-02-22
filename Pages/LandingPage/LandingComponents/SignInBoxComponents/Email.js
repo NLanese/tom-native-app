@@ -11,7 +11,7 @@ const Email = ({ handleInput }) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+            backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
             borderColor: 'white',
             borderWidth: 3,
             borderRadius: 15,
@@ -20,7 +20,7 @@ const Email = ({ handleInput }) => {
             marginLeft: maxWidth * 0.125,
         },
         inactiveInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+            backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
             borderColor: 'rgba(52, 52, 52, 0.3) !important',
             borderRadius: 15,
             width: '85%',
