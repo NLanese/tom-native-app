@@ -11,11 +11,21 @@ export const threadState = atom({
 });
 
 export const websiteState = atom({
-	key: 'website',
+	key: 'websiteState',
 	default: 'Landing',
 });
 
 export const geoLocation = atom({
 	key: 'geoLocation',
+	default: false
+})
+
+export const accidentDataState = atom({
+	key: 'accidentDataState',
+	default: false
+})
+
+export const collisionDataState = atom({
+	key: 'collisionDataState',
 	default: false
 })

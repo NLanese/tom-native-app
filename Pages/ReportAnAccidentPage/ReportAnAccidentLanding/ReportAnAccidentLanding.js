@@ -59,7 +59,8 @@ const ReportAnAccidentLanding = () => {
               </View>
 
               <View>
-                  <ContinueButton nextPage={'management_notified'} />
+                  <Text> Is this information correct? </Text>
+                  <ContinueButton nextPage={'management_notified'} pageName={"report-an-accident-landing-yes-button"} buttonText={"Yes"}/>
               </View>
             </View>
         </View>
