@@ -14,3 +14,8 @@ export const websiteState = atom({
 	key: 'website',
 	default: 'Landing',
 });
+
+export const geoLocation = atom({
+	key: 'geoLocation',
+	default: false
+})

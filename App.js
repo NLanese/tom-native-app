@@ -30,7 +30,7 @@ import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 import ShiftLanding from "./Pages/ShiftPlannerPage/ShiftLanding";
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 
-import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
+// import ReportAnAccident from './Pages/ReportAnAccidentPage/ReportAnAccident'
 import Reporting from './Pages/ReportingPage/Reporting'
 
 import Productivity from './Pages/ProductivityPage/Productivity'
@@ -45,16 +45,16 @@ import Settings from './Pages/SettingsPage/Settings'
 import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
 import AccountSettings from './Pages/SettingsPage/SettingsComponents/AccountSettings'
 
-import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
-import ReportCollision from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportCollision'
-import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryAccident'
-import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportPropertyAccident'
-import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
-import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
-import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
-import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
-import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
-import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
+// import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
+// import ReportCollision from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportCollision'
+// import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryAccident'
+// import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportPropertyAccident'
+// import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
+// import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
+// import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
+// import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
+// import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
+// import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
@@ -64,14 +64,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Roster from './Pages/Roster/Roster'
 import Inspection from './Pages/InspectionPage/Inspection'
 
+import ReportAnAccidentLanding from "./Pages/ReportAnAccidentPage/ReportAnAccidentLanding/ReportAnAccidentLanding";
+import ManagementNotified from "./Pages/ReportAnAccidentPage/ManagementNotified/ManagementNotified"
+
 import { useFonts } from 'expo-font' 
+import PoliceNotified from "./Pages/ReportAnAccidentPage/PoliceNotified/PoliceNotified";
+import CreateAccident from "./Pages/ReportAnAccidentPage/CreateAccident/CreateAccident";
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
 	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://10.0.0.46:5001/graphql'     // Home
+  uri: 'http://192.168.1.52:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -199,9 +204,9 @@ export default function App() {
                     {props => <Notifications />}
                   </Stack.Screen>
 
-                  <Stack.Screen name='leadership_notified'>
+                  {/* <Stack.Screen name='leadership_notified'>
                     {props => <LeadershipNotified />}
-                  </Stack.Screen>
+                  </Stack.Screen> */}
 
                   <Stack.Screen name='productivity'>
                     {props => <Productivity />}
@@ -221,6 +226,22 @@ export default function App() {
 
                   <Stack.Screen name='account_settings'>
                     {props => <AccountSettings />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='raa_landing'>
+                    {props => <ReportAnAccidentLanding />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='management_notified'>
+                    {props => <ManagementNotified />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='police_notified'>
+                    {props => <PoliceNotified />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="create-an-accident">
+                    {props => <CreateAccident />}
                   </Stack.Screen>
               
                 </Stack.Navigator>
