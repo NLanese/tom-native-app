@@ -15,7 +15,8 @@ const RAALandingStyles = StyleSheet.create({
 
         fontFamily: "GilroyBold",
         fontSize: 30,
-        color: "#444444"
+        color: "#444444",
+        letterSpacing: -0.5
     },
     subtitleText: {
         marginTop: 5,
@@ -38,7 +39,7 @@ const RAALandingStyles = StyleSheet.create({
         
         shadowColor: '#000000',
 		shadowOffset: {width: 0, height: 15},
-		shadowOpacity: 0.15,
+		shadowOpacity: 0.05,
 		shadowRadius: 20,
     },
     namePlate: {
@@ -51,11 +52,12 @@ const RAALandingStyles = StyleSheet.create({
         color: "#444444",
         letterSpacing: -0.5
     },
+// ------------------------------
     cardBottom: {
         marginLeft: 25,
         marginRight: 25,
         marginTop: 27,
-        borderTopWidth: 2.5,
+        borderTopWidth: 1,
         borderTopColor: "#DDDDDD",
     },
     idContainers: {
@@ -77,6 +79,7 @@ const RAALandingStyles = StyleSheet.create({
        color: "#444444" 
     },
     idTitle: {
+        marginTop: 3,
         fontFamily: 'GilroySemiBold',
         fontSize: 10,
         color: "#888888",
@@ -84,9 +87,37 @@ const RAALandingStyles = StyleSheet.create({
     },
     divider: {
         marginTop: 10,
-        width: 2.5,
+        width: 1,
         height: 40,
         backgroundColor: "#DDDDDD"
+    },
+// --------------------------------
+    confirmationPlate: {
+        marginTop: 50,
+    },
+    checkAndTitle: {
+        flexDirection: 'row',
+    },
+    confirmText: {
+        marginLeft: 15,
+        marginTop: 5,
+        fontFamily: "GilroyRegular",
+        fontSize: 11,
+        color: "#888888",
+        letterSpacing: 3
+    },
+    button: {
+        position: 'absolute',
+        marginLeft: 220,
+        marginTop: -16,
+
+        // borderWidth: 1,
+        borderRadius: 100,
+
+        shadowColor: '#000000',
+		shadowOffset: {width: 0, height: 25},
+		shadowOpacity: 0.10,
+		shadowRadius: 20,
     }
 })
 
