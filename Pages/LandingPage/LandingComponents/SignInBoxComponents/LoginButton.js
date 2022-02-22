@@ -1,29 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
-import { Button, Icon } from '@ui-kitten/components';
-import { View, Image } from 'react-native';
-import { ButtonStyles } from '../../../../Styles/LandingPageStyles';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';
 import stateChange from '../../../../Hooks/handleToken'
 import { useNavigation } from '@react-navigation/native';
-import activeCheck from'../../../../assets/activeCheck.jpg'
-import inactiveCheck from'../../../../assets/inactiveCheck.jpg'
 
 
-const LoginButton = ({ userData, handleLoggedIn }) => {
+const LoginButton = ({ userData }) => {
+	const navigation = useNavigation()
+
+
+// ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN);
 
+	// Handles the data changes and reroutes to the logged-in home page
+	useEffect( async () => {
+		if (!loading && data) {
+			await setUser(data.driverSignIn)
+			await stateChange(data.driverSignIn.token);
+			await handleLoggedIn()
+		}
+	}, [data])
 
-	// State and Recoil
-	const [buttonLoading, setButtonLoading] = useState(false)
+// ---------------------------- Mutations ---------------------------- //
+//																	   //
+//																	   //
+// ----------------------------- States ------------------------------ //
+
 	const [user, setUser] = useRecoilState(userState);
-	const navigation = useNavigation()
 
+// ----------------------------- States ------------------------------ //
+//																	   //
+//																	   //
+// ---------------------------- Handlers ----------------------------- //
+
+
+	// Handles the Login Click Button
 	const handleSubmit = async () => {
 		await handleButtonLoading()
 		await login({
@@ -35,59 +52,64 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	}
 
 
-	const CheckIcon = () => {
-		if (ableToLogIn()){
+// ---------------------------- Handlers ----------------------------- //
+//																	   //
+//																	   //
+// ------------------------- Button Related -------------------------- //
+
+	// Button Oriented States
+	const [buttonLoading, setButtonLoading] = useState(false)
+	const [buttonLoaded, setButtonLoaded] = useState(false)
+    const [buttonHeight, setButtonHeight] = useState(0)
+
+
+	// Renders the Button with the Overlay with Dynamic Height
+	const renderButton = () => {
+		if (userData.password.length > 7 && userData.email.length > 6){
+			if (!buttonLoading && !buttonLoaded){
+				setButtonLoading(true)
+			}
 			return(
-				<View style={{height: 60, width: 60, backgroundColor: 'white', borderRadius: 100, justifyContent: 'center', alignItems: 'center'}}> 
-					<Image source={activeCheck} style={{height: 20, width: 20, borderRadius: 100}}/>
+				<View>
+					<View style={{position: 'absolute', height: (50 - buttonHeight), zIndex: 20, overflow: 'hidden',}}>
+						<Image source={require("../../../../assets/check-button-inactive.png")} style={{height: 50, width: 50}}/>
+					</View>
+					<Image source={require("../../../../assets/check-button.png")} style={{height: 50, width: 50}}/>
 				</View>
 			)
-		} else{
-			return(
-				<View style={{height: 60, width: 60, backgroundColor: 'white', borderRadius: 100, justifyContent: 'center', alignItems: 'center'}}> 
-					<Image source={inactiveCheck} style={{height: 20, width: 20, borderRadius: 100}}/>
-				</View>
-			)
-		}
-		
-	};
-
-	// Handles the data changes and reroutes to the logged-in home page
-	useEffect( async () => {
-		if (!loading && data) {
-			await setUser(data.driverSignIn)
-			await stateChange(data.driverSignIn.token);
-			await handleLoggedIn()
-			// await navigation.navigate("/");
-		}
-	}, [data])
-
-
-	// Handles the Button Loading
-	const handleButtonLoading = () => {
-		setButtonLoading(!buttonLoading)
-	}
-
-	// Enables or disables the Login Button
-	const ableToLogIn = () => {
-		if (userData.username != "" && userData.password.length > 5 ){
-			return true
 		}
 		else{
-			return false
+			if (buttonLoaded){
+				setButtonLoaded(false)
+				setButtonHeight(0)
+			}
+			return(<Image source={require("../../../../assets/check-button-inactive.png")} style={{height: 50, width: 50}}/>)
 		}
 	}
+
+	if (buttonLoading){
+        setTimeout(() => {
+            if (buttonHeight < 50){
+                setButtonHeight(buttonHeight + 5)
+            }
+            else{
+				setButtonLoaded(true)
+                setButtonLoading(false)
+            }
+        }, 0.5)
+    }
+
+
+// ------------------------- Button Related -------------------------- //
+
 
 	return (
 		<View>
-			<View>
-				<Button
-					style={{width: 70, backgroundColor: 'rgba(52, 52, 52, 0.0) !important', borderColor: 'rgba(52, 52, 52, 0.0) !important'}}
-					accessoryLeft={CheckIcon} 
-					onPress={() => handleSubmit()}
-				/>
-
-			</View>
+			<TouchableOpacity>
+				<View>
+					{renderButton()}
+				</View>
+			</TouchableOpacity>
 		</View>
 	);
 };

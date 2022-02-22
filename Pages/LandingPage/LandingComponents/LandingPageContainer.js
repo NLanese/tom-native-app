@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
-import { TabBar, Tab, Text } from '@ui-kitten/components';
-// import TabBar from '../../../Components/TabBar';
+// import { TabBar, Tab, Text } from '@ui-kitten/components';
+import TabBar from '../../../Components/TabBar';
 
 import LoginScreen from './LoginScreen';
 import SignupScreen from './SingupScreen';
@@ -41,7 +41,7 @@ const LandingPageContainer = ({handleLoggedIn}) => {
     return (
         <View style={LandingPageStyles.container}>
             <View style={LandingPageStyles.tabBarContainer}>
-                <TabBar
+                {/* <TabBar
                     indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
                     tabBarStyle={LandingPageStyles.loginTab}
                     style={LandingPageStyles.tabBar}
@@ -58,12 +58,14 @@ const LandingPageContainer = ({handleLoggedIn}) => {
                         tabBarStyle={LandingPageStyles.signUpTab}
                         indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
                         tabBarStyle={LandingPageStyles.loginTab}/>
-                </TabBar>
-                {/* <TabBar 
+                </TabBar> */}
+                <TabBar 
                     tabsArray={["LOGIN", "SIGN UP"]}
                     styleInactive={LandingPageStyles.inactiveTab}
                     styleActive={LandingPageStyles.activeTab}
-                /> */}
+                    tabTextStyleActive={LandingPageStyles.activeText}
+                    tabTextStyleInactive={LandingPageStyles.inactiveText}
+                />
 
             </View>
             <View>

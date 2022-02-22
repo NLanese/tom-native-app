@@ -19,12 +19,17 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                         Login
                     </Text>
                 </View>
-                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} /></View>
-                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} /></View>
-                <View style={SignInBoxStyles.loginButton}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View>
+                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput}/></View>
+                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput}/></View>
+                <View style={SignInBoxStyles.loginButton}>
+                    <LoginButton 
+                        userData={userData} 
+                        handleLoggedIn={handleLoggedIn}
+                    />
+                </View>
                 <View syle={SignInBoxStyles.rememberMe}>
                     <View style={SignInBoxStyles.rememberMeTextBox}>
-                        <Text style={{color: '#f9f9f9', fontSize: 16, fontFamily: 'GilroySemiBold'}}>Remember Me</Text>
+                        <Text style={{color: '#f9f9f9', fontSize: 12, fontFamily: 'GilroyRegular', color: "#EEEEEE", letterSpacing: 3}}>REMEMBER ME?</Text>
                     </View>
                     <Toggle 
                         checked={checked} 
@@ -35,7 +40,7 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                 <View style={SignInBoxStyles.forgotPasswordSpace}>
                     <View style={SignInBoxStyles.divider} />
                     <View style={SignInBoxStyles.forgotBox}>
-                        <Text style={SignInBoxStyles.forgotPasswordText}>Forgot Password?</Text>
+                        <View style={{paddingBottom: 2.4, borderBottomWidth: 1, borderColor: 'rgba(255, 255, 255, 0.36)', }}><Text style={SignInBoxStyles.forgotPasswordText}>FORGOT PASSWORD?</Text></View>
                     </View>
                 </View>
             </View>

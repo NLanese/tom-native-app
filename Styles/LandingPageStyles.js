@@ -48,7 +48,7 @@ const SignInBoxStyles = StyleSheet.create({
 	},
 	// ---------------------------------
 	loginButton: {
-		marginLeft: maxWidth * 0.7
+		marginLeft: maxWidth * 0.75
 	},
 	loginContents: {
 		height: 65,
@@ -72,7 +72,6 @@ const SignInBoxStyles = StyleSheet.create({
 	},
 	// ---------------------------------
 	rememberMe: {
-		marginTop: -300,
 		fontFamily: 'GilroyLight'
 	},
 	rememberToggle: {
@@ -81,17 +80,42 @@ const SignInBoxStyles = StyleSheet.create({
 		borderRadius: 30,
 		backgroundColor: '#d4d4d4',
 
-		marginTop: maxHeight * -0.074,
+		marginTop: maxHeight * -0.042,
 		marginLeft: maxWidth * 0.08,
 	},
 	rememberMeTextBox: {
 		position: 'absolute',
-		marginTop: maxHeight * -0.063,
+		marginTop: maxHeight * -0.030,
 		marginLeft: maxWidth * 0.25
+	},
+	// ----------------------------------
+	forgotPasswordSpace: {
+		alignContent: 'center',
+		// borderWidth: 3,
+		marginTop: 130
+	},
+	divider: {
+		width: maxWidth * .9,
+		marginLeft: maxWidth * .05,
+		marginBottom: 20,
+		borderWidth: 1,
+		borderColor: 'rgba(255, 255, 255, 0.24)'
+	},
+	forgotBox: {
+		width: maxWidth * 0.5,
+		marginLeft: maxWidth * .25,
+		alignItems: 'center',
+	},
+	forgotPasswordText: {
+		fontFamily: "GilroySemiBold",
+		fontSize: 12,
+		letterSpacing: 3,
+		color: 'rgba(255, 255, 255, 0.36)',
 	}
 
-});
 
+
+});
 
 const ButtonStyles = StyleSheet.create({
 	container: {
@@ -148,23 +172,41 @@ const LandingPageStyles = StyleSheet.create({
 	tabBarContainer: {
 		// alignItems: 'center',
 		marginLeft: '10%',
-		marginTop: '10%',
+		marginTop: '0%',
+		marginBottom: '10%',
 		width: '80%',
 		height: '6%',
 		color: 'white'
 	},
 	tabBar: {
-		backgroundColor: 'rgba(52, 52, 52, 0.1) !important',
 		width: '100%',
 		fontFamily: 'GilroyLight'
 	},
 	inactiveTab: {
-		borderBottomColor: "grey",
+		width: 154,
+		paddingBottom: 16,
+		borderBottomColor: 'rgba(238, 238, 238, 0.25)',
 		borderBottomWidth: 3,
 	},
 	activeTab: {
-		borderBottomColor: "white",
+		width: 154,
+		paddingBottom: 16,
+		borderBottomColor: "#EEEEEE",
 		borderBottomWidth: 3,
+	},
+	activeText: {
+		fontFamily: "GilroyBold",
+		fontSize: 12,
+		letterSpacing: 3,
+		color: "#EEEEEE",
+		textAlign: 'center'
+	},
+	inactiveText: {
+		fontFamily: "GilroyBold",
+		fontSize: 12,
+		letterSpacing: 3,
+		color: 'rgba(238, 238, 238, 0.25)',
+		textAlign: 'center'
 	}
 })
 

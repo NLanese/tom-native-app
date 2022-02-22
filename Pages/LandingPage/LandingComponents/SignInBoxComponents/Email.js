@@ -7,7 +7,7 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 
-const Email = ({ handleInput }) => {
+const Email = ({ handleInput,IableToLogin }) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
