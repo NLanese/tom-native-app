@@ -8,7 +8,6 @@ let maxHeight= Dimensions.get('window').height
 
 
 const Email = ({ handleInput }) => {
-
     const dynamicStyles = StyleSheet.create({
         activeInput: {
             backgroundColor: 'rgba(52, 52, 52, 0.3) !important',

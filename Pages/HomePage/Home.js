@@ -72,14 +72,14 @@ const Home = ({ handleLoggedIn }) => {
         }
     }
 
-    const renderButton = () => {
-        if (acknowledged){
-            return(<Image source={require("../../assets/check-button.png")} style={{height: 50, width: 50}}/>)
-        }
-        else{
-            return(<Image source={require("../../assets/inactiveCheck.jpg")} style={{height: 50, width: 50}}/>)
-        }
-    }
+    // const renderButton = () => {
+    //     if (acknowledged){
+    //         return(<Image source={require("../../assets/check-button.png")} style={{height: 50, width: 50}}/>)
+    //     }
+    //     else{
+    //         return(<Image source={require("../../assets/inactiveCheck.jpg")} style={{height: 50, width: 50}}/>)
+    //     }
+    // }
 
     useEffect(() => {
         setWebsite('Home')
