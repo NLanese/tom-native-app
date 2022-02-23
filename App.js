@@ -66,17 +66,21 @@ import Inspection from './Pages/InspectionPage/Inspection'
 
 import ReportAnAccidentLanding from "./Pages/ReportAnAccidentPage/ReportAnAccidentLanding/ReportAnAccidentLanding";
 import ManagementNotified from "./Pages/ReportAnAccidentPage/ManagementNotified/ManagementNotified"
-
-import { useFonts } from 'expo-font' 
 import PoliceNotified from "./Pages/ReportAnAccidentPage/PoliceNotified/PoliceNotified";
 import CreateAccident from "./Pages/ReportAnAccidentPage/CreateAccident/CreateAccident";
+import CheckCollisionAccident from "./Pages/ReportAnAccidentPage/CheckCollisionAccident/CheckCollisionAccident";
+import CreateCollisionAccident from "./Pages/ReportAnAccidentPage/CreateCollisionAccident/CreateCollisionAccident";
+import CheckUserInjury from "./Pages/ReportAnAccidentPage/CheckUserInjury/CheckUserInjury";
+import UserInjuryReport from "./Pages/ReportAnAccidentPage/CreateInjuryReport/CreateInjuryReport";
+
+import { useFonts } from 'expo-font' 
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  // uri: 'http://192.168.1.52:5001/graphql'     // Home
+	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  uri: 'http://192.168.1.203:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -242,6 +246,22 @@ export default function App() {
 
                   <Stack.Screen name="create-an-accident">
                     {props => <CreateAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="check-user-injury">
+                    {props => <CheckUserInjury />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="create-injury-report">
+                    {props => <UserInjuryReport />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='create-collision-accident'>
+                    {props => <CreateCollisionAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='check-collision-accident'>
+                    {props => <CheckCollisionAccident />}
                   </Stack.Screen>
               
                 </Stack.Navigator>

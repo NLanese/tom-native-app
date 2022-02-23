@@ -12,12 +12,11 @@ const ManagementNotified = () => {
     return (
         <View>
             <Banner />
-
             <Text style={Styles.title}>Has management been notified?</Text>
             <View style={Styles.noButton}>
                 <NoButton />
             </View>
-            <ContinueButton nextPage={"police_notified"} />
+            <ContinueButton nextPage={"police_notified"} pageName={"management-notified-yes-button"} buttonText={"Yes"}/>
         </View>
     )
 }
