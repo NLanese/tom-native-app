@@ -12,7 +12,7 @@ const PoliceNotified = () => {
     return (
         <View>
             <Banner />
-            <Text style={Styles.title}> Have you contacted the Police? </Text>
+            <Text style={Styles.title}>Have you contacted the Police? </Text>
             <View style={Styles.noButton}>
                 <NoButton />
             </View>
