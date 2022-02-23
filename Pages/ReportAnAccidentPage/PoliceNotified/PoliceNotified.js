@@ -16,7 +16,9 @@ const PoliceNotified = () => {
             <View style={Styles.noButton}>
                 <NoButton />
             </View>
-            <ContinueButton nextPage={"create-an-accident"} pageName={"police-notified-yes-button"} buttonText={"Yes"} />
+            <View style={Styles.continue}>
+                <ContinueButton nextPage={"create-an-accident"} pageName={"police-notified-yes-button"} buttonText={"Yes"} />
+            </View>
         </View>
     )
 }
@@ -36,6 +38,11 @@ const Styles = StyleSheet.create({
         position: 'absolute',
         marginTop: maxHeight * 0.75,
         marginLeft: maxWidth * .58
+    },
+    continue: {
+        position: 'absolute',
+        marginTop: maxHeight * 0.75,
+        marginLeft: maxWidth * .15
     }
 
 })

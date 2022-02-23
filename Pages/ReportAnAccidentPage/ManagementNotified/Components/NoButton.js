@@ -54,15 +54,15 @@ const NoButton = () => {
 
 const Styles = StyleSheet.create({
     touchContainer: {
-        width: 110,
+        width: 100,
         shadowColor: '#000000',
-		shadowOffset: {width: 6, height: 25},
+		shadowOffset: {width: -3, height: 25},
 		shadowOpacity: 0.14,
 		shadowRadius: 13,
     },
     button: {
-        height: 110,
-        width: 110,
+        height: 100,
+        width: 100,
         backgroundColor: "#444444",
         borderRadius: 100,
         justifyContent: 'center',
