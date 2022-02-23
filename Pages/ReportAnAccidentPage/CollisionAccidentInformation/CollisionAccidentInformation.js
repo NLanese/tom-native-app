@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
 import { Button, Input } from "@ui-kitten/components";
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
@@ -52,16 +52,6 @@ const CollisionAccidentInformation = () => {
         } 
     }
 
-    const handleInsuranceInformation = (answer) => {
-        if (answer === 'yes') {
-            setDriverInsuranceAnswer('yes')
-        }
-
-        if (answer === 'no') {
-            setDriverInsuranceAnswer('no')
-        } 
-    }
-
     const renderDriverLicense = () => {
         if (driverLicenseAnswer === 'yes') {
             return (
@@ -74,7 +64,7 @@ const CollisionAccidentInformation = () => {
         if (driverLicenseAnswer === 'no') {
             return (
                 <View>
-                    <View style={{ marginTop: "2%" }}>
+                    <View style={{ marginTop: "0%" }}>
                         <Input
                             onPressIn={() => setActive(true)}
                             onEndEditing={() => setActive(false)}
@@ -88,14 +78,14 @@ const CollisionAccidentInformation = () => {
                                         ...collisionData,
                                         contact_info: {
                                             ...collisionData.contact_info,
-                                            driver_license: driverLicense
+                                            driver_license_number: driverLicense
                                         } 
                                     })
                                 }}
                             />
                     </View>
 
-                    <View style={{ marginTop: "10%" }}>
+                    <View style={{ marginTop: "2%" }}>
                         <Input
                             onPressIn={() => setActive(true)}
                             onEndEditing={() => setActive(false)}
@@ -110,6 +100,69 @@ const CollisionAccidentInformation = () => {
                                         contact_info: {
                                             ...collisionData.contact_info,
                                             firstname: firstname 
+                                        } 
+                                    })
+                                }}
+                            />
+                    </View>
+
+                    <View style={{ marginTop: "2%" }}>
+                        <Input
+                            onPressIn={() => setActive(true)}
+                            onEndEditing={() => setActive(false)}
+                            style={determineStyle().style}
+                            size={'large'}
+                            placeholder={`Please Enter Other Party's Last Name`}
+                            placeholderTextColor={determineStyle().color}
+                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            onChangeText={lastname => {
+                                    setCollisionData({
+                                        ...collisionData,
+                                        contact_info: {
+                                            ...collisionData.contact_info,
+                                            lastname: lastname 
+                                        } 
+                                    })
+                                }}
+                            />
+                    </View>
+
+                    <View style={{ marginTop: "2%" }}>
+                        <Input
+                            onPressIn={() => setActive(true)}
+                            onEndEditing={() => setActive(false)}
+                            style={determineStyle().style}
+                            size={'large'}
+                            placeholder={`Please Enter Other Party's Phone Number`}
+                            placeholderTextColor={determineStyle().color}
+                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            onChangeText={phoneNumber => {
+                                    setCollisionData({
+                                        ...collisionData,
+                                        contact_info: {
+                                            ...collisionData.contact_info,
+                                            phone_number: phoneNumber 
+                                        } 
+                                    })
+                                }}
+                            />
+                    </View>
+
+                    <View style={{ marginTop: "2%" }}>
+                        <Input
+                            onPressIn={() => setActive(true)}
+                            onEndEditing={() => setActive(false)}
+                            style={determineStyle().style}
+                            size={'large'}
+                            placeholder={`Please Enter Other Party's Address`}
+                            placeholderTextColor={determineStyle().color}
+                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            onChangeText={address => {
+                                    setCollisionData({
+                                        ...collisionData,
+                                        contact_info: {
+                                            ...collisionData.contact_info,
+                                            address: address 
                                         } 
                                     })
                                 }}
@@ -132,18 +185,58 @@ const CollisionAccidentInformation = () => {
         if (driverInsuranceAnswer === 'no') {
             return (
                 <View>
-                    <Text>No</Text>
+                    <View style={{ marginTop: "0%" }}>
+                        <Input
+                            onPressIn={() => setActive(true)}
+                            onEndEditing={() => setActive(false)}
+                            style={determineStyle().style}
+                            size={'large'}
+                            placeholder={`Please Enter Other Party's Insurance Policy Provider`}
+                            placeholderTextColor={determineStyle().color}
+                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            onChangeText={insuranceProvider => {
+                                    setCollisionData({
+                                        ...collisionData,
+                                        contact_info: {
+                                            ...collisionData.contact_info,
+                                            insurance_provider: insuranceProvider
+                                        } 
+                                    })
+                                }}
+                            />
+                    </View>
+
+                    <View style={{ marginTop: "0%" }}>
+                        <Input
+                            onPressIn={() => setActive(true)}
+                            onEndEditing={() => setActive(false)}
+                            style={determineStyle().style}
+                            size={'large'}
+                            placeholder={`Please Enter Other Party's Insurance Policy Number`}
+                            placeholderTextColor={determineStyle().color}
+                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            onChangeText={insurance_policy_number => {
+                                    setCollisionData({
+                                        ...collisionData,
+                                        contact_info: {
+                                            ...collisionData.contact_info,
+                                            insurance_policy_number: insurance_policy_number
+                                        } 
+                                    })
+                                }}
+                            />
+                    </View>
                 </View>
             )
         }
     }
 
-    console.log(collisionData)
+ 
 
     const renderInsuranceInformationButtons = () => {
         return (
-            <View>
-                <Text>Did the other driver let you take a picture of their insurance card?</Text>
+            <View style={{ marginTop: "-20%" }}>
+                <Text>Did the other party's let you take a picture of their insurance card?</Text>
                 <Button onPress={() => {
                     setDriverInsuranceAnswer('yes')
                     setCollisionData({
@@ -177,25 +270,32 @@ const CollisionAccidentInformation = () => {
     }
 
     return (
-        <View>
+        <ScrollView contentContainerStyle={{ height: '150%' }}>
             <Banner />
-            <Text> Did the other driver let you take a picture of their drivers license? </Text>
+            <Text> Did the other party's let you take a picture of their drivers license? </Text>
             <Button onPress={() => {
                 handleDriverLicense('yes')
                 setCollisionData({
                     ...collisionData,
                     contact_info: {
                         ...collisionData.contact_info,
-                        driver_license: 'Have Picture'
+                        driver_license_number: 'Have Picture'
                     }
                 })
             }}> yes </Button>
             <Button onPress={() => handleDriverLicense('no')}> no </Button>
             {driverLicenseAnswer !== null ? (renderDriverLicense()) : null}
-            {collisionData.contact_info.driver_license !== null ? (renderInsuranceInformationButtons()) : null}
+            {collisionData.contact_info.driver_license_number !== null && 
+                collisionData.contact_info.firstname !== null && 
+                collisionData.contact_info.lastname !== null && 
+                collisionData.contact_info.address !== null && 
+                collisionData.contact_info.phone_number !== null ||
+                driverLicenseAnswer === 'yes' ? (renderInsuranceInformationButtons()) : null}
             {driverInsuranceAnswer !== null ? (renderInsuranceInput()) : null}
-            {driverInsuranceAnswer !== null && driverLicenseAnswer !== null ? (<ContinueButton nextPage={'collision-extra-details'} pageName={'collision-accident-information-continue-button'} buttonText={'Continue'} />) : null}
-        </View>
+            {driverInsuranceAnswer === 'yes' && driverLicenseAnswer === 'yes' || 
+                collisionData.contact_info.insurance_policy_number !== null && 
+                collisionData.contact_info.insurance_provider !== null ? (<View style={{ marginTop: '-125%' }}><ContinueButton nextPage={'collision-extra-info'} pageName={'collision-accident-information-continue-button'} buttonText={'Continue'} /></View>) : null}
+        </ScrollView>
     )
 }
 

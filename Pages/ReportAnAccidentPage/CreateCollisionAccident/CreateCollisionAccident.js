@@ -16,9 +16,13 @@ const CreateCollisionAccident = () => {
         setCollisionData({
             addressId: accidentData.id,
             contact_info: {
-                driver_license: null,
+                driver_license_number: null,
                 insurance_provider: null,
-                insurance_policy_number: null
+                insurance_policy_number: null,
+                firstname: null,
+                lastname: null,
+                address: null,
+                phone_number: null
             }
         })
     ], [])
