@@ -13,7 +13,7 @@ const CollisionSpecificPictures = () => {
     useEffect(() => {
         setCollisionData({
             ...collisionData,
-            specificPictures: {
+            specific_pictures: {
                 'Pic One': "Test url"
             },
         })

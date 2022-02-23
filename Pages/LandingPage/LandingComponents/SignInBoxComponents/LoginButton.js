@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
 import { View, Image, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';
 import stateChange from '../../../../Hooks/handleToken'
@@ -11,16 +12,25 @@ import { useNavigation } from '@react-navigation/native';
 const LoginButton = ({ userData, handleLoggedIn }) => {
 	const navigation = useNavigation()
 
-
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN);
 
+	const storeData = async () => {
+		try {
+			await AsyncStorage.setItem('@email', userData.email)
+			await AsyncStorage.setItem('@password', userData.password)
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	// Handles the data changes and reroutes to the logged-in home page
 	useEffect( async () => {
 		if (!loading && data) {
+			// await storeData()
 			await setUser(data.driverSignIn)
 			await stateChange(data.driverSignIn.token);
 			await handleLoggedIn()

@@ -782,14 +782,15 @@ const DRIVERCREATEACCIDENT = gql`
 `
 
 const DRIVERCREATECOLLISIONACCIDENT = gql`
-  mutation DriverCreateCollisionAccident($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
+  mutation Mutation($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
   driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specificPictures, contact_info: $contactInfo, extra_info: $extraInfo) {
     id
     specific_pictures
     contact_info
     extra_info
   }
-}`
+}
+`
 
 const DRIVERCREATEINJURYACCIDENT = gql`
   mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!) {
