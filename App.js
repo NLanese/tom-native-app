@@ -74,6 +74,8 @@ import CollisionSpecificPictures from "./Pages/ReportAnAccidentPage/CollisionSpe
 import CollisionAccidentInformation from "./Pages/ReportAnAccidentPage/CollisionAccidentInformation/CollisionAccidentInformation";
 import CollisionExtraInfo from './Pages/ReportAnAccidentPage/CollisionExtraInfo/CollisionExtraInfo'
 import CollisionInjuryCheck from "./Pages/ReportAnAccidentPage/CollisionInjuryCheck/CollisionInjuryCheck";
+import CreateCollisionInjuryReport from "./Pages/ReportAnAccidentPage/CreateCollisionInjuryReport/CreateCollisionInjuryReport";
+import CollisionInjurySpecificPictures from "./Pages/ReportAnAccidentPage/CollisionInjurySpecificPicture/CollisionInjurySpecificPicture";
 
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/CheckUserInjury/CheckUserInjury";
 import UserInjuryReport from "./Pages/ReportAnAccidentPage/CreateInjuryReport/CreateInjuryReport";
@@ -84,7 +86,7 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+	uri: 'http://192.168.1.203:5001/graphql' // KW Studio
   // uri: 'http://192.168.1.203:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
@@ -283,6 +285,14 @@ export default function App() {
 
                   <Stack.Screen name='collision-injury-check'>
                     {props => <CollisionInjuryCheck />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='create-collision-injury-report'>
+                    {props => <CreateCollisionInjuryReport />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-injury-specific-pictures'>
+                    {props => <CollisionInjurySpecificPictures />}
                   </Stack.Screen>
               
                 </Stack.Navigator>
