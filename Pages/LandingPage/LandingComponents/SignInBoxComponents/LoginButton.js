@@ -8,7 +8,7 @@ import stateChange from '../../../../Hooks/handleToken'
 import { useNavigation } from '@react-navigation/native';
 
 
-const LoginButton = ({ userData }) => {
+const LoginButton = ({ userData, handleLoggedIn }) => {
 	const navigation = useNavigation()
 
 
@@ -42,7 +42,6 @@ const LoginButton = ({ userData }) => {
 
 	// Handles the Login Click Button
 	const handleSubmit = async () => {
-		await handleButtonLoading()
 		await login({
 			variables: {
 				email: userData.email,
@@ -65,7 +64,7 @@ const LoginButton = ({ userData }) => {
 
 	// Renders the Button with the Overlay with Dynamic Height
 	const renderButton = () => {
-		if (userData.password.length > 7 && userData.email.length > 6){
+		if (userData.password.length > 5 && userData.email.length > 5){
 			if (!buttonLoading && !buttonLoaded){
 				setButtonLoading(true)
 			}
@@ -105,7 +104,7 @@ const LoginButton = ({ userData }) => {
 
 	return (
 		<View>
-			<TouchableOpacity>
+			<TouchableOpacity onPress={() => handleSubmit()}>
 				<View>
 					{renderButton()}
 				</View>
