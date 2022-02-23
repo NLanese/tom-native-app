@@ -12,8 +12,22 @@ const styles = StyleSheet.create({
     
 })
 
-const ContinueButton = ({ nextPage, buttonText, pageName }) => {
+const ContinueButton = ({ 
+    nextPage, 
+    buttonText, 
+    pageName, 
+    colorOne = false, 
+    colorTwo = false,
+}) => {
     const navigation = useNavigation()
+
+    let colors = ["#534FFF", "#15A1F1"]
+    if (colorOne){
+        colors[0] = colorOne
+    }
+    if (colorTwo){
+        colors[1] = colorTwo
+    }
 
     return (
         <View style={{
@@ -29,8 +43,8 @@ const ContinueButton = ({ nextPage, buttonText, pageName }) => {
         }}>
             <TouchableOpacity onPress={() => {navigation.navigate(`${nextPage}`)}}>
                 <Gradient
-                    colorOne="#534FFF"
-                    colorTwo="#15A1F1"
+                    colorOne={colors[0]}
+                    colorTwo={colors[1]}
                     style={{
                         height: 100,
                         width: 100,
