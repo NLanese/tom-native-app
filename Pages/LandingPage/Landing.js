@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, ImageBackground, Image } from 'react-native';
 import { LandingStyles } from '../../Styles/LandingPageStyles';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import LandingPageContainer from './LandingComponents/LandingPageContainer';
 import Title from './LandingComponents/Title';
 
@@ -9,6 +10,9 @@ import gradient from '../../assets/black-to-clear-screen-gradient.png'
 
 
 const LandingPage = ({ handleLoggedIn }) => {
+    // console.log(AsyncStorage.getItem('@email'))
+    // console.log(AsyncStorage.getItem('@password'))
+
     return (
                <View style={LandingStyles.container}>
                 <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
