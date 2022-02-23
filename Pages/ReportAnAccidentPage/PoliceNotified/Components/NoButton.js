@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Modal, Button } from 'react-native'
+import { View, Text, Modal, Button, StyleSheet, TouchableOpacity } from 'react-native'
 import { Linking } from "react-native";
 
 const NoButton = () => {
@@ -30,12 +30,41 @@ const NoButton = () => {
 				</View>
 			</Modal>
 
-            <Button 
+            <TouchableOpacity 
+                style={Styles.touchContainer}
                 onPress={() => setModalVisible(!modalVisible)}
-                title='No'
-            />
+            >
+                <View style={Styles.button}>
+                    <Text style={Styles.text}>No</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }
+
+const Styles = StyleSheet.create({
+    touchContainer: {
+        width: 110,
+        shadowColor: '#000000',
+		shadowOffset: {width: 6, height: 25},
+		shadowOpacity: 0.14,
+		shadowRadius: 13,
+    },
+    button: {
+        height: 110,
+        width: 110,
+        backgroundColor: "#444444",
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    text:{
+        position: 'absolute',
+        color: "white",
+        fontFamily: "GilroySemiBold",
+        fontSize: 25,
+        letterSpacing: -0.5
+    }
+})
 
 export default NoButton

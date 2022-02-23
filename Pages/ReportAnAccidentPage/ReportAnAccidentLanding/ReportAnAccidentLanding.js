@@ -199,7 +199,16 @@ return (
 
             </View>
           </View>
+          
+          
         </View>
+
+        <TouchableOpacity > 
+            <View style={RAALandingStyles.emergencyButton}>
+              <Text style={RAALandingStyles.emergencyText}>EMERGENCY CALL 911</Text>
+            </View>
+          </TouchableOpacity>
+
     </View>
   )
 }

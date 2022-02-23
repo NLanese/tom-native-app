@@ -118,6 +118,33 @@ const RAALandingStyles = StyleSheet.create({
 		shadowOffset: {width: 0, height: 25},
 		shadowOpacity: 0.10,
 		shadowRadius: 20,
+    },
+// ---------------------------------
+    emergencyButton: {
+        position: 'absolute',
+        width: maxWidth - 50,
+        height: 50,
+
+        marginTop: maxHeight * .15,
+        marginLeft: 25,
+        marginRight: 25,
+
+        backgroundColor: "#DE0000",
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        shadowColor: '#000000',
+		shadowOffset: {width: 0, height: 20},
+		shadowOpacity: 0.20,
+		shadowRadius: 20,
+    },
+
+    emergencyText: {
+        fontFamily: "GilroySemiBold",
+        color: '#FFFFFF',
+        letterSpacing: 3,
+        fontSize: 13
     }
 })
 
