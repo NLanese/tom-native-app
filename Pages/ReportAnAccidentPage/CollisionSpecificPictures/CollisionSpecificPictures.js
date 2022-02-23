@@ -7,6 +7,9 @@ import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
+let maxWidth = Dimensions.get('window').width
+let maxHeight = Dimensions.get('window').height
+
 const CollisionSpecificPictures = () => {
     const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
 
@@ -24,11 +27,35 @@ const CollisionSpecificPictures = () => {
             <Banner />
             <Text>TEST FROM COLLISION SPECIFIC PICTURE</Text>
 
-            <View>
-                <ContinueButton nextPage={'collision-accident-information'} buttonText={'Continue'} pageName={'collision-specific-pictures-continue-button'}/>
+            <View style={Styles.continue}>
+                <ContinueButton nextPage={'collision-accident-information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
             </View>
         </View>
     )
 }
+
+const Styles = StyleSheet.create({
+    title: {
+        marginTop: 23,
+        marginLeft: 30,
+        marginRight: 30,
+
+        fontFamily: "GilroyBold",
+        fontSize: 30,
+        color: "#444444",
+        letterSpacing: -0.5
+    },
+    noButton: {
+        position: 'absolute',
+        marginTop: maxHeight * 0.75,
+        marginLeft: maxWidth * .58
+    },
+    continue: {
+        position: 'absolute',
+        marginTop: maxHeight * 0.75,
+        marginLeft: maxWidth * .15
+    }
+
+})
 
 export default CollisionSpecificPictures

@@ -8,6 +8,10 @@ import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
+import noButton from "./buttons/noButton"
+import Gradient from "../../../Components/Gradient"
+
+
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
@@ -273,7 +277,7 @@ const CollisionAccidentInformation = () => {
         <ScrollView contentContainerStyle={{ height: '150%' }}>
             <Banner />
             <Text> Did the other party's let you take a picture of their drivers license? </Text>
-            <Button onPress={() => {
+            {/* <Button onPress={() => {
                 handleDriverLicense('yes')
                 setCollisionData({
                     ...collisionData,
@@ -282,8 +286,45 @@ const CollisionAccidentInformation = () => {
                         driver_license_number: 'Have Picture'
                     }
                 })
-            }}> yes </Button>
-            <Button onPress={() => handleDriverLicense('no')}> no </Button>
+            }}> yes </Button> */}
+            {/* <Button onPress={() => handleDriverLicense('no')}> no </Button> */}
+
+            <TouchableOpacity>
+                <View>
+                    <Gradient 
+                        colorOne="#534FFF" 
+                        colorTwo="#15A1F1" 
+                        style={{
+                            width: 80, 
+                            height: 80,
+                            borderRadius: 40,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text>Yes</Text>
+                    </Gradient>
+                </View>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity>
+                <View>
+                    <Gradient 
+                        colorOne="#800000" 
+                        colorTwo="#C00000" 
+                        style={{
+                            width: 80, 
+                            height: 80,
+                            borderRadius: 40,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text>No</Text>
+                    </Gradient>
+                </View>
+            </TouchableOpacity>
+
+
             {driverLicenseAnswer !== null ? (renderDriverLicense()) : null}
             {collisionData.contact_info.driver_license_number !== null && 
                 collisionData.contact_info.firstname !== null && 
