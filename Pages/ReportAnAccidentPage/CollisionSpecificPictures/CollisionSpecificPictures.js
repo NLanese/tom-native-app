@@ -8,10 +8,27 @@ import { collisionDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 const CollisionSpecificPictures = () => {
+    const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
+
+    useEffect(() => {
+        setCollisionData({
+            ...collisionData,
+            specificPictures: {
+                'Pic One': "Test url"
+            },
+        })
+    }, [])
 
     return (
         <View>
+            <Banner />
             <Text>TEST FROM COLLISION SPECIFIC PICTURE</Text>
+
+            <View>
+                <ContinueButton nextPage={'collision-accident-information'} buttonText={'Continue'} pageName={'collision-specific-pictures-continue-button'}/>
+            </View>
         </View>
     )
 }
+
+export default CollisionSpecificPictures

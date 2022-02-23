@@ -70,6 +70,9 @@ import PoliceNotified from "./Pages/ReportAnAccidentPage/PoliceNotified/PoliceNo
 import CreateAccident from "./Pages/ReportAnAccidentPage/CreateAccident/CreateAccident";
 import CheckCollisionAccident from "./Pages/ReportAnAccidentPage/CheckCollisionAccident/CheckCollisionAccident";
 import CreateCollisionAccident from "./Pages/ReportAnAccidentPage/CreateCollisionAccident/CreateCollisionAccident";
+import CollisionSpecificPictures from "./Pages/ReportAnAccidentPage/CollisionSpecificPictures/CollisionSpecificPictures";
+import CollisionAccidentInformation from "./Pages/ReportAnAccidentPage/CollisionAccidentInformation/CollisionAccidentInformation";
+
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/CheckUserInjury/CheckUserInjury";
 import UserInjuryReport from "./Pages/ReportAnAccidentPage/CreateInjuryReport/CreateInjuryReport";
 
@@ -262,6 +265,14 @@ export default function App() {
 
                   <Stack.Screen name='check-collision-accident'>
                     {props => <CheckCollisionAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-specific-pictures'>
+                    {props => <CollisionSpecificPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-accident-information'>
+                    {props => <CollisionAccidentInformation />}
                   </Stack.Screen>
               
                 </Stack.Navigator>

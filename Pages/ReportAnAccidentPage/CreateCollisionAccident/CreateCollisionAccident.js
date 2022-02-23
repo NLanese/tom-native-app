@@ -14,7 +14,12 @@ const CreateCollisionAccident = () => {
 
     useEffect(() => [
         setCollisionData({
-            addressId: accidentData.id
+            addressId: accidentData.id,
+            contact_info: {
+                driver_license: null,
+                insurance_provider: null,
+                insurance_policy_number: null
+            }
         })
     ], [])
     
