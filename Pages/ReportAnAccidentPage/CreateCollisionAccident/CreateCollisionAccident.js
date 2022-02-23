@@ -36,7 +36,7 @@ const CreateCollisionAccident = () => {
                 (Give information/directions for upcoming slides)
             </Text>
 
-            <ContinueButton nextPage={'collision-specific-pictures'} buttonText={'Continue'} pageName={'create-collision-specific-pictures'} />
+            <ContinueButton nextPage={'collision-specific-pictures'} buttonText={'Continue'} pageName={'create-collision-accident'} />
         </View>
     )
 }

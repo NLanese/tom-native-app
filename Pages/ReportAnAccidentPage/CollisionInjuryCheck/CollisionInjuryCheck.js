@@ -14,17 +14,14 @@ let maxHeight = Dimensions.get('window').height
 
 const CollisionInjuryCheck = () => {
     const navigation = useNavigation()
-    const [collisionId, setCollisionId] = useRecoilState(collisionIdState)
-
-    console.log(collisionId)
 
     return (
         <View>
             <Banner />
             <Text>Was the Other Party injured in the accident?</Text>
 
-            <ContinueButton nextPage={'create-coliision-injury-report'} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} />
-            <Button onPress={navigation.navigate('check-property-accident')}>No</Button>
+            <ContinueButton nextPage={'create-collision-injury-report'} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} />
+            <Button onPress={() => navigation.navigate('check-property-accident')}>No</Button>
         </View>
     )
 }

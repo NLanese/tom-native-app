@@ -92,9 +92,6 @@ const Gradient = ({
             width: style.width * 0.75
         }
 
-    console.log(hollowStyle)
-    console.log(style)
-
 
     if (hollow){
         hollowStyle = {
@@ -151,7 +148,7 @@ const Gradient = ({
                 <View style={hollowStyle}>
                     {children}
                 </View>
-        </LinearGradient>
+            </LinearGradient>
         </View>
     ) 
 
