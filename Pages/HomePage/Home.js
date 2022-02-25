@@ -81,9 +81,6 @@ const Home = ({ handleLoggedIn }) => {
     //     }
     // }
 
-    useEffect(() => {
-        setWebsite('Home')
-    }, [])
 
     let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
     let name = nameObj(user.firstname, user.lastname)
@@ -99,6 +96,8 @@ const Home = ({ handleLoggedIn }) => {
             }
         }, 0.5)
     }
+
+    setWebsite({current: "Home", previous: website.current})
 
     return (
         <View>

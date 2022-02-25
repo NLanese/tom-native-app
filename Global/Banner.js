@@ -44,7 +44,7 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
     if (setActiveThread !== null){
       setActiveThread(null)
     }
-    setWebsiteState("Home")
+    setWebsiteState({current: "Home", previous: website.current})
     navigation.navigate('home')
   }
 
@@ -53,7 +53,7 @@ const handleInfoClick = () => {
 }
 
   const handlePageDisplay = () => {
-    if (website == "Message Thread"){
+    if (website.current == "Message Thread"){
       return(
         <View>
             {/* INFORMATION MODAL */}
@@ -74,7 +74,7 @@ const handleInfoClick = () => {
       )
     }
     else{
-      return (<Text style={styles.actualTitle}>{website}</Text>)
+      return (<Text style={styles.actualTitle}>{website.current}</Text>)
     }
   }
 

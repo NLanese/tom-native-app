@@ -54,7 +54,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     const scrollViewRef = useRef();
 
     // Sets Website State
-    setWebsite("Message Thread")
+    setWebsite({current: "Message Thread", previous: website.current)
 // -------------------- Pre Mounting Functions -------------------------
 
 
