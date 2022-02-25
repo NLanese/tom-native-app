@@ -16,12 +16,13 @@ const CommunicationStyles = StyleSheet.create({
         flexDirection: 'column',
     },
     threadLabel: {
-        height: maxHeight * 0.1,
+        height: maxHeight * 0.005,
         alignItems: 'center',
         backgroundColor: "white",
         marginBottom: 10,
     },
     labelText: {
+        height: 20,
         fontFamily: 'GilroyMedium'
     },
     thread:{
@@ -50,7 +51,7 @@ const CommunicationStyles = StyleSheet.create({
 
 const ChatroomsStyles = StyleSheet.create({
     headerBox: {
-        height: maxHeight * 0.15,
+        height: maxHeight * 0.13,
         backgroundColor: 'white'
     },
     titleBox: {
@@ -64,12 +65,22 @@ const ChatroomsStyles = StyleSheet.create({
 
         color: '#444444'
     },
-    searchBar: {
+    searchBarInactive: {
         backgroundColor: '#EEEEEE',
-        width: 263,
+        width: maxWidth - 60,
         borderRadius: 10,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 13,
+        marginLeft: 30,
+        borderColor: "#EEEEEE"
+    },
+    searchBarActive: {
+        backgroundColor: '#EEEEEE',
+        width: maxWidth - 60,
+        borderRadius: 10,
+        marginTop: 13,
+        marginLeft: 30,
+        borderWidth: 2,
+        borderColor: '#DDDDDD'
     },
 //-----------------------------------
     chatroomBox: {
@@ -112,7 +123,7 @@ const ChatroomsStyles = StyleSheet.create({
 const ThreadCardStyles = StyleSheet.create({
     threadName: {
         position: 'absolute',
-        marginTop: 24,
+        marginTop: 32,
         marginLeft: 60
     },
     nameText: {
@@ -122,7 +133,7 @@ const ThreadCardStyles = StyleSheet.create({
     },
     previewBox: {
         position: 'absolute',
-        marginTop: 39,
+        marginTop: 50,
         marginLeft: 60
     },
     previewText: {

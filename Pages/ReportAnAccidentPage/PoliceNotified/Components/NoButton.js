@@ -53,7 +53,7 @@ const Styles = StyleSheet.create({
     button: {
         height: 100,
         width: 100,
-        backgroundColor: "#444444",
+        backgroundColor: "#DE0000",
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center'

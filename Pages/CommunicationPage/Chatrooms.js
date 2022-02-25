@@ -1,14 +1,19 @@
-import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import React, {useState} from "react";
+import { View, Text, ScrollView, Image} from "react-native";
 import { Input, Icon } from "@ui-kitten/components";
-import Banner from "../../Global/Banner";
+
 import { ChatroomsStyles, ThreadCardStyles } from "../../Styles/CommunicationStyles";
+
+import Banner from "../../Global/Banner";
+import NewChatroomButton from "./CommunicationComponents/NewChatroomButton";
+import ThreadCard from "./CommunicationComponents/ThreadCard";
+
 import { useRecoilState } from "recoil";
 import { userState } from "../../Recoil/atoms";
-import { useMutation } from "@apollo/client";
-import ThreadCard from "./CommunicationComponents/ThreadCard";
+
 import dateObj from "../../Hooks/handleDateTime";
-import NewChatroomButton from "./CommunicationComponents/NewChatroomButton";
+
+import glass from "../../assets/magnifyGlass.png"
 
 const Chatrooms = () => {
 
@@ -26,11 +31,17 @@ const Chatrooms = () => {
             user = {...rawUser}
     }
 
-    // Magnifying Glass Icon for Search Bar
-    const magnifyGlassIcon = () => {
-        return( 
-            <Icon name={'search-outline'} />
-        )
+    const [inInput, setInInput] = useState(false)
+
+    const determineSearchStyle = () => {
+        if (inInput){
+            console.log("active")
+            return ChatroomsStyles.searchBarActive
+        }
+        else{
+            console.log("Inactive")
+            return ChatroomsStyles.searchBarInactive
+        }
     }
 
 
@@ -113,6 +124,8 @@ const Chatrooms = () => {
     }
     
     let scrollHeight = (user.chatrooms.length * 100) + 450
+
+
     return(
         <View>
             {/* BANNER */}
@@ -124,12 +137,16 @@ const Chatrooms = () => {
                     <Text style={ChatroomsStyles.title}>Messages</Text>
                 </View>
                 <View style={ChatroomsStyles}>
+                    <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', zIndex: 5, marginTop: 25, marginLeft: 42}}>
+                        <Image source={glass} style={{height: 15, width: 15}}/>
+                    </View>
                     <Input 
-                        style={ChatroomsStyles.searchBar}
+                        onPressIn={() =>setInInput(true)}
+                        onEndEditing={() => setInInput(false)}
+                        style={determineSearchStyle()}
                         textStyle={{fontFamily: 'GilroyMedium'}}
-                        placeholder="Search Chatrooms/Contacts"
+                        placeholder="            Search Chatrooms/Contacts"
                         placeholderTextColor={'#BBBBBB'}
-                        // accessoryLeft={magnifyGlassIcon}
                     />
                 </View>
             </View>

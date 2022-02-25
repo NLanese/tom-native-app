@@ -11,7 +11,7 @@ const RAALandingStyles = StyleSheet.create({
     },
 // ---------------------------
     titleText: {
-        marginTop: 23,
+        marginTop: 30,
 
         fontFamily: "GilroyBold",
         fontSize: 30,
@@ -134,10 +134,7 @@ const RAALandingStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
-        shadowColor: '#000000',
-		shadowOffset: {width: 0, height: 20},
-		shadowOpacity: 0.20,
-		shadowRadius: 20,
+       
     },
 
     emergencyText: {

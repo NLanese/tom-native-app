@@ -1,22 +1,35 @@
 import React, { useState } from "react";
+import { StyleSheet, View, Pressable, Dimensions, Image, Text, TouchableWithoutFeedback, Modal } from 'react-native';
+import { Appbar, Avatar } from 'react-native-paper';
+
+import { useNavigation } from '@react-navigation/native';
+
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
-import { Appbar, Avatar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Pressable, Dimensions, Image, Text } from 'react-native';
+import { threadState } from "../Recoil/atoms";
+
+import ThreadDetails from "../Pages/CommunicationPage/CommunicationComponents/ThreadDetails";
+
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
 import Bell from "./BannerComponents/Bell";
 import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
-import arrowBack from '../assets/arrowBack.png'
+import arrowBack from '../assets/backArrowIcon.png'
+import homeIcon from '../assets/homeIcon.png'
+
+import { CommunicationStyles } from "../Styles/CommunicationStyles"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
+  
+  const [modalvisible, setModalVisible] = useState(false)
   const [visible, setVisible] = useState(false)
   const [notifiedVisible, setNotifiedVisible] = useState(false)
-  const [website] = useRecoilState(websiteState)
+
+  const [website, setWebsiteState] = useRecoilState(websiteState)
+  const [activeThread] = useRecoilState(threadState)
   const navigation = useNavigation()
 
   const handleModal = () => {
@@ -30,10 +43,38 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   const handleBackClick = () => {
     if (setActiveThread !== null){
       setActiveThread(null)
-      navigation.navigate('home')
+    }
+    setWebsiteState("Home")
+    navigation.navigate('home')
+  }
+
+const handleInfoClick = () => {
+    setModalVisible(true)
+}
+
+  const handlePageDisplay = () => {
+    if (website == "Message Thread"){
+      return(
+        <View>
+            {/* INFORMATION MODAL */}
+            <Modal visible={modalvisible}>
+                {/* <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/> */}
+            </Modal>
+
+            {/* Chatroom Label */}
+            <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
+                <View style={CommunicationStyles.threadLabel}>
+                    <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
+                    <View>
+                        <View style={{height: 35, width: 35, marginTop: 0, borderRadius: 100, backgroundColor: 'black'}}/>
+                    </View>
+                </View >
+            </TouchableWithoutFeedback>
+        </View>
+      )
     }
     else{
-      navigation.navigate('home')
+      return (<Text style={styles.actualTitle}>{website}</Text>)
     }
   }
 
@@ -45,33 +86,39 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
         <Appbar style={styles.bottom}>
 
           <View style={styles.leftIcons}>
+
             <Pressable onPress={() => navigation.goBack()}>
-              <Image source={arrowBack} style={{ height: 30, width: 40}}/>
+              <Image source={arrowBack} style={{marginTop: 8, height: 20, width: 24}}/>
             </Pressable>
-            
-            <Appbar.Action
-              color='black'
-              style={styles.actionBarHome}
-              icon="home-variant"
-              onPress={() => handleBackClick()}
-            />
+
+            <Pressable onPress={() => handleBackClick()}>
+              <Image source={homeIcon} style={{marginTop: 8, marginLeft: 25, height: 20, width: 21}}/>
+            </Pressable>
+
           </View>
                   
           <View style={styles.centerIcon}>
+
             <View style={styles.titleBox}>
-              <Text style={styles.title}>{website}</Text>
+              {handlePageDisplay()}
             </View>
+
           </View>
 
           <View style={styles.rightIcons}>
-            {/* <Pressable onPress={() => handleNotifiedModal()}>
+            
+            <Pressable onPress={() => handleNotifiedModal()}>
               <Bell styles={styles} />
-            </Pressable> */}
+            </Pressable>
+
             <Pressable onPress={() => handleModal()}>
+
               <Avatar.Image
+                style={{marginTop: 12}}
                 source={SomeDudesFace}
                 size={40}
               />
+
             </Pressable>
           </View>
 
@@ -85,7 +132,7 @@ export default Banner
 const styles = StyleSheet.create({
     bottom: {
       alignContent: 'center',
-      height: maxHeight * .100,
+      height: maxHeight * .110,
       marginTop: maxHeight * .026,
       shadowOpacity: 0,
       position: 'relative',
@@ -123,7 +170,8 @@ const styles = StyleSheet.create({
       // backgroundColor: "green"
     },
     centerIcon: {
-      height: '100%',
+      height: '80%',
+      marginTop: 0,
       width: '33%',
       position: 'absolute',
       alignItems: 'center',
@@ -134,15 +182,26 @@ const styles = StyleSheet.create({
 //--------------------------------------------
 
     titleBox: {
-      marginTop: '15%',
-      height: '20%'
+      marginTop: 10,
+      // backgroundColor: 'red',
+      height: '100%'
     },
     title: {
       textAlign: 'center',
       fontFamily: 'GilroyMedium',
+      letterSpacing: 1,
       color: '#444444',
       fontSize: 12,
       height: '100%',
+    },
+    actualTitle: {
+      textAlign: 'center',
+      fontFamily: 'GilroyMedium',
+      letterSpacing: 1,
+      color: '#444444',
+      fontSize: 12,
+      height: '100%',
+      marginTop: 20
     },
 
   });

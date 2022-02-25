@@ -165,11 +165,13 @@ const ButtonBoxStyles = StyleSheet.create({
 	image: {
 		alignContent: 'center',
 		top: '30%',
-		height: 50,
-		width: 48,
+		height: 40,
+		width: 39,
 		marginLeft: 52.5
 	},
 	label: {
+		fontFamily: "GilroySemiBold",
+		width: 110,
 		marginTop: '7%',
 		textAlign: 'center',
 		fontSize: 10,

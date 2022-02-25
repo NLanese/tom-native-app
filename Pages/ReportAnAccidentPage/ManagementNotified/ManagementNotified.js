@@ -25,7 +25,7 @@ const ManagementNotified = () => {
 
 const Styles = StyleSheet.create({
     title: {
-        marginTop: 23,
+        marginTop: 30,
         marginLeft: 30,
         marginRight: 30,
 

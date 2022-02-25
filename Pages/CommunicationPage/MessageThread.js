@@ -9,7 +9,10 @@ import { userState } from '../../Recoil/atoms'
 import { useMutation } from '@apollo/client';
 
 import { useRecoilState } from "recoil";
+import { websiteState } from "../../Recoil/atoms";
 import { threadState } from "../../Recoil/atoms";
+
+import dateObj from "../../Hooks/handleDateTime";
 
 import { DRIVERSENDMESSAGE, GETDRIVERCHATROOMS } from "../../GraphQL/operations";
 
@@ -34,6 +37,9 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     // Tracks message sending status
     const [updating, setUpdating] = useState(false)
 
+    // Tracks website state
+    const [website, setWebsite] = useRecoilState(websiteState)
+
 // -------------------- Pre Mounting Functions -------------------------
     // Tracks the contents of any current message
     const [newMessage, setNewMessage] = useState("")
@@ -44,10 +50,11 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     // Gets User State from Recoil
     const [user, setUser] = useRecoilState(userState)
 
-    const [modalvisible, setModalVisible] = useState(false)
-
     // Allows us to tell ScrollView to go to the bottom upon a message send
     const scrollViewRef = useRef();
+
+    // Sets Website State
+    setWebsite("Message Thread")
 // -------------------- Pre Mounting Functions -------------------------
 
 
@@ -129,7 +136,10 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
             return <Text>No Messages</Text>
         }
       
-        const messages = messageData.map( (message, key) => {
+        const messages = messageData.map( (message, index) => {
+
+            console.log(index)
+
             // Renders sender name
             let propFrom = ""
             if (message.from.id == user.id ){
@@ -139,9 +149,79 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                 propFrom = message.from
             }
 
+            // Sets Display Null Values
+            let displayTime = false
+            let displayName = false
+            let displayIcon = false
+
+            // Determines if you need to display time sent above
+            if (index == 0){
+                displayTime = true
+                displayName = true
+            }
+
+            // handles time / name display booleans
+            if (index != 0){
+
+                // All for time boolean
+                let thisSendTime = dateObj(message.createdAt, user.dsp.timeZone)
+                let lastSendTime = dateObj(messageData[index - 1].createdAt, user.dsp.timeZone)
+                if (thisSendTime.day != lastSendTime.day){
+                    displayTime = true
+                }
+                else{
+                    let thisTotal = 0
+                    let lastTotal = 0
+
+                    thisTotal += thisSendTime.hour
+                    if (thisSendTime.am_pm == "PM"){
+                        thisTotal = thisTotal * 2
+                    }
+                    lastTotal += lastSendTime.min
+
+                    lastTotal += lastSendTime.hour
+                    if (lastSendTime.am_pm == "PM"){
+                        lastTotal = lastTotal * 2
+                    }
+                    lastTotal += lastSendTime.min
+                    
+                    if (thisTotal - 30 > lastTotal){
+                        displayTime = true
+                    }
+                }
+
+                // All for name boolean
+                if (messageData[index - 1].from.id != message.from.id){
+                    displayName = true
+                }
+
+                // For Icon
+                let next = index + 1
+                console.log(index)
+                if (messageData.length > index){
+                    if (messageData[next]){
+                        if (messageData[next].from.id != message.from.id){
+                            displayIcon = true
+                        }
+                    }
+                    
+                }
+
+            }
+
+
             // Calls upon Message Component
             return(
-                <Message setActiveThread={setActiveThread} from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
+                <Message 
+                    setActiveThread={setActiveThread} 
+                    from={propFrom} 
+                    content={message.content} 
+                    dateSent={message.createdAt} 
+                    key={index} 
+                    displayTime={displayTime}
+                    displayName={displayName}
+                    displayIcon={displayIcon}
+                />
             )
         })
 
@@ -157,9 +237,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 // ----------------- Render / Styling Functions ------------------------
 
 // ----------------------- Handler Functions ---------------------------
-    const handleInfoClick = () => {
-        setModalVisible(true)
-    }
 
     const handleSendMessage = () => {
         if (newMessage.length > 0){
@@ -170,7 +247,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 // changes the entire user state, leaving all over threads untouched but updating the current one
                 let updatedThreads = [newActiveThread]
-                console.log(user.chatrooms.length)
                 user.chatrooms.forEach( (chat) => {
                     if (chat.id == newActiveThread.id){
                     }
@@ -178,7 +254,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                         updatedThreads.push(chat)
                     }
                 })
-                console.log(updatedThreads.length)
 
 
                 // changes the main recoil state
@@ -210,21 +285,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         <View>
             <Banner />
             <View style={CommunicationStyles.container}>
-
-                {/* INFORMATION MODAL */}
-                <Modal visible={modalvisible}>
-                        <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
-                </Modal>
-
-                {/* Chatroom Label */}
-                <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
-                    <View style={CommunicationStyles.threadLabel}>
-                        <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
-                        <View>
-                            <View style={{height: 35, width: 35, marginTop: 10, borderRadius: 100, backgroundColor: 'black'}}/>
-                        </View>
-                    </View >
-                </TouchableWithoutFeedback>
 
                 {/* Chatroom Message Content */}
                 <View style={CommunicationStyles.threadContainer}>

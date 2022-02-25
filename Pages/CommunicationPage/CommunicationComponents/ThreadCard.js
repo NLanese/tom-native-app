@@ -27,8 +27,8 @@ const ThreadCard = ({chatroom}) => {
 
     // Generates the group chat name title
     const generateTitle = () => {
-        if (chatroom.chatroomName.split("").length > 26){
-            return (chatroom.chatroomName.slice(0, 26) + "...")
+        if (chatroom.chatroomName.split("").length > 20){
+            return (chatroom.chatroomName.slice(0, 20) + "...")
         }
         else{ return chatroom.chatroomName }
     }

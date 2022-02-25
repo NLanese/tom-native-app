@@ -62,7 +62,7 @@ const CreateCollisionAccident = () => {
 
 const Styles = StyleSheet.create({
     title: {
-        marginTop: 23,
+        marginTop: 30,
         marginLeft: 30,
         marginRight: 30,
 
@@ -75,8 +75,9 @@ const Styles = StyleSheet.create({
         marginTop: 15,
         marginLeft: 30,
         marginRight: 38,
-        fontFamily: "GilroySemiBold",
-        fontSize: 16,
+        fontFamily: "GilroyMedium",
+        fontSize: 13,
+        lineHeight: 20,
         color: "#888888",
         letterSpacing: 0.5
     },

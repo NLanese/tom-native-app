@@ -17,10 +17,16 @@ const ShiftPlannerButton = () => {
             <TouchableOpacity onPress={() => {navigation.navigate("shift_planner")}}>
                 <View style={ButtonBoxStyles.buttonCard}>
                     <Image 
-                        style={ButtonBoxStyles.image}
+                        style={{
+                            alignContent: 'center',
+                            top: '30%',
+                            height: 40,
+                            width: 37,
+                            marginLeft: 58
+                        }}
                         source={require('../../../../assets/shift-planner-icon.png')}/>
                 </View> 
-                <View style={{ marginTop: '-30%' }}>
+                <View style={{ marginTop: '-32%', alignItems: 'center'}}>
                     <Text style={ButtonBoxStyles.label}>SHIFT PLANNER</Text>
                 </View>
             </TouchableOpacity>

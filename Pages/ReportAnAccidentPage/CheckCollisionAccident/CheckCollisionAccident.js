@@ -11,12 +11,12 @@ const CheckCollisionAccident = () => {
     return (
         <View>
             <Banner />
-            <Text style={Styles.title}>Was another vehicle hit? TELL ME NOW!</Text>
+            <Text style={Styles.title}>Was another vehicle hit?</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'create-collision-accident'} buttonText={'Yes'} pageName={'check-collision-accident-yes-button'} colorOne="#600000" colorTwo="#C00000"/>
+                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
             </View>
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
+                <ContinueButton nextPage={'create-collision-accident'} buttonText={'Yes'} pageName={'check-collision-accident-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )
@@ -24,9 +24,11 @@ const CheckCollisionAccident = () => {
 
 const Styles = StyleSheet.create({
     title: {
-        marginTop: 23,
+        marginTop: 30,
         marginLeft: 30,
-        marginRight: 30,
+
+        width: 200,
+        // backgroundColor: 'red',
 
         fontFamily: "GilroyBold",
         fontSize: 30,
