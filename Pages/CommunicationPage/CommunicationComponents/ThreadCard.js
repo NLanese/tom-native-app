@@ -1,6 +1,7 @@
 import React from "react";
 
 import { threadState } from "../../../Recoil/atoms";
+import { websiteState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import { View, Text, TouchableOpacity } from "react-native";
@@ -12,6 +13,8 @@ const ThreadCard = ({chatroom}) => {
 
     // Recoil for thread Data
     const [thread, setThread] = useRecoilState(threadState);
+
+    const [website, setWebsite] = useRecoilState(websiteState)
 
     // Generates the preview of the last text
     const generatePreview = () => {
@@ -37,6 +40,7 @@ const ThreadCard = ({chatroom}) => {
     const selectThread = async () => {
         await setThread(chatroom)
         await navigation.navigate('message-thread')
+        await setWebsite({current: "Message Thread", previous: website.current})
     }
 
     

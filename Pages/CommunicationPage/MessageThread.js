@@ -53,8 +53,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     // Allows us to tell ScrollView to go to the bottom upon a message send
     const scrollViewRef = useRef();
 
-    // Sets Website State
-    setWebsite({current: "Message Thread", previous: website.current)
 // -------------------- Pre Mounting Functions -------------------------
 
 

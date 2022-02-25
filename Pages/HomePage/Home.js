@@ -97,7 +97,6 @@ const Home = ({ handleLoggedIn }) => {
         }, 0.5)
     }
 
-    setWebsite({current: "Home", previous: website.current})
 
     return (
         <View>

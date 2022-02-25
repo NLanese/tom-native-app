@@ -40,12 +40,18 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
     setNotifiedVisible(!notifiedVisible)
   }
 
-  const handleBackClick = () => {
+  const handleHomeClick = () => {
     if (setActiveThread !== null){
       setActiveThread(null)
     }
     setWebsiteState({current: "Home", previous: website.current})
     navigation.navigate('home')
+  }
+
+  const handleBackClick = () => {
+    console.log(website)
+    setWebsiteState({current: website.previous, previous: website.current})
+    navigation.goBack()
   }
 
 const handleInfoClick = () => {
@@ -58,7 +64,7 @@ const handleInfoClick = () => {
         <View>
             {/* INFORMATION MODAL */}
             <Modal visible={modalvisible}>
-                {/* <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/> */}
+                <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
             </Modal>
 
             {/* Chatroom Label */}
@@ -87,11 +93,11 @@ const handleInfoClick = () => {
 
           <View style={styles.leftIcons}>
 
-            <Pressable onPress={() => navigation.goBack()}>
+            <Pressable onPress={() => handleBackClick()}>
               <Image source={arrowBack} style={{marginTop: 8, height: 20, width: 24}}/>
             </Pressable>
 
-            <Pressable onPress={() => handleBackClick()}>
+            <Pressable onPress={() => handleHomeClick()}>
               <Image source={homeIcon} style={{marginTop: 8, marginLeft: 25, height: 20, width: 21}}/>
             </Pressable>
 
