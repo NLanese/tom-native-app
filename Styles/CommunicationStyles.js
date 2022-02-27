@@ -146,16 +146,24 @@ const ThreadCardStyles = StyleSheet.create({
 const ThreadDetailStyles = StyleSheet.create({
     container: {
         position: 'absolute',
-        marginTop: maxHeight * -0.28,
-        marginLeft: maxWidth * -.5,
+        // marginTop: maxHeight * 0.28,
+        // marginLeft: maxWidth * -.5,
 
         height: modalHeight,
         width: maxWidth,
         backgroundColor: '#f9f9f9'
     },
+    chatName: {
+        fontFamily: "GilroyBold",
+        marginTop: 103,
+        color: "#444444",
+        fontSize: 24,
+        textAlign: 'center'
+    },
 //---------------------------------
     doneBox: {
-        marginTop: 10,
+        marginTop: 60,
+        marginBottom: 15,
         marginLeft: namesListMargins + 260
     },
     doneText:{
@@ -174,6 +182,7 @@ const ThreadDetailStyles = StyleSheet.create({
     },
 //---------------------------------
     nameListContainer: {
+        marginTop: 30,
         height: 350,
     },
     namesList: {

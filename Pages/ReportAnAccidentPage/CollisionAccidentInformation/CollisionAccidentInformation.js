@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
 import { Button, Input } from "@ui-kitten/components";
+
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
+
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
+
 import { collisionDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import noButton from "./buttons/noButton"
 import Gradient from "../../../Components/Gradient"
+
+import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo"
 
 
 let maxWidth = Dimensions.get('window').width
@@ -60,7 +65,7 @@ const CollisionAccidentInformation = () => {
         if (driverLicenseAnswer === 'yes') {
             return (
                 <View>
-                    <Text>Excellent! Continue to the next step</Text>
+                    
                 </View>
             )
         }
@@ -181,7 +186,6 @@ const CollisionAccidentInformation = () => {
         if (driverInsuranceAnswer === 'yes') {
             return (
                 <View>
-                    <Text>Excellent! Continue to the next step</Text>
                 </View>
             )
         }
@@ -235,28 +239,91 @@ const CollisionAccidentInformation = () => {
         }
     }
 
- 
+ // ---------- INSURANCE------------
+    const [q2, setQ2] = useState("none")
+
+    const determineOutline2 = (yesNo) => {
+        if (yesNo == q2){
+            if (yesNo == "yes"){
+                return ({ borderColor: "#15A1F1", borderWidth: 4, borderRadius: 100, marginTop: -2})
+            }
+            else{
+                return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
+            }
+        }
+        else{
+            return RAACollisionInfoStyles.button
+        }
+    }
 
     const renderInsuranceInformationButtons = () => {
         return (
-            <View style={{ marginTop: "-20%" }}>
-                <Text>Did the other party's let you take a picture of their insurance card?</Text>
-                <Button onPress={() => {
-                    setDriverInsuranceAnswer('yes')
-                    setCollisionData({
-                        ...collisionData,
-                        contact_info: {
-                            ...collisionData.contact_info,
-                            insurance_policy_number: 'Have Picture'
-                        }
-                    })
-                }}> yes </Button>
-                <Button onPress={() => setDriverInsuranceAnswer('no')}> no </Button>
+            <View>
+                <Text style={RAACollisionInfoStyles.questionText}>Was the other party willing to let you take a picture of their insurance card?</Text>
+
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setDriverInsuranceAnswer('yes')
+                                setQ2("yes")
+                                setCollisionData({
+                                    ...collisionData,
+                                    contact_info: {
+                                        ...collisionData.contact_info,
+                                        driver_license_number: 'Have Picture'
+                                    }
+                                })
+                            }
+                        }>
+                            <View style={determineOutline2("yes")}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={RAACollisionInfoStyles.button}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setDriverInsuranceAnswer('no')
+                                setQ2("no")
+                            }}
+                        >
+                            <View style={determineOutline2("no")}>
+                                <Gradient 
+                                    colorOne="#DE0000" 
+                                    colorTwo="#DE0000" 
+                                    style={RAACollisionInfoStyles.button}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+
+
+
             </View>
         )
     }
+ // ---------- INSURANCE------------
+
 
     const [isActive, setActive] = useState(false)
+
+ // ---------- LICENSE ------------
 
     const determineStyle = () => {
         if (isActive) {
@@ -273,56 +340,78 @@ const CollisionAccidentInformation = () => {
         }
     }
 
+    const [q1, setQ1] = useState("None")
+
+    const determineOutline = (yesNo) => {
+        if (yesNo == q1){
+            if (yesNo == "yes"){
+                return ({ borderColor: "#15A1F1", borderWidth: 4, borderRadius: 100, marginTop: -2})
+            }
+            else{
+                return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
+            }
+        }
+        else{
+            return RAACollisionInfoStyles.button
+        }
+    }
+
     return (
         <ScrollView contentContainerStyle={{ height: '150%' }}>
             <Banner />
-            <Text> Did the other party's let you take a picture of their drivers license? </Text>
-            {/* <Button onPress={() => {
-                handleDriverLicense('yes')
-                setCollisionData({
-                    ...collisionData,
-                    contact_info: {
-                        ...collisionData.contact_info,
-                        driver_license_number: 'Have Picture'
-                    }
-                })
-            }}> yes </Button> */}
-            {/* <Button onPress={() => handleDriverLicense('no')}> no </Button> */}
+            <Text style={RAACollisionInfoStyles.questionText}>Was the other party willing to let you take a picture of their license?</Text>
 
-            <TouchableOpacity>
-                <View>
-                    <Gradient 
-                        colorOne="#534FFF" 
-                        colorTwo="#15A1F1" 
-                        style={{
-                            width: 80, 
-                            height: 80,
-                            borderRadius: 40,
-                            justifyContent: 'center'
+            <View style={RAACollisionInfoStyles.buttonBox}>
+
+                <View style={RAACollisionInfoStyles.buttonContainer}>
+                    <TouchableOpacity 
+                        style={RAACollisionInfoStyles.touchable}
+                        onPress={() => {
+                            handleDriverLicense('yes')
+                            setQ1("yes")
+                            setCollisionData({
+                                ...collisionData,
+                                contact_info: {
+                                    ...collisionData.contact_info,
+                                    driver_license_number: 'Have Picture'
+                                }
+                            })
+                        }
+                    }>
+                        <View style={determineOutline("yes")}>
+                            <Gradient 
+                                colorOne="#534FFF" 
+                                colorTwo="#15A1F1" 
+                                style={RAACollisionInfoStyles.button}
+                            >
+                                <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                            </Gradient>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+
+                <View style={RAACollisionInfoStyles.noButtonContainer}>
+                    <TouchableOpacity 
+                        style={RAACollisionInfoStyles.touchable}
+                        onPress={() => {
+                            handleDriverLicense('no')
+                            setQ1("no")
                         }}
                     >
-                        <Text>Yes</Text>
-                    </Gradient>
+                        <View style={determineOutline("no")}>
+                            <Gradient 
+                                colorOne="#DE0000" 
+                                colorTwo="#DE0000" 
+                                style={RAACollisionInfoStyles.button}
+                            >
+                                <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                            </Gradient>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-            </TouchableOpacity>
 
-
-            <TouchableOpacity>
-                <View>
-                    <Gradient 
-                        colorOne="#800000" 
-                        colorTwo="#C00000" 
-                        style={{
-                            width: 80, 
-                            height: 80,
-                            borderRadius: 40,
-                            justifyContent: 'center'
-                        }}
-                    >
-                        <Text>No</Text>
-                    </Gradient>
-                </View>
-            </TouchableOpacity>
+            </View>
 
 
             {driverLicenseAnswer !== null ? (renderDriverLicense()) : null}
@@ -335,7 +424,7 @@ const CollisionAccidentInformation = () => {
             {driverInsuranceAnswer !== null ? (renderInsuranceInput()) : null}
             {driverInsuranceAnswer === 'yes' && driverLicenseAnswer === 'yes' || 
                 collisionData.contact_info.insurance_policy_number !== null && 
-                collisionData.contact_info.insurance_provider !== null ? (<View style={{ marginTop: '-125%' }}><ContinueButton nextPage={'collision-extra-info'} pageName={'collision-accident-information-continue-button'} buttonText={'Continue'} /></View>) : null}
+                collisionData.contact_info.insurance_provider !== null ? (<View style={{ marginTop: 70, marginLeft: 30 }}><ContinueButton nextPage={'collision-extra-info'} pageName={'collision-accident-information-continue-button'} buttonText={'Done'} /></View>) : null}
         </ScrollView>
     )
 }
