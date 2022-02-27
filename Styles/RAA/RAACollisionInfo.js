@@ -9,7 +9,7 @@ const RAACollisionInfoStyles = StyleSheet.create({
         width: 80, 
         height: 80,
         borderRadius: 40,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 //--------------------------------------------------
     buttonBox: {
@@ -30,6 +30,7 @@ const RAACollisionInfoStyles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20
     },
+// ---------------------
     questionText: {
         marginLeft: 30,
         width: maxWidth - 60,
@@ -38,6 +39,7 @@ const RAACollisionInfoStyles = StyleSheet.create({
         fontFamily: "GilroyBold",
         color: "#444444"
     }
+// ------------------
 
 })
 

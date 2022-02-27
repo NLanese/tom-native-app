@@ -93,7 +93,7 @@ const ChatroomsStyles = StyleSheet.create({
     },
     chatroomBoxTitleText: {
         fontFamily: 'GilroyBold',
-        fontSize: 10,
+        fontSize: 14,
 
         letterSpacing: 2,
         color: '#888888'
