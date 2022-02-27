@@ -15,6 +15,7 @@ import noButton from "./buttons/noButton"
 import Gradient from "../../../Components/Gradient"
 
 import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo"
+import Template from "../../../Styles/RAA/RAATemplateStyles";
 
 
 let maxWidth = Dimensions.get('window').width
@@ -22,21 +23,24 @@ let maxHeight = Dimensions.get('window').height
 
 const dynamicStyles = StyleSheet.create({
     activeInput: {
-        backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
-        borderColor: 'white',
+        backgroundColor: "#ccc",
+        borderColor: "white",
         borderWidth: 3,
         borderRadius: 15,
-        width: '85%',
-        height: '13%',
-        marginLeft: maxWidth * 0.125,
+        width: maxWidth - 60,
+        // height: '%',
+        marginLeft: 30,
+        marginBottom: 20
     },
     inactiveInput: {
-        backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
-        borderColor: 'rgba(52, 52, 52, 0.3) !important',
+        backgroundColor: "#ccc",
+        borderColor: "#ccc",
+        borderWidth: 3,
         borderRadius: 15,
-        width: '85%',
-        height: '13%',
-        marginLeft: maxWidth * 0.125,
+        width: maxWidth - 60,
+        // height: '13%',
+        marginLeft: 30,
+        marginBottom: 20
     }
 })
 
@@ -73,15 +77,16 @@ const CollisionAccidentInformation = () => {
         if (driverLicenseAnswer === 'no') {
             return (
                 <View>
-                    <View style={{ marginTop: "0%" }}>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={Template.subTitle}>OTHER LICENSE NUMBER</Text>
                         <Input
-                            onPressIn={() => setActive(true)}
-                            onEndEditing={() => setActive(false)}
-                            style={determineStyle().style}
+                            onPressIn={() => setActive("num")}
+                            onEndEditing={() => setActive("num")}
+                            style={determineStyle("num").style}
                             size={'large'}
-                            placeholder={`Please Enter Other Party's License Number`}
-                            placeholderTextColor={determineStyle().color}
-                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            placeholder={`LICENSE NUMBER`}
+                            placeholderTextColor={determineStyle("num").color}
+                            textStyle={{color: determineStyle("num").color, fontSize: 18}}
                             onChangeText={driverLicense => {
                                     setCollisionData({
                                         ...collisionData,
@@ -94,15 +99,16 @@ const CollisionAccidentInformation = () => {
                             />
                     </View>
 
-                    <View style={{ marginTop: "2%" }}>
+                    <View >
+                        <Text style={Template.subTitle}>OTHER PERSON'S FIRST NAME</Text>
                         <Input
-                            onPressIn={() => setActive(true)}
-                            onEndEditing={() => setActive(false)}
-                            style={determineStyle().style}
+                            onPressIn={() => setActive("first")}
+                            onEndEditing={() => setActive("first")}
+                            style={determineStyle("first").style}
                             size={'large'}
-                            placeholder={`Please Enter Other Party's First Name`}
-                            placeholderTextColor={determineStyle().color}
-                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            placeholder={`Firstname`}
+                            placeholderTextColor={determineStyle("first").color}
+                            textStyle={{color: determineStyle("first").color, fontSize: 18}}
                             onChangeText={firstname => {
                                     setCollisionData({
                                         ...collisionData,
@@ -115,15 +121,16 @@ const CollisionAccidentInformation = () => {
                             />
                     </View>
 
-                    <View style={{ marginTop: "2%" }}>
+                    <View>
+                    <Text style={Template.subTitle}>OTHER PERSON'S LAST NAME</Text>
                         <Input
-                            onPressIn={() => setActive(true)}
-                            onEndEditing={() => setActive(false)}
-                            style={determineStyle().style}
+                            onPressIn={() => setActive("last")}
+                            onEndEditing={() => setActive("last")}
+                            style={determineStyle("last").style}
                             size={'large'}
-                            placeholder={`Please Enter Other Party's Last Name`}
-                            placeholderTextColor={determineStyle().color}
-                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            placeholder={`Lastname`}
+                            placeholderTextColor={determineStyle("last").color}
+                            textStyle={{color: determineStyle("last").color, fontSize: 18}}
                             onChangeText={lastname => {
                                     setCollisionData({
                                         ...collisionData,
@@ -136,15 +143,16 @@ const CollisionAccidentInformation = () => {
                             />
                     </View>
 
-                    <View style={{ marginTop: "2%" }}>
+                    <View >
+                    <Text style={Template.subTitle}>OTHER PERSON'S PHONE NUMBER</Text>
                         <Input
-                            onPressIn={() => setActive(true)}
-                            onEndEditing={() => setActive(false)}
-                            style={determineStyle().style}
+                            onPressIn={() => setActive("phone")}
+                            onEndEditing={() => setActive("phone")}
+                            style={determineStyle("phone").style}
                             size={'large'}
-                            placeholder={`Please Enter Other Party's Phone Number`}
-                            placeholderTextColor={determineStyle().color}
-                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            placeholder={`1234567890`}
+                            placeholderTextColor={determineStyle("phone").color}
+                            textStyle={{color: determineStyle("phone").color, fontSize: 18}}
                             onChangeText={phoneNumber => {
                                     setCollisionData({
                                         ...collisionData,
@@ -157,15 +165,16 @@ const CollisionAccidentInformation = () => {
                             />
                     </View>
 
-                    <View style={{ marginTop: "2%" }}>
+                    <View >
+                    <Text style={Template.subTitle}>OTHER PERSON'S HOME ADDRESS</Text>
                         <Input
-                            onPressIn={() => setActive(true)}
-                            onEndEditing={() => setActive(false)}
-                            style={determineStyle().style}
+                            onPressIn={() => setActive("home")}
+                            onEndEditing={() => setActive("home")}
+                            style={determineStyle("home").style}
                             size={'large'}
-                            placeholder={`Please Enter Other Party's Address`}
-                            placeholderTextColor={determineStyle().color}
-                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            placeholder={`123 Example Avenue, City, State`}
+                            placeholderTextColor={determineStyle("home").color}
+                            textStyle={{color: determineStyle("home").color, fontSize: 18}}
                             onChangeText={address => {
                                     setCollisionData({
                                         ...collisionData,
@@ -193,15 +202,16 @@ const CollisionAccidentInformation = () => {
         if (driverInsuranceAnswer === 'no') {
             return (
                 <View>
-                    <View style={{ marginTop: "0%" }}>
+                    <View style={{ marginTop: 20 }}>
+                    <Text style={Template.subTitle}>OTHER PERSON'S INSURANCE PROVIDER</Text>
                         <Input
-                            onPressIn={() => setActive(true)}
-                            onEndEditing={() => setActive(false)}
-                            style={determineStyle().style}
+                            onPressIn={() => setActive("prov")}
+                            onEndEditing={() => setActive("prov")}
+                            style={determineStyle("prov").style}
                             size={'large'}
                             placeholder={`Please Enter Other Party's Insurance Policy Provider`}
-                            placeholderTextColor={determineStyle().color}
-                            textStyle={{color: determineStyle().color, fontSize: 18}}
+                            placeholderTextColor={determineStyle("prov").color}
+                            textStyle={{color: determineStyle("prov").color, fontSize: 18}}
                             onChangeText={insuranceProvider => {
                                     setCollisionData({
                                         ...collisionData,
@@ -215,12 +225,13 @@ const CollisionAccidentInformation = () => {
                     </View>
 
                     <View style={{ marginTop: "0%" }}>
+                    <Text style={Template.subTitle}>OTHER PERSON'S INSURANCE POLICTY NUMBER</Text>
                         <Input
                             onPressIn={() => setActive(true)}
                             onEndEditing={() => setActive(false)}
                             style={determineStyle().style}
                             size={'large'}
-                            placeholder={`Please Enter Other Party's Insurance Policy Number`}
+                            placeholder={`12345678901234567`}
                             placeholderTextColor={determineStyle().color}
                             textStyle={{color: determineStyle().color, fontSize: 18}}
                             onChangeText={insurance_policy_number => {
@@ -325,17 +336,17 @@ const CollisionAccidentInformation = () => {
 
  // ---------- LICENSE ------------
 
-    const determineStyle = () => {
-        if (isActive) {
+    const determineStyle = (type) => {
+        if (isActive == type){
             return{
                 style: dynamicStyles.activeInput,
                 color: 'white'
             }
         }
-        else {
+        else{
             return{
                 style: dynamicStyles.inactiveInput,
-                color: '#adadad'
+                color: '#aaa'
             }
         }
     }
