@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, TouchableOpacity, Image, Text, Dimensions } from 'react-native'
+import { View, TouchableOpacity, Image, Text, Dimensions, ScrollView } from 'react-native'
 import { CheckBox } from '@ui-kitten/components';
 
 import { useRecoilState } from 'recoil';
@@ -23,6 +23,9 @@ import { render } from "react-dom";
 
 const ReportAnAccidentLanding = () => {
   const navigation = useNavigation()
+
+  let maxWidth = Dimensions.get('window').width
+  let maxHeight = Dimensions.get('window').height
 
 
   const [location, setLocation] = useState(null);
@@ -145,7 +148,7 @@ const handleContinue = () => {
 
 
 return (
-    <View>
+    <ScrollView>
 
         <Banner />
 
@@ -209,7 +212,7 @@ return (
             </View>
           </TouchableOpacity>
 
-    </View>
+    </ScrollView>
   )
 }
 

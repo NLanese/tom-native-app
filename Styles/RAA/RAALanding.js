@@ -4,6 +4,11 @@ import { Dimensions } from 'react-native';
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
+let buttonMarginTop = maxHeight * .15
+if (maxHeight < 700){
+    buttonMarginTop = 30
+}
+
 const RAALandingStyles = StyleSheet.create({
     container: {
         backgroundColor: "#F2F2F2",
@@ -125,7 +130,7 @@ const RAALandingStyles = StyleSheet.create({
         width: maxWidth - 50,
         height: 50,
 
-        marginTop: maxHeight * .15,
+        marginTop: buttonMarginTop,
         marginLeft: 25,
         marginRight: 25,
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
 
 import { Input, Button } from '@ui-kitten/components';
 
@@ -104,7 +104,7 @@ const CreateAccident = () => {
     }
 
     return (
-        <View>
+        <ScrollView>
             <Banner />
 
             <Text style={{...Template.questionText, marginBottom: 10}}> 
@@ -179,7 +179,7 @@ const CreateAccident = () => {
                         </Gradient>
                     </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
