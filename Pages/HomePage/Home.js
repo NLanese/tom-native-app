@@ -140,15 +140,12 @@ const Home = ({ handleLoggedIn }) => {
                                 <Text style={HomeStyles.messageText}>{weeklyReportObj.feedbackMessage}</Text>
                             </View>
                             <View style={HomeStyles.acknowledgeContainter}>
-                                {/* <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
-                                    <View style={HomeStyles.checkBox}>
-                                            {renderCheck()}
-                                    </View>
-                                </TouchableOpacity> */}
+                            
                                 <CheckBox
                                     checked={acknowledged}
                                     onChange={() => handleAcknowledge()}>
                                 </CheckBox>
+
                                 <View style={HomeStyles.acknowledgedBox}>
                                     <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
                                 </View>
@@ -159,7 +156,7 @@ const Home = ({ handleLoggedIn }) => {
                                 </View>
                             </View>
                         </View>
-                        <View style={{position: 'absolute', marginTop: 240, paddingLeft: 8, paddingRight: 8}}>
+                        <View style={{position: 'absolute', marginTop: 240, marginLeft: 20, marginRight: 20, paddingLeft: 8, paddingRight: 8}}>
                             <WeeklyBottomCard data={user} />
                         </View>
                     </Modal>

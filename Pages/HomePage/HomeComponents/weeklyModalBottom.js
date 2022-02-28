@@ -100,7 +100,7 @@ const WeeklyBottomCard = ({data}) => {
     }
 
     return(
-        <ScrollView horizontal={true} persistentScrollbar={true}>
+        <ScrollView style={{width: 250}} horizontal={true} persistentScrollbar={true}>
             {renderReturnArray()}
         </ScrollView>
     )

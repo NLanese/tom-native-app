@@ -1,6 +1,6 @@
 import { Input } from '@ui-kitten/components';
 import { useState } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, View } from 'react-native';
 
 
 let maxWidth= Dimensions.get('window').width
@@ -14,6 +14,7 @@ const UpdateField = (props) => {
             borderColor: 'white',
             borderWidth: 3,
             borderRadius: 15,
+            height: 50,
             width: maxWidth - 60,
             marginLeft: 30,
             marginBottom: 8
@@ -22,6 +23,7 @@ const UpdateField = (props) => {
             backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
             borderColor: 'rgba(52, 52, 52, 0.3) !important',
             borderRadius: 15,
+            height: 50,
             width: maxWidth - 60,
             marginLeft: 30,
             marginBottom: 8
@@ -67,18 +69,20 @@ const UpdateField = (props) => {
     }
 
     return(
-        <Input
-            onPressIn={() => setActive(true)}
-            onEndEditing={() => setActive(false)}
-            placeholder={labelMaker(props.field)}
-            name={props.field}
-            placeholderTextColor={determineStyle().color}
-            style={determineStyle().style}
-            textStyle={{color: determineStyle().color, fontSize: 18}}
-            onChangeText={(input) => {
-                props.handleInput(props.field, input)
-            }}
-        />
+        <View style={{height: 50}}>
+            <Input
+                onPressIn={() => setActive(true)}
+                onEndEditing={() => setActive(false)}
+                placeholder={labelMaker(props.field)}
+                name={props.field}
+                placeholderTextColor={determineStyle().color}
+                style={determineStyle().style}
+                textStyle={{color: determineStyle().color, fontSize: 18}}
+                onChangeText={(input) => {
+                    props.handleInput(props.field, input)
+                }}
+            />
+        </View>
     )
 }
 export default UpdateField
