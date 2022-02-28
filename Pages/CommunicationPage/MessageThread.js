@@ -301,14 +301,14 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 {/* THE MESSAGE INPUT AREA */}
                 <View style={determineKeyboardStyle(KeyboardVisible, newMessage)}>
-                    <TextInput
+                    {/* <TextInput
                         mode="outlined"
                         dense={true}
                         multiline={true}
                         style={{
                             height: determineInputHeight(newMessage),
-                            width: maxWidth - 60,
-                            marginRight: 5,
+                            position: 'absolute',
+                            borderRadius: 10,
                         }}
                         selectionColor='#24296f'
                         activeOutlineColor='#24296f'
@@ -317,7 +317,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                             setNewMessage(input)
                         }}
                         value={newMessage}
-                    />
+                    /> */}
 
                     {/* SEND MESSAGE BUTTON */}
                     <TouchableWithoutFeedback onPress={ () => handleSendMessage(newMessage) }>

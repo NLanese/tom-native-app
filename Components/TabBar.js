@@ -155,10 +155,10 @@ const TabBar = ({
 //                                                     //
 //v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v// 
 
-    const handleSelection = (index) => {
+    const handleSelection = async (index) => {
         console.log(index)
-        setSelectedIndex(index)
-        onChangeIndex(index)
+        await setSelectedIndex(index)
+        await onChangeIndex(index)
     }
 
 
