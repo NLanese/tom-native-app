@@ -5,7 +5,7 @@ import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
 import TabBar from '../../../Components/TabBar';
 
 import LoginScreen from './LoginScreen';
-import SignupScreen from './SingupScreen';
+import SignupScreen from './SignupScreen';
 
 
 const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
@@ -40,7 +40,13 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
                 />
         }
         else if (selectedIndex == 1){
-            return <SignupScreen />
+            return(
+                <SignupScreen 
+                    handleInput={handleInput} 
+                    handleLoggedIn={handleLoggedIn}
+                    userData={userData}
+                />
+            )
         }
     }
 

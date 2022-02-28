@@ -7,8 +7,8 @@ import Title from './LandingComponents/Title';
 
 import backgroundImage from '../../assets/loginBackground.png'
 import gradient from '../../assets/black-to-clear-screen-gradient.png'
+import blueGradient from '/../../assets/blue-gradient.png'
 import Gradient from '../../Components/Gradient';
-import { render } from 'react-dom';
 
 
 const LandingPage = ({ handleLoggedIn }) => {
@@ -20,30 +20,21 @@ const LandingPage = ({ handleLoggedIn }) => {
     const renderBackground = () => {
         if (tab === 0) {
             return(
-                null
+                gradient
             )
         }
         else{
-            console.log("hit")
             return (
-                <Gradient
-                    colorOne="rgba(83, 79, 255, 0.5)"
-                    colorTwo="rgba(21, 161, 241, 0.5)"
-                    style={{
-                        position: "aboslute",
-                        height: '60%',
-                        width: '100%'
-                    }}
-                />
+               blueGradient
             )
         }
     }
 
-    if (tab === 0){
+    if (tab == 0){
         return (
             <View style={LandingStyles.container}>
              <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
-             <ImageBackground style={LandingStyles.gradient} source={gradient} resizeMode='cover'>
+             <ImageBackground style={LandingStyles.gradient} source={renderBackground()} resizeMode='cover'>
                  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                      <View style={{backgroundColor: 'rgba(52, 52, 52, 0.4) !important',}}>
                          <View style={LandingStyles.titleIcon}>

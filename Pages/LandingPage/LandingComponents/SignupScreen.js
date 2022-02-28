@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles';
-import LoginButton from './SignInBoxComponents/LoginButton';
 import UpdateField from './SignInBoxComponents/UpdateField';
+import SignupButton from './SignInBoxComponents/SingUpButton';
 
-const SignupScreen = ({ handleInput, userData }) => {
+const SignupScreen = ({ handleInput, handleLoggedIn, userData }) => {
 
     const [checked, setChecked] = useState(false)
 
@@ -25,7 +25,9 @@ const SignupScreen = ({ handleInput, userData }) => {
                     <UpdateField field="signUpToken" handleInput={handleInput} />
                     <UpdateField field="password" handleInput={handleInput} />
                     <UpdateField field="confirmPassword" handleInput={handleInput} />
-                {/* <View style={SignInBoxStyles.loginButton}><LoginButton userData={userData} handleLoggedIn={handleLoggedIn}/></View> */}
+                    <View style={SignInBoxStyles.loginButton}>
+                        <SignupButton userData={userData} handleLoggedIn={handleLoggedIn}/>
+                    </View>
             </View>
         </TouchableWithoutFeedback>  
         </View>
