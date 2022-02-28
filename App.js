@@ -78,6 +78,7 @@ import CreateCollisionInjuryReport from "./Pages/ReportAnAccidentPage/CreateColl
 import CollisionInjurySpecificPictures from "./Pages/ReportAnAccidentPage/CollisionInjurySpecificPicture/CollisionInjurySpecificPicture";
 import CollisionInjuryReportInformation from "./Pages/ReportAnAccidentPage/CollisionInjuryReportInformation/CollisionInjuryReportInformation";
 import CollisionInjuryReportExtraInfo from "./Pages/ReportAnAccidentPage/CollisionInjuryReportExtraInfo/CollisionInjuryReportExtraInfo";
+import CollisionInjuryCheckAgain from "./Pages/ReportAnAccidentPage/CollisionInjuryCheckAgain/CollisionInjuryCheckAgain";
 
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/CheckUserInjury/CheckUserInjury";
 import UserInjuryReport from "./Pages/ReportAnAccidentPage/CreateInjuryReport/CreateInjuryReport";
@@ -303,6 +304,10 @@ export default function App() {
 
                   <Stack.Screen name='collision-injury-report-extra-info'>
                     {props => <CollisionInjuryReportExtraInfo />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-injury-check-again'>
+                    {props => <CollisionInjuryCheckAgain />}
                   </Stack.Screen>
               
                 </Stack.Navigator>
