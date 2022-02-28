@@ -84,9 +84,6 @@ const CollisionInjuryReportInformation = () => {
         })
       };
 
-      console.log(injuryData)
-      console.log('---------------')
-
     return (
         <View>
             <Banner />
