@@ -50,6 +50,10 @@ const SignInBoxStyles = StyleSheet.create({
 	loginButton: {
 		marginLeft: maxWidth * 0.75
 	},
+	signupButton: {
+		marginTop: 20,
+		marginLeft: maxWidth * 0.75
+	},
 	loginContents: {
 		height: 65,
 		width: maxWidth,

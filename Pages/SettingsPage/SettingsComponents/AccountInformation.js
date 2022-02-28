@@ -17,41 +17,19 @@ const AccountInformation = () => {
     const [queryData, setQueryData] = useState({})
     const [userData, setUserData] = useRecoilState(userState)
 
-    useEffect(() => {
-        refetch()
-    }, [])
+    return (
+        <View style={SettingsStyles.container}>
+            <Banner />
 
-    useEffect(() => {
-        if (!loading && data) {
-            setQueryData(data.getDriver)
-        }
-    }, [data])
-
-    useEffect(() => {
-            setUserData(queryData)
-    }, [queryData])
-
-    if (!queryData.firstname) {
-        return (
-            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
-                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
+            <View style={AccountInformationStyles.container}>
+                <AdminAndUserInformation userData={userData}/>
             </View>
-        )
-    } else {
-        return (
-            <View style={SettingsStyles.container}>
-                <Banner />
-
-                <View style={AccountInformationStyles.container}>
-                    <AdminAndUserInformation userData={userData}/>
-                </View>
-                <View style={AccountInformationStyles.buttonBox}>
-                    <EditAccountInformationButton/>
-                    <ViewAccidentsButton userData={userData}/>
-                </View>
+            <View style={AccountInformationStyles.buttonBox}>
+                <EditAccountInformationButton/>
+                <ViewAccidentsButton userData={userData}/>
             </View>
-        )
-    }
+        </View>
+    )
 }
 
 export default AccountInformation

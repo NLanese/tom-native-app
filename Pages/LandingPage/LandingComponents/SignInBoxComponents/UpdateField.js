@@ -8,25 +8,79 @@ let maxHeight= Dimensions.get('window').height
 
 const UpdateField = (props) => {
 
+    console.log("\n\n\n\n")
+    console.log(props.userData.password)
+    console.log(props.userData.confirmPassword)
+
+    let matching
+    if (props.userData.password == props.userData.confirmPassword){
+        console.log("match")
+        matching = true
+    }
+    if (props.userData.password != props.userData.confirmPassword){
+        console.log("No match")
+        matching = false
+    }
+
+    const [passwordsMatch, setPasswordsMatch] = useState(matching)
+
+    // Handles Error Outline 
+    const handleNoMatch = (style) => {
+        console.log(props.userData.password)
+        console.log(props.userData.confirmPassword)
+        if (passwordsMatch){
+            return style
+        }
+        else{
+            console.log("Should be red")
+            return dynamicStyles.noMatch
+        }
+    }
+
     const dynamicStyles = StyleSheet.create({
         activeInput: {
             backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
+           
             borderColor: 'white',
             borderWidth: 3,
             borderRadius: 15,
+
+            position: 'relative',
             height: 50,
             width: maxWidth - 60,
+
             marginLeft: 30,
-            marginBottom: 8
+            marginTop: 5,
+            marginBottom: 20
         },
         inactiveInput: {
             backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
+            
             borderColor: 'rgba(52, 52, 52, 0.3) !important',
             borderRadius: 15,
+
+            
             height: 50,
             width: maxWidth - 60,
+
             marginLeft: 30,
-            marginBottom: 8
+            marginTop: 5,
+            marginBottom: 20
+        },
+        noMatch: {
+            backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
+           
+            borderColor: 'red',
+            borderWidth: 2,
+            borderRadius: 15,
+
+            position: 'relative',
+            height: 50,
+            width: maxWidth - 60,
+
+            marginLeft: 30,
+            marginTop: 5,
+            marginBottom: 20
         }
     })
 
@@ -68,21 +122,39 @@ const UpdateField = (props) => {
         }
     }
 
-    return(
-        <View style={{height: 50}}>
+    if (props.field == "password" || props.field == "confirmPassword"){
+        console.log("no match")
+        return(
             <Input
                 onPressIn={() => setActive(true)}
                 onEndEditing={() => setActive(false)}
                 placeholder={labelMaker(props.field)}
                 name={props.field}
+                height={50}
                 placeholderTextColor={determineStyle().color}
-                style={determineStyle().style}
+                style={handleNoMatch(determineStyle().style)}
                 textStyle={{color: determineStyle().color, fontSize: 18}}
                 onChangeText={(input) => {
                     props.handleInput(props.field, input)
                 }}
             />
-        </View>
+        )
+    }
+
+    return(
+        <Input
+            onPressIn={() => setActive(true)}
+            onEndEditing={() => setActive(false)}
+            placeholder={labelMaker(props.field)}
+            name={props.field}
+            height={50}
+            placeholderTextColor={determineStyle().color}
+            style={determineStyle().style}
+            textStyle={{color: determineStyle().color, fontSize: 18}}
+            onChangeText={(input) => {
+                props.handleInput(props.field, input)
+            }}
+        />
     )
 }
 export default UpdateField

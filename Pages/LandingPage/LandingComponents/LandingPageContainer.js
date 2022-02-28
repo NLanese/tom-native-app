@@ -20,7 +20,15 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
     const [selectedIndex, setSelectedIndex] = useState(initTab)
 
     // Tracks user input
-    const [userData, setUserData] = useState({email: "", password: ""})
+    const [userData, setUserData] = useState({
+        email: "", 
+        password: "",
+        firstname: "",
+        lastname: "",
+        confirmPassword: "",
+        phoneNumber: "",
+        signUpToken: ""
+    })
 
 
     // Sends user input to the use state above

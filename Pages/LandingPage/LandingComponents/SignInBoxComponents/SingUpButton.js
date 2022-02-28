@@ -21,7 +21,7 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
-	const [login, { loading: loading, error: error, data: data }] =
+	const [signup, { loading: loading, error: error, data: data }] =
 		useMutation(SIGNUP);
 
 	const storeData = async () => {
@@ -60,10 +60,19 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 
 	// Handles the Login Click Button
 	const handleSubmit = async () => {
-		await login({
+        if (userData.confirmPassword != userData.password){
+            console.log("Implement Error")
+        }
+        console.log(userData)
+		await signup({
 			variables: {
+                firstname: userData.firstname,
+                lastname: userData.lastname,
 				email: userData.email,
 				password: userData.password,
+                phoneNumber: userData.phoneNumber,
+                signUpToken: userData.signUpToken
+
 			},
 		}).then(() => {
 			setWebsite({current: "Home", previous: "Landing"})
@@ -84,7 +93,16 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 
 	// Renders the Button with the Overlay with Dynamic Height
 	const renderButton = () => {
-		if (userData.password.length > 5 && userData.email.length > 5){
+		if (
+            userData.password.length > 5 && 
+            userData.email.length > 5 &&
+            userData.firstname.length > 1 &&
+            userData.lastname.length > 1 &&
+            userData.phoneNumber.length > 8 &&
+            userData.password.length > 5 &&
+            userData.confirmPassword.length == userData.password.length &&
+            userData.signupToken.length > 4
+        ){
 			if (!buttonLoading && !buttonLoaded){
 				setButtonLoading(true)
 			}
