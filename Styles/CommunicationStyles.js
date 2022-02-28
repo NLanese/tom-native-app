@@ -27,6 +27,7 @@ const CommunicationStyles = StyleSheet.create({
     },
     thread:{
         top: maxWidth * 0.04,
+        minHeight: 400
     },
     threadContainer: {
         paddingRight: 10,
@@ -34,7 +35,7 @@ const CommunicationStyles = StyleSheet.create({
         borderWidth: 0.8,
         borderColor: '#E2E8F1',
         backgroundColor: "#f1f1f1",
-        height: maxHeight * 0.71
+        height: maxHeight * .84
     },
     sendButton: {
         backgroundColor: "#E2E8F1",

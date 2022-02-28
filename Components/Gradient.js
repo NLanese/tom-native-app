@@ -137,6 +137,7 @@ const Gradient = ({
                 width: xLargeRatio.width
             }
         }
+        console.log(hollowStyle)
     }
     return(
         <View>

@@ -91,7 +91,7 @@ const Contacts = ({creating}) => {
                 return(
                     <View key={index}>
                         <Text style={{
-                            marginLeft: 30,
+                            marginLeft: 20,
                             marginTop: 10,
                             marginBottom: 10,
                             fontFamily: "GilroyBold",
@@ -286,7 +286,7 @@ const Contacts = ({creating}) => {
 
                 <View style={ContactStyles.header}>
                     <View style={ContactStyles.searchBar}>
-                        <Text style={ContactStyles.mainTitle}>{allDrivers.length} Contacts</Text>
+                        <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
                         <SearchBar setSearch={handleSetSearch} />
                     </View>
                 </View>
