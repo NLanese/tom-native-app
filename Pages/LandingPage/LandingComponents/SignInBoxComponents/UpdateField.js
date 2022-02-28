@@ -8,17 +8,11 @@ let maxHeight= Dimensions.get('window').height
 
 const UpdateField = (props) => {
 
-    console.log("\n\n\n\n")
-    console.log(props.userData.password)
-    console.log(props.userData.confirmPassword)
-
     let matching
     if (props.userData.password == props.userData.confirmPassword){
-        console.log("match")
         matching = true
     }
     if (props.userData.password != props.userData.confirmPassword){
-        console.log("No match")
         matching = false
     }
 
@@ -26,13 +20,10 @@ const UpdateField = (props) => {
 
     // Handles Error Outline 
     const handleNoMatch = (style) => {
-        console.log(props.userData.password)
-        console.log(props.userData.confirmPassword)
         if (passwordsMatch){
             return style
         }
         else{
-            console.log("Should be red")
             return dynamicStyles.noMatch
         }
     }
@@ -123,7 +114,6 @@ const UpdateField = (props) => {
     }
 
     if (props.field == "password" || props.field == "confirmPassword"){
-        console.log("no match")
         return(
             <Input
                 onPressIn={() => setActive(true)}

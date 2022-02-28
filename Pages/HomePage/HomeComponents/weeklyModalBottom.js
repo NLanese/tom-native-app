@@ -87,9 +87,7 @@ const WeeklyBottomCard = ({data}) => {
     const renderReturnArray = () => {
         let returnArray = handleSort()
         let i = 0
-        // console.log(returnArray)
         return returnArray.map( (stat) => {
-            // console.log(stat)
             i++
             return(
                 <View key={i}>

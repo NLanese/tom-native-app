@@ -12,7 +12,6 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
 
     let initTab = 0
     if (tab == 1){
-        console.log("should be sign in")
         initTab = 1
     }
 

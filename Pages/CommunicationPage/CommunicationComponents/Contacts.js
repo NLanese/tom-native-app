@@ -82,9 +82,6 @@ const Contacts = ({creating}) => {
         return letters.map( (letter, index) => {
 
             let letterBlockList = []
-
-            console.log(list[0].__typename)
-
             list.forEach( (contact) => {
                 if (contact.firstname[0] == letter){
                     letterBlockList.push(contact)
@@ -248,9 +245,6 @@ const Contacts = ({creating}) => {
                     revisedThreads.push(chat)
                 }
             })
-            revisedThreads.forEach( thread => {
-                console.log(thread.chatroomName)
-            })
             setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
             navigation.navigate("message-thread")
@@ -283,6 +277,9 @@ const Contacts = ({creating}) => {
 
     if (!loading && queryData){
         let allDrivers = [...queryData.driverGetDriversFromDsp.drivers]
+
+        let allContacts = [...allDrivers, ...user.managers]
+
         return (
             <View>
                 <Banner />
@@ -296,7 +293,7 @@ const Contacts = ({creating}) => {
 
                 <View style={ContactStyles.scrollContainer}>
                     <ScrollView contentContainerStyle={ContactStyles.container}>
-                        {determineRosterDisplay(allDrivers)}
+                        {determineRosterDisplay(allContacts)}
                     </ScrollView>
                 </View>
 

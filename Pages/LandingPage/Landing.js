@@ -12,8 +12,6 @@ import Gradient from '../../Components/Gradient';
 
 
 const LandingPage = ({ handleLoggedIn }) => {
-    // console.log(AsyncStorage.getItem('@email'))
-    // console.log(AsyncStorage.getItem('@password'))
 
     const [tab, setTab] = useState(0)
 
@@ -24,7 +22,6 @@ const LandingPage = ({ handleLoggedIn }) => {
             )
         }
         else{
-            console.log("hit")
             return (
                blueGradient
             )

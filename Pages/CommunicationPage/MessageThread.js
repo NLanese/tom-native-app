@@ -136,8 +136,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
       
         const messages = messageData.map( (message, index) => {
 
-            console.log(index)
-
             // Renders sender name
             let propFrom = ""
             if (message.from.id == user.id ){
@@ -195,7 +193,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 // For Icon
                 let next = index + 1
-                console.log(index)
                 if (messageData.length > index){
                     if (messageData[next]){
                         if (messageData[next].from.id != message.from.id){
