@@ -12,7 +12,7 @@ export const threadState = atom({
 
 export const websiteState = atom({
 	key: 'websiteState',
-	default: 'Landing',
+	default: {current: "Landing", previous: "Landing"},
 });
 
 export const geoLocation = atom({

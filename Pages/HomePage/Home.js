@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { Modal, Button, CheckBox } from '@ui-kitten/components';
+
+import { useRecoilState } from 'recoil';
 import { userState } from '../../Recoil/atoms';
+import { websiteState } from '../../Recoil/atoms';
+
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
-import { Modal, Button, CheckBox } from '@ui-kitten/components';
-import { websiteState } from '../../Recoil/atoms';
-import { useRecoilState } from 'recoil';
-import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
+
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
 import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
@@ -28,6 +31,7 @@ const Home = ({ handleLoggedIn }) => {
     }
 
     const [website, setWebsite] = useRecoilState(websiteState)
+
     const [acknowledged, setAcknowledged] = useState(false)
     const [modalVisible, setModalVisible] = useState(initVisible)
     const [exitDisabled, setExitDisabled] = useState(true)
@@ -72,19 +76,6 @@ const Home = ({ handleLoggedIn }) => {
         }
     }
 
-    // const renderButton = () => {
-    //     if (acknowledged){
-    //         return(<Image source={require("../../assets/check-button.png")} style={{height: 50, width: 50}}/>)
-    //     }
-    //     else{
-    //         return(<Image source={require("../../assets/inactiveCheck.jpg")} style={{height: 50, width: 50}}/>)
-    //     }
-    // }
-
-    useEffect(() => {
-        setWebsite('Home')
-    }, [])
-
     let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
     let name = nameObj(user.firstname, user.lastname)
 
@@ -100,6 +91,7 @@ const Home = ({ handleLoggedIn }) => {
         }, 0.5)
     }
 
+
     return (
         <View>
             <Banner handleLoggedIn={handleLoggedIn}/>
@@ -113,7 +105,12 @@ const Home = ({ handleLoggedIn }) => {
                     
                     <ButtonBox user={user}/>
 
-                    <TouchableOpacity onPress={() => navigation.navigate("score_card")} style={ButtonBoxStyles.bottomTouch}> 
+                    <TouchableOpacity 
+                        onPress={() => {
+                            setWebsite({current: "Personal Scorecard", previous: website.previous})
+                            navigation.navigate("score_card")}
+                         } 
+                         style={ButtonBoxStyles.bottomTouch}> 
                         <View > 
                             <View style={ButtonBoxStyles.scoreTitleBox}>
                                 <Text style={ButtonBoxStyles.scoreTitle}>Scorecard</Text>

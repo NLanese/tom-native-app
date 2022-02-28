@@ -138,33 +138,19 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
 
-//--------------------- useEffects ----------------------
-
-    // useEffect( async () => {
-    //     if (removal){
-    //         console.log("hit2")
-    //         await refetch()
-    //         console.log(queryData.getDriver.weeklyReport)
-    //         await setUser(queryData)
-    //     }
-    // }, [removal])
-
-//--------------------- useEffects ----------------------
-
+    console.log(activeThread.chatroomName)
 
     return(
         <View style={ThreadDetailStyles.container}>
-            <TouchableOpacity onPress={() => setModalVisible(false)}> 
-                <View style={ThreadDetailStyles.doneBox}>
-                    <Text style={ThreadDetailStyles.doneText}>Done</Text>
-                </View>
-            </TouchableOpacity>
+            <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
+            
             <View style={ThreadDetailStyles.nameListContainer}>
                 <View style={ThreadDetailStyles.labelBox}>
                     <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
                 </View>
                 {renderChatroomNames()}
             </View>
+
             <View>
                 <Text>Chatroom Name</Text>
                 <TextInput
@@ -174,7 +160,16 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
                     <Text>Rename Chat</Text>
                 </TouchableOpacity>
             </View>
-            {renderAddContacts()}
+
+            <View>
+                {renderAddContacts()}
+            </View>
+
+            <TouchableOpacity onPress={() => setModalVisible(false)}> 
+                <View style={ThreadDetailStyles.doneBox}>
+                    <Text style={ThreadDetailStyles.doneText}>Done</Text>
+                </View>
+            </TouchableOpacity>
 
         </View>
     )

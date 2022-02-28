@@ -60,9 +60,13 @@ const CreateCollisionAccident = () => {
     )
 }
 
+let buttonTop = maxHeight * 0.75
+if (maxHeight < 700){
+    buttonTop = 550
+}
 const Styles = StyleSheet.create({
     title: {
-        marginTop: 23,
+        marginTop: 30,
         marginLeft: 30,
         marginRight: 30,
 
@@ -75,8 +79,9 @@ const Styles = StyleSheet.create({
         marginTop: 15,
         marginLeft: 30,
         marginRight: 38,
-        fontFamily: "GilroySemiBold",
-        fontSize: 16,
+        fontFamily: "GilroyMedium",
+        fontSize: 13,
+        lineHeight: 20,
         color: "#888888",
         letterSpacing: 0.5
     },
@@ -87,8 +92,8 @@ const Styles = StyleSheet.create({
     },
     continue: {
         position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .15
+        marginTop: buttonTop,
+        marginLeft: 30
     }
 
 })

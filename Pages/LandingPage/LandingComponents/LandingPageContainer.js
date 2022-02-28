@@ -8,10 +8,16 @@ import LoginScreen from './LoginScreen';
 import SignupScreen from './SingupScreen';
 
 
-const LandingPageContainer = ({handleLoggedIn}) => {
+const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
+
+    let initTab = 0
+    if (tab == 1){
+        console.log("should be sign in")
+        initTab = 1
+    }
 
     // Tracks whether signup or login is displayed
-    const [selectedIndex, setSelectedIndex] = useState(0)
+    const [selectedIndex, setSelectedIndex] = useState(initTab)
 
     // Tracks user input
     const [userData, setUserData] = useState({email: "", password: ""})
@@ -41,30 +47,17 @@ const LandingPageContainer = ({handleLoggedIn}) => {
     return (
         <View style={LandingPageStyles.container}>
             <View style={LandingPageStyles.tabBarContainer}>
-                {/* <TabBar
-                    indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
-                    tabBarStyle={LandingPageStyles.loginTab}
-                    style={LandingPageStyles.tabBar}
-                    selectedIndex={selectedIndex}
-                    onSelect={index => setSelectedIndex(index)}
-                >
-                    <Tab 
-                        title="LOGIN" 
-                        tabBarStyle={LandingPageStyles.loginTab}
-                        indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
-                        tabBarStyle={LandingPageStyles.loginTab}/>
-                    <Tab 
-                        title='SIGNUP' 
-                        tabBarStyle={LandingPageStyles.signUpTab}
-                        indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
-                        tabBarStyle={LandingPageStyles.loginTab}/>
-                </TabBar> */}
                 <TabBar 
                     tabsArray={["LOGIN", "SIGN UP"]}
                     styleInactive={LandingPageStyles.inactiveTab}
                     styleActive={LandingPageStyles.activeTab}
                     tabTextStyleActive={LandingPageStyles.activeText}
                     tabTextStyleInactive={LandingPageStyles.inactiveText}
+                    startIndex={selectedIndex}
+                    onChangeIndex={async (index) => {
+                        await setSelectedIndex(index)
+                        await setTab(index)
+                    }}
                 />
 
             </View>

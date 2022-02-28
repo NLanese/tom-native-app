@@ -11,6 +11,12 @@ let modalContentSideDistance = (326 - 243)
 modalContentSideDistance = modalContentSideDistance / 2
 
 
+let cardBottomSpace = 0
+if (maxHeight  < 700){
+	cardBottomSpace = 30
+}
+
+
 const HomeStyles = StyleSheet.create({
 	container: {
 		height: '100%',
@@ -147,6 +153,7 @@ const ButtonBoxStyles = StyleSheet.create({
 	clickable: {
 		height: maxHeight * 0.2,
 		width: 150,
+		marginBottom: cardBottomSpace,
 	},
 	buttonCard: {
 		backgroundColor: 'white',
@@ -155,6 +162,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		width: 150,
 
 		borderRadius: 30,
+		// marginBottom: 5,
 
 		shadowColor: '#000000',
 		shadowOffset: {width: 0, height: 15},
@@ -165,11 +173,13 @@ const ButtonBoxStyles = StyleSheet.create({
 	image: {
 		alignContent: 'center',
 		top: '30%',
-		height: 50,
-		width: 48,
+		height: 40,
+		width: 39,
 		marginLeft: 52.5
 	},
 	label: {
+		fontFamily: "GilroySemiBold",
+		width: 110,
 		marginTop: '7%',
 		textAlign: 'center',
 		fontSize: 10,
@@ -183,6 +193,7 @@ const ButtonBoxStyles = StyleSheet.create({
 		marginLeft: '5%'
 	},
 	scoreTitleBox: {
+		marginTop: cardBottomSpace * 2.5,
 		width: '100%',
 		height: 30,
 		zIndex: 10,

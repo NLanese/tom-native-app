@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { View, Image, TouchableOpacity } from 'react-native';
+
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../../Recoil/atoms'
-import { View, Image, TouchableOpacity } from 'react-native';
+import { websiteState } from '../../../../Recoil/atoms';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../../../GraphQL/operations';
+
 import stateChange from '../../../../Hooks/handleToken'
+
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -44,6 +50,8 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	const [user, setUser] = useRecoilState(userState);
 
+	const [website, setWebsite] = useRecoilState(websiteState)
+
 // ----------------------------- States ------------------------------ //
 //																	   //
 //																	   //
@@ -57,6 +65,8 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 				email: userData.email,
 				password: userData.password,
 			},
+		}).then(() => {
+			setWebsite({current: "Home", previous: "Landing"})
 		})
 	}
 
