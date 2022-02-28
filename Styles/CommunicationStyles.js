@@ -235,12 +235,19 @@ const ContactStyles = StyleSheet.create({
         paddingTop: maxHeight * 0.013
     },
     scrollContainer: {
-        height: maxHeight * 0.65
+        backgroundColor: "#f2f2f2",
+        height: maxHeight * 0.62
     },
 //----=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     header: {
         backgroundColor: 'white',
-        height: 60
+        height: 110
+    },
+    mainTitle: {
+        fontFamily: "GilroyBold",
+        fontSize: 30,
+        color: "#444444",
+        letterSpacing: -.5
     },
     searchBar: {
         width: maxWidth * .8,
@@ -255,7 +262,7 @@ const ContactStyles = StyleSheet.create({
         position: 'absolute',
         height: 40,
         width: maxWidth * 0.2,
-        marginTop: "5%",
+        marginTop: "2%",
         marginLeft: maxWidth * .4,
         borderColor: 'red',
         borderRadius: 5
@@ -294,12 +301,17 @@ const ContactStyles = StyleSheet.create({
     nameView: {
         position: 'relative',
         marginLeft: maxWidth * 0.20,
-        top: maxHeight * -0.042
+        top: -29
     },
     title:{
+        fontFamily: 'GilroyBold',
+        fontSize: 14,
+        color: "#444444"
+    },
+    subtitle:{
         fontFamily: 'GilroySemiBold',
-        fontSize: 18,
-        letterSpacing: -0.5
+        fontSize: 11,
+        color: "#888"
     },
 //-----------------------------------------
     addButton:{
@@ -326,7 +338,7 @@ const ContactStyles = StyleSheet.create({
     },
 //-----------------------------------------
     divider:{
-        borderBottomWidth: 3,
+        borderBottomWidth: 1,
         borderColor: '#DDDDDD',
         width: threadBoxWidth,
     },
