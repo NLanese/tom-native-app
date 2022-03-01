@@ -227,7 +227,8 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     const renderSendButton = () => {
         if (newMessage.length > 1){
             return(
-                <TouchableOpacity onPress={ () => handleSendMessage(newMessage) }>
+                <TouchableOpacity onPress={() => handleSendMessage(newMessage)} style={{height: 40, width: 40, marginLeft: maxWidth - 77,
+                    marginTop: -45,}} >
                     <Gradient
                         colorOne="#543FFF"
                         colorTwo="#15A1F1"
@@ -237,8 +238,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                             height: 40,
                             width: 40,
                             borderRadius: 20,
-                            marginLeft: maxWidth - 77,
-                            marginTop: -45,
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
