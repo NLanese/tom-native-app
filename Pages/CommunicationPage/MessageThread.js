@@ -247,7 +247,8 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                             style={{
                                 position: 'relative',
                                 fontFamily: "GilroyBold",
-                                fontSize: 2,
+                                color: "#f2f2f2",
+                                fontSize: 12,
                                 textAlign: 'center'
                             }}
                         >Send</Text>
