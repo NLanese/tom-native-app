@@ -21,7 +21,8 @@ const CheckInjuryAccidentAgain = () => {
             <Text>Did you injury someone?</Text>
 
             <ContinueButton nextPage={'create-injury-accident'} buttonText={'Yes'} pageName={'check-injury-accident-yes-button'} />
-            <Button onPress={() => navigation.navigate('accident-info-continue')}>No</Button>
+            <Button onPress={() => navigation.navigate('report-an-accident-completed')}>No</Button>
+            {/* <Button onPress={() => navigation.navigate('accident-info-continue')}>No</Button> */}
         </View>
     )
 }

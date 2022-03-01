@@ -97,6 +97,11 @@ import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/InjurySpecificP
 import InjuryReportInformation from "./Pages/ReportAnAccidentPage/InjuryReportInformation/InjuryReportInformation";
 import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/InjuryExtraInformation/InjuryExtraInformaton";
 import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/CheckInjuryAccidentAgain/CheckInjuryAccidentAgain";
+import AccidentInfoContinue from "./Pages/ReportAnAccidentPage/AccidentInfoContinue/AccidentInfoContinue";
+import ReportAnAccidentCompleted from "./Pages/ReportAnAccidentPage/ReportAnAccidentCompleted/ReportAnAccidentCompleted";
+import AccidentGeneralPictures from "./Pages/ReportAnAccidentPage/AccidentGeneralPictures/AccidentGeneralPictures";
+import AccidentPoliceReport from "./Pages/ReportAnAccidentPage/AccidentPoliceReport/AccidentPoliceReport";
+import AccidentExtraInformation from "./Pages/ReportAnAccidentPage/AccidentExtraInformation/AccidentExtraInformation";
 
 let state;
 
@@ -373,6 +378,26 @@ export default function App() {
 
                   <Stack.Screen name='injury-check-again'>
                     {props => <CheckInjuryAccidentAgain />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-info-continue'>
+                    {props => <AccidentInfoContinue />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='report-an-accident-completed'>
+                    {props => <ReportAnAccidentCompleted />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-general-pictures'>
+                    {props => <AccidentGeneralPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-police-report'>
+                    {props => <AccidentPoliceReport />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-extra-information'>
+                    {props => <AccidentExtraInformation />}
                   </Stack.Screen>
               
                 </Stack.Navigator>
