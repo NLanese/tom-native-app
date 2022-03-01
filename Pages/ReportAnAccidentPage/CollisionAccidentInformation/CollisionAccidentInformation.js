@@ -395,8 +395,12 @@ const CollisionAccidentInformation = () => {
         }
     }
 
+    let height = "140%"
+    if (q2 == "no" && q1 == "no"){
+        height = "180%"
+    }
     return (
-        <ScrollView contentContainerStyle={{ height: '150%' }}>
+        <ScrollView contentContainerStyle={{ height: height }}>
             <Banner />
             <Text style={RAACollisionInfoStyles.questionText}>Was the other party willing to let you take a picture of their license?</Text>
 

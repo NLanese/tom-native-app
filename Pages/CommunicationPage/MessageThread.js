@@ -237,8 +237,8 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                             height: 40,
                             width: 40,
                             borderRadius: 20,
-                            marginLeft: maxWidth - 50,
-                            marginTop: -25,
+                            marginLeft: maxWidth - 77,
+                            marginTop: -45,
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
@@ -331,17 +331,20 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                     
                     <View>
                         <TextInput 
-                            placeholder={"Send a Message"}
+                            placeholder={"    Send a Message"}
                             style={{
                                 borderWidth: 1,
+                                borderColor: "#C8C8CC",
                                 borderRadius: 10,
                                 backgroundColor: "white",
                                 width: maxWidth - 60,
                                 height: msgHeight,
                                 maxHeight: 200,
                                 marginLeft: 30,
-                                paddingLeft: 4,
-                                paddingRight: 4,
+                                paddingTop: 10,
+                                paddingLeft: 10,
+                                paddingBottom: 8,
+                                paddingRight: 40,
                                 marginTop: determineInputHeight(newMessage)
                             }}
                             multiline={true}
