@@ -54,7 +54,9 @@ const Contacts = ({creating}) => {
 
 
     
-// --------------- Rendering and Generating Functions ------------   
+// --------------- Rendering and Generating Functions ------------ 
+
+    // renders all inputted possible contacts
     const renderRoster = (list) => {
         let i = 0
         return( list.map( (driver) => {
@@ -63,7 +65,10 @@ const Contacts = ({creating}) => {
             return(
                 <View style={ContactStyles.card} key={i}>
                     <View style={ContactStyles.image}><Text>Image</Text></View>
-                    <View style={ContactStyles.nameView}><Text style={ContactStyles.title}>{namer.first} {namer.last} </Text></View>
+                    <View style={ContactStyles.nameView}>
+                        <Text style={ContactStyles.title}>{namer.first} {namer.last} </Text>
+                        <Text style={ContactStyles.subtitle}>{driver.__typename}</Text>
+                    </View>
                     {determineAddOrRemove(driver)}
                     <View style={ContactStyles.divider} />
                 </View>
@@ -71,6 +76,43 @@ const Contacts = ({creating}) => {
         }))
     }
 
+    // Called when no filter is applied, seperates by letter
+    const renderByLetter = (list) => {
+        const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        return letters.map( (letter, index) => {
+
+            let letterBlockList = []
+            list.forEach( (contact) => {
+                if (contact.firstname[0] == letter){
+                    letterBlockList.push(contact)
+                }
+            })
+            if (letterBlockList.length > 0){
+                return(
+                    <View key={index}>
+                        <Text style={{
+                            marginLeft: 20,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontFamily: "GilroyBold",
+                            fontSize: 15,
+                            color: "#888888"
+                        }}>{letter}</Text>
+                        <View>
+                            {renderRoster(letterBlockList)}
+                        </View>
+                    </View>
+                )
+            }
+            else{
+                return null
+            }
+            
+        })
+    }
+
+
+    // Determines whether the add, remove or none of the buttons are displayed
     const determineAddOrRemove = (selected) => {
         let returnComponent
         returnComponent = () => {
@@ -122,6 +164,7 @@ const Contacts = ({creating}) => {
         return returnComponent()
     }
 
+    // Filters based off of the name typed in
     const filterBasedOffSearch = (list) => {
         let filteredList = []
         if (searchVal == ""){
@@ -135,6 +178,20 @@ const Contacts = ({creating}) => {
                 }
             })
             return filteredList
+        }
+    }
+
+    // Uses all 4 functions to create the screen
+    const determineRosterDisplay = (list) => {
+        if (searchVal != ""){
+            return(
+                renderRoster(filterBasedOffSearch(list))
+            )
+        }
+        else{
+            return(
+                renderByLetter(list)
+            )
         }
     }
 
@@ -188,9 +245,6 @@ const Contacts = ({creating}) => {
                     revisedThreads.push(chat)
                 }
             })
-            revisedThreads.forEach( thread => {
-                console.log(thread.chatroomName)
-            })
             setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
             navigation.navigate("message-thread")
@@ -223,19 +277,23 @@ const Contacts = ({creating}) => {
 
     if (!loading && queryData){
         let allDrivers = [...queryData.driverGetDriversFromDsp.drivers]
+
+        let allContacts = [...allDrivers, ...user.managers]
+
         return (
             <View>
                 <Banner />
 
                 <View style={ContactStyles.header}>
                     <View style={ContactStyles.searchBar}>
+                        <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
                         <SearchBar setSearch={handleSetSearch} />
                     </View>
                 </View>
 
                 <View style={ContactStyles.scrollContainer}>
                     <ScrollView contentContainerStyle={ContactStyles.container}>
-                        {renderRoster(filterBasedOffSearch(allDrivers))}
+                        {determineRosterDisplay(allContacts)}
                     </ScrollView>
                 </View>
 

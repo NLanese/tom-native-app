@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
+
 import { Button, Input } from "@ui-kitten/components";
+
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import Gradient from "../../../Components/Gradient";
+
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
+
 import { collisionDataState, accidentDataState, collisionIdState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
+
+import Template from "../../../Styles/RAA/RAATemplateStyles"
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
@@ -75,17 +82,18 @@ const CollisionExtraInfo = () => {
     return (
         <View>
             <Banner />
-            <Text>Hello From Collision Extra Info</Text>
-
-            <View>
+            <Text style={Template.title}>Any Extra Information?</Text>
+            <Text style={Template.subTitle}>IF SO, ENTER IT BELOW</Text>
+            <View style={{marginLeft: 30, width: maxWidth - 60, height: 300}}>
                 <Input
                     onPressIn={() => setActive(true)}
                     onEndEditing={() => setActive(false)}
-                    style={determineStyle().style}
+                    height={200}
+                    style={{...Template.neutralInput, marginTop: 35}}
                     size={'large'}
                     placeholder={`Please Enter Any Additional Information`}
-                    placeholderTextColor={determineStyle().color}
-                    textStyle={{color: determineStyle().color, fontSize: 18}}
+                    placeholderTextColor={"white"}
+                    textStyle={{color: "white"}}
                     onChangeText={extraInfo => {
                         setCollisionData({
                             ...collisionData,
@@ -98,12 +106,29 @@ const CollisionExtraInfo = () => {
                     />                
             </View>
             
-            <View>
-                <Button onPress={handleSubmit}>Submit</Button>
+            <View style={{marginLeft: 30, marginTop: 70}}>
+                <TouchableOpacity onPress={handleSubmit}>
+                    <Gradient
+                        colorOne={"#534FFF"}
+                        colorTwo={"#15A1F1"}
+                        style={{
+                            height: 100,
+                            width: 100,
+                            borderRadius: 50,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={Template.buttonText}>Submit</Text>
+                    </Gradient>
+                </TouchableOpacity>
             </View>
 
             <View>
-                {completed === true ? (<ContinueButton nextPage={'collision-injury-check'} buttonText={'Continue'} pageName={'collision-extra-info-continue-button'} />) : null}
+                {completed === true ? (
+                    <View style={{marginLeft: 30, position: 'absolute', marginTop: -100}}>
+                        <ContinueButton nextPage={'collision-injury-check'} buttonText={'Done'} pageName={'collision-extra-info-continue-button'} />
+                    </View>
+                ) : null}
             </View>
         </View>
     )

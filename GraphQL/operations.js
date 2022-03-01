@@ -3,10 +3,262 @@ import { gql } from '@apollo/client';
 /* ------------------------------ USERS ------------------------------ */
 
 const SIGNUP = gql`
-	mutation Mutation($signupInput: SignupInput!) {
-  signupDriver(signupInput: $signupInput) {
+mutation Mutation($email: String!, $password: String!, $firstname: String!, $lastname: String!, $phoneNumber: String!, $signUpToken: String!) {
+  driverSignUp(email: $email, password: $password, firstname: $firstname, lastname: $lastname, phoneNumber: $phoneNumber, signUpToken: $signUpToken) {
+    token
     id
+    createdAt
+    role
+    firstname
+    lastname
     email
+    phoneNumber
+    profilePick
+    transporterId
+    muted
+    locked
+    deleted
+    notified
+    owner {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
+    accidents {
+      id
+      createdAt
+      name
+      date
+      time
+      location
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      weather
+      general_pictures
+      rushed_prior
+      extra_info
+      distracted
+      actions_before_accidents
+      deleted
+      unsafe_conditions
+      filled
+      collisionAccident {
+        id
+        specific_pictures
+        contact_info
+        extra_info
+      }
+      propertyAccident {
+        id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
+      }
+      injuryAccident {
+        id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
+      }
+    }
+    managers {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
+    vehicle {
+      id
+      vehicle_number
+      amazon_logo
+    }
+    notifiedMessages {
+      id
+      createdAt
+      read
+      content
+      from
+      type
+      manager {
+        id
+        firstname
+        lastname
+        phoneNumber
+        profilePick
+        email
+      }
+    }
+    dsp {
+      id
+      createdAt
+      name
+      shortcode
+      timeZone
+      seatbeltLimits
+      ficoLimits
+      speedingLimits
+      distractionLimits
+      followLimits
+      signalLimits
+      deliveryCompletionRateLimits
+      scanComplianceLimits
+      callComplianceLimits
+      photoOnDeliveryLimits
+      deliveryNotRecievedLimits
+      topCardLimits
+      autoSend
+      smallCardLimits
+      feedbackNotifications
+      accountStanding
+      paid
+    }
+    weeklyReport {
+      id
+      createdAt
+      date
+      hadAccident
+      feedbackMessageSent
+      feedbackMessage
+      feedbackStatus
+      acknowledged
+      acknowledgedAt
+      rank
+      tier
+      delivered
+      keyFocusArea
+      fico
+      speedingEventRate
+      seatbeltOffRate
+      distractionsRate
+      signalViolationsRate
+      followingDistanceRate
+      deliveryCompletionRate
+      deliveredAndRecieved
+      photoOnDelivery
+      scanCompliance
+      callCompliance
+      attendedDeliveryAccuracy
+      dnr
+      podOpps
+      ccOpps
+      netradyne
+      defects
+      deliveryAssociate
+      customerDeliveryFeedback
+      hasManyAccidents
+      customerDeliveryFeedback
+      belongsToTeam
+      attendence
+      productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+        reported
+        reportedBy
+      }
+    }
+    shiftPlanners {
+      id
+      createdAt
+      sundayDate
+      sundayHours
+      mondayDate
+      mondayHours
+      tuesdayHours
+      tuesdayDate
+      wednesdayDate
+      wednesdayHours
+      thursdayDate
+      thursdayHours
+      fridayDate
+      fridayHours
+      saturdayDate
+      saturdayHours
+      weekStartDate
+      weekEndDate
+      phoneId
+      vehicleId
+      cxNumber
+      deviceId
+      message
+    }
+    accidents {
+      id
+      name
+      date
+      time
+      location
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      general_pictures
+      weather
+      rushed_prior
+      distracted
+      extra_info
+      actions_before_accidents
+      unsafe_conditions
+      collisionAccident {
+        id
+        specific_pictures
+        contact_info
+        extra_info
+        injuryAccident {
+          id
+          medical_attention
+          immediate_attention
+          injury
+          contact_info
+          specific_pictures
+          pain_level
+          extra_info
+        }
+      }
+      injuryAccident {
+        id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
+      }
+      propertyAccident {
+        id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
+      }
+    }
   }
 }
 `;

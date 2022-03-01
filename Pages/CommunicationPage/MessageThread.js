@@ -1,8 +1,7 @@
 import { CommunicationStyles } from "../../Styles/CommunicationStyles";
 
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, ScrollView, StyleSheet, Dimensions, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
-import { TextInput, Avatar } from 'react-native-paper';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Keyboard, TouchableOpacity, TextInput } from 'react-native'
 import { Modal } from '@ui-kitten/components';
 
 import { userState } from '../../Recoil/atoms'
@@ -18,8 +17,8 @@ import { DRIVERSENDMESSAGE, GETDRIVERCHATROOMS } from "../../GraphQL/operations"
 
 import Message from "./CommunicationComponents/Message";
 import Banner from '../../Global/Banner'
-import ThreadDetails from "./CommunicationComponents/ThreadDetails"
 import Loading from "../../Global/Loading"
+import Gradient from "../../Components/Gradient"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -41,8 +40,11 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     const [website, setWebsite] = useRecoilState(websiteState)
 
 // -------------------- Pre Mounting Functions -------------------------
+
     // Tracks the contents of any current message
     const [newMessage, setNewMessage] = useState("")
+
+    const [msgHeight, setMsgHeight] = useState(60)
 
     // Determines whether or not the keyboard is visible
     const [KeyboardVisible, setKeyboardVisible] = useState(false);
@@ -60,15 +62,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 // ----------------- Render / Styling Functions ------------------------
     // Adjusts the height of the text input box, based on how long the text is
     const determineInputHeight = (message) => {
-        if (message.length > 168){
-            return maxHeight * 0.2
-        }
-        else if (message.length > 69){
-            return maxHeight * 0.12
-        }
-        else{
-            return maxHeight * 0.08
-        }
+       return (-msgHeight * .9)
     }
 
     // Adjusts the positioning of the Input
@@ -126,8 +120,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         };
       }, []);
 
-    // Handles rerender
-
     // Generates all of the messages
     const renderMessageFeed = (messageData) => {
         if (messageData === null){
@@ -135,8 +127,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         }
       
         const messages = messageData.map( (message, index) => {
-
-            console.log(index)
 
             // Renders sender name
             let propFrom = ""
@@ -195,7 +185,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 // For Icon
                 let next = index + 1
-                console.log(index)
                 if (messageData.length > index){
                     if (messageData[next]){
                         if (messageData[next].from.id != message.from.id){
@@ -227,11 +216,47 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         return (<View> 
                     <View>
                         {messages}
+                        <View style={{height: 70}} />
                     </View>
                     <View style={{height: 50}}/>
                 </View>
         )
     }
+
+    // Determines where the send button is rendered or not
+    const renderSendButton = () => {
+        if (newMessage.length > 1){
+            return(
+                <TouchableOpacity onPress={() => handleSendMessage(newMessage)} style={{height: 40, width: 40, marginLeft: maxWidth - 77,
+                    marginTop: -45,}} >
+                    <Gradient
+                        colorOne="#543FFF"
+                        colorTwo="#15A1F1"
+                        style={{
+                            position: 'absolute',
+                            zIndex: 10,
+                            height: 40,
+                            width: 40,
+                            borderRadius: 20,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Text
+                            style={{
+                                position: 'relative',
+                                fontFamily: "GilroyBold",
+                                color: "#f2f2f2",
+                                fontSize: 12,
+                                textAlign: 'center'
+                            }}
+                        >Send</Text>
+                    </Gradient>
+                </TouchableOpacity>
+            )
+        }
+    }
+
 // ----------------- Render / Styling Functions ------------------------
 
 // ----------------------- Handler Functions ---------------------------
@@ -279,6 +304,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
             <Loading />
         )
     }
+
     return(
         <View>
             <Banner />
@@ -288,7 +314,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
                 <View style={CommunicationStyles.threadContainer}>
                     <View style={CommunicationStyles.thread}>
                         <ScrollView 
-                            containerStyle={CommunicationStyles.thread}
+                            contentContainerStyle={CommunicationStyles.thread}
                             ref={scrollViewRef}
                             onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
                             // onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})}
@@ -301,34 +327,42 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 {/* THE MESSAGE INPUT AREA */}
                 <View style={determineKeyboardStyle(KeyboardVisible, newMessage)}>
-                    {/* <TextInput
-                        mode="outlined"
-                        dense={true}
-                        multiline={true}
-                        style={{
-                            height: determineInputHeight(newMessage),
-                            position: 'absolute',
-                            borderRadius: 10,
-                        }}
-                        selectionColor='#24296f'
-                        activeOutlineColor='#24296f'
-                        activeUnderlineColor='#24296f'
-                        onChangeText={(input) => {
-                            setNewMessage(input)
-                        }}
-                        value={newMessage}
-                    /> */}
+                    
+                    <View>
+                        <TextInput 
+                            placeholder={"    Send a Message"}
+                            style={{
+                                borderWidth: 1,
+                                borderColor: "#C8C8CC",
+                                borderRadius: 10,
+                                backgroundColor: "white",
+                                width: maxWidth - 60,
+                                height: msgHeight,
+                                maxHeight: 200,
+                                marginLeft: 30,
+                                paddingTop: 10,
+                                paddingLeft: 10,
+                                paddingBottom: 8,
+                                paddingRight: 40,
+                                marginTop: determineInputHeight(newMessage)
+                            }}
+                            multiline={true}
+                            value={newMessage}
+                            onChangeText={(content) => {
+                                setNewMessage(content)
+                            }}
+                            onContentSizeChange={(e) => {
+                                let newHeight = e.nativeEvent.contentSize.height
+                                if (newHeight < 160 && newHeight > 50){
+                                    setMsgHeight(newHeight)
+                                }
+                            }}
+                            
+                        />
+                        {renderSendButton()}
+                    </View>
 
-                    {/* SEND MESSAGE BUTTON */}
-                    <TouchableWithoutFeedback onPress={ () => handleSendMessage(newMessage) }>
-                        <View style={CommunicationStyles.sendButton}>
-                            <Text style={{textAlign: 'center', fontWeight: '800'}}>
-                                Send
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
                 </View>
-
             </View>
         </View>
     )

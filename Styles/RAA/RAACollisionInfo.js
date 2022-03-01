@@ -11,6 +11,12 @@ const RAACollisionInfoStyles = StyleSheet.create({
         borderRadius: 40,
         justifyContent: 'center',
     },
+    buttonPressed: {
+        width: 70, 
+        height: 70,
+        borderRadius: 35,
+        justifyContent: 'center',
+    },
 //--------------------------------------------------
     buttonBox: {
         flexDirection: 'row',

@@ -35,11 +35,9 @@ const Chatrooms = () => {
 
     const determineSearchStyle = () => {
         if (inInput){
-            console.log("active")
             return ChatroomsStyles.searchBarActive
         }
         else{
-            console.log("Inactive")
             return ChatroomsStyles.searchBarInactive
         }
     }

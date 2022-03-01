@@ -256,10 +256,24 @@ const CollisionAccidentInformation = () => {
     const determineOutline2 = (yesNo) => {
         if (yesNo == q2){
             if (yesNo == "yes"){
-                return ({ borderColor: "#15A1F1", borderWidth: 4, borderRadius: 100, marginTop: -2})
+                return ({ borderColor: "#0052A2", borderWidth: 4, borderRadius: 100, marginTop: -2})
             }
             else{
                 return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
+            }
+        }
+        else{
+            return RAACollisionInfoStyles.button
+        }
+    }
+
+    const determineSize2 = (yesNo) => {
+        if (yesNo == q2){
+            if (yesNo == "yes"){
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+            else{
+                return (RAACollisionInfoStyles.buttonPressed)
             }
         }
         else{
@@ -293,7 +307,7 @@ const CollisionAccidentInformation = () => {
                                 <Gradient 
                                     colorOne="#534FFF" 
                                     colorTwo="#15A1F1" 
-                                    style={RAACollisionInfoStyles.button}
+                                    style={determineSize2("yes")}
                                 >
                                     <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
                                 </Gradient>
@@ -314,7 +328,7 @@ const CollisionAccidentInformation = () => {
                                 <Gradient 
                                     colorOne="#DE0000" 
                                     colorTwo="#DE0000" 
-                                    style={RAACollisionInfoStyles.button}
+                                    style={determineSize2("no")}
                                 >
                                     <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
                                 </Gradient>
@@ -356,7 +370,7 @@ const CollisionAccidentInformation = () => {
     const determineOutline = (yesNo) => {
         if (yesNo == q1){
             if (yesNo == "yes"){
-                return ({ borderColor: "#15A1F1", borderWidth: 4, borderRadius: 100, marginTop: -2})
+                return ({ borderColor: "#0052A2", borderWidth: 4, borderRadius: 100, marginTop: -2})
             }
             else{
                 return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
@@ -367,8 +381,26 @@ const CollisionAccidentInformation = () => {
         }
     }
 
+    const determineSize = (yesNo) => {
+        if (yesNo == q1){
+            if (yesNo == "yes"){
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+            else{
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+        }
+        else{
+            return RAACollisionInfoStyles.button
+        }
+    }
+
+    let height = "140%"
+    if (q2 == "no" && q1 == "no"){
+        height = "180%"
+    }
     return (
-        <ScrollView contentContainerStyle={{ height: '150%' }}>
+        <ScrollView contentContainerStyle={{ height: height }}>
             <Banner />
             <Text style={RAACollisionInfoStyles.questionText}>Was the other party willing to let you take a picture of their license?</Text>
 
@@ -393,7 +425,7 @@ const CollisionAccidentInformation = () => {
                             <Gradient 
                                 colorOne="#534FFF" 
                                 colorTwo="#15A1F1" 
-                                style={RAACollisionInfoStyles.button}
+                                style={determineSize("yes")}
                             >
                                 <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
                             </Gradient>
@@ -414,7 +446,7 @@ const CollisionAccidentInformation = () => {
                             <Gradient 
                                 colorOne="#DE0000" 
                                 colorTwo="#DE0000" 
-                                style={RAACollisionInfoStyles.button}
+                                style={determineSize("no")}
                             >
                                 <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
                             </Gradient>

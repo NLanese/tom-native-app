@@ -138,8 +138,6 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
 
-    console.log(activeThread.chatroomName)
-
     return(
         <View style={ThreadDetailStyles.container}>
             <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>

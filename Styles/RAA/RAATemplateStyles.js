@@ -51,6 +51,14 @@ const Template = StyleSheet.create({
         fontFamily: "GilroyBold",
         color: "#444444"
     },
+    title: {
+        marginLeft: 30,
+        width: maxWidth - 60,
+        marginTop: 30,
+        fontSize: 24,
+        fontFamily: "GilroyBold",
+        color: "#444444"
+    },
     subTitle: {
         marginLeft: 30,
         marginBottom: 5,
@@ -58,8 +66,26 @@ const Template = StyleSheet.create({
         fontSize: 10,
         letterSpacing: 2,
         color: '#888888'
+    },
+// -------------------------
+    activeInput: {
+        backgroundColor: "#ccc",
+        borderColor: "white",
+        borderWidth: 3,
+        borderRadius: 15,
+    },
+    inactiveInput: {
+        backgroundColor: "#ccc",
+        borderColor: "#ccc",
+        borderWidth: 3,
+        borderRadius: 15,
+    },
+    neutralInput: {
+        backgroundColor: "#ccc",
+        borderColor: "#534FFF",
+        borderWidth: 3,
+        borderRadius: 15,
     }
-// ------------------ 
 })
 
 export default Template

@@ -49,7 +49,6 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   }
 
   const handleBackClick = () => {
-    console.log(website)
     setWebsiteState({current: website.previous, previous: website.current})
     navigation.goBack()
   }

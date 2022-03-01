@@ -5,14 +5,13 @@ import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
 import TabBar from '../../../Components/TabBar';
 
 import LoginScreen from './LoginScreen';
-import SignupScreen from './SingupScreen';
+import SignupScreen from './SignupScreen';
 
 
 const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
 
     let initTab = 0
     if (tab == 1){
-        console.log("should be sign in")
         initTab = 1
     }
 
@@ -20,7 +19,15 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
     const [selectedIndex, setSelectedIndex] = useState(initTab)
 
     // Tracks user input
-    const [userData, setUserData] = useState({email: "", password: ""})
+    const [userData, setUserData] = useState({
+        email: "", 
+        password: "",
+        firstname: "",
+        lastname: "",
+        confirmPassword: "",
+        phoneNumber: "",
+        signUpToken: ""
+    })
 
 
     // Sends user input to the use state above
@@ -40,7 +47,13 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
                 />
         }
         else if (selectedIndex == 1){
-            return <SignupScreen />
+            return(
+                <SignupScreen 
+                    handleInput={handleInput} 
+                    handleLoggedIn={handleLoggedIn}
+                    userData={userData}
+                />
+            )
         }
     }
 
