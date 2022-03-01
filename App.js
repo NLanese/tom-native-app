@@ -74,18 +74,36 @@ import CollisionSpecificPictures from "./Pages/ReportAnAccidentPage/CollisionSpe
 import CollisionAccidentInformation from "./Pages/ReportAnAccidentPage/CollisionAccidentInformation/CollisionAccidentInformation";
 import CollisionExtraInfo from './Pages/ReportAnAccidentPage/CollisionExtraInfo/CollisionExtraInfo'
 import CollisionInjuryCheck from "./Pages/ReportAnAccidentPage/CollisionInjuryCheck/CollisionInjuryCheck";
+import CreateCollisionInjuryReport from "./Pages/ReportAnAccidentPage/CreateCollisionInjuryReport/CreateCollisionInjuryReport";
+import CollisionInjurySpecificPictures from "./Pages/ReportAnAccidentPage/CollisionInjurySpecificPicture/CollisionInjurySpecificPicture";
+import CollisionInjuryReportInformation from "./Pages/ReportAnAccidentPage/CollisionInjuryReportInformation/CollisionInjuryReportInformation";
+import CollisionInjuryReportExtraInfo from "./Pages/ReportAnAccidentPage/CollisionInjuryReportExtraInfo/CollisionInjuryReportExtraInfo";
+import CollisionInjuryCheckAgain from "./Pages/ReportAnAccidentPage/CollisionInjuryCheckAgain/CollisionInjuryCheckAgain";
+import CheckPropertyAccident from "./Pages/ReportAnAccidentPage/CheckPropertyAccident/CheckPropertyAccident";
+import CreatePropertyAccident from "./Pages/ReportAnAccidentPage/CreatePropertyAccident/CreatePropertyAccident";
+import PropertySpecificPictures from "./Pages/ReportAnAccidentPage/PropertySpecificPictures/PropertySpecificPictures";
+import PropertyAccidentInformation from "./Pages/ReportAnAccidentPage/PropertyAccidentInformation/PropertyAccidentInformation";
+import PropertyAccidentContactInformation from "./Pages/ReportAnAccidentPage/PropertyAccidentContactInformation/PropertyAccidentContactInformation";
+import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/PropertyAccidentSafetyEquipment/PropertyAccidentSafetyEquipment";
 
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/CheckUserInjury/CheckUserInjury";
 import UserInjuryReport from "./Pages/ReportAnAccidentPage/CreateInjuryReport/CreateInjuryReport";
 
 import { useFonts } from 'expo-font' 
+import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/PropertyAccidentExtraInformation/PropertyAccidentExtraInformation";
+import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/CheckInjuryAccident/CheckInjuryAccident";
+import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/CreateInjuryAccident/CreateInjuryAccident";
+import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/InjurySpecificPictures/InjurySpecificPictures";
+import InjuryReportInformation from "./Pages/ReportAnAccidentPage/InjuryReportInformation/InjuryReportInformation";
+import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/InjuryExtraInformation/InjuryExtraInformaton";
+import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/CheckInjuryAccidentAgain/CheckInjuryAccidentAgain";
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  // uri: 'http://10.0.0.46:5001/graphql'     // Home
+	uri: 'http://192.168.1.203:5001/graphql' // KW Studio
+  // uri: 'http://192.168.1.203:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -283,6 +301,78 @@ export default function App() {
 
                   <Stack.Screen name='collision-injury-check'>
                     {props => <CollisionInjuryCheck />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='create-collision-injury-report'>
+                    {props => <CreateCollisionInjuryReport />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-injury-specific-pictures'>
+                    {props => <CollisionInjurySpecificPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-injury-report-information'>
+                    {props => <CollisionInjuryReportInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-injury-report-extra-info'>
+                    {props => <CollisionInjuryReportExtraInfo />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='collision-injury-check-again'>
+                    {props => <CollisionInjuryCheckAgain />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='check-property-accident'>
+                    {props => <CheckPropertyAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='create-property-accident'>
+                    {props => <CreatePropertyAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='property-specific-pictures'>
+                    {props => <PropertySpecificPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='property-accident-information'>
+                    {props => <PropertyAccidentInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='property-accident-contact-information'>
+                    {props => <PropertyAccidentContactInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='property-accident-safety-equipment'>
+                    {props => <PropertyAccidentSafetyEquipment />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='property-accident-extra-info'>
+                    {props => <PropertyAccidentExtraInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='check-injury-accident'>
+                    {props => <CheckInjuryAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='create-injury-accident'>
+                    {props => <CreateInjuryAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-specific-pictures'>
+                    {props => <InjurySpecificPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-report-information'>
+                    {props => <InjuryReportInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-report-extra-info'>
+                    {props => <InjuryExtraInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-check-again'>
+                    {props => <CheckInjuryAccidentAgain />}
                   </Stack.Screen>
               
                 </Stack.Navigator>

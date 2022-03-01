@@ -147,7 +147,7 @@ const Gradient = ({
                 <View style={hollowStyle}>
                     {children}
                 </View>
-        </LinearGradient>
+            </LinearGradient>
         </View>
     ) 
 
