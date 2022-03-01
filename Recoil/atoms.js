@@ -44,3 +44,8 @@ export const injuryIdState = atom({
 	key: 'injuryIdState',
 	default: false
 })
+
+export const propertyDataState = atom({
+	key: 'propertyDataState',
+	default: false
+})

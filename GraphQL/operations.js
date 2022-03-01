@@ -792,9 +792,9 @@ const DRIVERCREATECOLLISIONACCIDENT = gql`
 }
 `
 
-const DRIVERCREATEINJURYACCIDENT = gql`
-  mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!) {
-  driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo) {
+const DRIVERCREATEINJURYREPORTFORCOLLISION = gql`
+  mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!, $collisionAccidentId: String, $accidentId: String) {
+  driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo, collisionAccidentId: $collisionAccidentId, accidentId: $accidentId) {
     id
     medical_attention
     immediate_attention
@@ -807,9 +807,23 @@ const DRIVERCREATEINJURYACCIDENT = gql`
 }
 `
 
-const DRIVERCREATEINJURYREPORTFORCOLLISION = gql`
-  mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!, $collisionAccidentId: String, $accidentId: String) {
-  driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo, collisionAccidentId: $collisionAccidentId, accidentId: $accidentId) {
+const DRIVERCREATEPROPERTYACCIDENT = gql`
+  mutation Mutation($accidentId: String!, $address: String!, $objectHit: String!, $specificPictures: JSON!, $safetyEquipment: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
+  driverCreatePropertyAccident(accidentId: $accidentId, address: $address, object_hit: $objectHit, specific_pictures: $specificPictures, safety_equipment: $safetyEquipment, contact_info: $contactInfo, extra_info: $extraInfo) {
+    id
+    address
+    object_hit
+    specific_pictures
+    safety_equipment
+    contact_information
+    extra_info
+  }
+}
+`
+
+const DRIVERCREATEINJURYACCIDENT = gql`
+  mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!, $accidentId: String) {
+  driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo, accidentId: $accidentId) {
     id
     medical_attention
     immediate_attention
@@ -842,6 +856,7 @@ export {
   DRIVERCREATEINJURYACCIDENT,
   DRIVERCREATEINJURYREPORTFORCOLLISION,
   DRIVERCREATECOLLISIONACCIDENT,
+  DRIVERCREATEPROPERTYACCIDENT,
   DYNAMICREMOVEDRIVERFROMCHATROOM,
   GETDRIVERCHATROOMS
 }
