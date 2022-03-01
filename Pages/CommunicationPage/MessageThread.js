@@ -306,8 +306,6 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         )
     }
 
-    console.log(msgHeight)
-
     return(
         <View>
             <Banner />

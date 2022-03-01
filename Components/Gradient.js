@@ -73,23 +73,23 @@ const Gradient = ({
 
     // Sets Ratio values for Styling
         let smallRatio = {
-            height: style.height * 0.96,
-            width: style.width * 0.96
+            height: style.height * 0.94,
+            width: style.width * 0.94
         }
 
         let mediumRatio = {
-            height: style.height * 0.91,
-            width: style.width * 0.91
+            height: style.height * 0.87,
+            width: style.width * 0.87
         }
 
         let largeRatio = {
-            height: style.height * 0.90,
-            width: style.width * 0.90
+            height: style.height * 0.80,
+            width: style.width * 0.80
         }
 
         let xLargeRatio = {
-            height: style.height * 0.75,
-            width: style.width * 0.75
+            height: style.height * 0.70,
+            width: style.width * 0.70
         }
 
 
@@ -137,7 +137,6 @@ const Gradient = ({
                 width: xLargeRatio.width
             }
         }
-        console.log(hollowStyle)
     }
     return(
         <View>
