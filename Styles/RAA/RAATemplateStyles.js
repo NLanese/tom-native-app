@@ -85,6 +85,10 @@ const Template = StyleSheet.create({
         borderColor: "#534FFF",
         borderWidth: 3,
         borderRadius: 15,
+    },
+// --------------------------
+    stackedCheck : {
+        marginTop: 10
     }
 })
 

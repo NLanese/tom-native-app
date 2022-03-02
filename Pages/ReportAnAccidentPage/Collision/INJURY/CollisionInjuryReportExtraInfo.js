@@ -41,24 +41,13 @@ const CollisionInjuryReportExtraInfo = () => {
     const [isActive, setActive] = useState(false)
 
     const handleMutation =  () => {
-        // console.log(collisionId)
-        // console.log(accidentData.id)
-        // console.log(injuryData.medical_attention)
-        // console.log(injuryData.immediate_attention)
-        // console.log(injuryData.injury)
-
-        // console.log(injuryData.contact_info)
-        // console.log(injuryData.specific_pictures)
-
-        // console.log(injuryData.pain_level)
-        // console.log(injuryData.extra_info)
         return driverCreateInjuryReportForCollision({
             variables: {
                 collisionAccidentId: collisionId,
                 accidentId: accidentData.id,
                 medicalAttention: injuryData.medical_attention.toString(),
                 immediateAttention: injuryData.immediate_attention.toString(),
-                injury: "test",
+                injury: injuryData.injury,
                 contactInfo: injuryData.contact_info,
                 specificPictures: injuryData.specific_pictures,
                 painLevel: injuryData.pain_level,
