@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Toggle, Input } from '@ui-kitten/components';
+
+import { Toggle, Input, CheckBox } from '@ui-kitten/components';
+
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import Gradient from "../../../Components/Gradient";
+
+
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
+
 import { collisionDataState, collisionIdState, injuryDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
-import Gradient from "../../../Components/Gradient";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles"
 import {RAACollisionInfoStyles} from "../../../Styles/RAA/RAACollisionInfo"
@@ -17,6 +22,13 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const CollisionInjuryReportInformation = () => {
+
+//--------------------------------------------------//
+//                                                  //
+//          Preliminary States and Recoil           //
+//                                                  //
+//-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
 
     const [medicalCheck, setMedicalCheck] = useState(false)
@@ -24,20 +36,11 @@ const CollisionInjuryReportInformation = () => {
 
     const [isActive, setActive] = useState("none")
 
-    const determineStyle = (type) => {
-        if (isActive == type) {
-            return{
-                style: Template.activeInput,
-                color: 'white'
-            }
-        }
-        else {
-            return{
-                style: Template.inactiveInput,
-                color: '#adadad'
-            }
-        }
-    }
+//--------------------------------------------------\\
+//                                                  \\
+//                  Button Handlers                 \\
+//                                                  \\
+//-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V\\
 
     const onMedicalAttentionChange = (isChecked) => {
         setMedicalCheck(isChecked);
@@ -69,9 +72,34 @@ const CollisionInjuryReportInformation = () => {
         })
     };
 
+
+//--------------------------------------------------//
+//                                                  //
+//              Conditional Styling                 //
+//                                                  //
+//-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+
+    // Determines Whether a Text Input is styled Active or Not
+    const determineStyle = (type) => {
+        if (isActive == type) {
+            return{
+                style: Template.activeInput,
+                color: 'white'
+            }
+        }
+        else {
+            return{
+                style: Template.inactiveInput,
+                color: '#adadad'
+            }
+        }
+    }
+
+    // Tracks state for which yes / no buttons are pressed
     const [q1, setQ1] = useState("None")
     const [q2, setQ2] = useState("None")
 
+    // Self explanatory
     const determineOutline = (yesNo, num) => {
         if (num == 1){
             if (yesNo == q1){
@@ -101,6 +129,7 @@ const CollisionInjuryReportInformation = () => {
         }
     }
 
+    // Self explanatory
     const determineSize = (yesNo, num) => {
         if (num == 1){
             if (yesNo == q1){
@@ -130,6 +159,31 @@ const CollisionInjuryReportInformation = () => {
         }
         
     }
+
+
+//--------------------------------------------------//
+//                                                  //
+//            Injury Checkbox States                //
+//                                                  //
+//-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+
+    const [head, setHead] = useState(false)
+    const [neck, setNeck] = useState(false)
+    const [shoulder, setShoulder] = useState(false)
+
+    const [chest, setChest] = useState(false)
+    const [stomach, setStomach] = useState(false)
+    const [groin, setGroin] = useState(false)
+
+    const [leg, setLeg] = useState(false)
+    const [knee, setKnee] = useState(false)
+    const [foot, setFoot] = useState(false)
+
+    const [arm, setArm] = useState(false)
+    const [elbow, setElbow] = useState(false)
+    const [hand, setHand] = useState(false)
+
+    console.log(injuryData.injury)
 
     return (
         <View>
@@ -230,9 +284,52 @@ const CollisionInjuryReportInformation = () => {
             {/* <Toggle checked={immediateCheck} onChange={onImmediateMedicalChange} /> */}
 
             <View style={{ marginTop: "0%" }}>
-                <Text style={Template.questionText}>What was the injury they recieved?</Text>
-                <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
-                    <Input
+                <Text style={Template.questionText}>What part(s) of the injured person was hurt?</Text>
+                <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20, flexDirection: 'row'}}>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={head} 
+                            onChange={async() => {
+                                await setHead(!head)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injury, head: !head}
+                                })
+                            }}
+                        >
+                            Head
+                        </CheckBox>
+                    </View>
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={neck} 
+                            onChange={async() => {
+                                await setNeck(!neck)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injury, neck: !neck}
+                                })
+                            }}
+                        >
+                            Neck
+                        </CheckBox>
+                    </View>
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={shoulder} 
+                            onChange={async() => {
+                                await setShoulder(!shoulder)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injury, shoulder: !shoulder}
+                                })
+                            }}
+                        >
+                            Shoulder
+                        </CheckBox>
+                    </View>
+                    {/* <Input
                         onPressIn={() => setActive("type")}
                         style={determineStyle("type").style}
                         size={'large'}
@@ -240,23 +337,162 @@ const CollisionInjuryReportInformation = () => {
                         placeholderTextColor={determineStyle("type").color}
                         textStyle={{color: determineStyle("type").color, fontSize: 18}}
                         onChangeText={injury => {
-                            setInjuryData({
-                                ...injuryData,
-                                contact_info: {
-                                    ...injuryData.contact_info
-                                },
-                                specific_pictures: {
-                                    ...injuryData.specific_pictures
-                                },
-                                injury: injury
-                            })
+                            
                             }}
-                        />
+                        /> */}
                 </View>
+                <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={chest} 
+                            onChange={async() => {
+                                await setChest(!chest)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injury, chest: !chest}
+                                })
+                            }}
+                        >
+                            Chest
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={stomach} 
+                            onChange={ async () => {
+                                await setStomach(!stomach)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, stomach: !stomach}
+                                })
+                            }}
+                        >
+                            Stomach
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={groin}
+                            onChange={async () => {
+                                await setGroin(!groin)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, groin: !groin}
+                                })
+                            }}
+                        >
+                            Groin
+                        </CheckBox>
+                    </View>
+
+                </View>
+
+                
+                <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={leg} 
+                            onChange={async() => {
+                                await setLeg(!leg)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, leg: !leg}
+                                })
+                            }}
+                        >
+                            Leg(s)
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={knee} 
+                            onChange={async () => {
+                                await setKnee(!knee)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, knee: !knee}
+                                })
+                            }}
+                        >
+                            Knee(s)
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={foot} 
+                            onChange={async () => {
+                                await setFoot(!foot)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, foot: !foot}
+                                })
+                            }}
+                        >
+                            Foot
+                        </CheckBox>
+                    </View>
+
+                </View>
+
+                <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={arm} 
+                            onChange={async () => {
+                                await setArm(!arm)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, arm: !arm}
+                                })
+                            }}
+                        >
+                            Arm(s)
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={elbow} 
+                            onChange={async () => {
+                                await setElbow(!elbow)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, elbow: !elbow}
+                                })
+                            }}
+                        >
+                            Elbow(s)
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={hand} 
+                            onChange={ async() => {
+                                await setHand(!hand)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, hand: !hand}
+                                })
+                            }}
+                        >
+                            Hand(s)
+                        </CheckBox>
+                    </View>
+
+                </View>
+
             </View>
 
-                <View style={{ marginTop: 0}}>
-                    <Text style={Template.questionText}>What was the injured partys firstname?</Text>
+                <View style={{ marginTop: 30}}>
+                    <Text style={Template.questionText}>What was the injured party's First Name?</Text>
                     <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
                         <Input
                             onPressIn={() => setActive("first")}
@@ -281,8 +517,8 @@ const CollisionInjuryReportInformation = () => {
                     </View>
                 </View>
 
-                <View style={{ marginTop: 30}}>
-                    <Text style={Template.questionText}>What was the injured partys lastname?</Text>
+                <View style={{ marginTop: 10}}>
+                    <Text style={Template.questionText}>What was the injured party's Last Name?</Text>
                     <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
                         <Input
                             onPressIn={() => setActive("last")}
@@ -307,7 +543,7 @@ const CollisionInjuryReportInformation = () => {
                     </View>
                 </View>
 
-                <View style={{ marginTop: 30}}>
+                <View style={{ marginTop: 10}}>
                     <Text style={Template.questionText}>What was the injured partys phone number?</Text>
                         <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
                             <Input
@@ -333,7 +569,7 @@ const CollisionInjuryReportInformation = () => {
                         </View>
                 </View>
 
-                <View style={{ marginTop: 30 }}>
+                <View style={{ marginTop: 10 }}>
                     <Text style={Template.questionText}>What was the injured partys address?</Text>
                     <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
                         <Input

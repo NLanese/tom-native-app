@@ -8,26 +8,27 @@ import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState, collisionIdState, injuryDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
+import Gradient from "../../../Components/Gradient";
+
+import Template from "../../../Styles/RAA/RAATemplateStyles"
+
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const dynamicStyles = StyleSheet.create({
     activeInput: {
-        backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
-        borderColor: 'white',
-        borderWidth: 3,
-        borderRadius: 15,
-        width: '85%',
-        height: '13%',
-        marginLeft: maxWidth * 0.125,
+        ...Template.activeInput,
+        marginLeft: 30,
+        marginTop: 15,
+        marginBottom: 15,
+        width: maxWidth - 60
     },
     inactiveInput: {
-        backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
-        borderColor: 'rgba(52, 52, 52, 0.3) !important',
-        borderRadius: 15,
-        width: '85%',
-        height: '13%',
-        marginLeft: maxWidth * 0.125,
+        ...Template.inactiveInput,
+        marginLeft: 30,
+        marginTop: 15,
+        marginBottom: 15,
+        width: maxWidth - 60
     }
 })
 
@@ -82,7 +83,7 @@ const CollisionInjuryReportExtraInfo = () => {
             <Banner />
 
             <View style={{ marginTop: "0%" }}>
-                    <Text>What is the injured partys pain level?</Text>
+                    <Text style={Template.questionText}>Could you describe the Injured Individual's pain level on a scale of one to ten?</Text>
                         <Input
                             onPressIn={() => setActive(true)}
                             onEndEditing={() => setActive(false)}
@@ -107,7 +108,7 @@ const CollisionInjuryReportExtraInfo = () => {
                 </View>
 
                 <View style={{ marginTop: "0%" }}>
-                    <Text>Is there any extra info you would like to add?</Text>
+                    <Text style={Template.questionText}>Is there any extra info you would like to add?</Text>
                         <Input
                             onPressIn={() => setActive(true)}
                             onEndEditing={() => setActive(false)}
@@ -131,12 +132,25 @@ const CollisionInjuryReportExtraInfo = () => {
                         />
                 </View>
 
-                <View>
-                    <Button onPress={handleSubmit}>Submit</Button>
-                </View>
+                <View style={{marginLeft: 30, marginTop: 70}}>
+                <TouchableOpacity onPress={handleSubmit}>
+                    <Gradient
+                        colorOne={"#534FFF"}
+                        colorTwo={"#15A1F1"}
+                        style={{
+                            height: 100,
+                            width: 100,
+                            borderRadius: 50,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={Template.buttonText}>Submit</Text>
+                    </Gradient>
+                </TouchableOpacity>
+            </View>
 
                 <View>
-                    {completed === true ? (<ContinueButton nextPage={'collision-injury-check-again'} buttonText={'Continue'} pageName={'collision-injury-report-extra-info-continue-button'} />) : null}
+                    {completed === true ? (<ContinueButton nextPage={'collision-injury-check-again'} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />) : null}
                 </View>
         </View>
     )
