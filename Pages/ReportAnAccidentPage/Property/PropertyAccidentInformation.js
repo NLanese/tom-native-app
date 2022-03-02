@@ -49,7 +49,12 @@ const PropertyAccidentInformation = () => {
 //                                              //
 //_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
+    // Self-explanatory bro
     const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
+
+    // Keeps Track of the height for the container scroll view
+    const [contHeight, setContHeight] = useState(200)
+
 
 //----------------------------------------------//
 //                                              //
@@ -100,7 +105,11 @@ const PropertyAccidentInformation = () => {
 
     // HANDLERS \\
         const handleInOrOutClick = (status) => {
+
+            // if no value
             if (inOrOut == null){
+
+                // set to checked
                 setPropertyData({
                     ...propertyData,
                     damage_report: {
@@ -108,20 +117,74 @@ const PropertyAccidentInformation = () => {
                         inOrOut: status
                     }
                 })
+                setInOrOut(status)
+                
             }
-            if (inOrOut != status){
+
+            // if a value exists that is not the submitted value
+            if (inOrOut != status && inOrOut != null){
+
+                // if both are currently active
+                if (inOrOut == "both"){
+
+                    // if outside was clicked
+                    if (status == "outside"){
+
+                        // set value to inside only
+                        setInOrOut("inside")
+                        setPropertyData({
+                            ...propertyData,
+                            damage_report: {
+                                ...propertyData.damage_report,
+                                inOrOut: "inside"
+                            }
+                        })
+                    }
+                    // if inside was clicked
+                    else{
+
+                        // set value to outside only
+                        setInOrOut("outside")
+                        setPropertyData({
+                            ...propertyData,
+                            damage_report: {
+                                ...propertyData.damage_report,
+                                inOrOut: "outside"
+                            }
+                        })
+                    }
+                }
+
+                // if the value is the other option only
+                else{
+
+                    // set value to both
+                    setInOrOut("both")
+                        setPropertyData({
+                            ...propertyData,
+                            damage_report: {
+                                ...propertyData.damage_report,
+                                inOrOut: "both"
+                            }
+                        })
+                }
+            }
+
+            // if the value that is currently active matches the one you submitted
+            if (inOrOut == status){
+                setInOrOut(null)
                 setPropertyData({
                     ...propertyData,
                     damage_report: {
                         ...propertyData.damage_report,
-                        inOrOut: "both"
+                        inOrOut: null
                     }
                 })
             }
         }
 
     // RENDERINGS \\
-        const inOrOuthecked = (status) => {
+        const inOrOutChecked = (status) => {
             if (inOrOut == "both" || inOrOut == status){
                 return true
             }
@@ -146,7 +209,7 @@ const PropertyAccidentInformation = () => {
                 </Text>
                 <View style={{marginLeft: 30, marginTop: 20}}>
                     <CheckBox
-                        checked={inOrOuthecked("outside")}
+                        checked={inOrOutChecked("outside")}
                         style={Template.stackedCheck}
                         onChange={()=>{
                             handleInOrOutClick("outside")
@@ -155,7 +218,7 @@ const PropertyAccidentInformation = () => {
                         Outside of the vehicle
                     </CheckBox>
                     <CheckBox
-                        checked={inOrOuthecked("inside")}
+                        checked={inOrOutChecked("inside")}
                         style={Template.stackedCheck}
                         onChange={()=>{
                             handleInOrOutClick("inside")
@@ -182,57 +245,97 @@ const PropertyAccidentInformation = () => {
 
 //----------------------------------------------//
 //                                              //
-//              Package Functions               //
+//             Property Functions               //
 //                                              //
 //_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
-    // Determines all the possible choices to select for property damage
-    const propertyOptions = () => {
-        let damageOptions = [
-            "Building",
-            "Fence",
-            "Sign",
-            "Mailbox",
-            "Bushes / Tree(s)"
-        ]
-        if (gov){
-            damageOptions.push("Traffic Signal")
-            damageOptions.push("Telephone Pole")
-            damageOptions.push("Road Structure")
-        }
-        if (personal){
-            damageOptions.push("Bird Feeder")
-            damageOptions.push("Garden")
-            damageOptions.push("Parked Car")
-            damageOptions.push("Lawn Decorations")
-        }
-        damageOptions.push("Other")
-        return damageOptions
-    }
 
-    // Determines if a damaged property option is checked or not
-    const propertyIsChecked = (property) => {
-        if (thingsHit.includes(property)){
-            return true
+    // RENDERINGS \\
+
+        // Determines all the possible choices to select for property damage
+        const propertyOptions = () => {
+            let damageOptions = [
+                "Building",
+                "Fence",
+                "Sign",
+                "Mailbox",
+                "Bushes / Tree(s)"
+            ]
+            if (gov){
+                damageOptions.push("Traffic Signal")
+                damageOptions.push("Telephone Pole")
+                damageOptions.push("Road Structure")
+            }
+            if (personal){
+                damageOptions.push("Bird Feeder")
+                damageOptions.push("Garden")
+                damageOptions.push("Parked Car")
+                damageOptions.push("Lawn Decorations")
+            }
+            damageOptions.push("Other")
+            return damageOptions
         }
-        else{
-            return false
+
+        // Determines if a damaged property option is checked or not
+        const propertyIsChecked = (property) => {
+            if (thingsHit.includes(property)){
+                return true
+            }
+            else{
+                return false
+            }
         }
-    }
 
-    const renderPropertyBoxes = () => {
-        return propertyOptions().map( (opt, index) => {
-            return(
-                <CheckBox
-                    style={Template.stackedCheck}
-                    checked={propertyIsChecked(opt)}
+        // Renders checkboxes for all property damage options
+        const renderPropertyBoxes = () => {
+            return propertyOptions().map( (opt, index) => {
+                return(
+                    <CheckBox
+                        key={index}
+                        style={Template.stackedCheck}
+                        checked={propertyIsChecked(opt)}
+                        onChange={() => {
+                            handlePropDamageClick(opt)
+                        }}
+                    >
+                        {opt}
+                    </CheckBox>
+                )
+            })
+        }
 
-                >
+    // HANDLERS \\
 
-                </CheckBox>
-            )
-        })
-    }
+        // Handles a checkBoxClick for propertyDamage
+        const handlePropDamageClick = (opt) => {
+            if (thingsHit.includes(opt)){
+                let newThingsHit = thingsHit.filter( (thing) => {
+                    if (thing != opt){
+                        return thing
+                    }
+                    else{
+                        null
+                    }
+                })
+                setPropertyData({
+                    ...propertyData,
+                    damage_report: {
+                        ...propertyData.damage_report, thingsHit: newThingsHit
+                    }
+                })
+                setThingsHit(newThingsHit)
+            }
+            else{
+                setPropertyData({
+                    ...propertyData,
+                    damage_report: {
+                        ...propertyData.damage_report, thingsHit: [...propertyData.damage_report.thingsHit, opt]
+                    }
+                })
+                setThingsHit([...thingsHit, opt])
+            }
+
+        }
 
 
 
@@ -241,13 +344,16 @@ const PropertyAccidentInformation = () => {
 //            Property Code Chunks              //
 //                                              //
 //_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+
     const whatProperty = () => {
         return(
             <View>
-                <Text>
+                <Text style={Template.questionText}>
                     What kind of property was damaged?
                 </Text>
-
+                <View style={{marginLeft: 30}}>
+                    {renderPropertyBoxes()}
+                </View>
             </View>
         )
     }
@@ -262,103 +368,132 @@ const PropertyAccidentInformation = () => {
 
     const determineFirst = () => {
         if (pack){
+            if (contHeight < 400){
+                setContHeight(contHeight + 200)
+            }
             return(whereWasPackageDamage())
         }
         if (personal || gov){
-            return ("something else")
+            if (contHeight < 640){
+                setContHeight(contHeight + 440)
+            }
+            return(whatProperty())
+        }
+    }
+
+    const determineSecond = () => {
+        if (pack && (personal || gov)){
+            if (contHeight < 840){
+                setContHeight(contHeight + 440)
+            }
+            return(whatProperty())
+        }
+        if (pack && !(personal || gov)){
+            if (inOrOut != null){
+                return(
+                    <View style={{marginLeft: 30, marginTop: 160}}>
+                        <ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                    </View>
+                )
+            }
+        }
+        else{
+            if (thingsHit.length > 0){
+                return(
+                    <View style={{marginLeft: 30, marginTop: 70}}>
+                        <ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                    </View>
+                )
+            }
+        }
+    }
+
+    const determineThird = () => {
+        if (pack && (gov || personal)){
+            if (thingsHit.length > 1){
+                if (inOrOut != null){
+                    return(
+                        <View style={{marginLeft: 30, marginTop: 40}}>
+                            <ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                        </View>
+                    )
+                }
+            }
         }
     }
 
 
+    console.log("\n")
+    console.log(propertyData)
+
+    console.log("\n")
+    console.log("inOrOut")
+    console.log(inOrOut)
+
+    console.log("\n")
+    console.log("thingsHit")
+    console.log(thingsHit)
+
     return (
         <View >
             <Banner />
-            <Text style={Template.questionText}>What was damaged? Choose all that apply</Text>
+            <ScrollView contentContainerStyle={{height: contHeight}}>
 
-            <View style={{marginTop: 20, marginLeft: 30}}>
-                <CheckBox
-                    checked={pack}
-                    style={Template.stackedCheck}
-                    onChange={() => {
-                        setPropertyData({
-                            ...propertyData,
-                            types_of_damage: {...propertyData.types_of_damage, pack: !pack}
-                        })
-                        setPack(!pack)
-                    }}
-                >
-                    One or more Packages
-                </CheckBox>
+                <Text style={Template.questionText}>What was damaged? Choose all that apply</Text>
+                <View style={{marginTop: 20, marginLeft: 30}}>
+                    <CheckBox
+                        checked={pack}
+                        style={Template.stackedCheck}
+                        onChange={() => {
+                            setPropertyData({
+                                ...propertyData,
+                                types_of_damage: {...propertyData.types_of_damage, pack: !pack}
+                            })
+                            setPack(!pack)
+                        }}
+                    >
+                        One or more Packages
+                    </CheckBox>
 
-                <CheckBox
-                    checked={personal}
-                    style={Template.stackedCheck}
-                    onChange={() => {
-                        setPropertyData({
-                            ...propertyData,
-                            types_of_damage: {...propertyData.types_of_damage, personal: !personal}
-                        })
-                        setPersonal(!personal)
-                    }}
-                >
-                    Personal Property ( fence, mailbox, etc. )
-                </CheckBox>
+                    <CheckBox
+                        checked={personal}
+                        style={Template.stackedCheck}
+                        onChange={() => {
+                            setPropertyData({
+                                ...propertyData,
+                                types_of_damage: {...propertyData.types_of_damage, personal: !personal}
+                            })
+                            setPersonal(!personal)
+                        }}
+                    >
+                        Personal Property ( fence, mailbox, etc. )
+                    </CheckBox>
 
-                <CheckBox
-                    checked={gov}
-                    style={Template.stackedCheck}
-                    onChange={() => {
-                        setPropertyData({
-                            ...propertyData,
-                            types_of_damage: {...propertyData.types_of_damage, gov: !gov}
-                        })
-                        setGov(!gov)
-                    }}
-                >
-                    Government Property ( pole, street sign, etc. )
-                </CheckBox>
-            </View>
+                    <CheckBox
+                        checked={gov}
+                        style={Template.stackedCheck}
+                        onChange={() => {
+                            setPropertyData({
+                                ...propertyData,
+                                types_of_damage: {...propertyData.types_of_damage, gov: !gov}
+                            })
+                            setGov(!gov)
+                        }}
+                    >
+                        Government Property ( pole, street sign, etc. )
+                    </CheckBox>
+                </View>
 
-            {determineFirst()}
+                {determineFirst()}
+
+                {determineSecond()}
+
+                {determineThird()}
+
+            </ScrollView>
 
 
         </View>
-        // <View>
-        //     <Banner />
-        //     <Text>TEST FROM PROPERTY ACCIDENT INFORMATION</Text>
-
-        //     <View>
-        //         <Text>What did you hit?</Text>
-        //         <Input 
-        //             size={'large'}
-        //             placeholder={`What did you hit?`}
-        //             onChangeText={objectHit => {
-        //                 setPropertyData({
-        //                     ...propertyData,
-        //                     object_hit: objectHit
-        //                 })
-        //             }}
-        //         />
-        //     </View>
-
-        //     <View>
-        //         <Text>What is the address of the property you damaged?</Text>
-        //         <Input 
-        //             size={'large'}
-        //             placeholder={`Address`}
-        //             onChangeText={address => {
-        //                 setPropertyData({
-        //                     ...propertyData,
-        //                     address: address
-        //                 })
-        //             }}
-        //         />
-        //     </View>
-            
-        //     <View>
-        //         {propertyData.object_hit && propertyData.address ? (<ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Continue'} pageName={'property-accident-information-continue-button'} />) : null}
-        //     </View>
-        // </View>
     )
 }
 
