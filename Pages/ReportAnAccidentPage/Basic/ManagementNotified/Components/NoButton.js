@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Modal, Button, StyleSheet, TouchableOpacity } from 'react-native'
-import { userState } from "../../../../Recoil/atoms";
+import { userState } from "../../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 import { Linking } from "react-native";
 

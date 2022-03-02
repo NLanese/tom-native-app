@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
 import { Button, Input } from "@ui-kitten/components";
-import Banner from "../../../Global/Banner"
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
+import Banner from "../../../../Global/Banner"
+import ContinueButton from "../../../../Global/Buttons/ContinueButton";
+import { DRIVERCREATECOLLISIONACCIDENT } from "../../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
-import { collisionDataState, collisionIdState, injuryDataState } from "../../../Recoil/atoms";
+import { collisionDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 import { useNavigation } from "@react-navigation/native";
 

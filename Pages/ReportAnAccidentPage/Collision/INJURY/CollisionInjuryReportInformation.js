@@ -3,20 +3,20 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView
 
 import { Toggle, Input, CheckBox } from '@ui-kitten/components';
 
-import Banner from "../../../Global/Banner"
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
-import Gradient from "../../../Components/Gradient";
+import Banner from "../../../../Global/Banner"
+import ContinueButton from "../../../../Global/Buttons/ContinueButton";
+import Gradient from "../../../../Components/Gradient";
 
 
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
+import { DRIVERCREATECOLLISIONACCIDENT } from "../../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 
-import { collisionDataState, collisionIdState, injuryDataState } from "../../../Recoil/atoms";
+import { collisionDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 
-import Template from "../../../Styles/RAA/RAATemplateStyles"
-import {RAACollisionInfoStyles} from "../../../Styles/RAA/RAACollisionInfo"
+import Template from "../../../../Styles/RAA/RAATemplateStyles"
+import {RAACollisionInfoStyles} from "../../../../Styles/RAA/RAACollisionInfo"
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
@@ -47,12 +47,6 @@ const CollisionInjuryReportInformation = () => {
 
         setInjuryData({
             ...injuryData,
-            contact_info: {
-                ...injuryData.contact_info
-            },
-            specific_pictures: {
-                ...injuryData.specific_pictures
-            },
             medical_attention: !medicalCheck
         })
     };
@@ -62,12 +56,6 @@ const CollisionInjuryReportInformation = () => {
 
         setInjuryData({
             ...injuryData,
-            contact_info: {
-                ...injuryData.contact_info
-            },
-            specific_pictures: {
-                ...injuryData.specific_pictures
-            },
             immediate_attention: !immediateCheck
         })
     };
@@ -91,6 +79,28 @@ const CollisionInjuryReportInformation = () => {
             return{
                 style: Template.inactiveInput,
                 color: '#adadad'
+            }
+        }
+    }
+
+    let initQ1 = "none"
+    let initQ2 = "none"
+
+    if (injuryData){
+        if (injuryData.medical_attention != null){
+            if (injuryData.medical_attention){
+                initQ1 = "yes"
+            }
+            else{
+                initQ1 = "no"
+            }
+        }
+        if (injuryData.immediate_attention != null){
+            if (injuryData.immediate_attention){
+                initQ2 = "yes"
+            }
+            else{
+                initQ2 = "no"
             }
         }
     }
@@ -167,23 +177,87 @@ const CollisionInjuryReportInformation = () => {
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
-    const [head, setHead] = useState(false)
-    const [neck, setNeck] = useState(false)
-    const [shoulder, setShoulder] = useState(false)
 
-    const [chest, setChest] = useState(false)
-    const [stomach, setStomach] = useState(false)
-    const [groin, setGroin] = useState(false)
+    let initHead = false
+    let initNeck = false
+    let initShoulder = false
 
-    const [leg, setLeg] = useState(false)
-    const [knee, setKnee] = useState(false)
-    const [foot, setFoot] = useState(false)
+    let initChest = false
+    let initStomach = false
+    let initGroin = false
 
-    const [arm, setArm] = useState(false)
-    const [elbow, setElbow] = useState(false)
-    const [hand, setHand] = useState(false)
+    let initLeg = false
+    let initKnee = false
+    let initFoot = false
+    
+    let initArms = false
+    let initElbows = false
+    let initHands = false
 
-    console.log(injuryData.injury)
+    if (injuryData.injury){
+        let injuryInfo = injuryData.injury
+        if (injuryInfo.head){
+            initHead = injuryInfo.head
+        }
+        if (injuryInfo.neck){
+            initNeck = injuryInfo.neck
+        }
+        if (injuryInfo.shoulder){
+            initShoulder = injuryInfo.shoulder
+        }
+        if (injuryInfo.chest){
+            initChest = injuryInfo.chest
+        }
+        if (injuryInfo.stomach){
+            initStomach = injuryInfo.stomach
+        }
+        if (injuryInfo.groin){
+            initGroin = injuryInfo.groin
+        }
+        if (injuryInfo.leg){
+            initLeg = injuryInfo.leg
+        }
+        if (injuryInfo.knee){
+            initKnee = injuryInfo.knee
+        }
+        if (injuryInfo.foot){
+            initFoot= injuryInfo.foot
+        }
+        if (injuryInfo.elbow){
+            initElbows = injuryInfo.elbow
+        }
+        if (injuryInfo.arm){
+            initArms = injuryInfo.arm
+        }
+        if (injuryInfo.hand){
+            initHands = injuryInfo.hand
+        }
+    }
+
+    const [head, setHead] = useState(initHead)
+    const [neck, setNeck] = useState(initNeck)
+    const [shoulder, setShoulder] = useState(initShoulder)
+
+    const [chest, setChest] = useState(initChest)
+    const [stomach, setStomach] = useState(initStomach)
+    const [groin, setGroin] = useState(initGroin)
+
+    const [leg, setLeg] = useState(initLeg)
+    const [knee, setKnee] = useState(initKnee)
+    const [foot, setFoot] = useState(initFoot)
+
+    const [arm, setArm] = useState(initArms)
+    const [elbow, setElbow] = useState(initElbows)
+    const [hand, setHand] = useState(initHands)
+
+
+//--------------------------------------------------//
+//                                                  //
+//                    Main Render                   //
+//                                                  //
+//-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+
+    console.log(injuryData)
 
     return (
         <View>
@@ -197,7 +271,7 @@ const CollisionInjuryReportInformation = () => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ1("yes")
-                            setMedicalCheck(true)
+                            onMedicalAttentionChange(true)
                         }}
                     >
                         <View style={determineOutline("yes", 1)}>
@@ -218,7 +292,7 @@ const CollisionInjuryReportInformation = () => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ1("no")
-                            setMedicalCheck(false)
+                            onMedicalAttentionChange(false)
                         }}
                     >
                         <View style={determineOutline("no", 1)}>
@@ -244,7 +318,7 @@ const CollisionInjuryReportInformation = () => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ2("yes")
-                            setImmediateCheck(true)
+                            onImmediateMedicalChange(true)
                         }}
                     >
                         <View style={determineOutline("yes", 2)}>
@@ -265,7 +339,7 @@ const CollisionInjuryReportInformation = () => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ2("no")
-                            setImmediateCheck(false)
+                            onImmediateMedicalChange(false)
                         }}
                     >
                         <View style={determineOutline("no", 2)}>
@@ -294,7 +368,7 @@ const CollisionInjuryReportInformation = () => {
                                 await setHead(!head)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injury, head: !head}
+                                    injury: {...injuryData.injury, head: !head}
                                 })
                             }}
                         >
@@ -308,7 +382,7 @@ const CollisionInjuryReportInformation = () => {
                                 await setNeck(!neck)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injury, neck: !neck}
+                                    injury: {...injuryData.injury, neck: !neck}
                                 })
                             }}
                         >
@@ -322,24 +396,14 @@ const CollisionInjuryReportInformation = () => {
                                 await setShoulder(!shoulder)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injury, shoulder: !shoulder}
+                                    injury: {...injuryData.injury, shoulder: !shoulder}
                                 })
                             }}
                         >
                             Shoulder
                         </CheckBox>
                     </View>
-                    {/* <Input
-                        onPressIn={() => setActive("type")}
-                        style={determineStyle("type").style}
-                        size={'large'}
-                        placeholder={`Please Enter The Type Of Injury They Recieved`}
-                        placeholderTextColor={determineStyle("type").color}
-                        textStyle={{color: determineStyle("type").color, fontSize: 18}}
-                        onChangeText={injury => {
-                            
-                            }}
-                        /> */}
+                    
                 </View>
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
@@ -350,7 +414,7 @@ const CollisionInjuryReportInformation = () => {
                                 await setChest(!chest)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injury, chest: !chest}
+                                    injury: {...injuryData.injury, chest: !chest}
                                 })
                             }}
                         >
@@ -544,7 +608,7 @@ const CollisionInjuryReportInformation = () => {
                 </View>
 
                 <View style={{ marginTop: 10}}>
-                    <Text style={Template.questionText}>What was the injured partys phone number?</Text>
+                    <Text style={Template.questionText}>What was the injured party's Phone Number?</Text>
                         <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
                             <Input
                                 onPressIn={() => setActive("phone")}
@@ -570,7 +634,7 @@ const CollisionInjuryReportInformation = () => {
                 </View>
 
                 <View style={{ marginTop: 10 }}>
-                    <Text style={Template.questionText}>What was the injured partys address?</Text>
+                    <Text style={Template.questionText}>What is the injured party's Address?</Text>
                     <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
                         <Input
                                 onPressIn={() => setActive("addy")}

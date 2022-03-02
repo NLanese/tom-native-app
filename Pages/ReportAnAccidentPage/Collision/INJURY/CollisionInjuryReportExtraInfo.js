@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
 import { Button, Input } from "@ui-kitten/components";
-import Banner from "../../../Global/Banner"
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATEINJURYREPORTFORCOLLISION } from "../../../GraphQL/operations";
+import Banner from "../../../../Global/Banner"
+import ContinueButton from "../../../../Global/Buttons/ContinueButton";
+import { DRIVERCREATEINJURYREPORTFORCOLLISION } from "../../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
-import { collisionDataState, accidentDataState, collisionIdState, injuryDataState } from "../../../Recoil/atoms";
+import { collisionDataState, accidentDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
-import Gradient from "../../../Components/Gradient";
+import Gradient from "../../../../Components/Gradient";
 
-import Template from "../../../Styles/RAA/RAATemplateStyles"
+import Template from "../../../../Styles/RAA/RAATemplateStyles"
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
@@ -40,14 +40,25 @@ const CollisionInjuryReportExtraInfo = () => {
     const [completed, setCompleted] = useState(false)
     const [isActive, setActive] = useState(false)
 
-    const handleSubmit = async () => {
-        await driverCreateInjuryReportForCollision({
+    const handleMutation =  () => {
+        // console.log(collisionId)
+        // console.log(accidentData.id)
+        // console.log(injuryData.medical_attention)
+        // console.log(injuryData.immediate_attention)
+        // console.log(injuryData.injury)
+
+        // console.log(injuryData.contact_info)
+        // console.log(injuryData.specific_pictures)
+
+        // console.log(injuryData.pain_level)
+        // console.log(injuryData.extra_info)
+        return driverCreateInjuryReportForCollision({
             variables: {
                 collisionAccidentId: collisionId,
                 accidentId: accidentData.id,
                 medicalAttention: injuryData.medical_attention.toString(),
                 immediateAttention: injuryData.immediate_attention.toString(),
-                injury: injuryData.injury,
+                injury: "test",
                 contactInfo: injuryData.contact_info,
                 specificPictures: injuryData.specific_pictures,
                 painLevel: injuryData.pain_level,
@@ -56,17 +67,26 @@ const CollisionInjuryReportExtraInfo = () => {
         })
     }
 
-    useEffect(() => {
-        if (!loading && data) {
-            setInjuryData(data.driverCreateInjuryAccident)
-            setCompleted(true)
-        }
-    }, [data])
+    const handleSubmit = () => {
+        return handleMutation()
+            .then( (resolved) => {
+                setCompleted(true)
+            })
+    }
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         setInjuryData(data.driverCreateInjuryAccident)
+    //         setCompleted(true)
+    //     }
+    // }, [data])
+
+
+
 
     const determineStyle = () => {
         if (isActive) {
             return{
-                style: dynamicStyles.activeInput,
+                style: dynamicStyles.activeInput, 
                 color: 'white'
             }
         }
@@ -150,7 +170,11 @@ const CollisionInjuryReportExtraInfo = () => {
             </View>
 
                 <View>
-                    {completed === true ? (<ContinueButton nextPage={'collision-injury-check-again'} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />) : null}
+                    {completed === true ? (
+                        <View style={{marginLeft: 30, marginTop: -100}}>
+                            <ContinueButton nextPage={'collision-injury-check-again'} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
+                        </View>
+                    ) : null}
                 </View>
         </View>
     )

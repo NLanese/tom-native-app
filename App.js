@@ -64,21 +64,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Roster from './Pages/Roster/Roster'
 import Inspection from './Pages/InspectionPage/Inspection'
 
-import ReportAnAccidentLanding from "./Pages/ReportAnAccidentPage/ReportAnAccidentLanding/ReportAnAccidentLanding";
-import ManagementNotified from "./Pages/ReportAnAccidentPage/ManagementNotified/ManagementNotified"
-import PoliceNotified from "./Pages/ReportAnAccidentPage/PoliceNotified/PoliceNotified";
-import CreateAccident from "./Pages/ReportAnAccidentPage/CreateAccident/CreateAccident";
-import CheckCollisionAccident from "./Pages/ReportAnAccidentPage/CheckCollisionAccident/CheckCollisionAccident";
-import CreateCollisionAccident from "./Pages/ReportAnAccidentPage/CreateCollisionAccident/CreateCollisionAccident";
-import CollisionSpecificPictures from "./Pages/ReportAnAccidentPage/CollisionSpecificPictures/CollisionSpecificPictures";
-import CollisionAccidentInformation from "./Pages/ReportAnAccidentPage/CollisionAccidentInformation/CollisionAccidentInformation";
-import CollisionExtraInfo from './Pages/ReportAnAccidentPage/CollisionExtraInfo/CollisionExtraInfo'
-import CollisionInjuryCheck from "./Pages/ReportAnAccidentPage/CollisionInjuryCheck/CollisionInjuryCheck";
-import CreateCollisionInjuryReport from "./Pages/ReportAnAccidentPage/CreateCollisionInjuryReport/CreateCollisionInjuryReport";
-import CollisionInjurySpecificPictures from "./Pages/ReportAnAccidentPage/CollisionInjurySpecificPicture/CollisionInjurySpecificPicture";
-import CollisionInjuryReportInformation from "./Pages/ReportAnAccidentPage/CollisionInjuryReportInformation/CollisionInjuryReportInformation";
-import CollisionInjuryReportExtraInfo from "./Pages/ReportAnAccidentPage/CollisionInjuryReportExtraInfo/CollisionInjuryReportExtraInfo";
-import CollisionInjuryCheckAgain from "./Pages/ReportAnAccidentPage/CollisionInjuryCheckAgain/CollisionInjuryCheckAgain";
+import ReportAnAccidentLanding from './Pages/ReportAnAccidentPage/Basic/ReportAnAccidentLanding'
+import ManagementNotified from "./Pages/ReportAnAccidentPage/Basic/ManagementNotified/ManagementNotified"
+import PoliceNotified from "./Pages/ReportAnAccidentPage/Basic/PoliceNotified/PoliceNotified"
+import CreateAccident from "./Pages/ReportAnAccidentPage/Basic/CreateAccident"
+
+import CheckCollisionAccident from "./Pages/ReportAnAccidentPage/Collision/CheckCollisionAccident"
+import CreateCollisionAccident from "./Pages/ReportAnAccidentPage/Collision/CreateCollisionAccident"
+import CollisionSpecificPictures from "./Pages/ReportAnAccidentPage/Collision/CollisionSpecificPictures"
+import CollisionAccidentInformation from "./Pages/ReportAnAccidentPage/Collision/CollisionAccidentInformation"
+import CollisionExtraInfo from "./Pages/ReportAnAccidentPage/Collision/CollisionExtraInfo"
+
+import CollisionInjuryCheck from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjuryCheck"
+import CreateCollisionInjuryReport from "./Pages/ReportAnAccidentPage/Collision/INJURY/CreateCollisionInjuryReport"
+import CollisionInjurySpecificPictures from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjurySpecificPicture"
+import CollisionInjuryReportInformation from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjuryReportInformation"
+import CollisionInjuryReportExtraInfo from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjuryReportExtraInfo";
+import CollisionInjuryCheckAgain from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjuryCheckAgain";
+
 import CheckPropertyAccident from "./Pages/ReportAnAccidentPage/CheckPropertyAccident/CheckPropertyAccident";
 import CreatePropertyAccident from "./Pages/ReportAnAccidentPage/CreatePropertyAccident/CreatePropertyAccident";
 import PropertySpecificPictures from "./Pages/ReportAnAccidentPage/PropertySpecificPictures/PropertySpecificPictures";

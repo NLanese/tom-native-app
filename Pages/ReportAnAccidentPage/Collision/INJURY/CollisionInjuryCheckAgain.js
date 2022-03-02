@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Button, Input } from "@ui-kitten/components";
-import Banner from "../../../Global/Banner"
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-import { useMutation } from "@apollo/client";
-import { collisionDataState, accidentDataState, collisionIdState } from "../../../Recoil/atoms";
-import { useRecoilState } from "recoil";
+import Banner from "../../../../Global/Banner"
+import ContinueButton from "../../../../Global/Buttons/ContinueButton";
 import { useNavigation } from "@react-navigation/native";
 
-import Template from "../../../Styles/RAA/RAATemplateStyles"
+import Template from "../../../../Styles/RAA/RAATemplateStyles"
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CollisionInjuryCheck = () => {
+const CollisionInjuryCheckAgain = () => {
     const navigation = useNavigation()
 
     return (
         <View>
             <Banner />
-            <Text style={Template.questionText}>Were any members of the Other Party injured in the accident?</Text>
+            <Text style={Template.questionText}>Was another party injured in the accident?</Text>
             <View style={Styles.noButton}>
                 <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'collision-check-injury-yes-button'} />
             </View>
@@ -57,10 +52,4 @@ const Styles = StyleSheet.create({
 
 })
         
-export default CollisionInjuryCheck
-
-
-{/* <ContinueButton nextPage={'create-collision-injury-report'} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} />
-            <Button onPress={() => navigation.navigate('check-property-accident')}>No</Button>
-        </View>
-    ) */}
+export default CollisionInjuryCheckAgain

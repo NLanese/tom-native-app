@@ -5,13 +5,9 @@ import { Button, Input } from "@ui-kitten/components";
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-import { useMutation } from "@apollo/client";
-
 import { collisionDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
-import noButton from "./buttons/noButton"
 import Gradient from "../../../Components/Gradient"
 
 import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo"
