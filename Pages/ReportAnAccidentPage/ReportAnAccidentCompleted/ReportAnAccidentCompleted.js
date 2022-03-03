@@ -12,19 +12,17 @@ import { useNavigation } from "@react-navigation/native";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CheckInjuryAccidentAgain = () => {
-    const navigation = useNavigation()
+const ReportAnAccidentCompleted = () => {
 
     return (
         <View>
             <Banner />
-            <Text>Did you injury someone?</Text>
+            <Text>TEST FROM REPORT AN ACCIDENT COMPLETE</Text>
+            <Text>Youve completed filing the accident a supervisor will look over it and get back to you</Text>
 
-            <ContinueButton nextPage={'create-injury-accident'} buttonText={'Yes'} pageName={'check-injury-accident-yes-button'} />
-            {/* <Button onPress={() => navigation.navigate('report-an-accident-completed')}>No</Button> */}
-            <Button onPress={() => navigation.navigate('accident-info-continue')}>No</Button>
+            <ContinueButton nextPage={'home'} buttonText={'Home'} pageName={'check-injury-accident-yes-button'} />
         </View>
     )
 }
 
-export default CheckInjuryAccidentAgain
+export default ReportAnAccidentCompleted

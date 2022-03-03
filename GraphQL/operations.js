@@ -1088,6 +1088,30 @@ const DRIVERCREATEINJURYACCIDENT = gql`
 }
 `
 
+const DRIVERUPDATEACCIDENT = gql`
+  mutation Mutation($accidentId: String!, $amazonLogo: Boolean, $vehicleId: String, $numberPackagesCarried: Int, $policeReportInformation: JSON, $generalPictures: JSON, $weather: String, $rushedPrior: Boolean, $distracted: Boolean, $extraInfo: String, $actionsBeforeAccidents: JSON, $unsafeCoditions: JSON) {
+  driverUpdateAccident(accidentId: $accidentId, amazon_logo: $amazonLogo, vehicleId: $vehicleId, number_packages_carried: $numberPackagesCarried, police_report_information: $policeReportInformation, general_pictures: $generalPictures, weather: $weather, rushed_prior: $rushedPrior, distracted: $distracted, extra_info: $extraInfo, actions_before_accidents: $actionsBeforeAccidents, unsafe_coditions: $unsafeCoditions) {
+    id
+    createdAt
+    name
+    date
+    time
+    location
+    amazon_logo
+    vehicleId
+    number_packages_carried
+    police_report_information
+    general_pictures
+    weather
+    rushed_prior
+    distracted
+    extra_info
+    actions_before_accidents
+    unsafe_conditions
+  }
+}
+`
+
 
 export {  
   SIGNUP, 
@@ -1105,6 +1129,7 @@ export {
   DRIVERSENDMESSAGE,
   DRIVERCREATECHATROOM,
   DRIVERCREATEACCIDENT,
+  DRIVERUPDATEACCIDENT,
   DRIVERCREATEINJURYACCIDENT,
   DRIVERCREATEINJURYREPORTFORCOLLISION,
   DRIVERCREATECOLLISIONACCIDENT,

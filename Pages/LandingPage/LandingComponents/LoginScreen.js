@@ -5,10 +5,11 @@ import { SignInBoxStyles } from '../../../Styles/LandingPageStyles';
 import Email from './SignInBoxComponents/Email';
 import Password from './SignInBoxComponents/Password';
 import LoginButton from './SignInBoxComponents/LoginButton';
+import ForgotPasswordModal from './SignInBoxComponents/ForgotPasswordModal';
 
 const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
-
     const [checked, setChecked] = useState(false)
+    const [visible, setVisible] = useState(false)
 
     return(
         <View style={SignInBoxStyles.container}>
@@ -40,11 +41,15 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                 <View style={SignInBoxStyles.forgotPasswordSpace}>
                     <View style={SignInBoxStyles.divider} />
                     <View style={SignInBoxStyles.forgotBox}>
-                        <View style={{paddingBottom: 2.4, borderBottomWidth: 1, borderColor: 'rgba(255, 255, 255, 0.36)', }}><Text style={SignInBoxStyles.forgotPasswordText}>FORGOT PASSWORD?</Text></View>
+                        <TouchableWithoutFeedback onPress={() => setVisible(true)}>
+                            <View style={{paddingBottom: 2.4, borderBottomWidth: 1, borderColor: 'rgba(255, 255, 255, 0.36)', }}><Text style={SignInBoxStyles.forgotPasswordText}>FORGOT PASSWORD?</Text></View>
+                        </TouchableWithoutFeedback>
                     </View>
                 </View>
             </View>
         </TouchableWithoutFeedback>  
+
+            <ForgotPasswordModal visible={visible} setVisible={setVisible} />
         </View>
     )
 }

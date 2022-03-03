@@ -12,19 +12,30 @@ import { useNavigation } from "@react-navigation/native";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CheckInjuryAccidentAgain = () => {
-    const navigation = useNavigation()
+const AccidentInfoContinue = () => {
+    const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
+
+    useEffect(() => {
+        setAccidentData({
+            ...accidentData,
+            policeReportInformation: {},
+            generalPictures: {},
+            actionsBeforeAccidents: {
+                "Test": "Test"
+            },
+            unsafeConditions: {
+                "Test": "Test"
+            }
+        })
+    }, [])
 
     return (
         <View>
             <Banner />
-            <Text>Did you injury someone?</Text>
-
-            <ContinueButton nextPage={'create-injury-accident'} buttonText={'Yes'} pageName={'check-injury-accident-yes-button'} />
-            {/* <Button onPress={() => navigation.navigate('report-an-accident-completed')}>No</Button> */}
-            <Button onPress={() => navigation.navigate('accident-info-continue')}>No</Button>
+            <Text>Accident information Continued</Text>
+            <ContinueButton nextPage={'accident-general-pictures'} buttonText={'Continue'} pageName={'accident-info-continue-yes-button'} />
         </View>
     )
 }
 
-export default CheckInjuryAccidentAgain
+export default AccidentInfoContinue

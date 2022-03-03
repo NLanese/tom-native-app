@@ -345,6 +345,46 @@ export default function App() {
                   <Stack.Screen name='check-injury-accident'>
                     {props => <CheckInjuryAccident />}
                   </Stack.Screen>
+
+                  <Stack.Screen name='create-injury-accident'>
+                    {props => <CreateInjuryAccident />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-specific-pictures'>
+                    {props => <InjurySpecificPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-report-information'>
+                    {props => <InjuryReportInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-report-extra-info'>
+                    {props => <InjuryExtraInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='injury-check-again'>
+                    {props => <CheckInjuryAccidentAgain />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-info-continue'>
+                    {props => <AccidentInfoContinue />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='report-an-accident-completed'>
+                    {props => <ReportAnAccidentCompleted />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-general-pictures'>
+                    {props => <AccidentGeneralPictures />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-police-report'>
+                    {props => <AccidentPoliceReport />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-extra-information'>
+                    {props => <AccidentExtraInformation />}
+                  </Stack.Screen>
               
                 </Stack.Navigator>
               </View>
