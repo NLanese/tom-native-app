@@ -87,7 +87,12 @@ import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserIn
 
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
 import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident"
-
+import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CreateInjuryAccident";
+import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/Injury/InjurySpecificPictures";
+import InjuryReportInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryReportInformation";
+import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryExtraInformaton";
+import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccidentAgain";
+import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 
 let state;
 
@@ -384,6 +389,10 @@ export default function App() {
 
                   <Stack.Screen name='accident-extra-information'>
                     {props => <AccidentExtraInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='profile-picture'>
+                    {props => <ProfilePicture />}
                   </Stack.Screen>
               
                 </Stack.Navigator>

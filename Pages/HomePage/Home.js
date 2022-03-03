@@ -149,16 +149,20 @@ const Home = ({ handleLoggedIn }) => {
                                 <View style={HomeStyles.acknowledgedBox}>
                                     <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
                                 </View>
+
                                 <View style={{width: 50, marginLeft: '80%', marginTop: -30}}>
                                     <TouchableOpacity onPress={() => handleModalClose()}>
                                         {renderButton()}     
                                     </TouchableOpacity>
                                 </View>
+
                             </View>
                         </View>
+
                         <View style={{position: 'absolute', marginTop: 240, marginLeft: 20, marginRight: 20, paddingLeft: 8, paddingRight: 8}}>
                             <WeeklyBottomCard data={user} />
                         </View>
+                        
                     </Modal>
             </ScrollView>
         </View>
