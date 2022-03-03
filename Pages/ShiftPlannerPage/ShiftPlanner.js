@@ -50,19 +50,19 @@ const ShiftPlanner = () => {
             {
                 id: 12345,
                 createdAt: "2022-02-26T15:48:08",
-                sundayDate: "03/01/2022",
+                sundayDate: "02/27/2022",
                 sundayHours: "9am-5pm",
-                mondayDate: "03/02/2022",
+                mondayDate: "02/28/2022",
                 mondayHours: "9am-5pm",
-                tuesdayDate: "03/03/2022",
+                tuesdayDate: "03/01/2022",
                 tuesdayHours: "9am-5pm",
-                wednesdayDate: "03/04/2022",
+                wednesdayDate: "03/02/2022",
                 wednesdayHours: "9am-5pm",
-                thursdayDate: "03/05/2022",
+                thursdayDate: "03/03/2022",
                 thursdayHours: "9am-5pm",
-                fridayDate: "03/06/2022",
+                fridayDate: "03/04/2022",
                 fridayHours: "9am-5pm",   
-                saturdayDate: "03/07/2022",
+                saturdayDate: "03/05/2022",
                 saturdayHours: "9am-5pm",
                 phoneId: "1234",
                 deviceId: "5678",
@@ -149,7 +149,6 @@ const ShiftPlanner = () => {
         let initDateIndex
         thisWeeksShift.forEach( (dayObj, index) => {
             if (dayObj.date == currentDate){
-                console.log(index)
                 initDateIndex = index
             }
         })
@@ -160,11 +159,11 @@ const ShiftPlanner = () => {
 
         let dyanmicDate = {
             month: thisWeeksShift[dateIndex].date.split("/")[0],
-            day: thisWeeksShift[dateIndex].date.split("/")[1],
+            day: thisWeeksShift[dateIndex].date.split("/")[1] ,
             hours: thisWeeksShift[dateIndex].hours
         }
 
-        let dayString = numberToDay(dyanmicDate.day - 1)
+        let dayString = numberToDay(dateIndex)
         month = numberToMonth(dyanmicDate.month)
 
 
