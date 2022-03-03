@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Button, Input } from "@ui-kitten/components";
+import { Input, CheckBox } from "@ui-kitten/components";
 
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
@@ -19,61 +19,23 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const dynamicStyles = StyleSheet.create({
-    activeInput: {
-        backgroundColor: "#ccc",
-        borderColor: "white",
-        borderWidth: 3,
-        borderRadius: 15,
-        width: maxWidth - 60,
-        // height: '%',
-        marginLeft: 30,
-        marginBottom: 20
-    },
-    inactiveInput: {
-        backgroundColor: "#ccc",
-        borderColor: "#ccc",
-        borderWidth: 3,
-        borderRadius: 15,
-        width: maxWidth - 60,
-        // height: '13%',
-        marginLeft: 30,
-        marginBottom: 20
-    }
+
 })
 
 const PropertyAccidentSafetyEquipment = () => {
     const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
+    let insideSafety = []
+    let outsideSafety = ["Trolley / Hand Cart", ""]
+
     return (
         <View>
             <Banner />
-            <Text>Test Property Accident Safety Equipment</Text>
-
+            <Text style={Template.questionText}>
+                Select all safety equipment that was used
+            </Text>
             <View>
-                <Text>Were you using any safety equipment?</Text>
-                <Input 
-                    size={'large'}
-                    placeholder={`Safety Equipment`}
-                    onChangeText={safetyEquipment => {
-                        setPropertyData({
-                            ...propertyData,
-                            specific_pictures: {
-                                ...propertyData.specific_pictures
-                            },
-                            contact_infomation: {
-                                ...propertyData.contact_infomation,
-                            },
-                            safety_equipment: {
-                                ...propertyData.safety_equipment,
-                                safetyEquipment: safetyEquipment
-                            }
-                        })
-                    }}
-                />
-            </View>
-
-            <View>
-                {propertyData.safety_equipment.safetyEquipment ? (<ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Okay'} pageName={'property-accident-safety-equipment-continue-button'} />) : null}
+                {/* {propertyData.safety_equipment.safetyEquipment ? (<ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Okay'} pageName={'property-accident-safety-equipment-continue-button'} />) : null} */}
             </View>
         </View>
     )

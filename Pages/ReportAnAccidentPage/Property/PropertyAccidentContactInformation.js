@@ -85,11 +85,6 @@ const PropertyAccidentContactInformation = () => {
         
         // If all questions are rendered
         if (propertyData.types_of_damage.gov && (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal)){
-            console.log("all apply")
-            console.log(propertyData)
-            console.log(propertyData.contact_info.town != null)
-            console.log(propertyData.contact_info.phoneNumber != null)
-            console.log(propertyData.contact_info.name != null)
             // All Qs answered
            if (
                propertyData.contact_info.town != null &&
@@ -114,24 +109,32 @@ const PropertyAccidentContactInformation = () => {
                     propertyData.contact_info.name != null &&
                     propertyData.contact_info.address != null
                 ){
-                    return(
-                        <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
-                        </View>
-                    )
+                    if (propertyData.types_of_damage.pack){
+                        return(
+                            <View style={{marginLeft: 30, marginTop: 50}}>
+                                <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                            </View>
+                        )
+                    }
+                    else{
+                        return(
+                            <View style={{marginLeft: 30, marginTop: 50}}>
+                                <ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                            </View>
+                        )
+                    }
                 }
             }
 
             // Only if gov questions
             else{
-                console.log("Federal business")
                 if (
-                    propertyData.phoneNumber2 != null &&
-                    propertyData.town != null
+                    propertyData.contact_info.phoneNumber2 != null &&
+                    propertyData.contact_info.town != null
                 ){
                     return(
                         <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                            <ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                         </View>
                     )
                 }
@@ -254,7 +257,7 @@ const PropertyAccidentContactInformation = () => {
                 />
 
                 <Text style={Template.title}>
-                   What is the Phone Number for the government who owns the effected property?
+                   What is the Phone Number for the organization who owns the effected property?
                 </Text>
                 <Input
                     onPressIn={() => setActiveField("phone2")} 

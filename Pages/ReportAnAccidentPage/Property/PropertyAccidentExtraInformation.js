@@ -7,6 +7,9 @@ import { DRIVERCREATEPROPERTYACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 import { propertyDataState, accidentDataState, collisionIdState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
+import Template from "../../../Styles/RAA/RAATemplateStyles";
+
+import Gradient from "../../../Components/Gradient"
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
@@ -78,32 +81,40 @@ const PropertyAccidentExtraInformation = () => {
     return (
         <View>
             <Banner />
-            <Text>Test from property Accident Extra Information</Text>
+            <Text style={Template.questionText}>Enter any Extra Information in the space below</Text>
 
-            <View>
-                <Text>Please Enter Any Additional Information?</Text>
+            <View style={{marginTop: 30, marginBottom: 30, marginLeft: 30, width: maxWidth - 60}}>
                 <Input 
                     size={'large'}
+                    style={{...Template.activeInput, maxHeight: 300}}
+                    textStyle={{color: "white"}}
                     placeholder={`Please Enter Any Additional Information`}
                     onChangeText={extraInfo => {
                         setPropertyData({
                             ...propertyData,
-                            specific_pictures: {
-                                ...propertyData.specific_pictures
-                            },
-                            contact_infomation: {
-                                ...propertyData.contact_infomation,
-                            },
-                            safety_equipment: {
-                                ...propertyData.safety_equipment
-                            },
                             extra_info: extraInfo
                         })
                     }}
+                    multiline={true}
                 />
             </View>
 
-            <Button onPress={() => handleSubmit()}>Submit</Button>
+            <View style={{marginLeft: 30, marginTop: 70}}>
+                <TouchableOpacity onPress={handleSubmit}>
+                    <Gradient
+                        colorOne={"#534FFF"}
+                        colorTwo={"#15A1F1"}
+                        style={{
+                            height: 100,
+                            width: 100,
+                            borderRadius: 50,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={Template.buttonText}>Submit</Text>
+                    </Gradient>
+                </TouchableOpacity>
+            </View>
 
             <View>
                 {complete === true ? (<ContinueButton nextPage={'check-injury-accident'} buttonTex={'Continue'} pageName={'property-accident-extra-information-continue-button'} />) : null}
