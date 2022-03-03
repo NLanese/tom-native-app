@@ -86,12 +86,12 @@ import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/Proper
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserInjury";
 
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
-import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident"
-import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CreateInjuryAccident";
-import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/Injury/InjurySpecificPictures";
-import InjuryReportInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryReportInformation";
-import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryExtraInformaton";
-import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccidentAgain";
+// import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident"
+// import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CreateInjuryAccident";
+// import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/Injury/InjurySpecificPictures";
+// import InjuryReportInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryReportInformation";
+// import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryExtraInformaton";
+// import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccidentAgain";
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 
 let state;
@@ -347,7 +347,7 @@ export default function App() {
                     {props => <PropertyAccidentExtraInformation />}
                   </Stack.Screen>
 
-                  <Stack.Screen name='check-injury-accident'>
+                  {/* <Stack.Screen name='check-injury-accident'>
                     {props => <CheckInjuryAccident />}
                   </Stack.Screen>
 
@@ -369,7 +369,7 @@ export default function App() {
 
                   <Stack.Screen name='injury-check-again'>
                     {props => <CheckInjuryAccidentAgain />}
-                  </Stack.Screen>
+                  </Stack.Screen> */}
 
                   <Stack.Screen name='accident-info-continue'>
                     {props => <AccidentInfoContinue />}
