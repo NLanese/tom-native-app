@@ -15,10 +15,18 @@ const CheckInjuryAccident = () => {
     return (
         <View>
             <Banner />
-            <Text style={Template.questionText}>Did an Injury occur?</Text>
+            <Text style={{
+                marginTop: 30,
+                marginLeft: 30,
+                fontFamily: "GilroyBold",
+                fontSize: 30,
+                width: maxWidth - 60,
+                color: "#444444",
+                letterSpacing: -0.5
+            }}>Did an Injury occur to someone other than you?</Text>
             <Text style={{...Template.subTitle, marginTop: 15, width: maxWidth - 90, lineHeight: 15}}>IF YOU ALREADY FILLED OUT AN INJURY REPORT FOR THIS INCIDENT, YOU CAN HIT "NO"</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'collision-check-injury-yes-button'} />
+                <ContinueButton nextPage={'check-user-injury-accident'} buttonText={'No'} pageName={'check-injury-no-button'} />
             </View>
             <View style={Styles.continue}>
             <ContinueButton nextPage={'create-injury-report'} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>

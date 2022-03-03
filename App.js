@@ -78,7 +78,6 @@ import CollisionInjuryReportExtraInfo from "./Pages/ReportAnAccidentPage/Collisi
 import CollisionInjuryCheckAgain from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjuryCheckAgain";
 
 import CheckPropertyAccident from "./Pages/ReportAnAccidentPage/Property/CheckPropertyAccident";
-import CreatePropertyAccident from "./Pages/ReportAnAccidentPage/Property/CreatePropertyAccident";
 import PropertySpecificPictures from "./Pages/ReportAnAccidentPage/Property/PropertySpecificPictures"
 import PropertyAccidentInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentInformation"
 import PropertyAccidentContactInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentContactInformation"
@@ -88,11 +87,7 @@ import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserIn
 
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
 import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident"
-import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CreateInjuryAccident";
-import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/Injury/InjurySpecificPictures";
-import InjuryReportInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryReportInformation";
-import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryExtraInformaton";
-import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccidentAgain";
+
 
 let state;
 
