@@ -7,9 +7,18 @@ import { useMutation } from "@apollo/client";
 import { collisionDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
-const CollisionInjurySpecificPictures = () => {
+const CollisionInjurySpecificPictures = ({collision}) => {
     const [collisionData] = useRecoilState(collisionDataState)
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
+
+    const whichContinue = () => {
+        if (collision){
+            return 'collision-injury-report-information'
+        }
+        else{
+            return 'injury-report-information'
+        }
+    }
 
     useEffect(() => {
         setInjuryData({
@@ -26,7 +35,7 @@ const CollisionInjurySpecificPictures = () => {
             <Text>TEST FROM COLLISION INJURY SPECIFIC PICTURE</Text>
 
             <View>
-                <ContinueButton nextPage={'collision-injury-report-information'} buttonText={'Dones'} pageName={'collision-injury-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={whichContinue()} buttonText={'Dones'} pageName={'collision-injury-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

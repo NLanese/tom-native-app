@@ -9,8 +9,17 @@ import Template from "../../../../Styles/RAA/RAATemplateStyles"
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CollisionInjuryCheckAgain = () => {
+const CollisionInjuryCheckAgain = ({collision}) => {
     const navigation = useNavigation()
+
+    const whichContinue = () => {
+        if (collision){
+            return('create-collision-injury-report')
+        }
+        else{
+            return('create-injury-report')
+        }
+    }
 
     return (
         <View>
@@ -20,7 +29,7 @@ const CollisionInjuryCheckAgain = () => {
                 <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'collision-check-injury-yes-button'} />
             </View>
             <View style={Styles.continue}>
-            <ContinueButton nextPage={'create-collision-injury-report'} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+            <ContinueButton nextPage={whichContinue()} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )

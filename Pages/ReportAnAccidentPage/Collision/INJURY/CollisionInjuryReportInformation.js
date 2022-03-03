@@ -21,7 +21,7 @@ import {RAACollisionInfoStyles} from "../../../../Styles/RAA/RAACollisionInfo"
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CollisionInjuryReportInformation = () => {
+const CollisionInjuryReportInformation = ({collision}) => {
 
 //--------------------------------------------------//
 //                                                  //

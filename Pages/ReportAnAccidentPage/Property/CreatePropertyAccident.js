@@ -27,7 +27,17 @@ const CreatePropertyAccident = () => {
                 safety: [],
 
                 thingsHit: []
-            }
+            },
+            contact_info: {
+                name: null,
+                town: null,
+                phoneNumber: null,
+                phoneNumber2: null,
+                address: null,
+
+            },
+            safety_equip: [],
+            extra_info: null
         })
     }, [])
     
