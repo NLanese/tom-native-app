@@ -12,27 +12,45 @@ import { useNavigation } from "@react-navigation/native";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CreateCollisionInjuryReport = () => {
+const CreateCollisionInjuryReport = ({collision}) => {
     const [collisionId] = useRecoilState(collisionIdState)
     const [collisionData] = useRecoilState(collisionDataState)
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
 
     useEffect(() => {
-        setInjuryData({
-            collisionAccidentId: collisionId,
-            medical_attention: null,
-            immediate_attention: null,
-            injury: null,
-            contact_info: {
-                firstname: null,
-                lastname: null,
-                address: null,
-                phone_number: null
-            },
-            specific_pictures: null,
-            pain_level: null,
-            extra_info: null
-        })
+        if (collision){
+            setInjuryData({
+                collisionAccidentId: collisionId,
+                medical_attention: null,
+                immediate_attention: null,
+                injury: null,
+                contact_info: {
+                    firstname: null,
+                    lastname: null,
+                    address: null,
+                    phone_number: null
+                },
+                specific_pictures: null,
+                pain_level: null,
+                extra_info: null
+            })
+        }
+        else{
+            setInjuryData({
+                medical_attention: null,
+                immediate_attention: null,
+                injury: null,
+                contact_info: {
+                    firstname: null,
+                    lastname: null,
+                    address: null,
+                    phone_number: null
+                },
+                specific_pictures: null,
+                pain_level: null,
+                extra_info: null
+            })
+        }
     }, [])
 
     return (

@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'rea
 import { Button, Input } from "@ui-kitten/components";
 import Banner from "../../../../Global/Banner"
 import ContinueButton from "../../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATEINJURYREPORTFORCOLLISION } from "../../../../GraphQL/operations";
+import { DRIVERCREATEINJURYREPORTFORCOLLISION, DRIVERCREATEINJURYACCIDENT } from "../../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -32,28 +32,54 @@ const dynamicStyles = StyleSheet.create({
     }
 })
 
-const CollisionInjuryReportExtraInfo = () => {
+const CollisionInjuryReportExtraInfo = ({collision}) => {
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
     const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
     const [collisionId] = useRecoilState(collisionIdState)
     const [driverCreateInjuryReportForCollision, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATEINJURYREPORTFORCOLLISION) 
+    const [driverCreateInjuryReport, { loading: loading2, error: error2, data: data2 }] = useMutation(DRIVERCREATEINJURYACCIDENT) 
     const [completed, setCompleted] = useState(false)
     const [isActive, setActive] = useState(false)
 
+    const whichContinue = () => {
+        if (collision){
+            return('collision-injury-check-again')
+        }
+        else{
+            return('injury-check-again')
+        }
+    }
+
     const handleMutation =  () => {
-        return driverCreateInjuryReportForCollision({
-            variables: {
-                collisionAccidentId: collisionId,
-                accidentId: accidentData.id,
-                medicalAttention: injuryData.medical_attention.toString(),
-                immediateAttention: injuryData.immediate_attention.toString(),
-                injury: injuryData.injury,
-                contactInfo: injuryData.contact_info,
-                specificPictures: injuryData.specific_pictures,
-                painLevel: injuryData.pain_level,
-                extraInfo: injuryData.extra_info
-            }
-        })
+        if (collision){
+            return driverCreateInjuryReportForCollision({
+                variables: {
+                    collisionAccidentId: collisionId,
+                    accidentId: accidentData.id,
+                    medicalAttention: injuryData.medical_attention.toString(),
+                    immediateAttention: injuryData.immediate_attention.toString(),
+                    injury: injuryData.injury,
+                    contactInfo: injuryData.contact_info,
+                    specificPictures: injuryData.specific_pictures,
+                    painLevel: injuryData.pain_level,
+                    extraInfo: injuryData.extra_info
+                }
+            })
+        }
+        else{
+            return driverCreateInjuryReport({
+                variables: {
+                    accidentId: accidentData.id,
+                    medicalAttention: injuryData.medical_attention.toString(),
+                    immediateAttention: injuryData.immediate_attention.toString(),
+                    injury: injuryData.injury,
+                    contactInfo: injuryData.contact_info,
+                    specificPictures: injuryData.specific_pictures,
+                    painLevel: injuryData.pain_level,
+                    extraInfo: injuryData.extra_info
+                }
+            })
+        }
     }
 
     const handleSubmit = () => {
@@ -161,7 +187,7 @@ const CollisionInjuryReportExtraInfo = () => {
                 <View>
                     {completed === true ? (
                         <View style={{marginLeft: 30, marginTop: -100}}>
-                            <ContinueButton nextPage={'collision-injury-check-again'} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
+                            <ContinueButton nextPage={whichContinue()} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
                         </View>
                     ) : null}
                 </View>
