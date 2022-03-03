@@ -131,7 +131,7 @@ if (buttonLoading){
 //Checks to see button is loaded and allows continue
 const handleContinue = () => {
   if (confirmed){
-    navigation.navigate('management_notified')
+    navigation.navigate('self-or-other')
   }
 }
 

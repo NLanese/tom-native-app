@@ -24,8 +24,6 @@ const CreatePropertyAccident = () => {
             },
             damage_report: {
                 inOrOut: null,
-                safety: [],
-
                 thingsHit: []
             },
             contact_info: {
@@ -37,6 +35,7 @@ const CreatePropertyAccident = () => {
 
             },
             safety_equip: [],
+            defective_equip: [],
             extra_info: null
         })
     }, [])

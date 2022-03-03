@@ -119,7 +119,7 @@ const PropertyAccidentContactInformation = () => {
                     else{
                         return(
                             <View style={{marginLeft: 30, marginTop: 50}}>
-                                <ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                                <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                             </View>
                         )
                     }
@@ -134,7 +134,7 @@ const PropertyAccidentContactInformation = () => {
                 ){
                     return(
                         <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                            <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                         </View>
                     )
                 }

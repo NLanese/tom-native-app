@@ -40,16 +40,7 @@ import Settings from './Pages/SettingsPage/Settings'
 import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
 import AccountSettings from './Pages/SettingsPage/SettingsComponents/AccountSettings'
 
-// import CreateOrAdd from './Pages/ReportAnAccidentPage/CreateOrAdd'
-// import ReportCollision from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportCollision'
-// import ReportInjuryAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryAccident'
-// import ReportPropertyAccident from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportPropertyAccident'
-// import ReportHitPerson from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportHitPerson'
-// import ReportInjuryReport from './Pages/ReportAnAccidentPage/TypesOfAccidents/ReportInjuryReport'
-// import BeforeWeBegin from './Pages/ReportAnAccidentPage/BeforeWeBegin'
-// import LeadershipNotified from './Pages/ReportAnAccidentPage/LeadershipNotified'
-// import PoliceContacted from './Pages/ReportAnAccidentPage/PoliceContacted'
-// import PleaseRemember from './Pages/ReportAnAccidentPage/PleaseRemember'
+
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
 import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
 import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
@@ -60,6 +51,8 @@ import Roster from './Pages/Roster/Roster'
 import Inspection from './Pages/InspectionPage/Inspection'
 
 import ReportAnAccidentLanding from './Pages/ReportAnAccidentPage/Basic/ReportAnAccidentLanding'
+import SelfOrOther from "./Pages/ReportAnAccidentPage/Basic/SelfOrOther";
+
 import ManagementNotified from "./Pages/ReportAnAccidentPage/Basic/ManagementNotified/ManagementNotified"
 import PoliceNotified from "./Pages/ReportAnAccidentPage/Basic/PoliceNotified/PoliceNotified"
 import CreateAccident from "./Pages/ReportAnAccidentPage/Basic/CreateAccident"
@@ -78,11 +71,13 @@ import CollisionInjuryReportExtraInfo from "./Pages/ReportAnAccidentPage/Collisi
 import CollisionInjuryCheckAgain from "./Pages/ReportAnAccidentPage/Collision/INJURY/CollisionInjuryCheckAgain";
 
 import CheckPropertyAccident from "./Pages/ReportAnAccidentPage/Property/CheckPropertyAccident";
+import CreatePropertyAccident from "./Pages/ReportAnAccidentPage/Property/CreatePropertyAccident";
 import PropertySpecificPictures from "./Pages/ReportAnAccidentPage/Property/PropertySpecificPictures"
 import PropertyAccidentInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentInformation"
 import PropertyAccidentContactInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentContactInformation"
 import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentSafetyEquipment"
 
+import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident";
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserInjury";
 
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
@@ -171,10 +166,6 @@ export default function App() {
                     {props => <Home {...props} handleLoggedIn={handleLoggedIn} />}
                   </Stack.Screen>
 
-                  <Stack.Screen name='analytics'>
-                    {props => <Analytics />}
-                  </Stack.Screen>
-
                   <Stack.Screen name='score_card'>
                     {props => <PersonalScoreCard />}
                   </Stack.Screen>
@@ -187,24 +178,13 @@ export default function App() {
                     {props => <AccountInformation />}
                   </Stack.Screen>
 
+
                   <Stack.Screen name='messages'>
                     {props => <Chatrooms {...props} />}
                   </Stack.Screen>
 
                   <Stack.Screen name='message-thread'>
                     {props => <MessageThread {...props} />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='admin_messages'>
-                    {props => <Communication />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='shift_planner'>
-                    {props => <ShiftPlanner />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='roster'>
-                    {props => <Roster />}
                   </Stack.Screen>
 
                   <Stack.Screen name='contacts'>
@@ -215,16 +195,28 @@ export default function App() {
                     {props => <Contacts creating={true} />}
                   </Stack.Screen>
 
+
+
+
+
+                  <Stack.Screen name='shift_planner'>
+                    {props => <ShiftPlanner />}
+                  </Stack.Screen>
+
+
+
+                  <Stack.Screen name='roster'>
+                    {props => <Roster />}
+                  </Stack.Screen>
+
+
+
                   <Stack.Screen name='settings'>
                     {props => <Settings />}
                   </Stack.Screen>
 
                   <Stack.Screen name='view_notifications'>
                     {props => <Notifications />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='quality'>
-                    {props => <Quality />}
                   </Stack.Screen>
 
                   <Stack.Screen name='view_accidents'>
@@ -239,8 +231,16 @@ export default function App() {
                     {props => <AccountSettings />}
                   </Stack.Screen>
 
+
+
+
+
                   <Stack.Screen name='raa_landing'>
                     {props => <ReportAnAccidentLanding />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='self-or-other'>
+                    {props => <SelfOrOther />}
                   </Stack.Screen>
 
                   <Stack.Screen name='management_notified'>
@@ -251,13 +251,24 @@ export default function App() {
                     {props => <PoliceNotified />}
                   </Stack.Screen>
 
+
+
                   <Stack.Screen name="create-an-accident">
                     {props => <CreateAccident />}
                   </Stack.Screen>
 
+
+
                   <Stack.Screen name="check-user-injury">
                     {props => <CheckUserInjury />}
                   </Stack.Screen>
+
+                  <Stack.Screen name="check-injury-accident">
+                    {props => <CheckInjuryAccident/>}
+                  </Stack.Screen>
+
+
+
 
                   <Stack.Screen name="create-injury-report">
                     {props => <CreateCollisionInjuryReport  collision={false}/>}
@@ -279,6 +290,9 @@ export default function App() {
                     {props => <CollisionInjuryCheckAgain collision={false}/>}
                   </Stack.Screen>
 
+
+
+
                   <Stack.Screen name='create-collision-accident'>
                     {props => <CreateCollisionAccident />}
                   </Stack.Screen>
@@ -298,6 +312,10 @@ export default function App() {
                   <Stack.Screen name='collision-extra-info'>
                     {props => <CollisionExtraInfo />}
                   </Stack.Screen>
+
+
+
+
 
                   <Stack.Screen name='collision-injury-check'>
                     {props => <CollisionInjuryCheck collision={true}/>}
@@ -321,6 +339,12 @@ export default function App() {
 
                   <Stack.Screen name='collision-injury-check-again'>
                     {props => <CollisionInjuryCheckAgain collision={true}/>}
+                  </Stack.Screen>
+
+
+
+                  <Stack.Screen name='create-property-accident'>
+                    {props => <CreatePropertyAccident />}
                   </Stack.Screen>
 
                   <Stack.Screen name='check-property-accident'>
