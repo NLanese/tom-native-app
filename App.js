@@ -93,12 +93,13 @@ import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/Injury/InjurySp
 import InjuryReportInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryReportInformation";
 import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryExtraInformaton";
 import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccidentAgain";
+import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+	uri: 'http://192.168.1.203:5001/graphql' // KW Studio
   // uri: 'http://192.168.1.203:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
@@ -381,6 +382,10 @@ export default function App() {
 
                   <Stack.Screen name='accident-extra-information'>
                     {props => <AccidentExtraInformation />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='profile-picture'>
+                    {props => <ProfilePicture />}
                   </Stack.Screen>
               
                 </Stack.Navigator>

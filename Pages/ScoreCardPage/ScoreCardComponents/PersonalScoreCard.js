@@ -23,6 +23,7 @@ const PersonalScoreCard = () => {
         fair: '#FF8300',
         subpar: '#BA0F30'
     }
+
     const Styles = (value, name=null, startAtTop=null) =>  StyleSheet.create({
         coloredLabel:{
             textAlign: 'center',
@@ -36,6 +37,7 @@ const PersonalScoreCard = () => {
             borderBottomWidth: 0.5
         }
     })
+
     const colors = (color) => StyleSheet.create({
         dot: {
             height: 6,
@@ -44,6 +46,7 @@ const PersonalScoreCard = () => {
             backgroundColor: color
         }
     })
+
     const renderOverallTier = (tier) => {
         let color = ""
         if (tier == 'Fantastic'){
@@ -91,6 +94,7 @@ const PersonalScoreCard = () => {
         if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
             return null
         }
+        
         thisWeek = parseFloat(thisWeek, 10)
         lastWeek = parseFloat(lastWeek, 10)
 

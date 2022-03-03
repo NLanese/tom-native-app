@@ -11,6 +11,7 @@ import { userState } from '../../../Recoil/atoms'
 import { AccountInformationStyles } from "../../../Styles/SettingStyles";
 import { ActivityIndicator } from "react-native-paper";
 import Banner from "../../../Global/Banner";
+import ProfilePictureButton from "./ButtonBoxComponents/ProfilePictureButton";
 
 const AccountInformation = () => {
     // const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
@@ -24,9 +25,14 @@ const AccountInformation = () => {
             <View style={AccountInformationStyles.container}>
                 <AdminAndUserInformation userData={userData}/>
             </View>
+
             <View style={AccountInformationStyles.buttonBox}>
                 <EditAccountInformationButton/>
                 <ViewAccidentsButton userData={userData}/>
+            </View>
+
+            <View>
+                <ProfilePictureButton />
             </View>
         </View>
     )
