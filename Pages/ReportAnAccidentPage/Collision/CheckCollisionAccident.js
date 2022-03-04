@@ -45,7 +45,6 @@ const Styles = StyleSheet.create({
         marginTop: maxHeight * 0.75,
         marginLeft: maxWidth * .15
     }
-
 })
 
 export default CheckCollisionAccident

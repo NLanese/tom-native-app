@@ -11,7 +11,6 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const CreateCollisionAccident = () => {
-    const [driverCreateCollisionAccident, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATECOLLISIONACCIDENT)
     const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
     const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
 

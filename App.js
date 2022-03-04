@@ -80,6 +80,10 @@ import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/Proper
 import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident";
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserInjury";
 
+import UserInjuryInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryInformation";
+import CreateUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CreateUserInjury";
+import UserInjurySpecificPicture from "./Pages/ReportAnAccidentPage/UserInjury/UserInjurySpecificPictures";
+
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
 // import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident"
 // import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CreateInjuryAccident";
@@ -93,8 +97,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  // uri: 'http://192.168.1.203:5001/graphql'     // Home
+	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -232,8 +236,7 @@ export default function App() {
                   </Stack.Screen>
 
 
-
-
+                    {/* INITIAL REPORT ACCIDENT PAGES */}
 
                   <Stack.Screen name='raa_landing'>
                     {props => <ReportAnAccidentLanding />}
@@ -252,12 +255,12 @@ export default function App() {
                   </Stack.Screen>
 
 
-
                   <Stack.Screen name="create-an-accident">
                     {props => <CreateAccident />}
                   </Stack.Screen>
 
 
+                    {/* SELF INJURED */}
 
                   <Stack.Screen name="check-user-injury">
                     {props => <CheckUserInjury />}
@@ -267,7 +270,16 @@ export default function App() {
                     {props => <CheckInjuryAccident/>}
                   </Stack.Screen>
 
+                  <Stack.Screen name="create-user-injury">
+                    {props => <CreateUserInjury/>}
+                  </Stack.Screen>
 
+                  <Stack.Screen name="user-injury-specific-pictures">
+                    {props => <UserInjurySpecificPicture/>}
+                  </Stack.Screen>
+
+
+                    {/* OTHER PERSON INJURED */}
 
 
                   <Stack.Screen name="create-injury-report">
@@ -291,7 +303,7 @@ export default function App() {
                   </Stack.Screen>
 
 
-
+                    {/* COLLISION ACCIDENT */}
 
                   <Stack.Screen name='create-collision-accident'>
                     {props => <CreateCollisionAccident />}
@@ -315,7 +327,7 @@ export default function App() {
 
 
 
-
+                  {/* COLLISION INJURY */}
 
                   <Stack.Screen name='collision-injury-check'>
                     {props => <CollisionInjuryCheck collision={true}/>}
@@ -342,6 +354,7 @@ export default function App() {
                   </Stack.Screen>
 
 
+                    {/* PROPERTY ACCIDENT */}
 
                   <Stack.Screen name='create-property-accident'>
                     {props => <CreatePropertyAccident />}
@@ -371,29 +384,8 @@ export default function App() {
                     {props => <PropertyAccidentExtraInformation />}
                   </Stack.Screen>
 
-                  {/* <Stack.Screen name='check-injury-accident'>
-                    {props => <CheckInjuryAccident />}
-                  </Stack.Screen>
+            
 
-                  <Stack.Screen name='create-injury-accident'>
-                    {props => <CreateInjuryAccident />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='injury-specific-pictures'>
-                    {props => <InjurySpecificPictures />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='injury-report-information'>
-                    {props => <InjuryReportInformation />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='injury-report-extra-info'>
-                    {props => <InjuryExtraInformation />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='injury-check-again'>
-                    {props => <CheckInjuryAccidentAgain />}
-                  </Stack.Screen> */}
 
                   <Stack.Screen name='accident-info-continue'>
                     {props => <AccidentInfoContinue />}

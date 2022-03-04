@@ -49,3 +49,8 @@ export const propertyDataState = atom({
 	key: 'propertyDataState',
 	default: false
 })
+
+export const selfInjuryDataState = atom({
+	key: 'selfInjuryDataState',
+	default: false
+})
