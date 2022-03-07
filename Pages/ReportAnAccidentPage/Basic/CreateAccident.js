@@ -40,7 +40,13 @@ const dynamicStyles = StyleSheet.create({
     }
 })
 
-const CreateAccident = () => {
+const CreateAccident = ({accident}) => {
+    let route = 'check-collision-accident'
+    if (!accident) {
+        route = 'check-user-injury'
+    }
+
+
     const navigation = useNavigation()
     const [driverCreateAccount, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATEACCIDENT)
     const [gLocation, setGeoLocation] = useRecoilState(geoLocation)
@@ -83,7 +89,7 @@ const CreateAccident = () => {
     useEffect( async () => {
         if (!loading && data) {
             await setAccidentDataState(data.driverCreateAccident)
-            await navigation.navigate('check-collision-accident')
+            await navigation.navigate(route)
         }
     }, [data])
 

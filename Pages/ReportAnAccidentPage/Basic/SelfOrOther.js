@@ -21,7 +21,7 @@ const SelfOrOther = () => {
                 Choose a type of Incident
             </Text>
             <View style={{marginLeft: 30, marginTop: 50}}>
-                <TouchableOpacity onPress={() => navigation.navigate('check-user-injury')}>
+                <TouchableOpacity onPress={() => navigation.navigate('create-an-accident2')}>
                     <Gradient
                         colorOne="#534FFF"
                         colorTwo="#15A1F1"

@@ -90,6 +90,7 @@ import OwnCarInformation from "./Pages/ReportAnAccidentPage/OwnCarDamage/OwnCarI
 
 import AccidentConclusion from "./Pages/ReportAnAccidentPage/AccidentConclusion/AccidentConclusion";
 import AccidentConclusionQuestions from "./Pages/ReportAnAccidentPage/AccidentConclusion/AccidentConclusionQuestions";
+import Distractions from "./Pages/ReportAnAccidentPage/AccidentConclusion/Distractions";
 
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 import UserInjuryExtraInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryExtraInformation";
@@ -257,7 +258,11 @@ export default function App() {
 
 
                   <Stack.Screen name="create-an-accident">
-                    {props => <CreateAccident />}
+                    {props => <CreateAccident accident={true}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="create-an-accident2">
+                    {props => <CreateAccident accident={false}/>}
                   </Stack.Screen>
 
 
@@ -447,7 +452,9 @@ export default function App() {
                     {props => <AccidentConclusionQuestions />}
                   </Stack.Screen>
 
-
+                  <Stack.Screen name='distractions'>
+                    {props => <Distractions />}
+                  </Stack.Screen>
 
                   <Stack.Screen name='accident-info-continue'>
                     {props => <AccidentInfoContinue />}

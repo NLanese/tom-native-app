@@ -38,6 +38,7 @@ const AccidentConclusionQuestions = () => {
     }
 
     const handleQ1Check = (act) => {
+        setQ4("")
         setQ3("")
         setQ2("")
         setQ1(act)
@@ -53,6 +54,7 @@ const AccidentConclusionQuestions = () => {
     }
 
     const handleQ2Check = (act) => {
+        setQ4("")
         setQ3("")
         setQ2(act)
     }
@@ -67,6 +69,7 @@ const AccidentConclusionQuestions = () => {
     }
 
     const handleQ3Check = (act) => {
+        setQ4("")
         setQ3(act)
     }
 
@@ -92,7 +95,7 @@ const renderQ2 = () => {
     if (q1.includes("park") || q1 == "leave" || q1 == "merge"){
         return(
             <View style={{marginTop: 30, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} />
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
             </View>
         )
     }
@@ -210,10 +213,54 @@ const renderQ3 = () => {
             </View>
         )
     }
-    if (q2 == "no" || q2 == "any-to-parking"){
+    if (q2 == "no"){
+        return(
+            <View style={{marginTop: 15}}>
+            <Text style={Template.title}>
+                Were you avoiding any obstacles such as potholes or animals?
+            </Text>
+
+            <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 15, width: maxWidth - 60}}>
+                <CheckBox
+                    checked={determineChecked3("avoid-animal")}
+                    style={{marginTop: 10, marginRight: 10, width: 160}}
+                    onChange={() => handleQ3Check("avoid-animal")}
+                >
+                    I was avoiding an animal
+                </CheckBox>
+                <CheckBox
+                    checked={determineChecked3("avoid-pothole")}
+                    style={{marginTop: 10, marginRight: 10, width: 160}}
+                    onChange={() => handleQ3Check("avoid-pothole")}
+                >
+                    I was avoiding a pothole
+                </CheckBox>
+            </View>
+
+            <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 15, width: maxWidth - 60}}>
+                <CheckBox
+                    checked={determineChecked3("avoid-other")}
+                    style={{marginTop: 10, marginRight: 10, width: 160}}
+                    onChange={() => handleQ3Check("avoid-other")}
+                >
+                    I was avoiding something else
+                </CheckBox>
+
+                <CheckBox
+                    checked={determineChecked3("avoid-none")}
+                    style={{marginTop: 10, marginRight: 10, width: 160}}
+                    onChange={() => handleQ3Check("avoid-none")}
+                >
+                    No, I wasn't avoiding anything
+                </CheckBox>
+            </View>
+        </View>
+        )
+    }
+    if (q2 == "any-to-parking"){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} />
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
             </View>
         )
     }
@@ -243,10 +290,10 @@ const renderQ3 = () => {
 }
 
 const renderQ4 = () => {
-    if (q3.includes("-") || q3 == "no"){
+    if (q3.includes("-")){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} />
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
             </View>
         )
     }
@@ -294,13 +341,14 @@ const renderQ4 = () => {
             </View>
         )
     }
+
 }
 
 const renderQ5 = () => {
     if (q4.includes("-")){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} />
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
             </View>
         )
     }

@@ -99,6 +99,16 @@ const Template = StyleSheet.create({
 // --------------------------
     stackedCheck : {
         marginTop: 10
+    },
+    checkRow: {
+        flexDirection: 'row',
+        marginLeft: 30,
+        width: maxWidth - 60,
+        marginTop: 15
+    },
+    rowCheck: {
+        width: 110,
+        marginRight: 0
     }
 // -------------------------
 })
