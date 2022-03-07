@@ -90,6 +90,7 @@ const Template = StyleSheet.create({
     stackedCheck : {
         marginTop: 10
     }
+// -------------------------
 })
 
 export default Template

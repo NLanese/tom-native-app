@@ -8,17 +8,28 @@ import Template from "../../../Styles/RAA/RAATemplateStyles";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const CheckUserInjury = () => {
+const CheckUserInjury = ({accident}) => {
+
+    let route = 'create-user-injury'
+    if (accident){
+        route = 'create-user-accident-injury' 
+    }
+
+    let noRoute = 'check-self-car-damage'
+    if (accident){
+        noRoute = 'check-self-car-accident-damage'
+    }
+
     return (
         <View>
             <Banner />
-            <Text style={Template.title}>Are you injured?</Text>
+            <Text style={Styles.title}>Are you injured or hurt?</Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'create-user-injury'} buttonText={'Yes'} pageName={'check-user-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+                <ContinueButton nextPage={route} buttonText={'Yes'} pageName={'check-user-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={''} buttonText={'No'} pageName={'check-user-injury-no-button'} />
+                <ContinueButton nextPage={noRoute} buttonText={'No'} pageName={'check-user-injury-no-button'} />
             </View>
         </View>
     )
@@ -29,7 +40,7 @@ const Styles = StyleSheet.create({
         marginTop: 30,
         marginLeft: 30,
 
-        width: 200,
+        width: 230,
         // backgroundColor: 'red',
 
         fontFamily: "GilroyBold",

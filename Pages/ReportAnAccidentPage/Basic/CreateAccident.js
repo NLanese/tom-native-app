@@ -59,7 +59,8 @@ const CreateAccident = () => {
         name: `${gLocation.name}, ${gLocation.city} ${gLocation.region} ${gLocation.postalCode} Accident`,
         date: today,
         time: time,
-        location: `${gLocation.name}, ${gLocation.city} ${gLocation.region} ${gLocation.postalCode}`
+        location: `${gLocation.name}, ${gLocation.city} ${gLocation.region} ${gLocation.postalCode}`,
+        selfDamage: {}
     })
 
     const handleInput = (id, information) => {

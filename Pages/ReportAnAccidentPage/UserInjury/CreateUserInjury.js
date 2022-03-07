@@ -29,7 +29,12 @@ const CreateUserInjury = ({accident}) => {
 
     useEffect(() => [
         setSelfInjuryData({
-            
+            injuries: {
+                head: null, neck: null, shoulder: null,
+                chest: null, back: null, stomach: null,
+                arm: null, hand: null, elbow: null,
+                leg: null, knee: null, foot: null
+            }
         })
     ], [])
 

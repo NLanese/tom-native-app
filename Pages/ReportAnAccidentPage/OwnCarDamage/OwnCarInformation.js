@@ -3,8 +3,10 @@ import { View, Text, Dimensions, TouchableOpacity, ScrollView } from "react-nati
 
 import { CheckBox } from "@ui-kitten/components";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { useRecoilState } from "recoil";
-import { selfInjuryDataState } from "../../../Recoil/atoms";
+import { accidentDataState } from "../../../Recoil/atoms";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles";
 import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo";
@@ -17,29 +19,27 @@ import ContinueButton from "../../../Global/Buttons/ContinueButton"
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const UserInjuryInformation = ({accident}) => {
+const OwnCarInformation = ({accident}) => {
 //--------------------------------------------------//
 //                                                  //
 //          Preliminary States and Recoil           //
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
-    // handles the continue route
-    let route = 'user-injury-extra-information'
-    if (accident){
-        route = 'user-accident-injury-extra-information'
-    }
+
 
     // Tracks the self injury data
-    const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
+    const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
 
     // All of the possible injury areas, values for checkboxes and object data
-    const possibleInjuries = [
-        "Head", "Neck", "Shoulder(s)", "Chest", "Stomach", "Back", "Arm[s]", "Hand[s]", "Eblow[s]", "Leg[s]", "Knee[s]", "Foot"
+    const possibleDamage = [
+        "Door(s)", "Mirror(s)", "Front Bumper", "Headlight(s)", "Tail Light(s)", "Brake Lights(s)", "Rear Bumper", "Trunk", "Interior"
     ]
 
-    // Tracks the selected injuries
-    const [injuriesSelected, setInjuriesSelected] = useState(selfInjuryData.injuries)
+    console.log(accidentState)
+
+    // Tracks the selected damages
+    const [damageSel, setDamageSel] = useState(accidentState.selfDamage.damages)
 
     // Tracks how nany injuries are selected. You need at least one to continue
     const [count, setCount] = useState(0)
@@ -58,22 +58,22 @@ const UserInjuryInformation = ({accident}) => {
     const generateCheckBoxes = () => {
         let rComp = []
         let checkRow = []
-        possibleInjuries.forEach( (inj, index) => {
-            if (index % 3 === 0 && index != 0){
+        possibleDamage.forEach( (dam, index) => {
+            if (index % 2 === 0 && index != 0){
                 rComp.push(checkRow)
                 checkRow = []
             }
             checkRow.push(
-                <View style={{width: 100}} key={index}>
+                <View style={{width: 150}} key={index}>
                     <CheckBox
-                        onChange={() =>handleCheck(inj)}
-                        checked={determineCheck(inj)}
+                        onChange={() =>handleCheck(dam)}
+                        checked={determineCheck(dam)}
                     >
-                        <Text>{inj}</Text>
+                        <Text>{dam}</Text>
                     </CheckBox>
                 </View>
             )
-            if (index == possibleInjuries.length - 1){
+            if (index == possibleDamage.length - 1){
                 rComp.push(checkRow)
                 checkRow = []
             }
@@ -103,16 +103,78 @@ const UserInjuryInformation = ({accident}) => {
     }
 
     // Renders either the continue button or a driving question
-    const determinePartTwo = () => {
-        if (q1 == "yes" && !accident){
+    const determinePartOne = () => {
+        if (!accident){
             return(
                 <View>
                     
                     <Text style={Template.title}>
-                        Did you harm any property, vehicles or pedestrians?
+                        Did you damage any property or other vehicles during this incident?
                     </Text>
 
                             {/* Button Container */}
+                    <View style={RAACollisionInfoStyles.buttonBox}>
+
+                        {/* Yes Button */}
+                        <View style={RAACollisionInfoStyles.buttonContainer}>
+                            <TouchableOpacity 
+                                style={RAACollisionInfoStyles.touchable}
+                                onPress={() => {
+                                    setQ1("yes")
+                                }}
+                            >
+                                <View style={determineOutline("yes", 1)}>
+                                    <Gradient
+                                        colorOne="#DE0000" 
+                                        colorTwo="#DE0000"  
+                                        style={determineSize("yes", 1)}
+                                    >
+                                        <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                    </Gradient>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* No Button */}
+                        <View style={RAACollisionInfoStyles.noButtonContainer}>
+                            <TouchableOpacity 
+                                style={RAACollisionInfoStyles.touchable}
+                                onPress={() => {
+                                    setQ1("no")
+                                }}
+                            >
+                                <View style={determineOutline("no", 1)}>
+                                    <Gradient 
+                                        colorOne="#534FFF" 
+                                        colorTwo="#15A1F1" 
+                                        style={determineSize("no", 1)}
+                                    >
+                                        <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                    </Gradient>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
+
+
+                </View>
+                
+            )
+        }
+        if ({accident}){
+            if(count > 0){
+                return(
+                    <View>
+                    
+                    <Text style={Template.title}>
+                       Did the damage to your vehicle happen during a collision with another peson or property?
+                    </Text>
+                    <Text style={Template.subtitle}>
+                        Select no if the damage occured before or after any other described incidents
+                    </Text>
+
+                    {/* Button Container */}
                     <View style={RAACollisionInfoStyles.buttonBox}>
 
                         {/* Yes Button */}
@@ -159,17 +221,6 @@ const UserInjuryInformation = ({accident}) => {
 
 
                 </View>
-                
-            )
-        }
-        if (q1 == "no"){
-            console.log("hit")
-            if(count > 0){
-                console.log("hit agayne")
-                return(
-                    <View style={{marginLeft: 30, marginTop: 50}}>
-                        <ContinueButton nextPage={route} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>
-                    </View>
                 )
             }
         }
@@ -177,17 +228,28 @@ const UserInjuryInformation = ({accident}) => {
 
     // Renders the continue button for the yes to driving no to third party
     const determinePartTwoContinue = () => {
-        if (q1 == "yes"){
-            if (q2 == "no"){{
-                if (count > 0){
-                    return(
-                        <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={route} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>
-                        </View>
-                    )
-                }
-            }}
-        }
+
+
+       if (!accident && q1 == "yes"){
+           return (
+               <View>
+                   <Text style={Template.title}>
+                        Please fill out a multi-party acicdent report by clicking below
+                    </Text>
+                    <View style={{marginLeft: 30, marginTop: 60}}>
+                        <ContinueButton buttonText={"Okay"}/>
+                    </View>
+               </View>
+           )
+       }
+
+       if (!accident && q1 == "no"){
+           return(
+            <View style={{marginLeft: 30, marginTop: 60}}>
+                <ContinueButton buttonText={"Okay"}/>
+            </View>
+           )
+       }
     }
 
 //--------------------------------------------------//
@@ -271,8 +333,8 @@ const UserInjuryInformation = ({accident}) => {
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V// 
 
     // Returns true if the value is true, false if not
-    const determineCheck = (inj) => {
-        if (injuriesSelected[inj]){
+    const determineCheck = (dam) => {
+        if (damageSel[dam]){
             return true
         }
         else{
@@ -281,22 +343,20 @@ const UserInjuryInformation = ({accident}) => {
     }
 
     // Handles the state and recoil updates on checks
-    const handleCheck = (inj) => {
-        if (injuriesSelected[inj]){
+    const handleCheck = (dam) => {
+        if (damageSel[dam]){
             setCount(count - 1)
         }
         else{
             setCount(count + 1)
         }
-        setSelfInjuryData({
-            ...selfInjuryData,                          // Gets the previous state's data 
-            injuries: {                                 // Goes into the injuries object
-               [inj]: !injuriesSelected[inj]            // the property whose key matches with the inputted "inj" to be the opposite of the current value for injuriesSelected.INJURY_INOUT
-            }
+        setAccidentState({
+            ...accidentState,
+            selfDamage: {damaged: true, [dam]: !damageSel[dam]}
         })
-        setInjuriesSelected({
-            ...injuriesSelected,
-            [inj]: !injuriesSelected[inj]
+        setDamageSel({
+            ...damageSel,
+            [dam]: !damageSel[dam]
         })
     }
 
@@ -312,63 +372,12 @@ const UserInjuryInformation = ({accident}) => {
             <Banner />
             <ScrollView contentContainerStyle={{height: '110%'}}>
             <Text style={Template.title}>
-                What did you hurt? Select all that apply
+                What Part(s) of your Vehichle was damaged?
             </Text>
             <View style={{marginLeft: 30, width: maxWidth - 60}}>
                 {renderCheckBoxes()}
             </View>
-
-            <Text style={Template.title}>
-                Were you driving when the injury occured?
-            </Text>
-
-            {/* Button Container */}
-            <View style={RAACollisionInfoStyles.buttonBox}>
-
-                {/* Yes Button */}
-                <View style={RAACollisionInfoStyles.buttonContainer}>
-                    <TouchableOpacity 
-                        style={RAACollisionInfoStyles.touchable}
-                        onPress={() => {
-                            setQ1("yes")
-                        }}
-                    >
-                        <View style={determineOutline("yes", 1)}>
-                            <Gradient
-                                colorOne="#DE0000" 
-                                colorTwo="#DE0000"  
-                                style={determineSize("yes", 1)}
-                            >
-                                <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
-                            </Gradient>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-
-                {/* No Button */}
-                <View style={RAACollisionInfoStyles.noButtonContainer}>
-                    <TouchableOpacity 
-                        style={RAACollisionInfoStyles.touchable}
-                        onPress={() => {
-                            setQ1("no")
-                        }}
-                    >
-                        <View style={determineOutline("no", 1)}>
-                            <Gradient 
-                                colorOne="#534FFF" 
-                                colorTwo="#15A1F1" 
-                                style={determineSize("no", 1)}
-                            >
-                                <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
-                            </Gradient>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-
-            </View>
-
-            {determinePartTwo()}
-
+            {determinePartOne()}
             {determinePartTwoContinue()}
         </ScrollView>
         </View>
@@ -376,4 +385,4 @@ const UserInjuryInformation = ({accident}) => {
     )
 }
 
-export default UserInjuryInformation
+export default OwnCarInformation

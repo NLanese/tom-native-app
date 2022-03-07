@@ -76,6 +76,7 @@ import PropertySpecificPictures from "./Pages/ReportAnAccidentPage/Property/Prop
 import PropertyAccidentInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentInformation"
 import PropertyAccidentContactInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentContactInformation"
 import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentSafetyEquipment"
+import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
 
 import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident";
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserInjury";
@@ -84,14 +85,11 @@ import UserInjuryInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserI
 import CreateUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CreateUserInjury";
 import UserInjurySpecificPicture from "./Pages/ReportAnAccidentPage/UserInjury/UserInjurySpecificPictures";
 
-import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
-// import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident"
-// import CreateInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CreateInjuryAccident";
-// import InjurySpecificPictures from "./Pages/ReportAnAccidentPage/Injury/InjurySpecificPictures";
-// import InjuryReportInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryReportInformation";
-// import InjuryExtraInformation from "./Pages/ReportAnAccidentPage/Injury/InjuryExtraInformaton";
-// import CheckInjuryAccidentAgain from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccidentAgain";
+import OwnCarCheck from "./Pages/ReportAnAccidentPage/OwnCarDamage/OwnCarCheck";
+import OwnCarInformation from "./Pages/ReportAnAccidentPage/OwnCarDamage/OwnCarInformation";
+
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
+import UserInjuryExtraInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryExtraInformation";
 
 let state;
 
@@ -266,10 +264,6 @@ export default function App() {
                     {props => <CheckUserInjury />}
                   </Stack.Screen>
 
-                  <Stack.Screen name="check-injury-accident">
-                    {props => <CheckInjuryAccident/>}
-                  </Stack.Screen>
-
                   <Stack.Screen name="create-user-injury">
                     {props => <CreateUserInjury/>}
                   </Stack.Screen>
@@ -278,9 +272,42 @@ export default function App() {
                     {props => <UserInjurySpecificPicture/>}
                   </Stack.Screen>
 
+                  <Stack.Screen name="user-injury-information">
+                    {props => <UserInjuryInformation/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="user-injury-extra-information">
+                    {props => <UserInjuryExtraInformation />}
+                  </Stack.Screen>
+
+                  {/* Accident Self Injury */}
+
+                  <Stack.Screen name="check-user-accident-injury">
+                    {props => <CheckUserInjury accident={true}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="create-user-accident-injury">
+                    {props => <CreateUserInjury accident={true}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="user-accident-injury-specific-pictures">
+                    {props => <UserInjurySpecificPicture accident={true}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="user-accident-injury-information">
+                    {props => <UserInjuryInformation accident={true}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="user-accident-injury-extra-information">
+                    {props => <UserInjuryExtraInformation />}
+                  </Stack.Screen>
+
 
                     {/* OTHER PERSON INJURED */}
 
+                  <Stack.Screen name="check-injury-accident">
+                    {props => <CheckInjuryAccident/>}
+                  </Stack.Screen>
 
                   <Stack.Screen name="create-injury-report">
                     {props => <CreateCollisionInjuryReport  collision={false}/>}
@@ -301,6 +328,27 @@ export default function App() {
                   <Stack.Screen name='injury-check-again'>
                     {props => <CollisionInjuryCheckAgain collision={false}/>}
                   </Stack.Screen>
+
+                  {/* Own Car Damaged */}
+
+                  <Stack.Screen name="check-self-car-damage">
+                    {props => <OwnCarCheck accident={false}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="check-self-car-accident-damage">
+                    {props => <OwnCarCheck accident={true}/>}
+                  </Stack.Screen>
+
+
+
+                  <Stack.Screen name="self-car-damage-information">
+                    {props => <OwnCarInformation accident={false}/>}
+                  </Stack.Screen>
+
+                  <Stack.Screen name="self-car-accident-damage-information">
+                    {props => <OwnCarInformation accident={true}/>}
+                  </Stack.Screen>
+
 
 
                     {/* COLLISION ACCIDENT */}
