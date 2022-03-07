@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Button, Input } from "@ui-kitten/components";
+import { Button, Input, CheckBox } from "@ui-kitten/components";
 
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
@@ -395,9 +395,42 @@ const CollisionAccidentInformation = () => {
     if (q2 == "no" && q1 == "no"){
         height = "180%"
     }
+// ------------ Contact -------------
+
+    const [whoHitFirst, setWhoHitFirst] = useState("no one")
+
+    const determineChecked = (meThem) => {
+        if (whoHitFirst == meThem){
+            return true
+        }
+    }
+
+    const handleCheck = (meThem) => {
+        setWhoHitFirst(meThem)
+        setCollisionData({...collisionData, contact_initiated: meThem})
+    }
+
+
     return (
         <ScrollView contentContainerStyle={{ height: height }}>
             <Banner />
+            <Text style={RAACollisionInfoStyles.questionText}>Who initiated the contact?</Text>
+
+            <View style={{flexDirection: 'row', marginLeft: 30, width: maxWidth - 60, marginTop: 15}}>
+                <CheckBox
+                    checked={determineChecked("Other Party")}
+                    onChange={() => handleCheck("Other Party")}
+                >
+                    <Text>They hit me</Text>
+                </CheckBox>
+                <CheckBox
+                    checked={determineChecked("Me")}
+                    onChange={() => handleCheck("Me")}
+                >
+                    <Text>I hit them</Text>
+                </CheckBox>
+            </View>
+
             <Text style={RAACollisionInfoStyles.questionText}>Was the other party willing to let you take a picture of their license?</Text>
 
             <View style={RAACollisionInfoStyles.buttonBox}>

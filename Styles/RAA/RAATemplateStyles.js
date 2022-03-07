@@ -67,6 +67,16 @@ const Template = StyleSheet.create({
         letterSpacing: 2,
         color: '#888888'
     },
+
+    subTitle2: {
+        marginLeft: 30,
+        marginBottom: 5,
+        fontFamily: 'GilroyBold',
+        fontSize: 14,
+        letterSpacing: 1,
+        lineHeight: 20,
+        color: '#888888'
+    },
 // -------------------------
     activeInput: {
         backgroundColor: "#ccc",

@@ -88,6 +88,9 @@ import UserInjurySpecificPicture from "./Pages/ReportAnAccidentPage/UserInjury/U
 import OwnCarCheck from "./Pages/ReportAnAccidentPage/OwnCarDamage/OwnCarCheck";
 import OwnCarInformation from "./Pages/ReportAnAccidentPage/OwnCarDamage/OwnCarInformation";
 
+import AccidentConclusion from "./Pages/ReportAnAccidentPage/AccidentConclusion/AccidentConclusion";
+import AccidentConclusionQuestions from "./Pages/ReportAnAccidentPage/AccidentConclusion/AccidentConclusionQuestions";
+
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 import UserInjuryExtraInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryExtraInformation";
 
@@ -95,8 +98,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://10.0.0.46:5001/graphql'     // Home
+	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  // uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -432,7 +435,18 @@ export default function App() {
                     {props => <PropertyAccidentExtraInformation />}
                   </Stack.Screen>
 
-            
+
+
+
+
+                  <Stack.Screen name='accident-conclusion'>
+                    {props => <AccidentConclusion />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='accident-conclusion-questions'>
+                    {props => <AccidentConclusionQuestions />}
+                  </Stack.Screen>
+
 
 
                   <Stack.Screen name='accident-info-continue'>
