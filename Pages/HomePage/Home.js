@@ -12,6 +12,7 @@ import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
 
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
+import NoData from './HomeComponents/NoData';
 import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
@@ -76,8 +77,16 @@ const Home = ({ handleLoggedIn }) => {
         }
     }
 
-    let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
-    let name = nameObj(user.firstname, user.lastname)
+    let weeklyReportObj
+    let name
+    if (user.weeklyReport){
+        weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
+        name = nameObj(user.firstname, user.lastname)
+    }
+    else{
+        return <NoData />
+    }
+    
 
 
     if (buttonLoading){
@@ -107,7 +116,7 @@ const Home = ({ handleLoggedIn }) => {
 
                     <TouchableOpacity 
                         onPress={() => {
-                            setWebsite({current: "Personal Scorecard", previous: website.previous})
+                            setWebsite({current: "Personal Scorecard", previous: website.previous, saved: website.saved})
                             navigation.navigate("score_card")}
                          } 
                          style={ButtonBoxStyles.bottomTouch}> 

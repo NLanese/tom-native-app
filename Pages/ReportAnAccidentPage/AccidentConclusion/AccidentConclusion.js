@@ -29,7 +29,7 @@ const AccidentConclusion = () => {
                 </Text>
                 
                 <View style={{marginLeft: 30, marginTop: 40}}>
-                    <ContinueButton buttonText={"Okay"} nextPage={'accident-conclusion-questions'} />
+                    <ContinueButton buttonText={"Okay"} nextSite={'Concluding Questions'} nextPage={'accident-conclusion-questions'} />
                 </View>
 
             </ScrollView>

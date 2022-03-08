@@ -20,9 +20,12 @@ let maxHeight = Dimensions.get('window').height
 
 const UserInjuryExtraInformation = ({accident}) => {
 
+
     let route = 'check-self-car-damage'
+    let site = "Check Own Car Damage"
     if (accident){
         route = "check-self-accident-damage"
+        site = "Check Own Car Damaged after Accident"
     }
     // const [ ----, { loading: loading, error: error, data: data }] = useMutation( )
 
@@ -98,7 +101,7 @@ const UserInjuryExtraInformation = ({accident}) => {
             <View>
                 {completed === true ? (
                     <View style={{marginLeft: 30, position: 'absolute', marginTop: -100}}>
-                        <ContinueButton nextPage={route} buttonText={'Done'} pageName={'collision-extra-info-continue-button'} />
+                        <ContinueButton nextPage={route} nextSite={site} buttonText={'Done'} pageName={'collision-extra-info-continue-button'} />
                     </View>
                 ) : null}
             </View>

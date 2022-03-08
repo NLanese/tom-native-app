@@ -179,7 +179,7 @@ const PropertyAccidentSafetyEquipment = () => {
                     {renderDidAnyFail()}
                 </View>
                 <View style={{marginLeft: 30, marginTop: 50}}>
-                    <ContinueButton nextPage={'property-accident-extra-info'} buttonText={'Okay'} pageName={'property-accident-safety-equipment-continue-button'} />
+                    <ContinueButton nextPage={'property-accident-extra-info'} nextSite={"Property Damage Extra Information"} buttonText={'Okay'} pageName={'property-accident-safety-equipment-continue-button'} />
                 </View>
             </ScrollView>
         </View>

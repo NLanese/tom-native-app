@@ -21,15 +21,24 @@ const CollisionInjuryCheck = ({collision}) => {
         }
     }
 
+    const whichRoute = () => {
+        if (collision){
+            return 'Create Collision Injury Report'
+        }
+        else{
+            return 'Create Injury Report'
+        }
+    }
+
     return (
         <View>
             <Banner />
             <Text style={Template.questionText}>Were any members of the Other Party injured in the accident?</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'collision-check-injury-yes-button'} />
+                <ContinueButton nextPage={'check-property-accident'} nextSite={"Check Property Accident"} buttonText={'No'} pageName={'collision-check-injury-yes-button'} />
             </View>
             <View style={Styles.continue}>
-                <ContinueButton nextPage={whichContinue()} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+                <ContinueButton nextPage={whichContinue()} nextSite={whichRoute()} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )

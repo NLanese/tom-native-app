@@ -19,7 +19,7 @@ const CommunicationButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
-        setWebsite({current: "Messaging", previous: website.current})
+        setWebsite({current: "Messaging", previous: website.current, saved: website.saved})
         navigation.navigate("messages")
     }
 

@@ -13,10 +13,10 @@ const CheckPropertyAccident = () => {
             <Banner />
             <Text style={{...Styles.title, width: maxWidth - 45}}>Was there damage to anyone's package or property?</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'check-injury-accident'} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
+                <ContinueButton nextPage={'check-injury-accident'} nextSite={"Check Injuries"} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
             </View>
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'create-property-accident'} buttonText={'Yes'} pageName={'check-property-accident-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+                <ContinueButton nextPage={'create-property-accident'} nextSite={"Create Property Report"} buttonText={'Yes'} pageName={'check-property-accident-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )

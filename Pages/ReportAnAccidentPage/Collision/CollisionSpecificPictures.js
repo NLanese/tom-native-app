@@ -28,7 +28,7 @@ const CollisionSpecificPictures = () => {
             <Text>TEST FROM COLLISION SPECIFIC PICTURE</Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'collision-accident-information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

@@ -95,7 +95,7 @@ const renderQ2 = () => {
     if (q1.includes("park") || q1 == "leave" || q1 == "merge"){
         return(
             <View style={{marginTop: 30, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'} nextSite={"Concluding Questions II"}/>
             </View>
         )
     }
@@ -260,7 +260,7 @@ const renderQ3 = () => {
     if (q2 == "any-to-parking"){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'} nextSite={"Concluding Questions II"}/>
             </View>
         )
     }
@@ -293,7 +293,7 @@ const renderQ4 = () => {
     if (q3.includes("-")){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'} nextSite={"Concluding Questions II"}/>
             </View>
         )
     }
@@ -348,7 +348,7 @@ const renderQ5 = () => {
     if (q4.includes("-")){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
-                <ContinueButton buttonText={"Done"} nextPage={'distractions'}/>
+                <ContinueButton buttonText={"Done"} nextPage={'distractions'} nextSite={"Concluding Questions II"}/>
             </View>
         )
     }

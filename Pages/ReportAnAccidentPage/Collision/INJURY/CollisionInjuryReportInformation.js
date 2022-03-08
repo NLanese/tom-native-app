@@ -6,6 +6,7 @@ import { Toggle, Input, CheckBox } from '@ui-kitten/components';
 import Banner from "../../../../Global/Banner"
 import ContinueButton from "../../../../Global/Buttons/ContinueButton";
 import Gradient from "../../../../Components/Gradient";
+import DynamicInput from "../../../../Components/DynamicInput";
 
 
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../../GraphQL/operations";
@@ -22,6 +23,12 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const CollisionInjuryReportInformation = ({collision}) => {
+    let route = "collision-injury-report-extra-info"
+    let site = "Collision Injury Extra Information"
+    if (!collision){
+        route = "injury-report-extra-info"
+        site = "Injury Extra Information"
+    }
 
 //--------------------------------------------------//
 //                                                  //
@@ -67,21 +74,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
-    // Determines Whether a Text Input is styled Active or Not
-    const determineStyle = (type) => {
-        if (isActive == type) {
-            return{
-                style: Template.activeInput,
-                color: 'white'
-            }
-        }
-        else {
-            return{
-                style: Template.inactiveInput,
-                color: '#adadad'
-            }
-        }
-    }
 
     let initQ1 = "none"
     let initQ2 = "none"
@@ -257,8 +249,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
-    console.log(injuryData)
-
     return (
         <View>
             <Banner />
@@ -308,7 +298,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
                 </View>
 
             </View>
-            {/* <Toggle checked={medicalCheck} onChange={onMedicalAttentionChange} /> */}
 
             <Text style={Template.questionText}>Was there immediate medical attention needed?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
@@ -355,7 +344,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
                 </View>
 
             </View>
-            {/* <Toggle checked={immediateCheck} onChange={onImmediateMedicalChange} /> */}
 
             <View style={{ marginTop: "0%" }}>
                 <Text style={Template.questionText}>What part(s) of the injured person was hurt?</Text>
@@ -453,8 +441,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
-
-                
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
                     <View style={{width: 100}}>
@@ -503,7 +489,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
-
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
                     <View style={{width: 100}}>
@@ -552,20 +537,28 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
-
             </View>
 
                 <View style={{ marginTop: 30}}>
                     <Text style={Template.questionText}>What was the injured party's First Name?</Text>
-                    <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
-                        <Input
-                            onPressIn={() => setActive("first")}
-                            style={determineStyle("first").style}
-                            size={'large'}
-                            placeholder={`Please Enter The injured Partys Firstname`}
-                            placeholderTextColor={determineStyle("first").color}
-                            textStyle={{color: determineStyle("first").color, fontSize: 18}}
-                            onChangeText={firstname => {
+                    <View style={{ marginLeft: 30, marginTop: 15}}>
+                        <DynamicInput 
+                            activeColorOne="#534FFF" 
+                            activeColorTwo="#15A1F1"
+                            activeTextStyle={Template.activeTextStyle}
+
+                            height={50}
+                            width={maxWidth - 60}
+
+                            borderLeftRightWidth={6}
+                            borderTopBottomWidth={6}
+                            borderRadius={20}
+
+                            inactiveColor="#ddd" 
+                            inactiveTextStyle={Template.inactiveTextStyle}
+
+                            placeholder={"John"}
+                            onChange={firstname => {
                                 setInjuryData({
                                     ...injuryData,
                                     contact_info: {
@@ -576,22 +569,31 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                         ...injuryData.specific_pictures
                                     }
                                 })
-                              }}
+                            }}
                         />
                     </View>
                 </View>
 
                 <View style={{ marginTop: 10}}>
                     <Text style={Template.questionText}>What was the injured party's Last Name?</Text>
-                    <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
-                        <Input
-                            onPressIn={() => setActive("last")}
-                            style={determineStyle("last").style}
-                            size={'large'}
-                            placeholder={`Please Enter The Injured Partys Firstname`}
-                            placeholderTextColor={determineStyle("last").color}
-                            textStyle={{color: determineStyle("last").color, fontSize: 18}}
-                            onChangeText={lastname => {
+                    <View style={{ marginLeft: 30, marginTop: 15}}>
+                        <DynamicInput 
+                            activeColorOne="#534FFF" 
+                            activeColorTwo="#15A1F1"
+                            activeTextStyle={Template.activeTextStyle}
+
+                            height={50}
+                            width={maxWidth - 60}
+
+                            borderLeftRightWidth={6}
+                            borderTopBottomWidth={6}
+                            borderRadius={20}
+
+                            inactiveColor="#ddd" 
+                            inactiveTextStyle={Template.inactiveTextStyle}
+
+                            placeholder={"Smith"}
+                            onChange={lastname => {
                                 setInjuryData({
                                     ...injuryData,
                                     contact_info: {
@@ -609,60 +611,78 @@ const CollisionInjuryReportInformation = ({collision}) => {
 
                 <View style={{ marginTop: 10}}>
                     <Text style={Template.questionText}>What was the injured party's Phone Number?</Text>
-                        <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
-                            <Input
-                                onPressIn={() => setActive("phone")}
-                                style={determineStyle("phone").style}
-                                size={'large'}
-                                placeholder={`Please Enter The Injured Partys Firstname`}
-                                placeholderTextColor={determineStyle("phone").color}
-                                textStyle={{color: determineStyle("phone").color, fontSize: 18}}
-                                onChangeText={phone_number => {
-                                    setInjuryData({
-                                        ...injuryData,
-                                        contact_info: {
-                                            ...injuryData.contact_info,
-                                            phone_number: phone_number
-                                        },
-                                        specific_pictures: {
-                                            ...injuryData.specific_pictures
-                                        }
-                                    })
-                                }}
-                            />
-                        </View>
+                    <View style={{ marginLeft: 30, marginTop: 15}}>
+                        <DynamicInput 
+                            activeColorOne="#534FFF" 
+                            activeColorTwo="#15A1F1"
+                            activeTextStyle={Template.activeTextStyle}
+
+                            height={50}
+                            width={maxWidth - 60}
+
+                            borderLeftRightWidth={6}
+                            borderTopBottomWidth={6}
+                            borderRadius={20}
+
+                            inactiveColor="#ddd" 
+                            inactiveTextStyle={Template.inactiveTextStyle}
+
+                            placeholder={"123-456-7890"}
+                            onChange={phone_number => {
+                                setInjuryData({
+                                    ...injuryData,
+                                    contact_info: {
+                                        ...injuryData.contact_info,
+                                        phone_number: phone_number
+                                    },
+                                    specific_pictures: {
+                                        ...injuryData.specific_pictures
+                                    }
+                                })
+                            }}
+                        />
+                    </View>
                 </View>
 
                 <View style={{ marginTop: 10 }}>
                     <Text style={Template.questionText}>What is the injured party's Address?</Text>
-                    <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 20}}>
-                        <Input
-                                onPressIn={() => setActive("addy")}
-                                style={determineStyle("addy").style}
-                                size={'large'}
-                                placeholder={`Please Enter The Injured Partys Address`}
-                                placeholderTextColor={determineStyle("addy").color}
-                                textStyle={{color: determineStyle("addy").color, fontSize: 18}}
-                                onChangeText={address => {
-                                    setInjuryData({
-                                        ...injuryData,
-                                        contact_info: {
-                                            ...injuryData.contact_info,
-                                            address: address
-                                        },
-                                        specific_pictures: {
-                                            ...injuryData.specific_pictures
-                                        }
-                                    })
-                                }}
-                            />
-                        </View>
+                    <View style={{ marginLeft: 30, marginTop: 15}}>
+                        <DynamicInput 
+                            activeColorOne="#534FFF" 
+                            activeColorTwo="#15A1F1"
+                            activeTextStyle={Template.activeTextStyle}
+
+                            height={50}
+                            width={maxWidth - 60}
+
+                            borderLeftRightWidth={6}
+                            borderTopBottomWidth={6}
+                            borderRadius={20}
+
+                            inactiveColor="#ddd" 
+                            inactiveTextStyle={Template.inactiveTextStyle}
+
+                            placeholder={"123 Street, Township"}
+                            onChange={address => {
+                                setInjuryData({
+                                    ...injuryData,
+                                    contact_info: {
+                                        ...injuryData.contact_info,
+                                        address: address
+                                    },
+                                    specific_pictures: {
+                                        ...injuryData.specific_pictures
+                                    }
+                                })
+                            }}
+                        />
+                    </View>
                 </View>
 
                 {injuryData.contact_info.firstname !== null && injuryData.contact_info.lastname !== null && injuryData.contact_info.phone_number !== null && injuryData.contact_info.address !== null ? 
                 (
                     <View style={{marginLeft: 30, marginTop: 40}}>
-                        <ContinueButton nextPage={'collision-injury-report-extra-info'} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>
+                        <ContinueButton nextPage={route} nextSite={site} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>
                     </View>
                 ) : null}
             </ScrollView>

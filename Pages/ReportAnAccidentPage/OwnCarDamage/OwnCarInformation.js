@@ -237,7 +237,7 @@ const OwnCarInformation = ({accident}) => {
                         Please fill out a multi-party acicdent report by clicking below
                     </Text>
                     <View style={{marginLeft: 30, marginTop: 60}}>
-                        <ContinueButton buttonText={"Okay"}/>
+                        <ContinueButton buttonText={"Okay"} nextPage={"management_notified"} nextSite={'Management Notified'}/>
                     </View>
                </View>
            )
@@ -246,7 +246,7 @@ const OwnCarInformation = ({accident}) => {
        if (!accident && q1 == "no"){
            return(
             <View style={{marginLeft: 30, marginTop: 60}}>
-                <ContinueButton buttonText={"Okay"}/>
+                <ContinueButton buttonText={"Okay"} nextPage={'accident-conclusion'} nextSite={"Accident Conclusion"}/>
             </View>
            )
        }

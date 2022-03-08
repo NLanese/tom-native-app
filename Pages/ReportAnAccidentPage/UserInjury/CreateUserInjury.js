@@ -34,7 +34,8 @@ const CreateUserInjury = ({accident}) => {
                 chest: null, back: null, stomach: null,
                 arm: null, hand: null, elbow: null,
                 leg: null, knee: null, foot: null
-            }
+            },
+            drivingDuringInjury: null
         })
     ], [])
 
@@ -61,7 +62,7 @@ const CreateUserInjury = ({accident}) => {
             </Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'user-injury-specific-pictures'} buttonText={'Okay'} pageName={'create-property-accident-continue-button'} />
+                <ContinueButton nextPage={'user-injury-specific-pictures'} nextSite={'Your Own Injury Pictures'} buttonText={'Okay'} pageName={'create-property-accident-continue-button'} />
             </View>
         </View>
     )

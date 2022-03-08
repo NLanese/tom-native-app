@@ -44,12 +44,12 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
     if (setActiveThread !== null){
       setActiveThread(null)
     }
-    setWebsiteState({current: "Home", previous: website.current})
+    setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
     navigation.navigate('home')
   }
 
   const handleBackClick = () => {
-    setWebsiteState({current: website.previous, previous: website.current})
+    setWebsiteState({current: website.previous, previous: website.current, saved: website.saved})
     navigation.goBack()
   }
 
@@ -82,6 +82,8 @@ const handleInfoClick = () => {
       return (<Text style={styles.actualTitle}>{website.current}</Text>)
     }
   }
+
+  console.log(website)
 
   return (
     <View>

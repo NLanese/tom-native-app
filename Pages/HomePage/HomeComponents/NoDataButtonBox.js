@@ -11,7 +11,7 @@ import arrowIcon from '../../../assets/arrowTopRight.png'
 
 
 
-const ButtonBox = ({user}) => {
+const NoDataButtonBox = ({user}) => {
     const navigation = useNavigation()
 
     return (
@@ -33,4 +33,4 @@ const ButtonBox = ({user}) => {
     )
 }
 
-export default ButtonBox
+export default NoDataButtonBox

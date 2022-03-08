@@ -63,7 +63,7 @@ const CreatePropertyAccident = () => {
             </Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'property-specific-pictures'} buttonText={'Okay'} pageName={'create-property-accident-continue-button'} />
+                <ContinueButton nextPage={'property-specific-pictures'} nextSite={"Property Damage Pictures"} buttonText={'Okay'} pageName={'create-property-accident-continue-button'} />
             </View>
         </View>
     )

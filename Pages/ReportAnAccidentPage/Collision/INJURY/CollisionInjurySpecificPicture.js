@@ -11,6 +11,10 @@ const CollisionInjurySpecificPictures = ({collision}) => {
     const [collisionData] = useRecoilState(collisionDataState)
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
 
+    let site = "Collision Injury Info"
+    if (!collision){
+        site = "Injury Info"
+    }
     const whichContinue = () => {
         if (collision){
             return 'collision-injury-report-information'
@@ -35,7 +39,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
             <Text>TEST FROM COLLISION INJURY SPECIFIC PICTURE</Text>
 
             <View>
-                <ContinueButton nextPage={whichContinue()} buttonText={'Dones'} pageName={'collision-injury-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={whichContinue()} nextSite={site} buttonText={'Dones'} pageName={'collision-injury-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

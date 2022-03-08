@@ -17,7 +17,7 @@ const PoliceNotified = () => {
                 <NoButton />
             </View>
             <View style={Styles.continue}>
-                <ContinueButton nextPage={"create-an-accident"} pageName={"police-notified-yes-button"} buttonText={"Yes"} />
+                <ContinueButton nextPage={"create-an-accident"} pageName={"police-notified-yes-button"} buttonText={"Yes"} nextSite={"Create An Accident"}/>
             </View>
         </View>
     )

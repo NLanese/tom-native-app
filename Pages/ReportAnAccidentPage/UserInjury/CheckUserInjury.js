@@ -10,13 +10,17 @@ let maxHeight = Dimensions.get('window').height
 
 const CheckUserInjury = ({accident}) => {
 
+    let site = 'Create User Injury'
     let route = 'create-user-injury'
     if (accident){
+        site = 'Create Self Harmed Accident Report'
         route = 'create-user-accident-injury' 
     }
 
+    let noSite = 'Check Own Car Damage'
     let noRoute = 'check-self-car-damage'
     if (accident){
+        noSite = 'Check Own Car Damage from Accident'
         noRoute = 'check-self-car-accident-damage'
     }
 
@@ -26,10 +30,10 @@ const CheckUserInjury = ({accident}) => {
             <Text style={Styles.title}>Are you injured or hurt?</Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={route} buttonText={'Yes'} pageName={'check-user-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+                <ContinueButton nextPage={route} nextSite={site} buttonText={'Yes'} pageName={'check-user-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={noRoute} buttonText={'No'} pageName={'check-user-injury-no-button'} />
+                <ContinueButton nextPage={noRoute} nextSite={noSite} buttonText={'No'} pageName={'check-user-injury-no-button'} />
             </View>
         </View>
     )

@@ -12,7 +12,6 @@ const Template = StyleSheet.create({
     },
     lgButton: {
         marginTop: 10,
-        marginLeft: 30,
         width: 110, 
         height: 110,
         borderRadius: 55,
@@ -109,8 +108,20 @@ const Template = StyleSheet.create({
     rowCheck: {
         width: 110,
         marginRight: 0
-    }
+    },
 // -------------------------
+    inactiveTextStyle: {
+        color: '#bbb',
+        fontFamily: 'GilroyRegular',
+        fontSize: 14,
+        paddingLeft: 8
+    },
+    activeTextStyle: {
+        color: '#444',
+        fontFamily: 'GilroyRegular',
+        fontSize: 14,
+        paddingLeft: 8
+    }
 })
 
 export default Template

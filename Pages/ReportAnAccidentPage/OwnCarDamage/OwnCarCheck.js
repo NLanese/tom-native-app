@@ -5,7 +5,7 @@ import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import Gradient from "../../../Components/Gradient";
 
-import {accidentDataState} from "../../../Recoil/atoms"
+import {accidentDataState, websiteState} from "../../../Recoil/atoms"
 import { useRecoilState } from 'recoil'
 
 import { useNavigation } from "@react-navigation/native";
@@ -18,8 +18,12 @@ const OwnCarCheck = ({accident}) => {
 
     const navigation = useNavigation()
 
+    const [website, setWebsite] = useRecoilState(websiteState)
+
+    let site = "Own Car Damage Information"
     let route = "self-car-damage-information"
     if (accident){
+        site = "Own Car Damage Information after Accident"
         route = "self-car-accident-damage-information"
     }
 
@@ -29,6 +33,7 @@ const OwnCarCheck = ({accident}) => {
         setAccidentState({...accidentState, selfDamage: {
             ...accidentState.selfDamage, damaged: true
         }})
+        setWebsite({current: site, previous: website.current, saved: site})
         navigation.navigate(route)
     }
 
@@ -52,7 +57,7 @@ const OwnCarCheck = ({accident}) => {
             <Banner />
             <Text style={Styles.title}>Was there any damage to your vehicle?</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'accident-conclusion'} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
+                <ContinueButton nextPage={'accident-conclusion'} nextSite={'Accident Conclusion'} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
             </View>
             <View style={Styles.continue} >
             <TouchableOpacity onPress={() => handleYes()}  >

@@ -20,7 +20,7 @@ const ReportAnAccidentButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
-        setWebsite({current: "Report Accident", previous: website.current})
+        setWebsite({current: "Report Accident", previous: website.current, saved: "Report Accident"})
         navigation.navigate("raa_landing")
     }
 

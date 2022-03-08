@@ -26,10 +26,10 @@ const CheckInjuryAccident = () => {
             }}>Did an Injury occur to someone other than you?</Text>
             <Text style={{...Template.subTitle, marginTop: 15, width: maxWidth - 90, lineHeight: 15}}>IF YOU ALREADY FILLED OUT AN INJURY REPORT FOR THIS INCIDENT, YOU CAN HIT "NO"</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'check-user-accident-injury'} buttonText={'No'} pageName={'check-injury-no-button'} />
+                <ContinueButton nextPage={'check-user-accident-injury'} nextSite={"Check Self Injury"} buttonText={'No'} pageName={'check-injury-no-button'} />
             </View>
             <View style={Styles.continue}>
-            <ContinueButton nextPage={'create-injury-report'} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+            <ContinueButton nextPage={'create-injury-report'} nextSite={"Create Injury Report"} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )

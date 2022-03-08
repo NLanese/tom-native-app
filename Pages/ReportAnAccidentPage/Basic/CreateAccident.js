@@ -3,8 +3,10 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView
 
 import { Input, Button } from '@ui-kitten/components';
 
-import { geoLocation, accidentDataState } from "../../../Recoil/atoms";
-import { useRecoilState } from "recoil";``
+import { geoLocation, accidentDataState, websiteState } from "../../../Recoil/atoms";
+import { useRecoilState } from "recoil";
+
+import DynamicInput from "../../../Components/DynamicInput";
 
 import Banner from "../../../Global/Banner"
 import Gradient from "../../../Components/Gradient";
@@ -19,34 +21,15 @@ import { useNavigation } from "@react-navigation/native";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const dynamicStyles = StyleSheet.create({
-    activeInput: {
-        backgroundColor: "#ccc",
-        borderColor: "white",
-        borderWidth: 3,
-        borderRadius: 15,
-        width: maxWidth - 60,
-        height: '13%',
-        marginLeft: 30,
-    },
-    inactiveInput: {
-        backgroundColor: "#ccc",
-        borderColor: "#ccc",
-        borderWidth: 3,
-        borderRadius: 15,
-        width: maxWidth - 60,
-        height: '13%',
-        marginLeft: 30,
-    }
-})
-
 const CreateAccident = ({accident}) => {
     let route = 'check-collision-accident'
+    let site = 'Vehicle Collision Check'
     if (!accident) {
+        site = "Check Self Injury"
         route = 'check-user-injury'
     }
 
-
+    const [website, setWebsite] = useRecoilState(websiteState)
     const navigation = useNavigation()
     const [driverCreateAccount, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATEACCIDENT)
     const [gLocation, setGeoLocation] = useRecoilState(geoLocation)
@@ -76,39 +59,27 @@ const CreateAccident = ({accident}) => {
     }
 
     const handleSubmit = async () => {
-        await driverCreateAccount({
-            variables: {
-                name: accidentData.name,
-                date: accidentData.date,
-                time: accidentData.time,
-                location: accidentData.location
+        if (
+            accidentData.name.length > 3 &&
+            accidentData.date.length > 4 &&
+            accidentData.time.length > 3 &&
+            accidentData.location.length > 5
+            ){
+                await driverCreateAccount({
+                    variables: {
+                        name: accidentData.name,
+                        date: accidentData.date,
+                        time: accidentData.time,
+                        location: accidentData.location
+                    }
+                }).then( async(resolved) => {
+                    await setAccidentDataState(resolved.data.driverCreateAccident)
+                    await setWebsite({current: site, previous: website.state, saved: site})
+                    navigation.navigate(route)
+                })
             }
-        })
     }
 
-    useEffect( async () => {
-        if (!loading && data) {
-            await setAccidentDataState(data.driverCreateAccident)
-            await navigation.navigate(route)
-        }
-    }, [data])
-
-    const [isActive, setActive] = useState("NONE")
-
-    const determineStyle = (type) => {
-        if (isActive == type){
-            return{
-                style: dynamicStyles.activeInput,
-                color: 'white'
-            }
-        }
-        else{
-            return{
-                style: dynamicStyles.inactiveInput,
-                color: '#aaa'
-            }
-        }
-    }
 
     return (
         <ScrollView>
@@ -119,70 +90,113 @@ const CreateAccident = ({accident}) => {
                 If not, please correct it below
              </Text>
 
-            <View>
+            <View style={{marginTop: 20}}>
                 <Text style={Template.subTitle}> ACCIDENT NAME </Text>
-                <Input
-                    onPressIn={() => setActive("name")}
-                    // onEndEditing={() => setActive("none")}
-                    style={determineStyle("name").style}
-                    size={'large'}
-                    placeholder={accidentData.name}
-                    placeholderTextColor={determineStyle("name").color}
-                    textStyle={{color: determineStyle("name").color, fontSize: 18}}
-                    onChangeText={name => {
-                        handleInput('name', name)
-                    }}
-                />
+                <View style={{marginLeft: 30, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={accidentData.name}
+                        onChange={name => {
+                            handleInput('name', name)
+                        }}
+                    />
+                </View>
     
                 <Text style={Template.subTitle}> ACCIDENT DATE </Text>
-                <Input
-                    onPressIn={() => setActive("date")}
-                    // onEndEditing={() => setActive("none")}
-                    style={determineStyle("date").style}
-                    size={'large'}
-                    placeholder={accidentData.date}
-                    placeholderTextColor={determineStyle("date").color}
-                    textStyle={{color: determineStyle("date").color, fontSize: 18}}
-                    onChangeText={date => {
-                        handleInput('date', date)
-                    }}
-                />
+                <View style={{marginLeft: 30, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={accidentData.date}
+                        onChange={date => {
+                            handleInput('date', date)
+                        }}
+                    />
+                </View>
+
 
                 <Text style={Template.subTitle}> ACCIDENT TIME </Text>
-                <Input
-                    onPressIn={() => setActive("time")}
-                    // onEndEditing={() => setActive("time")}
-                    style={determineStyle("time").style}
-                    size={'large'}
-                    placeholder={accidentData.time}
-                    placeholderTextColor={determineStyle("time").color}
-                    textStyle={{color: determineStyle("time").color, fontSize: 18}}
-                    onChangeText={time => {
-                        handleInput('time', time)
-                    }}
+                <View style={{marginLeft: 30, marginBottom: 10}}>
+                    <DynamicInput 
+                       activeColorOne="#534FFF" 
+                       activeColorTwo="#15A1F1"
+                       activeTextStyle={Template.activeTextStyle}
+
+                       height={50}
+                       width={maxWidth - 60}
+
+                       borderLeftRightWidth={6}
+                       borderTopBottomWidth={6}
+                       borderRadius={20}
+
+                       inactiveColor="#ddd" 
+                       inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={accidentData.time}
+                        onChange={time => {
+                            handleInput('time', time)
+                        }}
                     />
+                </View>
 
                 <Text style={Template.subTitle}> ACCIDENT LOCATION </Text>
-                <Input
-                    onPressIn={() => setActive("loca")}
-                    // onEndEditing={() => setActive(false)}
-                    style={determineStyle("loca").style}
-                    size={'large'}
-                    placeholder={accidentData.location}
-                    placeholderTextColor={determineStyle("loca").color}
-                    textStyle={{color: determineStyle("loca").color, fontSize: 18}}
-                    onChangeText={location => {
-                        handleInput('location', location)
-                    }}
-                    />
 
-                    <TouchableOpacity onPress={() => handleSubmit()}>
+                    <View style={{marginLeft: 30, marginBottom: 40}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={accidentData.location}
+                        onChange={location => {
+                            handleInput('location', location)
+                        }}
+                    />
+                </View>
+                    
+
+                    <TouchableOpacity onPress={() => handleSubmit()} style={{ width: 120, marginLeft: 30}}>
                         <Gradient
                             colorOne="#534FFF" 
                             colorTwo="#15A1F1" 
                             style={Template.lgButton}
                         >
-                            <Text style={{...Template.buttonText, marginLeft: -27, marginTop: -7}}>Done</Text>
+                            <Text style={{...Template.buttonText, marginTop: -7}}>Done</Text>
                         </Gradient>
                     </TouchableOpacity>
             </View>

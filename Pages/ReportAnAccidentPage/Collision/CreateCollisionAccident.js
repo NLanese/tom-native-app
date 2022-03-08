@@ -26,7 +26,8 @@ const CreateCollisionAccident = () => {
                 address: null,
                 phone_number: null
             },
-            extra_info: null
+            extra_info: null,
+            initiated: null
         })
     ], [])
     
@@ -53,7 +54,7 @@ const CreateCollisionAccident = () => {
             </Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'collision-specific-pictures'} buttonText={'Okay'} pageName={'create-collision-specific-pictures'} />
+                <ContinueButton nextPage={'collision-specific-pictures'} nextSite={"Collision Specific"} buttonText={'Okay'} pageName={'create-collision-specific-pictures'} />
             </View>
         </View>
     )

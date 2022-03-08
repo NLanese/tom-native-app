@@ -13,10 +13,10 @@ const CheckCollisionAccident = () => {
             <Banner />
             <Text style={Styles.title}>Was another vehicle hit?</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'check-collision-accident-no-button'} />
+                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'check-collision-accident-no-button'} nextSite={"Check Property Damage"}/>
             </View>
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'create-collision-accident'} buttonText={'Yes'} pageName={'check-collision-accident-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+                <ContinueButton nextPage={'create-collision-accident'} buttonText={'Yes'} pageName={'check-collision-accident-yes-button'} colorOne="#DE0000" colorTwo="#DE0000" nextSite={"Create Collision Accident"}/>
             </View>
         </View>
     )

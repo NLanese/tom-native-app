@@ -26,7 +26,9 @@ const UserInjuryInformation = ({accident}) => {
 
     // handles the continue route
     let route = 'user-injury-extra-information'
+    let site = "Self Injury Extra Information"
     if (accident){
+        site = "Self Injury from Accident Extar Info"
         route = 'user-accident-injury-extra-information'
     }
 
@@ -163,12 +165,10 @@ const UserInjuryInformation = ({accident}) => {
             )
         }
         if (q1 == "no"){
-            console.log("hit")
             if(count > 0){
-                console.log("hit agayne")
                 return(
                     <View style={{marginLeft: 30, marginTop: 50}}>
-                        <ContinueButton nextPage={route} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>
+                        <ContinueButton nextPage={route} buttonText={'Done'} nextSite={site} pageName={'collision-injury-report-information-continue-button'}/>
                     </View>
                 )
             }
@@ -182,11 +182,23 @@ const UserInjuryInformation = ({accident}) => {
                 if (count > 0){
                     return(
                         <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={route} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>
+                            <ContinueButton nextPage={route} buttonText={'Done'} nextSite={site}  pageName={'collision-injury-report-information-continue-button'}/>
                         </View>
                     )
                 }
             }}
+            if (q2 == "yes"){
+                return (
+                    <View>
+                        <Text style={Template.title}>
+                             Please fill out a multi-party acicdent report by clicking below
+                         </Text>
+                         <View style={{marginLeft: 30, marginTop: 60}}>
+                             <ContinueButton buttonText={"Okay"}  nextSite={site}  nextPage={"management_notified"}/>
+                         </View>
+                    </View>
+                )
+            }
         }
     }
 
@@ -310,7 +322,7 @@ const UserInjuryInformation = ({accident}) => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: '110%'}}>
+            <ScrollView contentContainerStyle={{height: '130%'}}>
             <Text style={Template.title}>
                 What did you hurt? Select all that apply
             </Text>

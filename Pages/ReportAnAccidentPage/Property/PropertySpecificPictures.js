@@ -28,7 +28,7 @@ const PropertySpecificPictures = () => {
             <Text>TEST FROM PROPERTY SPECIFIC PICTURE</Text>
 
             <View>
-                <ContinueButton nextPage={'property-accident-information'} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={'property-accident-information'} nextSite={"Property Damage Information"} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

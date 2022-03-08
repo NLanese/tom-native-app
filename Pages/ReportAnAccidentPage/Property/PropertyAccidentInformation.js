@@ -417,7 +417,7 @@ const PropertyAccidentInformation = () => {
                 if (inOrOut != null){
                     return(
                         <View style={{marginLeft: 30, marginTop: 40}}>
-                            <ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                            <ContinueButton nextPage={'property-accident-contact-information'} nextSite={"Property Accident Contact Info"} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
                         </View>
                     )
                 }

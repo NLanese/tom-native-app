@@ -19,7 +19,7 @@ const RosterButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
-        setWebsite({current: "Roster", previous: website.current})
+        setWebsite({current: "Roster", previous: website.current, saved: website.saved})
         navigation.navigate("roster")
     }
 

@@ -19,7 +19,7 @@ const ShiftPlannerButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
-        setWebsite({current: "Shift View", previous: website.current})
+        setWebsite({current: "Shift View", previous: website.current, saved: website.saved})
         navigation.navigate("shift_planner")
     }
 

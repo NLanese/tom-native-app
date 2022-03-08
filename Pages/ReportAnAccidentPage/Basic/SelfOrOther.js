@@ -1,9 +1,13 @@
 import React, { useState } from "react"
 import { View, TouchableOpacity, Text, Dimensions } from "react-native"
-import Banner from "../../../Global/Banner";
 import { useNavigation } from "@react-navigation/native";
 
 import Gradient from "../../../Components/Gradient"
+import Banner from "../../../Global/Banner";
+
+import { useRecoilState } from "recoil";
+import { websiteState } from "../../../Recoil/atoms";
+
 
 import Template from "../../../Styles/RAA/RAATemplateStyles"
 
@@ -11,8 +15,21 @@ import Template from "../../../Styles/RAA/RAATemplateStyles"
 
 let maxWidth = Dimensions.get('window').width
 
+
 const SelfOrOther = () => {
     const navigation = useNavigation()
+    const [website, setWebsite] = useRecoilState(websiteState)
+
+
+    const handleSelfDamage = () => {
+        setWebsite({current: "Create Self Accident", previous: website.current, saved: "Create Self Accident"})
+        navigation.navigate('create-an-accident2')
+    }
+
+    const handleThirdParty = () => {
+        setWebsite({current: "Create Accident", previous: website.current, saved: "Create Accident"})
+        navigation.navigate('management_notified')
+    }
     // 
     return(
         <View>
@@ -21,7 +38,7 @@ const SelfOrOther = () => {
                 Choose a type of Incident
             </Text>
             <View style={{marginLeft: 30, marginTop: 50}}>
-                <TouchableOpacity onPress={() => navigation.navigate('create-an-accident2')}>
+                <TouchableOpacity onPress={() => handleSelfDamage()}>
                     <Gradient
                         colorOne="#534FFF"
                         colorTwo="#15A1F1"
@@ -71,7 +88,7 @@ const SelfOrOther = () => {
                 </TouchableOpacity>
             </View>
             <View style={{marginLeft: 30, marginTop: 30}}>
-                <TouchableOpacity onPress={() => navigation.navigate('management_notified')}>
+                <TouchableOpacity onPress={() => handleThirdParty()}>
                     <Gradient
                         colorOne="#AF4444"
                         colorTwo="#FD0000"

@@ -13,6 +13,13 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const CreateCollisionInjuryReport = ({collision}) => {
+
+    let route = 'collision-injury-specific-pictures'
+    let site = "Collision Injury Pictures"
+    if (!collision){
+        route = 'injury-specific-pictures'
+        site = "Injury Pictures"
+    }
     const [collisionId] = useRecoilState(collisionIdState)
     const [collisionData] = useRecoilState(collisionDataState)
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
@@ -53,11 +60,20 @@ const CreateCollisionInjuryReport = ({collision}) => {
         }
     }, [])
 
+    const renderTitle = () => {
+        if (collision){
+            return "Report a Collision related Injury"
+        }
+        if (!collision){
+            return "Report an Injury"
+        }
+    }
+
     return (
         <View>
             <Banner />
             <Text style={Styles.title}>
-                Report a Collision related Injury
+                {renderTitle()}
             </Text>
             <Text style={Styles.subTitle}>
                 Please remain calm and remember to first call 911 if anyone is in immediate danger before proceeding.
@@ -75,7 +91,7 @@ const CreateCollisionInjuryReport = ({collision}) => {
                 Remember, your safety and anyone else's is our main concern, so please ensure you and all parties involved are somewhere safe and clear of traffic
             </Text>
 
-            <View style={Styles.continue}><ContinueButton nextPage={'collision-injury-specific-pictures'} buttonText={'Okay'} pageName={'create-collision-injury-report-continue-button'} />
+            <View style={Styles.continue}><ContinueButton nextPage={route} nextSite={site} buttonText={'Okay'} pageName={'create-collision-injury-report-continue-button'} />
             </View>
         </View>
     )

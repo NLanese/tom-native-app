@@ -4,6 +4,7 @@ import { Button, Input } from "@ui-kitten/components";
 
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import DynamicInput from "../../../Components/DynamicInput";
 
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
@@ -37,26 +38,6 @@ const PropertyAccidentContactInformation = () => {
     let defaultHeight = maxHeight
     if (propertyData.types_of_damage.gov && (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal)){
         defaultHeight = maxHeight + 300
-    }
-
-    // Self Explanatory
-    const determineStyle = (field) => {
-        if (activeField == field){
-            return {...Template.activeInput, marginLeft: 30, marginTop: 10, width: maxWidth - 60}
-        }
-        else{
-            return {...Template.inactiveInput, marginLeft: 30, marginTop: 10, width: maxWidth - 60}
-        }
-    }
-
-    // Self Explanatory
-    const determineColor = (field) => {
-        if (activeField == field){
-            return "white"
-        }
-        else{
-            return "#888"
-        }
     }
 
     // Based on what info is in the property data, it renders certain questions
@@ -94,7 +75,7 @@ const PropertyAccidentContactInformation = () => {
            ){
                return(
                     <View style={{marginLeft: 30, marginTop: 50}}>
-                        <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                        <ContinueButton nextPage={'property-accident-safety-equipment'} nextSite={"Safety Equipment"}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                     </View>
                )
            }
@@ -112,14 +93,14 @@ const PropertyAccidentContactInformation = () => {
                     if (propertyData.types_of_damage.pack){
                         return(
                             <View style={{marginLeft: 30, marginTop: 50}}>
-                                <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                                <ContinueButton nextPage={'property-accident-safety-equipment'} nextSite={"Safety Equipment"}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                             </View>
                         )
                     }
                     else{
                         return(
                             <View style={{marginLeft: 30, marginTop: 50}}>
-                                <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                                <ContinueButton nextPage={'property-accident-safety-equipment'}  nextSite={"Safety Equipment"}   buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                             </View>
                         )
                     }
@@ -134,7 +115,7 @@ const PropertyAccidentContactInformation = () => {
                 ){
                     return(
                         <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={'property-accident-safety-equipment'} buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                            <ContinueButton nextPage={'property-accident-safety-equipment'}  nextSite={"Safety Equipment"}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                         </View>
                     )
                 }
@@ -161,7 +142,35 @@ const PropertyAccidentContactInformation = () => {
                 <Text style={Template.title}>
                     What was the Full Name of the personal property's owner?
                 </Text>
-                <Input
+                <View style={{marginLeft: 30, marginTop: 5, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={"John Smith"}
+                        onChange={(content) => {
+                            setName(content)
+                            setPropertyData({
+                                ...propertyData,
+                                contact_info: {
+                                    ...propertyData.contact_info, name: content
+                                }
+                            })
+                        }}
+                    />
+                </View>
+                {/* <Input
                     onPressIn={() => setActiveField("name")} 
                     value={name}
                     textStyle={{color: determineColor("name")}}
@@ -176,12 +185,40 @@ const PropertyAccidentContactInformation = () => {
                         })
                     }}
                     style={determineStyle("name")}
-                />
+                /> */}
 
                 <Text style={Template.title}>
                     What was the Phone Number of the personal property's owner?
                 </Text>
-                <Input
+                <View style={{marginLeft: 30, marginTop: 5, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={"123-456-7890"}
+                        onChange={(content) => {
+                            setPhone(content)
+                            setPropertyData({
+                                ...propertyData,
+                                contact_info: {
+                                    ...propertyData.contact_info, phoneNumber: content
+                                }
+                            })
+                        }}
+                    />
+                </View>
+                {/* <Input
                     onPressIn={() => setActiveField("phone")} 
                     value={phone}
                     textStyle={{color: determineColor("phone")}}
@@ -196,12 +233,40 @@ const PropertyAccidentContactInformation = () => {
                         })
                     }}
                     style={determineStyle("phone")}
-                />
+                /> */}
 
                 <Text style={Template.title}>
                     What is the Home Address of the personal property's owner?
                 </Text>
-                <Input
+                <View style={{marginLeft: 30, marginTop: 5, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={"123 Street, Township"}
+                        onChange={(content) => {
+                            setAddress(content)
+                            setPropertyData({
+                                ...propertyData,
+                                contact_info: {
+                                    ...propertyData.contact_info, address: content
+                                }
+                            })
+                        }}
+                    />
+                </View>
+                {/* <Input
                     onPressIn={() => setActiveField("addy")} 
                     value={address}
                     textStyle={{color: determineColor("addy")}}
@@ -216,7 +281,7 @@ const PropertyAccidentContactInformation = () => {
                         })
                     }}
                     style={determineStyle("addy")}
-                />
+                /> */}
                 
             </View>
         )
@@ -239,42 +304,66 @@ const PropertyAccidentContactInformation = () => {
                 <Text style={Template.title}>
                    What is the Name of the Township whose government property was damaged?
                 </Text>
-                <Input
-                    onPressIn={() => setActiveField("town")} 
-                    value={town}
-                    onKeyPress={() => setActiveField("town")}
-                    textStyle={{color: determineColor("town")}}
-                    onChangeText={(content) => {
-                        setTown(content)
-                        setPropertyData({
-                            ...propertyData,
-                            contact_info: {
-                                ...propertyData.contact_info, town: content
-                            }
-                        })
-                    }}
-                    style={determineStyle("town")}
-                />
+                <View style={{marginLeft: 30, marginTop: 5, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={"Township"}
+                        onChange={(content) => {
+                            setTown(content)
+                            setPropertyData({
+                                ...propertyData,
+                                contact_info: {
+                                    ...propertyData.contact_info, town: content
+                                }
+                            })
+                        }}
+                    />
+                </View>
 
                 <Text style={Template.title}>
                    What is the Phone Number for the organization who owns the effected property?
                 </Text>
-                <Input
-                    onPressIn={() => setActiveField("phone2")} 
-                    value={phone2}
-                    textStyle={{color: determineColor("phone2")}}
-                    onKeyPress={() => setActiveField("phone2")}
-                    onChangeText={(content) => {
-                        setPhone2(content)
-                        setPropertyData({
-                            ...propertyData,
-                            contact_info: {
-                                ...propertyData.contact_info, phoneNumber2: content
-                            }
-                        })
-                    }}
-                    style={determineStyle("phone2")}
-                />
+                <View style={{marginLeft: 30, marginTop: 5, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={"Township"}
+                        onChange={(content) => {
+                            setPhone2(content)
+                            setPropertyData({
+                                ...propertyData,
+                                contact_info: {
+                                    ...propertyData.contact_info, phoneNumber2: content
+                                }
+                            })
+                        }}
+                    />
+                </View>
 
 
             </View>

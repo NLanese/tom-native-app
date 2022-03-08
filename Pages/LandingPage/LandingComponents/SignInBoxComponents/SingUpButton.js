@@ -75,7 +75,7 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 
 			},
 		}).then(() => {
-			setWebsite({current: "Home", previous: "Landing"})
+			setWebsite({current: "Home", previous: "Landing", saved: null, saved: website.saved})
 		})
 	}
 

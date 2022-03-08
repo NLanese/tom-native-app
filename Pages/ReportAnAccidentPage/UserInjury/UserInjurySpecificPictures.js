@@ -33,7 +33,7 @@ const UserInjurySpecificPicture = () => {
             <Text>TEST FROM USER INJURY SPECIFIC PICTURES</Text>
 
             <View>
-                <ContinueButton nextPage={'user-injury-information'} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={'user-injury-information'} nextSite={'Self Injury Details'} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

@@ -66,7 +66,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 				password: userData.password,
 			},
 		}).then(() => {
-			setWebsite({current: "Home", previous: "Landing"})
+			setWebsite({current: "Home", previous: "Landing", saved: website.saved})
 		})
 	}
 

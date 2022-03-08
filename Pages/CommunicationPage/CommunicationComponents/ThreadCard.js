@@ -40,7 +40,7 @@ const ThreadCard = ({chatroom}) => {
     const selectThread = async () => {
         await setThread(chatroom)
         await navigation.navigate('message-thread')
-        await setWebsite({current: "Message Thread", previous: website.current})
+        await setWebsite({current: "Message Thread", previous: website.current, saved: website.saved})
     }
 
     

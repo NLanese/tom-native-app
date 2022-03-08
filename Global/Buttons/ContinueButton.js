@@ -2,15 +2,15 @@ import React from "react"
 import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
 
+import { useRecoilState } from "recoil";
+import { websiteState } from "../../Recoil/atoms";
+
 import Gradient from "../../Components/Gradient"
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-// Conditional Stylings Based On "pageName"
-const styles = StyleSheet.create({
-    
-})
+
 
 const ContinueButton = ({ 
     nextPage, 
@@ -18,6 +18,7 @@ const ContinueButton = ({
     pageName, 
     colorOne = false, 
     colorTwo = false,
+    nextSite = false
 }) => {
     const navigation = useNavigation()
 
@@ -28,6 +29,14 @@ const ContinueButton = ({
     if (colorTwo){
         colors[1] = colorTwo
     }
+
+    const [website, setWebsite] = useRecoilState(websiteState)
+
+    const handleClick = () => {
+        setWebsite({current: nextSite, previous: website.current, saved: nextSite})
+        navigation.navigate(`${nextPage}`)
+    }
+
 
     return (
         <View style={{
@@ -41,7 +50,7 @@ const ContinueButton = ({
             shadowOpacity: 0.14,
             shadowRadius: 13,
         }}>
-            <TouchableOpacity onPress={() => {navigation.navigate(`${nextPage}`)}}>
+            <TouchableOpacity onPress={() => handleClick()}>
                 <Gradient
                     colorOne={colors[0]}
                     colorTwo={colors[1]}
