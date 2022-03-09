@@ -40,8 +40,8 @@ const ContinueButton = ({
 
     return (
         <View style={{
-            height: 100,
-            width: 100,
+            height: 80,
+            width: 80,
             borderRadius: 50.5,
             justifyContent: 'center',
             alightItems: 'center',

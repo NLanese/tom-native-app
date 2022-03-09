@@ -392,7 +392,7 @@ const PropertyAccidentInformation = () => {
             if (inOrOut != null){
                 return(
                     <View style={{marginLeft: 30, marginTop: 160}}>
-                        <ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                        <ContinueButton nextPage={'property-accident-contact-information'}  nextSite={'Property Accident Contact Info'}  buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
                     </View>
                 )
             }
@@ -401,7 +401,7 @@ const PropertyAccidentInformation = () => {
             if (thingsHit.length > 0){
                 return(
                     <View style={{marginLeft: 30, marginTop: 70}}>
-                        <ContinueButton nextPage={'property-accident-contact-information'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                        <ContinueButton nextPage={'property-accident-contact-information'} nextSite={'Property Accident Contact Info'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
                     </View>
                 )
             }

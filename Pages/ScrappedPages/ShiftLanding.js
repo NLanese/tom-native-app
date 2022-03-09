@@ -6,7 +6,7 @@ import Banner from '../../Global/Banner'
 import { ShiftPlannerStyles } from "../../Styles/ShiftPlannerStyles";
 import { userState } from "../../Recoil/atoms";
 
-import ShiftPlanner from "./ShiftPlanner";
+import ShiftPlanner from "../ShiftPlannerPage/ShiftPlanner";
 
 const ShiftLanding = () => {
 

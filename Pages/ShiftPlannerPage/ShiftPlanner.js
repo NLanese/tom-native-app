@@ -157,6 +157,10 @@ const ShiftPlanner = () => {
         // Puts it in a state so that rerender is called upon its change
         const [dateIndex, setDateIndex] = useState(initDateIndex)
 
+        if (!thisWeeksShift[dateIndex]){
+            return <NoShifts />
+        }
+
         let dyanmicDate = {
             month: thisWeeksShift[dateIndex].date.split("/")[0],
             day: thisWeeksShift[dateIndex].date.split("/")[1] ,

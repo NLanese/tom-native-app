@@ -29,7 +29,6 @@ import stateChange from './Hooks/handleToken'
 import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
 import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
 
-import ShiftLanding from "./Pages/ShiftPlannerPage/ShiftLanding";
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 
 import Chatrooms from './Pages/CommunicationPage/Chatrooms'
