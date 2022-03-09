@@ -44,13 +44,40 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
     if (setActiveThread !== null){
       setActiveThread(null)
     }
-    setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
-    navigation.navigate('home')
+    let current = website.current
+    if (
+      current == "Police Notified" ||
+      current == "Create An Accident" ||
+      current == "Create Self Accident" ||
+      current.includes("Accident") ||
+      current.includes("Damage") ||
+      current.includes("Property") ||
+      current.includes("Collision") || 
+      current == "Safety Equipment" ||
+      current.includes("Injuries") ||
+      current.includes("Injury")
+      ){
+
+      }
+      else{
+        setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
+        navigation.navigate('home')
+      }
   }
 
   const handleBackClick = () => {
-    setWebsiteState({current: website.previous, previous: website.current, saved: website.saved})
-    navigation.goBack()
+    console.log(website.previous)
+    console.log(website.previous == "Create Chatroom")
+    if (website.previous == "Create Chatroom"){
+      console.log("hit")
+      setWebsiteState({current: "Messaging", previous: website.current, saved: website.saved})
+      navigation.navigate("messages")
+    }
+    else{
+      console.log("hit2")
+      setWebsiteState({current: website.previous, previous: website.current, saved: website.saved})
+      navigation.goBack()
+    }
   }
 
 const handleInfoClick = () => {
@@ -82,8 +109,6 @@ const handleInfoClick = () => {
       return (<Text style={styles.actualTitle}>{website.current}</Text>)
     }
   }
-
-  console.log(website)
 
   return (
     <View>

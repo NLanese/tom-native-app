@@ -36,7 +36,7 @@ const Styles = StyleSheet.create({
     },
     noButton: {
         position: 'absolute',
-        marginTop: maxHeight * 0.75,
+        marginTop: maxHeight * 0.74,
         marginLeft: maxWidth * .58
     },
     continue: {

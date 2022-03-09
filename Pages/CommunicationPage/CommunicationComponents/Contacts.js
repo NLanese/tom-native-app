@@ -14,7 +14,7 @@ import SearchBar from "./SearchBar";
 import NameChat from "./NameChat";
 
 import { useRecoilState } from 'recoil'
-import { threadState, userState } from "../../../Recoil/atoms";
+import { threadState, userState, websiteState } from "../../../Recoil/atoms";
 
 import nameObj from "../../../Hooks/handleNameCaseChange";
 
@@ -34,6 +34,8 @@ const Contacts = ({creating}) => {
         const [user, setUser] = useRecoilState(userState);
         // Gets Thread
         const [activeThread, setActiveThread] = useRecoilState(threadState)
+        // Gets Website
+        const[website, setWebsite] = useRecoilState(websiteState)
     
     // UseState
         // keeps track of driver contacts added to groupchat
@@ -247,6 +249,7 @@ const Contacts = ({creating}) => {
             })
             setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
+            setWebsite({current: newActiveThread.chatroomName, previous: website.current, saved: website.saved })
             navigation.navigate("message-thread")
             setModalVisible(false)
         })

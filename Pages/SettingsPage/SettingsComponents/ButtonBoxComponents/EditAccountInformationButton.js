@@ -1,21 +1,45 @@
-import React from "react"
-import { useNavigation } from "@react-navigation/native";
-import { View } from 'react-native'
-import { Button } from 'react-native-paper';
-import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
+import React, { useState } from "react"
+import { View, TouchableOpacity, Text } from 'react-native'
 
-const EditAccountInformationButton = () => {
+import Gradient from "../../../../Components/Gradient";
+
+import { useNavigation } from "@react-navigation/native";
+
+
+import { AccountInformationStyles } from "../../../../Styles/SettingStyles";
+
+
+const EditAccountInformationButton = ({edit, setEdit}) => {
     const navigation = useNavigation()
     const [buttonLoading, setButtonLoading] = useState(false)
 	
     const handleButtonLoading = async () => {
 		await setButtonLoading(!buttonLoading)
 	}
+    const determineText = () =>{
+        if (edit){
+            return "SUBMIT CHANGES"
+        }
+        else{
+            return "EDIT ACCOUNT INFORMATION"
+        }
+    }
 
     return (
-        <View >
-            <Button 
+        <View style={{marginBottom: 20}}>
+            <TouchableOpacity onPress={() => setEdit(!edit)}>
+                <Gradient
+                    colorOne={"#534FFF"}
+                    colorTwo={"#15A1F1"}
+                    style={{
+                        height: 50,
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Text style={AccountInformationStyles.buttonText}>{determineText()}</Text>
+                </Gradient>
+            </TouchableOpacity>
+            {/* <Button 
                 mode="contained"
                 loading={buttonLoading}
                 style={ButtonStyles.logInButton}
@@ -26,7 +50,7 @@ const EditAccountInformationButton = () => {
                 }}
             >
                 Edit Account Information
-            </Button>
+            </Button> */}
         </View>
     )
 }

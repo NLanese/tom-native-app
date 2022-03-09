@@ -12,9 +12,9 @@ const Template = StyleSheet.create({
     },
     lgButton: {
         marginTop: 10,
-        width: 110, 
-        height: 110,
-        borderRadius: 55,
+        width: 100, 
+        height: 100,
+        borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
 
@@ -121,6 +121,13 @@ const Template = StyleSheet.create({
         fontFamily: 'GilroyRegular',
         fontSize: 14,
         paddingLeft: 8
+    },
+    body: {
+        fontFamily: "GilroyMedium",
+        fontSize: 13,
+        lineHeight: 20,
+        color: "#888888",
+        letterSpacing: 0.5
     }
 })
 

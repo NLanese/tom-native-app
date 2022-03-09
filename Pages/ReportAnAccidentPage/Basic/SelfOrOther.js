@@ -45,94 +45,87 @@ const SelfOrOther = () => {
                         style={{
                             height: 220,
                             width: maxWidth - 60,
-                            borderRadius: 30,                    
+                            borderRadius: 30,
+                            paddingTop: 8
+                                                
                         }}
-                        hollow={true}
-                        hollowBorderSize="small"
-                        hollowColor="#f9f9f9"
+                        // hollow={true}
+                        // hollowBorderSize="small"
+                        // hollowColor="#f9f9f9"
                     >
+                    <View style={{paddingLeft: 10, width: maxWidth - 80}}>
                         <Text style={{
                             marginLeft: 10,
                             marginTop: 20,
-                            width: maxWidth - 80,
+                            // width: maxWidth - 80,
 
+                            textAlign: 'center',
                             fontFamily: "GilroyBold",
                             fontSize: 24,
-                            color: "#444"
+                            color: "white"
                         }}
-                        >I hurt myself or damaged my own vehicle</Text>
+                        >I hurt myself or damaged my vehicle</Text>
 
-                        <Text style={{
-                            marginTop: 20, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#888", fontSize: 16, letterSpacing: 1
-                        }}>
+                       <Text style={{...Template.subTitle, fontSize: 14, marginLeft: 0, marginTop: 15, color: 'white', textAlign: 'center', }}>
                             SELECT THIS IF
                         </Text>
 
-                        <Text style={{
-                            marginTop: 10, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#555", letterSpacing: 0.5
-                        }}>
+                        <Text style={{...Template.body, textAlign: 'center', color: 'white'}}>
                             You injured yourself
                         </Text>
-                        <Text style={{
-                            marginTop: 5, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#555", letterSpacing: 0.5
-                        }}>
+                        <Text style={{...Template.body, textAlign: 'center', color: 'white'}}>
                             You did not hit another car or property
                         </Text>
-                        <Text style={{
-                            marginTop: 5, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#555", letterSpacing: 0.5
-                        }}>
+                        <Text style={{...Template.body, textAlign: 'center', color: 'white'}}>
                             You hit a pothole or an animal
                         </Text>
-
+                    </View>
                     </Gradient>
                 </TouchableOpacity>
             </View>
             <View style={{marginLeft: 30, marginTop: 30}}>
                 <TouchableOpacity onPress={() => handleThirdParty()}>
                     <Gradient
-                        colorOne="#AF4444"
+                        colorOne="#FD0000"
                         colorTwo="#FD0000"
                         style={{
                             height: 220,
                             width: maxWidth - 60,
-                            borderRadius: 30,                    
+                            borderRadius: 30,   
+                            paddingTop: 8,           
                         }}
-                        hollow={true}
-                        hollowBorderSize="small"
-                        hollowColor="#f9f9f9"
+                        // hollow={true}
+                        // hollowBorderSize="small"
+                        // hollowColor="#f9f9f9"
                     >
+                    <View style={{paddingLeft: 10, width: maxWidth - 80}}>
                         <Text style={{
-                            marginLeft: 10,
-                            marginTop: 20,
-                            width: maxWidth - 80,
+                                marginLeft: 10,
+                                marginTop: 28,
+                                // width: maxWidth - 80,
 
-                            fontFamily: "GilroyBold",
-                            fontSize: 24,
-                            color: "#444"
-                        }}
-                        >An Incident occured with a third party</Text>
+                                textAlign: 'center',
+                                fontFamily: "GilroyBold",
+                                fontSize: 24,
+                                color: "white"
+                            }}
+                            >An Incident occured with a third party</Text>
 
-                        <Text style={{
-                            marginTop: 20, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#888", fontSize: 16, letterSpacing: 1
-                        }}>
-                            SELECT THIS IF
-                        </Text>
+                            <Text style={{...Template.subTitle, fontSize: 14,  marginLeft: 0, marginTop: 15, color: 'white', textAlign: 'center', }}>
+                                SELECT THIS IF
+                            </Text>
 
-                        <Text style={{
-                            marginTop: 10, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#555", letterSpacing: 0.5
-                        }}>
-                            You damaged someone's property
-                        </Text>
-                        <Text style={{
-                            marginTop: 5, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#555", letterSpacing: 0.5
-                        }}>
-                            You damaged someone's package
-                        </Text>
-                        <Text style={{
-                            marginTop: 5, textAlign: 'center', fontFamily: "GilroySemiBold", color: "#555", letterSpacing: 0.5
-                        }}>
-                            You hit a car or pedestrian
-                        </Text>
+                            <Text style={{...Template.body, textAlign: 'center', color: 'white'}}>
+                                You damaged someone's property
+                            </Text>
+                            <Text style={{...Template.body, textAlign: 'center', color: 'white'}}>
+                                You damaged someone's package
+                            </Text>
+                            <Text style={{...Template.body, textAlign: 'center', color: 'white'}}>
+                                You hit a car or pedestrian
+                            </Text>
+                        </View>
+                       
 
                         
 

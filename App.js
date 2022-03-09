@@ -37,12 +37,9 @@ import Contacts from "./Pages/CommunicationPage/CommunicationComponents/Contacts
 
 import Settings from './Pages/SettingsPage/Settings'
 import AccountInformation from './Pages/SettingsPage/SettingsComponents/AccountInformation'
-import AccountSettings from './Pages/SettingsPage/SettingsComponents/AccountSettings'
 
 
 import EditAccountInformation from './Pages/SettingsPage/SettingsComponents/EditAccountInformation'
-import ViewAccidents from './Pages/SettingsPage/SettingsComponents/ViewAccidents'
-import Quality from './Pages/ScoreCardPage/ScoreCardComponents/Quality'
 import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
