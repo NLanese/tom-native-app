@@ -1,34 +1,73 @@
 import React, { useState } from "react";
-import { View, Text, Modal, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import { Modal } from "@ui-kitten/components";
+import { userState } from "../../../../../Recoil/atoms";
+import { useRecoilState } from "recoil";
 import { Linking } from "react-native";
 
+import Gradient from "../../../../../Components/Gradient";
+
+import Template from "../../../../../Styles/RAA/RAATemplateStyles";
 const NoButton = () => {
     const [modalVisible, setModalVisible] = useState(false)
 
     return (
         <View>
-            <Modal animationType='slide' transparent={true} visible={modalVisible}>
-				<View style={{ backgroundColor: "black", margin: "10%"}}>
-					<View>
+            <Modal 
+                animationType='slide' 
+                transparent={true} 
+                visible={modalVisible}
+                backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+                style={{
+                    height: 200,
+                    width: 300,
+                    borderRadius: 10,
+                }}
+            >
+                <View style={{ 
+                    backgroundColor: "white", 
+                    height: 175,
+                    width: 300,
+                    borderRadius: 10,
+                }}>
+                    <Text style={{...Template.questionText, textAlign: 'center', marginLeft: -8, marginBottom: 10, marginLeft: 20, width: 260}}>Call Emergency Services</Text>
+                <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
 
-						<Text> Please call the police </Text>
+                    {/* <TouchableOpacity onPress={() => Linking.openURL('tel://+19732517969')}> */}
+                    <Gradient
+                        colorOne={"#534FFF"}
+                        colorTwo={"#15A1F1"}
+                        style={{
+                            height: 50,
+                            width: 80,
+                            borderRadius: 20,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
+                    </Gradient>
+                    {/* </TouchableOpacity> */}
 
-                        <Button 
-                            onPress={() => Linking.openURL('tel://+1911')}
-                            title="Call 911"
-                        />
+                    <View style={{marginLeft: 70}}>
+                    <TouchableOpacity onPress={() => setModalVisible(false)}>
+                    <Gradient
+                        colorOne={"#DE0000"}
+                        colorTwo={"#DE0000"}
+                        style={{
+                            height: 50,
+                            width: 80,
+                            borderRadius: 20,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
+                    </Gradient>
+                    </TouchableOpacity>
+                    </View>
 
-						<Button
-							onPress={() => {
-								setModalVisible(!modalVisible);
-							}}
-							title='Ok'
-							color='#ffffff'
-							accessibilityLabel='Ok'
-						/>
-					</View>
-				</View>
-			</Modal>
+                </View>
+                </View>
+            </Modal>
 
             <TouchableOpacity 
                 style={Styles.touchContainer}

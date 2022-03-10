@@ -29,10 +29,16 @@ const CommunicationButton = () => {
         <TouchableOpacity onPress={() => {handleClick()}}>
             <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
-                    style={ButtonBoxStyles.image}
+                    style={{
+                        alignContent: 'center',
+                        top: '30%',
+                        height: 40,
+                        width: 39,
+                        marginLeft: 52
+                    }}
                     source={require('../../../../assets/Communication.jpeg')}/>
             </View> 
-            <View style={{ marginTop: '-30%' }}>
+            <View style={{ marginTop: '-33%', alignItems: 'center'}}>
                 <Text style={ButtonBoxStyles.label}>COMMUNICATION</Text>
             </View>
         </TouchableOpacity>

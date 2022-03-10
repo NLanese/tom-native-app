@@ -1,21 +1,48 @@
 import React, { useState } from "react"
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, TouchableOpacity, Text, Dimensions } from 'react-native'
 
 import Gradient from "../../../../Components/Gradient";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { useMutation } from "@apollo/client";
+import { UPDATEDRIVER } from "../../../../GraphQL/operations";
+
 
 import { AccountInformationStyles } from "../../../../Styles/SettingStyles";
 
 
-const EditAccountInformationButton = ({edit, setEdit}) => {
+const EditAccountInformationButton = ({edit, setEdit, currentSettings}) => {
     const navigation = useNavigation()
     const [buttonLoading, setButtonLoading] = useState(false)
+
+    const [update, { loading: loading, error: error, data: data }] = useMutation(UPDATEDRIVER);
+
+    const handleMutation = async () => {
+        return update({
+            variables: {
+                email: currentSettings.user,
+                firstname: currentSettings.firstname,
+                lastname: currentSettings.lastname
+            }
+        })
+    }
 	
-    const handleButtonLoading = async () => {
-		await setButtonLoading(!buttonLoading)
-	}
+    const handleClick = () => {
+        if (edit){
+            setEdit(false)
+            return(
+                handleMutation()
+                    .then( (resolved) => {
+                        console.log(resolved)
+                    })
+                )
+        }
+        if (!edit){
+            setEdit(true)
+        }
+    }
+
     const determineText = () =>{
         if (edit){
             return "SUBMIT CHANGES"
@@ -27,7 +54,7 @@ const EditAccountInformationButton = ({edit, setEdit}) => {
 
     return (
         <View style={{marginBottom: 20}}>
-            <TouchableOpacity onPress={() => setEdit(!edit)}>
+            <TouchableOpacity onPress={() => handleClick()}>
                 <Gradient
                     colorOne={"#534FFF"}
                     colorTwo={"#15A1F1"}

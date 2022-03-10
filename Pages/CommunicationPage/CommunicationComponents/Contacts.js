@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM } from "../../../GraphQL/operations";
+import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM, DYNAMICUPDATECHATROOM, DYNAMICADDDRIVERTOCHAT} from "../../../GraphQL/operations";
 
 import Banner from "../../../Global/Banner";
 import Loading from "../../../Global/Loading";
@@ -26,6 +26,10 @@ const Contacts = ({creating}) => {
 
 
     const [driverCreateChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DRIVERCREATECHATROOM);
+
+    const [updateChat, { loading: loadingUpdate, error: errorUpdate, data: dataUpdate }] = useMutation(DYNAMICUPDATECHATROOM);
+
+    const [addDriver, { loading: loadingAdd, error: errorAdd, data: dataAdd }] = useMutation(DYNAMICADDDRIVERTOCHAT);
 
 
 // -------------------- Recoil and UseState ----------------------
@@ -142,21 +146,23 @@ const Contacts = ({creating}) => {
             let newThread = activeThread.guests.map((driver) =>{ return driver })
             if (newThread.length > 0){
                 newThread.forEach( (driver) => {
-                    if (driver.id === selected.id){
-                        if (driver.id === user.id){
-                            returnComponent = () => {
-                                return(
-                                    null
-                                )
+                    if (typeof(driver) !== 'undefined'){
+                        if (driver.id === selected.id){
+                            if (driver.id === user.id){
+                                returnComponent = () => {
+                                    return(
+                                        null
+                                    )
+                                }
                             }
-                        }
-                        else{
-                            returnComponent = () => {
-                                return(
-                                    <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
-                                        <View><Text style={ContactStyles.removeText}>Remove</Text></View>
-                                    </TouchableOpacity>
-                                )
+                            else{
+                                returnComponent = () => {
+                                    return(
+                                        <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
+                                            <View><Text style={ContactStyles.removeText}>Remove</Text></View>
+                                        </TouchableOpacity>
+                                    )
+                                }
                             }
                         }
                     }
@@ -201,10 +207,24 @@ const Contacts = ({creating}) => {
 
 
 // -------------------------- Handlers ---------------------------
+
+    const handleAddMutation = (id) => {
+        addDriver({
+            variables: {
+                role: user.role,
+                chatroomId: activeThread.id,
+                guestId : id
+            }
+        })
+    }
+
     const handleAddClick = (selected) => {
         setNewGuests([...newGuests, selected])
         if (!creating){
-            activeThread.guests = [...activeThread.guests, selected]
+            setActiveThread({
+                ...activeThread,
+                guests: [...activeThread.guests, selected]
+            })
         }
     }
 
@@ -222,11 +242,15 @@ const Contacts = ({creating}) => {
         setSearchVal(content)
     }
 
-    const handleDoneClick = () => {
+    const handleDoneClick = async () => {
         if (!creating){
-            // Add Mutation
+            await newGuests.map( (guest) => {
+                handleAddMutation(guest)
+            }).then(
+                navigation.navigate('message-thread')
+            )
         }
-        if (newGuests.length > 0){
+        if (creating && newGuests.length > 0){
             setModalVisible(true)
         }
     }

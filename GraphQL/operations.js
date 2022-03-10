@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { getOperationDefinition } from '@apollo/client/utilities';
 
 /* ------------------------------ USERS ------------------------------ */
 
@@ -525,11 +526,260 @@ const LOGIN = gql`
 const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
+    token
+    id
+    createdAt
+    role
     firstname
     lastname
     email
     phoneNumber
-    password
+    profilePick
+    transporterId
+    muted
+    locked
+    deleted
+    notified
+    owner {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
+    accidents {
+      id
+      createdAt
+      name
+      date
+      time
+      location
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      weather
+      general_pictures
+      rushed_prior
+      extra_info
+      distracted
+      actions_before_accidents
+      deleted
+      unsafe_conditions
+      filled
+      collisionAccident {
+        id
+        specific_pictures
+        contact_info
+        extra_info
+      }
+      propertyAccident {
+        id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
+      }
+      injuryAccident {
+        id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
+      }
+    }
+    managers {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
+    vehicle {
+      id
+      vehicle_number
+      amazon_logo
+    }
+    notifiedMessages {
+      id
+      createdAt
+      read
+      content
+      from
+      type
+      manager {
+        id
+        firstname
+        lastname
+        phoneNumber
+        profilePick
+        email
+      }
+    }
+    dsp {
+      id
+      createdAt
+      name
+      shortcode
+      timeZone
+      seatbeltLimits
+      ficoLimits
+      speedingLimits
+      distractionLimits
+      followLimits
+      signalLimits
+      deliveryCompletionRateLimits
+      scanComplianceLimits
+      callComplianceLimits
+      photoOnDeliveryLimits
+      deliveryNotRecievedLimits
+      topCardLimits
+      autoSend
+      smallCardLimits
+      feedbackNotifications
+      accountStanding
+      paid
+    }
+    weeklyReport {
+      id
+      createdAt
+      date
+      hadAccident
+      feedbackMessageSent
+      feedbackMessage
+      feedbackStatus
+      acknowledged
+      acknowledgedAt
+      rank
+      tier
+      delivered
+      keyFocusArea
+      fico
+      speedingEventRate
+      seatbeltOffRate
+      distractionsRate
+      signalViolationsRate
+      followingDistanceRate
+      deliveryCompletionRate
+      deliveredAndRecieved
+      photoOnDelivery
+      scanCompliance
+      callCompliance
+      attendedDeliveryAccuracy
+      dnr
+      podOpps
+      ccOpps
+      netradyne
+      defects
+      deliveryAssociate
+      customerDeliveryFeedback
+      hasManyAccidents
+      customerDeliveryFeedback
+      belongsToTeam
+      attendence
+      productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      messages {
+        id
+        createdAt
+        content
+        from
+        visable
+        reported
+        reportedBy
+      }
+    }
+    shiftPlanners {
+      id
+      createdAt
+      sundayDate
+      sundayHours
+      mondayDate
+      mondayHours
+      tuesdayHours
+      tuesdayDate
+      wednesdayDate
+      wednesdayHours
+      thursdayDate
+      thursdayHours
+      fridayDate
+      fridayHours
+      saturdayDate
+      saturdayHours
+      weekStartDate
+      weekEndDate
+      phoneId
+      vehicleId
+      cxNumber
+      deviceId
+      message
+    }
+    accidents {
+      id
+      name
+      date
+      time
+      location
+      amazon_logo
+      vehicleId
+      number_packages_carried
+      police_report_information
+      general_pictures
+      weather
+      rushed_prior
+      distracted
+      extra_info
+      actions_before_accidents
+      unsafe_conditions
+      collisionAccident {
+        id
+        specific_pictures
+        contact_info
+        extra_info
+        injuryAccident {
+          id
+          medical_attention
+          immediate_attention
+          injury
+          contact_info
+          specific_pictures
+          pain_level
+          extra_info
+        }
+      }
+      injuryAccident {
+        id
+        medical_attention
+        immediate_attention
+        injury
+        contact_info
+        specific_pictures
+        pain_level
+        extra_info
+      }
+      propertyAccident {
+        id
+        address
+        object_hit
+        specific_pictures
+        safety_equipment
+        contact_information
+        extra_info
+      }
+    }
   }
 }
 `
@@ -980,6 +1230,59 @@ mutation Mutation($guests: [JSON]!, $chatroomName: String!) {
   }
 }
 `
+const DYNAMICUPDATECHATROOM = gql`
+  mutation DynamicUpdateChatroom($role: String!, $chatroomId: String!, $name: String!) {
+  dynamicUpdateChatroom(role: $role, chatroomId: $chatroomId, name: $name) {
+    id
+    createdAt
+    chatroomName
+    guests
+    chatroomOwner
+    messages {
+      id
+      createdAt
+      content
+      visable
+      from
+      reported
+      reportedBy
+    }
+    managers {
+      id
+      role
+      firstname
+      lastname
+      profilePick
+      phoneNumber
+    }
+    owner {
+      id
+      role
+      firstname
+      lastname
+      email
+      profilePick
+      phoneNumber
+    }
+    drivers {
+      id
+      firstname
+      lastname
+      email
+      phoneNumber
+      profilePick
+    }
+  }
+}
+`
+
+const DYNAMICADDDRIVERTOCHAT = gql`
+  mutation DynamicUpdateChatroom($role: String!, $guestId: String!, $chatroomId: String!) {
+  dynamicAddDriverToChatroom(role: $role, guestId: $guestId, chatroomId: $chatroomId) {
+    id
+  }
+}
+`
 const DYNAMICREMOVEDRIVERFROMCHATROOM = gql`
 mutation Mutation($role: String!, $chatroomId: String!, $guestId: String!) {
   dynamicRemoveDriverFromChatroom(role: $role, chatroomId: $chatroomId, guestId: $guestId) {
@@ -1020,7 +1323,6 @@ const GETDRIVERCHATROOMS = gql`
     }
   }
 `
-
 const DRIVERCREATEACCIDENT = gql`
   mutation Mutation($name: String!, $date: String!, $time: String!, $location: String!) {
   driverCreateAccident(name: $name, date: $date, time: $time, location: $location) {
@@ -1032,7 +1334,6 @@ const DRIVERCREATEACCIDENT = gql`
   }
 }
 `
-
 const DRIVERCREATECOLLISIONACCIDENT = gql`
   mutation Mutation($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
   driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specificPictures, contact_info: $contactInfo, extra_info: $extraInfo) {
@@ -1043,7 +1344,6 @@ const DRIVERCREATECOLLISIONACCIDENT = gql`
   }
 }
 `
-
 const DRIVERCREATEINJURYREPORTFORCOLLISION = gql`
   mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!, $collisionAccidentId: String, $accidentId: String) {
   driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo, collisionAccidentId: $collisionAccidentId, accidentId: $accidentId) {
@@ -1058,7 +1358,6 @@ const DRIVERCREATEINJURYREPORTFORCOLLISION = gql`
   }
 }
 `
-
 const DRIVERCREATEPROPERTYACCIDENT = gql`
   mutation Mutation($accidentId: String!, $address: String!, $objectHit: String!, $specificPictures: JSON!, $safetyEquipment: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
   driverCreatePropertyAccident(accidentId: $accidentId, address: $address, object_hit: $objectHit, specific_pictures: $specificPictures, safety_equipment: $safetyEquipment, contact_info: $contactInfo, extra_info: $extraInfo) {
@@ -1072,7 +1371,6 @@ const DRIVERCREATEPROPERTYACCIDENT = gql`
   }
 }
 `
-
 const DRIVERCREATEINJURYACCIDENT = gql`
   mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!, $accidentId: String) {
   driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo, accidentId: $accidentId) {
@@ -1087,7 +1385,6 @@ const DRIVERCREATEINJURYACCIDENT = gql`
   }
 }
 `
-
 const DRIVERUPDATEACCIDENT = gql`
   mutation Mutation($accidentId: String!, $amazonLogo: Boolean, $vehicleId: String, $numberPackagesCarried: Int, $policeReportInformation: JSON, $generalPictures: JSON, $weather: String, $rushedPrior: Boolean, $distracted: Boolean, $extraInfo: String, $actionsBeforeAccidents: JSON, $unsafeCoditions: JSON) {
   driverUpdateAccident(accidentId: $accidentId, amazon_logo: $amazonLogo, vehicleId: $vehicleId, number_packages_carried: $numberPackagesCarried, police_report_information: $policeReportInformation, general_pictures: $generalPictures, weather: $weather, rushed_prior: $rushedPrior, distracted: $distracted, extra_info: $extraInfo, actions_before_accidents: $actionsBeforeAccidents, unsafe_coditions: $unsafeCoditions) {
@@ -1127,8 +1424,10 @@ export {
   DRIVERSGETDRIVERSFROMDSP,
   DRIVERSGETSHIFTPLANNER,
   DRIVERSENDMESSAGE,
+  DYNAMICADDDRIVERTOCHAT,
   DRIVERCREATECHATROOM,
   DRIVERCREATEACCIDENT,
+  DYNAMICUPDATECHATROOM,
   DRIVERUPDATEACCIDENT,
   DRIVERCREATEINJURYACCIDENT,
   DRIVERCREATEINJURYREPORTFORCOLLISION,
@@ -1137,10 +1436,3 @@ export {
   DYNAMICREMOVEDRIVERFROMCHATROOM,
   GETDRIVERCHATROOMS
 }
-
-
-
-
-
-
-

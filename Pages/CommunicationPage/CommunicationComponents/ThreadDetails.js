@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView, View, Text, TouchableOpacity, TextInput } from "react-native";
 import { Modal } from "@ui-kitten/components";
 import { useRecoilState } from "recoil";
-import { userState } from "../../../Recoil/atoms";
+import { userState, threadState } from "../../../Recoil/atoms";
 
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
@@ -15,7 +15,7 @@ import { ThreadDetailStyles } from "../../../Styles/CommunicationStyles";
 
 import AddContactButton from "./AddContactButton";
 
-const ThreadDetails = ({chatroom, setModalVisible, setActiveThread, activeThread}) => {
+const ThreadDetails = ({chatroom, setModalVisible}) => {
 
 // -------------- Mutations and Queries ----------------
 const {loading: loading, error: error, data: queryData, refetch: refetch} = useQuery(GETDRIVERDATA)
@@ -35,6 +35,9 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
     // Tracks Chat Renaming
     const [newName, setNewName] = useState("")
+
+    // Recoil for thread Data
+    const [activeThread, setActiveThread] = useRecoilState(threadState);
 
 //--------------- Recoil and Local State ---------------
 
@@ -114,11 +117,15 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
     const handleRemoval = (removedId) => {
+        console.log(removedId)
         handleRemovalMutation(removedId).then( (resolved) => {
             let newGuestList = activeThread.guests
-            newGuestList = newGuestList.map((guest) => {
-                if (guest.id !== removedId){
-                    return guest
+            // console.log(newGuestList)
+            newGuestList = newGuestList.map( (guest) => {
+                if (typeof(guest) !== 'undefined'){
+                    if (guest.id !== removedId){
+                        return guest
+                    }
                 }
             })
             setActiveThread({...activeThread, guests: newGuestList})

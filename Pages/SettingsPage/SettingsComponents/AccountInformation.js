@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 
 import EditAccountInformationButton from "./ButtonBoxComponents/EditAccountInformationButton";
 import ViewAccidentsButton from "./ButtonBoxComponents/ViewAccidentsButton";
@@ -13,7 +13,11 @@ import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
 
 import { AccountInformationStyles } from "../../../Styles/SettingStyles";
+import Template from "../../../Styles/RAA/RAATemplateStyles";
 
+
+let maxWidth = Dimensions.get('window').width
+let maxHeight = Dimensions.get('window').height
 
 
 const AccountInformation = () => {
@@ -24,6 +28,9 @@ const AccountInformation = () => {
 
     const [currentSettings, setCurrentSettings] = useState({
         email: user.email,
+        phoneNumber: user.phoneNumber,
+        firstname: user.firstname,
+        lastname: user.lastname
     })
 
     let name = nameObj(user.firstname, user.lastname)
@@ -42,6 +49,10 @@ const AccountInformation = () => {
                         <View>
                             <Text style={AccountInformationStyles.valName}>Email</Text>
                             <Text style={AccountInformationStyles.val}>{user.email}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Phone Number</Text>
+                            <Text style={AccountInformationStyles.val}>{user.phoneNumber}</Text>
                         </View>
                         <View>
                             <Text style={AccountInformationStyles.valName}>DSP Name</Text>
@@ -131,7 +142,7 @@ const AccountInformation = () => {
            {renderValuesOrEdit()}
 
             <View style={AccountInformationStyles.buttonBox}>
-                <EditAccountInformationButton edit={edit} setEdit={setEdit}/>
+                <EditAccountInformationButton edit={edit} setEdit={setEdit} currentSettings={currentSettings}/>
                 <ViewAccidentsButton />
                 <ProfilePictureButton />
             </View>
