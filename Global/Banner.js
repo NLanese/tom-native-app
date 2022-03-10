@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Pressable, Dimensions, Image, Text, TouchableWithoutFeedback, Modal } from 'react-native';
+import { StyleSheet, View, Pressable, Dimensions, Image, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { Modal } from "@ui-kitten/components";
 import { Appbar, Avatar } from 'react-native-paper';
 
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +10,7 @@ import { websiteState } from '../Recoil/atoms'
 import { threadState } from "../Recoil/atoms";
 
 import ThreadDetails from "../Pages/CommunicationPage/CommunicationComponents/ThreadDetails";
+import Gradient from "../Components/Gradient";
 
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
@@ -18,6 +20,7 @@ import arrowBack from '../assets/backArrowIcon.png'
 import homeIcon from '../assets/homeIcon.png'
 
 import { CommunicationStyles } from "../Styles/CommunicationStyles"
+import Template from "../Styles/RAA/RAATemplateStyles"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -25,6 +28,8 @@ let maxHeight= Dimensions.get('window').height
 const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   
   const [modalvisible, setModalVisible] = useState(false)
+  const [modalVisible2, setModalVisible2] = useState(false)
+
   const [visible, setVisible] = useState(false)
   const [notifiedVisible, setNotifiedVisible] = useState(false)
 
@@ -57,7 +62,7 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
       current.includes("Injuries") ||
       current.includes("Injury")
       ){
-
+        setModalVisible2(true)
       }
       else{
         setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
@@ -155,6 +160,66 @@ const handleInfoClick = () => {
           </View>
 
         </Appbar>
+        <Modal 
+              animationType='slide' 
+              transparent={true} 
+              visible={modalVisible2}
+              backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+              style={{
+                  height: 200,
+                  width: 300,
+                  borderRadius: 10,
+              }}
+          >
+              <View style={{ 
+                  backgroundColor: "white", 
+                  height: 175,
+                  width: 300,
+                  borderRadius: 10,
+              }}>
+                  <Text style={{...Template.questionText, textAlign: 'center', marginLeft: -8, marginBottom: 10, marginLeft: 20, width: 260}}>Go back to the homepage?</Text>
+                
+              <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
+
+                  <TouchableOpacity onPress={() => {
+                    setModalVisible2(false)
+                    setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
+                    navigation.navigate('home')
+                  }}>
+                  <Gradient
+                      colorOne={"#534FFF"}
+                      colorTwo={"#15A1F1"}
+                      style={{
+                          height: 50,
+                          width: 80,
+                          borderRadius: 20,
+                          justifyContent: 'center'
+                      }}
+                  >
+                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
+                  </Gradient>
+                  </TouchableOpacity>
+
+                  <View style={{marginLeft: 70}}>
+                  <TouchableOpacity onPress={() => setModalVisible2(false)}>
+                  <Gradient
+                      colorOne={"#DE0000"}
+                      colorTwo={"#DE0000"}
+                      style={{
+                          height: 50,
+                          width: 80,
+                          borderRadius: 20,
+                          justifyContent: 'center'
+                      }}
+                  >
+                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
+                  </Gradient>
+                  </TouchableOpacity>
+                  </View>
+
+              </View>
+              </View>
+          </Modal>
     </View>
   )
 }
