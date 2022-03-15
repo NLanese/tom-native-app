@@ -162,7 +162,7 @@ const DynamicInput = ({
                 colorTwo={determineBorderColor().colorTwo}
                 style={{
                     height: height + borderTopBottomWidth,
-                    width: width + borderLeftRightWidth,
+                    width: width + borderLeftRightWidth - 15,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderRadius: borderRadius * 1.1,
@@ -176,10 +176,11 @@ const DynamicInput = ({
                     value={content} 
                     style={{
                         height: height,
-                        width: width,
+                        width: width - 15,
                         backgroundColor: determineBackground(),
                         borderRadius: borderRadius,
-                        ...determineTextStyle()
+                        ...determineTextStyle(),
+                        paddingLeft: 20
                     }}
                     onChangeText={(content) => {
                         setActive(true)

@@ -66,7 +66,7 @@ const SelfOrOther = () => {
                         }}
                         >I hurt myself or damaged my vehicle</Text>
 
-                       <Text style={{...Template.subTitle, fontSize: 14, marginLeft: 0, marginTop: 15, color: 'white', textAlign: 'center', }}>
+                        <Text style={{...Template.subTitle, fontSize: 10,  marginLeft: 0, marginBottom: 10, marginTop: 15, color: 'white', textAlign: 'center', }}>
                             SELECT THIS IF
                         </Text>
 
@@ -111,7 +111,7 @@ const SelfOrOther = () => {
                             }}
                             >An Incident occured with a third party</Text>
 
-                            <Text style={{...Template.subTitle, fontSize: 14,  marginLeft: 0, marginTop: 15, color: 'white', textAlign: 'center', }}>
+                            <Text style={{...Template.subTitle, fontSize: 10,  marginLeft: 0, marginBottom: 10, marginTop: 15, color: 'white', textAlign: 'center', }}>
                                 SELECT THIS IF
                             </Text>
 

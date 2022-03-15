@@ -17,6 +17,7 @@ const CreatePropertyAccident = () => {
 
     useEffect(() => {
         setPropertyData({
+            accidentId: accidentData.id,
             types_of_damage: {
                 pack: false,
                 personal: false,

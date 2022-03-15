@@ -178,6 +178,10 @@ const CollisionInjuryReportInformation = ({collision}) => {
     let initStomach = false
     let initGroin = false
 
+    let initHips = false
+    let initWaist = false
+    let initLowerBack = false
+
     let initLeg = false
     let initKnee = false
     let initFoot = false
@@ -203,6 +207,15 @@ const CollisionInjuryReportInformation = ({collision}) => {
         if (injuryInfo.stomach){
             initStomach = injuryInfo.stomach
         }
+        if (injuryInfo.hips){
+            initHips = injuryInfo.hips
+        }
+        if (injuryInfo.waist){
+            initWaist = injuryInfo.waist
+        }
+        if (injuryInfo.lowerBack){
+            initLowerBack = injuryInfo.lowerBack
+        }        
         if (injuryInfo.groin){
             initGroin = injuryInfo.groin
         }
@@ -230,9 +243,13 @@ const CollisionInjuryReportInformation = ({collision}) => {
     const [neck, setNeck] = useState(initNeck)
     const [shoulder, setShoulder] = useState(initShoulder)
 
+    const [hips, setHips] = useState(initHips)
+    const [waist, setWaist] = useState(initWaist)
+    const [lowerBack, setLowerBack] = useState(initLowerBack)
+
     const [chest, setChest] = useState(initChest)
     const [stomach, setStomach] = useState(initStomach)
-    const [groin, setGroin] = useState(initGroin)
+    const [groin, setGroin] = useState(initGroin)    
 
     const [leg, setLeg] = useState(initLeg)
     const [knee, setKnee] = useState(initKnee)
@@ -397,7 +414,57 @@ const CollisionInjuryReportInformation = ({collision}) => {
 
                     <View style={{width: 100}}>
                         <CheckBox 
-                            checked={chest} 
+                            checked={hips} 
+                            onChange={async() => {
+                                await setHips(!hips)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, hips: !hips}
+                                })
+                            }}
+                        >
+                            Hip(s)
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={waist} 
+                            onChange={ async () => {
+                                await setWaist(!waist)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, waist: !waist}
+                                })
+                            }}
+                        >
+                            Waist
+                        </CheckBox>
+                    </View>
+
+                    <View style={{width: 100}}>
+                        <CheckBox
+                            checked={lowerBack}
+                            onChange={async () => {
+                                await setLowerBack(!lowerBack)
+                                await setInjuryData({
+                                    ...injuryData,
+                                    injury: {...injuryData.injury, lowerBack: !lowerBack}
+                                })
+                            }}
+                        >
+                            Lower Back
+                        </CheckBox>
+                    </View>
+
+                </View>
+                
+
+                <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
+
+                    <View style={{width: 100}}>
+                        <CheckBox 
+                            checked={hips} 
                             onChange={async() => {
                                 await setChest(!chest)
                                 await setInjuryData({
@@ -441,6 +508,9 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
+
+
+
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
                     <View style={{width: 100}}>

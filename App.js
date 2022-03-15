@@ -95,8 +95,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://10.0.0.46:5001/graphql'     // Home
+	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  // uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });

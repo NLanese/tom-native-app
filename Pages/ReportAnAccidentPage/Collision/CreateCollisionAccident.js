@@ -26,8 +26,12 @@ const CreateCollisionAccident = () => {
                 address: null,
                 phone_number: null
             },
-            extra_info: null,
-            initiated: null
+            collision_report: {
+                legal_fault: null,
+                fire_or_explode: null,
+                towed: null,
+            },
+            extra_info: "",
         })
     ], [])
     

@@ -22,6 +22,7 @@ const ReportAnAccidentButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
+        console.log(website.saved)
         if (website.saved != null){
             setWebsite({current: website.saved, previous: "Home", saved: website.saved})
             if (website.saved == "Report Accident"){
@@ -56,7 +57,7 @@ const ReportAnAccidentButton = () => {
             if (website.saved == "Create An Accident"){
                 navigation.navigate('police_notified')
             }
-            if (website.saved == "Collision Extra Information"){
+            if (website.saved == "Collision Extra Information" || website.saved == "Collsion Extra Information"){
                 navigation.navigate('collision-extra-info')
             }
         
@@ -71,7 +72,7 @@ const ReportAnAccidentButton = () => {
             if (website.saved == "Collision Injury Pictures"){
                 navigation.navigate('collision-injury-specific-pictures')
             }
-            if (website.saved == "Collision Injury Information"){
+            if (website.saved == "Collision Injury Info"){
                 navigation.navigate('collision-injury-report-information')
             }
             if (website.saved == "Collision Injury Extra Information"){
@@ -162,7 +163,7 @@ const ReportAnAccidentButton = () => {
 
     return (
     <View style={ButtonBoxStyles.clickable}>
-        <TouchableOpacity onPress={() => {handleClick()}}>
+        <TouchableOpacity onPress={() => handleClick()}>
             <View style={ButtonBoxStyles.buttonCard}>
                 <Image 
                     style={{

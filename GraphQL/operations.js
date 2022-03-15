@@ -1,8 +1,11 @@
 import { gql } from '@apollo/client';
 import { getOperationDefinition } from '@apollo/client/utilities';
 
-/* ------------------------------ USERS ------------------------------ */
-
+//////////////////////////////////////////
+//                                      //
+//         LANDING MUTATIONS            //   
+//                                      //
+//////////////////////////////////////////
 const SIGNUP = gql`
 mutation Mutation($email: String!, $password: String!, $firstname: String!, $lastname: String!, $phoneNumber: String!, $signUpToken: String!) {
   driverSignUp(email: $email, password: $password, firstname: $firstname, lastname: $lastname, phoneNumber: $phoneNumber, signUpToken: $signUpToken) {
@@ -263,6 +266,7 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
   }
 }
 `;
+
 const LOGIN = gql`
   mutation Mutation($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
@@ -523,6 +527,38 @@ const LOGIN = gql`
   }
 }
 `;
+
+//////////////////////////////////////////
+//                                      //
+//        ACCIDENT MUTATIONS            //   
+//                                      //
+//////////////////////////////////////////
+
+const CREATEACCIDENT = gql`
+  mutation Mutation($name: String!, $location: String!) {
+  createAccident(name: $name, location: $location) {
+    id
+    name
+    location
+  }
+}
+`;
+
+const DRIVER_CREATE_COLLISION_ACCIDENT = gql`
+mutation Mutation($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $collisionReport: JSON!, $extraInfo: String!) {
+  driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specificPictures, contact_info: $contactInfo, collision_report: $collisionReport, extra_info: $extraInfo) {
+    id
+  }
+}
+`
+
+
+
+
+
+
+
+
 const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
@@ -783,15 +819,7 @@ const UPDATEDRIVER = gql`
   }
 }
 `
-const CREATEACCIDENT = gql`
-  mutation Mutation($name: String!, $location: String!) {
-  createAccident(name: $name, location: $location) {
-    id
-    name
-    location
-  }
-}
-`;
+
 const GETDRIVERDATA = gql`
   query Query {
   getDriver {
@@ -1275,7 +1303,6 @@ const DYNAMICUPDATECHATROOM = gql`
   }
 }
 `
-
 const DYNAMICADDDRIVERTOCHAT = gql`
   mutation DynamicUpdateChatroom($role: String!, $guestId: String!, $chatroomId: String!) {
   dynamicAddDriverToChatroom(role: $role, guestId: $guestId, chatroomId: $chatroomId) {
@@ -1334,16 +1361,7 @@ const DRIVERCREATEACCIDENT = gql`
   }
 }
 `
-const DRIVERCREATECOLLISIONACCIDENT = gql`
-  mutation Mutation($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
-  driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specificPictures, contact_info: $contactInfo, extra_info: $extraInfo) {
-    id
-    specific_pictures
-    contact_info
-    extra_info
-  }
-}
-`
+
 const DRIVERCREATEINJURYREPORTFORCOLLISION = gql`
   mutation Mutation($medicalAttention: String!, $immediateAttention: String!, $injury: String!, $contactInfo: JSON!, $specificPictures: JSON!, $painLevel: Int!, $extraInfo: String!, $collisionAccidentId: String, $accidentId: String) {
   driverCreateInjuryAccident(medical_attention: $medicalAttention, immediate_attention: $immediateAttention, injury: $injury, contact_info: $contactInfo, specific_pictures: $specificPictures, pain_level: $painLevel, extra_info: $extraInfo, collisionAccidentId: $collisionAccidentId, accidentId: $accidentId) {
@@ -1431,7 +1449,7 @@ export {
   DRIVERUPDATEACCIDENT,
   DRIVERCREATEINJURYACCIDENT,
   DRIVERCREATEINJURYREPORTFORCOLLISION,
-  DRIVERCREATECOLLISIONACCIDENT,
+  DRIVER_CREATE_COLLISION_ACCIDENT,
   DRIVERCREATEPROPERTYACCIDENT,
   DYNAMICREMOVEDRIVERFROMCHATROOM,
   GETDRIVERCHATROOMS

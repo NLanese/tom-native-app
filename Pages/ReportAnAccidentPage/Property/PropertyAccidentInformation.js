@@ -409,8 +409,8 @@ const PropertyAccidentInformation = () => {
     }
 
     const determineThird = () => {
-        if (contHeight < 1000){
-            setContHeight(1000)
+        if (contHeight < 1200){
+            setContHeight(1200)
         }
         if (pack && (gov || personal)){
             if (thingsHit.length > 0){
