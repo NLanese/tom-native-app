@@ -29,9 +29,9 @@ const CollisionExtraInfo = () => {
     const [completed, setCompleted] = useState(false)
 
     const handleSubmit = async () => {
-        console.log("sherpa")
-        handleMutation().then( (resolved) => {
-            console.log(resolved)
+        console.log(collisionData)
+        return handleMutation().then( (resolved) => {
+            setCompleted(true)
         })
     }
 
@@ -97,7 +97,7 @@ const CollisionExtraInfo = () => {
 
             <View>
                 {completed === true ? (
-                    <View style={{marginLeft: 30, position: 'absolute', marginTop: -100}}>
+                    <View style={{marginLeft: 30, position: 'absolute', marginTop: -90}}>
                         <ContinueButton nextPage={'collision-injury-check'} buttonText={'Done'} nextSite={'Collision Injury Check'} pageName={'collision-extra-info-continue-button'} />
                     </View>
                 ) : null}

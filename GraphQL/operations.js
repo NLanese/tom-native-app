@@ -535,7 +535,7 @@ const LOGIN = gql`
 //////////////////////////////////////////
 
 const CREATEACCIDENT = gql`
-  mutation Mutation($name: String!, $location: String!) {
+  mutation Mutation($name: String!, $location: String! $date: String!, $time: String) {
   createAccident(name: $name, location: $location) {
     id
     name
@@ -545,8 +545,8 @@ const CREATEACCIDENT = gql`
 `;
 
 const DRIVER_CREATE_COLLISION_ACCIDENT = gql`
-mutation Mutation($accidentId: String!, $specificPictures: JSON!, $contactInfo: JSON!, $collisionReport: JSON!, $extraInfo: String!) {
-  driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specificPictures, contact_info: $contactInfo, collision_report: $collisionReport, extra_info: $extraInfo) {
+  mutation Mutation($accidentId: String!, $specific_pictures: JSON!, $contact_info: JSON!, $collision_report: JSON!, $extra_info: String!) {
+    driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specific_pictures, contact_info: $contact_info, collision_report: $collision_report, extra_info: $extra_info) {
     id
   }
 }
