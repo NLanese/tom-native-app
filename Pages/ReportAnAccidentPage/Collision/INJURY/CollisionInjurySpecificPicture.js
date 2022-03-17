@@ -39,7 +39,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
             <Text>TEST FROM COLLISION INJURY SPECIFIC PICTURE</Text>
 
             <View>
-                <ContinueButton nextPage={whichContinue()} nextSite={site} buttonText={'Dones'} pageName={'collision-injury-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={whichContinue()} nextSite={site} buttonText={'Done'} pageName={'collision-injury-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

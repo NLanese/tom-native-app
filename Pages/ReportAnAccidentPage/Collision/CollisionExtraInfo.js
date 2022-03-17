@@ -20,23 +20,25 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const CollisionExtraInfo = () => {
-    const [createCollision, { loading: loading, error: error, data: data }] = useMutation(DRIVER_CREATE_COLLISION_ACCIDENT)
+    const [driverCreateCollisionAccident, { loading: loading, error: error, data: data }] = useMutation(DRIVER_CREATE_COLLISION_ACCIDENT)
 
     const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
 
-    const [collisionId, setCollisionId] = useRecoilState(collisionIdState)
+    const [collisionId, setCollisionId] = useRecoilState(collisionDataState)
+
+    const [user, setUser] = useRecoilState(userState)
+
 
     const [completed, setCompleted] = useState(false)
 
-    const handleSubmit = async () => {
-        console.log(collisionData)
-        return handleMutation().then( (resolved) => {
-            setCompleted(true)
+    const handleSubmit = () => {
+        handleMutation().then(  (resolved) => {
+            console.log(resolved)
         })
     }
 
     const handleMutation = async () => {
-        await createCollision({
+        await driverCreateCollisionAccident({
             variables: {
                 accidentId: collisionData.accidentId,
                 specific_pictures: collisionData.specific_pictures,

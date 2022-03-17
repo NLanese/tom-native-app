@@ -8,11 +8,14 @@ import Title from './LandingComponents/Title';
 import backgroundImage from '../../assets/loginBackground.png'
 import gradient from '../../assets/black-to-clear-screen-gradient.png'
 import blueGradient from '../../assets/blue-gradient.png'
-import Gradient from '../../Components/Gradient';
+
+import { IS_SERVER_READY } from '../../GraphQL/operations';
+import { useQuery } from '@apollo/client';
 
 
 const LandingPage = ({ handleLoggedIn }) => {
 
+    const { loading, error, data, refetch } = useQuery(IS_SERVER_READY)
     const [tab, setTab] = useState(0)
 
     const renderBackground = () => {
@@ -27,6 +30,9 @@ const LandingPage = ({ handleLoggedIn }) => {
             )
         }
     }
+
+    console.log(data)
+    
     return (
         <View style={LandingStyles.container}>
             <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">

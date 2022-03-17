@@ -18,7 +18,8 @@ import { useEffect } from "react";
 
 import { AppStyles } from './Styles/AppStyles';
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, } from '@apollo/client';
+import { onError } from "apollo-link-error";
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from 'apollo-link-http';
 
@@ -27,7 +28,7 @@ import Home from './Pages/HomePage/Home'
 import stateChange from './Hooks/handleToken'
 
 import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
-import ScoreCard from './Pages/ScoreCardPage/ScoreCard'
+import Quality from "./Pages/ScoreCardPage/ScoreCardComponents/Quality"
 
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 
@@ -95,11 +96,22 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  // uri: 'http://10.0.0.46:5001/graphql'     // Home
+	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
+
+// Error Finder
+const errorLink = onError(
+  ({graphQLErrors}) => {
+    if (graphQLErrors){
+      graphQLErrors.map( (message) => {
+        console.log(message)
+      })
+    }
+  }
+)
 
 // Auth for token
 const authLink = setContext((_, { headers }) => {
@@ -172,8 +184,8 @@ export default function App() {
                     {props => <PersonalScoreCard />}
                   </Stack.Screen>
 
-                  <Stack.Screen name='leaderboards'>
-                    {props => <ScoreCard />}
+                  <Stack.Screen name='leaderboard'>
+                    {props => <Quality />}
                   </Stack.Screen>
 
                   <Stack.Screen name='account_information'>

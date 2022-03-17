@@ -11,7 +11,7 @@ import DynamicInput from "../../../Components/DynamicInput";
 import Banner from "../../../Global/Banner"
 import Gradient from "../../../Components/Gradient";
 
-import { DRIVERCREATEACCIDENT } from "../../../GraphQL/operations";
+import { DRIVER_CREATE_ACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles";
@@ -31,7 +31,7 @@ const CreateAccident = ({accident}) => {
 
     const [website, setWebsite] = useRecoilState(websiteState)
     const navigation = useNavigation()
-    const [driverCreateAccount, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATEACCIDENT)
+    const [driverCreateAccount, { loading: loading, error: error, data: data }] = useMutation(DRIVER_CREATE_ACCIDENT)
     const [gLocation, setGeoLocation] = useRecoilState(geoLocation)
     const [accidentStateData, setAccidentDataState] = useRecoilState(accidentDataState)
 

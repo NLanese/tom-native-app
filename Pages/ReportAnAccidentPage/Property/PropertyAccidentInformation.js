@@ -5,7 +5,7 @@ import { Button, Input, CheckBox } from "@ui-kitten/components";
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
+import { DRIVER_CREATE_COLLISION_ACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 
 import { propertyDataState, accidentDataState } from "../../../Recoil/atoms";
@@ -428,14 +428,6 @@ const PropertyAccidentInformation = () => {
 
     console.log("\n")
     console.log(propertyData)
-
-    console.log("\n")
-    console.log("inOrOut")
-    console.log(inOrOut)
-
-    console.log("\n")
-    console.log("thingsHit")
-    console.log(thingsHit)
 
     return (
         <View >

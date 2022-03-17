@@ -27,10 +27,17 @@ const CreateCollisionInjuryReport = ({collision}) => {
     useEffect(() => {
         if (collision){
             setInjuryData({
-                collisionAccidentId: collisionId,
-                medical_attention: null,
-                immediate_attention: null,
-                injury: null,
+                collisionAccidentId: collisionData.id,
+                injury_report: {
+                    medical_attention: null,
+                    concussion: null,
+                    loss_of_con: null,
+                    fracture: null,
+                    life_threatening: null,
+                    fatal: null,
+                    prior: null
+                },
+                injured_areas: null,
                 contact_info: {
                     firstname: null,
                     lastname: null,

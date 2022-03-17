@@ -24,20 +24,20 @@ const PropertyAccidentExtraInformation = () => {
 
 
     const handleSubmit = async () => {
+        console.log(propertyData)
         await driverCreatePropertyAccident({
             variables: {
                 accidentId: propertyData.accidentId,
                 contact_info: propertyData.contact_info,
-                damage_report: damage_report,
+                damage_report: propertyData.damage_report,
                 defective_equip: propertyData.defective_equip,
                 safety_equip: propertyData.safety_equip,
                 specific_pictures: propertyData.specific_pictures,
-                extra_info: propertyData.extra_info
+                extra_info: propertyData.extra_info,
+                types_of_damage: propertyData.types_of_damage
             }
         })
     }
-
-    // console.log(propertyData)
 
     useEffect(() => {
         if (!loading && data) {

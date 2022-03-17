@@ -12,7 +12,7 @@ import DynamicInput from "../../../../Components/DynamicInput";
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 
-import { collisionDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
+import { collisionDataState, injuryDataState, userState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 
@@ -20,7 +20,6 @@ import Template from "../../../../Styles/RAA/RAATemplateStyles"
 import {RAACollisionInfoStyles} from "../../../../Styles/RAA/RAACollisionInfo"
 
 let maxWidth = Dimensions.get('window').width
-let maxHeight = Dimensions.get('window').height
 
 const CollisionInjuryReportInformation = ({collision}) => {
     let route = "collision-injury-report-extra-info"
@@ -38,10 +37,9 @@ const CollisionInjuryReportInformation = ({collision}) => {
 
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
 
-    const [medicalCheck, setMedicalCheck] = useState(false)
-    const [immediateCheck, setImmediateCheck] = useState(false)
+    const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
 
-    const [isActive, setActive] = useState("none")
+    const [user, setUser] = useRecoilState(userState)
 
 //--------------------------------------------------\\
 //                                                  \\
@@ -50,22 +48,90 @@ const CollisionInjuryReportInformation = ({collision}) => {
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V\\
 
     const onMedicalAttentionChange = (isChecked) => {
-        setMedicalCheck(isChecked);
-
         setInjuryData({
             ...injuryData,
-            medical_attention: !medicalCheck
+            injury_report: {
+                ...injuryData.injury_report,
+                medical_attention: isChecked
+            }
         })
     };
 
-    const onImmediateMedicalChange = (isChecked) => {
-        setImmediateCheck(isChecked);
+    const onFatalityChange = (isChecked) => {
+        if (isChecked == "yes"){
+            setInjuryData({
+                ...injuryData,
+                injury_report: {
+                    medical_attention: "yes",
+                    fatal: "yes",
+                    fracture: "Fatal",
+                    concussion: "Fatal",
+                    loss_of_con: "Fatal",
+                    prior: injuryData.prior,
+                    life_threatening: "Fatal"
+                }
+            })
+        }
+        else{
+            setInjuryData({
+                ...injuryData,
+                injury_report: {
+                    ...injuryData.injury_report,
+                    fatal: isChecked
+                }
+            })
+        }
+    };
 
+    const onFractureChange = (isChecked) => {
         setInjuryData({
             ...injuryData,
-            immediate_attention: !immediateCheck
+            injury_report: {
+                ...injuryData.injury_report,
+                fracture: isChecked
+            }
         })
-    };
+    }
+
+    const onConcussionChange = (isChecked) => {
+        setInjuryData({
+            ...injuryData,
+            injury_report: {
+                ...injuryData.injury_report,
+                concussion: isChecked
+            }
+        })
+    }
+
+    const onLossOfConChange = (isChecked) => {
+        setInjuryData({
+            ...injuryData,
+            injury_report: {
+                ...injuryData.injury_report,
+                loss_of_con: isChecked
+            }
+        })
+    }
+
+    const onPriorChange  = (isChecked) => {
+        setInjuryData({
+            ...injuryData,
+            injury_report: {
+                ...injuryData.injury_report,
+                prior: isChecked
+            }
+        })
+    }
+
+    const onLifeThreateningChange  = (isChecked) => {
+        setInjuryData({
+            ...injuryData,
+            injury_report: {
+                ...injuryData.injury_report,
+                life_threatening: isChecked
+            }
+        })
+    }
 
 
 //--------------------------------------------------//
@@ -75,54 +141,202 @@ const CollisionInjuryReportInformation = ({collision}) => {
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
 
-    let initQ1 = "none"
-    let initQ2 = "none"
+    let initQ1 = null         // Medical Attention?
+    let initQ2 = "none"         // Fatal?
+    let initQ3 = "none"         // Fracture?
+    let initQ4 = "none"         // Concussion?
+    let initQ5 = "none"         // Loss of Conscientiousness
+    let initQ6 = "none"         // Any Prior?
+    let initQ7 = "none"         // Life Threatening?
+    
 
+    // Determines ALL the initial values if this page was returned to
     if (injuryData){
-        if (injuryData.medical_attention != null){
-            if (injuryData.medical_attention){
+
+
+        // MEDICAL ATTN
+        if (injuryData.injury_report.medical_attention != null){
+            if (injuryData.injury_report.medical_attention == "yes"){
                 initQ1 = "yes"
             }
             else{
                 initQ1 = "no"
             }
         }
-        if (injuryData.immediate_attention != null){
-            if (injuryData.immediate_attention){
+        ////////////////////////////////////////////////////////
+
+
+        // FATAL
+        if (injuryData.injury_report.fatal != null){
+            if (injuryData.injury_report.fatal == "yes"){
                 initQ2 = "yes"
+                initQ3 = "Fatal"
+                initQ4 = "Fatal"
+                initQ5 = "Fatal"
+                initQ7 = "Fatal"
             }
             else{
                 initQ2 = "no"
             }
         }
+        ////////////////////////////////////////////////////////
+
+
+        // FRACTURE
+        if (injuryData.injury_report.fracture != null){
+            if (injuryData.injury_report.fracture == "yes"){
+                initQ3 = "yes"
+            }
+            else if (injuryData.injury_report.fatal != "yes"){
+                initQ3 = "no"
+            }
+        }
+        ////////////////////////////////////////////////////////
+
+
+        // CONCUSSION
+        if (injuryData.injury_report.concussion != null){
+            if (injuryData.injury_report.concussion == "yes"){
+                initQ4 = "yes"
+            }
+            else if (injuryData.injury_report.fatal != "yes"){
+                initQ4 = "no"
+            }
+        }
+        ////////////////////////////////////////////////////////
+
+
+        // LOSS_OF_CON 
+        if (injuryData.injury_report.loss_of_con != null){
+            if (injuryData.injury_report.loss_of_con == "yes"){
+                initQ5 = "yes"
+            }
+            else if (injuryData.injury_report.fatal != "yes"){
+                initQ5 = "no"
+            }
+        }
+        ////////////////////////////////////////////////////////
+
+        // PRIOR 
+        if (injuryData.injury_report.prior != null){
+            if (injuryData.injury_report.prior == "yes"){
+                initQ6 = "yes"
+            }
+            else{
+                initQ6 = "no"
+            }
+        }
+        ////////////////////////////////////////////////////////
+
+        // LIFE_THREATENING 
+        if (injuryData.injury_report.life_threatening != null){
+            if (injuryData.injury_report.life_threatening == "yes"){
+                initQ7 = "yes"
+            }
+            else if (injuryData.injury_report.fatal != "yes"){
+                initQ7 = "no"
+            }
+        }
+        ////////////////////////////////////////////////////////
     }
 
     // Tracks state for which yes / no buttons are pressed
-    const [q1, setQ1] = useState("None")
-    const [q2, setQ2] = useState("None")
+    const [q1, setQ1] = useState(initQ1)
+    const [q2, setQ2] = useState(initQ2)
+    const [q3, setQ3] = useState(initQ3)
+    const [q4, setQ4] = useState(initQ4)
+    const [q5, setQ5] = useState(initQ5)
+    const [q6, setQ6] = useState(initQ6)
+    const [q7, setQ7] = useState(initQ7)
+
 
     // Self explanatory
     const determineOutline = (yesNo, num) => {
         if (num == 1){
             if (yesNo == q1){
                 if (yesNo == "yes"){
-                    return ({ borderColor: "#0052A2", borderWidth: 4, borderRadius: 100, marginTop: -2})
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
                 }
                 else{
-                    return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
                 }
             }
             else{
                 return RAACollisionInfoStyles.button
             }
         }
-        else{
+        if (num == 2){
             if (yesNo == q2){
                 if (yesNo == "yes"){
-                    return ({ borderColor: "#0052A2", borderWidth: 4, borderRadius: 100, marginTop: -2})
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
                 }
                 else{
-                    return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 3){
+            if (yesNo == q3){
+                if (yesNo == "yes"){
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+                else{
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 4){
+            if (yesNo == q4){
+                if (yesNo == "yes"){
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+                else{
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 5){
+            if (yesNo == q5){
+                if (yesNo == "yes"){
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+                else{
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 6){
+            if (yesNo == q6){
+                if (yesNo == "yes"){
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+                else{
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 7){
+            if (yesNo == q7){
+                if (yesNo == "yes"){
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
+                }
+                else{
+                    return ({ borderColor: "#444", borderWidth: 5, borderRadius: 100, marginTop: -2})
                 }
             }
             else{
@@ -146,8 +360,73 @@ const CollisionInjuryReportInformation = ({collision}) => {
                 return RAACollisionInfoStyles.button
             }
         }
-        else{
+        if (num == 2){
             if (yesNo == q2){
+                if (yesNo == "yes"){
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+                else{
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 3){
+            if (yesNo == q3){
+                if (yesNo == "yes"){
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+                else{
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 4){
+            if (yesNo == q4){
+                if (yesNo == "yes"){
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+                else{
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 5){
+            if (yesNo == q5){
+                if (yesNo == "yes"){
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+                else{
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 6){
+            if (yesNo == q6){
+                if (yesNo == "yes"){
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+                else{
+                    return (RAACollisionInfoStyles.buttonPressed)
+                }
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 7){
+            if (yesNo == q7){
                 if (yesNo == "yes"){
                     return (RAACollisionInfoStyles.buttonPressed)
                 }
@@ -190,8 +469,9 @@ const CollisionInjuryReportInformation = ({collision}) => {
     let initElbows = false
     let initHands = false
 
-    if (injuryData.injury){
-        let injuryInfo = injuryData.injury
+    // assigns saved values
+    if (injuryData.injured_areas){
+        let injuryInfo = injuryData.injured_areas
         if (injuryInfo.head){
             initHead = injuryInfo.head
         }
@@ -262,14 +542,311 @@ const CollisionInjuryReportInformation = ({collision}) => {
 
 //--------------------------------------------------//
 //                                                  //
-//                    Main Render                   //
+//                   Minor Render                   //
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
+const renderOtherQuestions = () => {
+    if (q2 == "no"){
+        return(
+            <View>
+                <Text style={Template.questionText}>To your knowledge, were there any fracture(s) / broken bone(s)?</Text>
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ3("yes")
+                                onFractureChange("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 3)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 3)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ3("no")
+                                onFractureChange("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 3)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 3)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+
+                <Text style={Template.questionText}>To your knowledge, was the individual concussed / suffered a concussion?</Text>
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ4("yes")
+                                onConcussionChange("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 4)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 4)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ4("no")
+                                onConcussionChange("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 4)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 4)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+
+                <Text style={Template.questionText}>To your knowledge, were there any loss of conscientiousness?</Text>
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ5("yes")
+                                onLossOfConChange("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 5)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 5)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ5("no")
+                                onLossOfConChange("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 5)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 5)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+
+                <Text style={Template.questionText}>To your knowledge, were there any prior injuries?</Text>
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ6("yes")
+                                onPriorChange("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 6)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 6)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ6("no")
+                                onPriorChange("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 6)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 6)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <Text style={Template.questionText}>To your knowledge, was/were the injur(ies) life threatening?</Text>
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ7("yes")
+                                onLifeThreateningChange("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 7)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 7)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ7("no")
+                                onLifeThreateningChange("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 7)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 7)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+    if (q2 == "yes"){ 
+        return(
+            <View>
+                <Text style={Template.questionText}>To your knowledge, were there any prior injuries?</Text>
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ6("yes")
+                                onPriorChange("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 6)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 6)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ6("no")
+                                onPriorChange("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 6)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 6)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+}
+
+
+
+
+
+//--------------------------------------------------//
+//                                                  //
+//                    Main Render                   //
+//                                                  //
+//-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+    console.log(injuryData)
+    console.log(user.token)
+    console.log(collisionData.id)
     return (
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: 1500}}>
+            <ScrollView contentContainerStyle={{height: 2500}}>
             <Text style={Template.questionText}>Was nedical attention needed?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
 
@@ -278,7 +855,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ1("yes")
-                            onMedicalAttentionChange(true)
+                            onMedicalAttentionChange("yes")
                         }}
                     >
                         <View style={determineOutline("yes", 1)}>
@@ -299,13 +876,13 @@ const CollisionInjuryReportInformation = ({collision}) => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ1("no")
-                            onMedicalAttentionChange(false)
+                            onMedicalAttentionChange("no")
                         }}
                     >
                         <View style={determineOutline("no", 1)}>
                             <Gradient 
-                                colorOne="#DE0000" 
-                                colorTwo="#DE0000" 
+                                colorOne="#534FFF" 
+                                colorTwo="#15A1F1" 
                                 style={determineSize("no", 1)}
                             >
                                 <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
@@ -316,7 +893,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
 
             </View>
 
-            <Text style={Template.questionText}>Was there immediate medical attention needed?</Text>
+            <Text style={Template.questionText}>Did a Fatality Occur?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
 
                 <View style={RAACollisionInfoStyles.buttonContainer}>
@@ -324,7 +901,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ2("yes")
-                            onImmediateMedicalChange(true)
+                            onFatalityChange("yes")
                         }}
                     >
                         <View style={determineOutline("yes", 2)}>
@@ -345,13 +922,13 @@ const CollisionInjuryReportInformation = ({collision}) => {
                         style={RAACollisionInfoStyles.touchable}
                         onPress={() => {
                             setQ2("no")
-                            onImmediateMedicalChange(false)
+                            onFatalityChange(false)
                         }}
                     >
                         <View style={determineOutline("no", 2)}>
                             <Gradient 
-                                colorOne="#DE0000" 
-                                colorTwo="#DE0000" 
+                                colorOne="#534FFF" 
+                                colorTwo="#15A1F1" 
                                 style={determineSize("no", 2)}
                             >
                                 <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
@@ -361,6 +938,8 @@ const CollisionInjuryReportInformation = ({collision}) => {
                 </View>
 
             </View>
+
+            {renderOtherQuestions()}
 
             <View style={{ marginTop: "0%" }}>
                 <Text style={Template.questionText}>What part(s) of the injured person was hurt?</Text>
@@ -373,7 +952,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setHead(!head)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, head: !head}
+                                    injured_areas: {...injuryData.injured_areas, head: !head}
                                 })
                             }}
                         >
@@ -387,7 +966,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setNeck(!neck)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, neck: !neck}
+                                    injured_areas: {...injuryData.injured_areas, neck: !neck}
                                 })
                             }}
                         >
@@ -401,7 +980,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setShoulder(!shoulder)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, shoulder: !shoulder}
+                                    injured_areas: {...injuryData.injured_areas, shoulder: !shoulder}
                                 })
                             }}
                         >
@@ -410,6 +989,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
                     
                 </View>
+
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
                     <View style={{width: 100}}>
@@ -419,7 +999,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setHips(!hips)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, hips: !hips}
+                                    injured_areas: {...injuryData.injured_areas, hips: !hips}
                                 })
                             }}
                         >
@@ -434,7 +1014,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setWaist(!waist)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, waist: !waist}
+                                    injured_areas: {...injuryData.injured_areas, waist: !waist}
                                 })
                             }}
                         >
@@ -449,7 +1029,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setLowerBack(!lowerBack)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, lowerBack: !lowerBack}
+                                    injured_areas: {...injuryData.injured_areas, lowerBack: !lowerBack}
                                 })
                             }}
                         >
@@ -459,17 +1039,16 @@ const CollisionInjuryReportInformation = ({collision}) => {
 
                 </View>
                 
-
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
                     <View style={{width: 100}}>
                         <CheckBox 
-                            checked={hips} 
+                            checked={chest} 
                             onChange={async() => {
                                 await setChest(!chest)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, chest: !chest}
+                                    injured_areas: {...injuryData.injured_areas, chest: !chest}
                                 })
                             }}
                         >
@@ -484,7 +1063,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setStomach(!stomach)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, stomach: !stomach}
+                                    injured_areas: {...injuryData.injured_areas, stomach: !stomach}
                                 })
                             }}
                         >
@@ -499,7 +1078,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setGroin(!groin)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, groin: !groin}
+                                    injured_areas: {...injuryData.injured_areas, groin: !groin}
                                 })
                             }}
                         >
@@ -508,8 +1087,6 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
-
-
 
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
@@ -520,7 +1097,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setLeg(!leg)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, leg: !leg}
+                                    injured_areas: {...injuryData.injured_areas, leg: !leg}
                                 })
                             }}
                         >
@@ -535,7 +1112,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setKnee(!knee)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, knee: !knee}
+                                    injured_areas: {...injuryData.injured_areas, knee: !knee}
                                 })
                             }}
                         >
@@ -550,7 +1127,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setFoot(!foot)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, foot: !foot}
+                                    injured_areas: {...injuryData.injured_areas, foot: !foot}
                                 })
                             }}
                         >
@@ -559,6 +1136,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
+
                 <View style={{marginLeft: 30, width: maxWidth - 60, marginTop: 5, flexDirection: 'row'}}>
 
                     <View style={{width: 100}}>
@@ -568,7 +1146,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setArm(!arm)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, arm: !arm}
+                                    injured_areas: {...injuryData.injured_areas, arm: !arm}
                                 })
                             }}
                         >
@@ -583,7 +1161,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setElbow(!elbow)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, elbow: !elbow}
+                                    injured_areas: {...injuryData.injured_areas, elbow: !elbow}
                                 })
                             }}
                         >
@@ -598,7 +1176,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                                 await setHand(!hand)
                                 await setInjuryData({
                                     ...injuryData,
-                                    injury: {...injuryData.injury, hand: !hand}
+                                    injured_areas: {...injuryData.injured_areas, hand: !hand}
                                 })
                             }}
                         >
@@ -607,6 +1185,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
 
                 </View>
+
             </View>
 
                 <View style={{ marginTop: 30}}>
@@ -628,6 +1207,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                             inactiveTextStyle={Template.inactiveTextStyle}
 
                             placeholder={"John"}
+                            value={injuryData.contact_info.firstname}
                             onChange={firstname => {
                                 setInjuryData({
                                     ...injuryData,
@@ -663,6 +1243,8 @@ const CollisionInjuryReportInformation = ({collision}) => {
                             inactiveTextStyle={Template.inactiveTextStyle}
 
                             placeholder={"Smith"}
+                            value={injuryData.contact_info.lastname}
+
                             onChange={lastname => {
                                 setInjuryData({
                                     ...injuryData,
@@ -698,6 +1280,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                             inactiveTextStyle={Template.inactiveTextStyle}
 
                             placeholder={"123-456-7890"}
+                            value={injuryData.contact_info.phone_number}
                             onChange={phone_number => {
                                 setInjuryData({
                                     ...injuryData,
@@ -733,6 +1316,7 @@ const CollisionInjuryReportInformation = ({collision}) => {
                             inactiveTextStyle={Template.inactiveTextStyle}
 
                             placeholder={"123 Street, Township"}
+                            value={injuryData.contact_info.address}
                             onChange={address => {
                                 setInjuryData({
                                     ...injuryData,
@@ -749,7 +1333,19 @@ const CollisionInjuryReportInformation = ({collision}) => {
                     </View>
                 </View>
 
-                {injuryData.contact_info.firstname !== null && injuryData.contact_info.lastname !== null && injuryData.contact_info.phone_number !== null && injuryData.contact_info.address !== null ? 
+                {
+                    injuryData.injury_report.medical_attention !== null &&
+                    injuryData.injury_report.fatal !== null &&
+                    injuryData.injury_report.fracture !== null &&
+                    injuryData.injury_report.concussion !== null &&
+                    injuryData.injury_report.loss_of_con !== null &&
+                    injuryData.injury_report.prior !== null &&
+                    injuryData.injury_report.life_threatening !== null &&
+                    injuryData.contact_info.firstname !== null &&
+                    injuryData.contact_info.lastname !== null &&
+                    injuryData.contact_info.phone_number !== null &&
+                    injuryData.contact_info.address !== null
+                 ? 
                 (
                     <View style={{marginLeft: 30, marginTop: 40}}>
                         <ContinueButton nextPage={route} nextSite={site} buttonText={'Done'} pageName={'collision-injury-report-information-continue-button'}/>

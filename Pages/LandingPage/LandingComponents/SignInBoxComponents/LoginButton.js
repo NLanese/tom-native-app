@@ -22,7 +22,10 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
-		useMutation(LOGIN);
+		useMutation(LOGIN, { 
+			onCompleted: (data) => console.log("LOGIN", data),
+			onError: (err) => console.log("ERROR", err)
+		});
 
 	const storeData = async () => {
 		try {
@@ -59,16 +62,33 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 
 	// Handles the Login Click Button
+	// const handleSubmit = async () => {
+	// 	await login({
+	// 		variables: {
+	// 			email: userData.email,
+	// 			password: userData.password,
+	// 		},
+	// 	}).then(() => {
+	// 		setWebsite({current: "Home", previous: "Landing", saved: website.saved})
+	// 	}).catch(error => console.log(error))
+	// }
 	const handleSubmit = async () => {
+		console.log("Sending data", userData)
 		await login({
-			variables: {
-				email: userData.email,
-				password: userData.password,
-			},
-		}).then(() => {
-			setWebsite({current: "Home", previous: "Landing", saved: website.saved})
+		variables: {
+		email: userData.email,
+		password: userData.password,
+		},
 		})
-	}
+		.then(() => {
+		setWebsite({
+		current: "Home",
+		previous: "Landing",
+		saved: website.saved,
+		});
+		})
+		.catch((error) => console.log(error));
+		};
 
 
 // ---------------------------- Handlers ----------------------------- //

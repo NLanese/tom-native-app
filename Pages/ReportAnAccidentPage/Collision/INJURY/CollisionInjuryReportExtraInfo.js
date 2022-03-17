@@ -3,9 +3,9 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'rea
 import { Button, Input } from "@ui-kitten/components";
 import Banner from "../../../../Global/Banner"
 import ContinueButton from "../../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATEINJURYREPORTFORCOLLISION, DRIVERCREATEINJURYACCIDENT } from "../../../../GraphQL/operations";
+import { DRIVER_CREATE_INJURY_ACCIDENT } from "../../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
-import { collisionDataState, accidentDataState, collisionIdState, injuryDataState } from "../../../../Recoil/atoms";
+import { collisionDataState, accidentDataState, injuryDataState } from "../../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import Gradient from "../../../../Components/Gradient";
@@ -19,11 +19,9 @@ let maxHeight = Dimensions.get('window').height
 const CollisionInjuryReportExtraInfo = ({collision}) => {
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
     const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
-    const [collisionId] = useRecoilState(collisionIdState)
-    const [driverCreateInjuryReportForCollision, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATEINJURYREPORTFORCOLLISION) 
-    const [driverCreateInjuryReport, { loading: loading2, error: error2, data: data2 }] = useMutation(DRIVERCREATEINJURYACCIDENT) 
+    const [collisionData] = useRecoilState(collisionDataState)
+    const [driverCreateInjuryReport, { loading: loading2, error: error2, data: data2 }] = useMutation(DRIVER_CREATE_INJURY_ACCIDENT) 
     const [completed, setCompleted] = useState(false)
-    const [isActive, setActive] = useState(false)
 
     const whichContinue = () => {
         if (collision){
@@ -36,18 +34,19 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
 
     const handleMutation =  () => {
         console.log(injuryData)
+        console.log(collisionData)
+        console.log(accidentData.id)
         if (collision){
-            return driverCreateInjuryReportForCollision({
+            return driverCreateInjuryReport({
                 variables: {
-                    collisionAccidentId: collisionId,
                     accidentId: accidentData.id,
-                    medicalAttention: injuryData.medical_attention.toString(),
-                    immediateAttention: injuryData.immediate_attention.toString(),
-                    injury: injuryData.injury,
-                    contactInfo: injuryData.contact_info,
-                    specificPictures: injuryData.specific_pictures,
-                    painLevel: injuryData.pain_level,
-                    extraInfo: injuryData.extra_info
+                    collisionAccidentId: collisionData.id,
+                    contact_info: injuryData.contact_info,
+                    extra_info: injuryData.extra_info,
+                    injured_areas: injuryData.injured_areas,
+                    injury_report: injuryData.injury_report,
+                    pain_level: injuryData.pain_level,
+                    specific_pictures: injuryData.specific_pictures
                 }
             })
         }
@@ -55,22 +54,21 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
             return driverCreateInjuryReport({
                 variables: {
                     accidentId: accidentData.id,
-                    medicalAttention: injuryData.medical_attention.toString(),
-                    immediateAttention: injuryData.immediate_attention.toString(),
-                    injury: injuryData.injury,
-                    contactInfo: injuryData.contact_info,
-                    specificPictures: injuryData.specific_pictures,
-                    painLevel: injuryData.pain_level,
-                    extraInfo: injuryData.extra_info
+                    contact_info: injuryData.contact_info,
+                    extra_info: injuryData.extra_info,
+                    injured_areas: injuryData.injured_areas,
+                    injury_report: injuryData.injury_report,
+                    pain_level: injuryData.pain_level,
+                    specific_pictures: injuryData.specific_pictures
                 }
             })
         }
     }
 
-    const handleSubmit = () => {
-        return handleMutation()
+    const handleSubmit = async () => {
+        return await handleMutation()
             .then( (resolved) => {
-                setCompleted(true)
+                console.log(resolved)
             })
     }
 
