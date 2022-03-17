@@ -18,8 +18,9 @@ const CreateUserInjury = ({accident}) => {
 
     const [accidentData] = useRecoilState(accidentDataState)
 
+    let accidentId
     if (accident){
-        let accidentId = accidentData.id 
+        accidentId = accidentData.id 
     }
 
     let selfInjury

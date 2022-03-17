@@ -71,15 +71,11 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   }
 
   const handleBackClick = () => {
-    console.log(website.previous)
-    console.log(website.previous == "Create Chatroom")
     if (website.previous == "Create Chatroom"){
-      console.log("hit")
       setWebsiteState({current: "Messaging", previous: website.current, saved: website.saved})
       navigation.navigate("messages")
     }
     else{
-      console.log("hit2")
       setWebsiteState({current: website.previous, previous: website.current, saved: website.saved})
       navigation.goBack()
     }

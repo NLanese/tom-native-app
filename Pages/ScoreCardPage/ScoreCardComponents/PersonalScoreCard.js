@@ -298,7 +298,7 @@ const PersonalScoreCard = () => {
                     <Text style={ShiftPlannerStyles.nameText}>
                         {user.firstname} {user.lastname}
                     </Text>
-                    <Text style={ShiftPlannerStyles.hoursText}>
+                    <Text style={{...ScoreCardStyles.keyTitle, marginTop: 8}}>
                         DRIVING SINCE
                     </Text>
                     <Text style={ShiftPlannerStyles.hoursText}>

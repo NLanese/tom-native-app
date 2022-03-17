@@ -164,11 +164,11 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
             </View>
 
                 <View>
-                    {completed === true ? (
+                    {/* {completed === true ? ( */}
                         <View style={{marginLeft: 30, marginTop: -100}}>
                             <ContinueButton nextPage={whichContinue()} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
                         </View>
-                    ) : null}
+                    {/* ) : null} */}
                 </View>
         </View>
     )

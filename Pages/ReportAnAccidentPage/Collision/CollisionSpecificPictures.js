@@ -22,6 +22,8 @@ const CollisionSpecificPictures = () => {
         })
     }, [])
 
+    console.log(collisionData)
+
     return (
         <View>
             <Banner />

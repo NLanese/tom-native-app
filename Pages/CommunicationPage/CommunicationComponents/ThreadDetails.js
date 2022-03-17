@@ -117,10 +117,8 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
     const handleRemoval = (removedId) => {
-        console.log(removedId)
         handleRemovalMutation(removedId).then( (resolved) => {
             let newGuestList = activeThread.guests
-            // console.log(newGuestList)
             newGuestList = newGuestList.map( (guest) => {
                 if (typeof(guest) !== 'undefined'){
                     if (guest.id !== removedId){

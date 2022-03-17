@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'rea
 import { Button, Input } from "@ui-kitten/components";
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATEPROPERTYACCIDENT } from "../../../GraphQL/operations";
+import { DRIVER_CREATE_PROPERTY_ACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 import { propertyDataState, accidentDataState, collisionIdState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -17,7 +17,7 @@ let maxHeight = Dimensions.get('window').height
 
 const PropertyAccidentExtraInformation = () => {
     const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
-    const [driverCreatePropertyAccident, { loading: loading, error: error, data: data }] = useMutation(DRIVERCREATEPROPERTYACCIDENT)
+    const [driverCreatePropertyAccident, { loading: loading, error: error, data: data }] = useMutation(DRIVER_CREATE_PROPERTY_ACCIDENT)
     const [complete, setComplete] = useState(false)
 
     const [isActive, setActive] = useState(false)
@@ -76,7 +76,7 @@ const PropertyAccidentExtraInformation = () => {
                 />
             </View>
 
-            <View style={{marginLeft: 30, marginTop: 70}}>
+            {/* <View style={{marginLeft: 30, marginTop: 100}}>
                 <TouchableOpacity onPress={handleSubmit}>
                     <Gradient
                         colorOne={"#534FFF"}
@@ -91,10 +91,14 @@ const PropertyAccidentExtraInformation = () => {
                         <Text style={Template.buttonText}>Submit</Text>
                     </Gradient>
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
-            <View>
-                {complete === true ? (<ContinueButton nextPage={'check-injury-accident'} buttonTex={'Continue'} pageName={'property-accident-extra-information-continue-button'} />) : null}
+            <View style={{marginLeft: 30, marginTop: 300}}>
+                <Text>
+                {/* {complete === true ?  */}
+                <ContinueButton nextPage={'check-injury-accident'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
+                {/* : null} */}
+                </Text>
             </View>
         </View>
     )

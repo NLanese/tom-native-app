@@ -11,7 +11,7 @@ import DynamicInput from "../../../Components/DynamicInput";
 import { DRIVER_CREATE_COLLISION_ACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 
-import { collisionDataState, accidentDataState, collisionIdState, userState } from "../../../Recoil/atoms";
+import { collisionDataState,  userState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles"
@@ -24,7 +24,7 @@ const CollisionExtraInfo = () => {
 
     const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
 
-    const [collisionId, setCollisionId] = useRecoilState(collisionDataState)
+    const [collision, setCollision] = useRecoilState(collisionDataState)
 
     const [user, setUser] = useRecoilState(userState)
 
@@ -33,12 +33,13 @@ const CollisionExtraInfo = () => {
 
     const handleSubmit = () => {
         handleMutation().then(  (resolved) => {
-            console.log(resolved)
+            setCollision({...collision, id: resolved.data.driverCreateCollisionAccident.id})
+            setCompleted(true)
         })
     }
 
     const handleMutation = async () => {
-        await driverCreateCollisionAccident({
+        return driverCreateCollisionAccident({
             variables: {
                 accidentId: collisionData.accidentId,
                 specific_pictures: collisionData.specific_pictures,
@@ -98,11 +99,11 @@ const CollisionExtraInfo = () => {
             </View>
 
             <View>
-                {completed === true ? (
+                {/* {completed === true ? ( */}
                     <View style={{marginLeft: 30, position: 'absolute', marginTop: -90}}>
                         <ContinueButton nextPage={'collision-injury-check'} buttonText={'Done'} nextSite={'Collision Injury Check'} pageName={'collision-extra-info-continue-button'} />
                     </View>
-                ) : null}
+                {/* ) : null} */}
             </View>
         </View>
     )

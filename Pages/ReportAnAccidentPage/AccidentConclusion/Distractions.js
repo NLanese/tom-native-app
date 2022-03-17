@@ -1,16 +1,24 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Text, Dimensions } from 'react-native'
+import { ScrollView, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import { CheckBox } from '@ui-kitten/components'
 
 import Banner from '../../../Global/Banner'
+import Gradient from '../../../Components/Gradient'
 import ContinueButton from '../../../Global/Buttons/ContinueButton'
 
 import { useRecoilState } from 'recoil'
-import { accidentDataState } from '../../../Recoil/atoms'
+import { accidentDataState, websiteState } from '../../../Recoil/atoms'
 
 import Template from '../../../Styles/RAA/RAATemplateStyles'
 
+import { useNavigation } from "@react-navigation/native";
+
+
 const Distractions = () => {
+
+    const navigation = useNavigation()
+
+    const [website, setWebsite] = useRecoilState(websiteState)
 
     const [weather, setWeather] = useState(null)
     const handleWeatherCheck = (wea) => {
@@ -57,7 +65,38 @@ const Distractions = () => {
                 if (distract != null){
                     return(
                         <View style={{marginLeft: 30, marginTop: 40}}>
-                            <ContinueButton nextPage={"done"} buttonText={"Done"}/>
+                            {/* <ContinueButton nextPage={"home"} buttonText={"Done"}/> */}
+                            <TouchableOpacity onPress={() => {
+                                setWebsite({current: "Home", previous: website.current, saved: "Home"})
+                                navigation.navigate("home")
+                            }}>
+                                <Gradient
+                                    colorOne={colors[0]}
+                                    colorTwo={colors[1]}
+                                    style={{
+                                        height: 100,
+                                        width: 100,
+                                        borderRadius: 50.5,
+                                        justifyContent: 'center',
+                                        alightItems: 'center',
+                                        shadowColor: '#000000',
+                                        shadowOffset: {width: 6, height: 25},
+                                        shadowOpacity: 0.14,
+                                        shadowRadius: 13,
+                                    }}
+                                >
+                                    <Text style={{
+                                        fontFamily: "GilroySemiBold",
+                                        fontSize: 25,
+                                        letterSpacing: -0.5,
+                                        color: '#FFFFFF',
+                                        textAlign: 'center'
+                                    }}
+                                    > 
+                                        Finish 
+                                    </Text>
+                            </Gradient>
+                            </TouchableOpacity>
                         </View>
                     )
                 }

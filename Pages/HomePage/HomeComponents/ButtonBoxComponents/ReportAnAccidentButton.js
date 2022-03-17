@@ -22,7 +22,6 @@ const ReportAnAccidentButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
-        console.log(website.saved)
         if (website.saved != null){
             setWebsite({current: website.saved, previous: "Home", saved: website.saved})
             if (website.saved == "Report Accident"){

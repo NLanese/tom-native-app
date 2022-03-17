@@ -37,7 +37,7 @@ const UserInjuryInformation = ({accident}) => {
 
     // All of the possible injury areas, values for checkboxes and object data
     const possibleInjuries = [
-        "Head", "Neck", "Shoulder(s)", "Chest", "Stomach", "Back", "Arm[s]", "Hand[s]", "Eblow[s]", "Leg[s]", "Knee[s]", "Foot"
+        "Head", "Neck", "Shoulder(s)", "Chest", "Stomach", "Back", "Hips", "Waist", "Groin", "Arm[s]", "Hand[s]", "Eblow[s]", "Leg[s]", "Knee[s]", "Foot"
     ]
 
     // Tracks the selected injuries
@@ -104,6 +104,246 @@ const UserInjuryInformation = ({accident}) => {
         )
     }
 
+    const determinePartThree = () => {
+        return(
+            <View>
+                <Text style={Template.title}>
+                    Were you carrying a package when the injury occurred?
+                </Text>
+                {/* Button Container */}
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    {/* Yes Button */}
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ3("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 3)}>
+                                <Gradient
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 3)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* No Button */}
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ3("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 3)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 3)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            </View>
+        )
+    }
+
+    const determinePartFour = () => {
+        return(
+            <View>
+                <Text style={Template.title}>
+                    Did an animal or pet attack you at a residence?
+                </Text>
+                {/* Button Container */}
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    {/* Yes Button */}
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ4("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 4)}>
+                                <Gradient
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 4)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* No Button */}
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ4("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 4)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 4)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            </View>
+        )
+    }
+
+    const determinePartFourContinue = () => {
+        if (q4 == "no"){
+        return(
+            <View>
+                <Text style={Template.title}>
+                    Did you slip or fall?
+                </Text>
+                {/* Button Container */}
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    {/* Yes Button */}
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ5("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 5)}>
+                                <Gradient
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 5)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* No Button */}
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ5("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 5)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 5)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            </View>
+        )
+        }
+        if (q4 == "yes"){
+            return(
+                <View style={{marginLeft: 30, marginTop: 50}}>
+                    <ContinueButton nextPage={route} buttonText={'Done'} nextSite={site}  pageName={'collision-injury-report-information-continue-button'}/>
+                </View> 
+            )
+        }
+    }
+
+    const determinePartFive = () => {
+        if (q5 == "yes"){
+            return(
+                <View>
+                <Text style={Template.title}>
+                   Were you wearing the Approved Safety Shoes and Maintaining the Three Points of Contact?
+                </Text>
+                {/* Button Container */}
+                <View style={RAACollisionInfoStyles.buttonBox}>
+
+                    {/* Yes Button */}
+                    <View style={RAACollisionInfoStyles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ6("yes")
+                            }}
+                        >
+                            <View style={determineOutline("yes", 6)}>
+                                <Gradient
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("yes", 6)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* No Button */}
+                    <View style={RAACollisionInfoStyles.noButtonContainer}>
+                        <TouchableOpacity 
+                            style={RAACollisionInfoStyles.touchable}
+                            onPress={() => {
+                                setQ6("no")
+                            }}
+                        >
+                            <View style={determineOutline("no", 6)}>
+                                <Gradient 
+                                    colorOne="#534FFF" 
+                                    colorTwo="#15A1F1" 
+                                    style={determineSize("no", 6)}
+                                >
+                                    <Text style={RAACollisionInfoStyles.buttonText}>No</Text>
+                                </Gradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            </View>
+            )
+        }
+    }
+
+    const determineFinalContinue = () => {
+        if (
+            q6 != "None" ||
+            q5 == "no"
+        ){
+            return(
+                <View style={{marginLeft: 30, marginTop: 50}}>
+                    <ContinueButton nextPage={route} buttonText={'Done'} nextSite={site}  pageName={'collision-injury-report-information-continue-button'}/>
+                </View> 
+            )
+        }
+    }
+
     // Renders either the continue button or a driving question
     const determinePartTwo = () => {
         if (q1 == "yes" && !accident){
@@ -127,8 +367,8 @@ const UserInjuryInformation = ({accident}) => {
                             >
                                 <View style={determineOutline("yes", 2)}>
                                     <Gradient
-                                        colorOne="#DE0000" 
-                                        colorTwo="#DE0000"  
+                                        colorOne="#534FFF" 
+                                        colorTwo="#15A1F1" 
                                         style={determineSize("yes", 2)}
                                     >
                                         <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>
@@ -167,8 +407,12 @@ const UserInjuryInformation = ({accident}) => {
         if (q1 == "no"){
             if(count > 0){
                 return(
-                    <View style={{marginLeft: 30, marginTop: 50}}>
-                        <ContinueButton nextPage={route} buttonText={'Done'} nextSite={site} pageName={'collision-injury-report-information-continue-button'}/>
+                    <View>
+                        {determinePartThree()}
+                        {determinePartFour()}
+                        {determinePartFourContinue()}
+                        {determinePartFive()}
+                        {determineFinalContinue()}
                     </View>
                 )
             }
@@ -213,30 +457,57 @@ const UserInjuryInformation = ({accident}) => {
     const [q1, setQ1] = useState("None")
     const [q2, setQ2] = useState("None")
     const [q3, setQ3] = useState("None")
+    const [q4, setQ4] = useState("None")
+    const [q5, setQ5] = useState("None")
+    const [q6, setQ6] = useState("None")
+
+
 
     // Self explanatory
     const determineOutline = (yesNo, num) => {
         if (num == 1){
             if (yesNo == q1){
-                if (yesNo == "no"){
-                    return ({ borderColor: "#0052A2", borderWidth: 4, borderRadius: 100, marginTop: -2})
-                }
-                else{
-                    return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
-                }
+                return ({ borderColor: "#0052A2", borderWidth: 5, borderRadius: 100, marginTop: -2})
             }
             else{
                 return RAACollisionInfoStyles.button
             }
         }
-        else{
+        if (num == 2){
             if (yesNo == q2){
-                if (yesNo == "yes"){
-                    return ({ borderColor: "#A00000", borderWidth: 4, borderRadius: 100, marginTop: -2})
-                }
-                else{
-                    return ({ borderColor: "#0052A2", borderWidth: 4, borderRadius: 100, marginTop: -2})
-                }
+                return ({ borderColor: "#0052A2", borderWidth: 5, borderRadius: 100, marginTop: -2})
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 3){
+            if (yesNo == q3){
+                return ({ borderColor: "#0052A2", borderWidth: 5, borderRadius: 100, marginTop: -2})
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 4){
+            if (yesNo == q4){
+                return ({ borderColor: "#0052A2", borderWidth: 5, borderRadius: 100, marginTop: -2})
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 5){
+            if (yesNo == q5){
+                return ({ borderColor: "#0052A2", borderWidth: 5, borderRadius: 100, marginTop: -2})
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 6){
+            if (yesNo == q6){
+                return ({ borderColor: "#0052A2", borderWidth: 5, borderRadius: 100, marginTop: -2})
             }
             else{
                 return RAACollisionInfoStyles.button
@@ -248,25 +519,47 @@ const UserInjuryInformation = ({accident}) => {
     const determineSize = (yesNo, num) => {
         if (num == 1){
             if (yesNo == q1){
-                if (yesNo == "yes"){
-                    return (RAACollisionInfoStyles.buttonPressed)
-                }
-                else{
-                    return (RAACollisionInfoStyles.buttonPressed)
-                }
+                return (RAACollisionInfoStyles.buttonPressed)
             }
             else{
                 return RAACollisionInfoStyles.button
             }
         }
-        else{
+        if (num == 2){
             if (yesNo == q2){
-                if (yesNo == "yes"){
-                    return (RAACollisionInfoStyles.buttonPressed)
-                }
-                else{
-                    return (RAACollisionInfoStyles.buttonPressed)
-                }
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 3){
+            if (yesNo == q3){
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 4){
+            if (yesNo == q4){
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 5){
+            if (yesNo == q5){
+                return (RAACollisionInfoStyles.buttonPressed)
+            }
+            else{
+                return RAACollisionInfoStyles.button
+            }
+        }
+        if (num == 6){
+            if (yesNo == q6){
+                return (RAACollisionInfoStyles.buttonPressed)
             }
             else{
                 return RAACollisionInfoStyles.button
@@ -322,7 +615,7 @@ const UserInjuryInformation = ({accident}) => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: '130%'}}>
+            <ScrollView contentContainerStyle={{height: '200%'}}>
             <Text style={Template.title}>
                 What did you hurt? Select all that apply
             </Text>
@@ -347,8 +640,8 @@ const UserInjuryInformation = ({accident}) => {
                     >
                         <View style={determineOutline("yes", 1)}>
                             <Gradient
-                                colorOne="#DE0000" 
-                                colorTwo="#DE0000"  
+                                colorOne="#534FFF" 
+                                colorTwo="#15A1F1" 
                                 style={determineSize("yes", 1)}
                             >
                                 <Text style={RAACollisionInfoStyles.buttonText}>Yes</Text>

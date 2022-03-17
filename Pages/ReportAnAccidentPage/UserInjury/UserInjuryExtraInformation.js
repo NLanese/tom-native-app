@@ -6,6 +6,7 @@ import { Button, Input } from "@ui-kitten/components";
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import Gradient from "../../../Components/Gradient";
+import DynamicInput from "../../../Components/DynamicInput";
 
 // import {  } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
@@ -33,21 +34,6 @@ const UserInjuryExtraInformation = ({accident}) => {
     const [isActive, setActive] = useState(false)
     const [completed, setCompleted] = useState(false)
 
-    const determineStyle = () => {
-        if (isActive) {
-            return{
-                style: dynamicStyles.activeInput,
-                color: 'white'
-            }
-        }
-        else {
-            return{
-                style: dynamicStyles.inactiveInput,
-                color: '#adadad'
-            }
-        }
-    }
-
     const handleSubmit = async () => {
         // await -------({
         //     variables: {
@@ -62,23 +48,30 @@ const UserInjuryExtraInformation = ({accident}) => {
             <Banner />
             <Text style={Template.title}>Any Extra Information?</Text>
             <Text style={Template.subTitle}>IF SO, ENTER IT BELOW</Text>
-            <View style={{marginLeft: 30, width: maxWidth - 60, height: 300}}>
-                <Input
-                    onPressIn={() => setActive(true)}
-                    onEndEditing={() => setActive(false)}
-                    height={200}
-                    style={{...Template.neutralInput, marginTop: 35}}
-                    size={'large'}
-                    placeholder={`Please Enter Any Additional Information`}
-                    placeholderTextColor={"white"}
-                    textStyle={{color: "white"}}
-                    onChangeText={extraInfo => {
-                        setSelfInjuryData({
-                            ...selfInjuryData,
-                            extra_info: extraInfo
-                            })
+            <View style={{marginLeft: 30, width: maxWidth - 60, paddingTop: 50, marginBottom: 200}}>
+            <DynamicInput 
+                activeColorOne="#534FFF" 
+                activeColorTwo="#15A1F1"
+                activeTextStyle={Template.activeTextStyle}
+
+                height={50}
+                width={maxWidth - 60}
+
+                borderLeftRightWidth={6}
+                borderTopBottomWidth={6}
+                borderRadius={20}
+
+                inactiveColor="#ddd" 
+                inactiveTextStyle={Template.inactiveTextStyle}
+
+                placeholder={"Any Extra Information Here"}
+                onChange={extraInfo => {
+                    setSelfInjuryData({
+                        ...selfInjuryData,
+                        extra_info: extraInfo
+                        })
                         }}
-                    />                
+            />        
             </View>
             
             <View style={{marginLeft: 30, marginTop: 70}}>
@@ -99,11 +92,11 @@ const UserInjuryExtraInformation = ({accident}) => {
             </View>
 
             <View>
-                {completed === true ? (
+                {/* {completed === true ? ( */}
                     <View style={{marginLeft: 30, position: 'absolute', marginTop: -100}}>
                         <ContinueButton nextPage={route} nextSite={site} buttonText={'Done'} pageName={'collision-extra-info-continue-button'} />
                     </View>
-                ) : null}
+                {/* ) : null} */}
             </View>
         </View>
     )
