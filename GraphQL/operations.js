@@ -292,52 +292,6 @@ const LOGIN = gql`
       phoneNumber
       profilePick
     }
-    accidents {
-      id
-      createdAt
-      name
-      date
-      time
-      location
-      amazon_logo
-      vehicleId
-      number_packages_carried
-      police_report_information
-      weather
-      general_pictures
-      rushed_prior
-      extra_info
-      distracted
-      actions_before_accidents
-      deleted
-      unsafe_conditions
-      filled
-      collisionAccident {
-        id
-        specific_pictures
-        contact_info
-        extra_info
-      }
-      propertyAccident {
-        id
-        address
-        object_hit
-        specific_pictures
-        safety_equipment
-        contact_information
-        extra_info
-      }
-      injuryAccident {
-        id
-        medical_attention
-        immediate_attention
-        injury
-        contact_info
-        specific_pictures
-        pain_level
-        extra_info
-      }
-    }
     managers {
       id
       firstname
@@ -353,19 +307,6 @@ const LOGIN = gql`
     }
     notifiedMessages {
       id
-      createdAt
-      read
-      content
-      from
-      type
-      manager {
-        id
-        firstname
-        lastname
-        phoneNumber
-        profilePick
-        email
-      }
     }
     dsp {
       id
@@ -470,59 +411,6 @@ const LOGIN = gql`
       cxNumber
       deviceId
       message
-    }
-    accidents {
-      id
-      name
-      date
-      time
-      location
-      amazon_logo
-      vehicleId
-      number_packages_carried
-      police_report_information
-      general_pictures
-      weather
-      rushed_prior
-      distracted
-      extra_info
-      actions_before_accidents
-      unsafe_conditions
-      collisionAccident {
-        id
-        specific_pictures
-        contact_info
-        extra_info
-        injuryAccident {
-          id
-          medical_attention
-          immediate_attention
-          injury
-          contact_info
-          specific_pictures
-          pain_level
-          extra_info
-        }
-      }
-      injuryAccident {
-        id
-        medical_attention
-        immediate_attention
-        injury
-        contact_info
-        specific_pictures
-        pain_level
-        extra_info
-      }
-      propertyAccident {
-        id
-        address
-        object_hit
-        specific_pictures
-        safety_equipment
-        contact_information
-        extra_info
-      }
     }
   }
 }

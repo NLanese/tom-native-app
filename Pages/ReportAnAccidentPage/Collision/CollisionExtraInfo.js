@@ -99,11 +99,11 @@ const CollisionExtraInfo = () => {
             </View>
 
             <View>
-                {/* {completed === true ? ( */}
+                {completed === true ? (
                     <View style={{marginLeft: 30, position: 'absolute', marginTop: -90}}>
                         <ContinueButton nextPage={'collision-injury-check'} buttonText={'Done'} nextSite={'Collision Injury Check'} pageName={'collision-extra-info-continue-button'} />
                     </View>
-                {/* ) : null} */}
+                 ) : null} 
             </View>
         </View>
     )

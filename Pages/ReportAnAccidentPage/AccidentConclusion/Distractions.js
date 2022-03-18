@@ -67,12 +67,12 @@ const Distractions = () => {
                         <View style={{marginLeft: 30, marginTop: 40}}>
                             {/* <ContinueButton nextPage={"home"} buttonText={"Done"}/> */}
                             <TouchableOpacity onPress={() => {
-                                setWebsite({current: "Home", previous: website.current, saved: "Home"})
+                                setWebsite({current: "Home", previous: website.current, saved: null})
                                 navigation.navigate("home")
                             }}>
                                 <Gradient
-                                    colorOne={colors[0]}
-                                    colorTwo={colors[1]}
+                                    colorOne="#534FFF"
+                                    colorTwo="#15A1F1"
                                     style={{
                                         height: 100,
                                         width: 100,
