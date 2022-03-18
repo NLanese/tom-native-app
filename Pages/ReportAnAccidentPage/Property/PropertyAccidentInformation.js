@@ -426,9 +426,6 @@ const PropertyAccidentInformation = () => {
     }
 
 
-    console.log("\n")
-    console.log(propertyData)
-
     return (
         <View >
             <Banner />

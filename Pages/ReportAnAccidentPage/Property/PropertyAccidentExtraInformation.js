@@ -24,7 +24,6 @@ const PropertyAccidentExtraInformation = () => {
 
 
     const handleSubmit = async () => {
-        console.log(propertyData)
         await driverCreatePropertyAccident({
             variables: {
                 accidentId: propertyData.accidentId,
@@ -36,14 +35,17 @@ const PropertyAccidentExtraInformation = () => {
                 extra_info: propertyData.extra_info,
                 types_of_damage: propertyData.types_of_damage
             }
+        }).then( (resolved) => {
+            setPropertyData({
+                ...propertyData,
+                id: resolved.data.driverCreatePropertyAccident.id
+            })
+            console.log("hit")
+            setComplete(true)
+            console.log("hit2")
         })
     }
 
-    useEffect(() => {
-        if (!loading && data) {
-            setComplete(true)
-        }
-    }, [data])
 
     return (
         <View>
@@ -76,8 +78,8 @@ const PropertyAccidentExtraInformation = () => {
                 />
             </View>
 
-            {/* <View style={{marginLeft: 30, marginTop: 100}}>
-                <TouchableOpacity onPress={handleSubmit}>
+            <View style={{marginLeft: 30, marginTop: 300}}>
+                <TouchableOpacity onPress={() => handleSubmit()}>
                     <Gradient
                         colorOne={"#534FFF"}
                         colorTwo={"#15A1F1"}
@@ -91,14 +93,12 @@ const PropertyAccidentExtraInformation = () => {
                         <Text style={Template.buttonText}>Submit</Text>
                     </Gradient>
                 </TouchableOpacity>
-            </View> */}
+            </View>
 
-            <View style={{marginLeft: 30, marginTop: 300}}>
-                <Text>
-                {/* {complete === true ?  */}
-                <ContinueButton nextPage={'check-injury-accident'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
-                {/* : null} */}
-                </Text>
+            <View style={{marginLeft: 30, marginTop: -90}}>
+                {complete === true ? 
+                    <ContinueButton nextPage={'check-injury-accident'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
+                 : null} 
             </View>
         </View>
     )

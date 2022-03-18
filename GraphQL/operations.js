@@ -447,15 +447,9 @@ const DRIVER_CREATE_COLLISION_ACCIDENT = gql`
 }
 `
 const DRIVER_CREATE_PROPERTY_ACCIDENT = gql`
-  mutation Mutation($accidentId: String!, $address: String!, $objectHit: String!, $specificPictures: JSON!, $safetyEquipment: JSON!, $contactInfo: JSON!, $extraInfo: String!) {
-  driverCreatePropertyAccident(accidentId: $accidentId, address: $address, object_hit: $objectHit, specific_pictures: $specificPictures, safety_equipment: $safetyEquipment, contact_info: $contactInfo, extra_info: $extraInfo) {
+mutation Mutation($accidentId: String!, $contact_info: JSON!, $damage_report: JSON!, $types_of_damage: JSON!, $defective_equip: JSON, $safety_equip: JSON, $specific_pictures: JSON, $extra_info: JSON) {
+  driverCreatePropertyAccident(accidentId: $accidentId, contact_info: $contact_info, damage_report: $damage_report, types_of_damage: $types_of_damage, defective_equip: $defective_equip, safety_equip: $safety_equip, specific_pictures: $specific_pictures, extra_info: $extra_info) {
     id
-    address
-    object_hit
-    specific_pictures
-    safety_equipment
-    contact_information
-    extra_info
   }
 }
 `
