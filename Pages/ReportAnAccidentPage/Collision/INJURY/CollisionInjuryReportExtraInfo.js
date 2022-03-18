@@ -34,7 +34,7 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
 
     const handleMutation =  () => {
         console.log(injuryData)
-        console.log(collisionData)
+        console.log(collisionData.id)
         console.log(accidentData.id)
         if (collision){
             return driverCreateInjuryReport({
@@ -68,7 +68,11 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const handleSubmit = async () => {
         return await handleMutation()
             .then( (resolved) => {
-                console.log(resolved)
+                setInjuryData({
+                    ...injuryData, 
+                    id: resolved.data.driverCreateInjuryAccident.id
+                })
+                setCompleted(true)
             })
     }
 
@@ -97,14 +101,8 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
                             placeholder={"Number from 1 to 10"}
                             onChange={pain_level => {
                                 setInjuryData({
-                                    ...injuryData,
-                                    contact_info: {
-                                        ...injuryData.contact_info
-                                    },
-                                    specific_pictures: {
-                                        ...injuryData.specific_pictures
-                                    },
-                                    pain_level: parseInt(pain_level)
+                                   ...injuryData,
+                                   pain_level: pain_level
                                 })
                               }}
                         />
@@ -164,11 +162,11 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
             </View>
 
                 <View>
-                    {/* {completed === true ? ( */}
-                        <View style={{marginLeft: 30, marginTop: -100}}>
+                    {completed === true ? (
+                        <View style={{marginLeft: 30, marginTop: -90}}>
                             <ContinueButton nextPage={whichContinue()} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
                         </View>
-                    {/* ) : null} */}
+                    ) : null}
                 </View>
         </View>
     )

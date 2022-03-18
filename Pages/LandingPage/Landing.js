@@ -15,7 +15,6 @@ import { useQuery } from '@apollo/client';
 
 const LandingPage = ({ handleLoggedIn }) => {
 
-    const { loading, error, data, refetch } = useQuery(IS_SERVER_READY)
     const [tab, setTab] = useState(0)
 
     const renderBackground = () => {
@@ -31,7 +30,6 @@ const LandingPage = ({ handleLoggedIn }) => {
         }
     }
 
-    console.log(data)
     
     return (
         <View style={LandingStyles.container}>

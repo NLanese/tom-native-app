@@ -50,6 +50,7 @@ const CollisionExtraInfo = () => {
         })
     }
 
+
     return (
         <View>
             <Banner />

@@ -77,7 +77,13 @@ const CollisionInjuryReportInformation = ({collision}) => {
                 ...injuryData,
                 injury_report: {
                     ...injuryData.injury_report,
-                    fatal: isChecked
+                    fatal: isChecked,
+                    fracture: null,
+                    concussion: null,
+                    loss_of_con: null,
+                    prior: injuryData.prior,
+                    life_threatening: null
+
                 }
             })
         }
