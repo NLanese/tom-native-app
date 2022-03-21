@@ -42,7 +42,7 @@ const UserInjuryExtraInformation = ({accident}) => {
         setCompleted(true)
     }
 
-
+    console.log(selfInjuryData)
     return (
         <View>
             <Banner />

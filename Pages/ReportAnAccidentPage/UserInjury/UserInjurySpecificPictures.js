@@ -13,7 +13,15 @@ import { useRecoilState } from "recoil";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const UserInjurySpecificPicture = () => {
+const UserInjurySpecificPicture = ({accident}) => {
+
+    let route = "user-injury-information"
+    let site  = "Your Own Injury Information"
+    if (accident){
+        route = "user-accident-injury-information"
+        site = "Your Own Accident Injury Information "
+    }
+    
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
 
 
@@ -33,7 +41,7 @@ const UserInjurySpecificPicture = () => {
             <Text>TEST FROM USER INJURY SPECIFIC PICTURES</Text>
 
             <View>
-                <ContinueButton nextPage={'user-injury-information'} nextSite={'Self Injury Details'} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
+                <ContinueButton nextPage={route} nextSite={site} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
             </View>
         </View>
     )

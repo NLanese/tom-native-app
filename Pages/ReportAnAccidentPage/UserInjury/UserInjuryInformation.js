@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Dimensions, TouchableOpacity, ScrollView } from "react-native";
 
 import { CheckBox } from "@ui-kitten/components";
@@ -24,6 +24,8 @@ const UserInjuryInformation = ({accident}) => {
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
 
+    console.log(accident)
+
     // handles the continue route
     let route = 'user-injury-extra-information'
     let site = "Self Injury Extra Information"
@@ -32,12 +34,25 @@ const UserInjuryInformation = ({accident}) => {
         route = 'user-accident-injury-extra-information'
     }
 
+    const determineRouteAndSite = () =>  {
+        if (q4 == "yes"){
+            return(
+                {route: "animal", site: "Animal Incident Details"}
+            )
+        }
+        else {
+            return(
+                {route: route, site: site}
+            )
+        }   
+    }
+
     // Tracks the self injury data
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
 
     // All of the possible injury areas, values for checkboxes and object data
     const possibleInjuries = [
-        "Head", "Neck", "Shoulder(s)", "Chest", "Stomach", "Back", "Hips", "Waist", "Groin", "Arm[s]", "Hand[s]", "Eblow[s]", "Leg[s]", "Knee[s]", "Foot"
+        "Head", "Neck", "Shoulder(s)", "Chest", "Stomach", "Back", "Hips", "Waist", "Groin", "Arm[s]", "Hand[s]", "Elbow[s]", "Leg[s]", "Knee[s]", "Foot"
     ]
 
     // Tracks the selected injuries
@@ -269,7 +284,7 @@ const UserInjuryInformation = ({accident}) => {
         if (q4 == "yes"){
             return(
                 <View style={{marginLeft: 30, marginTop: 50}}>
-                    <ContinueButton nextPage={route} buttonText={'Done'} nextSite={site}  pageName={'collision-injury-report-information-continue-button'}/>
+                    <ContinueButton nextPage={determineRouteAndSite().route} buttonText={'Done'} nextSite={determineRouteAndSite().site}  pageName={'collision-injury-report-information-continue-button'}/>
                 </View> 
             )
         }
@@ -422,7 +437,7 @@ const UserInjuryInformation = ({accident}) => {
     // Renders the continue button for the yes to driving no to third party
     const determinePartTwoContinue = () => {
         if (q1 == "yes"){
-            if (q2 == "no"){{
+            if (q2 == "no" || accident){{
                 if (count > 0){
                     return(
                         <View style={{marginLeft: 30, marginTop: 50}}>
@@ -461,7 +476,27 @@ const UserInjuryInformation = ({accident}) => {
     const [q5, setQ5] = useState("None")
     const [q6, setQ6] = useState("None")
 
+    useEffect(() => {
+        setQ3("None")
+        setQ4("None")
+        setQ5("None")
+        setQ6("None")
+    }, [q2])
 
+    useEffect(() => {
+        setQ4("None")
+        setQ5("None")
+        setQ6("None")
+    }, [q3])
+
+    useEffect(() => {
+        setQ5("None")
+        setQ6("None")
+    }, [q4])
+
+    useEffect(() => {
+        setQ6("None")
+    }, [q5])
 
     // Self explanatory
     const determineOutline = (yesNo, num) => {

@@ -14,6 +14,13 @@ let maxHeight = Dimensions.get('window').height
 
 const CreateUserInjury = ({accident}) => {
 
+    let route = "user-injury-specific-pictures"
+    let site  = "Your Own Injury Pictures"
+    if (accident){
+        route = "user-accident-injury-specific-pictures"
+        site = "Your Own Injury Pictures"
+    }
+
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
 
     const [accidentData] = useRecoilState(accidentDataState)
@@ -63,7 +70,7 @@ const CreateUserInjury = ({accident}) => {
             </Text>
 
             <View style={Styles.continue}>
-                <ContinueButton nextPage={'user-injury-specific-pictures'} nextSite={'Your Own Injury Pictures'} buttonText={'Okay'} pageName={'create-property-accident-continue-button'} />
+                <ContinueButton nextPage={route} nextSite={site} buttonText={'Okay'} pageName={'create-property-accident-continue-button'} />
             </View>
         </View>
     )

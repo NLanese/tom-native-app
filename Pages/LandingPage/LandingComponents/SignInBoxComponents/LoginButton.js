@@ -23,7 +23,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN, { 
-			onCompleted: (data) => console.log("LOGIN", data),
+			onCompleted: (data) => console.log("LOGIN"),
 			onError: (err) => console.log("ERROR", err)
 		});
 
