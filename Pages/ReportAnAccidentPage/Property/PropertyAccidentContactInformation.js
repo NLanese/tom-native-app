@@ -28,8 +28,21 @@ const PropertyAccidentContactInformation = () => {
 //_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V\\
 
 
+
+
     // The details of the accident
     const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
+
+    let route = 'property-accident-safety-equipment'
+    let site  = 'Safety Equipment'
+    if (
+        (propertyData.damage_report.inOrOut == "both" || 
+        propertyData.damage_report.inOrOut == "inside") &&
+        propertyData.types_of_damage.pack == true 
+    ){
+        route = 'property-package-info'
+        site  = 'Package Damage Information'
+    }
 
     // Determines which field the user is in
     const [activeField, setActiveField] = useState("none")
@@ -75,7 +88,7 @@ const PropertyAccidentContactInformation = () => {
            ){
                return(
                     <View style={{marginLeft: 30, marginTop: 50}}>
-                        <ContinueButton nextPage={'property-accident-safety-equipment'} nextSite={"Safety Equipment"}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                        <ContinueButton nextPage={route} nextSite={site}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                     </View>
                )
            }
@@ -93,14 +106,14 @@ const PropertyAccidentContactInformation = () => {
                     if (propertyData.types_of_damage.pack){
                         return(
                             <View style={{marginLeft: 30, marginTop: 50}}>
-                                <ContinueButton nextPage={'property-accident-safety-equipment'} nextSite={"Safety Equipment"}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                                <ContinueButton nextPage={route} nextSite={site}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                             </View>
                         )
                     }
                     else{
                         return(
                             <View style={{marginLeft: 30, marginTop: 50}}>
-                                <ContinueButton nextPage={'property-accident-safety-equipment'}  nextSite={"Safety Equipment"}   buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                                <ContinueButton nextPage={route}  nextSite={site}   buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                             </View>
                         )
                     }
@@ -115,7 +128,7 @@ const PropertyAccidentContactInformation = () => {
                 ){
                     return(
                         <View style={{marginLeft: 30, marginTop: 50}}>
-                            <ContinueButton nextPage={'property-accident-safety-equipment'}  nextSite={"Safety Equipment"}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
+                            <ContinueButton nextPage={route}  nextSite={site}  buttonText={'Done'} pageName={'property-accident-contact-information-continue-button'} />
                         </View>
                     )
                 }
@@ -170,22 +183,7 @@ const PropertyAccidentContactInformation = () => {
                         }}
                     />
                 </View>
-                {/* <Input
-                    onPressIn={() => setActiveField("name")} 
-                    value={name}
-                    textStyle={{color: determineColor("name")}}
-                    onKeyPress={() => setActiveField("name")}
-                    onChangeText={(content) => {
-                        setName(content)
-                        setPropertyData({
-                            ...propertyData,
-                            contact_info: {
-                                ...propertyData.contact_info, name: content
-                            }
-                        })
-                    }}
-                    style={determineStyle("name")}
-                /> */}
+                
 
                 <Text style={Template.title}>
                     What was the Phone Number of the personal property's owner?
@@ -218,22 +216,7 @@ const PropertyAccidentContactInformation = () => {
                         }}
                     />
                 </View>
-                {/* <Input
-                    onPressIn={() => setActiveField("phone")} 
-                    value={phone}
-                    textStyle={{color: determineColor("phone")}}
-                    onKeyPress={() => setActiveField("phone")}
-                    onChangeText={(content) => {
-                        setPhone(content)
-                        setPropertyData({
-                            ...propertyData,
-                            contact_info: {
-                                ...propertyData.contact_info, phoneNumber: content
-                            }
-                        })
-                    }}
-                    style={determineStyle("phone")}
-                /> */}
+            
 
                 <Text style={Template.title}>
                     What is the Home Address of the personal property's owner?
@@ -266,22 +249,7 @@ const PropertyAccidentContactInformation = () => {
                         }}
                     />
                 </View>
-                {/* <Input
-                    onPressIn={() => setActiveField("addy")} 
-                    value={address}
-                    textStyle={{color: determineColor("addy")}}
-                    onKeyPress={() => setActiveField("addy")}
-                    onChangeText={(content) => {
-                        setAddress(content)
-                        setPropertyData({
-                            ...propertyData,
-                            contact_info: {
-                                ...propertyData.contact_info, address: content
-                            }
-                        })
-                    }}
-                    style={determineStyle("addy")}
-                /> */}
+                
                 
             </View>
         )
@@ -381,7 +349,7 @@ const PropertyAccidentContactInformation = () => {
     return (
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: defaultHeight}}>
+            <ScrollView contentContainerStyle={{height: defaultHeight + 50}}>
                 {determineQuestions()}
                 {renderContinue()}
             </ScrollView>

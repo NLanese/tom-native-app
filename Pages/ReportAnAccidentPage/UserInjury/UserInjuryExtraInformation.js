@@ -35,11 +35,7 @@ const UserInjuryExtraInformation = ({accident}) => {
     const [completed, setCompleted] = useState(false)
 
     const handleSubmit = async () => {
-        // await -------({
-        //     variables: {
-               
-        // })
-        setCompleted(true)
+        console.log(selfInjuryData)
     }
 
     console.log(selfInjuryData)
@@ -92,11 +88,11 @@ const UserInjuryExtraInformation = ({accident}) => {
             </View>
 
             <View>
-                {/* {completed === true ? ( */}
-                    <View style={{marginLeft: 30, position: 'absolute', marginTop: -100}}>
+                {completed === true ? (
+                    <View style={{marginLeft: 30, position: 'absolute', marginTop: -90}}>
                         <ContinueButton nextPage={route} nextSite={site} buttonText={'Done'} pageName={'collision-extra-info-continue-button'} />
                     </View>
-                {/* ) : null} */}
+                 ) : null}
             </View>
         </View>
     )

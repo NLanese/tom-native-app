@@ -425,6 +425,7 @@ const PropertyAccidentInformation = () => {
         }
     }
 
+    console.log(propertyData)
 
     return (
         <View >

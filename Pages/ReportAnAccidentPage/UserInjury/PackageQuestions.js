@@ -18,7 +18,7 @@ import ContinueButton from "../../../Global/Buttons/ContinueButton"
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const AnimalQuestions = () => {
+const PackageQuestions = () => {
 /////////////////////////////////////////
 ///                                   ///
 ///       Preliminary Settings        ///
@@ -608,4 +608,4 @@ const AnimalQuestions = () => {
     )
 }
 
-export default AnimalQuestions
+export default PackageQuestions

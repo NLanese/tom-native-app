@@ -74,10 +74,12 @@ import PropertyAccidentInformation from "./Pages/ReportAnAccidentPage/Property/P
 import PropertyAccidentContactInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentContactInformation"
 import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentSafetyEquipment"
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
+import PropertyPackageInfo from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentPackageInformation";
 
 import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident";
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserInjury";
 import AnimalQuestions from "./Pages/ReportAnAccidentPage/UserInjury/AnimalQuestions";
+import PackageQuestions from "./Pages/ReportAnAccidentPage/UserInjury/PackageQuestions";
 
 import UserInjuryInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryInformation";
 import CreateUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CreateUserInjury";
@@ -98,6 +100,7 @@ let state;
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
 	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  // uri: 'http://192.168.1.46:5001/graphql' // Ant's
   // uri: 'http://172.20.10.5:5001/graphql' // Phone
   // uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
@@ -303,6 +306,10 @@ export default function App() {
                     {props => <AnimalQuestions />}
                   </Stack.Screen>
 
+                  <Stack.Screen name="package">
+                    {props => <PackageQuestions />}
+                  </Stack.Screen>
+
                   {/* Accident Self Injury */}
 
                   <Stack.Screen name="check-user-accident-injury">
@@ -453,6 +460,11 @@ export default function App() {
 
                   <Stack.Screen name='property-accident-extra-info'>
                     {props => <PropertyAccidentExtraInformation />}
+                  </Stack.Screen>
+
+
+                  <Stack.Screen name='property-package-info'>
+                    {props => <PropertyPackageInfo />}
                   </Stack.Screen>
 
 
