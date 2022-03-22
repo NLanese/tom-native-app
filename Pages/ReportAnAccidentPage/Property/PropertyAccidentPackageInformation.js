@@ -4,6 +4,7 @@ import { ScrollView, View, Text, Dimensions } from "react-native"
 import Banner from "../../../Global/Banner"
 import Gradient from "../../../Components/Gradient"
 import DynamicInput from "../../../Components/DynamicInput"
+import ContinueButton from "../../../Global/Buttons/ContinueButton"
 
 import { CheckBox } from "@ui-kitten/components"
 
@@ -351,15 +352,6 @@ const PropertyPackageInfo = () => {
                 let possibleLocations = [
                     "Beside my car (on road)", "Beside my car (in driveway)", "On Street", "On Sidewalk", "On Lawn", "On Front Steps"
                 ]
-                const otherEntry = () => {
-                    if (howBrokeInside == "Other"){
-                        return (
-                            <View>
-                                {generateDynamicInput('other_in_car')}
-                            </View>
-                        )
-                    }
-                }
                 return(
                     <View>
                         <Text style={Template.title}>Where was the package when this occured?</Text>
@@ -373,6 +365,9 @@ const PropertyPackageInfo = () => {
     // Determines whether the Continue Button should appear or not
     const renderContinue = () => {
         let passing = true
+        if (q1.length < 1){
+            passing = false
+        }
         if ( q1.includes("Dropped")){
             if (dropped == null){
                 passing = false
@@ -395,8 +390,10 @@ const PropertyPackageInfo = () => {
         }
         if (passing){
             return(
-                
-            )
+                <View style={{marginLeft: 30, marginTop: 50}}>
+                    <ContinueButton nextPage={'property-accident-safety-equipment'} nextSite={'Safety Equipment'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
+                </View>
+                )
         }
     }
 
