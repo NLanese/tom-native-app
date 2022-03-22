@@ -34,6 +34,7 @@ const UserInjurySpecificPicture = ({accident}) => {
         })
     }, [])
 
+    console.log(selfInjuryData)
 
     return (
         <View>

@@ -48,6 +48,7 @@ const CreateUserInjury = ({accident}) => {
                 animal_related: null
             },
             animal_report: {
+                pet: null
             }
         })
     ], [])

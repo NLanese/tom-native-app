@@ -45,8 +45,8 @@ const AnimalQuestions = () => {
                 pet: input
             }
         })
-        changeQ2("None")
-        changeQ3("None")
+        setQ2("None")
+        setQ3("None")
     }
 
     const changeQ2 = (input) => {
@@ -59,7 +59,7 @@ const AnimalQuestions = () => {
 
             }
         })
-        changeQ3(input)
+        setQ3("None")
     }
 
     const changeQ3 = (input) => {
