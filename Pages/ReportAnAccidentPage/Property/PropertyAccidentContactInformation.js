@@ -35,11 +35,7 @@ const PropertyAccidentContactInformation = () => {
 
     let route = 'property-accident-safety-equipment'
     let site  = 'Safety Equipment'
-    if (
-        (propertyData.damage_report.inOrOut == "both" || 
-        propertyData.damage_report.inOrOut == "inside") &&
-        propertyData.types_of_damage.pack == true 
-    ){
+    if ( propertyData.types_of_damage.pack == true  ){
         route = 'property-package-info'
         site  = 'Package Damage Information'
     }
