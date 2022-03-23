@@ -22,19 +22,7 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
-		useMutation(LOGIN, { 
-			onCompleted: (data) => console.log("LOGIN"),
-			onError: (err) => console.log("ERROR", err)
-		});
-
-	const storeData = async () => {
-		try {
-			await AsyncStorage.setItem('@email', userData.email)
-			await AsyncStorage.setItem('@password', userData.password)
-		} catch (e) {
-			console.log(e)
-		}
-	}
+		useMutation(LOGIN);
 
 	// Handles the data changes and reroutes to the logged-in home page
 	useEffect( async () => {

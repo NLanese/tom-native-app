@@ -267,7 +267,6 @@ const CollisionAccidentInformation = () => {
 
     const renderInsuranceInformationButtons = () => {
         if (q1 == "yes"){
-            console.log("hit")
             return (
             <View style={{marginBottom: 20}}>
                 <Text style={RAACollisionInfoStyles.questionText}>Was the other party willing to let you take a picture of their insurance card?</Text>
@@ -700,7 +699,6 @@ const CollisionAccidentInformation = () => {
 
 
 // ------------ RENDER ------------
-    console.log(collisionData)
     return (
         <ScrollView contentContainerStyle={{ height: "200%" }}>
             <Banner />

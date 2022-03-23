@@ -29,7 +29,7 @@ const CheckInjuryAccident = () => {
                 <ContinueButton nextPage={'check-user-accident-injury'} nextSite={"Check Self Injury"} buttonText={'No'} pageName={'check-injury-no-button'} />
             </View>
             <View style={Styles.continue}>
-            <ContinueButton nextPage={'create-injury-report'} nextSite={"Create Injury Report"} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+                <ContinueButton nextPage={'create-injury-report'} nextSite={"Create Injury Report"} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )

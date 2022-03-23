@@ -51,9 +51,16 @@ const CreateCollisionInjuryReport = ({collision}) => {
         }
         else{
             setInjuryData({
-                medical_attention: null,
-                immediate_attention: null,
-                injury: null,
+                injury_report: {
+                    medical_attention: null,
+                    concussion: null,
+                    loss_of_con: null,
+                    fracture: null,
+                    life_threatening: null,
+                    fatal: null,
+                    prior: null
+                },
+                injured_areas: null,
                 contact_info: {
                     firstname: null,
                     lastname: null,

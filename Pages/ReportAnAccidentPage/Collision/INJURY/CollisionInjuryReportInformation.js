@@ -846,9 +846,6 @@ const renderOtherQuestions = () => {
 //                    Main Render                   //
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
-    console.log(injuryData)
-    console.log(user.token)
-    console.log(collisionData.id)
     return (
         <View>
             <Banner />
