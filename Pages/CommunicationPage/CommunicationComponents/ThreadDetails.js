@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { ScrollView, View, Text, TouchableOpacity, TextInput } from "react-native";
 import { Modal } from "@ui-kitten/components";
 import { useRecoilState } from "recoil";
-import { userState } from "../../../Recoil/atoms";
+import { userState, threadState } from "../../../Recoil/atoms";
 
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
@@ -15,7 +15,7 @@ import { ThreadDetailStyles } from "../../../Styles/CommunicationStyles";
 
 import AddContactButton from "./AddContactButton";
 
-const ThreadDetails = ({chatroom, setModalVisible, setActiveThread, activeThread}) => {
+const ThreadDetails = ({chatroom, setModalVisible}) => {
 
 // -------------- Mutations and Queries ----------------
 const {loading: loading, error: error, data: queryData, refetch: refetch} = useQuery(GETDRIVERDATA)
@@ -26,10 +26,18 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
 
 //--------------- Recoil and Local State ---------------
+
+    // User Recoil
     const [user, setUser] = useRecoilState(userState)
 
     // Tracks when chat guests have been removed. Enables useEffect refresh
     const [removal, setRemoval] = useState(false)
+
+    // Tracks Chat Renaming
+    const [newName, setNewName] = useState("")
+
+    // Recoil for thread Data
+    const [activeThread, setActiveThread] = useRecoilState(threadState);
 
 //--------------- Recoil and Local State ---------------
 
@@ -51,12 +59,17 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
     // uses getChatroomNames to generate a card for each guest
     const renderChatroomNames = () => {
+        let addedIds = []
         let namesList = getChatroomNames().map( (guest, index) => {
             if (typeof(guest) == 'undefined' || guest === null){
                 return null
             }
+            if (addedIds.includes(guest.id)){
+                return null
+            }
+            addedIds.push(guest.id)
             return(
-                <View style={ThreadDetailStyles.nameCard}>
+                <View style={ThreadDetailStyles.nameCard} key={index}>
                     <Text style={ThreadDetailStyles.nameText}>{guest.name}</Text>
                     {renderRemoveButtons(guest.id)}
                 </View>
@@ -93,7 +106,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     // Checks if you are the chatroom owner, if so renders the add contacts button
     const renderAddContacts = () => {
         if (chatroom.chatroomOwner.id == user.id){
-            return( <AddContactButton /> )
+            return( <AddContactButton setModalVisible={setModalVisible}/> )
         }
         else{
             return null
@@ -106,13 +119,13 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
     const handleRemoval = (removedId) => {
         handleRemovalMutation(removedId).then( (resolved) => {
             let newGuestList = activeThread.guests
-            console.log(newGuestList.length)
-            newGuestList = newGuestList.map((guest) => {
-                if (guest.id !== removedId){
-                    return guest
+            newGuestList = newGuestList.map( (guest) => {
+                if (typeof(guest) !== 'undefined'){
+                    if (guest.id !== removedId){
+                        return guest
+                    }
                 }
             })
-            console.log(newGuestList)
             setActiveThread({...activeThread, guests: newGuestList})
         })
     }
@@ -130,34 +143,36 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
 
-//--------------------- useEffects ----------------------
-
-    // useEffect( async () => {
-    //     if (removal){
-    //         console.log("hit2")
-    //         await refetch()
-    //         console.log(queryData.getDriver.weeklyReport)
-    //         await setUser(queryData)
-    //     }
-    // }, [removal])
-
-//--------------------- useEffects ----------------------
-
-
     return(
         <View style={ThreadDetailStyles.container}>
-            <TouchableOpacity onPress={() => setModalVisible(false)}> 
-                <View style={ThreadDetailStyles.doneBox}>
-                    <Text style={ThreadDetailStyles.doneText}>Done</Text>
-                </View>
-            </TouchableOpacity>
+            <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
+            
             <View style={ThreadDetailStyles.nameListContainer}>
                 <View style={ThreadDetailStyles.labelBox}>
                     <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
                 </View>
                 {renderChatroomNames()}
             </View>
-            {renderAddContacts()}
+
+            <View>
+                <Text>Chatroom Name</Text>
+                <TextInput
+                    onChange={(value) => setNewName(value)}
+                />
+                <TouchableOpacity>
+                    <Text>Rename Chat</Text>
+                </TouchableOpacity>
+            </View>
+
+            <View>
+                {renderAddContacts()}
+            </View>
+
+            <TouchableOpacity onPress={() => setModalVisible(false)}> 
+                <View style={ThreadDetailStyles.doneBox}>
+                    <Text style={ThreadDetailStyles.doneText}>Done</Text>
+                </View>
+            </TouchableOpacity>
 
         </View>
     )

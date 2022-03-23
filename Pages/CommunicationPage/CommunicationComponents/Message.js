@@ -1,9 +1,14 @@
 import React from "react";
 import { StyleSheet } from 'react-native';
 import { View, Text } from "react-native";
+import Gradient from "../../../Components/Gradient";
+import { Dimensions } from 'react-native';
+
+let maxWidth= Dimensions.get('window').width
+let maxHeight= Dimensions.get('window').height
 
 
-const Message = ({from, content, dateSent}) => {
+const Message = ({from, content, dateSent, displayTime, displayName, displayIcon}) => {
 
     let styleTag = ""
     // let rightNow = Date.now()
@@ -20,34 +25,101 @@ const Message = ({from, content, dateSent}) => {
         am_pm = "PM"
     }
     let fullTimeObj = (month + "-" + day + " " + hour + ":" + min + am_pm)
+
+    const determineTimeSent = () => {
+        if (displayTime){
+            return(
+                <View style={{width: maxWidth, alignItems: 'center', marginLeft: -45}}>
+                    <Text style={{color: '#BBB', textAlign: 'center', fontSize: 11, fontFamily: "GilroySemiBold"}}>{fullTimeObj}</Text>
+                </View>
+            )
+        }
+        else{
+            return null
+        }
+    }
+
+    const determineName = () => {
+        if (displayName){
+            return(
+                <View style={{marginTop: 5, marginLeft: 15, marginBottom: 2}}>
+                    <Text style={{fontFamily: "GilroySemiBold", fontSize: 11, color: "#BBB"}}>
+                        {from.firstname} {from.lastname}
+                    </Text>
+                </View>
+            )
+        }
+        else{
+            return null
+        }
+    }
+
+    const determineIcon = () => {
+        if (displayIcon){
+            return(
+                <View style={{marginTop: -35}}>
+                    <View style={{position: 'relative', height: 25, width: 25, borderRadius: 100, backgroundColor: "red"}} />
+                </View>
+            )
+        }
+        else{
+            return null
+        }
+    }
+
+    const determineWidth = () => {
+        let width = (content.length * 6) + 75
+        if (width > 250){
+            width = 250
+        }
+        return width
+    }
+
     if (from == "You"){
         styleTag = MessageStyles.yourMessages
         return(
-            <View style={styleTag}>
-                <View style={MessageStyles.container}>
+            <View>
+                {determineTimeSent()}
+                <Gradient style={{
+                    ...styleTag,
+                    width: determineWidth(),
+                    marginLeft: 345 - determineWidth()
+                }}
+                    colorTwo={"#DDD"}
+                    colorOne={"#DDD"}
+                >
                     <View>
-                        <Text>{content}</Text>
+                        <Text style={{paddingTop: 15, paddingBottom: 5, paddingRight: 20, paddingLeft: 15, textAlign: 'left', textAlignVertical: 'center', color: '#444'}}>{content}</Text>
                     </View>
-                    <View>
-                     <Text style={{color: 'grey'}}>{fullTimeObj}</Text>
-                    </View>
-                </View>
+                </Gradient>
             </View>
+            
         )
     }
+
+
     else{
         styleTag = MessageStyles.adminMessages
         return(
-            <View style={styleTag}>
-                <View style={MessageStyles.container}>
+            <View style={{marginLeft: 35, height: 'auto', paddingBottom: 2}}>
+                {determineTimeSent()}
+                {determineName()}
+                <Gradient style={{
+                    ...styleTag,
+                    width: determineWidth(),
+                }}
+                    colorTwo={"#534FFF"}
+                    colorOne={"#15A1F1"}
+                >
                     <View>
-                        <Text>{content}</Text>
+                        <Text style={{paddingTop: 15, paddingBottom: 5, paddingRight: 15, paddingLeft: 20, textAlign: 'left', textAlignVertical: 'center', color: '#EEE'}}>{content}</Text>
                     </View>
-                    <View>
-                        <Text style={{color: 'grey'}}>{fullTimeObj}</Text>
-                    </View>
+                </Gradient>
+                <View style={{position: 'relative', marginLeft: -30, justifyContent: 'flex-end'}}>
+                    {determineIcon()}
                 </View>
             </View>
+            
         )
     }
 }
@@ -56,29 +128,14 @@ export default Message
 
 const MessageStyles = StyleSheet.create({
     yourMessages: {
-        borderWidth: .3,
-        borderRadius: 20,
-        marginLeft: 35,
-        marginTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 5,
-        paddingBottom: 5,
-        backgroundColor: '#d6c0ea',
-        borderColor: "#d6c0ea",
+        alignItems: 'flex-end',
+        borderRadius: 15,
+        marginBottom: 10
     },
     
     adminMessages: {
-        borderWidth: .3,
-        borderRadius: 20,
-        marginRight: 35,
-        marginTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 5,
-        paddingBottom: 5,
-        backgroundColor: "#E2E8F1",
-        borderColor: "#E2E8F1",
+        borderRadius: 15,
+        marginBottom: 10
     },
 
     container:{
