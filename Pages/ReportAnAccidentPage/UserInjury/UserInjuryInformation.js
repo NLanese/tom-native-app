@@ -4,7 +4,7 @@ import { View, Text, Dimensions, TouchableOpacity, ScrollView } from "react-nati
 import { CheckBox } from "@ui-kitten/components";
 
 import { useRecoilState } from "recoil";
-import { selfInjuryDataState } from "../../../Recoil/atoms";
+import { selfInjuryDataState, accidentDataState } from "../../../Recoil/atoms";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles";
 import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo";
@@ -48,10 +48,15 @@ const UserInjuryInformation = ({accident}) => {
 
     // Tracks the self injury data
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
+    const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
 
     // All of the possible injury areas, values for checkboxes and object data
     const possibleInjuries = [
-        "Head", "Neck", "Shoulder(s)", "Chest", "Stomach", "Back", "Hips", "Waist", "Groin", "Arm[s]", "Hand[s]", "Elbow[s]", "Leg[s]", "Knee[s]", "Foot", "Ankle[s]"
+        "Head", "Neck", "Shoulder(s)", 
+        "Chest", "Stomach", "Back", 
+        "Hips", "Waist", "Groin", 
+        "Arm[s]", "Hand[s]", "Elbow[s]", 
+        "Leg[s]", "Knee[s]", "Foot",
     ]
 
     // Tracks the selected injuries
@@ -93,7 +98,10 @@ const UserInjuryInformation = ({accident}) => {
                 rComp.push(checkRow)
             }
         })
+        let i = 0
         return rComp.map( (row, index) => {
+            console.log(i)
+            i++
             return(row)
         })
     }

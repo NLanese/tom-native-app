@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, View, Text, Dimensions } from 'react-native'
 import { CheckBox } from '@ui-kitten/components'
 
@@ -27,6 +27,29 @@ const AccidentConclusionQuestions = () => {
     const [q2, setQ2]  = useState("none")
     const [q3, setQ3]  = useState("none")
     const [q4, setQ4]  = useState("none")
+
+    const [report, setReport] = useState({})
+
+    console.log('\n\n\n\n\n')
+
+    useEffect(() => {
+      setReport({
+        main_action: q1,
+        setting1: q2,
+        setting2: q3,
+        specifics: q4
+      })
+    }, [q1, q2, q3, q4])
+
+    useEffect(() => {
+        setAccidentData({
+            ...accidentData,
+            before_accident_report: {...report}
+        })
+    }, [report])
+
+    console.log(report)
+    console.log(accidentData)
 
     const determineChecked = (act) => {
         if (act == q1){
@@ -92,14 +115,14 @@ const AccidentConclusionQuestions = () => {
 //_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
     
 const renderQ2 = () => {
-    if (q1.includes("park") || q1 == "leave" || q1 == "merge"){
+    if (q1.includes("park") || q1 == "leaving-parking" || q1 == "merge"){
         return(
             <View style={{marginTop: 30, marginLeft: 30}}>
                 <ContinueButton buttonText={"Done"} nextPage={'distractions'} nextSite={"Concluding Questions II"}/>
             </View>
         )
     }
-    if (q1 == "right" || q1 == "left"){
+    if (q1 == "made-right-turn" || q1 == "made-left-turn"){
         return(
             <View>
                 <Text style={{...Template.title, marginBottom: 10}}>What best describes the kind of setting for the turn? </Text>
@@ -129,7 +152,7 @@ const renderQ2 = () => {
                             style={{marginTop: 10, marginRight: 10, width: 160}}
                             onChange={() => handleQ2Check("street-to-street")}
                         >
-                            <Text>Side Stree to Side Street</Text>
+                            <Text>Side Street to Side Street</Text>
                         </CheckBox>
                         <CheckBox
                             checked={determineChecked2("any-to-parking")}
@@ -139,26 +162,36 @@ const renderQ2 = () => {
                             <Text>Anything to a Parking Lot</Text>
                         </CheckBox>
                     </View>
+                    <View style={{flexDirection: "row", marginLeft: 15, width: maxWidth - 60}}>
+                        <CheckBox
+                            checked={determineChecked2("4-way-intersection")}
+                            style={{marginTop: 10, marginRight: 10, width: 160}}
+                            onChange={() => handleQ2Check("4-way-intersection")}
+                        >
+                            <Text>4 Way Intersection</Text>
+                        </CheckBox>
+                        
+                    </View>
                 </View>
             </View>
         )
     }
-    if (q1 == "straight"){
+    if (q1 == "driving-straight"){
         return(
             <View>
-                <Text style={Template.title}>Was there a traffic light involved?</Text>
+                <Text style={Template.title}>Was there a traffic light / Stop Sign involved?</Text>
                 <View style={{flexDirection: "row", marginTop: 10, marginLeft: 15, width: maxWidth - 60}}>
                         <CheckBox
-                            checked={determineChecked2("yes")}
+                            checked={determineChecked2("trafficSignal")}
                             style={{marginTop: 10, marginRight: 10, width: 160}}
-                            onChange={() => handleQ2Check("yes")}
+                            onChange={() => handleQ2Check("trafficSignal")}
                         >
                             <Text>Yes</Text>
                         </CheckBox>
                         <CheckBox
-                            checked={determineChecked2("no")}
+                            checked={determineChecked2("noTrafficSignal")}
                             style={{marginTop: 10, marginRight: 10, width: 160}}
-                            onChange={() => handleQ2Check("no")}
+                            onChange={() => handleQ2Check("noTrafficSignal")}
                         >
                             <Text>No</Text>
                         </CheckBox>
@@ -169,11 +202,11 @@ const renderQ2 = () => {
 }
 
 const renderQ3 = () => {
-    if (q2 == "yes"){
+    if (q2 == "trafficSignal"){
         return(
             <View>
                 <Text style={Template.title}>
-                    Choose the answer that best describes what happened at the light
+                    Choose the answer that best describes what happened at the light / Sign
                 </Text>
 
                 <View style={{flexDirection: "row", marginLeft: 15, marginTop: 10, width: maxWidth - 60}}>
@@ -209,11 +242,27 @@ const renderQ3 = () => {
                         <Text>Green Light to Yellow Light</Text>
                     </CheckBox>
                 </View>
+                <View style={{flexDirection: "row", marginLeft: 15, width: maxWidth - 60}}>
+                    <CheckBox
+                        checked={determineChecked3("stopped-at-sign")}
+                        style={{marginTop: 10, marginRight: 10, width: 160}}
+                        onChange={() => handleQ3Check("stopped-at-sign")}
+                    >
+                        <Text>I was stopped at a sign</Text>
+                    </CheckBox>
+                    <CheckBox
+                        checked={determineChecked3("driving-at-sign")}
+                        style={{marginTop: 10, marginRight: 10, width: 160}}
+                        onChange={() => handleQ3Check("driving-at-sign")}
+                    >
+                        <Text>I was driving after a sign</Text>
+                    </CheckBox>
+                </View>
 
             </View>
         )
     }
-    if (q2 == "no"){
+    if (q2 == "noTrafficSignal"){
         return(
             <View style={{marginTop: 15}}>
             <Text style={Template.title}>
@@ -264,22 +313,22 @@ const renderQ3 = () => {
             </View>
         )
     }
-    if (q2.includes("street")){
+    if (q2.includes("street") || q2.includes("intersection")){
         return(
             <View style={{marginTop: 15}}>
                 <Text style={{...Template.title, marginBottom: 10}}>Was there a traffic light involved?</Text>
                 <View style={{flexDirection: "row", marginLeft: 15, width: maxWidth - 60}}>
                         <CheckBox
-                            checked={determineChecked3("yes")}
+                            checked={determineChecked3("trafficSignal")}
                             style={{marginTop: 10, marginRight: 10, width: 160}}
-                            onChange={() => handleQ3Check("yes")}
+                            onChange={() => handleQ3Check("trafficSignal")}
                         >
                             <Text>Yes</Text>
                         </CheckBox>
                         <CheckBox
-                            checked={determineChecked3("no")}
+                            checked={determineChecked3("noTrafficSignal")}
                             style={{marginTop: 10, marginRight: 10, width: 160}}
-                            onChange={() => handleQ3Check("no")}
+                            onChange={() => handleQ3Check("noTrafficSignal")}
                         >
                             <Text>No</Text>
                         </CheckBox>
@@ -290,14 +339,14 @@ const renderQ3 = () => {
 }
 
 const renderQ4 = () => {
-    if (q3.includes("-")){
+    if (q3.includes("-") || q3 == ("noTrafficSignal")){
         return (
             <View style={{marginTop: 50, marginLeft: 30}}>
                 <ContinueButton buttonText={"Done"} nextPage={'distractions'} nextSite={"Concluding Questions II"}/>
             </View>
         )
     }
-    if (q3 == "yes"){
+    if (q3 == "trafficSignal"){
         return(
             <View style={{marginTop: 15}}>
                 <Text style={Template.title}>
@@ -364,16 +413,16 @@ const renderQ5 = () => {
 
                 <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 15, width: maxWidth - 60}}>
                     <CheckBox
-                        checked={determineChecked("park1")}
+                        checked={determineChecked("parked-and-occupied")}
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        onChange={() => handleQ1Check("park1")}
+                        onChange={() => handleQ1Check("parked-and-occupied")}
                     >
                         Parked (I was in the vehicle)
                     </CheckBox>
                     <CheckBox
-                        checked={determineChecked("park2")}
+                        checked={determineChecked("parked-empty")}
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        onChange={() => handleQ1Check("park2")}
+                        onChange={() => handleQ1Check("parked-empty")}
                     >
                         Parked (I was outside the vehicle)
                     </CheckBox>
@@ -382,15 +431,15 @@ const renderQ5 = () => {
                 <View style={{flexDirection: 'row', marginLeft: 15, width: maxWidth - 60}}>
                    <CheckBox
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        checked={determineChecked("right")}
-                        onChange={() => handleQ1Check("right")}
+                        checked={determineChecked("made-right-turn")}
+                        onChange={() => handleQ1Check("made-right-turn")}
                     >
                         Making a Right Turn
                     </CheckBox>
                     <CheckBox
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        checked={determineChecked("left")}
-                        onChange={() => handleQ1Check("left")}
+                        checked={determineChecked("made-left-turn")}
+                        onChange={() => handleQ1Check("made-left-turn")}
                     >
                         Making a Left Turn
                     </CheckBox>
@@ -399,8 +448,8 @@ const renderQ5 = () => {
                 <View style={{flexDirection: 'row', marginLeft: 15, width: maxWidth - 60}}>
                     <CheckBox
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        checked={determineChecked("straight")}
-                        onChange={() => handleQ1Check("straight")}
+                        checked={determineChecked("driving-straight")}
+                        onChange={() => handleQ1Check("driving-straight")}
                     >
                         Driving Straight
                     </CheckBox>
@@ -416,8 +465,8 @@ const renderQ5 = () => {
                 <View style={{flexDirection: 'row', marginLeft: 15, width: maxWidth - 60, marginBottom: 20}}>
                     <CheckBox
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        checked={determineChecked("leave")}
-                        onChange={() => handleQ1Check("leave")}
+                        checked={determineChecked("leaving-parking")}
+                        onChange={() => handleQ1Check("leaving-parking")}
                     >
                         Leaving a parking spot
                     </CheckBox>

@@ -33,7 +33,11 @@ const OwnCarInformation = ({accident}) => {
 
     // All of the possible injury areas, values for checkboxes and object data
     const possibleDamage = [
-        "Door(s)", "Mirror(s)", "Front Bumper", "Headlight(s)", "Tail Light(s)", "Brake Lights(s)", "Rear Bumper", "Trunk", "Interior"
+        "Side Mirror(s)", "Side Door(s)",
+        "Front Bumper", "Windshield",
+        "Roof", "Tire(s) / Hubcap(s)",
+        "Rear Door", "Tail Light(s)",
+        "Interior", "Headlights"
     ]
 
     console.log(accidentState)
@@ -102,6 +106,11 @@ const OwnCarInformation = ({accident}) => {
         )
     }
 
+    // Depending on what options were chosen, you choose driver or passenger side
+    const renderDamageQuestions = () => {
+        let damageKeys = accidentState.selfDamage.damages.keys() 
+    }
+
     // Renders either the continue button or a driving question
     const determinePartOne = () => {
         if (!accident){
@@ -168,9 +177,9 @@ const OwnCarInformation = ({accident}) => {
                     <View>
                     
                     <Text style={Template.title}>
-                       Did the damage to your vehicle happen during a collision with another peson or property?
+                       Did you damage somone else's property?
                     </Text>
-                    <Text style={Template.subtitle}>
+                    <Text style={{...Template.subTitle2, width: maxWidth - 70, marginTop: 8}}>
                         Select no if the damage occured before or after any other described incidents
                     </Text>
 
@@ -237,7 +246,7 @@ const OwnCarInformation = ({accident}) => {
                         Please fill out a multi-party acicdent report by clicking below
                     </Text>
                     <View style={{marginLeft: 30, marginTop: 60}}>
-                        <ContinueButton buttonText={"Okay"} nextPage={"management_notified"} nextSite={'Management Notified'}/>
+                        <ContinueButton buttonText={"Done"} nextPage={"management_notified"} nextSite={'Management Notified'}/>
                     </View>
                </View>
            )
@@ -246,9 +255,17 @@ const OwnCarInformation = ({accident}) => {
        if (!accident && q1 == "no"){
            return(
             <View style={{marginLeft: 30, marginTop: 60}}>
-                <ContinueButton buttonText={"Okay"} nextPage={'accident-conclusion'} nextSite={"Accident Conclusion"}/>
+                <ContinueButton buttonText={"Done"} nextPage={'accident-conclusion'} nextSite={"Accident Conclusion"}/>
             </View>
            )
+       }
+
+       if (accident){
+        return(
+            <View style={{marginLeft: 30, marginTop: 60}}>
+                <ContinueButton buttonText={"Done"} nextPage={'accident-conclusion'} nextSite={"Accident Conclusion"}/>
+            </View>
+        )
        }
     }
 
@@ -352,7 +369,13 @@ const OwnCarInformation = ({accident}) => {
         }
         setAccidentState({
             ...accidentState,
-            selfDamage: {damaged: true, [dam]: !damageSel[dam]}
+            selfDamage: {
+                damaged: true,
+                damages: {
+                    ...accidentState.selfDamage.damages,
+                    [dam] : !damageSel[dam]
+                }
+            }
         })
         setDamageSel({
             ...damageSel,

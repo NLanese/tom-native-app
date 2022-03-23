@@ -36,6 +36,7 @@ const UserInjuryExtraInformation = ({accident}) => {
 
     const handleSubmit = async () => {
         console.log(selfInjuryData)
+        setCompleted(true)
     }
 
     console.log(selfInjuryData)
@@ -66,12 +67,13 @@ const UserInjuryExtraInformation = ({accident}) => {
                         ...selfInjuryData,
                         extra_info: extraInfo
                         })
-                        }}
+                    }
+                }
             />        
             </View>
             
             <View style={{marginLeft: 30, marginTop: 70}}>
-                <TouchableOpacity onPress={handleSubmit}>
+                <TouchableOpacity onPress={() => handleSubmit()}>
                     <Gradient
                         colorOne={"#534FFF"}
                         colorTwo={"#15A1F1"}

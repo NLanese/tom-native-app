@@ -39,11 +39,7 @@ const OwnCarCheck = ({accident}) => {
 
 
     useEffect( ()=> {
-        let selfDamageExtension = { damaged: false, damages: {
-            "Door(s)": null, "Mirror(s)": null, "Headlight(s)": null,
-            "Headlight(s)": null, "Tail Light(s)": null, "Brake Light(s)": null, 
-            "Rear Bumper": null, "Trunk": null, "Interior": null
-        }}
+        let selfDamageExtension = { damaged: false, damages: { }}
         setAccidentState({
             ...accidentState,
             selfDamage: selfDamageExtension
@@ -108,7 +104,7 @@ const Styles = StyleSheet.create({
     },
     noButton: {
         position: 'absolute',
-        marginTop: maxHeight * 0.75,
+        marginTop: maxHeight * 0.765,
         marginLeft: maxWidth * .58,
     },
     continue: {
