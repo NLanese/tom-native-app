@@ -23,12 +23,23 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const [driverCreateInjuryReport, { loading: loading2, error: error2, data: data2 }] = useMutation(DRIVER_CREATE_INJURY_ACCIDENT) 
     const [completed, setCompleted] = useState(false)
 
+    console.log(collision)
+
     const whichContinue = () => {
         if (collision){
             return('collision-injury-check-again')
         }
         else{
             return('injury-check-again')
+        }
+    }
+
+    const whichSite = () => {
+        if (collision){
+            return('Check Other Collision Injury')
+        }
+        else{
+            return('Check Other Injury')
         }
     }
 
@@ -161,7 +172,7 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
                 <View>
                     {completed === true ? (
                         <View style={{marginLeft: 30, marginTop: -90}}>
-                            <ContinueButton nextPage={whichContinue()} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
+                            <ContinueButton nextPage={whichContinue()} nextSite={whichSite()} buttonText={'Done'} pageName={'collision-injury-report-extra-info-continue-button'} />
                         </View>
                     ) : null}
                 </View>

@@ -11,6 +11,9 @@ const CollisionInjurySpecificPictures = ({collision}) => {
     const [collisionData] = useRecoilState(collisionDataState)
     const [injuryData, setInjuryData] = useRecoilState(injuryDataState)
 
+    console.log(collision)
+
+
     let site = "Collision Injury Info"
     if (!collision){
         site = "Injury Info"

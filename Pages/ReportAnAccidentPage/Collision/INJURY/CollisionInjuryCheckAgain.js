@@ -12,6 +12,8 @@ let maxHeight = Dimensions.get('window').height
 const CollisionInjuryCheckAgain = ({collision}) => {
     const navigation = useNavigation()
 
+    console.log(collision)
+
     const whichContinue = () => {
         if (collision){
             return('create-collision-injury-report')
@@ -21,15 +23,38 @@ const CollisionInjuryCheckAgain = ({collision}) => {
         }
     }
 
+    const whichNo = () => {
+        if (collision){
+            return('check-property-accident')
+        }
+        else{
+            return('check-user-accident-injury')
+        }
+    }
+
+    const whichSite = (yn) => {
+        if (yn == "no"){
+            if (collision){
+                return('Check Property Accident')
+            }
+            else{
+                return('Check Self Injury')
+            }
+        }
+        if (yn == "yes"){
+
+        }
+    } 
+
     return (
         <View>
             <Banner />
             <Text style={Template.questionText}>Was another party injured in the accident?</Text>
             <View style={Styles.noButton}>
-                <ContinueButton nextPage={'check-property-accident'} buttonText={'No'} pageName={'collision-check-injury-yes-button'} />
+                <ContinueButton nextPage={whichNo()} buttonText={'No'} nextSite={whichSite('no')} />
             </View>
             <View style={Styles.continue}>
-            <ContinueButton nextPage={whichContinue()} buttonText={'Yes'} pageName={'collision-check-injury-yes-button'} colorOne="#DE0000" colorTwo="#DE0000"/>
+            <ContinueButton nextPage={whichContinue()} buttonText={'Yes'} nextSite={whichSite('yes')} colorOne="#DE0000" colorTwo="#DE0000"/>
             </View>
         </View>
     )

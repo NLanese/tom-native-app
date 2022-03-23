@@ -22,6 +22,9 @@ import {RAACollisionInfoStyles} from "../../../../Styles/RAA/RAACollisionInfo"
 let maxWidth = Dimensions.get('window').width
 
 const CollisionInjuryReportInformation = ({collision}) => {
+
+    console.log(collision)
+
     let route = "collision-injury-report-extra-info"
     let site = "Collision Injury Extra Information"
     if (!collision){
