@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import { CheckBox } from '@ui-kitten/components'
 
@@ -12,14 +12,34 @@ import { accidentDataState, websiteState } from '../../../Recoil/atoms'
 import Template from '../../../Styles/RAA/RAATemplateStyles'
 
 import { useNavigation } from "@react-navigation/native";
+import { split } from '@apollo/client'
 
 
 const Distractions = () => {
-
     const navigation = useNavigation()
 
+ //////// RECOIL STATES /////////   
     const [website, setWebsite] = useRecoilState(websiteState)
+    const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
 
+
+ //////// USE EFFECTS TO UPDATE OBJECT /////////   
+ useEffect(() => {
+    console.log("hit")
+    setAccidentData({
+        ...accidentData,
+        weather_and_distractions: {
+            weather: weather,
+            slippery: slippery,
+            distraction: distract
+        }
+    })
+}, [weather, slippery, distract])
+
+console.log(accidentData)
+
+
+ //////// WEATHER STATES AND HANDLERS /////////   
     const [weather, setWeather] = useState(null)
     const handleWeatherCheck = (wea) => {
         setWeather(wea)
@@ -33,6 +53,8 @@ const Distractions = () => {
         }
     }
 
+
+ //////// SLIPPERY STATES AND HANDLERS /////////   
     const [slippery, setSlippery] = useState(null)
     const handleSlipperyCheck = (slip) => {
         setSlippery(slip)
@@ -46,6 +68,8 @@ const Distractions = () => {
         }
     } 
 
+
+ //////// DISTRACT STATES AND HANDLERS /////////   
     const [distract, setDistract] = useState(null)
     const handleDistractCheck = (dis) => {
         setDistract(dis)
@@ -93,7 +117,7 @@ const Distractions = () => {
                                         textAlign: 'center'
                                     }}
                                     > 
-                                        Finish 
+                                        Done 
                                     </Text>
                             </Gradient>
                             </TouchableOpacity>
