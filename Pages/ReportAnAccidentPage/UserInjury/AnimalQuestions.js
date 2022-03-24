@@ -130,8 +130,6 @@ const AnimalQuestions = () => {
             }
         }
     }
-   
-
 
     // Handles Checkbox Selection or Button Selection
     const handleCheck = (itm, question) => {

@@ -119,8 +119,6 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
       followLimits
       signalLimits
       deliveryCompletionRateLimits
-      scanComplianceLimits
-      callComplianceLimits
       photoOnDeliveryLimits
       deliveryNotRecievedLimits
       topCardLimits
@@ -321,8 +319,6 @@ const LOGIN = gql`
       followLimits
       signalLimits
       deliveryCompletionRateLimits
-      scanComplianceLimits
-      callComplianceLimits
       photoOnDeliveryLimits
       deliveryNotRecievedLimits
       topCardLimits
@@ -581,8 +577,6 @@ const UPDATEDRIVER = gql`
       followLimits
       signalLimits
       deliveryCompletionRateLimits
-      scanComplianceLimits
-      callComplianceLimits
       photoOnDeliveryLimits
       deliveryNotRecievedLimits
       topCardLimits
@@ -842,8 +836,6 @@ const GETDRIVERDATA = gql`
       followLimits
       signalLimits
       deliveryCompletionRateLimits
-      scanComplianceLimits
-      callComplianceLimits
       photoOnDeliveryLimits
       deliveryNotRecievedLimits
       topCardLimits
