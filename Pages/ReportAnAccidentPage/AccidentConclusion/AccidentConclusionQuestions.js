@@ -316,7 +316,7 @@ const renderQ3 = () => {
     if (q2.includes("street") || q2.includes("intersection")){
         return(
             <View style={{marginTop: 15}}>
-                <Text style={{...Template.title, marginBottom: 10}}>Was there a traffic light involved?</Text>
+                <Text style={{...Template.title, marginBottom: 10}}>Was there a traffic light / Street Sign involved?</Text>
                 <View style={{flexDirection: "row", marginLeft: 15, width: maxWidth - 60}}>
                         <CheckBox
                             checked={determineChecked3("trafficSignal")}
@@ -350,7 +350,7 @@ const renderQ4 = () => {
         return(
             <View style={{marginTop: 15}}>
                 <Text style={Template.title}>
-                    Choose the answer that best describes what happened at the light
+                    Choose the answer that best describes what happened at the light / Street Sign
                 </Text>
 
                 <View style={{flexDirection: "row", marginLeft: 15, marginTop: 10, width: maxWidth - 60}}>
@@ -372,18 +372,34 @@ const renderQ4 = () => {
 
                 <View style={{flexDirection: "row", marginLeft: 15, width: maxWidth - 60}}>
                     <CheckBox
-                        checked={determineChecked3("Yellow-Red")}
+                        checked={determineChecked4("Yellow-Red")}
                         style={{marginTop: 10, marginRight: 10, width: 160}}
                         onChange={() => handleQ4Check("Yellow-Red")}
                     >
                         <Text>Yellow Light to Red Light</Text>
                     </CheckBox>
                     <CheckBox
-                        checked={determineChecked3("Green-to-Yellow")}
+                        checked={determineChecked4("Green-to-Yellow")}
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        onChange={() => handleQ4Check("street-to-highway")}
+                        onChange={() => handleQ4Check("Green-to-Yellow")}
                     >
                         <Text>Green Light to Yellow Light</Text>
+                    </CheckBox>
+                </View>
+                <View style={{flexDirection: "row", marginLeft: 15, width: maxWidth - 60}}>
+                    <CheckBox
+                        checked={determineChecked4("stopped-at-sign")}
+                        style={{marginTop: 10, marginRight: 10, width: 160}}
+                        onChange={() => handleQ4Check("stopped-at-sign")}
+                    >
+                        <Text>I was stopped at a sign</Text>
+                    </CheckBox>
+                    <CheckBox
+                        checked={determineChecked4("driving-at-sign")}
+                        style={{marginTop: 10, marginRight: 10, width: 160}}
+                        onChange={() => handleQ4Check("driving-at-sign")}
+                    >
+                        <Text>I was driving after a sign</Text>
                     </CheckBox>
                 </View>
 
@@ -406,7 +422,7 @@ const renderQ5 = () => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: "130%"}}>
+            <ScrollView contentContainerStyle={{height: "150%"}}>
                 <Text style={Template.title}>
                     What were you doing leading up to the accident?
                 </Text>

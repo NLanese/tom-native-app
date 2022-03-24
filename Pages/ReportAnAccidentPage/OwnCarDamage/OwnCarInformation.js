@@ -6,7 +6,7 @@ import { CheckBox } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
 
 import { useRecoilState } from "recoil";
-import { accidentDataState } from "../../../Recoil/atoms";
+import { accidentDataState, injuryDataState } from "../../../Recoil/atoms";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles";
 import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo";
@@ -30,6 +30,7 @@ const OwnCarInformation = ({accident}) => {
 
     // Tracks the self injury data
     const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
+    const [injuryAccident] = useRecoilState(injuryDataState)
 
     // All of the possible injury areas, values for checkboxes and object data
     const possibleDamage = [
@@ -41,6 +42,11 @@ const OwnCarInformation = ({accident}) => {
     ]
 
     console.log(accidentState)
+
+    if (injuryAccident){
+        console.log(injuryAccident)
+        accident = true
+    }
 
     // Tracks the selected damages
     const [damageSel, setDamageSel] = useState(accidentState.selfDamage.damages)

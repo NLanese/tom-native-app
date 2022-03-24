@@ -26,15 +26,8 @@ const Distractions = () => {
  //////// USE EFFECTS TO UPDATE OBJECT /////////   
  useEffect(() => {
     console.log("hit")
-    setAccidentData({
-        ...accidentData,
-        weather_and_distractions: {
-            weather: weather,
-            slippery: slippery,
-            distraction: distract
-        }
-    })
-}, [weather, slippery, distract])
+    
+}, [])
 
 console.log(accidentData)
 
@@ -89,10 +82,17 @@ console.log(accidentData)
                 if (distract != null){
                     return(
                         <View style={{marginLeft: 30, marginTop: 40}}>
-                            {/* <ContinueButton nextPage={"home"} buttonText={"Done"}/> */}
                             <TouchableOpacity onPress={() => {
-                                setWebsite({current: "Home", previous: website.current, saved: null})
-                                navigation.navigate("home")
+                                setAccidentData({
+                                    ...accidentData,
+                                    weather_and_distractions: {
+                                        weather: weather,
+                                        slippery: slippery,
+                                        distraction: distract
+                                    }
+                                })
+                                setWebsite({current: "Concluding Questions III", previous: website.current, saved: "Concluding Questions III"})
+                                navigation.navigate("final")
                             }}>
                                 <Gradient
                                     colorOne="#534FFF"
