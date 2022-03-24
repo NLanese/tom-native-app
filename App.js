@@ -92,6 +92,7 @@ import AccidentConclusion from "./Pages/ReportAnAccidentPage/AccidentConclusion/
 import AccidentConclusionQuestions from "./Pages/ReportAnAccidentPage/AccidentConclusion/AccidentConclusionQuestions";
 import Distractions from "./Pages/ReportAnAccidentPage/AccidentConclusion/Distractions";
 import FinalQuestions from "./Pages/ReportAnAccidentPage/AccidentConclusion/FinalQuestions";
+import FinishedPage from "./Pages/ReportAnAccidentPage/AccidentConclusion/FinishedPage";
 
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 import UserInjuryExtraInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryExtraInformation";
@@ -100,10 +101,10 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
   // uri: 'http://192.168.1.46:5001/graphql' // Ant's
   // uri: 'http://172.20.10.5:5001/graphql' // Phone
-  // uri: 'http://10.0.0.46:5001/graphql'     // Home
+  uri: 'http://10.0.0.46:5001/graphql'     // Home
   // uri: 'http://192.168.1.85:5001/graphql'  // Handheld
 	// uri: 'https://warm-retreat-50469.herokuapp.com/graphql'
 });
@@ -488,7 +489,11 @@ export default function App() {
                     {props => <FinalQuestions />}
                   </Stack.Screen>
 
-                  <Stack.Screen name='accident-info-continue'>
+                  <Stack.Screen name='finish'>
+                    {props => <FinishedPage />}
+                  </Stack.Screen>
+
+                  {/* <Stack.Screen name='accident-info-continue'>
                     {props => <AccidentInfoContinue />}
                   </Stack.Screen>
 
@@ -506,7 +511,7 @@ export default function App() {
 
                   <Stack.Screen name='accident-extra-information'>
                     {props => <AccidentExtraInformation />}
-                  </Stack.Screen>
+                  </Stack.Screen> */}
 
                   <Stack.Screen name='profile-picture'>
                     {props => <ProfilePicture />}
