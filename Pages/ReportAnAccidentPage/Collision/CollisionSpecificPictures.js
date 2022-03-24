@@ -4,16 +4,28 @@ import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
-import { collisionDataState, accidentDataState } from "../../../Recoil/atoms";
+import { collisionDataState, accidentDataState, cameraPermissionState, cameraTypeState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
+import { Camera } from 'expo-camera';
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const CollisionSpecificPictures = () => {
     const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
+    // Camera permissions and device type state
+    const [hasPermission, setHasPermission] = useRecoilState(cameraPermissionState)
+    const [cameraType, setCameraType] = useRecoilState(cameraTypeState)
 
     useEffect(() => {
+        // console.log('useEffect called');
+        // Get permission to use the camera
+        (async () => {
+            // console.log('in async')
+            const { status } = await Camera.requestCameraPermissionsAsync()
+            // console.log(status)
+        })()
+
         setCollisionData({
             ...collisionData,
             specific_pictures: {
