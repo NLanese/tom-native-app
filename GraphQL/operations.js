@@ -351,8 +351,6 @@ const LOGIN = gql`
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
-      scanCompliance
-      callCompliance
       attendedDeliveryAccuracy
       dnr
       podOpps
