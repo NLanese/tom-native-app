@@ -17,7 +17,7 @@ const CollisionSpecificPictures = () => {
         setCollisionData({
             ...collisionData,
             specific_pictures: {
-                'Pic One': "Test url"
+                'Pic One': "Test url" // Change this to setCollisionData({...collisionData, specific_pictures: { pic_one: <input>} })
             },
         })
     }, [])
