@@ -113,6 +113,7 @@ const errorLink = onError(
   ({graphQLErrors}) => {
     if (graphQLErrors){
       graphQLErrors.map( (message) => {
+        console.log(message)
         throw new Error(message)
       })
     }
