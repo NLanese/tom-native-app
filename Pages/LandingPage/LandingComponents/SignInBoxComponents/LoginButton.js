@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
 import { useRecoilState } from 'recoil'
-import { userState } from '../../../../Recoil/atoms'
+import { cameraPermissionState, userState } from '../../../../Recoil/atoms'
 import { websiteState } from '../../../../Recoil/atoms';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -43,6 +43,8 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 
 	const [website, setWebsite] = useRecoilState(websiteState)
 
+	const [hasCameraPermission, setHasCameraPermission] = useRecoilState(cameraPermissionState)
+
 // ----------------------------- States ------------------------------ //
 //																	   //
 //																	   //
@@ -75,6 +77,15 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 		saved: website.saved,
 		});
 		})
+		// .then(() => {
+		// 	console.log(`Pre-check for permissions: ${hasCameraPermission}`)
+		// 	const permissions = await Camera.requestCameraPermissionsAsync()
+		// 	if (hasCameraPermission === 'denied') {
+		// 		console.log('in denial check')
+		// 		setHasCameraPermission(null)
+		// 	}
+		// 	console.log(`After checking current permissions for denial: ${hasCameraPermission}`)
+		// })
 		.catch((error) => console.log(error));
 		};
 
