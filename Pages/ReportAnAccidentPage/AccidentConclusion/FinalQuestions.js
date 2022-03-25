@@ -3,8 +3,10 @@ import { View, Text, Dimensions, TouchableOpacity, ScrollView } from "react-nati
 
 import { CheckBox } from "@ui-kitten/components";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { useRecoilState } from "recoil";
-import { accidentDataState } from "../../../Recoil/atoms";
+import { accidentDataState, websiteState} from "../../../Recoil/atoms";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles";
 import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo";
@@ -17,6 +19,7 @@ import ContinueButton from "../../../Global/Buttons/ContinueButton"
 let maxWidth = Dimensions.get('window').width
 
 const FinalQuestions = () => {
+    const navigation = useNavigation()
 /////////////////////////////////////////
 ///                                   ///
 ///       Preliminary Settings        ///
@@ -24,6 +27,7 @@ const FinalQuestions = () => {
 /////////////////////////////////////////
 
     const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
+    const [website, setWebsite] = useRecoilState(websiteState)
 
     console.log("\n\n\n")
 
@@ -331,9 +335,8 @@ const FinalQuestions = () => {
                             }
                         })
                         console.log(accidentState)
-
-                        // setWebsite({current: "Concluding Questions III", previous: website.current, saved: "Concluding Questions III"})
-                        // navigation.navigate("final")
+                        setWebsite({current: "Finished Reporting", previous: website.current, saved: "Finished Reporting"})
+                        navigation.navigate("finish")
                     }}>
                         <Gradient
                             colorOne="#534FFF"
