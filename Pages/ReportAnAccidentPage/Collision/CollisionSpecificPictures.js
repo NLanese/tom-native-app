@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import Banner from "../../../Global/Banner"
@@ -8,6 +8,7 @@ import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState, cameraPermissionState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 import { Camera } from 'expo-camera';
+import { Alert } from "react-native-web";
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
@@ -18,6 +19,11 @@ const CollisionSpecificPictures = () => {
     // Camera permissions and device type state
     const [hasPermission, setHasPermission] = useRecoilState(cameraPermissionState)
     const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
+    const [showCamera, setShowCamera] = useState(false)
+    const [image, setImage] = useState(null)
+
+    // Camera ref to enable picture taking
+    const cameraRef = useRef(null)
 
     useEffect(() => {
         // Get permission to use the camera
@@ -33,35 +39,105 @@ const CollisionSpecificPictures = () => {
 
         setCollisionData({
             ...collisionData,
-            specific_pictures: {
-                'Pic One': "Test url" // Change this to setCollisionData({...collisionData, specific_pictures: { pic_one: <input>} })
-            },
+            specific_pictures: [] // Change this to setCollisionData({...collisionData, specific_pictures: { pic_one: <input>} })
         })
     }, [hasPermission])
+
+    // Function for taking a photo
+    const takePhoto = async () => {
+        if (cameraRef) {
+            console.log('taking picture')
+            try {
+                let photo = await cameraRef.current.takePictureAsync({
+                    allowsEditing: true,
+                    aspect: [4, 3],
+                    // base64: true,
+                    quality: 1
+                })
+                console.log(photo)
+                return photo
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 
     return (
         <View style={Styles.container}>
             <Banner />
-                <Camera style={Styles.camera} type={cameraType}>
-                    <View style={Styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={Styles.button}
-                        onPress={() => {
-                            setCameraType(
-                                cameraType === Camera.Constants.Type.back
-                                ? Camera.Constants.Type.front
-                                : Camera.Constants.Type.back
-                            );
-                        }}>
-                        <Text style={Styles.text}> Flip </Text>
-                    </TouchableOpacity>
+                {showCamera ? 
+                    <Camera style={Styles.camera} type={cameraType} ref={cameraRef}>
+                        <View style={Styles.buttonContainer}>
+                            <TouchableOpacity
+                                style={Styles.button}
+                                onPress={() => {
+                                    setCameraType(
+                                        cameraType === Camera.Constants.Type.back
+                                        ? Camera.Constants.Type.front
+                                        : Camera.Constants.Type.back
+                                    );
+                                }}>
+                                <Text style={Styles.text}> Flip </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity 
+                            style={Styles.button}
+                            onPress={async () => {
+                                    const r = await takePhoto()
+                                    if (!r.cancelled) {
+                                        setImage(r.uri)
+                                        let images = [...collisionData.specific_pictures];
+                                        images.push(r.uri)
+                                        setCollisionData({
+                                            ...collisionData,
+                                            specific_pictures: images
+                                        })
+                                        // console.log(images)
+                                    }
+                                    // alert(`DEBUG: ${JSON.stringify(r)}`)
+                                    setShowCamera(false)
+                                }  
+                            }
+                            >
+                                <Text style={Styles.text}> Take Photo </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity 
+                            style={Styles.button}
+                            onPress={async () => {
+                                setShowCamera(false)
+                            }  
+                            }
+                            >
+                                <Text style={Styles.text}> Cancel </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Camera>
+                :
+                    // When camera is NOT showing
+                    <View style={Styles.container}>
+                        <View style={Styles.buttonContainer}>
+                            <View style={Styles.imageBox}>
+                                {image && (
+                                    <Image 
+                                        source={{ uri: image }}
+                                        style={Styles.img}
+                                    />
+                                )}
+                            <TouchableOpacity 
+                                style={Styles.button}
+                                onPress={async () => {
+                                        setShowCamera(true)
+                                    }  
+                                }
+                                >
+                                <Text style={Styles.text}> Open Camera </Text>
+                            </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={Styles.continue}>
+                            <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
+                        </View>
                     </View>
-                </Camera>
-
-            <View style={Styles.continue}>
-                <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
-            </View>
-
+                }
         </View>
     )
 }
@@ -98,16 +174,27 @@ const Styles = StyleSheet.create({
         backgroundColor: 'transparent',
         flexDirection: 'row',
         margin: 20,
+        padding: 50
     },
     button: {
-        flex: 0.1,
+        flex: 1,
         alignSelf: 'flex-end',
         alignItems: 'center',
     },
     text: {
         fontSize: 18,
         color: 'white',
+        fontWeight: 'bold'
     },
+    imageBox: {
+        width: '100%',
+        alignItems: 'center'
+    },
+    img: {
+        width: 200,
+        height: 200,
+
+    }
 })
 
 export default CollisionSpecificPictures
