@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Text } from 'react-native'
 
 import { useRecoilState } from "recoil";
-import { accidentDataState } from "../../../Recoil/atoms";
+import { accidentDataState, userState } from "../../../Recoil/atoms";
 
 import { useMutation } from "@apollo/client";
 
@@ -12,6 +12,11 @@ import Banner from "../../../Global/Banner";
 import Template from "../../../Styles/RAA/RAATemplateStyles";
 
 const FinishedPage = () => {
+
+    const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
+    const [user] = useRecoilState(userState)
+
+    console.log(user.token)
 
     return(
         <View>
