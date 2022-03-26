@@ -45,6 +45,11 @@ export const collisionIdState = atom({
 	default: false
 })
 
+export const ownCarDataState = atom({
+	key: 'ownCarDataState',
+	default: false
+})
+
 export const injuryDataState = atom({
 	key: 'injuryDataState',
 	default: false

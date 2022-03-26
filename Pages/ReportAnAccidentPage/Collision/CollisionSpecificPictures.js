@@ -8,7 +8,6 @@ import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState, cameraPermissionState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 import { Camera } from 'expo-camera';
-import { Alert } from "react-native-web";
 
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
