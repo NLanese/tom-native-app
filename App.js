@@ -96,6 +96,7 @@ import FinishedPage from "./Pages/ReportAnAccidentPage/AccidentConclusion/Finish
 
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 import UserInjuryExtraInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryExtraInformation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let state;
 
@@ -158,7 +159,7 @@ export default function App() {
   const [loggedIn, setloggedIn] = useState(false)
 
 	const handleLoggedIn = () => {
-		state = stateChange('')
+    state = stateChange('')
 		setloggedIn(!loggedIn)
 	}
 

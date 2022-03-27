@@ -15,7 +15,7 @@ import stateChange from '../../../../Hooks/handleToken'
 import { useNavigation } from '@react-navigation/native';
 
 
-const LoginButton = ({ userData, handleLoggedIn }) => {
+const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 	const navigation = useNavigation()
 
 // ---------------------------- Mutations ---------------------------- //
@@ -63,12 +63,26 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 	// 	}).catch(error => console.log(error))
 	// }
 	const handleSubmit = async () => {
-		console.log("Sending data", userData)
 		await login({
 		variables: {
 		email: userData.email,
 		password: userData.password,
 		},
+		})
+		// Store email and password to local storage if Remember Me option is selected
+		.then(async () => {
+			console.log(`checked: ${checked}`)
+			if (checked) {
+				// Check and see if email and password are in AsyncStorage
+				const email = await AsyncStorage.getItem('@email')
+				const password = await AsyncStorage.getItem('@password')
+				await AsyncStorage.setItem('@remember_User', 'true')
+				// If email and password aren't there, save them to local storage
+				if (email === null && password === null) {
+					await AsyncStorage.setItem('@email', userData.email)
+					await AsyncStorage.setItem('@password', userData.password)
+				}
+			}
 		})
 		.then(() => {
 		setWebsite({
