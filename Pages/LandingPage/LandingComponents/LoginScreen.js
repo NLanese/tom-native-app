@@ -23,6 +23,18 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
         await AsyncStorage.setItem('@remember_User', checked.toString())
     }, [setChecked])
 
+    // const isChecked = async () => {
+    //     const rememberUser = await AsyncStorage.getItem('@remember_User')
+    //     if (remembmerUser === 'true') {
+    //         return true
+    //     }
+    //     else {
+    //         return false
+    //     }
+    // }
+
+
+
     return(
         <View style={SignInBoxStyles.container}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{borderColor: 'red', borderWidth: 2}}>
@@ -32,8 +44,8 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                         Login
                     </Text>
                 </View>
-                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput}/></View>
-                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput}/></View>
+                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} userData={userData}/></View>
+                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} userData={userData}/></View>
                 <View style={SignInBoxStyles.loginButton}>
                     <LoginButton 
                         userData={userData} 

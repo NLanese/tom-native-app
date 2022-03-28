@@ -6,7 +6,7 @@ import { Input } from '@ui-kitten/components';
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
-const Email = ({ handleInput,IableToLogin }) => {
+const Email = ({ handleInput, userData}) => {
     const dynamicStyles = StyleSheet.create({
         activeInput: {
             backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
@@ -47,6 +47,7 @@ const Email = ({ handleInput,IableToLogin }) => {
     return (
         <View>
             <Input
+                value={userData.email}
                 onPressIn={() => setActive(true)}
                 onEndEditing={() => setActive(false)}
                 style={determineStyle().style}

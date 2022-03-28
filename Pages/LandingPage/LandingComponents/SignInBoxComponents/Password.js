@@ -7,7 +7,7 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 
-const Email = ({ handleInput}) => {
+const Email = ({ handleInput, userData}) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
@@ -49,6 +49,7 @@ const Email = ({ handleInput}) => {
     return (
         <View>
             <Input
+                value={userData.password}
                 onPressIn={() => setActive(true)}
                 onEndEditing={() => setActive(false)}
                 style={determineStyle().style}
