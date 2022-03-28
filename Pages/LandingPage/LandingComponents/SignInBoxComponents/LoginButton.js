@@ -12,11 +12,9 @@ import { LOGIN } from '../../../../GraphQL/operations';
 
 import stateChange from '../../../../Hooks/handleToken'
 
-import { useNavigation } from '@react-navigation/native';
 
 
 const LoginButton = ({ userData, handleLoggedIn }) => {
-	const navigation = useNavigation()
 
 // ---------------------------- Mutations ---------------------------- //
 
@@ -50,18 +48,6 @@ const LoginButton = ({ userData, handleLoggedIn }) => {
 //																	   //
 // ---------------------------- Handlers ----------------------------- //
 
-
-	// Handles the Login Click Button
-	// const handleSubmit = async () => {
-	// 	await login({
-	// 		variables: {
-	// 			email: userData.email,
-	// 			password: userData.password,
-	// 		},
-	// 	}).then(() => {
-	// 		setWebsite({current: "Home", previous: "Landing", saved: website.saved})
-	// 	}).catch(error => console.log(error))
-	// }
 	const handleSubmit = async () => {
 		console.log("Sending data", userData)
 		await login({

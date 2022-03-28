@@ -8,10 +8,10 @@ import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import Gradient from "../../../Components/Gradient";
 import DynamicInput from "../../../Components/DynamicInput";
 
-// import {  } from "../../../GraphQL/operations";
+import { DRIVER_CREATE_SELF_INJURY_ACCIDENT } from "../../../GraphQL/operations";
 import { useMutation } from "@apollo/client";
 
-import { selfInjuryDataState } from "../../../Recoil/atoms";
+import { selfInjuryDataState, accidentDataState, userState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import Template from "../../../Styles/RAA/RAATemplateStyles"
@@ -20,7 +20,7 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const UserInjuryExtraInformation = ({accident}) => {
-
+    const [driverCreateSelfInjuryAccident, { loading: loading, error: error, data: data }] = useMutation(DRIVER_CREATE_SELF_INJURY_ACCIDENT)
 
     let route = 'check-self-car-damage'
     let site = "Check Own Car Damage"
@@ -31,15 +31,33 @@ const UserInjuryExtraInformation = ({accident}) => {
     // const [ ----, { loading: loading, error: error, data: data }] = useMutation( )
 
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
+    const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
+    const [user] = useRecoilState(user.token)
+
+    console.log(userState.token)
+
+
     const [isActive, setActive] = useState(false)
     const [completed, setCompleted] = useState(false)
 
-    const handleSubmit = async () => {
-        console.log(selfInjuryData)
-        setCompleted(true)
+    const handleSubmit = () => {
+        return handleMutation().then(resolved => {
+            setCompleted(true)
+        })
     }
 
-    console.log(selfInjuryData)
+    const handleMutation = () => {
+        return driverCreateSelfInjuryAccident({
+            variables: {
+                accidentId: accidentState.id,
+                injuries: selfInjuryData.injuries,
+                injury_report: selfInjuryData.injury_report,
+                extra_info: selfInjuryData.extra_info,
+                specific_pictures: selfInjuryData.specific_pictures,
+            }
+        })
+    }
+
     return (
         <View>
             <Banner />

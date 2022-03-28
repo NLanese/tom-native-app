@@ -50,19 +50,19 @@ const ShiftPlanner = () => {
             {
                 id: 12345,
                 createdAt: "2022-02-26T15:48:08",
-                sundayDate: "03/13/2022",
+                sundayDate: "03/27/2022",
                 sundayHours: "9am-5pm",
-                mondayDate: "03/14/2022",
+                mondayDate: "03/28/2022",
                 mondayHours: "9am-5pm",
-                tuesdayDate: "03/15/2022",
+                tuesdayDate: "03/29/2022",
                 tuesdayHours: "9am-5pm",
-                wednesdayDate: "03/16/2022",
+                wednesdayDate: "03/30/2022",
                 wednesdayHours: "9am-5pm",
-                thursdayDate: "03/17/2022",
+                thursdayDate: "03/31/2022",
                 thursdayHours: "9am-5pm",
-                fridayDate: "03/18/2022",
+                fridayDate: "03/32/2022",
                 fridayHours: "9am-5pm",   
-                saturdayDate: "03/19/2022",
+                saturdayDate: "03/33/2022",
                 saturdayHours: "9am-5pm",
                 phoneId: "1234",
                 deviceId: "5678",
@@ -222,7 +222,7 @@ const ShiftPlanner = () => {
         }
         else{
 
-            if (dateIndex < 6){
+            if (dateIndex < thisWeeksShift.length - 1){
                 return(
                     <TouchableOpacity onPress={() => setDateIndex(dateIndex + 1)}>
                         <Gradient
@@ -264,6 +264,10 @@ const ShiftPlanner = () => {
                 )
             }
         }
+    }
+
+    const renderShiftItems = () => {
+
     }
 
 

@@ -12,10 +12,8 @@ const SignOutButton = ({ handleModal, handleLoggedIn }) => {
     const navigation = useNavigation()
 
     const handleSubmit = async () => {
-        await setButtonLoading(true)
-        await handleLoggedIn(false)
-        await navigation.navigate('/')
-        await setUserData({})
+        await handleLoggedIn()
+        await navigation.navigate("/")
         await handleModal()
     }
 

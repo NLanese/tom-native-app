@@ -23,8 +23,6 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const [driverCreateInjuryReport, { loading: loading2, error: error2, data: data2 }] = useMutation(DRIVER_CREATE_INJURY_ACCIDENT) 
     const [completed, setCompleted] = useState(false)
 
-    console.log(collision)
-
     const whichContinue = () => {
         if (collision){
             return('collision-injury-check-again')
@@ -76,11 +74,12 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const handleSubmit = async () => {
         return await handleMutation()
             .then( (resolved) => {
+                console.log(resolved)
                 setInjuryData({
                     ...injuryData, 
                     id: resolved.data.driverCreateInjuryAccident.id
                 })
-                setCompleted(true)
+                // setCompleted(true)
             })
     }
 
