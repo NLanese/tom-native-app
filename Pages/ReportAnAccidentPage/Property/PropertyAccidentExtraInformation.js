@@ -36,13 +36,12 @@ const PropertyAccidentExtraInformation = () => {
                 types_of_damage: propertyData.types_of_damage
             }
         }).then( (resolved) => {
+            console.log(resolved)
             setPropertyData({
                 ...propertyData,
                 id: resolved.data.driverCreatePropertyAccident.id
             })
-            console.log("hit")
             setComplete(true)
-            console.log("hit2")
         })
     }
 
@@ -97,7 +96,7 @@ const PropertyAccidentExtraInformation = () => {
 
             <View style={{marginLeft: 30, marginTop: -90}}>
                 {complete === true ? 
-                    <ContinueButton nextPage={'check-injury-accident'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
+                    <ContinueButton nextPage={'post-property-instructions'} nextSite={'Post Property Damage Instructions'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
                  : null} 
             </View>
         </View>

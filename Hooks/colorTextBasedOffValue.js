@@ -1,4 +1,5 @@
 const colorTextBasedOnValue = (value, name, startAtTop, dspPreferences, colorPallete) => {
+    console.log(name)
     if (startAtTop){
         if (value >= dspPreferences[name].fantastic){
             return colorPallete.fantastic

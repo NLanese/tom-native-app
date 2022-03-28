@@ -1,10 +1,13 @@
 import React from "react";
 import { View, TouchableOpacity, Text } from 'react-native'
 
+import { useNavigation } from "@react-navigation/native";
+
 import { useRecoilState } from "recoil";
-import { accidentDataState } from "../../../Recoil/atoms";
+import { accidentDataState, websiteState } from "../../../Recoil/atoms";
 
 import { useMutation } from "@apollo/client";
+import { DRIVER_UPDATE_ACCIDENT } from "../../../GraphQL/operations";
 
 import Gradient from "../../../Components/Gradient"
 import Banner from "../../../Global/Banner";
@@ -12,6 +15,37 @@ import Banner from "../../../Global/Banner";
 import Template from "../../../Styles/RAA/RAATemplateStyles";
 
 const FinishedPage = () => {
+    const navigation = useNavigation()
+
+    const [complete_accident, { loading: loading, error: error, data: data }] = useMutation(DRIVER_UPDATE_ACCIDENT)
+
+    const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
+    const [website, setWebsite] = useRecoilState(websiteState)
+
+    const handleMutation = async () => {
+        return (
+            complete_accident({
+                variables: {
+                    accidentId: accidentState.id,
+                    accident_report: accidentState.accident_report,
+                    has_logo: accidentState.has_logo,
+                    police_report: accidentState.police_report,
+                    before_accident_report: accidentState.before_accident_report,
+                    selfDamage: accidentState.selfDamage,
+                    weather_and_distractions: accidentState.weather_and_distractions
+                },
+            })
+        )
+    }
+
+    const handleCompletion = () => {
+        console.log("hit")
+        return handleMutation().then( resolved => {
+            console.log(resolved)
+            // setWebsite({current: "Home", previous: null, saved: null})
+            // navigation.navigate("home")
+        })
+    }
 
     return(
         <View>
@@ -23,7 +57,7 @@ const FinishedPage = () => {
 
             <View style={{marginLeft: 30, marginTop: 130}}>
                 <TouchableOpacity onPress={() => {
-                    console.log(accidentState)
+                    handleCompletion()
                 }}>
                     <Gradient
                         colorOne="#534FFF"
