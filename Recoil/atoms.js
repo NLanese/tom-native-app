@@ -27,11 +27,26 @@ export const accidentDataState = atom({
 
 export const collisionDataState = atom({
 	key: 'collisionDataState',
-	default: false
+	default: null
+})
+
+export const cameraPermissionState = atom({
+	key: 'cameraPermissionState',
+	default: null
+})
+
+export const cameraTypeState = atom({
+	key: 'cameraTypeState',
+	default: null
 })
 
 export const collisionIdState = atom({
 	key: 'collisionIdState',
+	default: false
+})
+
+export const ownCarDataState = atom({
+	key: 'ownCarDataState',
 	default: false
 })
 

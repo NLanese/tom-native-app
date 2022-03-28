@@ -1,0 +1,6 @@
+module Pods_TomApp {
+  umbrella header "Pods-TomApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
