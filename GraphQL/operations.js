@@ -418,7 +418,7 @@ const IS_SERVER_READY = gql`
 
 //////////////////////////////////////////
 //                                      //
-//        ACCIDENT MUTATIONS            //   
+//         ACCIDENT CREATORS            //   
 //                                      //
 //////////////////////////////////////////
 
@@ -437,6 +437,9 @@ const DRIVER_CREATE_COLLISION_ACCIDENT = gql`
   mutation Mutation($accidentId: String!, $specific_pictures: JSON!, $contact_info: JSON!, $collision_report: JSON!, $extra_info: String!) {
     driverCreateCollisionAccident(accidentId: $accidentId, specific_pictures: $specific_pictures, contact_info: $contact_info, collision_report: $collision_report, extra_info: $extra_info) {
     id
+    accident{
+      id
+    }
   }
 }
 `
@@ -444,6 +447,9 @@ const DRIVER_CREATE_PROPERTY_ACCIDENT = gql`
 mutation Mutation($accidentId: String!, $contact_info: JSON!, $damage_report: JSON!, $types_of_damage: JSON!, $defective_equip: JSON, $safety_equip: JSON, $specific_pictures: JSON, $package_report: JSON $extra_info: JSON) {
   driverCreatePropertyAccident(accidentId: $accidentId, contact_info: $contact_info, damage_report: $damage_report, types_of_damage: $types_of_damage, defective_equip: $defective_equip, safety_equip: $safety_equip, specific_pictures: $specific_pictures, package_report: $package_report, extra_info: $extra_info) {
     id
+    accident{
+      id
+    }
   }
 }
 `
@@ -451,13 +457,89 @@ const DRIVER_CREATE_INJURY_ACCIDENT = gql`
 mutation Mutation($accidentId: String!, $contact_info: JSON!, $injured_areas: JSON!, $injury_report: JSON!, $pain_level: String, $specific_pictures: JSON, $extra_info: String, $collisionAccidentId: String) {
   driverCreateInjuryAccident(accidentId: $accidentId, contact_info: $contact_info, injured_areas: $injured_areas, injury_report: $injury_report, pain_level: $pain_level, specific_pictures: $specific_pictures, extra_info: $extra_info, collisionAccidentId: $collisionAccidentId) {
     id
+    accident{
+      id
+    }
+  }
+}
+`
+const DRIVER_CREATE_SELF_INJURY_ACCIDENT = gql`
+mutation Mutation($accidentId: String!, $injuries: JSON!, $injury_report: JSON!, $animal_report: JSON, $extra_info: String, $specific_pictures: JSON) {
+  driverCreateSelfInjuryAccident(accidentId: $accidentId, injuries: $injuries, injury_report: $injury_report, animal_report: $animal_report, extra_info: $extra_info, specific_pictures: $specific_pictures) {
+    id
+    accident{
+      id
+    }
   }
 }
 `
 
+//////////////////////////////////////////
+//                                      //
+//         ACCIDENT UPDATORS            //   
+//                                      //
+//////////////////////////////////////////
 
 
-
+const DRIVER_UPDATE_ACCIDENT = gql`
+mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: String, $police_report: JSON, $selfDamage: JSON, $before_accident_report: JSON, $weather_and_distractions: JSON) {
+  driverUpdateAccident(accidentId: $accidentId, accident_report: $accident_report, has_logo: $has_logo, police_report: $police_report, selfDamage: $selfDamage, before_accident_report: $before_accident_report, weather_and_distractions: $weather_and_distractions) {
+    id
+    createdAt
+    name
+    date
+    time
+    location
+    accident_report
+    has_logo
+    police_report
+    before_accident_report
+    weather_and_distractions
+    selfDamage
+    collisionAccidents {
+      id
+      specific_pictures
+      contact_info
+      collision_report
+      extra_info
+      injuryAccident {
+        id
+        contact_info
+        extra_info
+        injured_areas
+        injury_report
+        pain_level
+        specific_pictures
+      }
+    }
+    injuryAccidents {
+      contact_info
+      extra_info
+      injured_areas
+      injury_report
+      pain_level
+      specific_pictures
+    }
+    propertyAccidents {
+      contact_info
+      damage_report
+      defective_equip
+      safety_equip
+      specific_pictures
+      extra_info
+      types_of_damage
+      package_report
+    }
+    selfInjuryAccidents {
+      animal_report
+      injuries
+      injury_report
+      extra_info
+      specific_pictures
+    }
+  }
+}
+`
 
 
 
@@ -1226,30 +1308,6 @@ const GETDRIVERCHATROOMS = gql`
 
 
 
-const DRIVERUPDATEACCIDENT = gql`
-  mutation Mutation($accidentId: String!, $amazonLogo: Boolean, $vehicleId: String, $numberPackagesCarried: Int, $policeReportInformation: JSON, $generalPictures: JSON, $weather: String, $rushedPrior: Boolean, $distracted: Boolean, $extraInfo: String, $actionsBeforeAccidents: JSON, $unsafeCoditions: JSON) {
-  driverUpdateAccident(accidentId: $accidentId, amazon_logo: $amazonLogo, vehicleId: $vehicleId, number_packages_carried: $numberPackagesCarried, police_report_information: $policeReportInformation, general_pictures: $generalPictures, weather: $weather, rushed_prior: $rushedPrior, distracted: $distracted, extra_info: $extraInfo, actions_before_accidents: $actionsBeforeAccidents, unsafe_coditions: $unsafeCoditions) {
-    id
-    createdAt
-    name
-    date
-    time
-    location
-    amazon_logo
-    vehicleId
-    number_packages_carried
-    police_report_information
-    general_pictures
-    weather
-    rushed_prior
-    distracted
-    extra_info
-    actions_before_accidents
-    unsafe_conditions
-  }
-}
-`
-
 
 export {  
   SIGNUP, 
@@ -1260,7 +1318,9 @@ export {
   DRIVER_CREATE_INJURY_ACCIDENT,
   DRIVER_CREATE_ACCIDENT,
   DRIVER_CREATE_PROPERTY_ACCIDENT,
+  DRIVER_CREATE_SELF_INJURY_ACCIDENT,
 
+  DRIVER_UPDATE_ACCIDENT,
 
   GETDRIVERDATA, 
   UPDATEDRIVER, 
@@ -1274,7 +1334,6 @@ export {
   DYNAMICADDDRIVERTOCHAT,
   DRIVERCREATECHATROOM,
   DYNAMICUPDATECHATROOM,
-  DRIVERUPDATEACCIDENT,
   DYNAMICREMOVEDRIVERFROMCHATROOM,
   GETDRIVERCHATROOMS
 }
