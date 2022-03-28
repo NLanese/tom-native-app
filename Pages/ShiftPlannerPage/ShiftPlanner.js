@@ -222,7 +222,7 @@ const ShiftPlanner = () => {
         }
         else{
 
-            if (dateIndex < 6){
+            if (dateIndex < thisWeeksShift.length - 1){
                 return(
                     <TouchableOpacity onPress={() => setDateIndex(dateIndex + 1)}>
                         <Gradient
@@ -264,6 +264,10 @@ const ShiftPlanner = () => {
                 )
             }
         }
+    }
+
+    const renderShiftItems = () => {
+
     }
 
 
