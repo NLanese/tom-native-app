@@ -13,7 +13,7 @@ import { IS_SERVER_READY } from '../../GraphQL/operations';
 import { useQuery } from '@apollo/client';
 
 
-const LandingPage = ({ handleLoggedIn }) => {
+const LandingPage = ({ handleLoggedIn, rememberMe, setRememberMe }) => {
 
     const [tab, setTab] = useState(0)
 
@@ -38,7 +38,7 @@ const LandingPage = ({ handleLoggedIn }) => {
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                     {/* <View style={{backgroundColor: 'rgba(52, 52, 52, 0.4) !important',}}> */}
                         <View style={LandingStyles.contents}>
-                            <LandingPageContainer handleLoggedIn={handleLoggedIn} setTab={setTab} tab={tab}/>
+                            <LandingPageContainer handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} setTab={setTab} tab={tab}/>
                         </View>
                     {/* </View> */}
                 </TouchableWithoutFeedback>

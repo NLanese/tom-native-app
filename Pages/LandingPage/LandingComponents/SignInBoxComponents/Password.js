@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Input } from '@ui-kitten/components';
 
@@ -7,7 +7,7 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 
-const Email = ({ handleInput, userData}) => {
+const Email = ({ handleInput, userData, rememberMe}) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
@@ -45,6 +45,16 @@ const Email = ({ handleInput, userData}) => {
             }
         }
     }
+
+    useEffect( () => {
+        console.log(`rememberMe from Password.js: ${rememberMe}`)
+        if (rememberMe === false) {
+            userData = {
+                password: null
+            }
+            console.log(`userData after Password.js useEffect:`, JSON.stringify(userData))
+        }
+    }, [])
 
     return (
         <View>

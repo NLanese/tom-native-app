@@ -9,7 +9,7 @@ import LoginScreen from './LoginScreen';
 import SignupScreen from './SignupScreen';
 
 
-const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
+const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRememberMe}) => {
 
     let initTab = 0
     if (tab == 1){
@@ -47,8 +47,8 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
     useEffect(async () => {
         // Look at local storage for username and password
         const data = await getData()
-        console.log(`email, useEffect: ${data.email}`)
-        console.log(`password, useEffect: ${data.password}`)
+        // console.log(`email, useEffect: ${data.email}`)
+        // console.log(`password, useEffect: ${data.password}`)
         // Fill in the fields with the data in local storage if it's there
         if (data) {
             setUserData({
@@ -56,7 +56,7 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
                 email: data.email,
                 password: data.password
             })
-            console.log(JSON.stringify(userData))
+            // console.log(JSON.stringify(userData))
         }
     }, [])
 
@@ -75,6 +75,8 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
                     handleInput={handleInput} 
                     handleLoggedIn={handleLoggedIn}
                     userData={userData}
+                    rememberMe={rememberMe}
+                    setRememberMe={setRememberMe}
                 />
         }
         else if (selectedIndex == 1){

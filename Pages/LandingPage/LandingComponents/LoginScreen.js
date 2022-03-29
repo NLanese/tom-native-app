@@ -8,32 +8,14 @@ import LoginButton from './SignInBoxComponents/LoginButton';
 import ForgotPasswordModal from './SignInBoxComponents/ForgotPasswordModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
-    const [checked, setChecked] = useState(false)
+const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
+    const [checked, setChecked] = useState(rememberMe)
     const [visible, setVisible] = useState(false)
 
-    useEffect(async () => {
-        const rememberUser = await AsyncStorage.getItem('@remember_User')
-        if (rememberUser === 'true') {
-            setChecked(true)
-        }
-        else {
-            setChecked(false)
-        }
-        await AsyncStorage.setItem('@remember_User', checked.toString())
-    }, [setChecked])
-
-    // const isChecked = async () => {
-    //     const rememberUser = await AsyncStorage.getItem('@remember_User')
-    //     if (remembmerUser === 'true') {
-    //         return true
-    //     }
-    //     else {
-    //         return false
-    //     }
-    // }
-
-
+    useEffect(() => {
+        console.log(`checked on load from LoginScreen: ${checked}`)
+        console.log(`rememberMe on load from LoginScreen: ${rememberMe}`)
+    }, [checked])
 
     return(
         <View style={SignInBoxStyles.container}>
@@ -44,8 +26,8 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                         Login
                     </Text>
                 </View>
-                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} userData={userData}/></View>
-                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} userData={userData}/></View>
+                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
+                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
                 <View style={SignInBoxStyles.loginButton}>
                     <LoginButton 
                         userData={userData} 

@@ -1,12 +1,13 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Input } from '@ui-kitten/components';
+// import { useEffect } from 'react/cjs/react.production.min';
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
-const Email = ({ handleInput, userData}) => {
+const Email = ({ handleInput, userData, rememberMe}) => {
     const dynamicStyles = StyleSheet.create({
         activeInput: {
             backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
@@ -43,6 +44,16 @@ const Email = ({ handleInput, userData}) => {
             }
         }
     }
+
+    useEffect( () => {
+        console.log(`rememberMe from Email.js: ${rememberMe}`)
+        if (rememberMe === false) {
+            userData = {
+                email: null
+            }
+            console.log(`userData after Email.js useEffect:`, JSON.stringify(userData))
+        }
+    }, [])
 
     return (
         <View>

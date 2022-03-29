@@ -69,18 +69,33 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 		password: userData.password,
 		},
 		})
-		// Store email and password to local storage if Remember Me option is selected
+		// Store email and password to AsyncStorage on login if Remember Me option is selected
 		.then(async () => {
 			console.log(`checked: ${checked}`)
-			if (checked) {
+			if (checked === true) {
 				// Check and see if email and password are in AsyncStorage
-				const email = await AsyncStorage.getItem('@email')
-				const password = await AsyncStorage.getItem('@password')
-				await AsyncStorage.setItem('@remember_User', 'true')
-				// If email and password aren't there, save them to local storage
-				if (email === null && password === null) {
-					await AsyncStorage.setItem('@email', userData.email)
-					await AsyncStorage.setItem('@password', userData.password)
+				try {
+					const email = await AsyncStorage.getItem('@email')
+					const password = await AsyncStorage.getItem('@password')
+					await AsyncStorage.setItem('@remember_User', 'true')
+					// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
+					if (email === null && password === null) {
+						try {
+							await AsyncStorage.setItem('@email', userData.email)
+							await AsyncStorage.setItem('@password', userData.password)
+						} catch (error) {
+							console.error(error)
+						}
+					}
+				} catch (error) {
+					console.error(error)
+				}
+			}
+			else {
+				try {
+					await AsyncStorage.clear()
+				} catch (error) {
+					console.error(error)
 				}
 			}
 		})
@@ -117,10 +132,9 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 	// Renders the Button with the Overlay with Dynamic Height
 	const renderButton = () => {
-		if (userData.password.length > 5 && userData.email.length > 5){
-			if (!buttonLoading && !buttonLoaded){
-				setButtonLoading(true)
-			}
+		// if (userData.password.length > 5 && userData.email.length > 5){
+		if (!buttonLoading && !buttonLoaded){
+			setButtonLoading(true)
 			return(
 				<View>
 					<View style={{position: 'absolute', height: (50 - buttonHeight), zIndex: 20, overflow: 'hidden',}}>
@@ -130,6 +144,7 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 				</View>
 			)
 		}
+		// }
 		else{
 			if (buttonLoaded){
 				setButtonLoaded(false)

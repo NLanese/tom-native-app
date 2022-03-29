@@ -1,5 +1,5 @@
 import "react-native-gesture-handler"
-import React, { useState } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import * as Sharing from 'expo-sharing';
 import { useFonts } from 'expo-font' 
 
@@ -14,7 +14,6 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
 
 import { View } from 'react-native';
-import { useEffect } from "react";
 
 import { AppStyles } from './Styles/AppStyles';
 
@@ -157,6 +156,18 @@ export default function App() {
     GilroyUltraLight: require('./assets/fonts/Gilroy-UltraLight.ttf'),
   })
   const [loggedIn, setloggedIn] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
+
+  useEffect(async () => {
+    const rememberButtonState = await AsyncStorage.getItem('@remember_User')
+    console.log(`rememberButtonState on app load: ${rememberButtonState}`)
+    if (rememberButtonState === 'true') {
+        setRememberMe(true)
+    }
+    else {
+      setRememberMe(false)
+    }
+  }, [])
 
 	const handleLoggedIn = () => {
     state = stateChange('')
@@ -182,7 +193,7 @@ export default function App() {
             
                   {loggedIn === false ? (
                   <Stack.Screen name="/">
-                    {props => <LandingPage handleLoggedIn={handleLoggedIn}  />}
+                    {props => <LandingPage handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} />}
                   </Stack.Screen>
                   ) : null}
               
