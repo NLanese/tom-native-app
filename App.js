@@ -74,6 +74,7 @@ import PropertyAccidentContactInformation from "./Pages/ReportAnAccidentPage/Pro
 import PropertyAccidentSafetyEquipment from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentSafetyEquipment"
 import PropertyAccidentExtraInformation from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentExtraInformation";
 import PropertyPackageInfo from "./Pages/ReportAnAccidentPage/Property/PropertyAccidentPackageInformation";
+import PostPropertyInstructions from "./Pages/ReportAnAccidentPage/Property/PostPropertyInstructions";
 
 import CheckInjuryAccident from "./Pages/ReportAnAccidentPage/Injury/CheckInjuryAccident";
 import CheckUserInjury from "./Pages/ReportAnAccidentPage/UserInjury/CheckUserInjury";
@@ -101,8 +102,9 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
+	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
 	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-	uri: 'http://192.168.0.249:5001/graphql' // Hayden Mac
+  // 	uri: 'http://192.168.0.249:5001/graphql' // Hayden Mac
   // uri: 'http://192.168.1.46:5001/graphql' // Ant's
   // uri: 'http://172.20.10.5:5001/graphql' // Phone
   // uri: 'http://10.0.0.46:5001/graphql'     // Home
@@ -477,9 +479,12 @@ export default function App() {
                     {props => <PropertyAccidentExtraInformation />}
                   </Stack.Screen>
 
-
                   <Stack.Screen name='property-package-info'>
                     {props => <PropertyPackageInfo />}
+                  </Stack.Screen>
+
+                  <Stack.Screen name='post-property-instructions'>
+                    {props => <PostPropertyInstructions />}
                   </Stack.Screen>
 
 

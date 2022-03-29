@@ -381,9 +381,9 @@ const PersonalScoreCard = () => {
                         {/* Row Four */}
                         <View style={ShiftPlannerStyles.valRow}>
 
-                            <View style={ShiftPlannerStyles.cell}>
-                                <Text style={Styles(userData.scanCompliance, 'scan_compliance', true).coloredLabel}>{userData.scanCompliance}%</Text>
-                                <Text style={{...ShiftPlannerStyles.valTitle, width: 90}}>Scan Compliance</Text>
+                        <View style={ShiftPlannerStyles.cell}>
+                                <Text style={{textAlign: 'center', fontFamily: 'GilroyBold', etterSpacing: -0.5, fontSize: 25,}}>{userData.delivered}</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>Total Deliveries</Text>
                             </View>
 
                             <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
@@ -395,115 +395,30 @@ const PersonalScoreCard = () => {
 
                         </View>
 
-                        <Text style={{...ShiftPlannerStyles.subtitle2, textAlign: 'center', marginTop: 40, marginBottom: 10}}>
+                        {/* <Text style={{...ShiftPlannerStyles.subtitle2, textAlign: 'center', marginTop: 40, marginBottom: 10}}>
                             WEEKLY REPORT
-                        </Text>
+                        </Text> */}
 
-                        {/* Row Five */}
-                        <View style={ShiftPlannerStyles.valRow}>
-
-                            <View style={ShiftPlannerStyles.cell}>
-                                <Text style={Styles(userData.deliveryCompletionRate, 'dcr', true).coloredLabel}>{userData.deliveryCompletionRate}%</Text>
-                                <Text style={ShiftPlannerStyles.valTitle}>Completion Rate</Text>
-                            </View>
-
-                            <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                            <View style={ShiftPlannerStyles.cell}>
-                                <Text style={{textAlign: 'center', fontFamily: 'GilroyBold', etterSpacing: -0.5, fontSize: 25,}}>{userData.delivered}</Text>
-                                <Text style={ShiftPlannerStyles.valTitle}>Total Deliveries</Text>
-                            </View>
-
-                        </View>
-
-                    </View>
-
-                    <View style={{marginTop: 90}}>
-                        <TouchableOpacity onPress={() => {
-                               navigation.navigate("leaderboard")
-                            }}>
-                            <Gradient
-                                colorOne={"#534FFF"}
-                                colorTwo={"#15A1F1"}
-                                style={{
-                                    height: 50,
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                <Text style={{...AccountInformationStyles.buttonText, letterSpacing: 1.5}}>TEAM LEADERBOARD</Text>
-                            </Gradient>
-                        </TouchableOpacity>
                     </View>
 
                 </View>
 
-            {/* <View style={PersonalLeaderboardStyles.namePlate}>
-
-                            <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.speedingEventRate, lastWeekData.speedingEventRate, false)}</View>
-                   
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.distractionsRate, lastWeekData.distractionsRate, false)}</View>
-                   
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.followingDistanceRate, lastWeekData.followingDistanceRate, false)}</View>
-                  
-                        
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.signalViolationsRate, lastWeekData.signalViolationsRate, false)}</View>
-                   
-                        <View style={PersonalLeaderboardStyles.arrowIcon}>{renderArrowIcon(userData.fico, lastWeekData.fico, true)}</View>
-                   
-                            
-                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.scanCompliance, lastWeekData.scanCompliance, false)}</View>
-                        
-                       
-                            
-                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.photoOnDelivery, lastWeekData.photoOnDelivery, false)}</View>
-
-
-                        <View style={PersonalLeaderboardStyles.cdfValue}>
-                            <Text style={Styles(userData.customerDeliveryFeedback, 'cdf', true).coloredLabel}>{userData.customerDeliveryFeedback}%</Text>
-                            <View style={PersonalLeaderboardStyles.arrowIcon2}>{renderArrowIcon(userData.customerDeliveryFeedback, lastWeekData.customerDeliveryFeedback, false)}</View>
-                        </View> */}
-                    
-                    {/* <View style={PersonalLeaderboardStyles.overalls}>
-                        <Text style={PersonalLeaderboardStyles.sectionTitle}>Weekly Report Card</Text>
-                        <View style={PersonalLeaderboardStyles.completionLabel}>
-                            <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Completion</Text>
-                        </View>
-                        <View style={PersonalLeaderboardStyles.completionValue}>
-                            
-                        </View>
-                        <View style={PersonalLeaderboardStyles.totalLabel}>
-                            <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Total Deliveries</Text>
-                        </View>
-                        <View style={PersonalLeaderboardStyles.totalValue}>
-                            <Text style={{textAlign: 'center', fontWeight: '600', fontSize: 16,}}>{userData.delivered}</Text>
-                        </View>
-                        <View style={PersonalLeaderboardStyles.tierLabel}>
-                            <Text style={PersonalLeaderboardStyles.drivingStatsLabels}>Overall Tier</Text>
-                        </View>
-                        <View style={PersonalLeaderboardStyles.tierValue}>
-                            {renderOverallTier(userData.tier)}
-                        </View>
-                    </View> */}
-                {/* </View> 
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate("leaderboard")
-                }}>
-                    <View style={PersonalLeaderboardStyles.buttonBox}>
-                        <Button 
-                            mode="contained"
-                            height={'100%'}
-                            color={'#E2E8F1'}
-                            style={{justifyContent: 'center', shadowOpacity: 0}}
-                            titleStyle={{color: "white"}}
-                            onPress={() => {
-                                navigation.navigate("quality")
+                <View style={{marginTop: 90}}>
+                    <TouchableOpacity onPress={() => {
+                            navigation.navigate("leaderboard")
+                        }}>
+                        <Gradient
+                            colorOne={"#534FFF"}
+                            colorTwo={"#15A1F1"}
+                            style={{
+                                height: 50,
+                                justifyContent: 'center'
                             }}
                         >
-                            <Text>Team Leaderboards</Text>
-                        </Button>
-                    </View>
-                </TouchableOpacity>
-            </View> */}
+                            <Text style={{...AccountInformationStyles.buttonText, letterSpacing: 1.5}}>TEAM LEADERBOARD</Text>
+                        </Gradient>
+                    </TouchableOpacity>
+                </View>
 
         </ScrollView>
         </View>
