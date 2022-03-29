@@ -14,7 +14,7 @@ import dateObj from "../../Hooks/handleDateTime";
 import numberToMonth from "./numberToMonth";
 import numberToDay from "./numberToDay";
 
-import ShiftInfo from "../ScrappedPages/ShiftInfo";
+// import ShiftInfo from "../ScrappedPages/ShiftInfo";
 import Loading from "../../Global/Loading";
 import NoShifts from "./NoShifts";
 import Gradient from "../../Components/Gradient";
