@@ -118,7 +118,7 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 	// Renders the Button with the Overlay with Dynamic Height
 	const renderButton = () => {
-		// if (userData.password.length > 5 && userData.email.length > 5){
+	// if (userData.password.length > 5 && userData.email.length > 5){
 		if (!buttonLoading && !buttonLoaded){
 			setButtonLoading(true)
 			return(
@@ -130,7 +130,7 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 				</View>
 			)
 		}
-		// }
+	// }
 		else{
 			if (buttonLoaded){
 				setButtonLoaded(false)
@@ -140,17 +140,18 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 		}
 	}
 
-	if (buttonLoading){
-        setTimeout(() => {
-            if (buttonHeight < 50){
-                setButtonHeight(buttonHeight + 5)
-            }
-            else{
-				setButtonLoaded(true)
-                setButtonLoading(false)
-            }
-        }, 0.5)
-    }
+	// if (buttonLoading){
+    //     console.log(`buttonLoading from LoginButton: ${buttonLoading}`)
+	// 	setTimeout(() => {
+    //         if (buttonHeight < 50){
+    //             setButtonHeight(buttonHeight + 5)
+    //         }
+    //         else{
+	// 			setButtonLoaded(true)
+    //             setButtonLoading(false)
+    //         }
+    //     }, 0.5)
+    // }
 
 
 // ------------------------- Button Related -------------------------- //

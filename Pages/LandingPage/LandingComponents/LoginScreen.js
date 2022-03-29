@@ -12,11 +12,6 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
     const [checked, setChecked] = useState(rememberMe)
     const [visible, setVisible] = useState(false)
 
-    useEffect(() => {
-        console.log(`checked on load from LoginScreen: ${checked}`)
-        console.log(`rememberMe on load from LoginScreen: ${rememberMe}`)
-    }, [checked])
-
     return(
         <View style={SignInBoxStyles.container}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{borderColor: 'red', borderWidth: 2}}>

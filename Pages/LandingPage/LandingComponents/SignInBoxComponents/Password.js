@@ -47,12 +47,12 @@ const Email = ({ handleInput, userData, rememberMe}) => {
     }
 
     useEffect( () => {
-        console.log(`rememberMe from Password.js: ${rememberMe}`)
+        // console.log(`rememberMe from Password.js: ${rememberMe}`)
         if (rememberMe === false) {
             userData = {
                 password: null
             }
-            console.log(`userData after Password.js useEffect:`, JSON.stringify(userData))
+            // console.log(`userData after Password.js useEffect:`, JSON.stringify(userData))
         }
     }, [])
 
@@ -68,7 +68,7 @@ const Email = ({ handleInput, userData, rememberMe}) => {
                 placeholderTextColor={determineStyle().color}
                 textStyle={{color: determineStyle().color, fontSize: 18}}
                 onChangeText={email => {
-                    handleInput('password', email)
+                    handleInput('password', password)
                 }}
             />
         </View>
