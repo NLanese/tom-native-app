@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { Toggle } from '@ui-kitten/components';
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles';
@@ -6,9 +6,10 @@ import Email from './SignInBoxComponents/Email';
 import Password from './SignInBoxComponents/Password';
 import LoginButton from './SignInBoxComponents/LoginButton';
 import ForgotPasswordModal from './SignInBoxComponents/ForgotPasswordModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
-    const [checked, setChecked] = useState(false)
+const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
+    const [checked, setChecked] = useState(rememberMe)
     const [visible, setVisible] = useState(false)
 
     return(
@@ -20,12 +21,13 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData }) => {
                         Login
                     </Text>
                 </View>
-                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput}/></View>
-                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput}/></View>
+                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
+                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
                 <View style={SignInBoxStyles.loginButton}>
                     <LoginButton 
                         userData={userData} 
                         handleLoggedIn={handleLoggedIn}
+                        checked={checked}
                     />
                 </View>
                 <View syle={SignInBoxStyles.rememberMe}>

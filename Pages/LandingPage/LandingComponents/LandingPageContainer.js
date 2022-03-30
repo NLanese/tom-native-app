@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
 // import { TabBar, Tab, Text } from '@ui-kitten/components';
 import TabBar from '../../../Components/TabBar';
@@ -8,7 +9,7 @@ import LoginScreen from './LoginScreen';
 import SignupScreen from './SignupScreen';
 
 
-const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
+const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRememberMe}) => {
 
     let initTab = 0
     if (tab == 1){
@@ -29,6 +30,36 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
         signUpToken: ""
     })
 
+    const getData = async () => {
+        try {
+            const email = await AsyncStorage.getItem('@email')
+            const password = await AsyncStorage.getItem('@password')
+            const data = {
+                email: email,
+                password: password
+            }
+            return data
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(async () => {
+        // Look at local storage for username and password
+        const data = await getData()
+        // console.log(`email, useEffect: ${data.email}`)
+        // console.log(`password, useEffect: ${data.password}`)
+        // Fill in the fields with the data in local storage if it's there
+        if (data) {
+            setUserData({
+                ...userData,
+                email: data.email,
+                password: data.password
+            })
+            // console.log(JSON.stringify(userData))
+        }
+    }, [])
+
 
     // Sends user input to the use state above
     const handleInput = (id, information) => {
@@ -44,6 +75,8 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
                     handleInput={handleInput} 
                     handleLoggedIn={handleLoggedIn}
                     userData={userData}
+                    rememberMe={rememberMe}
+                    setRememberMe={setRememberMe}
                 />
         }
         else if (selectedIndex == 1){

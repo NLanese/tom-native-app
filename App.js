@@ -1,5 +1,5 @@
 import "react-native-gesture-handler"
-import React, { useState } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import * as Sharing from 'expo-sharing';
 import { useFonts } from 'expo-font' 
 
@@ -14,7 +14,6 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
 
 import { View } from 'react-native';
-import { useEffect } from "react";
 
 import { AppStyles } from './Styles/AppStyles';
 
@@ -97,12 +96,15 @@ import FinishedPage from "./Pages/ReportAnAccidentPage/AccidentConclusion/Finish
 
 import ProfilePicture from "./Pages/SettingsPage/SettingsComponents/ProfilePicture";
 import UserInjuryExtraInformation from "./Pages/ReportAnAccidentPage/UserInjury/UserInjuryExtraInformation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  	uri: 'http://192.168.0.249:5001/graphql' // Hayden Mac
   // uri: 'http://192.168.1.46:5001/graphql' // Ant's
   // uri: 'http://172.20.10.5:5001/graphql' // Phone
   // uri: 'http://10.0.0.46:5001/graphql'     // Home
@@ -156,9 +158,21 @@ export default function App() {
     GilroyUltraLight: require('./assets/fonts/Gilroy-UltraLight.ttf'),
   })
   const [loggedIn, setloggedIn] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
+
+  useEffect(async () => {
+    const rememberButtonState = await AsyncStorage.getItem('@remember_User')
+    console.log(`rememberButtonState on app load: ${rememberButtonState}`)
+    if (rememberButtonState === 'true') {
+        setRememberMe(true)
+    }
+    else {
+      setRememberMe(false)
+    }
+  }, [])
 
 	const handleLoggedIn = () => {
-		state = stateChange('')
+    state = stateChange('')
 		setloggedIn(!loggedIn)
 	}
 
@@ -181,7 +195,7 @@ export default function App() {
             
                   {loggedIn === false ? (
                   <Stack.Screen name="/">
-                    {props => <LandingPage handleLoggedIn={handleLoggedIn}  />}
+                    {props => <LandingPage handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} />}
                   </Stack.Screen>
                   ) : null}
               
