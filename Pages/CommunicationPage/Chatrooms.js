@@ -1,14 +1,19 @@
-import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import React, {useState} from "react";
+import { View, Text, ScrollView, Image} from "react-native";
 import { Input, Icon } from "@ui-kitten/components";
-import Banner from "../../Global/Banner";
+
 import { ChatroomsStyles, ThreadCardStyles } from "../../Styles/CommunicationStyles";
+
+import Banner from "../../Global/Banner";
+import NewChatroomButton from "./CommunicationComponents/NewChatroomButton";
+import ThreadCard from "./CommunicationComponents/ThreadCard";
+
 import { useRecoilState } from "recoil";
 import { userState } from "../../Recoil/atoms";
-import { useMutation } from "@apollo/client";
-import ThreadCard from "./CommunicationComponents/ThreadCard";
+
 import dateObj from "../../Hooks/handleDateTime";
-import NewChatroomButton from "./CommunicationComponents/NewChatroomButton";
+
+import glass from "../../assets/magnifyGlass.png"
 
 const Chatrooms = () => {
 
@@ -20,17 +25,21 @@ const Chatrooms = () => {
         // Handles the user data
         let user
         if (rawUser.isArray){
-            user = rawUser[0]
+            user = rawUser[rawUser.length - 2]
         }
         else{
             user = {...rawUser}
     }
 
-    // Magnifying Glass Icon for Search Bar
-    const magnifyGlassIcon = () => {
-        return( 
-            <Icon name={'search-outline'} />
-        )
+    const [inInput, setInInput] = useState(false)
+
+    const determineSearchStyle = () => {
+        if (inInput){
+            return ChatroomsStyles.searchBarActive
+        }
+        else{
+            return ChatroomsStyles.searchBarInactive
+        }
     }
 
 
@@ -49,8 +58,9 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages !== null){
-                        if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
+                    if (chatroom.messages !== null && chatroom.messages.length > 0){
+                        let latestText = chatroom.messages.length - 1
+                        if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
                             rArray.push(chatroom)
                         }
                     }
@@ -62,11 +72,12 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages === null){
+                    if (chatroom.messages === null || chatroom.messages.length == 0){
                         rArray.push(chatroom)
                     }
                     else{
-                        if (dateObj(chatroom.messages[0].createdAt, user.dsp.timeZone).day !== d.getUTCDate()){
+                        let latestText = chatroom.messages.length - 1
+                        if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day != d.getUTCDate()){
                             rArray.push(chatroom)
                         }
                     }
@@ -88,9 +99,9 @@ const Chatrooms = () => {
         return list.map( (chatroom, index) => {
             if (index < list.length - 1){
                 return(
-                    <View>
-                        <ThreadCard chatroom={chatroom} key={index}/>
-                        <View style={ChatroomsStyles.divider} key={index + ".0"}/>
+                    <View key={`${index}.00`}>
+                        <ThreadCard chatroom={chatroom} key={`${index}.10`}/>
+                        <View style={ChatroomsStyles.divider} key={`${index}.1.5`}/>
                     </View>
                 )
             }
@@ -111,6 +122,8 @@ const Chatrooms = () => {
     }
     
     let scrollHeight = (user.chatrooms.length * 100) + 450
+
+
     return(
         <View>
             {/* BANNER */}
@@ -122,12 +135,16 @@ const Chatrooms = () => {
                     <Text style={ChatroomsStyles.title}>Messages</Text>
                 </View>
                 <View style={ChatroomsStyles}>
+                    <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', zIndex: 5, marginTop: 25, marginLeft: 42}}>
+                        <Image source={glass} style={{height: 15, width: 15}}/>
+                    </View>
                     <Input 
-                        style={ChatroomsStyles.searchBar}
+                        onPressIn={() =>setInInput(true)}
+                        onEndEditing={() => setInInput(false)}
+                        style={determineSearchStyle()}
                         textStyle={{fontFamily: 'GilroyMedium'}}
-                        placeholder="Search Chatrooms/Contacts"
+                        placeholder="            Search Chatrooms/Contacts"
                         placeholderTextColor={'#BBBBBB'}
-                        // accessoryLeft={magnifyGlassIcon}
                     />
                 </View>
             </View>

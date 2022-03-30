@@ -1,20 +1,33 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { LandingPageStyles } from '../../../Styles/LandingPageStyles';
-import { TabBar, Tab, Text } from '@ui-kitten/components';
-// import TabBar from '../../../Components/TabBar';
+// import { TabBar, Tab, Text } from '@ui-kitten/components';
+import TabBar from '../../../Components/TabBar';
 
 import LoginScreen from './LoginScreen';
-import SignupScreen from './SingupScreen';
+import SignupScreen from './SignupScreen';
 
 
-const LandingPageContainer = ({handleLoggedIn}) => {
+const LandingPageContainer = ({handleLoggedIn, setTab, tab}) => {
+
+    let initTab = 0
+    if (tab == 1){
+        initTab = 1
+    }
 
     // Tracks whether signup or login is displayed
-    const [selectedIndex, setSelectedIndex] = useState(0)
+    const [selectedIndex, setSelectedIndex] = useState(initTab)
 
     // Tracks user input
-    const [userData, setUserData] = useState({email: "", password: ""})
+    const [userData, setUserData] = useState({
+        email: "", 
+        password: "",
+        firstname: "",
+        lastname: "",
+        confirmPassword: "",
+        phoneNumber: "",
+        signUpToken: ""
+    })
 
 
     // Sends user input to the use state above
@@ -34,36 +47,31 @@ const LandingPageContainer = ({handleLoggedIn}) => {
                 />
         }
         else if (selectedIndex == 1){
-            return <SignupScreen />
+            return(
+                <SignupScreen 
+                    handleInput={handleInput} 
+                    handleLoggedIn={handleLoggedIn}
+                    userData={userData}
+                />
+            )
         }
     }
 
     return (
         <View style={LandingPageStyles.container}>
             <View style={LandingPageStyles.tabBarContainer}>
-                <TabBar
-                    indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
-                    tabBarStyle={LandingPageStyles.loginTab}
-                    style={LandingPageStyles.tabBar}
-                    selectedIndex={selectedIndex}
-                    onSelect={index => setSelectedIndex(index)}
-                >
-                    <Tab 
-                        title="LOGIN" 
-                        tabBarStyle={LandingPageStyles.loginTab}
-                        indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
-                        tabBarStyle={LandingPageStyles.loginTab}/>
-                    <Tab 
-                        title='SIGNUP' 
-                        tabBarStyle={LandingPageStyles.signUpTab}
-                        indicatorStyle={{color: '#ffffff !important', borderColor: '#ffffff !important'}}
-                        tabBarStyle={LandingPageStyles.loginTab}/>
-                </TabBar>
-                {/* <TabBar 
+                <TabBar 
                     tabsArray={["LOGIN", "SIGN UP"]}
                     styleInactive={LandingPageStyles.inactiveTab}
                     styleActive={LandingPageStyles.activeTab}
-                /> */}
+                    tabTextStyleActive={LandingPageStyles.activeText}
+                    tabTextStyleInactive={LandingPageStyles.inactiveText}
+                    startIndex={selectedIndex}
+                    onChangeIndex={async (index) => {
+                        await setSelectedIndex(index)
+                        await setTab(index)
+                    }}
+                />
 
             </View>
             <View>

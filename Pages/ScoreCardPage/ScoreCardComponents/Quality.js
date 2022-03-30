@@ -28,7 +28,6 @@ const Quality = () => {
     const followLims = user.dsp.followLimits
     const signalLims = user.dsp.signalLimits
     const dcrLims = user.dsp.deliveryCompletionRateLimits
-    const scanLims = user.dsp.scanComplianceLimits
     const cdfLims = user.dsp.customerDeliveryFeedbackLimits
     const dspPreferences = {
         fico: ficoLims,
@@ -38,7 +37,6 @@ const Quality = () => {
         follow: followLims,
         signal: signalLims,
         dcr: dcrLims,
-        scan_compliance: scanLims,
         cdf: cdfLims
     }
 

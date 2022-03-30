@@ -1,21 +1,72 @@
-import React from "react"
-import { useNavigation } from "@react-navigation/native";
-import { View } from 'react-native'
-import { Button } from 'react-native-paper';
-import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
+import React, { useState } from "react"
+import { View, TouchableOpacity, Text, Dimensions } from 'react-native'
 
-const EditAccountInformationButton = () => {
+import Gradient from "../../../../Components/Gradient";
+
+import { useNavigation } from "@react-navigation/native";
+
+import { useMutation } from "@apollo/client";
+import { UPDATEDRIVER } from "../../../../GraphQL/operations";
+
+
+import { AccountInformationStyles } from "../../../../Styles/SettingStyles";
+
+
+const EditAccountInformationButton = ({edit, setEdit, currentSettings}) => {
     const navigation = useNavigation()
     const [buttonLoading, setButtonLoading] = useState(false)
+
+    const [update, { loading: loading, error: error, data: data }] = useMutation(UPDATEDRIVER);
+
+    const handleMutation = async () => {
+        return update({
+            variables: {
+                email: currentSettings.user,
+                firstname: currentSettings.firstname,
+                lastname: currentSettings.lastname
+            }
+        })
+    }
 	
-    const handleButtonLoading = async () => {
-		await setButtonLoading(!buttonLoading)
-	}
+    const handleClick = () => {
+        if (edit){
+            setEdit(false)
+            return(
+                handleMutation()
+                    .then( (resolved) => {
+                        console.log(resolved)
+                    })
+                )
+        }
+        if (!edit){
+            setEdit(true)
+        }
+    }
+
+    const determineText = () =>{
+        if (edit){
+            return "SUBMIT CHANGES"
+        }
+        else{
+            return "EDIT ACCOUNT INFORMATION"
+        }
+    }
 
     return (
-        <View >
-            <Button 
+        <View style={{marginBottom: 20}}>
+            <TouchableOpacity onPress={() => handleClick()}>
+                <Gradient
+                    colorOne={"#534FFF"}
+                    colorTwo={"#15A1F1"}
+                    style={{
+                        height: 50,
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Text style={AccountInformationStyles.buttonText}>{determineText()}</Text>
+                </Gradient>
+            </TouchableOpacity>
+            {/* <Button 
                 mode="contained"
                 loading={buttonLoading}
                 style={ButtonStyles.logInButton}
@@ -26,7 +77,7 @@ const EditAccountInformationButton = () => {
                 }}
             >
                 Edit Account Information
-            </Button>
+            </Button> */}
         </View>
     )
 }

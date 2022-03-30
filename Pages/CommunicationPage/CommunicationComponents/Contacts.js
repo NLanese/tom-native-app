@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM } from "../../../GraphQL/operations";
+import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM, DYNAMICUPDATECHATROOM, DYNAMICADDDRIVERTOCHAT} from "../../../GraphQL/operations";
 
 import Banner from "../../../Global/Banner";
 import Loading from "../../../Global/Loading";
@@ -14,7 +14,7 @@ import SearchBar from "./SearchBar";
 import NameChat from "./NameChat";
 
 import { useRecoilState } from 'recoil'
-import { threadState, userState } from "../../../Recoil/atoms";
+import { threadState, userState, websiteState } from "../../../Recoil/atoms";
 
 import nameObj from "../../../Hooks/handleNameCaseChange";
 
@@ -27,6 +27,10 @@ const Contacts = ({creating}) => {
 
     const [driverCreateChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DRIVERCREATECHATROOM);
 
+    const [updateChat, { loading: loadingUpdate, error: errorUpdate, data: dataUpdate }] = useMutation(DYNAMICUPDATECHATROOM);
+
+    const [addDriver, { loading: loadingAdd, error: errorAdd, data: dataAdd }] = useMutation(DYNAMICADDDRIVERTOCHAT);
+
 
 // -------------------- Recoil and UseState ----------------------
     // Recoil
@@ -34,6 +38,8 @@ const Contacts = ({creating}) => {
         const [user, setUser] = useRecoilState(userState);
         // Gets Thread
         const [activeThread, setActiveThread] = useRecoilState(threadState)
+        // Gets Website
+        const[website, setWebsite] = useRecoilState(websiteState)
     
     // UseState
         // keeps track of driver contacts added to groupchat
@@ -47,11 +53,16 @@ const Contacts = ({creating}) => {
 
         // Tracks whether or not changes have been submitted. Guards useEffect
         const[changesMade, setChangesMade] = useState(false)
+
+        // For Add Contacts only
+        const [newAddThread, setNewAddThread] = useState("")
 // -------------------- Recoil and UseState ----------------------
 
 
     
-// --------------- Rendering and Generating Functions ------------   
+// --------------- Rendering and Generating Functions ------------ 
+
+    // renders all inputted possible contacts
     const renderRoster = (list) => {
         let i = 0
         return( list.map( (driver) => {
@@ -60,7 +71,10 @@ const Contacts = ({creating}) => {
             return(
                 <View style={ContactStyles.card} key={i}>
                     <View style={ContactStyles.image}><Text>Image</Text></View>
-                    <View style={ContactStyles.nameView}><Text style={ContactStyles.title}>{namer.first} {namer.last} </Text></View>
+                    <View style={ContactStyles.nameView}>
+                        <Text style={ContactStyles.title}>{namer.first} {namer.last} </Text>
+                        <Text style={ContactStyles.subtitle}>{driver.__typename}</Text>
+                    </View>
                     {determineAddOrRemove(driver)}
                     <View style={ContactStyles.divider} />
                 </View>
@@ -68,6 +82,43 @@ const Contacts = ({creating}) => {
         }))
     }
 
+    // Called when no filter is applied, seperates by letter
+    const renderByLetter = (list) => {
+        const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        return letters.map( (letter, index) => {
+
+            let letterBlockList = []
+            list.forEach( (contact) => {
+                if (contact.firstname[0] == letter){
+                    letterBlockList.push(contact)
+                }
+            })
+            if (letterBlockList.length > 0){
+                return(
+                    <View key={index}>
+                        <Text style={{
+                            marginLeft: 20,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontFamily: "GilroyBold",
+                            fontSize: 15,
+                            color: "#888888"
+                        }}>{letter}</Text>
+                        <View>
+                            {renderRoster(letterBlockList)}
+                        </View>
+                    </View>
+                )
+            }
+            else{
+                return null
+            }
+            
+        })
+    }
+
+
+    // Determines whether the add, remove or none of the buttons are displayed
     const determineAddOrRemove = (selected) => {
         let returnComponent
         returnComponent = () => {
@@ -92,23 +143,36 @@ const Contacts = ({creating}) => {
                 })
             }
         } else {
-            let newThread = activeThread.map((driver) =>{ return driver })
-            newThread = [...newThread, newGuests]
-            newThread.forEach( (driver) => {
-                if (driver.id === selected.id){
-                    returnComponent = () => {
-                        return(
-                            <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
-                                <View><Text style={ContactStyles.removeText}>Remove</Text></View>
-                            </TouchableOpacity>
-                        )
+            let newThread = activeThread.guests.map((driver) =>{ return driver })
+            if (newThread.length > 0){
+                newThread.forEach( (driver) => {
+                    if (typeof(driver) !== 'undefined'){
+                        if (driver.id === selected.id){
+                            if (driver.id === user.id){
+                                returnComponent = () => {
+                                    return(
+                                        null
+                                    )
+                                }
+                            }
+                            else{
+                                returnComponent = () => {
+                                    return(
+                                        <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
+                                            <View><Text style={ContactStyles.removeText}>Remove</Text></View>
+                                        </TouchableOpacity>
+                                    )
+                                }
+                            }
+                        }
                     }
-                }
-            })
+                })
+            }
         }
         return returnComponent()
     }
 
+    // Filters based off of the name typed in
     const filterBasedOffSearch = (list) => {
         let filteredList = []
         if (searchVal == ""){
@@ -125,24 +189,52 @@ const Contacts = ({creating}) => {
         }
     }
 
+    // Uses all 4 functions to create the screen
+    const determineRosterDisplay = (list) => {
+        if (searchVal != ""){
+            return(
+                renderRoster(filterBasedOffSearch(list))
+            )
+        }
+        else{
+            return(
+                renderByLetter(list)
+            )
+        }
+    }
+
 // --------------- Rendering and Generating Functions ------------   
 
 
 // -------------------------- Handlers ---------------------------
-    const handleAddClick = (selectedId) => {
-        setNewGuests([...newGuests, selectedId])
-        console.log(newGuests)
+
+    const handleAddMutation = (id) => {
+        addDriver({
+            variables: {
+                role: user.role,
+                chatroomId: activeThread.id,
+                guestId : id
+            }
+        })
+    }
+
+    const handleAddClick = (selected) => {
+        setNewGuests([...newGuests, selected])
+        if (!creating){
+            setActiveThread({
+                ...activeThread,
+                guests: [...activeThread.guests, selected]
+            })
+        }
     }
 
     const handleRemoveClick = (selectedId) => {
-        console.log(selectedId)
         let newestVersion = []
         newGuests.forEach( (guest) => {
             if (guest !== selectedId){
                 newestVersion.push(guest)
             }
         })
-        console.log(newestVersion)
         setNewGuests(newestVersion)
     }
 
@@ -150,16 +242,40 @@ const Contacts = ({creating}) => {
         setSearchVal(content)
     }
 
-    const handleDoneClick = () => {
-        if (newGuests.length > 0){
+    const handleDoneClick = async () => {
+        if (!creating){
+            await newGuests.map( (guest) => {
+                handleAddMutation(guest)
+            }).then(
+                navigation.navigate('message-thread')
+            )
+        }
+        if (creating && newGuests.length > 0){
             setModalVisible(true)
         }
     }
 
     const handleSubmission = (chatName) => {
+        if (chatName.length < 1){
+            return null
+        }
         handleMutation(chatName).then( (resolved) => {
-            setActiveThread(resolved.data.driverCreateChatroom)
+            let newActiveThread = resolved.data.driverCreateChatroom // creates new thread JSON from mutation data
+            setActiveThread(newActiveThread)
+            let oldThreads = user.chatrooms
+            oldThreads.forEach( (thread, index) => {
+            })
+            let revisedThreads = [newActiveThread]
+            oldThreads.forEach( (chat, index) => {
+                if (chat.id != newActiveThread.id){
+                    revisedThreads.push(chat)
+                }
+            })
+            setUser({...user, chatrooms: revisedThreads})
             setChangesMade(true)
+            setWebsite({current: newActiveThread.chatroomName, previous: website.current, saved: website.saved })
+            navigation.navigate("message-thread")
+            setModalVisible(false)
         })
     }
 
@@ -178,8 +294,7 @@ const Contacts = ({creating}) => {
     useEffect (async () => {
         if (changesMade && !loading){
             setTimeout(() => {
-                setModalVisible(false)
-                navigation.navigate('message-thread')
+                
             }, 500)
         }
     }, [activeThread])
@@ -189,31 +304,40 @@ const Contacts = ({creating}) => {
 
     if (!loading && queryData){
         let allDrivers = [...queryData.driverGetDriversFromDsp.drivers]
+
+        let allContacts = [...allDrivers, ...user.managers]
+
         return (
             <View>
                 <Banner />
+
                 <View style={ContactStyles.header}>
                     <View style={ContactStyles.searchBar}>
+                        <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
                         <SearchBar setSearch={handleSetSearch} />
                     </View>
                 </View>
+
                 <View style={ContactStyles.scrollContainer}>
                     <ScrollView contentContainerStyle={ContactStyles.container}>
-                        {renderRoster(filterBasedOffSearch(allDrivers))}
+                        {determineRosterDisplay(allContacts)}
                     </ScrollView>
                 </View>
+
                 <View style={ContactStyles.footer}>
-                    <TouchableOpacity onPress={() => handleDoneClick()}>  
+                    <TouchableOpacity onPress={() => handleDoneClick()} style={ContactStyles.doneTouchBounds}>  
                         <View style={ContactStyles.completeSelection}>
                             <Text style={ContactStyles.doneText}>Done</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+
                 <Modal visible={modalVisible}  backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
                     <View>
                         <NameChat handleSubmission={handleSubmission} setModalVisible={setModalVisible} />
                     </View>
                 </Modal>
+
             </View>
         )
     }

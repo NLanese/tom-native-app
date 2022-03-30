@@ -12,26 +12,24 @@ const SignOutButton = ({ handleModal, handleLoggedIn }) => {
     const navigation = useNavigation()
 
     const handleSubmit = async () => {
-        await setButtonLoading(true)
-        await handleLoggedIn(false)
-        await navigation.navigate('/')
-        await setUserData({})
+        await handleLoggedIn()
+        await navigation.navigate("/")
         await handleModal()
     }
 
     return (
        <View>
            <Button 
-					// icon="login" 
-					dark={false} 
-				    mode="outlined"
-					loading={buttonLoading}
-                    style={DropdownStyles.accountInformationButton}
-                    labelStyle={DropdownStyles.accountInformationButtonText}
-                    onPress={() => handleSubmit()} 
-                >
-                    Sign Out
-                </Button>
+                // icon="login" 
+                dark={false} 
+                mode="outlined"
+                loading={buttonLoading}
+                style={DropdownStyles.accountInformationButton}
+                labelStyle={DropdownStyles.accountInformationButtonText}
+                onPress={() => handleSubmit()} 
+            >
+                Sign Out
+            </Button>
        </View> 
     );
 }

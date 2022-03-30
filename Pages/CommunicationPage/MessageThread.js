@@ -1,22 +1,24 @@
 import { CommunicationStyles } from "../../Styles/CommunicationStyles";
 
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, ScrollView, StyleSheet, Dimensions, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
-import { TextInput, Avatar } from 'react-native-paper';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Keyboard, TouchableOpacity, TextInput } from 'react-native'
 import { Modal } from '@ui-kitten/components';
 
 import { userState } from '../../Recoil/atoms'
 import { useMutation } from '@apollo/client';
 
 import { useRecoilState } from "recoil";
+import { websiteState } from "../../Recoil/atoms";
 import { threadState } from "../../Recoil/atoms";
+
+import dateObj from "../../Hooks/handleDateTime";
 
 import { DRIVERSENDMESSAGE, GETDRIVERCHATROOMS } from "../../GraphQL/operations";
 
 import Message from "./CommunicationComponents/Message";
 import Banner from '../../Global/Banner'
-import ThreadDetails from "./CommunicationComponents/ThreadDetails"
 import Loading from "../../Global/Loading"
+import Gradient from "../../Components/Gradient"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -34,20 +36,25 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
     // Tracks message sending status
     const [updating, setUpdating] = useState(false)
 
+    // Tracks website state
+    const [website, setWebsite] = useRecoilState(websiteState)
+
 // -------------------- Pre Mounting Functions -------------------------
+
     // Tracks the contents of any current message
     const [newMessage, setNewMessage] = useState("")
+
+    const [msgHeight, setMsgHeight] = useState(60)
 
     // Determines whether or not the keyboard is visible
     const [KeyboardVisible, setKeyboardVisible] = useState(false);
 
     // Gets User State from Recoil
-    const [user] = useRecoilState(userState)
-
-    const [modalvisible, setModalVisible] = useState(false)
+    const [user, setUser] = useRecoilState(userState)
 
     // Allows us to tell ScrollView to go to the bottom upon a message send
     const scrollViewRef = useRef();
+
 // -------------------- Pre Mounting Functions -------------------------
 
 
@@ -55,15 +62,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 // ----------------- Render / Styling Functions ------------------------
     // Adjusts the height of the text input box, based on how long the text is
     const determineInputHeight = (message) => {
-        if (message.length > 168){
-            return maxHeight * 0.2
-        }
-        else if (message.length > 69){
-            return maxHeight * 0.12
-        }
-        else{
-            return maxHeight * 0.08
-        }
+       return (-msgHeight * .9)
     }
 
     // Adjusts the positioning of the Input
@@ -121,59 +120,171 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
         };
       }, []);
 
-    // Handles rerender
-
     // Generates all of the messages
     const renderMessageFeed = (messageData) => {
         if (messageData === null){
             return <Text>No Messages</Text>
         }
-        if (Object.keys(messageData) < 1){
-            return null
-        }else{
-            const messages = messageData.map( (message, key) => {
+      
+        const messages = messageData.map( (message, index) => {
 
-                // Renders sender name
-                let propFrom = ""
-                if (message.from.id == user.id ){
-                    propFrom = "You"
+            // Renders sender name
+            let propFrom = ""
+            if (message.from.id == user.id ){
+                propFrom = "You"
+            }
+            else{
+                propFrom = message.from
+            }
+
+            // Sets Display Null Values
+            let displayTime = false
+            let displayName = false
+            let displayIcon = false
+
+            // Determines if you need to display time sent above
+            if (index == 0){
+                displayTime = true
+                displayName = true
+            }
+
+            // handles time / name display booleans
+            if (index != 0){
+
+                // All for time boolean
+                let thisSendTime = dateObj(message.createdAt, user.dsp.timeZone)
+                let lastSendTime = dateObj(messageData[index - 1].createdAt, user.dsp.timeZone)
+                if (thisSendTime.day != lastSendTime.day){
+                    displayTime = true
                 }
                 else{
-                    propFrom = message.from
+                    let thisTotal = 0
+                    let lastTotal = 0
+
+                    thisTotal += thisSendTime.hour
+                    if (thisSendTime.am_pm == "PM"){
+                        thisTotal = thisTotal * 2
+                    }
+                    lastTotal += lastSendTime.min
+
+                    lastTotal += lastSendTime.hour
+                    if (lastSendTime.am_pm == "PM"){
+                        lastTotal = lastTotal * 2
+                    }
+                    lastTotal += lastSendTime.min
+                    
+                    if (thisTotal - 30 > lastTotal){
+                        displayTime = true
+                    }
                 }
 
-                // Calls upon Message Component
-                return(
-                    <Message setActiveThread={setActiveThread} from={propFrom} content={message.content} dateSent={message.createdAt} key={key}/>
-                )
-            })
+                // All for name boolean
+                if (messageData[index - 1].from.id != message.from.id){
+                    displayName = true
+                }
 
-            // Renders the Message Component and Name Label
-            return (<View> 
-                        <View>
-                            {messages}
-                        </View>
-                        <View style={{height: 50}}/>
+                // For Icon
+                let next = index + 1
+                if (messageData.length > index){
+                    if (messageData[next]){
+                        if (messageData[next].from.id != message.from.id){
+                            displayIcon = true
+                        }
+                    }
+                    
+                }
+
+            }
+
+
+            // Calls upon Message Component
+            return(
+                <Message 
+                    setActiveThread={setActiveThread} 
+                    from={propFrom} 
+                    content={message.content} 
+                    dateSent={message.createdAt} 
+                    key={index} 
+                    displayTime={displayTime}
+                    displayName={displayName}
+                    displayIcon={displayIcon}
+                />
+            )
+        })
+
+        // Renders the Message Component and Name Label
+        return (<View> 
+                    <View>
+                        {messages}
+                        <View style={{height: 70}} />
                     </View>
-                    )
+                    <View style={{height: 50}}/>
+                </View>
+        )
+    }
+
+    // Determines where the send button is rendered or not
+    const renderSendButton = () => {
+        if (newMessage.length > 1){
+            return(
+                <TouchableOpacity onPress={() => handleSendMessage(newMessage)} style={{height: 40, width: 40, marginLeft: maxWidth - 77,
+                    marginTop: -45,}} >
+                    <Gradient
+                        colorOne="#543FFF"
+                        colorTwo="#15A1F1"
+                        style={{
+                            position: 'absolute',
+                            zIndex: 10,
+                            height: 40,
+                            width: 40,
+                            borderRadius: 20,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Text
+                            style={{
+                                position: 'relative',
+                                fontFamily: "GilroyBold",
+                                color: "#f2f2f2",
+                                fontSize: 12,
+                                textAlign: 'center'
+                            }}
+                        >Send</Text>
+                    </Gradient>
+                </TouchableOpacity>
+            )
         }
     }
+
 // ----------------- Render / Styling Functions ------------------------
 
 // ----------------------- Handler Functions ---------------------------
-    const handleInfoClick = () => {
-        setModalVisible(true)
-    }
 
     const handleSendMessage = () => {
-        console.log(activeThread.id)
         if (newMessage.length > 0){
-             handleMutation().then( (resolved) => {
-                setNewMessage("")
-                setActiveThread(resolved.data.driverSendMessage.chatroom)
+             handleMutation().then( (resolved) => { // This line fixed all the promise issues
+                setNewMessage("") // clears current message input
+                let newActiveThread = resolved.data.driverSendMessage.chatroom // creates new thread JSON from mutation data
+                setActiveThread(newActiveThread) // Sets current thread to match the new one
+
+                // changes the entire user state, leaving all over threads untouched but updating the current one
+                let updatedThreads = [newActiveThread]
+                user.chatrooms.forEach( (chat) => {
+                    if (chat.id == newActiveThread.id){
+                    }
+                    else {
+                        updatedThreads.push(chat)
+                    }
+                })
+
+
+                // changes the main recoil state
+                setUser({...user, chatrooms: updatedThreads})
             })
         }
         else{
+            // Throw Error Handling for no input or just do nothing, we'll see
         }
     }
 
@@ -193,31 +304,17 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
             <Loading />
         )
     }
+
     return(
         <View>
             <Banner />
             <View style={CommunicationStyles.container}>
 
-                {/* INFORMATION MODAL */}
-                <Modal visible={modalvisible}>
-                        <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
-                </Modal>
-
-                {/* Chatroom Label */}
-                <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
-                    <View style={CommunicationStyles.threadLabel}>
-                        <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
-                        <View>
-                            <View style={{height: 35, width: 35, marginTop: 10, borderRadius: 100, backgroundColor: 'black'}}/>
-                        </View>
-                    </View >
-                </TouchableWithoutFeedback>
-
                 {/* Chatroom Message Content */}
                 <View style={CommunicationStyles.threadContainer}>
                     <View style={CommunicationStyles.thread}>
                         <ScrollView 
-                            containerStyle={CommunicationStyles.thread}
+                            contentContainerStyle={CommunicationStyles.thread}
                             ref={scrollViewRef}
                             onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
                             // onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})}
@@ -230,34 +327,42 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
                 {/* THE MESSAGE INPUT AREA */}
                 <View style={determineKeyboardStyle(KeyboardVisible, newMessage)}>
-                    <TextInput
-                        mode="outlined"
-                        dense={true}
-                        multiline={true}
-                        style={{
-                            height: determineInputHeight(newMessage),
-                            width: maxWidth - 60,
-                            marginRight: 5,
-                        }}
-                        selectionColor='#24296f'
-                        activeOutlineColor='#24296f'
-                        activeUnderlineColor='#24296f'
-                        onChangeText={(input) => {
-                            setNewMessage(input)
-                        }}
-                        value={newMessage}
-                    />
+                    
+                    <View>
+                        <TextInput 
+                            placeholder={"    Send a Message"}
+                            style={{
+                                borderWidth: 1,
+                                borderColor: "#C8C8CC",
+                                borderRadius: 10,
+                                backgroundColor: "white",
+                                width: maxWidth - 60,
+                                height: msgHeight,
+                                maxHeight: 200,
+                                marginLeft: 30,
+                                paddingTop: 10,
+                                paddingLeft: 10,
+                                paddingBottom: 8,
+                                paddingRight: 40,
+                                marginTop: determineInputHeight(newMessage)
+                            }}
+                            multiline={true}
+                            value={newMessage}
+                            onChangeText={(content) => {
+                                setNewMessage(content)
+                            }}
+                            onContentSizeChange={(e) => {
+                                let newHeight = e.nativeEvent.contentSize.height
+                                if (newHeight < 160 && newHeight > 50){
+                                    setMsgHeight(newHeight)
+                                }
+                            }}
+                            
+                        />
+                        {renderSendButton()}
+                    </View>
 
-                    {/* SEND MESSAGE BUTTON */}
-                    <TouchableWithoutFeedback onPress={ () => handleSendMessage(newMessage) }>
-                        <View style={CommunicationStyles.sendButton}>
-                            <Text style={{textAlign: 'center', fontWeight: '800'}}>
-                                Send
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
                 </View>
-
             </View>
         </View>
     )

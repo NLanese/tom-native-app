@@ -8,7 +8,8 @@ let maxHeight= Dimensions.get('window').height
 const DropdownStyles = StyleSheet.create({
     container: {
         backgroundColor: 'white', 
-        padding: 20, 
+        paddingTop: 20, 
+        paddingBottom: 10,
         position: 'absolute', 
         top: 50, 
         right: 0, 
@@ -33,12 +34,12 @@ const DropdownStyles = StyleSheet.create({
         marginTop: 5,
     },
     accountInformationButton: {
-        height: 50,
+        height: 40,
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
         backgroundColor: 'white',
-        marginTop: 5,
-        height: 30
+        borderRadius: 0,
     },
     accountInformationButtonText: {
         color: 'black',

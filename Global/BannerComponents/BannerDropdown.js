@@ -17,12 +17,11 @@ const BannerDropdown = ({ visible, handleModal, handleLoggedIn }) => {
             <Portal>
                 <Modal visible={visible} onDismiss={handleModal} contentContainerStyle={DropdownStyles.container}>
                     
-                    <View>
+                    <View style={{marginBottom: 10}}>
                         <Text style={DropdownStyles.titleText}>Signed in as:</Text>
                         <Text style={DropdownStyles.titleName}>{userData.firstname} {userData.lastname}</Text>
                     </View>
                     
-                    <View style={DropdownStyles.divider}/>
 
                     <View>
                         <AccountInformationButton handleModal={handleModal}/>
@@ -30,7 +29,6 @@ const BannerDropdown = ({ visible, handleModal, handleLoggedIn }) => {
                         <EmployeeChatroomButton handleModal={handleModal} />
                     </View>
 
-                    <View style={DropdownStyles.divider}/>
 
                     <View>
                         <SignOutButton handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
