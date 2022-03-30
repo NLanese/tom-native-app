@@ -221,7 +221,6 @@ export default function App() {
 
 
 
-
                   <Stack.Screen name='shift_planner'>
                     {props => <ShiftPlanner />}
                   </Stack.Screen>
@@ -496,26 +495,6 @@ export default function App() {
                   <Stack.Screen name='finish'>
                     {props => <FinishedPage />}
                   </Stack.Screen>
-
-                  {/* <Stack.Screen name='accident-info-continue'>
-                    {props => <AccidentInfoContinue />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='report-an-accident-completed'>
-                    {props => <ReportAnAccidentCompleted />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='accident-general-pictures'>
-                    {props => <AccidentGeneralPictures />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='accident-police-report'>
-                    {props => <AccidentPoliceReport />}
-                  </Stack.Screen>
-
-                  <Stack.Screen name='accident-extra-information'>
-                    {props => <AccidentExtraInformation />}
-                  </Stack.Screen> */}
 
                   <Stack.Screen name='profile-picture'>
                     {props => <ProfilePicture />}

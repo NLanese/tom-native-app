@@ -20,16 +20,16 @@ const SignOutButton = ({ handleModal, handleLoggedIn }) => {
     return (
        <View>
            <Button 
-					// icon="login" 
-					dark={false} 
-				    mode="outlined"
-					loading={buttonLoading}
-                    style={DropdownStyles.accountInformationButton}
-                    labelStyle={DropdownStyles.accountInformationButtonText}
-                    onPress={() => handleSubmit()} 
-                >
-                    Sign Out
-                </Button>
+                // icon="login" 
+                dark={false} 
+                mode="outlined"
+                loading={buttonLoading}
+                style={DropdownStyles.accountInformationButton}
+                labelStyle={DropdownStyles.accountInformationButtonText}
+                onPress={() => handleSubmit()} 
+            >
+                Sign Out
+            </Button>
        </View> 
     );
 }

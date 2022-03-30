@@ -29,8 +29,6 @@ const FinalQuestions = () => {
     const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
     const [website, setWebsite] = useRecoilState(websiteState)
 
-    console.log("\n\n\n")
-
     const [q1, setQ1] = useState("empty")        // Police Report
     const [q2, setQ2] = useState("empty")        // Amazon Logo
     const [q3, setQ3] = useState("empty")        // Any Bystanders
@@ -57,7 +55,6 @@ const FinalQuestions = () => {
 /////////////////////////////////////////
 
     const changeQ1 = (input) => {       // Police Report?
-        console.log("hit")
         if (input != q1){
             setQ1(input)                // Police Report?
             setQ4({                     // Police Report
@@ -315,11 +312,6 @@ const FinalQuestions = () => {
             return(
                 <View style={{marginLeft: 30, marginTop: 40}}>
                     <TouchableOpacity onPress={() => {
-                        console.log(q1)
-                        console.log(q2)
-                        console.log(q3)
-                        console.log(q4)
-                        console.log(q5)
                         setAccidentState({
                             ...accidentState,
                             accident_report: {
