@@ -35,8 +35,8 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRemem
             const email = await AsyncStorage.getItem('@email')
             const password = await AsyncStorage.getItem('@password')
             const data = {
-                email: email,
-                password: password
+                email: userData.email,
+                password: userData.password
             }
             return data
         } catch (error) {

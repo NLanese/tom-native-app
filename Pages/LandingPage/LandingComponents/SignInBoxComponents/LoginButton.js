@@ -50,10 +50,10 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 	const handleSubmit = async () => {
 		await login({
-		variables: {
-		email: userData.email,
-		password: userData.password,
-		},
+			variables: {
+			email: userData.email,
+			password: userData.password,
+			},
 		})
 		// Store email and password to AsyncStorage on login if Remember Me option is selected
 		.then(async () => {
@@ -118,9 +118,10 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 	// Renders the Button with the Overlay with Dynamic Height
 	const renderButton = () => {
-	// if (userData.password.length > 5 && userData.email.length > 5){
-		if (!buttonLoading && !buttonLoaded){
-			setButtonLoading(true)
+		if (userData.password.length > 5 && userData.email.length > 5){
+			if (!buttonLoading && !buttonLoaded){
+				setButtonLoading(true)
+			}
 			return(
 				<View>
 					<View style={{position: 'absolute', height: (50 - buttonHeight), zIndex: 20, overflow: 'hidden',}}>
@@ -130,7 +131,6 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 				</View>
 			)
 		}
-	// }
 		else{
 			if (buttonLoaded){
 				setButtonLoaded(false)
@@ -140,18 +140,17 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 		}
 	}
 
-	// if (buttonLoading){
-    //     console.log(`buttonLoading from LoginButton: ${buttonLoading}`)
-	// 	setTimeout(() => {
-    //         if (buttonHeight < 50){
-    //             setButtonHeight(buttonHeight + 5)
-    //         }
-    //         else{
-	// 			setButtonLoaded(true)
-    //             setButtonLoading(false)
-    //         }
-    //     }, 0.5)
-    // }
+	if (buttonLoading){
+        setTimeout(() => {
+            if (buttonHeight < 50){
+                setButtonHeight(buttonHeight + 5)
+            }
+            else{
+				setButtonLoaded(true)
+                setButtonLoading(false)
+            }
+        }, 0.5)
+    }
 
 
 // ------------------------- Button Related -------------------------- //

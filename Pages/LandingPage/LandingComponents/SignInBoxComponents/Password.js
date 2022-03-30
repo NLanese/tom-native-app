@@ -67,7 +67,7 @@ const Email = ({ handleInput, userData, rememberMe}) => {
                 placeholder='Password'
                 placeholderTextColor={determineStyle().color}
                 textStyle={{color: determineStyle().color, fontSize: 18}}
-                onChangeText={email => {
+                onChangeText={password => {
                     handleInput('password', password)
                 }}
             />
