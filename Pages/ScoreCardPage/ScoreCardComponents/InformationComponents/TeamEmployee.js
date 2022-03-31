@@ -20,12 +20,6 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
     if (data.photoOnDelivery == null){
         data.photoOnDelivery = 0
     }
-    if (data.callCompliance == null){
-        data.callCompliance = 0
-    }
-    if (data.scanCompliance == null){
-        data.scanCompliance = 0
-    }
 
     data.firstname = data.firstname[0] + data.firstname.slice(1).toLowerCase()
     data.lastname = data.lastname[0] + data.lastname.slice(1).toLowerCase()

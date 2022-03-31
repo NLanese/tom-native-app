@@ -151,8 +151,6 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
-      scanCompliance
-      callCompliance
       attendedDeliveryAccuracy
       dnr
       podOpps
@@ -689,8 +687,6 @@ const UPDATEDRIVER = gql`
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
-      scanCompliance
-      callCompliance
       attendedDeliveryAccuracy
       dnr
       podOpps
@@ -946,8 +942,6 @@ const GETDRIVERDATA = gql`
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
-      scanCompliance
-      callCompliance
       attendedDeliveryAccuracy
       dnr
       podOpps
@@ -1080,8 +1074,6 @@ query Query {
         deliveryCompletionRate
         deliveredAndRecieved
         photoOnDelivery
-        callCompliance
-        scanCompliance
         attendedDeliveryAccuracy
         dnr
         podOpps
