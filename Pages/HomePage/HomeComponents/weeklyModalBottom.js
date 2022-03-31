@@ -37,18 +37,6 @@ const WeeklyBottomCard = ({data}) => {
         <Text style={StatStyles.statTitle}>Photo on Delivery Rate</Text> 
     </View>)
 
-    // 3 - CC
-    let cc = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statValue}>{removecomingSoon(data.callCompliance)}%</Text> 
-        <Text style={StatStyles.statTitle}>Call Compliance</Text>   
-    </View>)
-
-    // 4 - SC
-    let sc = (<View style={StatStyles.stat}>
-        <Text style={StatStyles.statValue}>{removecomingSoon(data.scanCompliance)}%</Text>
-        <Text style={StatStyles.statTitle}>Scan Compliance</Text>   
-    </View>)
-
     // 5 - fico
     let fico = (<View style={StatStyles.stat}>
         <Text style={StatStyles.statValue}>{removecomingSoon(data.fico)}</Text>
