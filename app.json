@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Tom App",
-    "slug": "tom-app",
+    "name": "The Tom App",
+    "slug": "the-tom-app",
     "version": "1.0.0",
     "privacy": "public",
     "description": "In the development and testing phase",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/TomSplash.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -30,5 +30,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
+
   }
 }
+ 

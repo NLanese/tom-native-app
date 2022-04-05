@@ -452,12 +452,9 @@ mutation Mutation($accidentId: String!, $contact_info: JSON!, $damage_report: JS
 }
 `
 const DRIVER_CREATE_INJURY_ACCIDENT = gql`
-mutation Mutation($accidentId: String!, $contact_info: JSON!, $injured_areas: JSON!, $injury_report: JSON!, $pain_level: String, $specific_pictures: JSON, $extra_info: String, $collisionAccidentId: String) {
-  driverCreateInjuryAccident(accidentId: $accidentId, contact_info: $contact_info, injured_areas: $injured_areas, injury_report: $injury_report, pain_level: $pain_level, specific_pictures: $specific_pictures, extra_info: $extra_info, collisionAccidentId: $collisionAccidentId) {
+mutation Mutation($accidentId: String!, $collisionAccidentId: String, $contact_info: JSON!, $extra_info: String, $injured_areas: JSON!, $injury_report: JSON!, $pain_level: String, $specific_pictures: JSON) {
+  driverCreateInjuryAccident(accidentId: $accidentId, collisionAccidentId: $collisionAccidentId, contact_info: $contact_info, extra_info: $extra_info, injured_areas: $injured_areas, injury_report: $injury_report, pain_level: $pain_level, specific_pictures: $specific_pictures) {
     id
-    accident{
-      id
-    }
   }
 }
 `
