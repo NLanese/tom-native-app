@@ -69,34 +69,34 @@ const BottomCard = ({sortBy, rawData}) => {
     let handleSort = (sortBy) => {
         let returnArray = ""
         if (sortBy == "Delivery Completion Rate"){
-            returnArray = [dcr, divider, dar, divider, pod, divider, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf]
+            returnArray = [dcr, divider, dar, divider, pod, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf]
         }
         else if (sortBy == 'Delivered and Recieved'){
-            returnArray = [dar, divider, pod, divider, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr]
+            returnArray = [dar, divider, pod, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr]
         }
         else if (sortBy == 'Photo Rate'){
-            returnArray = [pod, divider, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar]
+            returnArray = [pod, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar]
         }
         else if (sortBy == 'Call Compliance'){
-            returnArray = [cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod]
+            returnArray = [ divider,fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod]
         }
         else if (sortBy == 'Scan Compliance'){
-            returnArray = [sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, divider, cc]
+            returnArray = [ divider, fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod]
         }
         else if (sortBy == 'FICO'){
-            returnArray = [fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, divider, cc, divider, sc,]
+            returnArray = [fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, divider,]
         }
         else if (sortBy == 'Seatbelt'){
-            returnArray = [seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico]
+            returnArray = [seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod,  divider,fico]
         }
         else if (sortBy == 'Speeding'){
-            returnArray = [speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico, divider, seatbelt]
+            returnArray = [speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod,  divider,fico, divider, seatbelt]
         }
         else if (sortBy == 'Defects'){
-            returnArray = [defects, divider, cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding]
+            returnArray = [defects, divider, cdf, divider, dcr, divider, dar, divider, pod,  divider,fico, divider, seatbelt, divider, speeding]
         }
         else if (sortBy == 'Customer Delivery Feedback'){
-            returnArray = [cdf, divider, dcr, divider, dar, divider, pod, cc, divider, sc, divider, fico, divider, seatbelt, divider, speeding, divider, defects]
+            returnArray = [cdf, divider, dcr, divider, dar, divider, pod,  divider,fico, divider, seatbelt, divider, speeding, divider, defects]
         }
         else {
             returnArray = null

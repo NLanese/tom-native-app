@@ -42,8 +42,8 @@ const FinishedPage = () => {
         console.log("hit")
         return handleMutation().then( resolved => {
             console.log(resolved)
-            // setWebsite({current: "Home", previous: null, saved: null})
-            // navigation.navigate("home")
+            setWebsite({current: "Home", previous: null, saved: null})
+            navigation.navigate("home")
         })
     }
 
