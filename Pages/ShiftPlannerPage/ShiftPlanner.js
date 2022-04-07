@@ -13,6 +13,7 @@ import { ShiftPlannerStyles } from "../../Styles/ShiftPlannerStyles";
 import dateObj from "../../Hooks/handleDateTime";
 import numberToMonth from "./numberToMonth";
 import numberToDay from "./numberToDay";
+import getTodaysDate from "../../Hooks/getTodaysDate";
 
 // import ShiftInfo from "../ScrappedPages/ShiftInfo";
 import Loading from "../../Global/Loading";
@@ -32,47 +33,16 @@ const ShiftPlanner = () => {
     let maxHeight= Dimensions.get('window').height
 
     // Recoil
-    const [rawUser, setRawUser] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userState)
 
-    // Handles the user data
-    // let user
-    // if (rawUser.isArray){
-    //     user = rawUser[0]
-    // }
-    // else{
-    //     user = {...rawUser}
-    // }
+    // Local States
+    
+        // Current Date Selected
+        const [daysAhead, setDaysAhead] = useState(0)
+        const [currentDate, setCurrentDate] = useState(getTodaysDate(daysAhead))
 
-    let user = {
-        firstname: "Jared",
-        lastname: "Seaman",
-        shiftPlanners: [
-            {
-                id: 12345,
-                createdAt: "2022-02-26T15:48:08",
-                sundayDate: "03/27/2022",
-                sundayHours: "9am-5pm",
-                mondayDate: "03/28/2022",
-                mondayHours: "9am-5pm",
-                tuesdayDate: "03/29/2022",
-                tuesdayHours: "9am-5pm",
-                wednesdayDate: "03/30/2022",
-                wednesdayHours: "9am-5pm",
-                thursdayDate: "03/31/2022",
-                thursdayHours: "9am-5pm",
-                fridayDate: "03/32/2022",
-                fridayHours: "9am-5pm",   
-                saturdayDate: "03/33/2022",
-                saturdayHours: "9am-5pm",
-                phoneId: "1234",
-                deviceId: "5678",
-                vehicleId: "9012",
-                cxNumber: "42069",
-                message: "Yoooo this is a message, I love me some messages. Aren't messages great? I message, you message, he she me, message. Message, messaging, it's first grade spongebob!",
-                driver: "no"
-            }
-        ]
-    }
+
+    
 
 
 // -------------------------------------------------------------//
@@ -97,19 +67,10 @@ const ShiftPlanner = () => {
  //                                                             //
  //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
 
-    // Gets current index
-    let currentSP = user.shiftPlanners.length - 1
-
-    // Puts all the shift data into an array of objects for easier sorting
-    let thisWeeksShift = [
-        {date: user.shiftPlanners[currentSP].sundayDate, hours: "9:30 AM-5:30 PM",},
-        {date: user.shiftPlanners[currentSP].mondayDate, hours: "9:00 AM - 5:00 PM",},
-        {date: user.shiftPlanners[currentSP].tuesdayDate, hours: "10:30 AM - 8:00 PM",},
-        {date: user.shiftPlanners[currentSP].wednesdayDate, hours: "9:30 AM - 5:45 PM",},
-        {date: user.shiftPlanners[currentSP].thursdayDate, hours: "Off",},
-        {date: user.shiftPlanners[currentSP].fridayDate, hours: "Off",},
-        {date: user.shiftPlanners[currentSP].saturdayDate, hours: "12:00 PM - 8:00 PM",},
-    ]
+    let allShifts = user.shifts
+    let todaysShift = allShifts.find( shift => {
+        shift.date == 
+    })
 
     //--------------------------------------//
     //                                      //

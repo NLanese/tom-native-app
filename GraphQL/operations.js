@@ -280,6 +280,7 @@ const LOGIN = gql`
     locked
     deleted
     notified
+    shifts
     owner {
       id
       firstname
@@ -474,7 +475,6 @@ mutation Mutation($accidentId: String!, $injuries: JSON!, $injury_report: JSON!,
 //         ACCIDENT UPDATORS            //   
 //                                      //
 //////////////////////////////////////////
-
 
 const DRIVER_UPDATE_ACCIDENT = gql`
 mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: String, $police_report: JSON, $selfDamage: JSON, $before_accident_report: JSON, $weather_and_distractions: JSON) {
