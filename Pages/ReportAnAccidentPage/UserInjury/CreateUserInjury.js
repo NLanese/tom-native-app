@@ -38,7 +38,11 @@ const CreateUserInjury = ({accident}) => {
     useEffect(() => [
         setSelfInjuryData({
             injuries: {
-                
+                "Head": false, "Neck": false, "Shoulder(s)": false, 
+                "Chest": false, "Stomach": false, "Back": false, 
+                "Hips": false, "Waist": false, "Groin": false, 
+                "Arm[s]": false, "Hand[s]": false, "Elbow[s]": false, 
+                "Leg[s]": false, "Knee[s]": false, "Foot": false,
             },
             injury_report: {
                 drivingDuring: null,

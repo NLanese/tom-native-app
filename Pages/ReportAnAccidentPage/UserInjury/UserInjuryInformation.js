@@ -50,6 +50,8 @@ const UserInjuryInformation = ({accident}) => {
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
     const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
 
+    console.log(selfInjuryData)
+
     // All of the possible injury areas, values for checkboxes and object data
     const possibleInjuries = [
         "Head", "Neck", "Shoulder(s)", 
@@ -61,6 +63,8 @@ const UserInjuryInformation = ({accident}) => {
 
     // Tracks the selected injuries
     const [injuriesSelected, setInjuriesSelected] = useState(selfInjuryData.injuries)
+
+    console.log(injuriesSelected)
 
     // Tracks how nany injuries are selected. You need at least one to continue
     const [count, setCount] = useState(0)
