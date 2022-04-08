@@ -101,6 +101,8 @@ const Home = ({ handleLoggedIn }) => {
     }
 
 
+    console.log(user.shifts)
+
     return (
         <View>
             <Banner handleLoggedIn={handleLoggedIn}/>
