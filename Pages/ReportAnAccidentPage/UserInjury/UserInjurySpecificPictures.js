@@ -48,7 +48,7 @@ const UserInjurySpecificPicture = ({accident}) => {
                 navigation.navigate('create-collision-accident')
             }
         })();
-        
+        console.log(selfInjuryData)
         setSelfInjuryData({
             ...selfInjuryData,
             specific_pictures: []
@@ -106,7 +106,7 @@ const UserInjurySpecificPicture = ({accident}) => {
                                         let images = [...selfInjuryData.specific_pictures];
                                         images.push(r.uri)
                                         setSelfInjuryData({
-                                            ...setSelfInjuryData,
+                                            ...selfInjuryData,
                                             specific_pictures: images
                                         })
                                     }

@@ -17,9 +17,7 @@ import getTodaysDate from "../../Hooks/getTodaysDate";
 
 // import ShiftInfo from "../ScrappedPages/ShiftInfo";
 import Loading from "../../Global/Loading";
-import NoShifts from "./NoShifts";
 import Gradient from "../../Components/Gradient";
-import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const ShiftPlanner = () => {
  //-------------------------------------------------------------//
