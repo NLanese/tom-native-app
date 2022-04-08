@@ -41,95 +41,32 @@ const ShiftPlanner = () => {
         const [daysAhead, setDaysAhead] = useState(0)
         const [currentDate, setCurrentDate] = useState(getTodaysDate(daysAhead))
 
+        const day = numberToMonth(currentDate.day)
+        const month = numberToMonth(currentDate.month)
+        const year = numberToMonth(currentDate.year)
 
-    
+        const dayOfTheWeek = numberToDay(currentDate.day)
 
-
-// -------------------------------------------------------------//
-//                                                              //
-//                          GUARDS                              //
-//                                                              //
-//-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v//
-
-    if (user.shiftPlanners === null){
-        return(<NoShifts />)
-    }
-    else if (user.shiftPlanners.length < 1){
-        return(<NoShifts />)
-    }
-
-
-
+        const initShift  = user.shifts.find(shift => shift.date == currentDate.date)
+        const [currentShift, setCurrentShift] = useState(initShift)
 
  //-------------------------------------------------------------//
  //                                                             //
- //                DATE HANDLER AND DATE STATE                  //
+ //                         HANDLERS                            //
  //                                                             //
  //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
 
-    let allShifts = user.shifts
-    let todaysShift = allShifts.find( shift => {
-        shift.date == 
-    })
-
-    //--------------------------------------//
-    //                                      //
-    //          Todays Static Date          //
-    //                                      //
-    //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V//
-
-        // Gets the current date
-        const d = new Date();
-
-        // Gets the year
-        let year = d.getUTCFullYear()
-
-        // Gets the month and turns it into the word form
-        let month = d.getUTCMonth();
-        month = month + 1
-        if (month < 10){
-            month = "0" + month
+    const handleDateChange = (add_or_subtract) => {
+        let changer = 0
+        if (add_or_subtract == "add"){
+            changer = 1
         }
-
-        // Gets the day, adds a 0 in front of single digits
-        let day = d.getUTCDate();
-        if (day < 10){
-            day = "0" + day
+        if (add_or_subtract == "subtract"){
+            changer = -1
         }
-
-        // Creates current date string
-        let currentDate = `${month}/${day}/${year}`
-
-    //--------------------------------------//
-    //                                      //
-    //          Dynamic Shift Date          //
-    //                                      //
-    //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V//
-
-        // determines which index of the week array to start on (which day is today)
-        let initDateIndex
-        thisWeeksShift.forEach( (dayObj, index) => {
-            if (dayObj.date == currentDate){
-                initDateIndex = index
-            }
-        })
-
-        // Using the code above, determines which day thw shift starts on. 
-        // Puts it in a state so that rerender is called upon its change
-        const [dateIndex, setDateIndex] = useState(initDateIndex)
-
-        if (!thisWeeksShift[dateIndex]){
-            return <NoShifts />
-        }
-
-        let dyanmicDate = {
-            month: thisWeeksShift[dateIndex].date.split("/")[0],
-            day: thisWeeksShift[dateIndex].date.split("/")[1] ,
-            hours: thisWeeksShift[dateIndex].hours
-        }
-
-        let dayString = numberToDay(dateIndex)
-        month = numberToMonth(dyanmicDate.month)
+        setCurrentDate(getTodaysDate(daysAhead + changer))
+        set
+    }
 
 
  //-------------------------------------------------------------//
@@ -141,9 +78,9 @@ const ShiftPlanner = () => {
     // Renders the forward and backwards arrows, determines whether or not they are clickable
     const renderArrow = (frontOrBack) => {
         if (frontOrBack == "back"){
-            if (dateIndex > 0){
+            if (daysAhead > 0){
                 return(
-                    <TouchableOpacity onPress={() => setDateIndex(dateIndex - 1)}>
+                    <TouchableOpacity onPress={() => setDaysAhead(daysAhead - 1)}>
                     <Gradient
                         colorOne="#534FFF"
                         colorTwo="#15A1F1"
@@ -183,9 +120,9 @@ const ShiftPlanner = () => {
         }
         else{
 
-            if (dateIndex < thisWeeksShift.length - 1){
+            if (daysAhead < 30){
                 return(
-                    <TouchableOpacity onPress={() => setDateIndex(dateIndex + 1)}>
+                    <TouchableOpacity onPress={() => setDaysAhead(daysAhead + 1)}>
                         <Gradient
                             colorOne="#534FFF"
                             colorTwo="#15A1F1"
@@ -227,8 +164,42 @@ const ShiftPlanner = () => {
         }
     }
 
-    const renderShiftItems = () => {
+    const renderShiftAssignments = () => {
 
+        const generateDeviceComponents = () => {
+            if (!currentShift || currentShift == 'undefined'){
+                return(
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>
+                        <Text style={{...ShiftPlannerStyles.subtitle, fontSize: 12, textAlign: 'center'}}>You do not have any assignments today</Text>
+                    </View>
+                )
+            }
+            else if (currentShift.date){
+                let allDevices = Object.keys(currentShift)
+                allDevices = allDevices.filter(deviceName => {
+                    if (deviceName != "date"){
+                        return deviceName
+                    }
+                })
+                return allDevices.map( (deviceName, index) => {
+                    return(
+                        <View style={{...ShiftPlannerStyles.cell, alignContent: 'center'}} key={index}>
+                            <Text style={ShiftPlannerStyles.valText}>{currentShift[deviceName]}</Text>
+                            <Text style={ShiftPlannerStyles.valTitle}>{deviceName} ID</Text>
+                        </View>
+                    )
+                })
+            }
+        }
+
+        return (
+            <View>
+                <View style={{alignItems: 'center'}}>
+                    <Text style={{...ShiftPlannerStyles.subtitle2, fontSize: 14}}>ASSIGNNMENTS</Text>
+                </View>
+                {generateDeviceComponents()}
+            </View>
+        )
     }
 
 
@@ -239,7 +210,13 @@ const ShiftPlanner = () => {
  //                                                             //
  //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
 
-    return (
+    console.log("Current Shift")
+    console.log(currentShift)
+
+    console.log("Current Date:")
+    console.log(currentDate)
+
+   return (
         <View style={{backgroundColor: "#f2f2f2"}}>
             <Banner />
 
@@ -270,9 +247,9 @@ const ShiftPlanner = () => {
                         alignItems: 'center',
                     }}>
                         <Text style={ShiftPlannerStyles.monthText}>{month}</Text>
-                        <Text style={ShiftPlannerStyles.dayText}> {dyanmicDate.day}</Text>
+                        <Text style={ShiftPlannerStyles.dayText}> {currentDate.day}</Text>
                     </View>
-                    <Text style={ShiftPlannerStyles.dateText}>{dayString}</Text>
+                    <Text style={ShiftPlannerStyles.dateText}>{dayOfTheWeek}</Text>
                 </View>
 
                 {/* FRONT DATE ARROW */}
@@ -361,16 +338,14 @@ const ShiftPlanner = () => {
                     <Text style={ShiftPlannerStyles.nameText}>
                         {user.firstname} {user.lastname}
                     </Text>
-                    <Text style={ShiftPlannerStyles.hoursText}>
-                        {dyanmicDate.hours.split("-")[0]} - {dyanmicDate.hours.split("-")[1] }
-                    </Text>
                 </View>
 
                 {/* Numeric Values and Titles */}
                 <View style={ShiftPlannerStyles.valueBox}>
 
+                    {renderShiftAssignments()}
                     {/* Row One */}
-                    <View style={ShiftPlannerStyles.valRow}>
+                    {/* <View style={ShiftPlannerStyles.valRow}>
 
                         <View style={ShiftPlannerStyles.cell}>
                             <Text style={ShiftPlannerStyles.valText}>{user.shiftPlanners[currentSP].phoneId}</Text>
@@ -384,10 +359,10 @@ const ShiftPlanner = () => {
                             <Text style={ShiftPlannerStyles.valTitle}>Device ID</Text>
                         </View>
 
-                    </View>
+                    </View> */}
 
                     {/* Row Two */}
-                    <View style={ShiftPlannerStyles.valRow}>
+                    {/* <View style={ShiftPlannerStyles.valRow}>
 
                         <View style={ShiftPlannerStyles.cell}>
                             <Text style={ShiftPlannerStyles.valText}>{user.shiftPlanners[currentSP].vehicleId}</Text>
@@ -401,7 +376,7 @@ const ShiftPlanner = () => {
                             <Text style={ShiftPlannerStyles.valTitle}>CX Number</Text>
                         </View>
 
-                    </View>
+                    </View> */}
 
                 </View>
 
@@ -411,7 +386,7 @@ const ShiftPlanner = () => {
                     </Text>
                     <ScrollView style={ShiftPlannerStyles.messageBox}>
                         <Text style={ShiftPlannerStyles.messageText}>
-                            {user.shiftPlanners[currentSP].message}
+                            {/* {user.shiftPlanners[currentSP].message} */}
                         </Text>
                     </ScrollView>
                 </View>
