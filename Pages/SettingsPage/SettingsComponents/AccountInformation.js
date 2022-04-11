@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, ScrollView } from 'react-native'
 
 import EditAccountInformationButton from "./ButtonBoxComponents/EditAccountInformationButton";
 import ViewAccidentsButton from "./ButtonBoxComponents/ViewAccidentsButton";
@@ -107,6 +107,56 @@ const AccountInformation = () => {
                             />
                         </View>
                         <View>
+                            <Text style={AccountInformationStyles.valName}>New Password</Text>
+                            <DynamicInput 
+                                activeColorOne="#534FFF" 
+                                activeColorTwo="#15A1F1"
+                                activeTextStyle={Template.activeTextStyle}
+
+                                height={50}
+                                width={maxWidth - 60}
+
+                                borderLeftRightWidth={6}
+                                borderTopBottomWidth={6}
+                                borderRadius={20}
+
+                                inactiveColor="#ddd" 
+                                inactiveTextStyle={Template.inactiveTextStyle}
+
+                                placeholder={"Only Enter To Change Password"}
+                                onChange={(content) => {
+                                    setCurrentSettings({
+                                        ...currentSettings, password: content
+                                    })
+                                }}
+                            />
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Phone Number</Text>
+                            <DynamicInput 
+                                activeColorOne="#534FFF" 
+                                activeColorTwo="#15A1F1"
+                                activeTextStyle={Template.activeTextStyle}
+
+                                height={50}
+                                width={maxWidth - 60}
+
+                                borderLeftRightWidth={6}
+                                borderTopBottomWidth={6}
+                                borderRadius={20}
+
+                                inactiveColor="#ddd" 
+                                inactiveTextStyle={Template.inactiveTextStyle}
+
+                                placeholder={user.phoneNumber}
+                                onChange={(content) => {
+                                    setCurrentSettings({
+                                        ...currentSettings, phoneNumber: content
+                                    })
+                                }}
+                            />
+                        </View>
+                        <View>
                             <Text style={AccountInformationStyles.valName}>DSP Name</Text>
                             <Text style={AccountInformationStyles.val}>{user.dsp.name}</Text>
                         </View>
@@ -131,21 +181,22 @@ const AccountInformation = () => {
     return (
         <View>
             <Banner />
+            <ScrollView>
+                {/* Name Plate */}
+                <View style={{paddingLeft: 30, marginTop: 30, paddingBottom: 20, borderBottomColor: "#DDD", borderBottomWidth: 1}}>
+                    <Text style={AccountInformationStyles.title}>{name.first} {name.last}</Text>
+                    <Text style={AccountInformationStyles.subtitle}>YOUR PERSONAL INFORMATION</Text>
+                </View>
 
-            {/* Name Plate */}
-            <View style={{paddingLeft: 30, marginTop: 30, paddingBottom: 20, borderBottomColor: "#DDD", borderBottomWidth: 1}}>
-                <Text style={AccountInformationStyles.title}>{name.first} {name.last}</Text>
-                <Text style={AccountInformationStyles.subtitle}>YOUR PERSONAL INFORMATION</Text>
-            </View>
+                {/* Information Container */}
+                {renderValuesOrEdit()}
 
-            {/* Information Container */}
-           {renderValuesOrEdit()}
-
-            <View style={AccountInformationStyles.buttonBox}>
-                <EditAccountInformationButton edit={edit} setEdit={setEdit} currentSettings={currentSettings}/>
-                <ViewAccidentsButton />
-                <ProfilePictureButton />
-            </View>
+                <View style={AccountInformationStyles.buttonBox}>
+                    <EditAccountInformationButton edit={edit} setEdit={setEdit} currentSettings={currentSettings}/>
+                    <ViewAccidentsButton />
+                    <ProfilePictureButton />
+                </View>
+            </ScrollView>
         </View>
     )
 }

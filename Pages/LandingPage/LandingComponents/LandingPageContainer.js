@@ -47,16 +47,12 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRemem
     useEffect(async () => {
         // Look at local storage for username and password
         const data = await getData()
-        // console.log(`email, useEffect: ${data.email}`)
-        // console.log(`password, useEffect: ${data.password}`)
-        // Fill in the fields with the data in local storage if it's there
         if (data) {
             setUserData({
                 ...userData,
                 email: data.email,
                 password: data.password
             })
-            // console.log(JSON.stringify(userData))
         }
     }, [])
 
