@@ -39,9 +39,7 @@ const FinishedPage = () => {
     }
 
     const handleCompletion = () => {
-        console.log("hit")
         return handleMutation().then( resolved => {
-            console.log(resolved)
             setWebsite({current: "Home", previous: null, saved: null})
             navigation.navigate("home")
         })

@@ -50,8 +50,6 @@ const UserInjuryInformation = ({accident}) => {
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
     const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
 
-    console.log(selfInjuryData)
-
     // All of the possible injury areas, values for checkboxes and object data
     const possibleInjuries = [
         "Head", "Neck", "Shoulder(s)", 
@@ -64,7 +62,6 @@ const UserInjuryInformation = ({accident}) => {
     // Tracks the selected injuries
     const [injuriesSelected, setInjuriesSelected] = useState(selfInjuryData.injuries)
 
-    console.log(injuriesSelected)
 
     // Tracks how nany injuries are selected. You need at least one to continue
     const [count, setCount] = useState(0)
@@ -104,7 +101,6 @@ const UserInjuryInformation = ({accident}) => {
         })
         let i = 0
         return rComp.map( (row, index) => {
-            console.log(i)
             i++
             return(row)
         })
@@ -682,7 +678,6 @@ const UserInjuryInformation = ({accident}) => {
 //                   MAIN RENDER                    //
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V// 
-    console.log(selfInjuryData)
 
     return(
         <View>

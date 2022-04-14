@@ -9,6 +9,7 @@ import dateObj from "../../../Hooks/handleDateTime";
 import nameObj from '../../../Hooks/handleNameCaseChange'
 import colorTextBasedOnValue from "../../../Hooks/colorTextBasedOffValue";
 import numberToMonth from "../../ShiftPlannerPage/numberToMonth";
+import handlePicture from "../../../Hooks/handlePicture";
 
 import Banner from "../../../Global/Banner";
 import Gradient from "../../../Components/Gradient";
@@ -42,8 +43,8 @@ const PersonalScoreCard = () => {
     const dcrLims = user.dsp.deliveryCompletionRateLimits           //
     const cdfLims = user.dsp.customerDeliveryFeedbackLimits         //
     const dspPreferences = {                                        //
-        fico: ficoLims,
-        seatbelt: seatbeltLims,
+        fico: ficoLims,                                             //
+        seatbelt: seatbeltLims,                                     
         speeding: speedingLims,
         distraction: distractionLims,
         follow: followLims,
@@ -134,78 +135,6 @@ const PersonalScoreCard = () => {
         return (<Text style={{textAlign: 'center', color: color, fontWeight: '600', fontSize: 16,}}>{tier}</Text>)
     }
 
-    // In charge of rendering the arrows that indicate progression/regression
-    const renderArrowIcon = (thisWeek, lastWeek, asc) => {
-        let icon = ""
-        if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
-            return null
-        }
-        
-        thisWeek = parseFloat(thisWeek, 10)
-        lastWeek = parseFloat(lastWeek, 10)
-
-        if (asc){
-            if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
-                return null
-            }
-            if (thisWeek > lastWeek){
-                if (thisWeek > (1.65 * lastWeek)){
-                    icon="chevron-triple-up"
-                }
-                else if (thisWeek > (1.4 * lastWeek)){
-                    icon="chevron-double-up"
-                }
-                else if (thisWeek > (1.1 * lastWeek)){
-                    icon="chevron-up"
-                }
-                else{
-                    icon=""
-                }
-                return (<IconButton icon={icon} color='green' size={15}/>)
-            }
-            else{
-                if (lastWeek > 1.65 * thisWeek){
-                    icon="chevron-triple-down"
-                }
-                else if (thisWeek > 1.4 * lastWeek){
-                    icon="chevron-double-down"
-                }
-                else{
-                    icon="chevron-down"
-                }
-                return (<IconButton icon={icon} color='green' size={15}/>)
-            }
-        } else {
-            if (thisWeek == "Coming Soon" || lastWeek == "Coming Soon" || lastWeek == thisWeek){
-                return null
-            }
-            if (thisWeek < lastWeek){
-                if (thisWeek * 1.65  < lastWeek){
-                    icon="chevron-triple-up"
-                }
-                else if (thisWeek * 1.4 < lastWeek){
-                    icon="chevron-double-up"
-                }
-                else{
-                    icon="chevron-up"
-                }
-                return (<IconButton icon={icon} color='green' size={15}/>)
-            }
-            else{
-                if (thisWeek > 1.65 * lastWeek){
-                    icon="chevron-triple-down"
-                }
-                else if (thisWeek > 1.4 * lastWeek){
-                    icon="chevron-double-down"
-                }
-                else{
-                    icon="chevron-down"
-                }
-                return (<IconButton icon={icon} color='red' size={15} />)
-            }
-        }
-    }
-
 
 
 
@@ -262,7 +191,7 @@ const PersonalScoreCard = () => {
                             alignItems: 'center'
                         }}
                     >
-                        
+                        {handlePicture(user.profilePick, 75)}
                     </Gradient>
 
 

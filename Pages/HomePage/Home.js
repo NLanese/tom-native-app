@@ -17,6 +17,7 @@ import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationCom
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
 import WeeklyBottomCard from './HomeComponents/weeklyModalBottom'
+import NoStatsHomePage from "./HomeComponents/NoStatsHomePage"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -27,6 +28,9 @@ const Home = ({ handleLoggedIn }) => {
     const [user, setUser] = useRecoilState(userState)
 
     let initVisible = false
+    if (user.weeklyReport == [] || !user.weeklyReport || user.weeklyReport.length == 0){
+        return <NoStatsHomePage handleLoggedIn={handleLoggedIn}/>
+    }
     if (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged){
         initVisible = true
     }
@@ -99,9 +103,6 @@ const Home = ({ handleLoggedIn }) => {
             }
         }, 0.5)
     }
-
-
-    console.log(user.shifts)
 
     return (
         <View>

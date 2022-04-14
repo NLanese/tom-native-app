@@ -47,12 +47,10 @@ const Email = ({ handleInput, userData, rememberMe}) => {
     }
 
     useEffect( () => {
-        // console.log(`rememberMe from Password.js: ${rememberMe}`)
         if (rememberMe === false) {
             userData = {
                 password: null
             }
-            // console.log(`userData after Password.js useEffect:`, JSON.stringify(userData))
         }
     }, [])
 

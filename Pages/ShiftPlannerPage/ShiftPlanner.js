@@ -10,12 +10,11 @@ import { userState } from "../../Recoil/atoms";
 import Banner from '../../Global/Banner'
 import { ShiftPlannerStyles } from "../../Styles/ShiftPlannerStyles";
 
-import dateObj from "../../Hooks/handleDateTime";
 import numberToMonth from "./numberToMonth";
 import numberToDay from "./numberToDay";
 import getTodaysDate from "../../Hooks/getTodaysDate";
+import handlePicture from "../../Hooks/handlePicture";
 
-// import ShiftInfo from "../ScrappedPages/ShiftInfo";
 import Loading from "../../Global/Loading";
 import Gradient from "../../Components/Gradient";
 
@@ -62,8 +61,14 @@ const ShiftPlanner = () => {
         if (add_or_subtract == "subtract"){
             changer = -1
         }
-        setCurrentDate(getTodaysDate(daysAhead + changer))
-        set
+        if (daysAhead >= 1 && add_or_subtract == "subtract"){
+            setDaysAhead(daysAhead + changer)
+            setCurrentDate(getTodaysDate(daysAhead + changer))
+        }
+        if (add_or_subtract == "add"){
+            setDaysAhead(daysAhead + changer)
+            setCurrentDate(getTodaysDate(daysAhead + changer))
+        }    
     }
 
 
@@ -78,7 +83,7 @@ const ShiftPlanner = () => {
         if (frontOrBack == "back"){
             if (daysAhead > 0){
                 return(
-                    <TouchableOpacity onPress={() => setDaysAhead(daysAhead - 1)}>
+                    <TouchableOpacity onPress={() => handleDateChange("subtract")}>
                     <Gradient
                         colorOne="#534FFF"
                         colorTwo="#15A1F1"
@@ -120,7 +125,7 @@ const ShiftPlanner = () => {
 
             if (daysAhead < 30){
                 return(
-                    <TouchableOpacity onPress={() => setDaysAhead(daysAhead + 1)}>
+                    <TouchableOpacity onPress={() => handleDateChange("add")}>
                         <Gradient
                             colorOne="#534FFF"
                             colorTwo="#15A1F1"
@@ -165,6 +170,7 @@ const ShiftPlanner = () => {
     const renderShiftAssignments = () => {
 
         const generateDeviceComponents = () => {
+            console.log(currentShift)
             if (!currentShift || currentShift == 'undefined'){
                 return(
                     <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>
@@ -208,11 +214,6 @@ const ShiftPlanner = () => {
  //                                                             //
  //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
 
-    console.log("Current Shift")
-    console.log(currentShift)
-
-    console.log("Current Date:")
-    console.log(currentDate)
 
    return (
         <View style={{backgroundColor: "#f2f2f2"}}>
@@ -302,7 +303,9 @@ const ShiftPlanner = () => {
                             alignItems: 'center'
                         }}
                     >
-                        
+                        <View style={{height: 90, width: 90, alignContent: 'center', alignItems: 'center', justifyContent: 'center'}}>
+                            {handlePicture(user.profilePick, 75)}
+                        </View>
                     </Gradient>
 
 
@@ -342,39 +345,6 @@ const ShiftPlanner = () => {
                 <View style={ShiftPlannerStyles.valueBox}>
 
                     {renderShiftAssignments()}
-                    {/* Row One */}
-                    {/* <View style={ShiftPlannerStyles.valRow}>
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={ShiftPlannerStyles.valText}>{user.shiftPlanners[currentSP].phoneId}</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Phone ID</Text>
-                        </View>
-
-                        <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={ShiftPlannerStyles.valText}>{user.shiftPlanners[currentSP].deviceId}</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Device ID</Text>
-                        </View>
-
-                    </View> */}
-
-                    {/* Row Two */}
-                    {/* <View style={ShiftPlannerStyles.valRow}>
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={ShiftPlannerStyles.valText}>{user.shiftPlanners[currentSP].vehicleId}</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Vehicle ID</Text>
-                        </View>
-
-                        <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={ShiftPlannerStyles.valText}>{user.shiftPlanners[currentSP].cxNumber}</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>CX Number</Text>
-                        </View>
-
-                    </View> */}
 
                 </View>
 

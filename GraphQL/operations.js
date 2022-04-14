@@ -262,7 +262,6 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
   }
 }
 `;
-
 const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
@@ -408,7 +407,6 @@ const LOGIN = gql`
   }
 }
 `;
-
 const IS_SERVER_READY = gql`
   query Query {
   isServerReady
@@ -475,7 +473,6 @@ mutation Mutation($accidentId: String!, $injuries: JSON!, $injury_report: JSON!,
 //         ACCIDENT UPDATORS            //   
 //                                      //
 //////////////////////////////////////////
-
 const DRIVER_UPDATE_ACCIDENT = gql`
 mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: String, $police_report: JSON, $selfDamage: JSON, $before_accident_report: JSON, $weather_and_distractions: JSON) {
   driverUpdateAccident(accidentId: $accidentId, accident_report: $accident_report, has_logo: $has_logo, police_report: $police_report, selfDamage: $selfDamage, before_accident_report: $before_accident_report, weather_and_distractions: $weather_and_distractions) {
@@ -531,6 +528,46 @@ mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: Strin
       injury_report
       extra_info
       specific_pictures
+    }
+  }
+}
+`
+
+//////////////////////////////////////////
+//                                      //
+//             ROSTER QUERY             //   
+//                                      //
+//////////////////////////////////////////
+const DRIVERS_GET_DRIVERS_FROM_DSP = gql`
+query Query {
+  driverGetDriversFromDsp {
+    drivers {
+      id
+      firstname
+      lastname
+      profilePick
+      createdAt
+      weeklyReport {
+        rank
+        tier
+        delivered
+        fico
+        seatbeltOffRate
+        speedingEventRate
+        distractionsRate
+        followingDistanceRate
+        signalViolationsRate
+        deliveryCompletionRate
+        deliveredAndRecieved
+        photoOnDelivery
+        attendedDeliveryAccuracy
+        dnr
+        podOpps
+        ccOpps
+        netradyne
+        defects
+        customerDeliveryFeedback
+      }
     }
   }
 }
@@ -1049,40 +1086,7 @@ mutation Mutation($reportId: String!) {
   }
 }
 `
-const DRIVERSGETDRIVERSFROMDSP = gql`
-query Query {
-  driverGetDriversFromDsp {
-    drivers {
-      id
-      firstname
-      lastname
-      profilePick
-      createdAt
-      weeklyReport {
-        rank
-        tier
-        delivered
-        fico
-        seatbeltOffRate
-        speedingEventRate
-        distractionsRate
-        followingDistanceRate
-        signalViolationsRate
-        deliveryCompletionRate
-        deliveredAndRecieved
-        photoOnDelivery
-        attendedDeliveryAccuracy
-        dnr
-        podOpps
-        ccOpps
-        netradyne
-        defects
-        customerDeliveryFeedback
-      }
-    }
-  }
-}
-`
+
 const DRIVERSGETSHIFTPLANNER = gql`
   query Query {
   driverGetShiftPlaner {
@@ -1317,7 +1321,7 @@ export {
   GETNOTIFIED,
   GETNOTIFIEDMESSAGES,
   DRIVERACKNOWLEDGEFEEDBACKMESSAGE,
-  DRIVERSGETDRIVERSFROMDSP,
+  DRIVERS_GET_DRIVERS_FROM_DSP,
   DRIVERSGETSHIFTPLANNER,
   DRIVERSENDMESSAGE,
   DYNAMICADDDRIVERTOCHAT,

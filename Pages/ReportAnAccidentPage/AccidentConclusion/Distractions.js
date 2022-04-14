@@ -24,12 +24,6 @@ const Distractions = () => {
 
 
  //////// USE EFFECTS TO UPDATE OBJECT /////////   
- useEffect(() => {
-    console.log("hit")
-    
-}, [])
-
-console.log(accidentData)
 
 
  //////// WEATHER STATES AND HANDLERS /////////   

@@ -14,7 +14,6 @@ let maxHeight = Dimensions.get('window').height
 
 const CreateCollisionInjuryReport = ({collision}) => {
 
-    console.log(collision)
 
     let route = 'collision-injury-specific-pictures'
     let site = "Collision Injury Pictures"

@@ -28,14 +28,11 @@ const CollisionExtraInfo = () => {
 
     const [user, setUser] = useRecoilState(userState)
 
-    console.log(user.token)
 
     const [completed, setCompleted] = useState(false)
 
     const handleSubmit = () => {
-        console.log(collisionData)
         handleMutation().then(  (resolved) => {
-            console.log(resolved)
             setCollision({...collision, id: resolved.data.driverCreateCollisionAccident.id})
             setCompleted(true)
         })

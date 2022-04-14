@@ -31,7 +31,6 @@ const CollisionSpecificPictures = () => {
         // Get permission to use the camera
         (async () => {
             const { status } = await Camera.requestCameraPermissionsAsync()
-            console.log(status)
             setHasPermission(status)
             if (status === 'denied') {
                 alert('Camera access is required. Please modify your device permissions in the Systems Preferences page or contact your manager')
@@ -48,7 +47,6 @@ const CollisionSpecificPictures = () => {
     // Function for taking a photo
     const takePhoto = async () => {
         if (cameraRef) {
-            console.log('taking picture')
             try {
                 let photo = await cameraRef.current.takePictureAsync({
                     allowsEditing: true,
@@ -56,7 +54,6 @@ const CollisionSpecificPictures = () => {
                     // base64: true,
                     quality: 1
                 })
-                console.log(photo)
                 return photo
             } catch (error) {
                 console.log(error)
