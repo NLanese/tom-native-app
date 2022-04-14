@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM } from "../../GraphQL/operations";
+import { DRIVERS_GET_DRIVERS_FROM_DSP } from "../../GraphQL/operations";
 
 import Banner from "../../Global/Banner";
 import Loading from "../../Global/Loading";
@@ -17,15 +17,13 @@ import { useRecoilState } from 'recoil'
 import { threadState, userState } from "../../Recoil/atoms";
 
 import nameObj from "../../Hooks/handleNameCaseChange";
+import handlePicture from "../../Hooks/handlePicture";
 
 const Roster = ({contacts}) => {
     const navigation = useNavigation()
 
     // Gets all Drivers from DSP
-    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
-
-
-    const [driverCreateChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DRIVERCREATECHATROOM);
+    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERS_GET_DRIVERS_FROM_DSP)
 
 
 // -------------------- Recoil and UseState ----------------------
@@ -59,7 +57,7 @@ const Roster = ({contacts}) => {
             i++
             return(
                 <View style={ContactStyles.card} key={i}>
-                    <View style={ContactStyles.image}><Text>Image</Text></View>
+                    <View style={ContactStyles.image}>{handlePicture(driver.profilePick, 75)}</View>
                     <View style={ContactStyles.nameView}>
                         <Text style={ContactStyles.title}>{namer.first} {namer.last} </Text>
                         <Text style={ContactStyles.subtitle}>{driver.__typename}</Text>

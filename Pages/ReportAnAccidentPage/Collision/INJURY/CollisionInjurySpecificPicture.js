@@ -26,9 +26,6 @@ const CollisionInjurySpecificPictures = ({collision}) => {
     // Camera ref to enable picture taking
     const cameraRef = useRef(null)
 
-    console.log("\n\n\n\n")
-    console.log(injuryData)
-
 
     let site = "Collision Injury Info"
     if (!collision){
@@ -47,7 +44,6 @@ const CollisionInjurySpecificPictures = ({collision}) => {
         // Get permission to use the camera
         (async () => {
             const { status } = await Camera.requestCameraPermissionsAsync()
-            console.log(status)
             setHasPermission(status)
             if (status === 'denied') {
                 alert('Camera access is required. Please modify your device permissions in the Systems Preferences page or contact your manager')
@@ -64,7 +60,6 @@ const CollisionInjurySpecificPictures = ({collision}) => {
     // Function for taking a photo
     const takePhoto = async () => {
         if (cameraRef) {
-            console.log('taking picture')
             try {
                 let photo = await cameraRef.current.takePictureAsync({
                     allowsEditing: true,
@@ -72,7 +67,6 @@ const CollisionInjurySpecificPictures = ({collision}) => {
                     // base64: true,
                     quality: 1
                 })
-                console.log(photo)
                 return photo
             } catch (error) {
                 console.log(error)

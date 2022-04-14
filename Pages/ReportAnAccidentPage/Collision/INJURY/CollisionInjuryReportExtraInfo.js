@@ -44,14 +44,6 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const handleMutation =  () => {
         try {
             if (collision){
-                console.log(accidentData.id)
-                console.log(collisionData.id)
-                console.log(injuryData.contact_info)
-                console.log(injuryData.extra_info)
-                console.log(injuryData.injured_areas)
-                console.log(injuryData.injury_report)
-                console.log(injuryData.pain_level)
-                console.log(injuryData.specific_pictures)
                 return driverCreateInjuryReport({
                     variables: {
                         accidentId: accidentData.id,

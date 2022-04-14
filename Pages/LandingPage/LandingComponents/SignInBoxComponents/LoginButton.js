@@ -92,15 +92,6 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 		saved: website.saved,
 		});
 		})
-		// .then(() => {
-		// 	console.log(`Pre-check for permissions: ${hasCameraPermission}`)
-		// 	const permissions = await Camera.requestCameraPermissionsAsync()
-		// 	if (hasCameraPermission === 'denied') {
-		// 		console.log('in denial check')
-		// 		setHasCameraPermission(null)
-		// 	}
-		// 	console.log(`After checking current permissions for denial: ${hasCameraPermission}`)
-		// })
 		.catch((error) => console.log(error));
 		};
 

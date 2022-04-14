@@ -30,7 +30,6 @@ const AccidentConclusionQuestions = () => {
 
     const [report, setReport] = useState({})
 
-    console.log('\n\n\n\n\n')
 
     useEffect(() => {
       setReport({
@@ -47,9 +46,6 @@ const AccidentConclusionQuestions = () => {
             before_accident_report: {...report}
         })
     }, [report])
-
-    console.log(report)
-    console.log(accidentData)
 
     const determineChecked = (act) => {
         if (act == q1){
