@@ -57,7 +57,7 @@ const Roster = ({contacts}) => {
             i++
             return(
                 <View style={ContactStyles.card} key={i}>
-                    <View style={ContactStyles.image}>{handlePicture(driver.profilePick, 75)}</View>
+                    <View style={ContactStyles.image}>{handlePicture(driver.profilePick, 55)}</View>
                     <View style={ContactStyles.nameView}>
                         <Text style={ContactStyles.title}>{namer.first} {namer.last} </Text>
                         <Text style={ContactStyles.subtitle}>{driver.__typename}</Text>

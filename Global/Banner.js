@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
-import { threadState } from "../Recoil/atoms";
+import { threadState, userState } from "../Recoil/atoms";
 
 import ThreadDetails from "../Pages/CommunicationPage/CommunicationComponents/ThreadDetails";
 import Gradient from "../Components/Gradient";
@@ -18,6 +18,8 @@ import Bell from "./BannerComponents/Bell";
 import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
 import arrowBack from '../assets/backArrowIcon.png'
 import homeIcon from '../assets/homeIcon.png'
+
+import handlePicture from "../Hooks/handlePicture";
 
 import { CommunicationStyles } from "../Styles/CommunicationStyles"
 import Template from "../Styles/RAA/RAATemplateStyles"
@@ -34,6 +36,7 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   const [notifiedVisible, setNotifiedVisible] = useState(false)
 
   const [website, setWebsiteState] = useRecoilState(websiteState)
+  const [user, setUser] = useRecoilState(userState)
   const [activeThread] = useRecoilState(threadState)
   const navigation = useNavigation()
 
@@ -146,11 +149,9 @@ const handleInfoClick = () => {
 
             <Pressable onPress={() => handleModal()}>
 
-              <Avatar.Image
-                style={{marginTop: 12}}
-                source={SomeDudesFace}
-                size={40}
-              />
+            <View style={{marginTop: 20}}>
+              {handlePicture(user.profilePick, 45)}
+            </View>
 
             </Pressable>
           </View>
