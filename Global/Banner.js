@@ -92,11 +92,6 @@ const handleInfoClick = () => {
     if (website.current == "Message Thread"){
       return(
         <View>
-            {/* INFORMATION MODAL */}
-            <Modal visible={modalvisible}>
-                <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
-            </Modal>
-
             {/* Chatroom Label */}
             <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
                 <View style={CommunicationStyles.threadLabel}>
@@ -116,7 +111,12 @@ const handleInfoClick = () => {
 
   return (
     <View>
-      <View style={styles.topBar}></View>
+      <View style={styles.topBar}>
+        {/* INFORMATION MODAL */}
+        <Modal visible={modalvisible}>
+              <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
+        </Modal>
+      </View>
       <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
       <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} />
         <Appbar style={styles.bottom}>
@@ -216,7 +216,7 @@ const handleInfoClick = () => {
 
               </View>
               </View>
-          </Modal>
+        </Modal>
     </View>
   )
 }

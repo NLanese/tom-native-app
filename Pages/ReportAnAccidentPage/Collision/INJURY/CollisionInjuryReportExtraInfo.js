@@ -44,31 +44,43 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const handleMutation =  () => {
         try {
             if (collision){
-                return driverCreateInjuryReport({
-                    variables: {
-                        accidentId: accidentData.id,
-                        collisionAccidentId: collisionData.id,
-                        contact_info: injuryData.contact_info,
-                        extra_info: injuryData.extra_info,
-                        injured_areas: injuryData.injured_areas,
-                        injury_report: injuryData.injury_report,
-                        pain_level: injuryData.pain_level,
-                        specific_pictures: injuryData.specific_pictures
-                    }
-                })
+                try {
+                    return driverCreateInjuryReport({
+                        variables: {
+                            accidentId: accidentData.id,
+                            collisionAccidentId: collisionData.id,
+                            contact_info: injuryData.contact_info,
+                            extra_info: injuryData.extra_info,
+                            injured_areas: injuryData.injured_areas,
+                            injury_report: injuryData.injury_report,
+                            pain_level: injuryData.pain_level,
+                            specific_pictures: injuryData.specific_pictures
+                        }
+                    })
+                }
+                catch (err){
+                    console.log(err)
+                    throw new Error(err)
+                }   
             }
             else{
-                return driverCreateInjuryReport({
-                    variables: {
-                        accidentId: accidentData.id,
-                        contact_info: injuryData.contact_info,
-                        extra_info: injuryData.extra_info,
-                        injured_areas: injuryData.injured_areas,
-                        injury_report: injuryData.injury_report,
-                        pain_level: injuryData.pain_level,
-                        specific_pictures: injuryData.specific_pictures
-                    }
-                })
+                try{
+                    return driverCreateInjuryReport({
+                        variables: {
+                            accidentId: accidentData.id,
+                            contact_info: injuryData.contact_info,
+                            extra_info: injuryData.extra_info,
+                            injured_areas: injuryData.injured_areas,
+                            injury_report: injuryData.injury_report,
+                            pain_level: injuryData.pain_level,
+                            specific_pictures: injuryData.specific_pictures
+                        }
+                    })
+                }
+                catch(err){
+                    console.log(err)
+                    throw new Error(err)
+                }
             }
         } catch(error) {
             console.log(error)
@@ -87,6 +99,8 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
                 setCompleted(true)
             })
     }
+
+    console.log(injuryData)
 
     return (
         <View>
