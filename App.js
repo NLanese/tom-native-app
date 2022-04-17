@@ -103,7 +103,7 @@ let state;
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
 	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://3.135.223.59/graphql'
+  uri: 'http://3.135.223.59/graphql'        // Deployed Database
   // uri: 'http://192.168.0.249:5001/graphql' // Hayden Mac
   // uri: 'http://192.168.1.46:5001/graphql' // Ant's
   // uri: 'http://172.20.10.5:5001/graphql' // Phone

@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
+
 import { QualityStyles } from "../../../../Styles/ScoreCardStyles";
 import { Card, Avatar } from 'react-native-paper';
-import SomeDudesFace from '../../../../assets/SomeDudesFace.jpeg'
+
 import colorTextBasedOnValue from "../../../../Hooks/colorTextBasedOffValue";
+import handlePicture from "../../../../Hooks/handlePicture";
+
 import BottomCard from "./BottomCard";
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -30,10 +33,7 @@ const EmployeeQuality = ({driverData, sortBy, rank}) => {
 
             <View style={QualityStyles.cardTop}>
                 <View style={QualityStyles.iconSpace}>
-                    <Avatar.Image
-                        source={SomeDudesFace}
-                        size={35}
-                    />
+                    {handlePicture(data.profilePick, 45)}
                 </View>
                 <View style={QualityStyles.topRank}>
                     <View style={QualityStyles.gradient}>
