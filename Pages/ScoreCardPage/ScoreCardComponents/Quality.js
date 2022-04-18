@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native'
 import { useRecoilState } from "recoil";
 import { userState } from "../../../Recoil/atoms";
 import { useQuery } from "@apollo/client";
-import { DRIVERSGETDRIVERSFROMDSP } from "../../../GraphQL/operations";
+import { DRIVERS_GET_DRIVERS_FROM_DSP } from "../../../GraphQL/operations";
 import { QualityStyles } from '../../../Styles/ScoreCardStyles'
 import { SortingStyles } from "../../../Styles/ScoreCardStyles";
 import { ActivityIndicator } from "react-native-paper";
@@ -15,7 +15,7 @@ import Loading from "../../../Global/Loading";
 
 const Quality = () => {
 
-    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
+    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERS_GET_DRIVERS_FROM_DSP)
     const [user, setUser] = useRecoilState(userState)
     const [sortBy, setSortBy] = useState("FICO")
     const [dropVisibility, setDropVisibility] = useState(false)
@@ -54,19 +54,7 @@ const Quality = () => {
         }
     }
     
-    // Runs after query is recieved completely REPAIR
-    
-    // useEffect(() => {
-    //     if (!loading && data) {
-    //         setQueryData(data.getDriversForScorecardQuality)
-    //     }
-    // }, [data])
 
-
-    // Takes DSP Preferences and renders x amount of top cards, stopping at y cards total
-    // allDrivers = array of drivers
-    // topNum is the top amount of cards
-    // stopAt is the limit of how many cards you will allow to render. if top cards = 2 and small = 5, stop at = 7.
     const renderTopAndOthers = (allDriversRaw, topNum=3, stopAt) => {
         let allDrivers = [...allDriversRaw.driverGetDriversFromDsp.drivers]
         let i = 0
