@@ -53,10 +53,12 @@ const PropertyAccidentContactInformation = () => {
     const determineQuestions = () => {
         let rChunk = []
         let i = 0
+        // Personal or Property Questions
         if (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal){
             i++
             rChunk.push(personalProperty())
         }
+        // Gov Questions
         if (propertyData.types_of_damage.gov){
             i++
             rChunk.push(govProperty())

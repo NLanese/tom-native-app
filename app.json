@@ -6,7 +6,7 @@
     "privacy": "public",
     "description": "In the development and testing phase",
     "orientation": "portrait",
-    "icon": "./assets/TomSplash.png",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

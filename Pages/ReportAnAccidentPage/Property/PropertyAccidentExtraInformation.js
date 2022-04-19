@@ -94,9 +94,11 @@ const PropertyAccidentExtraInformation = () => {
                 </TouchableOpacity>
             </View>
 
-            <View style={{marginLeft: 30, marginTop: -90}}>
+            <View style={{marginLeft: 30, marginTop: -160}}>
                 {complete === true ? 
+                <View style={{marginTop: -30}}>
                     <ContinueButton nextPage={'post-property-instructions'} nextSite={'Post Property Damage Instructions'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
+                </View>
                  : null} 
             </View>
         </View>

@@ -126,7 +126,7 @@ const Distractions = () => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: '120%'}}>
+            <ScrollView contentContainerStyle={{height: '140%'}}>
                 <Text style={Template.title}>
                     What was the weather like at the time of the incident?
                 </Text>

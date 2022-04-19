@@ -18,29 +18,6 @@ import { RAACollisionInfoStyles } from "../../../Styles/RAA/RAACollisionInfo";
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
-const dynamicStyles = StyleSheet.create({
-    activeInput: {
-        backgroundColor: "#ccc",
-        borderColor: "white",
-        borderWidth: 3,
-        borderRadius: 15,
-        width: maxWidth - 60,
-        // height: '%',
-        marginLeft: 30,
-        marginBottom: 20
-    },
-    inactiveInput: {
-        backgroundColor: "#ccc",
-        borderColor: "#ccc",
-        borderWidth: 3,
-        borderRadius: 15,
-        width: maxWidth - 60,
-        // height: '13%',
-        marginLeft: 30,
-        marginBottom: 20
-    }
-})
-
 const PropertyAccidentInformation = () => {
 
 //----------------------------------------------//
