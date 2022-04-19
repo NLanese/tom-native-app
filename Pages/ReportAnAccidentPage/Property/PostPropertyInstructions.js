@@ -10,8 +10,10 @@ const PostPropertyInstructions = () => {
 
 
     return(
-        <View style={{marginRight: 30}}>
-            <Banner />
+        <View>
+            <View style={{marginLeft: 0}}>
+                <Banner />
+            </View>
             <Text style={{...Template.title, marginBottom: 20}}>
                 Thank you for filing the Property Damage.
             </Text>
