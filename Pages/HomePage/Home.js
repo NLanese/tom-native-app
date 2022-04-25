@@ -13,7 +13,7 @@ import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
 import NoData from './HomeComponents/NoData';
-import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
+import DetailedEmployeeCard from '../ScoreCardPage/InformationComponents/DetailedEmployeeCard';
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
 import WeeklyBottomCard from './HomeComponents/weeklyModalBottom'
@@ -131,7 +131,7 @@ const Home = ({ handleLoggedIn }) => {
                                 <Text style={ButtonBoxStyles.scoreSubTitle}>AND LEADERBOARD</Text>
                             </View>
                             <View style={ButtonBoxStyles.scorecard}>
-                                <EmployeeQuality driverData={user} sortBy={"FICO"} rank={1} />
+                                <DetailedEmployeeCard driverData={user} sortBy={"FICO"} rank={1} />
                             </View>
                         </View>
                     </TouchableOpacity>

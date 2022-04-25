@@ -21,8 +21,7 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
-	const [signup, { loading: loading, error: error, data: data }] =
-		useMutation(SIGNUP);
+	const [signup, { loading: loading, error: error, data: data }] = useMutation(SIGNUP);
 
 	const storeData = async () => {
 		try {

@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { getOperationDefinition } from '@apollo/client/utilities';
 
 //////////////////////////////////////////
 //                                      //
@@ -407,6 +406,14 @@ const LOGIN = gql`
   }
 }
 `;
+const FORGOT_PASSWORD = gql`
+mutation Mutation($email: String) {
+  driverForgotPassword(email: $email) {
+    resetPasswordToken
+    resetPasswordTokenExpiration
+  }
+}
+`
 const IS_SERVER_READY = gql`
   query Query {
   isServerReady
@@ -473,6 +480,7 @@ mutation Mutation($accidentId: String!, $injuries: JSON!, $injury_report: JSON!,
 //         ACCIDENT UPDATORS            //   
 //                                      //
 //////////////////////////////////////////
+
 const DRIVER_UPDATE_ACCIDENT = gql`
 mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: String, $police_report: JSON, $selfDamage: JSON, $before_accident_report: JSON, $weather_and_distractions: JSON) {
   driverUpdateAccident(accidentId: $accidentId, accident_report: $accident_report, has_logo: $has_logo, police_report: $police_report, selfDamage: $selfDamage, before_accident_report: $before_accident_report, weather_and_distractions: $weather_and_distractions) {
@@ -538,6 +546,7 @@ mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: Strin
 //             ROSTER QUERY             //   
 //                                      //
 //////////////////////////////////////////
+
 const DRIVERS_GET_DRIVERS_FROM_DSP = gql`
 query Query {
   driverGetDriversFromDsp {
@@ -1305,6 +1314,7 @@ const GETDRIVERCHATROOMS = gql`
 export {  
   SIGNUP, 
   LOGIN, 
+  FORGOT_PASSWORD,
   IS_SERVER_READY,
 
   DRIVER_CREATE_COLLISION_ACCIDENT,

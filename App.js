@@ -26,8 +26,8 @@ import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import stateChange from './Hooks/handleToken'
 
-import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
-import Quality from "./Pages/ScoreCardPage/ScoreCardComponents/Quality"
+import PersonalScoreCard from "./Pages/ScoreCardPage/PersonalScoreCard";
+import Leaderboard from "./Pages/ScoreCardPage/Leaderboard";
 
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 
@@ -44,7 +44,6 @@ import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Roster from './Pages/Roster/Roster'
-import Inspection from './Pages/InspectionPage/Inspection'
 
 import ReportAnAccidentLanding from './Pages/ReportAnAccidentPage/Basic/ReportAnAccidentLanding'
 import SelfOrOther from "./Pages/ReportAnAccidentPage/Basic/SelfOrOther";
@@ -102,8 +101,8 @@ let state;
 
 // Create HttpLink for Apollo
 const httpLink = createHttpLink({
-	// uri: 'http://192.168.1.62:5001/graphql' // KW Studio
-  uri: 'http://3.135.223.59/graphql'        // Deployed Database
+	uri: 'http://192.168.1.62:5001/graphql' // KW Studio
+  // uri: 'http://3.135.223.59/graphql'        // Deployed Database
   // uri: 'http://192.168.0.249:5001/graphql' // Hayden Mac
   // uri: 'http://192.168.1.46:5001/graphql' // Ant's
   // uri: 'http://172.20.10.5:5001/graphql' // Phone
@@ -210,7 +209,7 @@ export default function App() {
                   </Stack.Screen>
 
                   <Stack.Screen name='leaderboard'>
-                    {props => <Quality />}
+                    {props => <Leaderboard />}
                   </Stack.Screen>
 
                   <Stack.Screen name='account_information'>
