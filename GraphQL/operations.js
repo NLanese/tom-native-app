@@ -261,23 +261,20 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
   }
 }
 `;
+
 const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
-    token
     id
     createdAt
     role
+    token
     firstname
     lastname
     email
-    phoneNumber
+    password
     profilePick
-    transporterId
-    muted
-    locked
-    deleted
-    notified
+    phoneNumber
     shifts
     owner {
       id
@@ -292,46 +289,58 @@ const LOGIN = gql`
       firstname
       lastname
       email
-      phoneNumber
       profilePick
-    }
-    vehicle {
-      id
-      vehicle_number
-      amazon_logo
+      phoneNumber
     }
     notifiedMessages {
       id
+      createdAt
+      read
+      content
+      from
+      type
     }
     dsp {
       id
       createdAt
       name
       shortcode
+      ficoLimits
       timeZone
       seatbeltLimits
-      ficoLimits
       speedingLimits
       distractionLimits
       followLimits
       signalLimits
       deliveryCompletionRateLimits
-      photoOnDeliveryLimits
       deliveryNotRecievedLimits
+      photoOnDeliveryLimits
       topCardLimits
-      autoSend
       smallCardLimits
-      feedbackNotifications
-      accountStanding
       paid
+      accountStanding
+      shifts {
+        id
+        date
+        allDriverShifts
+      }
+      devices {
+        id
+        createdAt
+        number
+        name
+        type
+        deviceIndex
+        driverId
+      }
     }
     weeklyReport {
       id
       createdAt
       date
       hadAccident
-      feedbackMessageSent
       feedbackMessage
+      feedbackMessageSent
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -339,73 +348,21 @@ const LOGIN = gql`
       tier
       delivered
       keyFocusArea
+      seatbeltOffRate
       fico
       speedingEventRate
-      seatbeltOffRate
       distractionsRate
-      signalViolationsRate
       followingDistanceRate
+      signalViolationsRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
       attendedDeliveryAccuracy
-      dnr
-      podOpps
-      ccOpps
-      netradyne
-      defects
-      deliveryAssociate
-      customerDeliveryFeedback
-      hasManyAccidents
-      customerDeliveryFeedback
-      belongsToTeam
-      attendence
-      productivity
-    }
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      messages {
-        id
-        createdAt
-        content
-        from
-        visable
-        reported
-        reportedBy
-      }
-    }
-    shiftPlanners {
-      id
-      createdAt
-      sundayDate
-      sundayHours
-      mondayDate
-      mondayHours
-      tuesdayHours
-      tuesdayDate
-      wednesdayDate
-      wednesdayHours
-      thursdayDate
-      thursdayHours
-      fridayDate
-      fridayHours
-      saturdayDate
-      saturdayHours
-      weekStartDate
-      weekEndDate
-      phoneId
-      vehicleId
-      cxNumber
-      deviceId
-      message
     }
   }
 }
 `;
+
 const FORGOT_PASSWORD = gql`
 mutation Mutation($email: String) {
   driverForgotPassword(email: $email) {

@@ -75,6 +75,11 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 			},
 		}).then(() => {
 			setWebsite({current: "Home", previous: "Landing", saved: null, saved: website.saved})
+		}).catch(error => {
+			console.log("////////////////////")
+			console.log('???   ERROR SIX  ///')
+			console.log("////////////////////\n\n\n\n")
+			console.log(error)
 		})
 	}
 

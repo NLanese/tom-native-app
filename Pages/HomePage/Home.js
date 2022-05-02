@@ -27,6 +27,8 @@ const Home = ({ handleLoggedIn }) => {
 
     const [user, setUser] = useRecoilState(userState)
 
+    console.log(user)
+
     let initVisible = false
     if (user.weeklyReport == [] || !user.weeklyReport || user.weeklyReport.length == 0){
         return <NoStatsHomePage handleLoggedIn={handleLoggedIn}/>
