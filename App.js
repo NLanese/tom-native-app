@@ -26,8 +26,8 @@ import LandingPage from './Pages/LandingPage/Landing'
 import Home from './Pages/HomePage/Home'
 import stateChange from './Hooks/handleToken'
 
-import PersonalScoreCard from "./Pages/ScoreCardPage/ScoreCardComponents/PersonalScoreCard";
-import Quality from "./Pages/ScoreCardPage/ScoreCardComponents/Quality"
+import PersonalScoreCard from "./Pages/ScoreCardPage/PersonalScoreCard";
+import Leaderboard from "./Pages/ScoreCardPage/Leaderboard";
 
 import ShiftPlanner from './Pages/ShiftPlannerPage/ShiftPlanner'
 
@@ -44,7 +44,6 @@ import Notifications from './Pages/NotificationPage/Notification'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Roster from './Pages/Roster/Roster'
-import Inspection from './Pages/InspectionPage/Inspection'
 
 import ReportAnAccidentLanding from './Pages/ReportAnAccidentPage/Basic/ReportAnAccidentLanding'
 import SelfOrOther from "./Pages/ReportAnAccidentPage/Basic/SelfOrOther";
@@ -119,6 +118,9 @@ const errorLink = onError(
   ({graphQLErrors}) => {
     if (graphQLErrors){
       graphQLErrors.map( (message) => {
+        console.log("////////////////////")
+        console.log('///   ERROR FIVE  ///')
+        console.log("////////////////////\n\n\n\n")
         console.log(message)
         throw new Error(message)
       })
@@ -210,7 +212,7 @@ export default function App() {
                   </Stack.Screen>
 
                   <Stack.Screen name='leaderboard'>
-                    {props => <Quality />}
+                    {props => <Leaderboard />}
                   </Stack.Screen>
 
                   <Stack.Screen name='account_information'>

@@ -1,20 +1,56 @@
 import React, { useState } from 'react'
+
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Button, Card, Modal, Text, Input } from '@ui-kitten/components';
+
 import Template from '../../../../Styles/RAA/RAATemplateStyles';
 
 import Gradient from '../../../../Components/Gradient';
 
-import axios from 'axios';
+import { useMutation } from '@apollo/client';
+import { FORGOT_PASSWORD } from '../../../../GraphQL/operations';
+
 
 const ForgotPasswordModal = ({ visible, setVisible }) => {
+///////////////////////////
+///                     ///
+///     Preliminary     ///
+////                    ///
+///////////////////////////
+    // Tracks Email
     const [email, setEmail] = useState()
+    // Tracks whether or not the process is complete
     const [completed, setCompleted] = useState(false)
 
-    const handleSubmit = async () => {
+    // Mutation
+    const [forgotPassword, { loading: loading, error: error, data: data }] = useMutation(FORGOT_PASSWORD);
 
+///////////////////////////
+///                     ///
+///       Handlers      ///
+////                    ///
+///////////////////////////
+
+    const handleMutation = () => {
+        console.log("Inside mutation const")
+        return forgotPassword({
+            variables: {
+                email: email
+            }
+        })
     }
 
+    const handleSubmitEmail = async () => {
+        console.log(email)
+        handleMutation()
+    }
+
+
+///////////////////////////
+///                     ///
+///      Main Render    ///
+////                    ///
+///////////////////////////
     return (
         <View style={styles.container}>
 
@@ -33,7 +69,7 @@ const ForgotPasswordModal = ({ visible, setVisible }) => {
                 <View style={{height: 30}} />
 
 
-                <TouchableOpacity onPress={() => handleClick()}>
+                <TouchableOpacity onPress={() => handleSubmitEmail()}>
                     <Gradient
                         colorOne={"#534FFF"}
                         colorTwo={"#15A1F1"}

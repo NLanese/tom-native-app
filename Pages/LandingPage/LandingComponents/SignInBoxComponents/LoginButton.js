@@ -7,8 +7,8 @@ import { websiteState } from '../../../../Recoil/atoms';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useMutation } from '@apollo/client';
-import { LOGIN } from '../../../../GraphQL/operations';
+import { useMutation, useQuery } from '@apollo/client';
+import { IS_SERVER_READY, LOGIN } from '../../../../GraphQL/operations';
 
 import stateChange from '../../../../Hooks/handleToken'
 
@@ -22,6 +22,7 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN);
 
+
 	// Handles the data changes and reroutes to the logged-in home page
 	useEffect( async () => {
 		if (!loading && data) {
@@ -31,6 +32,7 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 			await handleLoggedIn()
 		}
 	}, [data])
+
 
 // ---------------------------- Mutations ---------------------------- //
 //																	   //
@@ -70,10 +72,16 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 							await AsyncStorage.setItem('@email', userData.email)
 							await AsyncStorage.setItem('@password', userData.password)
 						} catch (error) {
+							console.log("////////////////////")
+							console.log('///   ERROR ONE  ///')
+							console.log("////////////////////\n\n\n\n")
 							console.error(error)
 						}
 					}
 				} catch (error) {
+					console.log("////////////////////")
+					console.log('///   ERROR TWO  ///')
+					console.log("////////////////////\n\n\n\n")
 					console.error(error)
 				}
 			}
@@ -81,19 +89,26 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 				try {
 					await AsyncStorage.clear()
 				} catch (error) {
+					console.log("////////////////////")
+					console.log('///   ERROR THREE  ///')
+					console.log("////////////////////\n\n\n\n")
 					console.error(error)
 				}
 			}
 		})
 		.then(() => {
-		setWebsite({
-		current: "Home",
-		previous: "Landing",
-		saved: website.saved,
+			setWebsite({
+				current: "Home",
+				previous: "Landing",
+				saved: website.saved,
+			});
+		}).catch((error) => {
+			console.log("////////////////////")
+			console.log('///   ERROR FOUR  ///')
+			console.log("////////////////////\n\n\n\n")
+			console.log(error)
 		});
-		})
-		.catch((error) => console.log(error));
-		};
+	};
 
 
 // ---------------------------- Handlers ----------------------------- //

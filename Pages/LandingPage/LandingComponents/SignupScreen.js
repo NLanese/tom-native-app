@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, Text, ScrollView } from 'react-native';
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles';
 import UpdateField from './SignInBoxComponents/UpdateField';
-import SignupButton from './SignInBoxComponents/SingUpButton';
-
+import SignupButton from "./SignInBoxComponents/SignUpButton"
 const SignupScreen = ({ handleInput, handleLoggedIn, userData }) => {
 
     const [checked, setChecked] = useState(false)

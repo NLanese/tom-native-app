@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { getOperationDefinition } from '@apollo/client/utilities';
 
 //////////////////////////////////////////
 //                                      //
@@ -262,23 +261,20 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
   }
 }
 `;
+
 const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
-    token
     id
     createdAt
     role
+    token
     firstname
     lastname
     email
-    phoneNumber
+    password
     profilePick
-    transporterId
-    muted
-    locked
-    deleted
-    notified
+    phoneNumber
     shifts
     owner {
       id
@@ -293,46 +289,58 @@ const LOGIN = gql`
       firstname
       lastname
       email
-      phoneNumber
       profilePick
-    }
-    vehicle {
-      id
-      vehicle_number
-      amazon_logo
+      phoneNumber
     }
     notifiedMessages {
       id
+      createdAt
+      read
+      content
+      from
+      type
     }
     dsp {
       id
       createdAt
       name
       shortcode
+      ficoLimits
       timeZone
       seatbeltLimits
-      ficoLimits
       speedingLimits
       distractionLimits
       followLimits
       signalLimits
       deliveryCompletionRateLimits
-      photoOnDeliveryLimits
       deliveryNotRecievedLimits
+      photoOnDeliveryLimits
       topCardLimits
-      autoSend
       smallCardLimits
-      feedbackNotifications
-      accountStanding
       paid
+      accountStanding
+      shifts {
+        id
+        date
+        allDriverShifts
+      }
+      devices {
+        id
+        createdAt
+        number
+        name
+        type
+        deviceIndex
+        driverId
+      }
     }
     weeklyReport {
       id
       createdAt
       date
       hadAccident
-      feedbackMessageSent
       feedbackMessage
+      feedbackMessageSent
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -340,73 +348,29 @@ const LOGIN = gql`
       tier
       delivered
       keyFocusArea
+      seatbeltOffRate
       fico
       speedingEventRate
-      seatbeltOffRate
       distractionsRate
-      signalViolationsRate
       followingDistanceRate
+      signalViolationsRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
       attendedDeliveryAccuracy
-      dnr
-      podOpps
-      ccOpps
-      netradyne
-      defects
-      deliveryAssociate
-      customerDeliveryFeedback
-      hasManyAccidents
-      customerDeliveryFeedback
-      belongsToTeam
-      attendence
-      productivity
-    }
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      messages {
-        id
-        createdAt
-        content
-        from
-        visable
-        reported
-        reportedBy
-      }
-    }
-    shiftPlanners {
-      id
-      createdAt
-      sundayDate
-      sundayHours
-      mondayDate
-      mondayHours
-      tuesdayHours
-      tuesdayDate
-      wednesdayDate
-      wednesdayHours
-      thursdayDate
-      thursdayHours
-      fridayDate
-      fridayHours
-      saturdayDate
-      saturdayHours
-      weekStartDate
-      weekEndDate
-      phoneId
-      vehicleId
-      cxNumber
-      deviceId
-      message
     }
   }
 }
 `;
+
+const FORGOT_PASSWORD = gql`
+mutation Mutation($email: String) {
+  driverForgotPassword(email: $email) {
+    resetPasswordToken
+    resetPasswordTokenExpiration
+  }
+}
+`
 const IS_SERVER_READY = gql`
   query Query {
   isServerReady
@@ -473,6 +437,7 @@ mutation Mutation($accidentId: String!, $injuries: JSON!, $injury_report: JSON!,
 //         ACCIDENT UPDATORS            //   
 //                                      //
 //////////////////////////////////////////
+
 const DRIVER_UPDATE_ACCIDENT = gql`
 mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: String, $police_report: JSON, $selfDamage: JSON, $before_accident_report: JSON, $weather_and_distractions: JSON) {
   driverUpdateAccident(accidentId: $accidentId, accident_report: $accident_report, has_logo: $has_logo, police_report: $police_report, selfDamage: $selfDamage, before_accident_report: $before_accident_report, weather_and_distractions: $weather_and_distractions) {
@@ -538,6 +503,7 @@ mutation Mutation($accidentId: String!, $accident_report: JSON, $has_logo: Strin
 //             ROSTER QUERY             //   
 //                                      //
 //////////////////////////////////////////
+
 const DRIVERS_GET_DRIVERS_FROM_DSP = gql`
 query Query {
   driverGetDriversFromDsp {
@@ -1305,6 +1271,7 @@ const GETDRIVERCHATROOMS = gql`
 export {  
   SIGNUP, 
   LOGIN, 
+  FORGOT_PASSWORD,
   IS_SERVER_READY,
 
   DRIVER_CREATE_COLLISION_ACCIDENT,
