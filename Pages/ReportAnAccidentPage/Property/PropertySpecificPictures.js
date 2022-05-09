@@ -151,7 +151,7 @@ const PropertySpecificPictures = () => {
                                     >
                                         <Text style={{
                                             fontFamily: "GilroySemiBold",
-                                            fontSize: 25,
+                                            fontSize: 18,
                                             letterSpacing: -0.5,
                                             color: 'white',
                                             textAlign: 'center'

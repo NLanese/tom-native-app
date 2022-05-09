@@ -853,7 +853,7 @@ const renderOtherQuestions = () => {
         <View>
             <Banner />
             <ScrollView contentContainerStyle={{height: 2500}}>
-            <Text style={Template.questionText}>Was nedical attention needed?</Text>
+            <Text style={Template.questionText}>Was any medical attention needed?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
 
                 <View style={RAACollisionInfoStyles.buttonContainer}>
@@ -899,7 +899,7 @@ const renderOtherQuestions = () => {
 
             </View>
 
-            <Text style={Template.questionText}>Did a Fatality Occur?</Text>
+            <Text style={Template.questionText}>Did a fatality occur?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
 
                 <View style={RAACollisionInfoStyles.buttonContainer}>

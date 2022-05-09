@@ -123,7 +123,12 @@ const Chatrooms = () => {
     
     let scrollHeight = (user.chatrooms.length * 100) + 450
 
-
+    return(
+        <View>
+            <Banner />
+            <Text style={ChatroomsStyles.title}>Coming Soon</Text>
+        </View>
+    )
     return(
         <View>
             {/* BANNER */}

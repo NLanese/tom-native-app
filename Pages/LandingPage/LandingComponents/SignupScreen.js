@@ -25,7 +25,7 @@ const SignupScreen = ({ handleInput, handleLoggedIn, userData }) => {
                     <UpdateField field="password" handleInput={handleInput} userData={userData}/>
                     <UpdateField field="confirmPassword" handleInput={handleInput} userData={userData}/>
                     <View style={SignInBoxStyles.signupButton}>
-                        <SignupButton userData={userData} handleLoggedIn={handleLoggedIn} userData={userData}/>
+                        <SignupButton userData={userData} handleLoggedIn={handleLoggedIn} />
                     </View>
             </ScrollView>
         </TouchableWithoutFeedback>  

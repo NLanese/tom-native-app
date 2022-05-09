@@ -133,7 +133,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
                     // CAMERA NOT SHOWING
                     <View style={Styles.container}>
                         <View>
-                            <Text style={Styles.title}>Take a picture of the Injury, if able</Text>
+                            <Text style={Styles.title}>Take a picture of the injury, if able</Text>
                         </View>
                         <View>
                             <View style={Styles.imageBox}>

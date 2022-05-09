@@ -3,7 +3,7 @@ import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'rea
 import { Modal, Button, CheckBox } from '@ui-kitten/components';
 
 import { useRecoilState } from 'recoil';
-import { userState } from '../../Recoil/atoms';
+import { loggedState, userState } from '../../Recoil/atoms';
 import { websiteState } from '../../Recoil/atoms';
 
 import { useMutation } from '@apollo/client';
@@ -26,15 +26,21 @@ const Home = ({ handleLoggedIn }) => {
 	const navigation = useNavigation()
 
     const [user, setUser] = useRecoilState(userState)
+    const [logged, setLogged] = useRecoilState(loggedState)
 
-    console.log(user)
+    useEffect( () => {
+        handleLoggedIn(logged)
+    }, [logged])
 
     let initVisible = false
-    if (user.weeklyReport == [] || !user.weeklyReport || user.weeklyReport.length == 0){
+    if (logged && (user.weeklyReport == [] || !user.weeklyReport || user.weeklyReport.length == 0)){
         return <NoStatsHomePage handleLoggedIn={handleLoggedIn}/>
     }
-    if (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged){
+    if (logged && (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged)){
         initVisible = true
+    }
+    if (!logged){
+        return null
     }
 
     const [website, setWebsite] = useRecoilState(websiteState)

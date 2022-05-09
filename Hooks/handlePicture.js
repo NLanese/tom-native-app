@@ -6,7 +6,7 @@ const handlePicture = (pic, size) => {
         return <Image source={SomeDudesFace} style={{height: size, width: size, borderRadius: 100}}/>
     }
     else{
-        console.log("other")
+        return <Image source={SomeDudesFace} style={{height: size, width: size, borderRadius: 100}}/>
     }
 }
 
