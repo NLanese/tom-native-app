@@ -850,7 +850,7 @@ const renderOtherQuestions = () => {
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
             <ScrollView contentContainerStyle={{height: 2500}}>
             <Text style={Template.questionText}>Was any medical attention needed?</Text>

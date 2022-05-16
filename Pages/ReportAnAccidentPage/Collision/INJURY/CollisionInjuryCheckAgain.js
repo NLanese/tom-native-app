@@ -45,7 +45,7 @@ const CollisionInjuryCheckAgain = ({collision}) => {
     } 
 
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
             <Text style={Template.questionText}>Was another party injured in the accident?</Text>
             <View style={Styles.noButton}>

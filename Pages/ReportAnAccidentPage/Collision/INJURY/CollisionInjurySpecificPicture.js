@@ -75,7 +75,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
     }
 
     return (
-        <View style={Styles.container}>
+        <View style={{height: 'auto'}}>
             <Banner />
 
                 {/* CAMAERA SHOWING */}

@@ -85,7 +85,7 @@ const CreateCollisionInjuryReport = ({collision}) => {
     }
 
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
             <Text style={Styles.title}>
                 {renderTitle()}

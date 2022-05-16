@@ -103,7 +103,7 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     console.log(injuryData)
 
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
 
             <View style={{ marginTop: "0%" }}>

@@ -13,7 +13,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
-import { View } from 'react-native';
+import { View, KeyboardAvoidingView } from 'react-native';
 
 import { AppStyles } from './Styles/AppStyles';
 
@@ -190,6 +190,11 @@ export default function App() {
           <IconRegistry icons={EvaIconsPack} />
           <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
             <PaperProvider>
+            <KeyboardAvoidingView
+              behavior="padding"
+              enabled
+              style={{flexGrow:1,height:'100%'}}
+              >
               <View style={AppStyles.container}>
                 <Stack.Navigator screenOptions={{headerShown: false}}>
             
@@ -516,6 +521,7 @@ export default function App() {
               
                 </Stack.Navigator>
               </View>
+              </KeyboardAvoidingView>
             </PaperProvider>
           </ApplicationProvider>
         </RecoilRoot>

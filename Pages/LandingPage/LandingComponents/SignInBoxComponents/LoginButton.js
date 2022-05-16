@@ -79,12 +79,13 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 							console.error(error)
 						}
 					}
-					console.log("uhhhh...wanna navigate?")
 					navigation.navigate("home")
-					console.log("Okay. Guess not?")
 				} catch (error) {
 					console.error(error)
 				}
+			}
+			if (!checked) {
+				navigation.navigate("home")
 			}
 		})
 		.then(() => {
