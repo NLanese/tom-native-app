@@ -76,6 +76,8 @@ const CreateAccident = ({accident}) => {
                     await setAccidentDataState(resolved.data.driverCreateAccident)
                     await setWebsite({current: site, previous: website.state, saved: site})
                     navigation.navigate(route)
+                }).catch( (error) => {
+                    console.log(error)
                 })
             }
     }

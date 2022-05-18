@@ -125,12 +125,12 @@ const CollisionAccidentInformation = () => {
                             inactiveTextStyle={Template.inactiveTextStyle}
 
                             placeholder={"Smith"}
-                            onChange={firstname => {
+                            onChange={lastname => {
                                 setCollisionData({
                                     ...collisionData,
                                     contact_info: {
                                         ...collisionData.contact_info,
-                                        firstname: firstname 
+                                        lastname: lastname 
                                     } 
                                 })
                             }}
@@ -155,8 +155,14 @@ const CollisionAccidentInformation = () => {
                             inactiveTextStyle={Template.inactiveTextStyle}
 
                             placeholder={"123 Streetname, Township"}
-                            onChange={name => {
-                                handleInput('name', name)
+                            onChange={addy => {
+                                setCollisionData({
+                                    ...collisionData,
+                                    contact_info: {
+                                        ...collisionData.contact_info,
+                                        address: addy 
+                                    } 
+                                })
                             }}
                         />
                     </View>
@@ -674,6 +680,7 @@ const CollisionAccidentInformation = () => {
 // -------- minor Renderers -----------
 
     const renderContinue = () => {
+        console.log(collisionData.contact_info)
         if ( 
             (q1 == "yes" && q2 == "yes") ||
             (
@@ -700,7 +707,7 @@ const CollisionAccidentInformation = () => {
 
 // ------------ RENDER ------------
     return (
-        <ScrollView contentContainerStyle={{ height: "200%" }}>
+        <ScrollView contentContainerStyle={{ height: "auto" }}>
             <Banner />
             <Text style={RAACollisionInfoStyles.questionText}>Who is legally at fault?</Text>
 

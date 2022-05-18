@@ -27,9 +27,6 @@ const AnimalQuestions = () => {
 
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
 
-    console.log("\n\n\n")
-    console.log(selfInjuryData)
-
     const [q1, setQ1] = useState("None")        // Pet ? 
     const [q2, setQ2] = useState("None")        // Species 
     const [q3, setQ3] = useState("None")        // Breed

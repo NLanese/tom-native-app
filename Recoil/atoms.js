@@ -69,3 +69,8 @@ export const selfInjuryDataState = atom({
 	key: 'selfInjuryDataState',
 	default: false
 })
+
+export const loggedState = atom({
+	key: 'loggedKey',
+	default: false
+})

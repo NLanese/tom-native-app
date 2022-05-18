@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { useRecoilState } from 'recoil'
-import { cameraPermissionState, userState } from '../../../../Recoil/atoms'
+import { cameraPermissionState, userState, loggedState } from '../../../../Recoil/atoms'
 import { websiteState } from '../../../../Recoil/atoms';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useMutation } from '@apollo/client';
-import { LOGIN } from '../../../../GraphQL/operations';
+import { useMutation, useQuery } from '@apollo/client';
+import { IS_SERVER_READY, LOGIN } from '../../../../GraphQL/operations';
 
 import stateChange from '../../../../Hooks/handleToken'
 
 
 
 const LoginButton = ({ userData, handleLoggedIn, checked }) => {
-
+	const navigation = useNavigation()
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN);
+
 
 	// Handles the data changes and reroutes to the logged-in home page
 	useEffect( async () => {
@@ -32,12 +35,15 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 		}
 	}, [data])
 
+
 // ---------------------------- Mutations ---------------------------- //
 //																	   //
 //																	   //
 // ----------------------------- States ------------------------------ //
 
 	const [user, setUser] = useRecoilState(userState);
+
+	const [logged, setLogged] = useRecoilState(loggedState)
 
 	const [website, setWebsite] = useRecoilState(websiteState)
 
@@ -56,53 +62,42 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 			},
 		})
 		// Store email and password to AsyncStorage on login if Remember Me option is selected
-		.then(async () => {
+		.then( () => {
+			setLogged(true)
 			console.log(`checked: ${checked}`)
 			if (checked === true) {
-				// Check and see if email and password are in AsyncStorage
 				try {
-					const email = await AsyncStorage.getItem('@email')
-					const password = await AsyncStorage.getItem('@password')
-					await AsyncStorage.setItem('@remember_User', 'true')
+					const email =  AsyncStorage.getItem('@email')
+					const password =  AsyncStorage.getItem('@password')
+					AsyncStorage.setItem('@remember_User', 'true')
 					// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
 					if (email === null && password === null) {
 						try {
-							await AsyncStorage.setItem('@email', userData.email)
-							await AsyncStorage.setItem('@password', userData.password)
+							AsyncStorage.setItem('@email', userData.email)
+							AsyncStorage.setItem('@password', userData.password)
 						} catch (error) {
 							console.error(error)
 						}
 					}
+					navigation.navigate("home")
 				} catch (error) {
 					console.error(error)
 				}
 			}
-			else {
-				try {
-					await AsyncStorage.clear()
-				} catch (error) {
-					console.error(error)
-				}
+			if (!checked) {
+				navigation.navigate("home")
 			}
 		})
 		.then(() => {
-		setWebsite({
-		current: "Home",
-		previous: "Landing",
-		saved: website.saved,
+			setWebsite({
+				current: "Home",
+				previous: "Landing",
+				saved: website.saved,
+			});
+		}).catch((error) => {
+			console.log(error)
 		});
-		})
-		// .then(() => {
-		// 	console.log(`Pre-check for permissions: ${hasCameraPermission}`)
-		// 	const permissions = await Camera.requestCameraPermissionsAsync()
-		// 	if (hasCameraPermission === 'denied') {
-		// 		console.log('in denial check')
-		// 		setHasCameraPermission(null)
-		// 	}
-		// 	console.log(`After checking current permissions for denial: ${hasCameraPermission}`)
-		// })
-		.catch((error) => console.log(error));
-		};
+	};
 
 
 // ---------------------------- Handlers ----------------------------- //

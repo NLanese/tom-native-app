@@ -10,6 +10,7 @@ import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton"
 
 import nameObj from "../../../Hooks/handleNameCaseChange";
+import handlePicture from "../../../Hooks/handlePicture"
 
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
@@ -160,7 +161,7 @@ return (
           <View style={RAALandingStyles.card}>
           
             <View style={{alignItems: 'center', marginTop: 31}}>
-              <View style={{height: 86, width: 86, borderRadius: 100, backgroundColor: 'blue'}}/>
+              {handlePicture(user.profilePick, 75)}
             </View>
 
             <View style={RAALandingStyles.namePlate}>

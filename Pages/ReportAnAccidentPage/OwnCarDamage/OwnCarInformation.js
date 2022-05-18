@@ -41,10 +41,8 @@ const OwnCarInformation = ({accident}) => {
         "Interior", "Headlights"
     ]
 
-    console.log(accidentState)
 
     if (injuryAccident){
-        console.log(injuryAccident)
         accident = true
     }
 

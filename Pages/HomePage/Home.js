@@ -3,7 +3,7 @@ import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'rea
 import { Modal, Button, CheckBox } from '@ui-kitten/components';
 
 import { useRecoilState } from 'recoil';
-import { userState } from '../../Recoil/atoms';
+import { loggedState, userState } from '../../Recoil/atoms';
 import { websiteState } from '../../Recoil/atoms';
 
 import { useMutation } from '@apollo/client';
@@ -13,10 +13,11 @@ import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
 import NoData from './HomeComponents/NoData';
-import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
+import DetailedEmployeeCard from '../ScoreCardPage/InformationComponents/DetailedEmployeeCard';
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
 import WeeklyBottomCard from './HomeComponents/weeklyModalBottom'
+import NoStatsHomePage from "./HomeComponents/NoStatsHomePage"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -25,10 +26,21 @@ const Home = ({ handleLoggedIn }) => {
 	const navigation = useNavigation()
 
     const [user, setUser] = useRecoilState(userState)
+    const [logged, setLogged] = useRecoilState(loggedState)
+
+    useEffect( () => {
+        handleLoggedIn(logged)
+    }, [logged])
 
     let initVisible = false
-    if (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged){
+    if (logged && (user.weeklyReport == [] || !user.weeklyReport || user.weeklyReport.length == 0)){
+        return <NoStatsHomePage handleLoggedIn={handleLoggedIn}/>
+    }
+    if (logged && (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged)){
         initVisible = true
+    }
+    if (!logged){
+        return null
     }
 
     const [website, setWebsite] = useRecoilState(websiteState)
@@ -100,7 +112,6 @@ const Home = ({ handleLoggedIn }) => {
         }, 0.5)
     }
 
-
     return (
         <View>
             <Banner handleLoggedIn={handleLoggedIn}/>
@@ -128,7 +139,7 @@ const Home = ({ handleLoggedIn }) => {
                                 <Text style={ButtonBoxStyles.scoreSubTitle}>AND LEADERBOARD</Text>
                             </View>
                             <View style={ButtonBoxStyles.scorecard}>
-                                <EmployeeQuality driverData={user} sortBy={"FICO"} rank={1} />
+                                <DetailedEmployeeCard driverData={user} sortBy={"FICO"} rank={1} />
                             </View>
                         </View>
                     </TouchableOpacity>

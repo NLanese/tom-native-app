@@ -62,6 +62,7 @@ const UserInjuryInformation = ({accident}) => {
     // Tracks the selected injuries
     const [injuriesSelected, setInjuriesSelected] = useState(selfInjuryData.injuries)
 
+
     // Tracks how nany injuries are selected. You need at least one to continue
     const [count, setCount] = useState(0)
 
@@ -100,7 +101,6 @@ const UserInjuryInformation = ({accident}) => {
         })
         let i = 0
         return rComp.map( (row, index) => {
-            console.log(i)
             i++
             return(row)
         })
@@ -483,7 +483,7 @@ const UserInjuryInformation = ({accident}) => {
                              Please fill out a multi-party acicdent report by clicking below
                          </Text>
                          <View style={{marginLeft: 30, marginTop: 60}}>
-                             <ContinueButton buttonText={"Okay"}  nextSite={site}  nextPage={"management_notified"}/>
+                             <ContinueButton buttonText={"Okay"}  nextSite={site}  nextPage={"check-collision-accident"}/>
                          </View>
                     </View>
                 )
@@ -678,7 +678,6 @@ const UserInjuryInformation = ({accident}) => {
 //                   MAIN RENDER                    //
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V// 
-    console.log(selfInjuryData)
 
     return(
         <View>

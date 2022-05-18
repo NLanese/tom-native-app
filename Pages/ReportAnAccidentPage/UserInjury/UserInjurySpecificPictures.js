@@ -11,6 +11,8 @@ import { selfInjuryDataState, cameraPermissionState } from "../../../Recoil/atom
 import { useRecoilState } from "recoil";
 import { Camera } from 'expo-camera'
 
+import Gradient from "../../../Components/Gradient"
+
 let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
@@ -39,26 +41,22 @@ const UserInjurySpecificPicture = ({accident}) => {
          // Get permission to use the camera
          (async () => {
             const { status } = await Camera.requestCameraPermissionsAsync()
-            console.log(status)
             setHasPermission(status)
             if (status === 'denied') {
                 alert('Camera access is required. Please modify your device permissions in the Systems Preferences page or contact your manager')
                 navigation.navigate('create-collision-accident')
             }
         })();
-        
         setSelfInjuryData({
             ...selfInjuryData,
             specific_pictures: []
         })
     }, [hasPermission])
 
-    console.log(selfInjuryData)
 
     // Function for taking a photo
     const takePhoto = async () => {
         if (cameraRef) {
-            console.log('taking picture')
             try {
                 let photo = await cameraRef.current.takePictureAsync({
                     allowsEditing: true,
@@ -66,7 +64,6 @@ const UserInjurySpecificPicture = ({accident}) => {
                     // base64: true,
                     quality: 1
                 })
-                console.log(photo)
                 return photo
             } catch (error) {
                 console.log(error)
@@ -77,6 +74,8 @@ const UserInjurySpecificPicture = ({accident}) => {
     return (
         <View style={Styles.container}>
             <Banner />
+
+                {/* CAMAERA SHOWING */}
                 {showCamera ? 
                     <Camera style={Styles.camera} type={cameraType} ref={cameraRef}>
                         <View style={Styles.buttonContainer}>
@@ -89,7 +88,9 @@ const UserInjurySpecificPicture = ({accident}) => {
                                         : Camera.Constants.Type.back
                                     );
                                 }}>
-                                <Text style={Styles.text}> Flip </Text>
+                                <View style={{marginTop: maxHeight * 0.65, marginLeft: maxWidth * -0.1}}>
+                                    <Text style={Styles.text}> Flip </Text>
+                                </View>
                             </TouchableOpacity>
                             <TouchableOpacity 
                             style={Styles.button}
@@ -103,14 +104,14 @@ const UserInjurySpecificPicture = ({accident}) => {
                                             ...selfInjuryData,
                                             specific_pictures: images
                                         })
-                                        // console.log(images)
                                     }
-                                    // alert(`DEBUG: ${JSON.stringify(r)}`)
                                     setShowCamera(false)
                                 }  
                             }
                             >
-                                <Text style={Styles.text}> Take Photo </Text>
+                                <View style={{marginTop: maxHeight * 0.62, marginLeft: maxWidth * 0.16}}>
+                                    <Text style={Styles.text}> Take Photo </Text>
+                                </View>
                             </TouchableOpacity>
                             <TouchableOpacity 
                             style={Styles.button}
@@ -119,30 +120,62 @@ const UserInjurySpecificPicture = ({accident}) => {
                             }  
                             }
                             >
-                                <Text style={Styles.text}> Cancel </Text>
+                                <View style={{marginTop: maxHeight * 0.65, marginLeft: maxWidth * 0.13}}>
+                                    <Text style={Styles.text}> Cancel </Text>
+                                </View>
                             </TouchableOpacity>
                         </View>
                     </Camera>
                 :
-                    // When camera is NOT showing
+                    // CAMERA NOT SHOWING
                     <View style={Styles.container}>
-                        <View style={Styles.buttonContainer}>
+                        <View>
+                            <Text style={Styles.title}>Take a picture of the Injury, if able</Text>
+                        </View>
+                        <View>
                             <View style={Styles.imageBox}>
                                 {image && (
-                                    <Image 
-                                        source={{ uri: image }}
-                                        style={Styles.img}
-                                    />
+                                    <View style={Styles.pictureContainer}>
+                                        <Image 
+                                            source={{ uri: image }}
+                                            style={Styles.img}
+                                        />
+                                    </View>
                                 )}
-                            <TouchableOpacity 
-                                style={Styles.button}
-                                onPress={async () => {
+
+                                <View style={Styles.openCamButton}>
+                                <TouchableOpacity onPress={async () => {
                                         setShowCamera(true)
-                                    }  
-                                }
-                                >
-                                <Text style={Styles.text}> Open Camera </Text>
-                            </TouchableOpacity>
+                                    }}>
+                                    <Gradient
+                                        colorOne='#555'
+                                        colorTwo='#333'
+                                        style={{
+                                            height: 100,
+                                            width: 100,
+                                            borderRadius: 50.5,
+                                            justifyContent: 'center',
+                                            alightItems: 'center',
+                                            shadowColor: '#000000',
+                                            shadowOffset: {width: 6, height: 25},
+                                            shadowOpacity: 0.14,
+                                            shadowRadius: 13,
+                                        }}
+                                    >
+                                        <Text style={{
+                                            fontFamily: "GilroySemiBold",
+                                            fontSize: 18,
+                                            letterSpacing: -0.5,
+                                            color: 'white',
+                                            textAlign: 'center'
+                                        }}
+                                        > 
+                                            Open Camera
+                                        </Text>
+                                    </Gradient>
+                                </TouchableOpacity>
+                                </View>
+                               
                             </View>
                         </View>
                         <View style={Styles.continue}>
@@ -156,30 +189,33 @@ const UserInjurySpecificPicture = ({accident}) => {
 
 const Styles = StyleSheet.create({
     title: {
-        marginTop: 23,
         marginLeft: 30,
-        marginRight: 30,
-
+        width: maxWidth - 60,
+        marginTop: 30,
+        fontSize: 24,
         fontFamily: "GilroyBold",
-        fontSize: 30,
-        color: "#444444",
-        letterSpacing: -0.5
+        color: "#444444"
     },
-    noButton: {
+    openCamButton: {
         position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .58
+        marginTop: maxHeight * 0.49,
+        marginLeft: maxWidth * .57
     },
     continue: {
         position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .15
+        marginTop: maxHeight * 0.60,
+        marginLeft: maxWidth * .13
+    },
+    camera: {
+        flex: 1,
     },
     container: {
         flex: 1,
     },
-    camera: {
-        flex: 1,
+    pictureContainer: {
+        marginTop: maxHeight * .06,
+        position: 'absolute',
+        marginLeft: (maxWidth -200) / 2,
     },
     buttonContainer: {
         flex: 1,
@@ -188,11 +224,6 @@ const Styles = StyleSheet.create({
         margin: 20,
         padding: 50
     },
-    button: {
-        flex: 1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-    },
     text: {
         fontSize: 18,
         color: 'white',
@@ -200,7 +231,6 @@ const Styles = StyleSheet.create({
     },
     imageBox: {
         width: '100%',
-        alignItems: 'center'
     },
     img: {
         width: 200,

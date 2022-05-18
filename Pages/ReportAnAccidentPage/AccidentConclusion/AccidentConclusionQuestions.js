@@ -30,7 +30,6 @@ const AccidentConclusionQuestions = () => {
 
     const [report, setReport] = useState({})
 
-    console.log('\n\n\n\n\n')
 
     useEffect(() => {
       setReport({
@@ -47,9 +46,6 @@ const AccidentConclusionQuestions = () => {
             before_accident_report: {...report}
         })
     }, [report])
-
-    console.log(report)
-    console.log(accidentData)
 
     const determineChecked = (act) => {
         if (act == q1){
@@ -237,7 +233,7 @@ const renderQ3 = () => {
                     <CheckBox
                         checked={determineChecked3("Green-to-Yellow")}
                         style={{marginTop: 10, marginRight: 10, width: 160}}
-                        onChange={() => handleQ3Check("street-to-highway")}
+                        onChange={() => handleQ3Check("Green-to-Yellow")}
                     >
                         <Text>Green Light to Yellow Light</Text>
                     </CheckBox>

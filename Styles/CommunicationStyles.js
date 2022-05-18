@@ -294,7 +294,7 @@ const ContactStyles = StyleSheet.create({
     },
 //-----------------------------------------
     image: {
-        backgroundColor: 'black',
+        // backgroundColor: 'black',
         height: 35,
         width: 35,
         borderRadius: 100,

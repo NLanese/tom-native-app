@@ -12,8 +12,6 @@ let maxHeight = Dimensions.get('window').height
 const CollisionInjuryCheckAgain = ({collision}) => {
     const navigation = useNavigation()
 
-    console.log(collision)
-
     const whichContinue = () => {
         if (collision){
             return('create-collision-injury-report')
@@ -47,7 +45,7 @@ const CollisionInjuryCheckAgain = ({collision}) => {
     } 
 
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
             <Text style={Template.questionText}>Was another party injured in the accident?</Text>
             <View style={Styles.noButton}>

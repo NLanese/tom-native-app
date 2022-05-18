@@ -68,7 +68,7 @@ const WeeklyBottomCard = ({data}) => {
     </View>)
     
     let handleSort = () => {
-        returnArray = [fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, divider, cc, divider, sc,]
+        let returnArray = [fico, divider, seatbelt, divider, speeding, divider, defects, divider, cdf, divider, dcr, divider, dar, divider, pod, ]
         return returnArray
     }
 
