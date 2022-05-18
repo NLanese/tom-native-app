@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { useRecoilState } from 'recoil'
-import { cameraPermissionState, userState } from '../../../../Recoil/atoms'
+import { cameraPermissionState, userState, loggedState } from '../../../../Recoil/atoms'
 import { websiteState } from '../../../../Recoil/atoms';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,7 +17,7 @@ import stateChange from '../../../../Hooks/handleToken'
 
 
 const LoginButton = ({ userData, handleLoggedIn, checked }) => {
-
+	const navigation = useNavigation()
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
@@ -41,6 +43,8 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 	const [user, setUser] = useRecoilState(userState);
 
+	const [logged, setLogged] = useRecoilState(loggedState)
+
 	const [website, setWebsite] = useRecoilState(websiteState)
 
 	const [hasCameraPermission, setHasCameraPermission] = useRecoilState(cameraPermissionState)
@@ -58,42 +62,30 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 			},
 		})
 		// Store email and password to AsyncStorage on login if Remember Me option is selected
-		.then(async () => {
+		.then( () => {
+			setLogged(true)
 			console.log(`checked: ${checked}`)
 			if (checked === true) {
-				// Check and see if email and password are in AsyncStorage
 				try {
-					const email = await AsyncStorage.getItem('@email')
-					const password = await AsyncStorage.getItem('@password')
-					await AsyncStorage.setItem('@remember_User', 'true')
+					const email =  AsyncStorage.getItem('@email')
+					const password =  AsyncStorage.getItem('@password')
+					AsyncStorage.setItem('@remember_User', 'true')
 					// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
 					if (email === null && password === null) {
 						try {
-							await AsyncStorage.setItem('@email', userData.email)
-							await AsyncStorage.setItem('@password', userData.password)
+							AsyncStorage.setItem('@email', userData.email)
+							AsyncStorage.setItem('@password', userData.password)
 						} catch (error) {
-							console.log("////////////////////")
-							console.log('///   ERROR ONE  ///')
-							console.log("////////////////////\n\n\n\n")
 							console.error(error)
 						}
 					}
+					navigation.navigate("home")
 				} catch (error) {
-					console.log("////////////////////")
-					console.log('///   ERROR TWO  ///')
-					console.log("////////////////////\n\n\n\n")
 					console.error(error)
 				}
 			}
-			else {
-				try {
-					await AsyncStorage.clear()
-				} catch (error) {
-					console.log("////////////////////")
-					console.log('///   ERROR THREE  ///')
-					console.log("////////////////////\n\n\n\n")
-					console.error(error)
-				}
+			if (!checked) {
+				navigation.navigate("home")
 			}
 		})
 		.then(() => {
@@ -103,9 +95,6 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 				saved: website.saved,
 			});
 		}).catch((error) => {
-			console.log("////////////////////")
-			console.log('///   ERROR FOUR  ///')
-			console.log("////////////////////\n\n\n\n")
 			console.log(error)
 		});
 	};

@@ -1,19 +1,19 @@
 import "react-native-gesture-handler"
-import React, { useState, useEffect, createContext } from 'react';
-import * as Sharing from 'expo-sharing';
+import React, { useState, useEffect } from 'react';
 import { useFonts } from 'expo-font' 
+
+import { useRecoilState } from "recoil";
+import { loggedState } from "./Recoil/atoms";
 
 
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, IconRegistry, Text } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { default as theme } from './theme.json'; // <-- Import app theme
-import { default as mapping } from './mapping.json'; // <-- Import app mapping
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
-
-import { View } from 'react-native';
+import { View, KeyboardAvoidingView } from 'react-native';
 
 import { AppStyles } from './Styles/AppStyles';
 
@@ -118,10 +118,6 @@ const errorLink = onError(
   ({graphQLErrors}) => {
     if (graphQLErrors){
       graphQLErrors.map( (message) => {
-        console.log("////////////////////")
-        console.log('///   ERROR FIVE  ///')
-        console.log("////////////////////\n\n\n\n")
-        console.log(message)
         throw new Error(message)
       })
     }
@@ -166,7 +162,6 @@ export default function App() {
 
   useEffect(async () => {
     const rememberButtonState = await AsyncStorage.getItem('@remember_User')
-    console.log(`rememberButtonState on app load: ${rememberButtonState}`)
     if (rememberButtonState === 'true') {
         setRememberMe(true)
     }
@@ -175,9 +170,9 @@ export default function App() {
     }
   }, [])
 
-	const handleLoggedIn = () => {
+	const handleLoggedIn = (var1) => {
     state = stateChange('')
-		setloggedIn(!loggedIn)
+		setloggedIn(var1)
 	}
 
   const handleThreadSelection = (chatroom) => {
@@ -187,6 +182,7 @@ export default function App() {
   if(!loaded){
     return null
   }
+  console.log(loggedIn, "logged in")
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>
@@ -194,14 +190,19 @@ export default function App() {
           <IconRegistry icons={EvaIconsPack} />
           <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
             <PaperProvider>
+            <KeyboardAvoidingView
+              behavior="padding"
+              enabled
+              style={{flexGrow:1,height:'100%'}}
+              >
               <View style={AppStyles.container}>
                 <Stack.Navigator screenOptions={{headerShown: false}}>
             
-                  {loggedIn === false ? (
+                  {/* {loggedIn === false ? ( */}
                   <Stack.Screen name="/">
-                    {props => <LandingPage handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} />}
+                    {props => <LandingPage {...props} handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} />}
                   </Stack.Screen>
-                  ) : null}
+                   {/* ) : null}  */}
               
                   <Stack.Screen name="home">
                     {props => <Home {...props} handleLoggedIn={handleLoggedIn} />}
@@ -520,6 +521,7 @@ export default function App() {
               
                 </Stack.Navigator>
               </View>
+              </KeyboardAvoidingView>
             </PaperProvider>
           </ApplicationProvider>
         </RecoilRoot>

@@ -483,7 +483,7 @@ const UserInjuryInformation = ({accident}) => {
                              Please fill out a multi-party acicdent report by clicking below
                          </Text>
                          <View style={{marginLeft: 30, marginTop: 60}}>
-                             <ContinueButton buttonText={"Okay"}  nextSite={site}  nextPage={"management_notified"}/>
+                             <ContinueButton buttonText={"Okay"}  nextSite={site}  nextPage={"check-collision-accident"}/>
                          </View>
                     </View>
                 )

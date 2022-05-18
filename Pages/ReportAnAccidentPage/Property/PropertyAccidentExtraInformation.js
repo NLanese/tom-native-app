@@ -96,7 +96,7 @@ const PropertyAccidentExtraInformation = () => {
 
             <View style={{marginLeft: 30, marginTop: -160}}>
                 {complete === true ? 
-                <View style={{marginTop: -30}}>
+                <View style={{marginTop: 0}}>
                     <ContinueButton nextPage={'post-property-instructions'} nextSite={'Post Property Damage Instructions'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
                 </View>
                  : null} 

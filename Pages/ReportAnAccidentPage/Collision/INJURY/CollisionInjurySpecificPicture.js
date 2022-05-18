@@ -75,7 +75,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
     }
 
     return (
-        <View style={Styles.container}>
+        <View style={{height: 'auto'}}>
             <Banner />
 
                 {/* CAMAERA SHOWING */}
@@ -133,7 +133,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
                     // CAMERA NOT SHOWING
                     <View style={Styles.container}>
                         <View>
-                            <Text style={Styles.title}>Take a picture of the Injury, if able</Text>
+                            <Text style={Styles.title}>Take a picture of the injury, if able</Text>
                         </View>
                         <View>
                             <View style={Styles.imageBox}>
@@ -167,7 +167,7 @@ const CollisionInjurySpecificPictures = ({collision}) => {
                                     >
                                         <Text style={{
                                             fontFamily: "GilroySemiBold",
-                                            fontSize: 25,
+                                            fontSize: 18,
                                             letterSpacing: -0.5,
                                             color: 'white',
                                             textAlign: 'center'
