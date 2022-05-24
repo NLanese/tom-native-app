@@ -44,17 +44,17 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRemem
         }
     }
 
-    useEffect(async () => {
-        // Look at local storage for username and password
-        const data = await getData()
-        if (data) {
-            setUserData({
-                ...userData,
-                email: data.email,
-                password: data.password
-            })
-        }
-    }, [])
+    // useEffect(() => {
+    //     // Look at local storage for username and password
+    //     const data = getData()
+    //     if (data) {
+    //         setUserData({
+    //             ...userData,
+    //             email: data.email,
+    //             password: data.password
+    //         })
+    //     }
+    // }, [])
 
 
     // Sends user input to the use state above

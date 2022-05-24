@@ -26,12 +26,12 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 
 	// Handles the data changes and reroutes to the logged-in home page
-	useEffect( async () => {
+	useEffect(() => {
 		if (!loading && data) {
 			// await storeData()
-			await setUser(data.driverSignIn)
-			await stateChange(data.driverSignIn.token);
-			await handleLoggedIn()
+			 setUser(data.driverSignIn)
+			 stateChange(data.driverSignIn.token);
+			 handleLoggedIn()
 		}
 	}, [data])
 
