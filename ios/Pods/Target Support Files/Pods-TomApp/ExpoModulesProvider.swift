@@ -6,12 +6,16 @@
  */
 
 import ExpoModulesCore
+import ExpoImagePicker
+import ExpoKeepAwake
 import ExpoLinearGradient
 
 @objc(ExpoModulesProvider)
 public class ExpoModulesProvider: ModulesProvider {
   public override func getModuleClasses() -> [AnyModule.Type] {
     return [
+      ImagePickerModule.self,
+      KeepAwakeModule.self,
       LinearGradientModule.self
     ]
   }
