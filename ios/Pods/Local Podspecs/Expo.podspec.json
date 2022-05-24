@@ -1,11 +1,11 @@
 {
   "name": "Expo",
-  "version": "44.0.0",
+  "version": "45.0.4",
   "summary": "The Expo SDK",
   "description": "The Expo SDK",
   "license": "MIT",
   "authors": "Expo",
-  "homepage": "https://github.com/expo/expo/tree/master/packages/expo",
+  "homepage": "https://github.com/expo/expo/tree/main/packages/expo",
   "platforms": {
     "ios": "12.0"
   },

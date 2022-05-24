@@ -160,15 +160,6 @@ export default function App() {
   const [loggedIn, setloggedIn] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
 
-  useEffect(async () => {
-    const rememberButtonState = await AsyncStorage.getItem('@remember_User')
-    if (rememberButtonState === 'true') {
-        setRememberMe(true)
-    }
-    else {
-      setRememberMe(false)
-    }
-  }, [])
 
 	const handleLoggedIn = (var1) => {
     state = stateChange('')

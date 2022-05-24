@@ -16,6 +16,7 @@
 #import "ReactCommon/TurboModuleBinding.h"
 #import "ReactCommon/TurboModulePerfLogger.h"
 #import "ReactCommon/TurboModuleUtils.h"
+#import "ReactCommon/RCTBlockGuard.h"
 #import "ReactCommon/RCTTurboModule.h"
 #import "ReactCommon/RCTTurboModuleManager.h"
 

@@ -35,7 +35,7 @@ const CreateUserInjury = ({accident}) => {
         selfInjury = {...selfInjury, accidentId: accidentId}
     }
 
-    useEffect(() => [
+    useEffect(() => {
         setSelfInjuryData({
             injuries: {
                 "Head": false, "Neck": false, "Shoulder(s)": false, 
@@ -55,7 +55,7 @@ const CreateUserInjury = ({accident}) => {
                 pet: null
             }
         })
-    ], [])
+    }, [])
 
     return(
         <View>
