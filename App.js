@@ -173,7 +173,6 @@ export default function App() {
   if(!loaded){
     return null
   }
-  console.log(loggedIn, "logged in")
   return (
     <NavigationContainer>
       <ApolloProvider client={client}>

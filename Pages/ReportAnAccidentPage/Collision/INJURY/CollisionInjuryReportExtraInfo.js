@@ -91,7 +91,6 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
     const handleSubmit = async () => {
         return await handleMutation()
             .then( (resolved) => {
-                console.log(resolved)
                 setInjuryData({
                     ...injuryData, 
                     id: resolved.data.driverCreateInjuryAccident.id
@@ -100,7 +99,6 @@ const CollisionInjuryReportExtraInfo = ({collision}) => {
             })
     }
 
-    console.log(injuryData)
 
     return (
         <View style={{height: 'auto'}}>

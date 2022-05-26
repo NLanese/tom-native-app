@@ -23,7 +23,7 @@ const Roster = ({contacts}) => {
     const navigation = useNavigation()
 
     // Gets all Drivers from DSP
-    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERS_GET_DRIVERS_FROM_DSP)
+    // const {loading: loading, error: error, data: queryData} = useQuery(DRIVERS_GET_DRIVERS_FROM_DSP)
 
 
 // -------------------- Recoil and UseState ----------------------
@@ -45,7 +45,7 @@ const Roster = ({contacts}) => {
 
 // -------------------- Recoil and UseState ----------------------
 
-
+    console.log(user)
     
 // --------------- Rendering and Generating Functions ------------ 
 
@@ -146,11 +146,10 @@ const Roster = ({contacts}) => {
 // -------------------------- Handlers ---------------------------
 
 
-    if (!loading && queryData){
-        let allContacts = [...queryData.driverGetDriversFromDsp.drivers]
-
+    // if (!loading && queryData){
+        let allContacts = user.dsp.drivers
         return (
-            <View>
+            <View style={{height: 'auto'}}>
                 <Banner />
 
                 <View style={ContactStyles.header}>
@@ -161,18 +160,19 @@ const Roster = ({contacts}) => {
                 </View>
 
                 <View >
-                    <ScrollView contentContainerStyle={ContactStyles.container}>
+                    <ScrollView contentContainerStyle={{height: '300%'}} >
                         {determineRosterDisplay(allContacts)}
+                        <View></View>
                     </ScrollView>
                 </View>
 
             </View>
         )
     }
-    else{
-        return(
-            <Loading />
-        )
-    }
-}
+    // else{
+    //     return(
+    //         <Loading />
+    //     )
+    // }
+
 export default Roster

@@ -34,7 +34,7 @@ const ShiftPlannerButton = () => {
                             top: '30%',
                             height: 40,
                             width: 37,
-                            marginLeft: 58
+                            marginLeft: 55.5
                         }}
                         source={require('../../../../assets/shift-planner-icon.png')}/>
                 </View> 

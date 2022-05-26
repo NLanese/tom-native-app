@@ -266,36 +266,106 @@ const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
     id
-    createdAt
     role
+    createdAt
     token
     firstname
     lastname
     email
-    password
-    profilePick
     phoneNumber
+    profilePick
     shifts
+    transporterId
+    globallyMuted
+    mutedDrivers
+    notified
+    locked
+    deleted
     owner {
       id
+      createdAt
+      role
       firstname
       lastname
       email
       phoneNumber
       profilePick
     }
+    accidents {
+      id
+      createdAt
+      date
+      name
+      time
+      location
+      accident_report
+      has_logo
+      police_report
+      before_accident_report
+      selfDamage
+      weather_and_distractions
+      filled
+      deleted
+      collisionAccidents {
+        id
+        specific_pictures
+        contact_info
+        collision_report
+        extra_info
+        accidentId
+        injuryAccident {
+          id
+        }
+      }
+      injuryAccidents {
+        id
+        contact_info
+        extra_info
+        injured_areas
+        injury_report
+        pain_level
+        specific_pictures
+        collisionId
+      }
+      propertyAccidents {
+        id
+        contact_info
+        damage_report
+        defective_equip
+        safety_equip
+        specific_pictures
+        extra_info
+        types_of_damage
+        package_report
+        accidentId
+      }
+      selfInjuryAccidents {
+        id
+        animal_report
+        injuries
+        injury_report
+        extra_info
+        specific_pictures
+        accidentId
+      }
+    }
     managers {
       id
+      createdAt
+      role
       firstname
       lastname
       email
-      profilePick
       phoneNumber
+      profilePick
     }
     notifiedMessages {
       id
       createdAt
       read
+      readAt
+      date
+      sentAt
       content
       from
       type
@@ -305,8 +375,8 @@ const LOGIN = gql`
       createdAt
       name
       shortcode
-      ficoLimits
       timeZone
+      ficoLimits
       seatbeltLimits
       speedingLimits
       distractionLimits
@@ -317,6 +387,9 @@ const LOGIN = gql`
       photoOnDeliveryLimits
       topCardLimits
       smallCardLimits
+      feedbackNotifications
+      autoSend
+      allDevices
       paid
       accountStanding
       shifts {
@@ -331,7 +404,17 @@ const LOGIN = gql`
         name
         type
         deviceIndex
-        driverId
+      }
+      drivers {
+        id
+        createdAt
+        role
+        firstname
+        lastname
+        email
+        phoneNumber
+        profilePick
+        shifts
       }
     }
     weeklyReport {
@@ -341,15 +424,15 @@ const LOGIN = gql`
       hadAccident
       feedbackMessage
       feedbackMessageSent
-      feedbackStatus
       acknowledged
-      acknowledgedAt
+      feedbackStatus
       rank
+      acknowledgedAt
       tier
-      delivered
       keyFocusArea
-      seatbeltOffRate
+      delivered
       fico
+      seatbeltOffRate
       speedingEventRate
       distractionsRate
       followingDistanceRate
@@ -358,6 +441,35 @@ const LOGIN = gql`
       deliveredAndRecieved
       photoOnDelivery
       attendedDeliveryAccuracy
+      podOpps
+      dnr
+      ccOpps
+      netradyne
+      deliveryAssociate
+      defects
+      customerDeliveryFeedback
+      hasManyAccidents
+      attendence
+      belongsToTeam
+      productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      mutedIds
+      managerJoinOnSignUp
+      driverJoinOnSignUp
+    }
+    devices {
+      id
+      createdAt
+      number
+      name
+      type
+      deviceIndex
     }
   }
 }
