@@ -106,7 +106,7 @@ const Roster = ({contacts}) => {
     // Filters based off of the name typed in
     const filterBasedOffSearch = (list) => {
         let filteredList = []
-        if (searchVal == ""){
+        if (searchVal === ""){
             return list
         }
         else{
