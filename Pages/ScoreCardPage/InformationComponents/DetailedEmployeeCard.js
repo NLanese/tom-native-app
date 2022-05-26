@@ -14,6 +14,8 @@ const DetailedEmployeeCard = ({driverData, sortBy, rank}) => {
 
     let data = {...driverData}
 
+    console.log(data, "DATA\n\n\n\n\n\n")
+
     if (data.deliveryCompletionRate == null){
         data.deliveryCompletionRate = 0
     }

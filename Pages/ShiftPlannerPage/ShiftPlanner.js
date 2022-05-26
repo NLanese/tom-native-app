@@ -170,7 +170,6 @@ const ShiftPlanner = () => {
     const renderShiftAssignments = () => {
 
         const generateDeviceComponents = () => {
-            console.log(currentShift)
             if (!currentShift || currentShift == 'undefined'){
                 return(
                     <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>

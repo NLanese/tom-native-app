@@ -87,7 +87,6 @@ const OwnCarSpecificPictures = () => {
                                             ...ownCarData,
                                             specific_pictures: images
                                         })
-                                        // console.log(images)
                                     }
                                     // alert(`DEBUG: ${JSON.stringify(r)}`)
                                     setShowCamera(false)

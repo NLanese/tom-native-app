@@ -415,6 +415,27 @@ const LOGIN = gql`
         phoneNumber
         profilePick
         shifts
+        weeklyReport {
+          fico
+          rank
+          tier
+          delivered
+          seatbeltOffRate
+          distractionsRate
+          speedingEventRate
+          followingDistanceRate
+          signalViolationsRate
+          deliveryCompletionRate
+          deliveredAndRecieved
+          photoOnDelivery
+          attendedDeliveryAccuracy
+          dnr
+          podOpps
+          ccOpps
+          netradyne
+          defects
+          customerDeliveryFeedback
+        }
       }
     }
     weeklyReport {
