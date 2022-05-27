@@ -181,7 +181,7 @@ const AccountInformation = () => {
     return (
         <View>
             <Banner />
-            <ScrollView>
+            <ScrollView contentContainerStyle={{height: '130%'}}>
                 {/* Name Plate */}
                 <View style={{paddingLeft: 30, marginTop: 30, paddingBottom: 20, borderBottomColor: "#DDD", borderBottomWidth: 1}}>
                     <Text style={AccountInformationStyles.title}>{name.first} {name.last}</Text>

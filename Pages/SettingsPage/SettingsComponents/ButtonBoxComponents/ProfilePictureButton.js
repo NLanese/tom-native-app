@@ -15,8 +15,6 @@ const ProfilePictureButton = () => {
 		await setButtonLoading(!buttonLoading)
 	}
 
-    console.log('test')
-
     return (
         <View style={{marginBottom: 20}}>
             <TouchableOpacity>

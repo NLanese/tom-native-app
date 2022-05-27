@@ -34,7 +34,6 @@ const EditAccountInformationButton = ({edit, setEdit, currentSettings}) => {
             return(
                 handleMutation()
                     .then( (resolved) => {
-                        console.log(resolved)
                     })
                 )
         }

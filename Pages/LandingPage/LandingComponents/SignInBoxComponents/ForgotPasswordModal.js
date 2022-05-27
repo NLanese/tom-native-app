@@ -32,7 +32,6 @@ const ForgotPasswordModal = ({ visible, setVisible }) => {
 ///////////////////////////
 
     const handleMutation = () => {
-        console.log("Inside mutation const")
         return forgotPassword({
             variables: {
                 email: email
@@ -41,7 +40,6 @@ const ForgotPasswordModal = ({ visible, setVisible }) => {
     }
 
     const handleSubmitEmail = async () => {
-        console.log(email)
         handleMutation()
     }
 
