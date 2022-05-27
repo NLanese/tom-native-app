@@ -44,8 +44,6 @@ const Roster = ({contacts}) => {
         const[changesMade, setChangesMade] = useState(false)
 
 // -------------------- Recoil and UseState ----------------------
-
-    console.log(user)
     
 // --------------- Rendering and Generating Functions ------------ 
 

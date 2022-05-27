@@ -7,8 +7,6 @@ import { StatStyles } from "../../../Styles/ScoreCardStyles";
 
 const BottomCard = ({sortBy, rawData}) => {
 
-    console.log(rawData, "Driver WeeklyReport")    
-
     if (rawData.length < 1){
         return(
             <Text>No Scorecard uploaded yet</Text>

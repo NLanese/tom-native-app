@@ -39,7 +39,7 @@ const ShiftPlannerButton = () => {
                         source={require('../../../../assets/shift-planner-icon.png')}/>
                 </View> 
                 <View style={{ marginTop: '-32%', alignItems: 'center'}}>
-                    <Text style={ButtonBoxStyles.label}>SHIFT PLANNER</Text>
+                    <Text style={ButtonBoxStyles.label}>SHIFT VIEWER</Text>
                 </View>
             </TouchableOpacity>
         </View>
