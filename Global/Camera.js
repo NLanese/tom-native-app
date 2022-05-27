@@ -33,3 +33,6 @@ const Camera = ({type}) => {
         const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
         const [showCamera, setShowCamera] = useState(false)
 }
+
+
+export default Camera
