@@ -1,7 +1,7 @@
 package com.hdurand22.tomapp;
 
 import android.app.Application;
-import android.content.Context;
+// import android.content.Context;
 import android.content.res.Configuration;
 import androidx.annotation.NonNull;
 
