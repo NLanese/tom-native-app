@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { collisionDataState, accidentDataState, injuryDataState, selfInjuryDataState, propertyDataState, ownCarDataState, cameraPermissionState } from "../../../Recoil/atoms";
 
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import ErrorPrompt from "./ErrorPrompt";
 
 const Camera = ({type}) => {
 
@@ -65,6 +66,9 @@ const Camera = ({type}) => {
             else if (type === "self-damage"){
                 changeFunction = setOwnCarData
                 changeValue = ownCarData
+            }
+            else{
+                return <ErrorPrompt code={'901'} />
             }
         }
 
@@ -234,7 +238,11 @@ const Camera = ({type}) => {
         const renderDefaultView = () => {
             return(
                 <View style={Styles.container}>
-                    // Thingy // 
+                    {/* Title */}
+                    <View>
+                        {renderPictureTypeTitle()}
+                    </View>
+                    
                     <View>
                         <View style={Styles.imageBox}>
                             {image && (
@@ -290,10 +298,40 @@ const Camera = ({type}) => {
 
         // Renders the title based on incident type// 
         const renderPictureTypeTitle = () => {
-            let prompt = "ERROR: Something Went Wrong. We apologize, please leave feedback / email support stating you encountered ERROR 901"
+            let title = "ERROR: Something Went Wrong. We apologize, please leave feedback / email support stating you encountered ERROR 901"
+            let prompt = ""
+
+            // Renders Title based on Type
+            if (true){
+                if (type === "collision"){
+                    title = "Collision Pictures you should take:"
+                    prompt = "Your Car, Their Car, Thier Insurance (if possible) Their Drivers License (if possible)"
+                }
+                else if (type === "injury"){
+                    title = "Injury Pictures you should take:"
+                    prompt = "The Scene, The Victim (with permission, if appropriate), Insurance Card"
+                }
+                else if (type === "self-injury"){
+                    title = "Injury Pictures you should take:"
+                    prompt = "What Caused Your Injury, The Injured Area"
+                }
+                else if (type === "general"){
+                    title = "Pictures you should take:"
+                    prompt = "The Road Where The Incident Occurred, Your Vehicle"
+                }
+                else if (type === "property"){
+                    title = "Pictures of Property you should take:"
+                    prompt = "Any and All Damages"
+                }
+                else if (type === "self-damage"){
+                    title = "Damage Pictures you should take:"
+                    prompt = "Any and All Damages"
+                }
+            }
             return(
                 <View>
-                    <Text style={Styles.title}>Take a picture of the collision / damage</Text>
+                    <Text style={Styles.title}>{title}</Text>
+                    <Text>{prompt}</Text>
                 </View>
             )
         }
