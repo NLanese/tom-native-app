@@ -260,8 +260,7 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
     }
   }
 }
-`;
-
+`
 const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
@@ -277,7 +276,7 @@ const LOGIN = gql`
     shifts
     transporterId
     globallyMuted
-    mutedDrivers
+    mutedIds
     notified
     locked
     deleted
@@ -494,8 +493,7 @@ const LOGIN = gql`
     }
   }
 }
-`;
-
+`
 const FORGOT_PASSWORD = gql`
 mutation Mutation($email: String) {
   driverForgotPassword(email: $email) {
