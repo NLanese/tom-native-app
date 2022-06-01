@@ -7,13 +7,15 @@ import { useRecoilState } from "recoil";
 import { collisionDataState, accidentDataState, injuryDataState, selfInjuryDataState, propertyDataState, ownCarDataState, cameraPermissionState } from "../../../Recoil/atoms";
 
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import ErrorPrompt from "./ErrorPrompt";
 
 const Camera = ({type}) => {
-    ///////////////////////
-    ///                 ///
-    ///   PRELIMINARY   ///
-    ///                 ///
-    ///////////////////////
+
+///////////////////////
+///                 ///
+///   PRELIMINARY   ///
+///                 ///
+///////////////////////
 
         //////////////////////////
         // All Incidient States // 
@@ -65,23 +67,26 @@ const Camera = ({type}) => {
                 changeFunction = setOwnCarData
                 changeValue = ownCarData
             }
+            else{
+                return <ErrorPrompt code={'901'} />
+            }
         }
 
-    //////////////////////
-    ///                ///
-    ///  I'm Not Sure  ///
-    ///                ///
-    //////////////////////
+//////////////////////
+///                ///
+///  I'm Not Sure  ///
+///                ///
+//////////////////////
 
     // Camera ref to enable picture taking
     const cameraRef = useRef(null)
 
 
-    ///////////////////////////////
-    ///                         ///
-    ///  Camera functionality   ///
-    ///                         ///
-    ///////////////////////////////
+///////////////////////////////
+///                         ///
+///  Camera functionality   ///
+///                         ///
+///////////////////////////////
 
         ////////////////////////
         // Camera Permissions // 
@@ -126,14 +131,219 @@ const Camera = ({type}) => {
                 }
             }
 
-    //////////////////////
-    ///                ///
-    ///  Main Return   ///
-    ///                ///
-    //////////////////////
+//////////////////////
+///                ///
+///    Handlers    ///
+///                ///
+//////////////////////
+
+        // Adds taken (took? taked?) Picture to Array of Pictures in the Selected State //
+        const handleClickTakePicture = async () => {
+            const r = await takePhoto()
+            if (!r.cancelled) {
+                setImage(r.uri)
+                let images = [...changeValue.specific_pictures];
+                images.push(r.uri)
+                changeFunction({
+                    ...changeValue,
+                    specific_pictures: images
+                })
+            }
+        }
+
+//////////////////////
+///                ///
+///   Renderings   ///
+///                ///
+//////////////////////
+
+        ///////////////////////////
+        // Camera Display Render // 
+        ///////////////////////////
+
+        // Main Camera View //
+        const displayCameraView = () => {
+            return(
+                <Camera style={Styles.camera} type={cameraType} ref={cameraRef}>
+
+                    {/* Renders the Bottom Buttons */}
+                    <View style={Styles.buttonContainer}>
+                        {renderFlipButton()}
+                        {renderTakePicture()}
+                        {renderCloseButton()}
+                    </View>
+
+                </Camera>
+            )
+        }
+
+        // Flip Button //
+        const renderFlipButton = () => {
+            return(
+                <View>
+                    <TouchableOpacity
+                        style={Styles.button}
+                        onPress={() => {
+                            setCameraType(
+                                cameraType === Camera.Constants.Type.back
+                                ? Camera.Constants.Type.front
+                                : Camera.Constants.Type.back
+                            );
+                        }}>
+                        <View style={{marginTop: maxHeight * 0.65, marginLeft: maxWidth * -0.1}}>
+                            <Text style={Styles.text}> Flip </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+
+        // Picture Button //
+        const renderTakePicture = () => {
+            return(
+                <View>
+                    <TouchableOpacity 
+                    style={Styles.button}
+                    onPress={() => {handleClickTakePicture()}  
+                    }>
+                        <View style={{marginTop: maxHeight * 0.62, marginLeft: maxWidth * 0.16}}>
+                            <Text style={Styles.text}> Take Photo </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+
+        // Close button //
+        const renderCloseButton = () => {
+            return(
+                <View>
+                    <TouchableOpacity 
+                    style={Styles.button}
+                    onPress={async () => { setShowCamera(false)}
+                    }>
+                        <View style={{marginTop: maxHeight * 0.65, marginLeft: maxWidth * 0.13}}>
+                            <Text style={Styles.text}> Close </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+
+        ////////////////////////////
+        // Default Display Render // 
+        ////////////////////////////
+
+        // Main Default View //
+        const renderDefaultView = () => {
+            return(
+                <View style={Styles.container}>
+                    {/* Title */}
+                    <View>
+                        {renderPictureTypeTitle()}
+                    </View>
+                    
+                    <View>
+                        <View style={Styles.imageBox}>
+                            {image && (
+                                <View style={Styles.pictureContainer}>
+                                    <Image 
+                                        source={{ uri: image }}
+                                        style={Styles.img}
+                                    />
+                                </View>
+                            )}
+
+                            <View style={Styles.openCamButton}>
+                            <TouchableOpacity onPress={async () => {
+                                    setShowCamera(true)
+                                }}>
+                                <Gradient
+                                    colorOne='#555'
+                                    colorTwo='#333'
+                                    style={{
+                                        height: 100,
+                                        width: 100,
+                                        borderRadius: 50.5,
+                                        justifyContent: 'center',
+                                        alightItems: 'center',
+                                        shadowColor: '#000000',
+                                        shadowOffset: {width: 6, height: 25},
+                                        shadowOpacity: 0.14,
+                                        shadowRadius: 13,
+                                    }}
+                                >
+                                    <Text style={{
+                                        fontFamily: "GilroySemiBold",
+                                        fontSize: 18,
+                                        letterSpacing: -0.5,
+                                        color: 'white',
+                                        textAlign: 'center'
+                                    }}
+                                    > 
+                                        Open Camera
+                                    </Text>
+                                </Gradient>
+                            </TouchableOpacity>
+                            </View>
+                            
+                        </View>
+                    </View>
+                    <View style={Styles.continue}>
+                        <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
+                    </View>
+                </View>
+            )
+        }
+
+        // Renders the title based on incident type// 
+        const renderPictureTypeTitle = () => {
+            let title = "ERROR: Something Went Wrong. We apologize, please leave feedback / email support stating you encountered ERROR 901"
+            let prompt = ""
+
+            // Renders Title based on Type
+            if (true){
+                if (type === "collision"){
+                    title = "Collision Pictures you should take:"
+                    prompt = "Your Car, Their Car, Thier Insurance (if possible) Their Drivers License (if possible)"
+                }
+                else if (type === "injury"){
+                    title = "Injury Pictures you should take:"
+                    prompt = "The Scene, The Victim (with permission, if appropriate), Insurance Card"
+                }
+                else if (type === "self-injury"){
+                    title = "Injury Pictures you should take:"
+                    prompt = "What Caused Your Injury, The Injured Area"
+                }
+                else if (type === "general"){
+                    title = "Pictures you should take:"
+                    prompt = "The Road Where The Incident Occurred, Your Vehicle"
+                }
+                else if (type === "property"){
+                    title = "Pictures of Property you should take:"
+                    prompt = "Any and All Damages"
+                }
+                else if (type === "self-damage"){
+                    title = "Damage Pictures you should take:"
+                    prompt = "Any and All Damages"
+                }
+            }
+            return(
+                <View>
+                    <Text style={Styles.title}>{title}</Text>
+                    <Text>{prompt}</Text>
+                </View>
+            )
+        }
+
+//////////////////////
+///                ///
+///  Main Return   ///
+///                ///
+//////////////////////
 
     return(
-        
+
     )
 
 }
