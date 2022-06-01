@@ -64,7 +64,6 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 		// Store email and password to AsyncStorage on login if Remember Me option is selected
 		.then( () => {
 			setLogged(true)
-			console.log(`checked: ${checked}`)
 			if (checked === true) {
 				try {
 					const email =  AsyncStorage.getItem('@email')

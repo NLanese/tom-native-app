@@ -680,7 +680,6 @@ const CollisionAccidentInformation = () => {
 // -------- minor Renderers -----------
 
     const renderContinue = () => {
-        console.log(collisionData.contact_info)
         if ( 
             (q1 == "yes" && q2 == "yes") ||
             (

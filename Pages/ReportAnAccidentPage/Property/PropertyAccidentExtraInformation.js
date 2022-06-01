@@ -36,7 +36,6 @@ const PropertyAccidentExtraInformation = () => {
                 types_of_damage: propertyData.types_of_damage
             }
         }).then( (resolved) => {
-            console.log(resolved)
             setPropertyData({
                 ...propertyData,
                 id: resolved.data.driverCreatePropertyAccident.id

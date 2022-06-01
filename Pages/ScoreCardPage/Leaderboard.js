@@ -15,7 +15,6 @@ import Loading from "../../Global/Loading";
 
 const Leaderboard = () => {
 
-    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERS_GET_DRIVERS_FROM_DSP)
     const [user, setUser] = useRecoilState(userState)
     const [sortBy, setSortBy] = useState("FICO")
     const [dropVisibility, setDropVisibility] = useState(false)
@@ -55,8 +54,7 @@ const Leaderboard = () => {
     }
     
 
-    const renderTopAndOthers = (allDriversRaw, topNum=3, stopAt) => {
-        let allDrivers = [...allDriversRaw.driverGetDriversFromDsp.drivers]
+    const renderTopAndOthers = (allDrivers, topNum=3, stopAt) => {
         let i = 0
         allDrivers = returnSortedList(allDrivers, sortBy)
         const topCards = (
@@ -87,14 +85,9 @@ const Leaderboard = () => {
         setDropVisibility(!dropVisibility)
     }
 
-    // If the data is not yet loaded
-    if (loading) {
-        return (
-            <Loading />
-        )
-    } 
+    let allDrivers = [...user.dsp.drivers]
+
     // If the data IS loaded
-    else {
         return(
             <View style={{flex: 0, backgroundColor: "#f2f2f2"}}>
                 <Banner />
@@ -106,11 +99,11 @@ const Leaderboard = () => {
                         <Text style={QualityStyles.mainTitle}>Leaderboard</Text>
                         <Text style={QualityStyles.subTitle}>OUR TOP PERFROMERS</Text>
                     </View>
-                    {renderTopAndOthers(queryData, user.dsp.topCardLimits, (user.dsp.smallCardLimits + user.dsp.topCardLimits))}
+                    {renderTopAndOthers(allDrivers, user.dsp.topCardLimits, (user.dsp.smallCardLimits + user.dsp.topCardLimits))}
                 </ScrollView>
             </View>
         )
-    }
+    
 }
 
 export default Leaderboard

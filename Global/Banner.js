@@ -74,6 +74,9 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   }
 
   const handleBackClick = () => {
+    if (website.previous == "Landing"){
+      return null
+    }
     if (website.previous == "Create Chatroom"){
       setWebsiteState({current: "Messaging", previous: website.current, saved: website.saved})
       navigation.navigate("messages")

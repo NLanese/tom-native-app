@@ -418,7 +418,7 @@ const renderQ5 = () => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: "150%"}}>
+            <ScrollView contentContainerStyle={{height: "200%"}}>
                 <Text style={Template.title}>
                     What were you doing leading up to the accident?
                 </Text>

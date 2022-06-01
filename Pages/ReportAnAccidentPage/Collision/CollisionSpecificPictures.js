@@ -3,8 +3,6 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-import { useMutation } from "@apollo/client";
 import { collisionDataState, accidentDataState, cameraPermissionState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 import { Camera } from 'expo-camera';

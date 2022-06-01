@@ -534,7 +534,6 @@ const FinalQuestions = () => {
 /////////////////////////////////////////
 
     let screenHeight = `${theHeight}%`
-    console.log(theHeight)
 
     return(
         <View>

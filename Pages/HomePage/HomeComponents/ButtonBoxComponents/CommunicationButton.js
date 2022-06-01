@@ -34,7 +34,7 @@ const CommunicationButton = () => {
                         top: '30%',
                         height: 40,
                         width: 39,
-                        marginLeft: 52
+                        marginLeft: 55
                     }}
                     source={require('../../../../assets/Communication.jpeg')}/>
             </View> 

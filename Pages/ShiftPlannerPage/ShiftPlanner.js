@@ -11,7 +11,6 @@ import Banner from '../../Global/Banner'
 import { ShiftPlannerStyles } from "../../Styles/ShiftPlannerStyles";
 
 import numberToMonth from "./numberToMonth";
-import numberToDay from "./numberToDay";
 import getTodaysDate from "../../Hooks/getTodaysDate";
 import handlePicture from "../../Hooks/handlePicture";
 
@@ -42,7 +41,7 @@ const ShiftPlanner = () => {
         const month = numberToMonth(currentDate.month)
         const year = numberToMonth(currentDate.year)
 
-        const dayOfTheWeek = numberToDay(currentDate.day)
+        const dayOfTheWeek = currentDate.dayOfWeek
 
         const initShift  = user.shifts.find(shift => shift.date == currentDate.date)
         const [currentShift, setCurrentShift] = useState(initShift)
@@ -84,25 +83,25 @@ const ShiftPlanner = () => {
             if (daysAhead > 0){
                 return(
                     <TouchableOpacity onPress={() => handleDateChange("subtract")}>
-                    <Gradient
-                        colorOne="#534FFF"
-                        colorTwo="#15A1F1"
-                        style={{
-                            height: 35,
-                            width: 35,
-                            borderRadius: 17.5
-                        }}
-                        hollow={true}
-                        hollowColor={"#f2f2f2"}
-                        hollowBorderSize="medium"
-                        hollowStyles={{
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Text style={ShiftPlannerStyles.arrowActive}>{"<"}</Text>
-                    </Gradient>
-                </TouchableOpacity>
+                        <Gradient
+                            colorOne="#534FFF"
+                            colorTwo="#15A1F1"
+                            style={{
+                                height: 35,
+                                width: 35,
+                                borderRadius: 17.5
+                            }}
+                            hollow={true}
+                            hollowColor={"#f2f2f2"}
+                            hollowBorderSize="medium"
+                            hollowStyles={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Text style={ShiftPlannerStyles.arrowActive}>{"<"}</Text>
+                        </Gradient>
+                    </TouchableOpacity>
                 )
             }
             else{
@@ -170,7 +169,6 @@ const ShiftPlanner = () => {
     const renderShiftAssignments = () => {
 
         const generateDeviceComponents = () => {
-            console.log(currentShift)
             if (!currentShift || currentShift == 'undefined'){
                 return(
                     <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>
@@ -341,7 +339,7 @@ const ShiftPlanner = () => {
                     </Text>
                 </View>
 
-                {/* Numeric Values and Titles */}
+                {/* Device Assignments */}
                 <View style={ShiftPlannerStyles.valueBox}>
 
                     {renderShiftAssignments()}

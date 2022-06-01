@@ -25,7 +25,7 @@ const BannerDropdown = ({ visible, handleModal, handleLoggedIn }) => {
 
                     <View>
                         <AccountInformationButton handleModal={handleModal}/>
-                        <MessageWithAdminButton handleModal={handleModal} />
+                        {/* <MessageWithAdminButton handleModal={handleModal} /> */}
                         <EmployeeChatroomButton handleModal={handleModal} />
                     </View>
 

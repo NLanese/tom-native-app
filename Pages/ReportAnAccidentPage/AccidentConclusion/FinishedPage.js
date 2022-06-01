@@ -50,7 +50,7 @@ const FinishedPage = () => {
             <Banner />
             <Text style={Template.title}>Your Incident Report has been filed!</Text>
             <View style={{marginTop: 20}} />
-            <Text style={Template.subTitle2}>Thank you for bearing with this process and we hope you have a safe remainder of your day</Text>
+            <Text style={Template.subTitle2}>Thank you for bearing with this process, and we hope you have a safe remainder of your day!</Text>
             <Text style={Template.subTitle2}>Please remember to call any and all emergency services necessary, or contact your manager if you feel unable to complete your shift.</Text>
 
             <View style={{marginLeft: 30, marginTop: 130}}>

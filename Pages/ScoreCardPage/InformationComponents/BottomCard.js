@@ -7,13 +7,16 @@ import { StatStyles } from "../../../Styles/ScoreCardStyles";
 
 const BottomCard = ({sortBy, rawData}) => {
 
-    let data 
+    if (rawData.length < 1){
+        return(
+            <Text>No Scorecard uploaded yet</Text>
+        )
+    }
     // if (rawData.isArray){
-        data = rawData[0]
+        let data = rawData[0]
     // }
     // else{
         // data = {...rawData}
-        // console.log(data)
     // }
     let divider = (
         <View style={StatStyles.divider} />

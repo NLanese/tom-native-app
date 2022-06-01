@@ -12,7 +12,6 @@ let maxHeight = Dimensions.get('window').height
 const CollisionInjuryCheck = ({collision}) => {
     const navigation = useNavigation()
 
-    console.log(collision)
 
     const whichContinue = () => {
         if (collision){

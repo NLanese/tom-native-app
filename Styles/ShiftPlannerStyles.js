@@ -99,7 +99,7 @@ const ShiftPlannerStyles = StyleSheet.create({
 
     shiftProfile: {
         marginTop: 30,
-        marginLeft: 30,
+        marginLeft: 34,
 
         width: maxWidth - 120,
         flexDirection: 'row'

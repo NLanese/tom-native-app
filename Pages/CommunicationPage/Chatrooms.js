@@ -21,18 +21,12 @@ const Chatrooms = () => {
     const d = new Date();
 
     // Recoil for User
-    const [rawUser, setRawUser] = useRecoilState(userState)
-        // Handles the user data
-        let user
-        if (rawUser.isArray){
-            user = rawUser[rawUser.length - 2]
-        }
-        else{
-            user = {...rawUser}
-    }
+    const [user, setUser] = useRecoilState(userState)
 
+    // Tracks the input of the search bar
     const [inInput, setInInput] = useState(false)
 
+    // Dynamically Styles Search Bar
     const determineSearchStyle = () => {
         if (inInput){
             return ChatroomsStyles.searchBarActive
@@ -111,12 +105,12 @@ const Chatrooms = () => {
         })
     }
 
-    return(
-        <View>
-            <Banner />
-            <Text style={ChatroomsStyles.title}>Coming Soon</Text>
-        </View>
-    )
+    // return(
+    //     <View>
+    //         <Banner />
+    //         <Text style={ChatroomsStyles.title}>Coming Soon</Text>
+    //     </View>
+    // )
 
     // Check if no messages
     if (user.chatrooms.length < 1){
