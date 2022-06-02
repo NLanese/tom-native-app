@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, TouchableOpacity, TextInput, Dimensions } from "react-native";
+import { ScrollView, View, Text, TouchableOpacity, TextInput, Dimensions, Button } from "react-native";
 import { Modal } from "@ui-kitten/components";
 import { useRecoilState } from "recoil";
 import { userState, threadState } from "../../../Recoil/atoms";
@@ -145,7 +145,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 
 
     return(
-        <View style={{ backgroundColor: 'white',}}>
+        <View style={{ backgroundColor: 'white', height: maxHeight, marginTop: 0}}>
             <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
             
             <View style={ThreadDetailStyles.nameListContainer}>
@@ -156,24 +156,12 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
             </View>
 
             <View>
-                <Text>Chatroom Name</Text>
-                <TextInput
-                    onChange={(value) => setNewName(value)}
-                />
-                <TouchableOpacity>
-                    <Text>Rename Chat</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View>
                 {renderAddContacts()}
             </View>
 
-            <TouchableOpacity onPress={() => setModalVisible(false)}> 
-                <View style={ThreadDetailStyles.doneBox}>
-                    <Text style={ThreadDetailStyles.doneText}>Done</Text>
-                </View>
-            </TouchableOpacity>
+            <View style={ThreadDetailStyles.doneBox}>
+                <Button style={ThreadDetailStyles.doneText} title="Close" onPress={() => setModalVisible(false)}/>
+            </View>
 
         </View>
     )

@@ -98,9 +98,9 @@ const handleInfoClick = () => {
             {/* Chatroom Label */}
             <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
                 <View style={CommunicationStyles.threadLabel}>
-                    <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
+                    <Text style={{...CommunicationStyles.labelText, marginTop: -5}}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
                     <View>
-                        <View style={{height: 35, width: 35, marginTop: 0, borderRadius: 100, backgroundColor: 'black'}}/>
+                        <View style={{height: 35, width: 35, marginTop: -5, borderRadius: 100, backgroundColor: 'black'}}/>
                     </View>
                 </View >
             </TouchableWithoutFeedback>
