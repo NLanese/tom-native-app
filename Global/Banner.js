@@ -116,7 +116,7 @@ const handleInfoClick = () => {
     <View>
       <View style={styles.topBar}>
         {/* INFORMATION MODAL */}
-        <Modal visible={modalvisible}>
+        <Modal visible={modalvisible} style={{marginTop: -100, height: maxHeight - (maxHeight * .20)}}>
               <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
         </Modal>
       </View>

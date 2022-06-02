@@ -311,7 +311,7 @@ const PersonalScoreCard = () => {
                         <View style={ShiftPlannerStyles.valRow}>
 
                         <View style={ShiftPlannerStyles.cell}>
-                                <Text style={{textAlign: 'center', fontFamily: 'GilroyBold', etterSpacing: -0.5, fontSize: 25,}}>{userData.delivered}</Text>
+                                <Text style={{textAlign: 'center', fontFamily: 'GilroyBold', letterSpacing: -0.5, fontSize: 25,}}>{userData.delivered}</Text>
                                 <Text style={ShiftPlannerStyles.valTitle}>Total Deliveries</Text>
                             </View>
 

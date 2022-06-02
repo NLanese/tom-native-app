@@ -49,6 +49,7 @@ const Chatrooms = () => {
         }
         if (filter == "active"){
             user.chatrooms.forEach( (chatroom) =>{
+                console.log(chatroom)
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
@@ -105,13 +106,6 @@ const Chatrooms = () => {
         })
     }
 
-    // return(
-    //     <View>
-    //         <Banner />
-    //         <Text style={ChatroomsStyles.title}>Coming Soon</Text>
-    //     </View>
-    // )
-
     // Check if no messages
     if (user.chatrooms.length < 1){
         return(
@@ -134,17 +128,18 @@ const Chatrooms = () => {
                 <View style={ChatroomsStyles.titleBox}>
                     <Text style={ChatroomsStyles.title}>Messages</Text>
                 </View>
-                <View style={ChatroomsStyles}>
+                <View style={{marginLeft: -20}}>
                     <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', zIndex: 5, marginTop: 25, marginLeft: 42}}>
-                        <Image source={glass} style={{height: 15, width: 15}}/>
+                        <Image source={glass} style={{height: 15, width: 15, marginLeft: 30}}/>
                     </View>
                     <Input 
                         onPressIn={() =>setInInput(true)}
                         onEndEditing={() => setInInput(false)}
-                        style={determineSearchStyle()}
-                        textStyle={{fontFamily: 'GilroyMedium'}}
-                        placeholder="            Search Chatrooms/Contacts"
+                        style={{...determineSearchStyle(), marginRight: 30}}
+                        textStyle={{fontFamily: 'GilroyMedium', paddingLeft: 20}}
+                        placeholder="Search Chatrooms/Contacts"
                         placeholderTextColor={'#BBBBBB'}
+                        onChangeText={(content) => setInInput(content)}
                     />
                 </View>
             </View>
