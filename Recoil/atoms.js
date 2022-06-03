@@ -74,3 +74,11 @@ export const loggedState = atom({
 	key: 'loggedKey',
 	default: false
 })
+
+export const errorDataState = atom({
+	key: 'errorKey',
+	default: {
+		email_login: false,
+		password_login: false
+	}
+})

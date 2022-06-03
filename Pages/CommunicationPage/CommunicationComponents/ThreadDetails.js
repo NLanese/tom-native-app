@@ -144,26 +144,31 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
 
-    return(
-        <View style={{ backgroundColor: 'white', height: maxHeight, marginTop: 0}}>
-            <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
-            
-            <View style={ThreadDetailStyles.nameListContainer}>
-                <View style={ThreadDetailStyles.labelBox}>
-                    <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
+    try{
+        return(
+            <View style={{ backgroundColor: 'white', height: maxHeight, marginTop: 0}}>
+                <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
+                
+                <View style={ThreadDetailStyles.nameListContainer}>
+                    <View style={ThreadDetailStyles.labelBox}>
+                        <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
+                    </View>
+                    {renderChatroomNames()}
                 </View>
-                {renderChatroomNames()}
+    
+                <View>
+                    {renderAddContacts()}
+                </View>
+    
+                <View style={ThreadDetailStyles.doneBox}>
+                    <Button style={ThreadDetailStyles.doneText} title="Close" onPress={() => setModalVisible(false)}/>
+                </View>
+    
             </View>
-
-            <View>
-                {renderAddContacts()}
-            </View>
-
-            <View style={ThreadDetailStyles.doneBox}>
-                <Button style={ThreadDetailStyles.doneText} title="Close" onPress={() => setModalVisible(false)}/>
-            </View>
-
-        </View>
-    )
+        )
+    } catch (error){
+        throw new Error("602")
+    }
+    
 }
 export default ThreadDetails

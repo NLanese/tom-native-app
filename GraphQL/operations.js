@@ -448,6 +448,7 @@ const LOGIN = gql`
         token
         firstname
         lastname
+        profilePick
         weeklyReport {
           id
           createdAt
