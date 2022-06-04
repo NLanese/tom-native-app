@@ -1,4 +1,4 @@
-package com.hdurand22.tomapp;
+package com.nlanese.thetomapp;
 
 import android.os.Build;
 import android.os.Bundle;
