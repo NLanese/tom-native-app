@@ -14,47 +14,44 @@ const SettingsStyles = StyleSheet.create({
 })
 
 const AccountInformationStyles = StyleSheet.create({
-	container: {
-		marginTop: 0,
-        paddingBottom: 15,
-        borderBottomColor: "navy",
-        borderBottomWidth: 5,
-        backgroundColor: '#09ABE1'
-	},
+	title: {
+        fontFamily: "GilroyBold",
+        fontSize: 30,
+        letterSpacing: -0.5,
+        color: "#444"
+    },
+    subtitle: {
+        fontFamily: "GilroyBold",
+        fontSize: 10,
+        letterSpacing: 2,
+        color: "#888"
+    },
+    valName: {
+        fontFamily: "GilroyMedium",
+        color: "#444",
+        fontSize: 10,
+        marginTop: 20
+    },
+    val: {
+        fontFamily: "GilroyBold",
+        fontSize: 20,
+        letterSpacing: -0.42,
+        color: "#444",
+        marginTop: 5
+    },
     buttonBox: {
-        marginTop: 15,
+        marginLeft: 30,
+        marginTop: 30,
+        width: maxWidth - 60
+    },
+    buttonText: {
+        color: "white",
+        fontFamily: "GilroySemiBold",
+        fontSize: 13,
+        textAlign: 'center'
     }
 })
 
-const AdminAndUserInformationStyles = StyleSheet.create({
-    container: {
-        width: '100%',
-        backgroundColor: '#02020A',
-        justifyContent: 'center'
-    },
-    text: {
-        color: '#02020A',
-        marginTop: 7,
-        fontSize: 16,
-        fontWeight: "400"
-    },
-    BigText: {
-        color: 'darkblue',
-        marginTop: 7,
-        fontSize: 20,
-        fontWeight: "700"
-    },
-    header: {
-        marginBottom: 10,
-        position: "relative",
-        backgroundColor: "navy",
-        color: '#ffffff',
-        width: '100%',
-        textAlign: 'center',
-        fontSize: 22,
-        fontWeight: "600"
-    }
-})
 
 const EditAccountInformationStyles = StyleSheet.create({
     container: {
@@ -88,7 +85,6 @@ const ViewAccidentsStyles = StyleSheet.create({
 export {
     SettingsStyles,
     AccountInformationStyles,
-    AdminAndUserInformationStyles,
     EditAccountInformationStyles,
     ViewAccidentsStyles,
     UpdateFieldStyles

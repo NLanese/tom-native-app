@@ -1,57 +1,204 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from 'react-native'
-import { useQuery } from "@apollo/client";
-import { GETDRIVERDATA } from "../../../GraphQL/operations";
-import AdminAndUserInformation from "./InformationComponents/AdminAndUserInformation";
+import { View, Text, Dimensions, ScrollView } from 'react-native'
+
 import EditAccountInformationButton from "./ButtonBoxComponents/EditAccountInformationButton";
 import ViewAccidentsButton from "./ButtonBoxComponents/ViewAccidentsButton";
-import { SettingsStyles } from "../../../Styles/SettingStyles";
+import Banner from "../../../Global/Banner";
+import ProfilePictureButton from "./ButtonBoxComponents/ProfilePictureButton";
+import DynamicInput from "../../../Components/DynamicInput";
+
+import nameObj from "../../../Hooks/handleNameCaseChange"
+
 import { useRecoilState } from 'recoil'
 import { userState } from '../../../Recoil/atoms'
+
 import { AccountInformationStyles } from "../../../Styles/SettingStyles";
-import { ActivityIndicator } from "react-native-paper";
-import Banner from "../../../Global/Banner";
+import Template from "../../../Styles/RAA/RAATemplateStyles";
+
+
+let maxWidth = Dimensions.get('window').width
+let maxHeight = Dimensions.get('window').height
+
 
 const AccountInformation = () => {
-    // const { loading, error, data, refetch } = useQuery(GETDRIVERDATA)
-    const [queryData, setQueryData] = useState({})
-    const [userData, setUserData] = useRecoilState(userState)
 
-    useEffect(() => {
-        refetch()
-    }, [])
+    const [user, setUser] = useRecoilState(userState)
 
-    useEffect(() => {
-        if (!loading && data) {
-            setQueryData(data.getDriver)
+    const [edit, setEdit] = useState(false)
+
+    const [currentSettings, setCurrentSettings] = useState({
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        firstname: user.firstname,
+        lastname: user.lastname
+    })
+
+    let name = nameObj(user.firstname, user.lastname)
+    let ownerName = nameObj(user.owner.firstname, user.owner.lastname)
+
+    const renderValuesOrEdit = () => {
+        if (!edit){
+            return (
+                <View>
+                    {/* Information Container */}
+                    <View style={{marginLeft: 30}}>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Vehicle ID</Text>
+                            <Text style={AccountInformationStyles.val}>COMING SOON</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Email</Text>
+                            <Text style={AccountInformationStyles.val}>{user.email}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Phone Number</Text>
+                            <Text style={AccountInformationStyles.val}>{user.phoneNumber}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>DSP Name</Text>
+                            <Text style={AccountInformationStyles.val}>{user.dsp.name}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>DSP Status</Text>
+                            <Text style={AccountInformationStyles.val}>{user.dsp.accountStanding}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Owner Name</Text>
+                            <Text style={AccountInformationStyles.val}>{ownerName.first} {ownerName.last}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>VTO Recieved This Month</Text>
+                            <Text style={AccountInformationStyles.val}>COMING SOON</Text>
+                        </View>
+                    </View>
+                </View>
+            )
         }
-    }, [data])
+        if (edit){
+            return(
+                <View style={{marginLeft: 30}}>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Vehicle ID</Text>
+                            <Text style={AccountInformationStyles.val}>COMING SOON</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Email</Text>
+                            <DynamicInput 
+                                activeColorOne="#534FFF" 
+                                activeColorTwo="#15A1F1"
+                                activeTextStyle={Template.activeTextStyle}
 
-    useEffect(() => {
-            setUserData(queryData)
-    }, [queryData])
+                                height={50}
+                                width={maxWidth - 60}
 
-    if (!queryData.firstname) {
-        return (
-            <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80%'}}>
-                <ActivityIndicator animating={true} size='large' color={'#570de4'} />
-            </View>
-        )
-    } else {
-        return (
-            <View style={SettingsStyles.container}>
-                <Banner />
+                                borderLeftRightWidth={6}
+                                borderTopBottomWidth={6}
+                                borderRadius={20}
 
-                <View style={AccountInformationStyles.container}>
-                    <AdminAndUserInformation userData={userData}/>
-                </View>
-                <View style={AccountInformationStyles.buttonBox}>
-                    <EditAccountInformationButton/>
-                    <ViewAccidentsButton userData={userData}/>
-                </View>
-            </View>
-        )
+                                inactiveColor="#ddd" 
+                                inactiveTextStyle={Template.inactiveTextStyle}
+
+                                placeholder={user.email}
+                                onChange={(content) => {
+                                    setCurrentSettings({
+                                        ...currentSettings, email: content
+                                    })
+                                }}
+                            />
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>New Password</Text>
+                            <DynamicInput 
+                                activeColorOne="#534FFF" 
+                                activeColorTwo="#15A1F1"
+                                activeTextStyle={Template.activeTextStyle}
+
+                                height={50}
+                                width={maxWidth - 60}
+
+                                borderLeftRightWidth={6}
+                                borderTopBottomWidth={6}
+                                borderRadius={20}
+
+                                inactiveColor="#ddd" 
+                                inactiveTextStyle={Template.inactiveTextStyle}
+
+                                placeholder={"Only Enter To Change Password"}
+                                onChange={(content) => {
+                                    setCurrentSettings({
+                                        ...currentSettings, password: content
+                                    })
+                                }}
+                            />
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Phone Number</Text>
+                            <DynamicInput 
+                                activeColorOne="#534FFF" 
+                                activeColorTwo="#15A1F1"
+                                activeTextStyle={Template.activeTextStyle}
+
+                                height={50}
+                                width={maxWidth - 60}
+
+                                borderLeftRightWidth={6}
+                                borderTopBottomWidth={6}
+                                borderRadius={20}
+
+                                inactiveColor="#ddd" 
+                                inactiveTextStyle={Template.inactiveTextStyle}
+
+                                placeholder={user.phoneNumber}
+                                onChange={(content) => {
+                                    setCurrentSettings({
+                                        ...currentSettings, phoneNumber: content
+                                    })
+                                }}
+                            />
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>DSP Name</Text>
+                            <Text style={AccountInformationStyles.val}>{user.dsp.name}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>DSP Status</Text>
+                            <Text style={AccountInformationStyles.val}>{user.dsp.accountStanding}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>Owner Name</Text>
+                            <Text style={AccountInformationStyles.val}>{ownerName.first} {ownerName.last}</Text>
+                        </View>
+                        <View>
+                            <Text style={AccountInformationStyles.valName}>VTO Recieved This Month</Text>
+                            <Text style={AccountInformationStyles.val}>COMING SOON</Text>
+                        </View>
+                    </View>
+            )
+        }
     }
+
+
+    return (
+        <View>
+            <Banner />
+            <ScrollView contentContainerStyle={{height: '130%'}}>
+                {/* Name Plate */}
+                <View style={{paddingLeft: 30, marginTop: 30, paddingBottom: 20, borderBottomColor: "#DDD", borderBottomWidth: 1}}>
+                    <Text style={AccountInformationStyles.title}>{name.first} {name.last}</Text>
+                    <Text style={AccountInformationStyles.subtitle}>YOUR PERSONAL INFORMATION</Text>
+                </View>
+
+                {/* Information Container */}
+                {renderValuesOrEdit()}
+
+                <View style={AccountInformationStyles.buttonBox}>
+                    <EditAccountInformationButton edit={edit} setEdit={setEdit} currentSettings={currentSettings}/>
+                    <ViewAccidentsButton />
+                    <ProfilePictureButton />
+                </View>
+            </ScrollView>
+        </View>
+    )
 }
 
 export default AccountInformation

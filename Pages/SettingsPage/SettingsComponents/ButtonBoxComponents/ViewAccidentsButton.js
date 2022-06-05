@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
+import { View, TouchableOpacity, Text } from 'react-native'
+
+import Gradient from "../../../../Components/Gradient";
+
 import { useNavigation } from "@react-navigation/native";
-import { View } from 'react-native'
-import { Button } from 'react-native-paper';
-import { useState } from "react";
-import { ButtonStyles } from "../../../../Styles/LandingPageStyles";
+
+
+import { AccountInformationStyles } from "../../../../Styles/SettingStyles";
 
 const ViewAccidentsButton = () => {
     const navigation = useNavigation()
@@ -14,8 +17,20 @@ const ViewAccidentsButton = () => {
 	}
 
     return (
-        <View >
-            <Button 
+        <View style={{marginBottom: 20}}>
+        <TouchableOpacity>
+            <Gradient
+                colorOne={"#534FFF"}
+                colorTwo={"#15A1F1"}
+                style={{
+                    height: 50,
+                    justifyContent: 'center'
+                }}
+            >
+                <Text style={AccountInformationStyles.buttonText}>VIEW ACCIDENTS</Text>
+            </Gradient>
+        </TouchableOpacity>
+            {/* <Button 
                 mode="contained"
                 loading={buttonLoading}
                 style={ButtonStyles.logInButton}
@@ -26,7 +41,7 @@ const ViewAccidentsButton = () => {
                 }}
             >
                 View Acccidents
-            </Button>
+            </Button> */}
         </View>
     )
 }

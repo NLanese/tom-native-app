@@ -1,6 +1,7 @@
 import React from "react";
 
 import { threadState } from "../../../Recoil/atoms";
+import { websiteState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import { View, Text, TouchableOpacity } from "react-native";
@@ -13,21 +14,24 @@ const ThreadCard = ({chatroom}) => {
     // Recoil for thread Data
     const [thread, setThread] = useRecoilState(threadState);
 
+    const [website, setWebsite] = useRecoilState(websiteState)
+
     // Generates the preview of the last text
     const generatePreview = () => {
         if (chatroom.messages === null || chatroom.messages.length < 1){
             return "No Messages"
         }
-        if (chatroom.messages[0].content.split("").length > 70){
-            return (chatroom.messages[0].content.slice(0, 70) + "...")
+        let latestText = chatroom.messages.length - 1
+        if (chatroom.messages[latestText].content.split("").length > 70){
+            return (chatroom.messages[latestText].content.slice(0, 70) + "...")
         }
-        return chatroom.messages[0].content
+        return chatroom.messages[latestText].content
     }
 
     // Generates the group chat name title
     const generateTitle = () => {
-        if (chatroom.chatroomName.split("").length > 26){
-            return (chatroom.chatroomName.slice(0, 26) + "...")
+        if (chatroom.chatroomName.split("").length > 20){
+            return (chatroom.chatroomName.slice(0, 20) + "...")
         }
         else{ return chatroom.chatroomName }
     }
@@ -36,6 +40,7 @@ const ThreadCard = ({chatroom}) => {
     const selectThread = async () => {
         await setThread(chatroom)
         await navigation.navigate('message-thread')
+        await setWebsite({current: "Message Thread", previous: website.current, saved: website.saved})
     }
 
     

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, Pressable } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { GETNOTIFIED } from "../../GraphQL/operations";
 import { GETNOTIFIEDMESSAGES } from "../../GraphQL/operations";
 import BellDropdown from "./BellComponents/BellDropdown";
 import { useQuery } from "@apollo/client";
 import { ActivityIndicator } from "react-native-paper";
-import bellIcon from "../../assets/bellOutline.png"
+import bellIcon from "../../assets/bellIcon.png"
 
 
 let maxWidth= Dimensions.get('window').width
@@ -51,23 +51,25 @@ const Bell = () => {
     // if (notified === true){
       return (
         <View>
-          <Appbar.Action
-            color='black'
-            style={styles.actionBarNoti}
-            icon="bell"
-            onPress={() => {
-              setNotifiedVisible(true)
-              removeNotification()
-            }}
-          />
+
+          <Pressable 
+          style={{marginTop: 8, marginLeft: -60}}
+          onPress={() => {
+            setNotifiedVisible(true)
+            removeNotification()
+          }}
+          >
+            <Image source={bellIcon} style={{marginTop: 14, marginLeft: 25, height: 20, width: 20}}/>
+          </Pressable>
 
           <View style={{
-              backgroundColor: 'red',
+              backgroundColor: 'magenta',
               color: 'red',
-              top: -maxHeight * 0.05,
-              left: maxWidth * 0.023,
-              height: 10,
-              width: 10,
+              marginLeft: -26.5,
+              top: maxHeight * 0.005,
+              left: -2,
+              height: 7,
+              width: 7,
               borderRadius: 100
           }}>
           </View>

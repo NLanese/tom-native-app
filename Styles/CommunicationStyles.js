@@ -16,16 +16,18 @@ const CommunicationStyles = StyleSheet.create({
         flexDirection: 'column',
     },
     threadLabel: {
-        height: maxHeight * 0.1,
+        height: maxHeight * 0.005,
         alignItems: 'center',
         backgroundColor: "white",
         marginBottom: 10,
     },
     labelText: {
+        height: 20,
         fontFamily: 'GilroyMedium'
     },
     thread:{
         top: maxWidth * 0.04,
+        minHeight: 400
     },
     threadContainer: {
         paddingRight: 10,
@@ -33,7 +35,7 @@ const CommunicationStyles = StyleSheet.create({
         borderWidth: 0.8,
         borderColor: '#E2E8F1',
         backgroundColor: "#f1f1f1",
-        height: maxHeight * 0.71
+        height: maxHeight * .84
     },
     sendButton: {
         backgroundColor: "#E2E8F1",
@@ -50,7 +52,7 @@ const CommunicationStyles = StyleSheet.create({
 
 const ChatroomsStyles = StyleSheet.create({
     headerBox: {
-        height: maxHeight * 0.15,
+        height: maxHeight * 0.13,
         backgroundColor: 'white'
     },
     titleBox: {
@@ -64,12 +66,24 @@ const ChatroomsStyles = StyleSheet.create({
 
         color: '#444444'
     },
-    searchBar: {
+    searchBarInactive: {
         backgroundColor: '#EEEEEE',
-        width: 263,
+        width: maxWidth - 45,
         borderRadius: 10,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 13,
+        marginLeft: 30,
+        borderColor: "#EEEEEE",
+        paddingLeft: 30,
+    },
+    searchBarActive: {
+        backgroundColor: '#EEEEEE',
+        width: maxWidth - 45,
+        borderRadius: 10,
+        marginTop: 13,
+        marginLeft: 30,
+        borderWidth: 2,
+        borderColor: '#DDDDDD',
+        paddingLeft: 30,
     },
 //-----------------------------------
     chatroomBox: {
@@ -82,7 +96,7 @@ const ChatroomsStyles = StyleSheet.create({
     },
     chatroomBoxTitleText: {
         fontFamily: 'GilroyBold',
-        fontSize: 10,
+        fontSize: 14,
 
         letterSpacing: 2,
         color: '#888888'
@@ -112,7 +126,7 @@ const ChatroomsStyles = StyleSheet.create({
 const ThreadCardStyles = StyleSheet.create({
     threadName: {
         position: 'absolute',
-        marginTop: 24,
+        marginTop: 32,
         marginLeft: 60
     },
     nameText: {
@@ -122,7 +136,7 @@ const ThreadCardStyles = StyleSheet.create({
     },
     previewBox: {
         position: 'absolute',
-        marginTop: 39,
+        marginTop: 50,
         marginLeft: 60
     },
     previewText: {
@@ -135,16 +149,24 @@ const ThreadCardStyles = StyleSheet.create({
 const ThreadDetailStyles = StyleSheet.create({
     container: {
         position: 'absolute',
-        marginTop: maxHeight * -0.28,
-        marginLeft: maxWidth * -.5,
+        // marginTop: maxHeight * 0.28,
+        // marginLeft: maxWidth * -.5,
 
         height: modalHeight,
         width: maxWidth,
         backgroundColor: '#f9f9f9'
     },
+    chatName: {
+        fontFamily: "GilroyBold",
+        marginTop: 103,
+        color: "#444444",
+        fontSize: 24,
+        textAlign: 'center'
+    },
 //---------------------------------
     doneBox: {
-        marginTop: 10,
+        marginTop: 60,
+        marginBottom: 15,
         marginLeft: namesListMargins + 260
     },
     doneText:{
@@ -163,6 +185,7 @@ const ThreadDetailStyles = StyleSheet.create({
     },
 //---------------------------------
     nameListContainer: {
+        marginTop: 30,
         height: 350,
     },
     namesList: {
@@ -197,6 +220,16 @@ const ThreadDetailStyles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 50,
         width: '100%',
+    },
+    addContactsButton: {
+        backgroundColor: '#534FFF',
+        padding: 10,
+        borderRadius: 10
+    },
+    addContactsText: {
+        fontFamily: 'GilroyBold',
+        fontSize: 14,
+        color: '#DDDDDD'
     }
 })
 
@@ -205,12 +238,19 @@ const ContactStyles = StyleSheet.create({
         paddingTop: maxHeight * 0.013
     },
     scrollContainer: {
-        height: maxHeight * 0.65
+        backgroundColor: "#f2f2f2",
+        height: maxHeight * 0.62
     },
 //----=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     header: {
         backgroundColor: 'white',
-        height: 60
+        height: 110
+    },
+    mainTitle: {
+        fontFamily: "GilroyBold",
+        fontSize: 30,
+        color: "#444444",
+        letterSpacing: -.5
     },
     searchBar: {
         width: maxWidth * .8,
@@ -221,13 +261,21 @@ const ContactStyles = StyleSheet.create({
         backgroundColor: 'white',
         height: maxHeight * 0.337
     },
+    doneTouchBounds: {
+        position: 'absolute',
+        height: 40,
+        width: maxWidth * 0.2,
+        marginTop: "2%",
+        marginLeft: maxWidth * .4,
+        borderColor: 'red',
+        borderRadius: 5
+    },
     completeSelection: {
         position: 'absolute',
         backgroundColor: '#534FFF',
-        height: 40,
+        height: 45,
         width: maxWidth * 0.2,
         marginTop: "5%",
-        marginLeft: maxWidth * .4,
         borderColor: '#876FFF',
         borderWidth: 3,
         borderRadius: 5
@@ -236,7 +284,8 @@ const ContactStyles = StyleSheet.create({
         fontFamily: "GilroyBold",
         fontSize: 16,
         textAlign: 'center',
-        marginTop: 10
+        marginTop: 12,
+        color: "#DDDDDD"
     },
 //-----------------------------------------
     card:{ 
@@ -247,7 +296,7 @@ const ContactStyles = StyleSheet.create({
     },
 //-----------------------------------------
     image: {
-        backgroundColor: 'black',
+        // backgroundColor: 'black',
         height: 35,
         width: 35,
         borderRadius: 100,
@@ -255,12 +304,17 @@ const ContactStyles = StyleSheet.create({
     nameView: {
         position: 'relative',
         marginLeft: maxWidth * 0.20,
-        top: maxHeight * -0.042
+        top: -29
     },
     title:{
+        fontFamily: 'GilroyBold',
+        fontSize: 14,
+        color: "#444444"
+    },
+    subtitle:{
         fontFamily: 'GilroySemiBold',
-        fontSize: 18,
-        letterSpacing: -0.5
+        fontSize: 11,
+        color: "#888"
     },
 //-----------------------------------------
     addButton:{
@@ -287,7 +341,7 @@ const ContactStyles = StyleSheet.create({
     },
 //-----------------------------------------
     divider:{
-        borderBottomWidth: 3,
+        borderBottomWidth: 1,
         borderColor: '#DDDDDD',
         width: threadBoxWidth,
     },
@@ -313,10 +367,13 @@ const ContactStyles = StyleSheet.create({
         width: '80%',
         marginLeft: '10%'
     },
-    modalContinue: {
+    continueTouch: {
         marginTop: 20,
         left: '30%',
         width: '40%',
+        height: 40,
+    },
+    modalContinue: {
         height: 40,
         backgroundColor: '#534FFF',
         borderColor: '#876FFF',

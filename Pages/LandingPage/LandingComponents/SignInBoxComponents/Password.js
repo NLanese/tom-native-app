@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Input } from '@ui-kitten/components';
 
@@ -7,11 +7,11 @@ let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 
-const Email = ({ handleInput }) => {
+const Email = ({ handleInput, userData, rememberMe}) => {
 
     const dynamicStyles = StyleSheet.create({
         activeInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+            backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
             borderColor: 'white',
             borderWidth: 3,
             borderRadius: 15,
@@ -20,7 +20,7 @@ const Email = ({ handleInput }) => {
             height: '100%',
         },
         inactiveInput: {
-            backgroundColor: 'rgba(52, 52, 52, 0.3) !important',
+            backgroundColor: 'rgba(255, 255, 255, 0.15) !important',
             borderColor: 'rgba(52, 52, 52, 0.3) !important',
             borderRadius: 15,
             marginLeft: maxWidth * 0.125,
@@ -46,9 +46,18 @@ const Email = ({ handleInput }) => {
         }
     }
 
+    useEffect( () => {
+        if (rememberMe === false) {
+            userData = {
+                password: null
+            }
+        }
+    }, [])
+
     return (
         <View>
             <Input
+                value={userData.password}
                 onPressIn={() => setActive(true)}
                 onEndEditing={() => setActive(false)}
                 style={determineStyle().style}
@@ -56,8 +65,8 @@ const Email = ({ handleInput }) => {
                 placeholder='Password'
                 placeholderTextColor={determineStyle().color}
                 textStyle={{color: determineStyle().color, fontSize: 18}}
-                onChangeText={email => {
-                    handleInput('password', email)
+                onChangeText={password => {
+                    handleInput('password', password)
                 }}
             />
         </View>

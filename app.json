@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tom App",
-    "slug": "tom-app",
+    "name": "The Tom App",
+    "slug": "the-tom-app",
     "version": "1.0.0",
     "privacy": "public",
     "description": "In the development and testing phase",
@@ -19,13 +19,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nlanese.thetomapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.nlanese.thetomapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

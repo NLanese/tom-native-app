@@ -1,27 +1,45 @@
 import React from "react"
+import { View, TouchableOpacity, Image, Text, Dimensions } from 'react-native'
+
+import { useRecoilState } from "recoil";
+import { websiteState } from "../../../../Recoil/atoms";
+
 import { useNavigation } from "@react-navigation/native";
-import { View, TouchableOpacity, Image, Text } from 'react-native'
-// import { userState } from '../../Recoil/atoms';
-// import { useRecoilState } from 'recoil';
+
 import { ButtonBoxStyles } from "../../../../Styles/HomeStyles"
 
 
-
 const ShiftPlannerButton = () => {
+    
+    let maxWidth = Dimensions.get('window').width
+    let maxHeight = Dimensions.get('window').height
+
     const navigation = useNavigation()
-    // const [user, setUser] = useRecoilState(userState)
+
+    const [website, setWebsite] = useRecoilState(websiteState)
+
+    const handleClick = () => {
+        setWebsite({current: "Shift View", previous: website.current, saved: website.saved})
+        navigation.navigate("shift_planner")
+    }
 
 
     return (
         <View style={ButtonBoxStyles.clickable}>
-            <TouchableOpacity onPress={() => {navigation.navigate("shift_planner")}}>
+            <TouchableOpacity onPress={() => {handleClick()}}>
                 <View style={ButtonBoxStyles.buttonCard}>
                     <Image 
-                        style={ButtonBoxStyles.image}
-                        source={require('../../../../assets/shift-planner-icon.jpeg')}/>
+                        style={{
+                            alignContent: 'center',
+                            top: '30%',
+                            height: 40,
+                            width: 37,
+                            marginLeft: 55.5
+                        }}
+                        source={require('../../../../assets/shift-planner-icon.png')}/>
                 </View> 
-                <View style={{ marginTop: '-30%' }}>
-                    <Text style={ButtonBoxStyles.label}>SHIFT PLANNER</Text>
+                <View style={{ marginTop: '-32%', alignItems: 'center'}}>
+                    <Text style={ButtonBoxStyles.label}>SHIFT VIEWER</Text>
                 </View>
             </TouchableOpacity>
         </View>

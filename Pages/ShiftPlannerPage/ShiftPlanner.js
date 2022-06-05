@@ -1,102 +1,362 @@
 import react, {useEffect, useState} from "react";
+import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
+
 import { useRecoilState } from "recoil";
-import { View, Text, ScrollView } from 'react-native'
+
 import { useQuery } from "@apollo/client";
 import { DRIVERSGETSHIFTPLANNER } from "../../GraphQL/operations";
+import { userState } from "../../Recoil/atoms";
+
 import Banner from '../../Global/Banner'
 import { ShiftPlannerStyles } from "../../Styles/ShiftPlannerStyles";
-import dateObj from "../../Hooks/handleDateTime";
-import { userState } from "../../Recoil/atoms";
-import ShiftInfo from "../ScrappedPages/ShiftInfo";
+
+import numberToMonth from "./numberToMonth";
+import getTodaysDate from "../../Hooks/getTodaysDate";
+import handlePicture from "../../Hooks/handlePicture";
+
 import Loading from "../../Global/Loading";
-import NoShifts from "./NoShifts";
+import Gradient from "../../Components/Gradient";
 
 const ShiftPlanner = () => {
-    const { loading, error, data, refetch } = useQuery(DRIVERSGETSHIFTPLANNER)
-    const [shiftPlannerData, setShiftPlannerData] = useState()
+ //-------------------------------------------------------------//
+ //                                                             //
+ //                  PRELIMINARY STATES                         //
+ //                                                             //
+ //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+
+    // Dimensions
+    let maxWidth= Dimensions.get('window').width
+    let maxHeight= Dimensions.get('window').height
 
     // Recoil
-    const [rawUser, setRawUser] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userState)
 
-    // Handles the user data
-    let user
-    if (rawUser.isArray){
-        user = rawUser[0]
-    }
-    else{
-        user = {...rawUser}
-    }
+    // Local States
+    
+        // Current Date Selected
+        const [daysAhead, setDaysAhead] = useState(0)
+        const [currentDate, setCurrentDate] = useState(getTodaysDate(daysAhead))
 
-    // Gets the current date
-    const d = new Date();
-    let year = d.getUTCFullYear
-    let month = d.getUTCMonth();
-    let day = d.getUTCDate();
+        const day = numberToMonth(currentDate.day)
+        const month = numberToMonth(currentDate.month)
+        const year = numberToMonth(currentDate.year)
 
-    useEffect(() => {
-        refetch()
-    }, [])
+        const dayOfTheWeek = currentDate.dayOfWeek
 
-    useEffect(() => {
-        if (!loading && data) {
-            console.log(data.driverGetShiftPlanner)
-            setShiftPlannerData(data.driverGetShiftPlanner)
+        const initShift  = user.shifts.find(shift => shift.date == currentDate.date)
+        const [currentShift, setCurrentShift] = useState(initShift)
+
+ //-------------------------------------------------------------//
+ //                                                             //
+ //                         HANDLERS                            //
+ //                                                             //
+ //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+
+    const handleDateChange = (add_or_subtract) => {
+        let changer = 0
+        if (add_or_subtract == "add"){
+            changer = 1
         }
-    }, [data])
-
-    // Loading screen if not finished with querying the data
-    if (loading || !data){
-        return <Loading />
-    }    
-
-    // Redirects if there are no current ShiftPlanner Tables populated
-    if (data.length == 0){
-        return(<NoShifts />)
+        if (add_or_subtract == "subtract"){
+            changer = -1
+        }
+        if (daysAhead >= 1 && add_or_subtract == "subtract"){
+            setDaysAhead(daysAhead + changer)
+            setCurrentDate(getTodaysDate(daysAhead + changer))
+        }
+        if (add_or_subtract == "add"){
+            setDaysAhead(daysAhead + changer)
+            setCurrentDate(getTodaysDate(daysAhead + changer))
+        }    
     }
 
-    // Redirects if there is no shift planner data for this current day
-    // Also creates several time based objects 
-    // let dbTime = data[data.length-1].date
-    // let dbDateObj = dateObj(dbTime, "UTC")
-    // if (`${dbDateObj.year}-${dbDateObj.month}-${dbDateObj.day}` !== `${year}-${month}-${day}`){
-    //     return (<NoShifts />)
-    // }
-    console.log(data.driverGetShiftPlaner[0])
-    return (
-        <View>
-            <Banner />
-            <View style={ShiftPlannerStyles.dateContainer}>
-                <Text>Today's Date {`${year}-${month}-${day}`}</Text>
-            </View>
-            <View style={ShiftPlannerStyles.shiftInfo}>
-                <ScrollView>
-                    <ShiftInfo name="Sunday Date" value={data.driverGetShiftPlaner[0].sundayDate} />
-                    <ShiftInfo name="Sunday Hours" value={data.driverGetShiftPlaner[0].sundayHours} />
-                    <ShiftInfo name="Monday Date" value={data.driverGetShiftPlaner[0].mondayDate} />
-                    <ShiftInfo name="Monday Hours" value={data.driverGetShiftPlaner[0].mondayHours} />
-                    <ShiftInfo name="Tuesday Date" value={data.driverGetShiftPlaner[0].tuesdayDate} />
-                    <ShiftInfo name="Tuesday Hours" value={data.driverGetShiftPlaner[0].tuesdayHours} />
-                    <ShiftInfo name="wednesday Date" value={data.driverGetShiftPlaner[0].wednesdayDate} />
-                    <ShiftInfo name="wednesday Hours" value={data.driverGetShiftPlaner[0].wednesdayHours} />
-                    <ShiftInfo name="Thursday Date" value={data.driverGetShiftPlaner[0].thursdayDate} />
-                    <ShiftInfo name="Thursday Hours" value={data.driverGetShiftPlaner[0].thursdayHours} />
-                    <ShiftInfo name="Friday Date" value={data.driverGetShiftPlaner[0].fridayDate} />
-                    <ShiftInfo name="Friday Hours" value={data.driverGetShiftPlaner[0].fridayHours} />
-                    <ShiftInfo name="Saturday Date" value={data.driverGetShiftPlaner[0].saturdayDate} />
-                    <ShiftInfo name="Saturday Hours" value={data.driverGetShiftPlaner[0].saturdayHours} />
-                    <ShiftInfo name="Phone ID Number" value={data.driverGetShiftPlaner[0].phoneId} />
-                    <ShiftInfo name="Device ID Number" value={data.driverGetShiftPlaner[0].deviceId} />
-                    <ShiftInfo name="CX Number" value={data.driverGetShiftPlaner[0].cxNumber} />
-                    <ShiftInfo name="Vehicle Number" value={data.driverGetShiftPlaner[0].vehicleId} />
-                </ScrollView>
-            </View>
+
+ //-------------------------------------------------------------//
+ //                                                             //
+ //                     OTHER RENDER METHODS                    //
+ //                                                             //
+ //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+
+    // Renders the forward and backwards arrows, determines whether or not they are clickable
+    const renderArrow = (frontOrBack) => {
+        if (frontOrBack == "back"){
+            if (daysAhead > 0){
+                return(
+                    <TouchableOpacity onPress={() => handleDateChange("subtract")}>
+                        <Gradient
+                            colorOne="#534FFF"
+                            colorTwo="#15A1F1"
+                            style={{
+                                height: 35,
+                                width: 35,
+                                borderRadius: 17.5
+                            }}
+                            hollow={true}
+                            hollowColor={"#f2f2f2"}
+                            hollowBorderSize="medium"
+                            hollowStyles={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Text style={ShiftPlannerStyles.arrowActive}>{"<"}</Text>
+                        </Gradient>
+                    </TouchableOpacity>
+                )
+            }
+            else{
+                return(
+                    <View style={{
+                        height: 35,
+                        width: 35, 
+                        borderRadius: 100,
+                        borderColor: "#888",
+                        borderWidth: 2,
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <Text style={ShiftPlannerStyles.arrowInactive}>{"<"}</Text>
+                </View>
+                )
+            }
+        }
+        else{
+
+            if (daysAhead < 30){
+                return(
+                    <TouchableOpacity onPress={() => handleDateChange("add")}>
+                        <Gradient
+                            colorOne="#534FFF"
+                            colorTwo="#15A1F1"
+                            style={{
+                                height: 35,
+                                width: 35,
+                                borderRadius: 17.5
+                            }}
+                            hollow={true}
+                            hollowColor={"#f2f2f2"}
+                            hollowBorderSize="medium"
+                            hollowStyles={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Text style={ShiftPlannerStyles.arrowActive}>{">"}</Text>
+                        </Gradient>
+                    </TouchableOpacity>
+                )
+            }
+            else{
+                return(
+                    <View
+                        style={{
+                            height: 35,
+                            width: 35, 
+                            borderRadius: 100,
+                            borderColor: "#888",
+                            borderWidth: 2,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Text style={ShiftPlannerStyles.arrowInactive}>{">"}</Text>
+                    </View>
+                )
+            }
+        }
+    }
+
+    const renderShiftAssignments = () => {
+
+        const generateDeviceComponents = () => {
+            if (!currentShift || currentShift == 'undefined'){
+                return(
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>
+                        <Text style={{...ShiftPlannerStyles.subtitle, fontSize: 12, textAlign: 'center'}}>You do not have any assignments today</Text>
+                    </View>
+                )
+            }
+            else if (currentShift.date){
+                let allDevices = Object.keys(currentShift)
+                allDevices = allDevices.filter(deviceName => {
+                    if (deviceName != "date"){
+                        return deviceName
+                    }
+                })
+                return allDevices.map( (deviceName, index) => {
+                    return(
+                        <View style={{...ShiftPlannerStyles.cell, alignContent: 'center'}} key={index}>
+                            <Text style={ShiftPlannerStyles.valText}>{currentShift[deviceName]}</Text>
+                            <Text style={ShiftPlannerStyles.valTitle}>{deviceName} ID</Text>
+                        </View>
+                    )
+                })
+            }
+        }
+
+        return (
             <View>
-                <View>
-                    <Text>Daily Message:</Text>
+                <View style={{alignItems: 'center'}}>
+                    <Text style={{...ShiftPlannerStyles.subtitle2, fontSize: 14}}>ASSIGNNMENTS</Text>
                 </View>
-                <View>
-                    <Text>{data.message}</Text>
+                {generateDeviceComponents()}
+            </View>
+        )
+    }
+
+
+
+ //-------------------------------------------------------------//
+ //                                                             //
+ //                      MAIN RENDER METHOD                     //
+ //                                                             //
+ //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+
+
+   return (
+        <View style={{backgroundColor: "#f2f2f2"}}>
+            <Banner />
+
+            {/* Header */}
+            <View style={ShiftPlannerStyles.header}>
+                <Text style={ShiftPlannerStyles.title} >Shift Planner</Text>
+                <Text style={ShiftPlannerStyles.subtitle}>WEEKLY SCHEDULE</Text>
+            </View>
+
+            {/* Date and Arrows */}
+            <View style={ShiftPlannerStyles.dateContainer}>
+
+                {/* BACK DATE ARROW */}
+                <View style={{marginLeft: 30}}>
+                    {renderArrow("back")}
                 </View>
+
+                {/* DATE CONTAINER */}
+                <View style={{
+                    width: 100,
+                    alignItems: 'center',
+                    marginLeft: maxWidth / 2 - 120,
+                    marginRight: maxWidth / 2 - 120
+                }}>
+                    <View style={{
+                        flexDirection: "row",
+                        width: 90,
+                        alignItems: 'center',
+                    }}>
+                        <Text style={ShiftPlannerStyles.monthText}>{month}</Text>
+                        <Text style={ShiftPlannerStyles.dayText}> {currentDate.day}</Text>
+                    </View>
+                    <Text style={ShiftPlannerStyles.dateText}>{dayOfTheWeek}</Text>
+                </View>
+
+                {/* FRONT DATE ARROW */}
+                <View>
+                    {renderArrow("forward")}
+                </View>
+                
+            </View>
+
+            {/* Shift Data */}
+            <View style={ShiftPlannerStyles.shiftInfo}>
+
+                {/* Shift Profile */}
+                <View style={ShiftPlannerStyles.shiftProfile}>
+                    
+                    {/* FICO Rank */}
+                    <View style={{marginTop: 25, marginLeft: "12%", marginRight: "5%"}}>
+                        <Gradient
+                            colorOne="#534FFF"
+                            colorTwo="#15A1F1"
+                            style={{
+                                height: 36,
+                                width: 36,
+                                borderRadius: 18
+                            }}
+                            hollow={true}
+                            hollowColor={"white"}
+                            hollowBorderSize="large"
+                            hollowStyles={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Text style={ShiftPlannerStyles.ficoRank}>4</Text>
+                        </Gradient>
+                    </View>
+
+                    {/* PFP */}
+                    <Gradient
+                        colorOne="#534FFF"
+                        colorTwo="#15A1F1"
+                        style={{
+                            height: 86,
+                            width: 86,
+                            borderRadius: 43
+                        }}
+                        hollow={true}
+                        hollowColor={"white"}
+                        hollowBorderSize="medium"
+                        hollowStyles={{
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <View style={{height: 90, width: 90, alignContent: 'center', alignItems: 'center', justifyContent: 'center'}}>
+                            {handlePicture(user.profilePick, 75)}
+                        </View>
+                    </Gradient>
+
+
+                    {/* Msg Button */}
+                    <View style={{marginTop: 25, marginLeft: '5%'}}>
+                        <Gradient
+                            colorOne="#534FFF"
+                            colorTwo="#15A1F1"
+                            style={{
+                                height: 36,
+                                width: 36,
+                                borderRadius: 18
+                            }}
+                            hollow={true}
+                            hollowColor={"white"}
+                            hollowBorderSize="large"
+                            hollowStyles={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
+                            
+                        </Gradient>
+                    </View>
+                    
+
+                </View>
+
+                {/* Name and Hours */}
+                <View style={ShiftPlannerStyles.nameAndHours}>
+                    <Text style={ShiftPlannerStyles.nameText}>
+                        {user.firstname} {user.lastname}
+                    </Text>
+                </View>
+
+                {/* Device Assignments */}
+                <View style={ShiftPlannerStyles.valueBox}>
+
+                    {renderShiftAssignments()}
+
+                </View>
+
+                <View style={{alignItems: 'center',  marginTop: "6%"}}>
+                    <Text style={ShiftPlannerStyles.subtitle2}>
+                        MESSAGE
+                    </Text>
+                    <ScrollView style={ShiftPlannerStyles.messageBox}>
+                        <Text style={ShiftPlannerStyles.messageText}>
+                            {/* {user.shiftPlanners[currentSP].message} */}
+                        </Text>
+                    </ScrollView>
+                </View>
+
             </View>
         </View>
     )

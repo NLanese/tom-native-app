@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { userState } from '../../Recoil/atoms';
+import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { Modal, Button, CheckBox } from '@ui-kitten/components';
+
+import { useRecoilState } from 'recoil';
+import { loggedState, userState } from '../../Recoil/atoms';
+import { websiteState } from '../../Recoil/atoms';
+
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { DRIVERACKNOWLEDGEFEEDBACKMESSAGE } from '../../GraphQL/operations';
-import { Modal, Button } from '@ui-kitten/components';
-import { websiteState } from '../../Recoil/atoms';
-import { useRecoilState } from 'recoil';
-import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+
 import ButtonBox from './HomeComponents/ButtonBox';
 import { HomeStyles, ButtonBoxStyles } from '../../Styles/HomeStyles';
-import EmployeeQuality from '../ScoreCardPage/ScoreCardComponents/InformationComponents/EmployeeQuality';
+import NoData from './HomeComponents/NoData';
+import DetailedEmployeeCard from '../ScoreCardPage/InformationComponents/DetailedEmployeeCard';
 import Banner from '../../Global/Banner';
 import nameObj from '../../Hooks/handleNameCaseChange'
-
+import WeeklyBottomCard from './HomeComponents/weeklyModalBottom'
+import NoStatsHomePage from "./HomeComponents/NoStatsHomePage"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
@@ -21,16 +26,31 @@ const Home = ({ handleLoggedIn }) => {
 	const navigation = useNavigation()
 
     const [user, setUser] = useRecoilState(userState)
+    const [logged, setLogged] = useRecoilState(loggedState)
+
+    useEffect( () => {
+        handleLoggedIn(logged)
+    }, [logged])
 
     let initVisible = false
-    if (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged){
+    if (logged && (user.weeklyReport == [] || !user.weeklyReport || user.weeklyReport.length == 0)){
+        return <NoStatsHomePage handleLoggedIn={handleLoggedIn}/>
+    }
+    if (logged && (user && user.weeklyReport[user.weeklyReport.length - 1].feedbackMessageSent && !user.weeklyReport[user.weeklyReport.length - 1].acknowledged)){
         initVisible = true
+    }
+    if (!logged){
+        return null
     }
 
     const [website, setWebsite] = useRecoilState(websiteState)
+
     const [acknowledged, setAcknowledged] = useState(false)
     const [modalVisible, setModalVisible] = useState(initVisible)
     const [exitDisabled, setExitDisabled] = useState(true)
+
+    const [buttonLoading, setButtonLoading] = useState(false)
+    const [buttonHeight, setButtonHeight] = useState(0)
 
     const [sendAcknowledge, { loading: loading, error: error, data: data }] =
 		useMutation(DRIVERACKNOWLEDGEFEEDBACKMESSAGE);
@@ -38,29 +58,59 @@ const Home = ({ handleLoggedIn }) => {
     const handleAcknowledge = async (report) => {
         await setAcknowledged(true)
         await setExitDisabled(false)
-        await sendAcknowledge({
-            variables:{
-                reportId: report.id
-            }
-        })
+        await setButtonLoading(true)
+        // await sendAcknowledge({
+        //     variables:{
+        //         reportId: report.id
+        //     }
+        // })
     }
 
-    const renderCheck = () => {
+    const handleModalClose = () => {
         if (acknowledged){
-            return null
+            setModalVisible(false)
+        }
+    }
+
+
+    const renderButton = () => {
+        if (acknowledged){
+            return(
+                <View>
+                    <View style={{position: 'absolute', height: (50 - buttonHeight), zIndex: 20, overflow: 'hidden',}}>
+                        <Image source={require("../../assets/check-button-inactive.png")} style={{height: 50, width: 50}}/>
+                    </View>
+                    <Image source={require("../../assets/check-button.png")} style={{height: 50, width: 50}}/>
+                </View>
+            )
         }
         else{
-            return null
+            return(<Image source={require("../../assets/check-button-inactive.png")} style={{height: 50, width: 50}}/>)
         }
     }
 
-    useEffect(() => {
-        setWebsite('Home')
-    }, [])
+    let weeklyReportObj
+    let name
+    if (user.weeklyReport){
+        weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
+        name = nameObj(user.firstname, user.lastname)
+    }
+    else{
+        return <NoData />
+    }
+    
 
-    let weeklyReportObj = user.weeklyReport[user.weeklyReport.length - 1]
-    let name = nameObj(user.firstname, user.lastname)
 
+    if (buttonLoading){
+        setTimeout(() => {
+            if (buttonHeight < 50){
+                setButtonHeight(buttonHeight + 5)
+            }
+            else{
+                setButtonLoading(false)
+            }
+        }, 0.5)
+    }
 
     return (
         <View>
@@ -75,7 +125,12 @@ const Home = ({ handleLoggedIn }) => {
                     
                     <ButtonBox user={user}/>
 
-                    <TouchableOpacity onPress={() => navigation.navigate("score_card")} style={ButtonBoxStyles.bottomTouch}> 
+                    <TouchableOpacity 
+                        onPress={() => {
+                            setWebsite({current: "Personal Scorecard", previous: website.previous, saved: website.saved})
+                            navigation.navigate("score_card")}
+                         } 
+                         style={ButtonBoxStyles.bottomTouch}> 
                         <View > 
                             <View style={ButtonBoxStyles.scoreTitleBox}>
                                 <Text style={ButtonBoxStyles.scoreTitle}>Scorecard</Text>
@@ -84,7 +139,7 @@ const Home = ({ handleLoggedIn }) => {
                                 <Text style={ButtonBoxStyles.scoreSubTitle}>AND LEADERBOARD</Text>
                             </View>
                             <View style={ButtonBoxStyles.scorecard}>
-                                <EmployeeQuality driverData={user} sortBy={"FICO"} rank={1} />
+                                <DetailedEmployeeCard driverData={user} sortBy={"FICO"} rank={1} />
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -92,33 +147,42 @@ const Home = ({ handleLoggedIn }) => {
                     <View style={{marignTop: 20, height: 1, width: 1, backgroundColor: '#eaeaea'}}></View>
 
 
-                    <Modal visible={modalVisible} style={HomeStyles.weeklyNotificationModal}>
+                    <Modal 
+                        visible={modalVisible} 
+                        style={HomeStyles.weeklyNotificationModal}
+                        backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+                    >
                         <View style={HomeStyles.notificationModalContent}>
                             <View style={HomeStyles.weeklyNotificationTitleSpace}>
-                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status:</Text>
+                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status</Text>
                             </View>
                             <View style={HomeStyles.weeklyNotificationMessage}>
                                 <Text style={HomeStyles.messageText}>{weeklyReportObj.feedbackMessage}</Text>
                             </View>
                             <View style={HomeStyles.acknowledgeContainter}>
-                                <TouchableOpacity onPress={() => {handleAcknowledge(weeklyReportObj)}}>
-                                    <View style={HomeStyles.checkBox}>
-                                            {renderCheck()}
-                                    </View>
-                                </TouchableOpacity>
-                                <View>
-                                    <Text>I Acknowledge this message</Text>
+                            
+                                <CheckBox
+                                    checked={acknowledged}
+                                    onChange={() => handleAcknowledge()}>
+                                </CheckBox>
+
+                                <View style={HomeStyles.acknowledgedBox}>
+                                    <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
                                 </View>
-                                <View style={{borderWidth: 0.3, top: maxHeight * -0.026}}>
-                                    <Button 
-                                        onPress={() => setModalVisible(false)}
-                                        mode='contained'
-                                        disabled={exitDisabled}>
-                                        Exit 
-                                    </Button>
+
+                                <View style={{width: 50, marginLeft: '80%', marginTop: -30}}>
+                                    <TouchableOpacity onPress={() => handleModalClose()}>
+                                        {renderButton()}     
+                                    </TouchableOpacity>
                                 </View>
+
                             </View>
                         </View>
+
+                        <View style={{position: 'absolute', marginTop: 240, marginLeft: 20, marginRight: 20, paddingLeft: 8, paddingRight: 8}}>
+                            <WeeklyBottomCard data={user} />
+                        </View>
+                        
                     </Modal>
             </ScrollView>
         </View>

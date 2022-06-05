@@ -1,22 +1,43 @@
 import React, { useState } from "react";
+import { StyleSheet, View, Pressable, Dimensions, Image, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { Modal } from "@ui-kitten/components";
+import { Appbar, Avatar } from 'react-native-paper';
+
+import { useNavigation } from '@react-navigation/native';
+
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
-import { Appbar, Avatar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Pressable, Dimensions, Image, Text } from 'react-native';
+import { threadState, userState } from "../Recoil/atoms";
+
+import ThreadDetails from "../Pages/CommunicationPage/CommunicationComponents/ThreadDetails";
+import Gradient from "../Components/Gradient";
+
 import SomeDudesFace from '../assets/SomeDudesFace.jpeg'
 import BannerDropdown from "./BannerComponents/BannerDropdown";
 import Bell from "./BannerComponents/Bell";
 import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
-import arrowBack from '../assets/arrowBack.png'
+import arrowBack from '../assets/backArrowIcon.png'
+import homeIcon from '../assets/homeIcon.png'
+
+import handlePicture from "../Hooks/handlePicture";
+
+import { CommunicationStyles } from "../Styles/CommunicationStyles"
+import Template from "../Styles/RAA/RAATemplateStyles"
 
 let maxWidth= Dimensions.get('window').width
 let maxHeight= Dimensions.get('window').height
 
 const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
+  
+  const [modalvisible, setModalVisible] = useState(false)
+  const [modalVisible2, setModalVisible2] = useState(false)
+
   const [visible, setVisible] = useState(false)
   const [notifiedVisible, setNotifiedVisible] = useState(false)
-  const [website] = useRecoilState(websiteState)
+
+  const [website, setWebsiteState] = useRecoilState(websiteState)
+  const [user, setUser] = useRecoilState(userState)
+  const [activeThread] = useRecoilState(threadState)
   const navigation = useNavigation()
 
   const handleModal = () => {
@@ -27,55 +48,178 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
     setNotifiedVisible(!notifiedVisible)
   }
 
-  const handleBackClick = () => {
+  const handleHomeClick = () => {
     if (setActiveThread !== null){
       setActiveThread(null)
-      navigation.navigate('home')
+    }
+    let current = website.current
+    if (
+      current == "Police Notified" ||
+      current == "Create An Accident" ||
+      current == "Create Self Accident" ||
+      current.includes("Accident") ||
+      current.includes("Damage") ||
+      current.includes("Property") ||
+      current.includes("Collision") || 
+      current == "Safety Equipment" ||
+      current.includes("Injuries") ||
+      current.includes("Injury")
+      ){
+        setModalVisible2(true)
+      }
+      else{
+        setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
+        navigation.navigate('home')
+      }
+  }
+
+  const handleBackClick = () => {
+    if (website.previous == "Landing"){
+      return null
+    }
+    if (website.previous == "Create Chatroom"){
+      setWebsiteState({current: "Messaging", previous: website.current, saved: website.saved})
+      navigation.navigate("messages")
     }
     else{
-      navigation.navigate('home')
+      setWebsiteState({current: website.previous, previous: website.current, saved: website.saved})
+      navigation.goBack()
+    }
+  }
+
+const handleInfoClick = () => {
+    setModalVisible(true)
+}
+
+  const handlePageDisplay = () => {
+    if (website.current == "Message Thread"){
+      return(
+        <View>
+            {/* Chatroom Label */}
+            <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
+                <View style={CommunicationStyles.threadLabel}>
+                    <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
+                    <View>
+                        <View style={{height: 35, width: 35, marginTop: 0, borderRadius: 100, backgroundColor: 'black'}}/>
+                    </View>
+                </View >
+            </TouchableWithoutFeedback>
+        </View>
+      )
+    }
+    else{
+      return (<Text style={styles.actualTitle}>{website.current}</Text>)
     }
   }
 
   return (
     <View>
-      <View style={styles.topBar}></View>
+      <View style={styles.topBar}>
+        {/* INFORMATION MODAL */}
+        <Modal visible={modalvisible}>
+              <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
+        </Modal>
+      </View>
       <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
       <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} />
         <Appbar style={styles.bottom}>
 
           <View style={styles.leftIcons}>
-            <Pressable onPress={() => navigation.goBack()}>
-              <Image source={arrowBack} style={{ height: 30, width: 40}}/>
+
+            <Pressable onPress={() => handleBackClick()}>
+              <Image source={arrowBack} style={{marginTop: 8, height: 20, width: 24}}/>
             </Pressable>
-            
-            <Appbar.Action
-              color='black'
-              style={styles.actionBarHome}
-              icon="home-variant"
-              onPress={() => handleBackClick()}
-            />
+
+            <Pressable onPress={() => handleHomeClick()}>
+              <Image source={homeIcon} style={{marginTop: 8, marginLeft: 25, height: 20, width: 21}}/>
+            </Pressable>
+
           </View>
                   
           <View style={styles.centerIcon}>
+
             <View style={styles.titleBox}>
-              <Text style={styles.title}>{website}</Text>
+              {handlePageDisplay()}
             </View>
+
           </View>
 
           <View style={styles.rightIcons}>
-            {/* <Pressable onPress={() => handleNotifiedModal()}>
+            
+            <Pressable onPress={() => handleNotifiedModal()}>
               <Bell styles={styles} />
-            </Pressable> */}
+            </Pressable>
+
             <Pressable onPress={() => handleModal()}>
-              <Avatar.Image
-                source={SomeDudesFace}
-                size={40}
-              />
+
+            <View style={{marginTop: 20}}>
+              {handlePicture(user.profilePick, 45)}
+            </View>
+
             </Pressable>
           </View>
 
         </Appbar>
+        <Modal 
+              animationType='slide' 
+              transparent={true} 
+              visible={modalVisible2}
+              backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+              style={{
+                  height: 200,
+                  width: 300,
+                  borderRadius: 10,
+              }}
+          >
+              <View style={{ 
+                  backgroundColor: "white", 
+                  height: 175,
+                  width: 300,
+                  borderRadius: 10,
+              }}>
+                  <Text style={{...Template.questionText, textAlign: 'center', marginLeft: -8, marginBottom: 10, marginLeft: 20, width: 260}}>Go back to the homepage?</Text>
+                
+              <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
+
+                  <TouchableOpacity onPress={() => {
+                    setModalVisible2(false)
+                    setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
+                    navigation.navigate('home')
+                  }}>
+                  <Gradient
+                      colorOne={"#534FFF"}
+                      colorTwo={"#15A1F1"}
+                      style={{
+                          height: 50,
+                          width: 80,
+                          borderRadius: 20,
+                          justifyContent: 'center'
+                      }}
+                  >
+                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
+                  </Gradient>
+                  </TouchableOpacity>
+
+                  <View style={{marginLeft: 70}}>
+                  <TouchableOpacity onPress={() => setModalVisible2(false)}>
+                  <Gradient
+                      colorOne={"#DE0000"}
+                      colorTwo={"#DE0000"}
+                      style={{
+                          height: 50,
+                          width: 80,
+                          borderRadius: 20,
+                          justifyContent: 'center'
+                      }}
+                  >
+                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
+                  </Gradient>
+                  </TouchableOpacity>
+                  </View>
+
+              </View>
+              </View>
+        </Modal>
     </View>
   )
 }
@@ -85,7 +229,7 @@ export default Banner
 const styles = StyleSheet.create({
     bottom: {
       alignContent: 'center',
-      height: maxHeight * .100,
+      height: maxHeight * .110,
       marginTop: maxHeight * .026,
       shadowOpacity: 0,
       position: 'relative',
@@ -123,7 +267,8 @@ const styles = StyleSheet.create({
       // backgroundColor: "green"
     },
     centerIcon: {
-      height: '100%',
+      height: '80%',
+      marginTop: 0,
       width: '33%',
       position: 'absolute',
       alignItems: 'center',
@@ -134,15 +279,26 @@ const styles = StyleSheet.create({
 //--------------------------------------------
 
     titleBox: {
-      marginTop: '15%',
-      height: '20%'
+      marginTop: 10,
+      // backgroundColor: 'red',
+      height: '100%'
     },
     title: {
       textAlign: 'center',
       fontFamily: 'GilroyMedium',
+      letterSpacing: 1,
       color: '#444444',
       fontSize: 12,
       height: '100%',
+    },
+    actualTitle: {
+      textAlign: 'center',
+      fontFamily: 'GilroyMedium',
+      letterSpacing: 1,
+      color: '#444444',
+      fontSize: 12,
+      height: '100%',
+      marginTop: 20
     },
 
   });
