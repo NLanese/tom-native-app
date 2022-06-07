@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
 
 import { Camera } from 'expo-camera';
+import { shareAsync } from "expo-sharing";
+import * as MediaLibrary from 'expo-media-library'
 
 import { useRecoilState } from "recoil";
-import { collisionDataState, accidentDataState, injuryDataState, selfInjuryDataState, propertyDataState, ownCarDataState, cameraPermissionState } from "../../../Recoil/atoms";
+import { collisionDataState, accidentDataState, injuryDataState, selfInjuryDataState, propertyDataState, ownCarDataState, cameraPermissionState, mediaLibraryPermissionState } from "../../../Recoil/atoms";
 
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import ErrorPrompt from "./ErrorPrompt";
@@ -32,6 +34,7 @@ const Camera = ({type}) => {
         // Camera States //
         ///////////////////
         const [hasPermission, setHasPermission] = useRecoilState(cameraPermissionState)
+        const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useRecoilState(mediaLibraryPermissionState)
         const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
         const [showCamera, setShowCamera] = useState(false)
 
@@ -97,7 +100,7 @@ const Camera = ({type}) => {
                     ///////////////////////////////////////
                     // Checks Phone's Camera Permissions //
                         const { status } = await Camera.requestCameraPermissionsAsync()
-                        setHasPermission(status)
+                        setHasPermission(status)         //
                     ///////////////////////////////////////
 
                     if (status === 'denied') {
@@ -245,53 +248,67 @@ const Camera = ({type}) => {
                     
                     <View>
                         <View style={Styles.imageBox}>
-                            {image && (
-                                <View style={Styles.pictureContainer}>
-                                    <Image 
-                                        source={{ uri: image }}
-                                        style={Styles.img}
-                                    />
-                                </View>
-                            )}
-
-                            <View style={Styles.openCamButton}>
-                            <TouchableOpacity onPress={async () => {
-                                    setShowCamera(true)
-                                }}>
-                                <Gradient
-                                    colorOne='#555'
-                                    colorTwo='#333'
-                                    style={{
-                                        height: 100,
-                                        width: 100,
-                                        borderRadius: 50.5,
-                                        justifyContent: 'center',
-                                        alightItems: 'center',
-                                        shadowColor: '#000000',
-                                        shadowOffset: {width: 6, height: 25},
-                                        shadowOpacity: 0.14,
-                                        shadowRadius: 13,
-                                    }}
-                                >
-                                    <Text style={{
-                                        fontFamily: "GilroySemiBold",
-                                        fontSize: 18,
-                                        letterSpacing: -0.5,
-                                        color: 'white',
-                                        textAlign: 'center'
-                                    }}
-                                    > 
-                                        Open Camera
-                                    </Text>
-                                </Gradient>
-                            </TouchableOpacity>
-                            </View>
-                            
+                            {renderTakenPictures()}
+                            {renderOpenCameraButton()}
                         </View>
                     </View>
                     <View style={Styles.continue}>
                         <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
                     </View>
+                </View>
+            )
+        }
+
+        // Renders the Open Camera Button
+        const renderOpenCameraButton = () => {
+            return(
+                <View style={Styles.openCamButton}>
+                <TouchableOpacity onPress={async () => {
+                        setShowCamera(true)
+                    }}>
+                    <Gradient
+                        colorOne='#555'
+                        colorTwo='#333'
+                        style={{
+                            height: 100,
+                            width: 100,
+                            borderRadius: 50.5,
+                            justifyContent: 'center',
+                            alightItems: 'center',
+                            shadowColor: '#000000',
+                            shadowOffset: {width: 6, height: 25},
+                            shadowOpacity: 0.14,
+                            shadowRadius: 13,
+                        }}
+                    >
+                        <Text style={{
+                            fontFamily: "GilroySemiBold",
+                            fontSize: 18,
+                            letterSpacing: -0.5,
+                            color: 'white',
+                            textAlign: 'center'
+                        }}
+                        > 
+                            Open Camera
+                        </Text>
+                    </Gradient>
+                </TouchableOpacity>
+                </View>
+            )
+        }
+
+        // Renders the Pictures Taken
+        const renderTakenPictures = () => {
+            return(
+                <View>
+                    {image && (
+                        <View style={Styles.pictureContainer}>
+                            <Image 
+                                source={{ uri: image }}
+                                style={Styles.img}
+                            />
+                        </View>
+                    )}
                 </View>
             )
         }
@@ -342,8 +359,17 @@ const Camera = ({type}) => {
 ///                ///
 //////////////////////
 
-    return(
+    const mainReturn = () => {
+        if (showCamera){
+            displayCameraView()
+        }
+        else{
+            renderDefaultView()
+        }
+    }
 
+    return(
+        mainReturn()
     )
 
 }

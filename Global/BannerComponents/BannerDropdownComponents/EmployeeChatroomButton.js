@@ -25,7 +25,7 @@ const EmployeeChatroomButton = ({ handleModal }) => {
                     labelStyle={DropdownStyles.accountInformationButtonText}
                     onPress={() => handleSubmit()} 
                 >
-                    Breakroom
+                    Chatrooms
                 </Button>
        </View> 
     );

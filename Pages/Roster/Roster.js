@@ -146,26 +146,31 @@ const Roster = ({contacts}) => {
 
     // if (!loading && queryData){
         let allContacts = user.dsp.drivers
-        return (
-            <View style={{height: 'auto'}}>
-                <Banner />
 
-                <View style={ContactStyles.header}>
-                    <View style={ContactStyles.searchBar}>
-                        <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
-                        <SearchBar setSearch={handleSetSearch} />
+        try{
+            return (
+                <View style={{height: 'auto'}}>
+                    <Banner />
+    
+                    <View style={ContactStyles.header}>
+                        <View style={ContactStyles.searchBar}>
+                            <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
+                            <SearchBar setSearch={handleSetSearch} />
+                        </View>
                     </View>
+    
+                    <View >
+                        <ScrollView contentContainerStyle={{height: '300%'}} >
+                            {determineRosterDisplay(allContacts)}
+                            <View></View>
+                        </ScrollView>
+                    </View>
+    
                 </View>
-
-                <View >
-                    <ScrollView contentContainerStyle={{height: '300%'}} >
-                        {determineRosterDisplay(allContacts)}
-                        <View></View>
-                    </ScrollView>
-                </View>
-
-            </View>
-        )
+            )
+        } catch(error){
+            throw new Error("301")
+        }
     }
     // else{
     //     return(

@@ -1,5 +1,9 @@
 import { atom } from 'recoil';
 
+
+/////////////
+// GENERAL //
+////////////
 export const userState = atom({
 	key: 'userState',
 	default: false,
@@ -15,6 +19,10 @@ export const websiteState = atom({
 	default: {current: "Landing", previous: "Landing"},
 });
 
+///////////////
+// ACCIDENTS // 
+///////////////
+
 export const geoLocation = atom({
 	key: 'geoLocation',
 	default: false
@@ -27,16 +35,6 @@ export const accidentDataState = atom({
 
 export const collisionDataState = atom({
 	key: 'collisionDataState',
-	default: null
-})
-
-export const cameraPermissionState = atom({
-	key: 'cameraPermissionState',
-	default: null
-})
-
-export const cameraTypeState = atom({
-	key: 'cameraTypeState',
 	default: null
 })
 
@@ -70,7 +68,38 @@ export const selfInjuryDataState = atom({
 	default: false
 })
 
+////////////
+// CAMERA //
+////////////
+
+export const cameraPermissionState = atom({
+	key: 'cameraPermissionState',
+	default: null
+})
+
+export const MediaLibraryPermissionState = atom({
+	key: 'mediaLibraryPermissionState',
+	default: null
+})
+
+export const cameraTypeState = atom({
+	key: 'cameraTypeState',
+	default: null
+})
+
+//////////////
+// FUNCTION //
+//////////////
+
 export const loggedState = atom({
 	key: 'loggedKey',
 	default: false
+})
+
+export const errorDataState = atom({
+	key: 'errorKey',
+	default: {
+		email_login: false,
+		password_login: false
+	}
 })
