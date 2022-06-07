@@ -267,7 +267,6 @@ const LOGIN = gql`
     id
     createdAt
     role
-    token
     firstname
     lastname
     email
@@ -316,6 +315,7 @@ const LOGIN = gql`
       feedbackMessage
       hadAccident
       feedbackMessageSent
+      feedbackMessage
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -327,18 +327,21 @@ const LOGIN = gql`
       seatbeltOffRate
       followingDistanceRate
       speedingEventRate
+      seatbeltOffRate
       distractionsRate
       signalViolationsRate
+      followingDistanceRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
       attendedDeliveryAccuracy
       dnr
       netradyne
-      deliveryAssociate
       defects
+      deliveryAssociate
       customerDeliveryFeedback
       hasManyAccidents
+      customerDeliveryFeedback
       belongsToTeam
       attendence
       productivity
@@ -652,10 +655,6 @@ query Query {
   }
 }
 `
-
-
-
-
 const UPDATEDRIVER = gql`
   mutation UpdateDriver($updateDriver: UpdateDriver) {
   updateDriver(updateDriver: $updateDriver) {
@@ -668,6 +667,7 @@ const UPDATEDRIVER = gql`
     email
     phoneNumber
     profilePick
+    shifts
     transporterId
     muted
     locked

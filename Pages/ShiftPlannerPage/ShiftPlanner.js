@@ -359,6 +359,130 @@ const ShiftPlanner = () => {
                     </View>
 
                 </View>
+
+                {/* DATE CONTAINER */}
+                <View style={{
+                    width: 100,
+                    alignItems: 'center',
+                    marginLeft: maxWidth / 2 - 120,
+                    marginRight: maxWidth / 2 - 120
+                }}>
+                    <View style={{
+                        flexDirection: "row",
+                        width: 90,
+                        alignItems: 'center',
+                    }}>
+                        <Text style={ShiftPlannerStyles.monthText}>{month}</Text>
+                        <Text style={ShiftPlannerStyles.dayText}> {currentDate.day}</Text>
+                    </View>
+                    <Text style={ShiftPlannerStyles.dateText}>{dayOfTheWeek}</Text>
+                </View>
+
+                {/* FRONT DATE ARROW */}
+                <View>
+                    {renderArrow("forward")}
+                </View>
+                
+                {/* Shift Data */}
+                <View style={ShiftPlannerStyles.shiftInfo}>
+
+                    {/* Shift Profile */}
+                    <View style={ShiftPlannerStyles.shiftProfile}>
+                        
+                        {/* FICO Rank */}
+                        <View style={{marginTop: 25, marginLeft: "12%", marginRight: "5%"}}>
+                            <Gradient
+                                colorOne="#534FFF"
+                                colorTwo="#15A1F1"
+                                style={{
+                                    height: 36,
+                                    width: 36,
+                                    borderRadius: 18
+                                }}
+                                hollow={true}
+                                hollowColor={"white"}
+                                hollowBorderSize="large"
+                                hollowStyles={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Text style={ShiftPlannerStyles.ficoRank}>4</Text>
+                            </Gradient>
+                        </View>
+
+                        {/* PFP */}
+                        <Gradient
+                            colorOne="#534FFF"
+                            colorTwo="#15A1F1"
+                            style={{
+                                height: 86,
+                                width: 86,
+                                borderRadius: 43
+                            }}
+                            hollow={true}
+                            hollowColor={"white"}
+                            hollowBorderSize="medium"
+                            hollowStyles={{
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <View style={{height: 90, width: 90, alignContent: 'center', alignItems: 'center', justifyContent: 'center'}}>
+                                {handlePicture(user.profilePick, 75)}
+                            </View>
+                        </Gradient>
+
+
+                        {/* Msg Button */}
+                        <View style={{marginTop: 25, marginLeft: '5%'}}>
+                            <Gradient
+                                colorOne="#534FFF"
+                                colorTwo="#15A1F1"
+                                style={{
+                                    height: 36,
+                                    width: 36,
+                                    borderRadius: 18
+                                }}
+                                hollow={true}
+                                hollowColor={"white"}
+                                hollowBorderSize="large"
+                                hollowStyles={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                
+                            </Gradient>
+                        </View>
+                        
+
+                    </View>
+
+                    {/* Name and Hours */}
+                    <View style={ShiftPlannerStyles.nameAndHours}>
+                        <Text style={ShiftPlannerStyles.nameText}>
+                            {user.firstname} {user.lastname}
+                        </Text>
+                    </View>
+
+                    {/* Device Assignments */}
+                    <View style={ShiftPlannerStyles.valueBox}>
+                        {renderShiftAssignments()}
+                    </View>
+
+                    <View style={{alignItems: 'center',  marginTop: "6%"}}>
+                        <Text style={ShiftPlannerStyles.subtitle2}>
+                            MESSAGE
+                        </Text>
+                        <ScrollView style={ShiftPlannerStyles.messageBox}>
+                            <Text style={ShiftPlannerStyles.messageText}>
+                                {/* {user.shiftPlanners[currentSP].message} */}
+                            </Text>
+                        </ScrollView>
+                    </View>
+
+                </View>
             </View>
         )
     } catch(error){

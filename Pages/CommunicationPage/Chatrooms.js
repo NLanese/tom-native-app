@@ -105,6 +105,13 @@ const Chatrooms = () => {
         })
     }
 
+    // return(
+    //     <View>
+    //         <Banner />
+    //         <Text style={ChatroomsStyles.title}>Coming Soon</Text>
+    //     </View>
+    // )
+
     // Check if no messages
     if (user.chatrooms.length < 1){
         return(
