@@ -13,13 +13,13 @@ const dateObj = (dateSent, timeZone='EST') => {
     else if (timeZoneAdjustment == 'PST'){
         timeZoneAdjustment = -8
     }
-    else if (timeZoneAdjustment == 'CT'){
+    else if (timeZone == 'CT'){
         timeZoneAdjustment = -6
     }
-    else if (timeZoneAdjustment == 'MT'){
+    else if (timeZone == 'MT'){
         timeZoneAdjustment = -7
     }
-    else if (timeZoneAdjustment == 'UTC'){
+    else if (timeZone == 'UTC'){
         timeZoneAdjustment = 0
     }
     else {

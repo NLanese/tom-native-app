@@ -52,7 +52,7 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages !== null && chatroom.messages.length > 0){
+                    if (!!chatroom.messages && chatroom.messages.length > 0){
                         let latestText = chatroom.messages.length - 1
                         if (dateObj(chatroom.messages[latestText].createdAt, user.dsp.timeZone).day == d.getUTCDate()){
                             rArray.push(chatroom)
@@ -66,7 +66,7 @@ const Chatrooms = () => {
                 if (chatroom.chatroomName.split(" chatroom")[0] == user.dsp.name){
                 }
                 else{
-                    if (chatroom.messages === null || chatroom.messages.length == 0){
+                    if (!chatroom.messages || chatroom.messages.length == 0){
                         rArray.push(chatroom)
                     }
                     else{
