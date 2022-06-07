@@ -265,24 +265,23 @@ const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
   driverSignIn(email: $email, password: $password) {
     id
-    role
     createdAt
+    role
     token
     firstname
     lastname
     email
+    password
+    shifts
     phoneNumber
     profilePick
-    shifts
     transporterId
     globallyMuted
     mutedIds
-    notified
     locked
-    deleted
+    notified
     owner {
       id
-      createdAt
       role
       firstname
       lastname
@@ -290,67 +289,8 @@ const LOGIN = gql`
       phoneNumber
       profilePick
     }
-    accidents {
-      id
-      createdAt
-      date
-      name
-      time
-      location
-      accident_report
-      has_logo
-      police_report
-      before_accident_report
-      selfDamage
-      weather_and_distractions
-      filled
-      deleted
-      collisionAccidents {
-        id
-        specific_pictures
-        contact_info
-        collision_report
-        extra_info
-        accidentId
-        injuryAccident {
-          id
-        }
-      }
-      injuryAccidents {
-        id
-        contact_info
-        extra_info
-        injured_areas
-        injury_report
-        pain_level
-        specific_pictures
-        collisionId
-      }
-      propertyAccidents {
-        id
-        contact_info
-        damage_report
-        defective_equip
-        safety_equip
-        specific_pictures
-        extra_info
-        types_of_damage
-        package_report
-        accidentId
-      }
-      selfInjuryAccidents {
-        id
-        animal_report
-        injuries
-        injury_report
-        extra_info
-        specific_pictures
-        accidentId
-      }
-    }
     managers {
       id
-      createdAt
       role
       firstname
       lastname
@@ -369,6 +309,117 @@ const LOGIN = gql`
       from
       type
     }
+    weeklyReport {
+      id
+      createdAt
+      date
+      feedbackMessage
+      hadAccident
+      feedbackMessageSent
+      feedbackStatus
+      acknowledged
+      acknowledgedAt
+      rank
+      tier
+      delivered
+      keyFocusArea
+      fico
+      seatbeltOffRate
+      followingDistanceRate
+      speedingEventRate
+      distractionsRate
+      signalViolationsRate
+      deliveryCompletionRate
+      deliveredAndRecieved
+      photoOnDelivery
+      attendedDeliveryAccuracy
+      dnr
+      netradyne
+      deliveryAssociate
+      defects
+      customerDeliveryFeedback
+      hasManyAccidents
+      belongsToTeam
+      attendence
+      productivity
+    }
+    chatrooms {
+      id
+      createdAt
+      chatroomName
+      guests
+      chatroomOwner
+      mutedIds
+      messages {
+        id
+        createdAt
+        content
+        from
+        sentAt
+        visable
+        reported
+        reportedBy
+      }
+    }
+    devices {
+      id
+      createdAt
+      number
+      name
+      type
+      deviceIndex
+    }
+    accidents {
+      id
+      createdAt
+      name
+      date
+      time
+      location
+      accident_report
+      has_logo
+      police_report
+      before_accident_report
+      selfDamage
+      weather_and_distractions
+      deleted
+      filled
+      collisionAccidents {
+        id
+        specific_pictures
+        contact_info
+        collision_report
+        extra_info
+      }
+      injuryAccidents {
+        id
+        contact_info
+        extra_info
+        injured_areas
+        injury_report
+        pain_level
+        specific_pictures
+      }
+      propertyAccidents {
+        id
+        contact_info
+        damage_report
+        defective_equip
+        safety_equip
+        specific_pictures
+        extra_info
+        types_of_damage
+        package_report
+      }
+      selfInjuryAccidents {
+        id
+        injuries
+        animal_report
+        injury_report
+        extra_info
+        specific_pictures
+      }
+    }
     dsp {
       id
       createdAt
@@ -376,8 +427,8 @@ const LOGIN = gql`
       shortcode
       timeZone
       ficoLimits
-      seatbeltLimits
       speedingLimits
+      seatbeltLimits
       distractionLimits
       followLimits
       signalLimits
@@ -390,38 +441,23 @@ const LOGIN = gql`
       autoSend
       allDevices
       paid
-      accountStanding
-      shifts {
-        id
-        date
-        allDriverShifts
-      }
-      devices {
-        id
-        createdAt
-        number
-        name
-        type
-        deviceIndex
-      }
       drivers {
         id
         createdAt
         role
+        token
         firstname
         lastname
-        email
-        phoneNumber
         profilePick
-        shifts
         weeklyReport {
+          id
+          createdAt
+          date
+          hadAccident
           fico
-          rank
-          tier
-          delivered
           seatbeltOffRate
-          distractionsRate
           speedingEventRate
+          distractionsRate
           followingDistanceRate
           signalViolationsRate
           deliveryCompletionRate
@@ -432,64 +468,11 @@ const LOGIN = gql`
           podOpps
           ccOpps
           netradyne
+          deliveryAssociate
           defects
           customerDeliveryFeedback
         }
       }
-    }
-    weeklyReport {
-      id
-      createdAt
-      date
-      hadAccident
-      feedbackMessage
-      feedbackMessageSent
-      acknowledged
-      feedbackStatus
-      rank
-      acknowledgedAt
-      tier
-      keyFocusArea
-      delivered
-      fico
-      seatbeltOffRate
-      speedingEventRate
-      distractionsRate
-      followingDistanceRate
-      signalViolationsRate
-      deliveryCompletionRate
-      deliveredAndRecieved
-      photoOnDelivery
-      attendedDeliveryAccuracy
-      podOpps
-      dnr
-      ccOpps
-      netradyne
-      deliveryAssociate
-      defects
-      customerDeliveryFeedback
-      hasManyAccidents
-      attendence
-      belongsToTeam
-      productivity
-    }
-    chatrooms {
-      id
-      createdAt
-      chatroomName
-      guests
-      chatroomOwner
-      mutedIds
-      managerJoinOnSignUp
-      driverJoinOnSignUp
-    }
-    devices {
-      id
-      createdAt
-      number
-      name
-      type
-      deviceIndex
     }
   }
 }
@@ -929,7 +912,6 @@ const UPDATEDRIVER = gql`
   }
 }
 `
-
 const GETDRIVERDATA = gql`
   query Query {
   getDriver {
@@ -1158,7 +1140,6 @@ const GETDRIVERSFORDSPFORTEAM = gql`
   }
 }
 `
-
 const GETNOTIFIED = gql`
   query Query {
   getDriver {
@@ -1183,7 +1164,6 @@ mutation Mutation($reportId: String!) {
   }
 }
 `
-
 const DRIVERSGETSHIFTPLANNER = gql`
   query Query {
   driverGetShiftPlaner {

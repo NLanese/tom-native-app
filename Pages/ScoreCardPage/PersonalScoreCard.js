@@ -143,215 +143,220 @@ const PersonalScoreCard = () => {
 ///           MIAN RENDER           ///
 ///                                 ///
 ///////////////////////////////////////
-    return(
-        <View>
-        <Banner />
-        <ScrollView contentContainerStyle={{height: 1200}}>
-            <View style={{...ShiftPlannerStyles.shiftInfo, marginTop: 30, height: 800}}>
-
-                {/* Shift Profile */}
-                <View style={{...ShiftPlannerStyles.shiftProfile}}>
-                    
-                    {/* FICO Rank */}
-                    <View style={{marginTop: 25, marginLeft: "12%", marginRight: "5%"}}>
+    try{
+        return(
+            <View>
+            <Banner />
+            <ScrollView contentContainerStyle={{height: 1200}}>
+                <View style={{...ShiftPlannerStyles.shiftInfo, marginTop: 30, height: 800}}>
+    
+                    {/* Shift Profile */}
+                    <View style={{...ShiftPlannerStyles.shiftProfile}}>
+                        
+                        {/* FICO Rank */}
+                        <View style={{marginTop: 25, marginLeft: "12%", marginRight: "5%"}}>
+                            <Gradient
+                                colorOne="#534FFF"
+                                colorTwo="#15A1F1"
+                                style={{
+                                    height: 36,
+                                    width: 36,
+                                    borderRadius: 18
+                                }}
+                                hollow={true}
+                                hollowColor={"white"}
+                                hollowBorderSize="large"
+                                hollowStyles={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Text style={ShiftPlannerStyles.ficoRank}>4</Text>
+                            </Gradient>
+                        </View>
+    
+                        {/* PFP */}
                         <Gradient
                             colorOne="#534FFF"
                             colorTwo="#15A1F1"
                             style={{
-                                height: 36,
-                                width: 36,
-                                borderRadius: 18
+                                height: 86,
+                                width: 86,
+                                borderRadius: 43
                             }}
                             hollow={true}
                             hollowColor={"white"}
-                            hollowBorderSize="large"
+                            hollowBorderSize="medium"
                             hollowStyles={{
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}
                         >
-                            <Text style={ShiftPlannerStyles.ficoRank}>4</Text>
+                            {handlePicture(user.profilePick, 75)}
                         </Gradient>
-                    </View>
-
-                    {/* PFP */}
-                    <Gradient
-                        colorOne="#534FFF"
-                        colorTwo="#15A1F1"
-                        style={{
-                            height: 86,
-                            width: 86,
-                            borderRadius: 43
-                        }}
-                        hollow={true}
-                        hollowColor={"white"}
-                        hollowBorderSize="medium"
-                        hollowStyles={{
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                    >
-                        {handlePicture(user.profilePick, 75)}
-                    </Gradient>
-
-
-                    {/* Msg Button */}
-                    <View style={{marginTop: 25, marginLeft: '5%'}}>
-                        <Gradient
-                            colorOne="#534FFF"
-                            colorTwo="#15A1F1"
-                            style={{
-                                height: 36,
-                                width: 36,
-                                borderRadius: 18
-                            }}
-                            hollow={true}
-                            hollowColor={"white"}
-                            hollowBorderSize="large"
-                            hollowStyles={{
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-                        >
-                            
-                        </Gradient>
-                    </View>
-                    
-
-                </View>
-
-                {/* Name and Driving Since */}
-                <View style={ShiftPlannerStyles.nameAndHours}>
-                    <Text style={ShiftPlannerStyles.nameText}>
-                        {user.firstname} {user.lastname}
-                    </Text>
-                    <Text style={{...ScoreCardStyles.keyTitle, marginTop: 8}}>
-                        DRIVING SINCE
-                    </Text>
-                    <Text style={ShiftPlannerStyles.hoursText}>
-                        {numberToMonth(dateObj(user.createdAt).month)}, {dateObj(user.createdAt).day}  {dateObj(user.createdAt).year}
-                    </Text>
-                </View>
-
-                {/* Key */}
-                <View>
-                    <View style={ScoreCardStyles.keyContainer}>
-                        <Text style={ScoreCardStyles.keyTitle}>KEY</Text>
-                    </View>
-                    <View style={ScoreCardStyles.keyBox}>
-                            <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.fantastic}}>Fantastic</Text>
-                            <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.good}}>Good</Text>
-                            <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.fair}}>Fair</Text>
-                            <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.subpar}}>Subpar</Text>
-                    </View>
-                </View>
-
-
-                {/* Numeric Values and Titles */}
-                <View style={{...ShiftPlannerStyles.valueBox, marginTop: 20}}>
-
-                    <Text style={{...ScoreCardStyles.keyTitle, marginBottom: 10}}>DRIVING SAFETY STATISTICS</Text>
-
-                    {/* Row One */}
-                    <View style={ShiftPlannerStyles.valRow}>
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={Styles(userData.seatbeltOffRate, 'seatbelt', false).coloredLabel}>{userData.seatbeltOffRate}%</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Seatbelt Off</Text>
+    
+    
+                        {/* Msg Button */}
+                        <View style={{marginTop: 25, marginLeft: '5%'}}>
+                            <Gradient
+                                colorOne="#534FFF"
+                                colorTwo="#15A1F1"
+                                style={{
+                                    height: 36,
+                                    width: 36,
+                                    borderRadius: 18
+                                }}
+                                hollow={true}
+                                hollowColor={"white"}
+                                hollowBorderSize="large"
+                                hollowStyles={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                
+                            </Gradient>
                         </View>
-
-                        <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={Styles(userData.speedingEventRate, 'speeding', false).coloredLabel}>{userData.speedingEventRate}%</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Speedings</Text>
-                        </View>
-
+                        
+    
                     </View>
-
-                    {/* Row Two */}
-                    <View style={ShiftPlannerStyles.valRow}>
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={Styles(userData.distractionsRate, 'distraction', false).coloredLabel}>{userData.distractionsRate}%</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Distracted</Text>
-                        </View>
-
-                        <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={Styles(userData.followingDistanceRate, 'follow', false).coloredLabel}>{userData.followingDistanceRate}%</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Close Follows</Text>
-                        </View>
-
-                    </View>
-
-                    {/* Row Three */}
-                    <View style={ShiftPlannerStyles.valRow}>
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={Styles(userData.signalViolationsRate, 'signal', false).coloredLabel}>{userData.signalViolationsRate}%</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>Signal Violations</Text>
-                        </View>
-
-                        <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                        <View style={ShiftPlannerStyles.cell}>
-                            <Text style={Styles(userData.fico, 'fico', true).coloredLabel}>{userData.fico}</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>FICO</Text>
-                        </View>
-
-                    </View>
-
-                        <Text style={{...ShiftPlannerStyles.subtitle2, textAlign: 'center', marginTop: 40, marginBottom: 10}}>
-                            SERVICE STATISTICS
+    
+                    {/* Name and Driving Since */}
+                    <View style={ShiftPlannerStyles.nameAndHours}>
+                        <Text style={ShiftPlannerStyles.nameText}>
+                            {user.firstname} {user.lastname}
                         </Text>
-
-                        {/* Row Four */}
-                        <View style={ShiftPlannerStyles.valRow}>
-
-                        <View style={ShiftPlannerStyles.cell}>
-                                <Text style={{textAlign: 'center', fontFamily: 'GilroyBold', etterSpacing: -0.5, fontSize: 25,}}>{userData.delivered}</Text>
-                                <Text style={ShiftPlannerStyles.valTitle}>Total Deliveries</Text>
-                            </View>
-
-                            <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
-
-                            <View style={ShiftPlannerStyles.cell}>
-                                <Text style={Styles(userData.photoOnDelivery, 'dcr', true).coloredLabel}>{userData.photoOnDelivery}%</Text>
-                                <Text style={ShiftPlannerStyles.valTitle}>Photo Rate</Text>
-                            </View>
-
-                        </View>
-
-                        {/* <Text style={{...ShiftPlannerStyles.subtitle2, textAlign: 'center', marginTop: 40, marginBottom: 10}}>
-                            WEEKLY REPORT
-                        </Text> */}
-
+                        <Text style={{...ScoreCardStyles.keyTitle, marginTop: 8}}>
+                            DRIVING SINCE
+                        </Text>
+                        <Text style={ShiftPlannerStyles.hoursText}>
+                            {numberToMonth(dateObj(user.createdAt).month)}, {dateObj(user.createdAt).day}  {dateObj(user.createdAt).year}
+                        </Text>
                     </View>
-
-                </View>
-
-                <View style={{marginTop: 90}}>
-                    <TouchableOpacity onPress={() => {
-                            navigation.navigate("leaderboard")
-                        }}>
-                        <Gradient
-                            colorOne={"#534FFF"}
-                            colorTwo={"#15A1F1"}
-                            style={{
-                                height: 50,
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <Text style={{...AccountInformationStyles.buttonText, letterSpacing: 1.5}}>TEAM LEADERBOARD</Text>
-                        </Gradient>
-                    </TouchableOpacity>
-                </View>
-
-        </ScrollView>
-        </View>
-    )
+    
+                    {/* Key */}
+                    <View>
+                        <View style={ScoreCardStyles.keyContainer}>
+                            <Text style={ScoreCardStyles.keyTitle}>KEY</Text>
+                        </View>
+                        <View style={ScoreCardStyles.keyBox}>
+                                <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.fantastic}}>Fantastic</Text>
+                                <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.good}}>Good</Text>
+                                <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.fair}}>Fair</Text>
+                                <Text style={{...ScoreCardStyles.keyValueBox, color: textColors.subpar}}>Subpar</Text>
+                        </View>
+                    </View>
+    
+    
+                    {/* Numeric Values and Titles */}
+                    <View style={{...ShiftPlannerStyles.valueBox, marginTop: 20}}>
+    
+                        <Text style={{...ScoreCardStyles.keyTitle, marginBottom: 10}}>DRIVING SAFETY STATISTICS</Text>
+    
+                        {/* Row One */}
+                        <View style={ShiftPlannerStyles.valRow}>
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                <Text style={Styles(userData.seatbeltOffRate, 'seatbelt', false).coloredLabel}>{userData.seatbeltOffRate}%</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>Seatbelt Off</Text>
+                            </View>
+    
+                            <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                <Text style={Styles(userData.speedingEventRate, 'speeding', false).coloredLabel}>{userData.speedingEventRate}%</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>Speedings</Text>
+                            </View>
+    
+                        </View>
+    
+                        {/* Row Two */}
+                        <View style={ShiftPlannerStyles.valRow}>
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                <Text style={Styles(userData.distractionsRate, 'distraction', false).coloredLabel}>{userData.distractionsRate}%</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>Distracted</Text>
+                            </View>
+    
+                            <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                <Text style={Styles(userData.followingDistanceRate, 'follow', false).coloredLabel}>{userData.followingDistanceRate}%</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>Close Follows</Text>
+                            </View>
+    
+                        </View>
+    
+                        {/* Row Three */}
+                        <View style={ShiftPlannerStyles.valRow}>
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                <Text style={Styles(userData.signalViolationsRate, 'signal', false).coloredLabel}>{userData.signalViolationsRate}%</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>Signal Violations</Text>
+                            </View>
+    
+                            <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                <Text style={Styles(userData.fico, 'fico', true).coloredLabel}>{userData.fico}</Text>
+                                <Text style={ShiftPlannerStyles.valTitle}>FICO</Text>
+                            </View>
+    
+                        </View>
+    
+                            <Text style={{...ShiftPlannerStyles.subtitle2, textAlign: 'center', marginTop: 40, marginBottom: 10}}>
+                                SERVICE STATISTICS
+                            </Text>
+    
+                            {/* Row Four */}
+                            <View style={ShiftPlannerStyles.valRow}>
+    
+                            <View style={ShiftPlannerStyles.cell}>
+                                    <Text style={{textAlign: 'center', fontFamily: 'GilroyBold', letterSpacing: -0.5, fontSize: 25,}}>{userData.delivered}</Text>
+                                    <Text style={ShiftPlannerStyles.valTitle}>Total Deliveries</Text>
+                                </View>
+    
+                                <View style={{height: 30, width: 1, backgroundColor: "#DDD", marginTop: 10}} />
+    
+                                <View style={ShiftPlannerStyles.cell}>
+                                    <Text style={Styles(userData.photoOnDelivery, 'dcr', true).coloredLabel}>{userData.photoOnDelivery}%</Text>
+                                    <Text style={ShiftPlannerStyles.valTitle}>Photo Rate</Text>
+                                </View>
+    
+                            </View>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate("leaderboard")
+                                }}>
+                                <Gradient
+                                    colorOne={"#534FFF"}
+                                    colorTwo={"#15A1F1"}
+                                    style={{
+                                        height: 50,
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <Text style={{...AccountInformationStyles.buttonText, letterSpacing: 1.5}}>TEAM LEADERBOARD</Text>
+                                </Gradient>
+                            </TouchableOpacity>
+                            {/* <Text style={{...ShiftPlannerStyles.subtitle2, textAlign: 'center', marginTop: 40, marginBottom: 10}}>
+                                WEEKLY REPORT
+                            </Text> */}
+    
+                        </View>
+    
+                    </View>
+    
+                    <View style={{marginTop: 90}}>
+                        
+                    </View>
+    
+            </ScrollView>
+            </View>
+        )
+    } catch(err){
+        throw new Error("401")
+    }
+    
 }
 
 

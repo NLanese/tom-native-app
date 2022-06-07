@@ -112,81 +112,85 @@ const Home = ({ handleLoggedIn }) => {
         }, 0.5)
     }
 
-    return (
-        <View>
-            <Banner handleLoggedIn={handleLoggedIn}/>
-            <ScrollView style={HomeStyles.container}> 
-                    <View style={HomeStyles.titleBox}>
-                        <Text style={HomeStyles.title}>Welcome</Text>
-                    </View>
-                    <View style={HomeStyles.subTitleBox}>
-                        <Text style={HomeStyles.subTitle}>HI, {user.firstname}</Text>
-                    </View>
-                    
-                    <ButtonBox user={user}/>
-
-                    <TouchableOpacity 
-                        onPress={() => {
-                            setWebsite({current: "Personal Scorecard", previous: website.previous, saved: website.saved})
-                            navigation.navigate("score_card")}
-                         } 
-                         style={ButtonBoxStyles.bottomTouch}> 
-                        <View > 
-                            <View style={ButtonBoxStyles.scoreTitleBox}>
-                                <Text style={ButtonBoxStyles.scoreTitle}>Scorecard</Text>
-                            </View>
-                            <View style={ButtonBoxStyles.scoreSubTitleBox}>
-                                <Text style={ButtonBoxStyles.scoreSubTitle}>AND LEADERBOARD</Text>
-                            </View>
-                            <View style={ButtonBoxStyles.scorecard}>
-                                <DetailedEmployeeCard driverData={user} sortBy={"FICO"} rank={1} />
-                            </View>
+    try {
+        return (
+            <View>
+                <Banner handleLoggedIn={handleLoggedIn}/>
+                <ScrollView style={HomeStyles.container}> 
+                        <View style={HomeStyles.titleBox}>
+                            <Text style={HomeStyles.title}>Welcome</Text>
                         </View>
-                    </TouchableOpacity>
-
-                    <View style={{marignTop: 20, height: 1, width: 1, backgroundColor: '#eaeaea'}}></View>
-
-
-                    <Modal 
-                        visible={modalVisible} 
-                        style={HomeStyles.weeklyNotificationModal}
-                        backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
-                    >
-                        <View style={HomeStyles.notificationModalContent}>
-                            <View style={HomeStyles.weeklyNotificationTitleSpace}>
-                                <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status</Text>
-                            </View>
-                            <View style={HomeStyles.weeklyNotificationMessage}>
-                                <Text style={HomeStyles.messageText}>{weeklyReportObj.feedbackMessage}</Text>
-                            </View>
-                            <View style={HomeStyles.acknowledgeContainter}>
-                            
-                                <CheckBox
-                                    checked={acknowledged}
-                                    onChange={() => handleAcknowledge()}>
-                                </CheckBox>
-
-                                <View style={HomeStyles.acknowledgedBox}>
-                                    <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
-                                </View>
-
-                                <View style={{width: 50, marginLeft: '80%', marginTop: -30}}>
-                                    <TouchableOpacity onPress={() => handleModalClose()}>
-                                        {renderButton()}     
-                                    </TouchableOpacity>
-                                </View>
-
-                            </View>
-                        </View>
-
-                        <View style={{position: 'absolute', marginTop: 240, marginLeft: 20, marginRight: 20, paddingLeft: 8, paddingRight: 8}}>
-                            <WeeklyBottomCard data={user} />
+                        <View style={HomeStyles.subTitleBox}>
+                            <Text style={HomeStyles.subTitle}>HI, {user.firstname}</Text>
                         </View>
                         
-                    </Modal>
-            </ScrollView>
-        </View>
+                        <ButtonBox user={user}/>
+    
+                        <TouchableOpacity 
+                            onPress={() => {
+                                setWebsite({current: "Personal Scorecard", previous: website.previous, saved: website.saved})
+                                navigation.navigate("score_card")}
+                             } 
+                             style={ButtonBoxStyles.bottomTouch}> 
+                            <View > 
+                                <View style={ButtonBoxStyles.scoreTitleBox}>
+                                    <Text style={ButtonBoxStyles.scoreTitle}>Scorecard</Text>
+                                </View>
+                                <View style={ButtonBoxStyles.scoreSubTitleBox}>
+                                    <Text style={ButtonBoxStyles.scoreSubTitle}>AND LEADERBOARD</Text>
+                                </View>
+                                <View style={ButtonBoxStyles.scorecard}>
+                                    <DetailedEmployeeCard driverData={user} sortBy={"FICO"} rank={1} />
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+    
+                        <View style={{marignTop: 20, height: 1, width: 1, backgroundColor: '#eaeaea'}}></View>
+    
+    
+                        <Modal 
+                            visible={modalVisible} 
+                            style={HomeStyles.weeklyNotificationModal}
+                            backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+                        >
+                            <View style={HomeStyles.notificationModalContent}>
+                                <View style={HomeStyles.weeklyNotificationTitleSpace}>
+                                    <Text style={HomeStyles.weeklyNotificationTitle}>Weekly Status</Text>
+                                </View>
+                                <View style={HomeStyles.weeklyNotificationMessage}>
+                                    <Text style={HomeStyles.messageText}>{weeklyReportObj.feedbackMessage}</Text>
+                                </View>
+                                <View style={HomeStyles.acknowledgeContainter}>
+                                
+                                    <CheckBox
+                                        checked={acknowledged}
+                                        onChange={() => handleAcknowledge()}>
+                                    </CheckBox>
+    
+                                    <View style={HomeStyles.acknowledgedBox}>
+                                        <Text style={HomeStyles.acknowledgedText}>I ACKNOWLEDGE</Text>
+                                    </View>
+    
+                                    <View style={{width: 50, marginLeft: '80%', marginTop: -30}}>
+                                        <TouchableOpacity onPress={() => handleModalClose()}>
+                                            {renderButton()}     
+                                        </TouchableOpacity>
+                                    </View>
+    
+                                </View>
+                            </View>
+    
+                            <View style={{position: 'absolute', marginTop: 240, marginLeft: 20, marginRight: 20, paddingLeft: 8, paddingRight: 8}}>
+                                <WeeklyBottomCard data={user} />
+                            </View>
+                            
+                        </Modal>
+                </ScrollView>
+            </View>
         )
+    } catch(err){
+        throw new Error("105")
+    }
 }
 
 export default Home

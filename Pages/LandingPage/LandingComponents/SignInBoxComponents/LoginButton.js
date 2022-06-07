@@ -4,7 +4,7 @@ import { View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { useRecoilState } from 'recoil'
-import { cameraPermissionState, userState, loggedState } from '../../../../Recoil/atoms'
+import { cameraPermissionState, userState, loggedState, errorDataState } from '../../../../Recoil/atoms'
 import { websiteState } from '../../../../Recoil/atoms';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +18,7 @@ import stateChange from '../../../../Hooks/handleToken'
 
 const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 	const navigation = useNavigation()
+	const [errorState, setErrorState] = useRecoilState(errorDataState)
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
@@ -28,12 +29,15 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 	// Handles the data changes and reroutes to the logged-in home page
 	useEffect(() => {
 		if (!loading && data) {
+			if (!data.driverSignIn){
+				return
+			}
 			// await storeData()
 			 setUser(data.driverSignIn)
 			 stateChange(data.driverSignIn.token);
 			 handleLoggedIn()
 		}
-	}, [data])
+	}, [loading])
 
 
 // ---------------------------- Mutations ---------------------------- //
@@ -62,39 +66,62 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 			},
 		})
 		// Store email and password to AsyncStorage on login if Remember Me option is selected
-		.then( () => {
-			setLogged(true)
-			if (checked === true) {
-				try {
-					const email =  AsyncStorage.getItem('@email')
-					const password =  AsyncStorage.getItem('@password')
-					AsyncStorage.setItem('@remember_User', 'true')
-					// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
-					if (email === null && password === null) {
-						try {
-							AsyncStorage.setItem('@email', userData.email)
-							AsyncStorage.setItem('@password', userData.password)
-						} catch (error) {
-							console.error(error)
+		.then( (resolved) => {
+
+			// Failed Login // 
+			if (resolved.data.driverSignIn === null){
+				return resolved.data.driverSignIn
+			}
+
+			// Successful Login
+			else{
+				setLogged(true)
+				setErrorState({...errorState, email_login: false, password_login: false})
+				// If REMEMBER ME
+				if (checked) {
+					try {
+						const email =  AsyncStorage.getItem('@email')
+						const password =  AsyncStorage.getItem('@password')
+						AsyncStorage.setItem('@remember_User', 'true')
+						// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
+						if (email === null && password === null) {
+							try {
+								AsyncStorage.setItem('@email', userData.email)
+								AsyncStorage.setItem('@password', userData.password)
+							} catch (error) {
+								console.error(error)
+							}
 						}
+						navigation.navigate("home")
+					} catch (error) {
+						console.error(error)
 					}
-					navigation.navigate("home")
-				} catch (error) {
-					console.error(error)
 				}
+
+				// If NOT REMEMBER ME
+				if (!checked) {
+					navigation.navigate("home")
+				}
+
+				setWebsite({
+					current: "Home",
+					previous: "Landing",
+					saved: website.saved,
+				});
 			}
-			if (!checked) {
-				navigation.navigate("home")
-			}
-		})
-		.then(() => {
-			setWebsite({
-				current: "Home",
-				previous: "Landing",
-				saved: website.saved,
-			});
+
 		}).catch((error) => {
-			console.log(error)
+			let errorMessage = error.toString().split("\n")[0]
+			console.log(errorMessage)
+			if (errorMessage === "Error: Error: No User exists with this email!"){
+				setErrorState({...errorState, email_login: "Incorrect Email"})
+			}
+			else{
+				setErrorState({...errorState, email_login: false})
+			}
+			if (errorMessage === "Error: Error: Wrong Passowrd!"){
+				setErrorState({...errorState, password_login: "Incorrect Password!"})
+			}
 		});
 	};
 

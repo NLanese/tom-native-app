@@ -26,14 +26,14 @@ const SearchBar = ({setSearch}) => {
     return(
         <View style={{marginLeft: -65}}>
             <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', zIndex: 5, marginTop: 25, marginLeft: 42}}>
-                    <Image source={glass} style={{height: 15, width: 15, marginLeft: 20}}/>
+                    <Image source={glass} style={{height: 15, width: 15, marginLeft: 30}}/>
             </View>
             <Input 
                 onPressIn={() =>setInInput(true)}
                 onEndEditing={() => setInInput(false)}
                 style={{...determineSearchStyle(), marginRight: 30}}
-                textStyle={{fontFamily: 'GilroyMedium'}}
-                placeholder="   Search Chatrooms/Contacts"
+                textStyle={{fontFamily: 'GilroyMedium', paddingLeft: 20}}
+                placeholder="Search Chatrooms/Contacts"
                 placeholderTextColor={'#BBBBBB'}
                 onChangeText={(content) => handleTextChange(content)}
             />
