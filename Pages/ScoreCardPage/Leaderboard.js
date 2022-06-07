@@ -88,13 +88,14 @@ const Leaderboard = () => {
     let allDrivers = [...user.dsp.drivers]
 
     // If the data IS loaded
+    try{
         return(
             <View style={{flex: 0, backgroundColor: "#f2f2f2"}}>
                 <Banner />
                 <ScrollView bounces={false} style={QualityStyles.listContainer}>
-                    <View style={SortingStyles.sortByContainer}>
+                    {/* <View style={SortingStyles.sortByContainer}>
                         <SortbyButton dropVisibility={dropVisibility} handleDropDownClick={handleDropDownClick} sortBy={sortBy} setSortBy={setSortBy}/>
-                    </View>
+                    </View> */}
                     <View style={QualityStyles.titleBox}>
                         <Text style={QualityStyles.mainTitle}>Leaderboard</Text>
                         <Text style={QualityStyles.subTitle}>OUR TOP PERFROMERS</Text>
@@ -103,6 +104,10 @@ const Leaderboard = () => {
                 </ScrollView>
             </View>
         )
+    } catch(err){
+        throw new Error("402")
+    }
+        
     
 }
 

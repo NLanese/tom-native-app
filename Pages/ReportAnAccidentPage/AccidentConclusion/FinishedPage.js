@@ -32,7 +32,8 @@ const FinishedPage = () => {
                     police_report: accidentState.police_report,
                     before_accident_report: accidentState.before_accident_report,
                     selfDamage: accidentState.selfDamage,
-                    weather_and_distractions: accidentState.weather_and_distractions
+                    weather_and_distractions: accidentState.weather_and_distractions,
+                    filled: true
                 },
             })
         )

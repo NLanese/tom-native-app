@@ -404,9 +404,6 @@ const PropertyPackageInfo = () => {
 ///           MAIN RENDERING          ///
 ///                                   ///
 /////////////////////////////////////////
-
-    console.log(propertyData)
-
     return(
         <View>
             <Banner />
