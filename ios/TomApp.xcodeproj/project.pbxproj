@@ -352,8 +352,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hdurand22.tomapp;
-				PRODUCT_NAME = "TomApp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlanese.tomapp;
+				PRODUCT_NAME = TomApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "TomApp/TomApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -378,8 +378,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hdurand22.tomapp;
-				PRODUCT_NAME = "TomApp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlanese.tomapp;
+				PRODUCT_NAME = TomApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "TomApp/TomApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
