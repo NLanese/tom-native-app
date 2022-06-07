@@ -18,7 +18,7 @@ const ThreadCard = ({chatroom}) => {
 
     // Generates the preview of the last text
     const generatePreview = () => {
-        if (chatroom.messages === null || chatroom.messages.length < 1){
+        if (!chatroom.messages || chatroom.messages.length < 1){
             return "No Messages"
         }
         let latestText = chatroom.messages.length - 1

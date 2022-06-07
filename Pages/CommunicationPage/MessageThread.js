@@ -122,7 +122,7 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
 
     // Generates all of the messages
     const renderMessageFeed = (messageData) => {
-        if (messageData === null){
+        if (!messageData){
             return <Text>No Messages</Text>
         }
       
@@ -152,6 +152,8 @@ const [sendMessage, { loading: loadingMsg, error: errorMsg, data: dataMsg }] = u
             if (index != 0){
 
                 // All for time boolean
+                console.log(user.dsp.timeZone)
+                console.log("------------")
                 let thisSendTime = dateObj(message.createdAt, user.dsp.timeZone)
                 let lastSendTime = dateObj(messageData[index - 1].createdAt, user.dsp.timeZone)
                 if (thisSendTime.day != lastSendTime.day){
