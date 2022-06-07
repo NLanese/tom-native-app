@@ -98,9 +98,9 @@ const handleInfoClick = () => {
             {/* Chatroom Label */}
             <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
                 <View style={CommunicationStyles.threadLabel}>
-                    <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
+                    <Text style={{...CommunicationStyles.labelText, marginTop: -5}}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
                     <View>
-                        <View style={{height: 35, width: 35, marginTop: 0, borderRadius: 100, backgroundColor: 'black'}}/>
+                        <View style={{height: 35, width: 35, marginTop: -5, borderRadius: 100, backgroundColor: 'black'}}/>
                     </View>
                 </View >
             </TouchableWithoutFeedback>
@@ -116,12 +116,17 @@ const handleInfoClick = () => {
     <View>
       <View style={styles.topBar}>
         {/* INFORMATION MODAL */}
-        <Modal visible={modalvisible}>
+        <Modal visible={modalvisible} style={{marginTop: -100, height: maxHeight - (maxHeight * .20)}}>
               <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
         </Modal>
+
       </View>
+      {/* BANNER DROP */}
       <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
+
+      {/* NOTIFICATION DROP */}
       <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} />
+
         <Appbar style={styles.bottom}>
 
           <View style={styles.leftIcons}>
@@ -160,6 +165,8 @@ const handleInfoClick = () => {
           </View>
 
         </Appbar>
+
+        {/* RAA Relocation Modal */}
         <Modal 
               animationType='slide' 
               transparent={true} 
@@ -171,7 +178,8 @@ const handleInfoClick = () => {
                   borderRadius: 10,
               }}
           >
-              <View style={{ 
+              <View 
+              style={{ 
                   backgroundColor: "white", 
                   height: 175,
                   width: 300,
@@ -179,42 +187,68 @@ const handleInfoClick = () => {
               }}>
                   <Text style={{...Template.questionText, textAlign: 'center', marginLeft: -8, marginBottom: 10, marginLeft: 20, width: 260}}>Go back to the homepage?</Text>
                 
-              <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
+                  <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
 
+                        {/* OKAY BUTTON */}
+                      <TouchableOpacity onPress={() => {
+                        setModalVisible2(false)
+                        setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
+                        navigation.navigate('home')
+                      }}>
+
+                      <Gradient
+                          colorOne={"#534FFF"}
+                          colorTwo={"#15A1F1"}
+                          style={{
+                              height: 50,
+                              width: 80,
+                              borderRadius: 20,
+                              justifyContent: 'center'
+                          }}
+                      >
+                          <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
+                      </Gradient>
+
+                      </TouchableOpacity>
+
+                      <View style={{marginLeft: 70}}>
+
+                        {/* CANCEL BUTTON */}
+                      <TouchableOpacity onPress={() => setModalVisible2(false)}>
+                        <Gradient
+                            colorOne={"#DE0000"}
+                            colorTwo={"#DE0000"}
+                            style={{
+                                height: 50,
+                                width: 80,
+                                borderRadius: 20,
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
+                        </Gradient>
+                      </TouchableOpacity>
+
+                  </View>
+                  <View>
                   <TouchableOpacity onPress={() => {
-                    setModalVisible2(false)
-                    setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
-                    navigation.navigate('home')
-                  }}>
-                  <Gradient
-                      colorOne={"#534FFF"}
-                      colorTwo={"#15A1F1"}
-                      style={{
-                          height: 50,
-                          width: 80,
-                          borderRadius: 20,
-                          justifyContent: 'center'
-                      }}
-                  >
-                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
-                  </Gradient>
-                  </TouchableOpacity>
-
-                  <View style={{marginLeft: 70}}>
-                  <TouchableOpacity onPress={() => setModalVisible2(false)}>
-                  <Gradient
-                      colorOne={"#DE0000"}
-                      colorTwo={"#DE0000"}
-                      style={{
-                          height: 50,
-                          width: 80,
-                          borderRadius: 20,
-                          justifyContent: 'center'
-                      }}
-                  >
-                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
-                  </Gradient>
-                  </TouchableOpacity>
+                        setModalVisible2(false)
+                        setWebsiteState({current: "Home", previous: "Home", saved: "Home"})
+                        navigation.navigate('home')
+                      }}>
+                        <Gradient
+                            colorOne={"#232323"}
+                            colorTwo={"#222222"}
+                            style={{
+                                height: 50,
+                                width: 80,
+                                borderRadius: 20,
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Cancel Report</Text>
+                        </Gradient>
+                      </TouchableOpacity>
                   </View>
 
               </View>

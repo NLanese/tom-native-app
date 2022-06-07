@@ -86,27 +86,32 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRemem
         }
     }
 
-    return (
-        <View style={LandingPageStyles.container}>
-            <View style={LandingPageStyles.tabBarContainer}>
-                <TabBar 
-                    tabsArray={["LOGIN", "SIGN UP"]}
-                    styleInactive={LandingPageStyles.inactiveTab}
-                    styleActive={LandingPageStyles.activeTab}
-                    tabTextStyleActive={LandingPageStyles.activeText}
-                    tabTextStyleInactive={LandingPageStyles.inactiveText}
-                    startIndex={selectedIndex}
-                    onChangeIndex={async (index) => {
-                        await setSelectedIndex(index)
-                        await setTab(index)
-                    }}
-                />
-
+    try {
+        return (
+            <View style={LandingPageStyles.container}>
+                <View style={LandingPageStyles.tabBarContainer}>
+                    <TabBar 
+                        tabsArray={["LOGIN", "SIGN UP"]}
+                        styleInactive={LandingPageStyles.inactiveTab}
+                        styleActive={LandingPageStyles.activeTab}
+                        tabTextStyleActive={LandingPageStyles.activeText}
+                        tabTextStyleInactive={LandingPageStyles.inactiveText}
+                        startIndex={selectedIndex}
+                        onChangeIndex={async (index) => {
+                            await setSelectedIndex(index)
+                            await setTab(index)
+                        }}
+                    />
+    
+                </View>
+                <View>
+                    {determineRender()}
+                </View>
             </View>
-            <View>
-                {determineRender()}
-            </View>
-        </View>
-    )
+        )
+    } catch(err){
+        throw new Error("101")
+    }
+    
 }
 export default LandingPageContainer

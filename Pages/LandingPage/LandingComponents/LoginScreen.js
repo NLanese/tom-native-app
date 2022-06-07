@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { Toggle } from '@ui-kitten/components';
+
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles';
+
+import { useRecoilState } from 'recoil';
+import { errorDataState } from '../../../Recoil/atoms';
+
 import Email from './SignInBoxComponents/Email';
 import Password from './SignInBoxComponents/Password';
 import LoginButton from './SignInBoxComponents/LoginButton';
 import ForgotPasswordModal from './SignInBoxComponents/ForgotPasswordModal';
+import ErrorMessage from '../../../Global/ErrorMessage';
+
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
     const [checked, setChecked] = useState(rememberMe)
     const [visible, setVisible] = useState(false)
+
+    const [errorState, setErrorState] = useRecoilState(errorDataState)
 
     return(
         <View style={SignInBoxStyles.container}>
@@ -25,8 +35,18 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
                 </View>
 
                 {/* Login Fields */}
-                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
-                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
+                <View style={SignInBoxStyles.loginContents}>
+                    <View style={{marginLeft: 60}}>
+                        <ErrorMessage message={errorState.email_login}/>
+                    </View>
+                    <Email handleInput={handleInput} userData={userData} rememberMe={rememberMe}/>
+                </View>
+                <View style={SignInBoxStyles.loginContents}>
+                    <View style={{marginLeft: 60}}>
+                        <ErrorMessage message={errorState.password_login}/>
+                    </View>
+                    <Password handleInput={handleInput} userData={userData} rememberMe={rememberMe}/>
+                </View>
 
                 {/* Login Button */}
                 <View style={SignInBoxStyles.loginButton}>

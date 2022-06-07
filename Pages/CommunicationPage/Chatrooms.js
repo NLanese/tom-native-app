@@ -105,13 +105,6 @@ const Chatrooms = () => {
         })
     }
 
-    // return(
-    //     <View>
-    //         <Banner />
-    //         <Text style={ChatroomsStyles.title}>Coming Soon</Text>
-    //     </View>
-    // )
-
     // Check if no messages
     if (user.chatrooms.length < 1){
         return(
@@ -124,75 +117,80 @@ const Chatrooms = () => {
     
     let scrollHeight = (user.chatrooms.length * 100) + 450
 
-    return(
-        <View>
-            {/* BANNER */}
-            <Banner />
-
-            {/* HEADER */}
-            <View style={ChatroomsStyles.headerBox}>
-                <View style={ChatroomsStyles.titleBox}>
-                    <Text style={ChatroomsStyles.title}>Messages</Text>
+    try {
+        return(
+            <View>
+                {/* BANNER */}
+                <Banner />
+    
+                {/* HEADER */}
+                <View style={ChatroomsStyles.headerBox}>
+                    <View style={ChatroomsStyles.titleBox}>
+                        <Text style={ChatroomsStyles.title}>Messages</Text>
+                    </View>
+                    <View style={{marginLeft: -20}}>
+                        <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', zIndex: 5, marginTop: 25, marginLeft: 42}}>
+                            <Image source={glass} style={{height: 15, width: 15, marginLeft: 30}}/>
+                        </View>
+                        <Input 
+                            onPressIn={() =>setInInput(true)}
+                            onEndEditing={() => setInInput(false)}
+                            style={{...determineSearchStyle(), marginRight: 30}}
+                            textStyle={{fontFamily: 'GilroyMedium', paddingLeft: 20}}
+                            placeholder="Search Chatrooms/Contacts"
+                            placeholderTextColor={'#BBBBBB'}
+                            onChangeText={(content) => setInInput(content)}
+                        />
+                    </View>
                 </View>
-                <View style={ChatroomsStyles}>
-                    <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', zIndex: 5, marginTop: 25, marginLeft: 42}}>
-                        <Image source={glass} style={{height: 15, width: 15}}/>
-                    </View>
-                    <Input 
-                        onPressIn={() =>setInInput(true)}
-                        onEndEditing={() => setInInput(false)}
-                        style={determineSearchStyle()}
-                        textStyle={{fontFamily: 'GilroyMedium'}}
-                        placeholder="            Search Chatrooms/Contacts"
-                        placeholderTextColor={'#BBBBBB'}
-                    />
+    
+                {/* THREAD HOLDER */}
+                <View style={{}}> 
+                    <ScrollView contentContainerStyle={{height: scrollHeight}}>
+    
+                        {/* EVERYONE */}
+                        <View style={ChatroomsStyles.chatroomBox}>
+                            <View style={ChatroomsStyles.chatroomTitleBox}>
+                                <Text style={ChatroomsStyles.chatroomBoxTitleText}>EVERYONE</Text>
+                            </View>
+                            <View>
+                                {generateChatCards(findChatsBy("everyone"))}
+                            </View>
+                        </View>
+    
+                        {/* ACTIVE */}
+                        <View style={ChatroomsStyles.chatroomBox}>
+                            <View style={ChatroomsStyles.chatroomBoxTitleBox}>
+                                <Text style={ChatroomsStyles.chatroomBoxTitleText}>ACTIVE</Text>
+                            </View>
+                            <View>
+                                {generateChatCards(findChatsBy("active"))}
+                            </View>
+                        </View>
+    
+                        {/* INACTIVE */}
+                        <View style={ChatroomsStyles.chatroomBox}>
+                            <View style={ChatroomsStyles.chatroomBoxTitleBox}>
+                                <Text style={ChatroomsStyles.chatroomBoxTitleText}>CONVERSATIONS</Text>
+                            </View>
+                            <View>
+                                {generateChatCards(findChatsBy("inactive"))}
+                            </View>
+                        </View>
+                        
+                    </ScrollView>
+                    <View style={{height: 30}} />
+                </View>
+    
+    
+                {/* NEW CHATROOM BUTTON */}
+                <View style={ChatroomsStyles.addButtonBox}>
+                    <NewChatroomButton />
                 </View>
             </View>
-
-            {/* THREAD HOLDER */}
-            <View style={{}}> 
-                <ScrollView contentContainerStyle={{height: scrollHeight}}>
-
-                    {/* EVERYONE */}
-                    <View style={ChatroomsStyles.chatroomBox}>
-                        <View style={ChatroomsStyles.chatroomTitleBox}>
-                            <Text style={ChatroomsStyles.chatroomBoxTitleText}>EVERYONE</Text>
-                        </View>
-                        <View>
-                            {generateChatCards(findChatsBy("everyone"))}
-                        </View>
-                    </View>
-
-                    {/* ACTIVE */}
-                    <View style={ChatroomsStyles.chatroomBox}>
-                        <View style={ChatroomsStyles.chatroomBoxTitleBox}>
-                            <Text style={ChatroomsStyles.chatroomBoxTitleText}>ACTIVE</Text>
-                        </View>
-                        <View>
-                            {generateChatCards(findChatsBy("active"))}
-                        </View>
-                    </View>
-
-                    {/* INACTIVE */}
-                    <View style={ChatroomsStyles.chatroomBox}>
-                        <View style={ChatroomsStyles.chatroomBoxTitleBox}>
-                            <Text style={ChatroomsStyles.chatroomBoxTitleText}>CONVERSATIONS</Text>
-                        </View>
-                        <View>
-                            {generateChatCards(findChatsBy("inactive"))}
-                        </View>
-                    </View>
-                    
-                </ScrollView>
-                <View style={{height: 30}} />
-            </View>
-
-
-            {/* NEW CHATROOM BUTTON */}
-            <View style={ChatroomsStyles.addButtonBox}>
-                <NewChatroomButton />
-            </View>
-        </View>
-    )
+        )
+    } catch(err){
+        throw new Error("601")
+    }
 }
 export default Chatrooms

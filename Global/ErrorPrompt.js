@@ -71,9 +71,6 @@ const ErrorPrompt = ({code}) => {
         )
     }
 
-    
-
-
 //////////////////////
 ///                ///
 ///  Main Return   ///
