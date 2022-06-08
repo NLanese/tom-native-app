@@ -45,6 +45,7 @@ const CameraPage = ({type}) => {
         const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
         const [showCamera, setShowCamera] = useState(false)
         const [images, setImages] = useState([])
+        const [imageIndex, setImageIndex] = useState(0)
         // const images = []
 
         /////////////////////////
@@ -179,7 +180,7 @@ const CameraPage = ({type}) => {
                     <Camera style={{ height: maxHeight * 0.89, width: maxWidth, marginTop: 0}} type={cameraType} ref={cameraRef}>
 
                     {/* Renders the Bottom Buttons */}
-                    <View>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-around', width: maxWidth * .9, marginTop: maxHeight * 0.65, marginLeft: maxHeight * 0.05}}>
                         {renderFlipButton()}
                         {renderTakePicture()}
                         {renderCloseButton()}
@@ -192,11 +193,10 @@ const CameraPage = ({type}) => {
 
         // Flip Button //
         const renderFlipButton = () => {
-            console.log("Inside Flip Button")
             return(
                 <View>
                     <TouchableOpacity
-                        // style={Styles.button}
+                        style={Styles.button}
                         onPress={() => {
                             setCameraType(
                                 cameraType === Camera.Constants.Type.back
@@ -204,7 +204,7 @@ const CameraPage = ({type}) => {
                                 : Camera.Constants.Type.back
                             );
                         }}>
-                        <View style={{marginTop: maxHeight * 0.65, marginLeft: maxWidth * -0.1}}>
+                        <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
                             <Text style={Styles.text}> Flip </Text>
                         </View>
                     </TouchableOpacity>
@@ -214,14 +214,13 @@ const CameraPage = ({type}) => {
 
         // Picture Button //
         const renderTakePicture = () => {
-            console.log("Inside Take Pic Button")
             return(
                 <View >
                     <TouchableOpacity 
                     style={Styles.button}
-                    onPress={() => {handleClickTakePicture()}  
+                    onPress={() => {handleClickTakePicture()}   
                     }>
-                        <View style={{marginTop: maxHeight * 0.62, marginLeft: maxWidth * 0.16}}>
+                        <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
                             <Text style={Styles.text}> Take Photo </Text>
                         </View>
                     </TouchableOpacity>
@@ -231,14 +230,13 @@ const CameraPage = ({type}) => {
 
         // Close button //
         const renderCloseButton = () => {
-            console.log("inside close button")
             return(
-                <View style={{backgroundColor: 'blue', height: 300, width: 500}}>
+                <View>
                     <TouchableOpacity 
                     style={Styles.button}
                     onPress={async () => { setShowCamera(false)}
                     }>
-                        <View style={{marginTop: maxHeight * 0.65, marginLeft: maxWidth * 0.13}}>
+                        <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
                             <Text style={Styles.text}> Close </Text>
                         </View>
                     </TouchableOpacity>
@@ -258,7 +256,7 @@ const CameraPage = ({type}) => {
                     {renderPictureTypeTitle()}
                     
                     <View>
-                        <View style={{backgroundColor: 'red', marginTop: 15}}>
+                        <View style={{marginTop: 15, width: maxWidth * 0.5, marginLeft: maxWidth * 0.25}}>
                             {renderTakenPictures()}  
                         </View>
                     </View>
@@ -311,17 +309,57 @@ const CameraPage = ({type}) => {
 
         // Renders the Pictures Taken
         const renderTakenPictures = () => {
+            if (images.length > 0){
+                return(
+                    <View>
+                        {/* Title */}
+                        <View >
+                            <Text style={{textAlign: 'center'}}>Picture {imageIndex + 1} of {images.length}</Text>
+                        </View>
+
+                        {/* Picture and Arrows */}
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between', height: maxHeight * 0.25, width: maxWidth * 0.7, marginLeft: -30}}>
+
+                            {/* index - 1 button*/}
+                            <TouchableOpacity style={{flex: 1}}>
+                                <Text style={{textAlign: 'center'}}>{'<'}</Text>
+                            </TouchableOpacity>
+
+                            <Image 
+                                source={{ uri: images[imageIndex] }}
+                                style={Styles.img}
+                            />
+
+                            {/* index + 1 button */}
+                             <TouchableOpacity style={{flex: 1}}>
+                                <Text style={{textAlign: 'center'}}>{'>'}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                )
+            }
+            else{
+                return(
+                    <>
+                        {renderNoPictures()}
+                    </>
+                )
+            }
             return(
                 <View>
                     {images && (
                         <View >
-                            <Image 
-                                source={{ uri: images[images.length - 1] }}
-                                style={Styles.img}
-                            />
+
+                            
                         </View>
                     )}
                 </View>
+            )
+        }
+
+        const renderNoPictures = () => {
+            return (
+                <Text style={{...Styles.text, color: 'black'}}>You haven't taken any pictures</Text>
             )
         }
 
@@ -422,9 +460,14 @@ const Styles = StyleSheet.create({
         width: '100%',
     },
     img: {
-        width: 200,
-        height: 200,
-
+        flex: 5,
+        height: '120%'
+    },
+    button: {
+        height: 80,
+        width: 80,
+        borderRadius: 100,
+        backgroundColor: 'grey'
     }
 })
 
