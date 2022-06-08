@@ -100,6 +100,16 @@ const Home = ({ handleLoggedIn }) => {
     }
     
 
+    if (buttonLoading){
+        setTimeout(() => {
+            if (buttonHeight < 50){
+                setButtonHeight(buttonHeight + 5)
+            }
+            else{
+                setButtonLoading(false)
+            }
+        }, 0.5)
+    }
 
     if (buttonLoading){
         setTimeout(() => {
@@ -178,6 +188,7 @@ const Home = ({ handleLoggedIn }) => {
                                     </View>
     
                                 </View>
+
                             </View>
     
                             <View style={{position: 'absolute', marginTop: 240, marginLeft: 20, marginRight: 20, paddingLeft: 8, paddingRight: 8}}>
