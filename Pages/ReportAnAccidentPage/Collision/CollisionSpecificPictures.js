@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
-// import { useNavigation } from '@react-navigation/native';
-// import Banner from "../../../Global/Banner"
-// import ContinueButton from "../../../Global/Buttons/ContinueButton";
-// import { collisionDataState, accidentDataState, cameraPermissionState } from "../../../Recoil/atoms";
-// import { useRecoilState } from "recoil";
-// import { Camera } from 'expo-camera';
-// import Template from "../../../Styles/RAA/RAATemplateStyles";
+import { useNavigation } from '@react-navigation/native';
+import Banner from "../../../Global/Banner"
+import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import { collisionDataState, accidentDataState, cameraPermissionState } from "../../../Recoil/atoms";
+import { useRecoilState } from "recoil";
+import { Camera } from 'expo-camera';
+import Template from "../../../Styles/RAA/RAATemplateStyles";
 
-// import Gradient from "../../../Components/Gradient"
+import Gradient from "../../../Components/Gradient"
 import CameraPage from "../../../Global/Camera";
 
-// let maxWidth = Dimensions.get('window').width
-// let maxHeight = Dimensions.get('window').height
+let maxWidth = Dimensions.get('window').width
+let maxHeight = Dimensions.get('window').height
 
 const CollisionSpecificPictures = () => {
     // const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
