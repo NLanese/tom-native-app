@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
 
+
 import { Camera } from 'expo-camera';
 import { shareAsync } from "expo-sharing";
 import * as MediaLibrary from 'expo-media-library'
@@ -174,25 +175,28 @@ const CameraPage = ({type}) => {
         // Main Camera View //
         const displayCameraView = () => {
             return(
-                <Camera style={Styles.camera} type={cameraType} ref={cameraRef}>
+                // <View>
+                    <Camera style={{ height: maxHeight * 0.89, width: maxWidth, marginTop: 0}} type={cameraType} ref={cameraRef}>
 
                     {/* Renders the Bottom Buttons */}
-                    <View style={Styles.buttonContainer}>
+                    <View>
                         {renderFlipButton()}
                         {renderTakePicture()}
                         {renderCloseButton()}
                     </View>
 
-                </Camera>
+                    </Camera>
+                // {/* </View> */}
             )
         }
 
         // Flip Button //
         const renderFlipButton = () => {
+            console.log("Inside Flip Button")
             return(
                 <View>
                     <TouchableOpacity
-                        style={Styles.button}
+                        // style={Styles.button}
                         onPress={() => {
                             setCameraType(
                                 cameraType === Camera.Constants.Type.back
@@ -210,8 +214,9 @@ const CameraPage = ({type}) => {
 
         // Picture Button //
         const renderTakePicture = () => {
+            console.log("Inside Take Pic Button")
             return(
-                <View>
+                <View >
                     <TouchableOpacity 
                     style={Styles.button}
                     onPress={() => {handleClickTakePicture()}  
@@ -226,8 +231,9 @@ const CameraPage = ({type}) => {
 
         // Close button //
         const renderCloseButton = () => {
+            console.log("inside close button")
             return(
-                <View>
+                <View style={{backgroundColor: 'blue', height: 300, width: 500}}>
                     <TouchableOpacity 
                     style={Styles.button}
                     onPress={async () => { setShowCamera(false)}
@@ -247,17 +253,17 @@ const CameraPage = ({type}) => {
         // Main Default View //
         const renderDefaultView = () => {
             return(
-                <View style={Styles.container}>
+                <View>
                     {/* Title */}
                     {renderPictureTypeTitle()}
                     
                     <View>
-                        <View style={Styles.imageBox}>
-                            {renderTakenPictures()}
-                            {renderOpenCameraButton()}
+                        <View style={{backgroundColor: 'red', marginTop: 15}}>
+                            {renderTakenPictures()}  
                         </View>
                     </View>
-                    <View style={Styles.continue}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', marginLeft: maxWidth * .15 - 10, width: maxWidth * .7, marginTop: 100}}>
+                        {renderOpenCameraButton()}
                         <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
                     </View>
                 </View>
@@ -268,7 +274,7 @@ const CameraPage = ({type}) => {
         // Renders the Open Camera Button
         const renderOpenCameraButton = () => {
             return(
-                <View style={Styles.openCamButton}>
+                <View style={{marginTop: -8}}>
                 <TouchableOpacity onPress={async () => {
                         setShowCamera(true)
                     }}>
@@ -281,7 +287,7 @@ const CameraPage = ({type}) => {
                             borderRadius: 50.5,
                             justifyContent: 'center',
                             alightItems: 'center',
-                            shadowColor: '#000000',
+                            shadowColor: 'black',
                             shadowOffset: {width: 6, height: 25},
                             shadowOpacity: 0.14,
                             shadowRadius: 13,
@@ -308,7 +314,7 @@ const CameraPage = ({type}) => {
             return(
                 <View>
                     {images && (
-                        <View style={Styles.pictureContainer}>
+                        <View >
                             <Image 
                                 source={{ uri: images[images.length - 1] }}
                                 style={Styles.img}
@@ -358,7 +364,7 @@ const CameraPage = ({type}) => {
             return(
                 <View style={{width: maxWidth, height: maxHeight * 0.2}}>
                     <Text style={Styles.title}>{title}</Text>
-                    <Text>{prompt}</Text>
+                    <Text style={Styles.subTitle}>{prompt}</Text>
                 </View>
             )
         }
@@ -397,33 +403,15 @@ const Styles = StyleSheet.create({
         fontFamily: "GilroyBold",
         color: "#444444"
     },
-    openCamButton: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.385,
-        marginLeft: maxWidth * .57
-    },
-    continue: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.60,
-        marginLeft: maxWidth * .13
-    },
-    camera: {
-        flex: 1,
-    },
-    container: {
-        flex: 1,
-    },
-    pictureContainer: {
-        marginTop: maxHeight * .06,
-        position: 'absolute',
-        marginLeft: (maxWidth -200) / 2,
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-        padding: 50
+    subTitle: {
+        marginLeft: 30,
+        width: maxWidth - 70,
+        marginBottom: 5,
+        fontFamily: 'GilroyBold',
+        fontSize: 13,
+        lineHeight: 18,
+        letterSpacing: 2,
+        color: '#888888'
     },
     text: {
         fontSize: 18,
