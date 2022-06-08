@@ -27,6 +27,12 @@ const CameraPage = ({type}) => {
 ///////////////////////
 
         //////////////////////////
+        //     Preliminary      //
+        //////////////////////////
+        const [changeFunction, setChangeFunction] = useState(false)
+        const [changeValue, setChangeValue] = useState(false)
+
+        //////////////////////////
         // All Incidient States // 
         //////////////////////////
         const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
@@ -51,34 +57,32 @@ const CameraPage = ({type}) => {
         /////////////////////////
         // State Determination //
         /////////////////////////
-        let changeFunction = null
-        let changeValue = null
 
         // This is inside an if just to be closed. Assigns the ChangeFunction
         if (true){
             if (type === "collision"){
-                changeFunction = setCollisionData
-                changeValue = collisionData
+                setChangeFunction(setCollisionData)
+                setChangeValue(collisionData)
             }
             else if (type === "injury" || type === "collision-injury"){
-                changeFunction = setInjuryData
-                changeValue = injuryData
+                setChangeFunction(setInjuryData)
+                setChangeValue(injuryData)
             }
             else if (type === "self-injury" || type === "self-accident-injury"){
-                changeFunction = setSelfInjuryData
-                changeValue = selfInjuryData
+                setChangeFunction(setSelfInjuryData)
+                setChangeValue(selfInjuryData)
             }
             else if (type === "general"){
-                changeFunction = setAccidentData
-                changeValue = accidentData
+                setChangeFunction(setAccidentData)
+                setChangeValue(accidentData)
             }
             else if (type === "property"){
-                changeFunction = setPropertyData
-                changeValue = propertyData
+                setChangeFunction(setPropertyData)
+                setChangeValue(propertyData)
             } 
             else if (type === "self-damage"){
-                changeFunction = setOwnCarData
-                changeValue = ownCarData
+                setChangeFunction(setOwnCarData)
+                setChangeValue(ownCarData)
             }
             else{
                 return <ErrorPrompt code={'901'} />
@@ -176,6 +180,13 @@ const CameraPage = ({type}) => {
                 }
             }
         }
+
+        ////////////////////
+        // useEffect Test // 
+        ////////////////////
+        useEffect(() => {
+            console.log(changeValue)
+        }, [changeValue])
 
 //////////////////////
 ///                ///

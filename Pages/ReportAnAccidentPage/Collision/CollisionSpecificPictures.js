@@ -179,57 +179,57 @@ const CollisionSpecificPictures = () => {
     )
 }
 
-const Styles = StyleSheet.create({
-    title: {
-        marginLeft: 30,
-        width: maxWidth - 60,
-        marginTop: 30,
-        fontSize: 24,
-        fontFamily: "GilroyBold",
-        color: "#444444"
-    },
-    openCamButton: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.49,
-        marginLeft: maxWidth * .57
-    },
-    continue: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.60,
-        marginLeft: maxWidth * .13
-    },
-    camera: {
-        flex: 1,
-    },
-    container: {
-        flex: 1,
-    },
-    pictureContainer: {
-        marginTop: maxHeight * .06,
-        position: 'absolute',
-        marginLeft: (maxWidth -200) / 2,
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-        padding: 50
-    },
-    text: {
-        fontSize: 18,
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    imageBox: {
-        width: '100%',
-    },
-    img: {
-        width: 200,
-        height: 200,
+// const Styles = StyleSheet.create({
+//     title: {
+//         marginLeft: 30,
+//         width: maxWidth - 60,
+//         marginTop: 30,
+//         fontSize: 24,
+//         fontFamily: "GilroyBold",
+//         color: "#444444"
+//     },
+//     openCamButton: {
+//         position: 'absolute',
+//         marginTop: maxHeight * 0.49,
+//         marginLeft: maxWidth * .57
+//     },
+//     continue: {
+//         position: 'absolute',
+//         marginTop: maxHeight * 0.60,
+//         marginLeft: maxWidth * .13
+//     },
+//     camera: {
+//         flex: 1,
+//     },
+//     container: {
+//         flex: 1,
+//     },
+//     pictureContainer: {
+//         marginTop: maxHeight * .06,
+//         position: 'absolute',
+//         marginLeft: (maxWidth -200) / 2,
+//     },
+//     buttonContainer: {
+//         flex: 1,
+//         backgroundColor: 'transparent',
+//         flexDirection: 'row',
+//         margin: 20,
+//         padding: 50
+//     },
+//     text: {
+//         fontSize: 18,
+//         color: 'white',
+//         fontWeight: 'bold'
+//     },
+//     imageBox: {
+//         width: '100%',
+//     },
+//     img: {
+//         width: 200,
+//         height: 200,
 
-    }
-})
+//     }
+// })
 
 
 

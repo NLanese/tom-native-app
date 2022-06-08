@@ -143,59 +143,59 @@ const OwnCarSpecificPictures = () => {
 
 // TODO: Continue Button needs to be the right button
 
-const Styles = StyleSheet.create({
-    title: {
-        marginTop: 23,
-        marginLeft: 30,
-        marginRight: 30,
+// const Styles = StyleSheet.create({
+//     title: {
+//         marginTop: 23,
+//         marginLeft: 30,
+//         marginRight: 30,
 
-        fontFamily: "GilroyBold",
-        fontSize: 30,
-        color: "#444444",
-        letterSpacing: -0.5
-    },
-    noButton: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .58
-    },
-    continue: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .15
-    },
-    container: {
-        flex: 1,
-    },
-    camera: {
-        flex: 1,
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-        padding: 50
-    },
-    button: {
-        flex: 1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 18,
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    imageBox: {
-        width: '100%',
-        alignItems: 'center'
-    },
-    img: {
-        width: 200,
-        height: 200,
+//         fontFamily: "GilroyBold",
+//         fontSize: 30,
+//         color: "#444444",
+//         letterSpacing: -0.5
+//     },
+//     noButton: {
+//         position: 'absolute',
+//         marginTop: maxHeight * 0.75,
+//         marginLeft: maxWidth * .58
+//     },
+//     continue: {
+//         position: 'absolute',
+//         marginTop: maxHeight * 0.75,
+//         marginLeft: maxWidth * .15
+//     },
+//     container: {
+//         flex: 1,
+//     },
+//     camera: {
+//         flex: 1,
+//     },
+//     buttonContainer: {
+//         flex: 1,
+//         backgroundColor: 'transparent',
+//         flexDirection: 'row',
+//         margin: 20,
+//         padding: 50
+//     },
+//     button: {
+//         flex: 1,
+//         alignSelf: 'flex-end',
+//         alignItems: 'center',
+//     },
+//     text: {
+//         fontSize: 18,
+//         color: 'white',
+//         fontWeight: 'bold'
+//     },
+//     imageBox: {
+//         width: '100%',
+//         alignItems: 'center'
+//     },
+//     img: {
+//         width: 200,
+//         height: 200,
 
-    }
-})
+//     }
+// })
 
 export default OwnCarSpecificPictures
