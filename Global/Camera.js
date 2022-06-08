@@ -370,16 +370,6 @@ const CameraPage = ({type}) => {
                     </>
                 )
             }
-            return(
-                <View>
-                    {images && (
-                        <View >
-
-                            
-                        </View>
-                    )}
-                </View>
-            )
         }
 
         const renderNoPictures = () => {
