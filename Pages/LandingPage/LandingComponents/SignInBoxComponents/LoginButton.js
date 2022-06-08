@@ -33,6 +33,7 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 				return
 			}
 			// await storeData()
+			console.log(data.driverSignIn.token)
 			 setUser(data.driverSignIn)
 			 stateChange(data.driverSignIn.token);
 			 handleLoggedIn()

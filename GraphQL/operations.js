@@ -263,10 +263,11 @@ mutation Mutation($email: String!, $password: String!, $firstname: String!, $las
 `
 const LOGIN = gql`
   mutation DriverSignIn($email: String!, $password: String!) {
-  driverSignIn(email: $email, password: $password) {
+    driverSignIn(email: $email, password: $password) {
     id
     createdAt
     role
+    token
     firstname
     lastname
     email
@@ -315,7 +316,6 @@ const LOGIN = gql`
       feedbackMessage
       hadAccident
       feedbackMessageSent
-      feedbackMessage
       feedbackStatus
       acknowledged
       acknowledgedAt
@@ -327,21 +327,18 @@ const LOGIN = gql`
       seatbeltOffRate
       followingDistanceRate
       speedingEventRate
-      seatbeltOffRate
       distractionsRate
       signalViolationsRate
-      followingDistanceRate
       deliveryCompletionRate
       deliveredAndRecieved
       photoOnDelivery
       attendedDeliveryAccuracy
       dnr
       netradyne
-      defects
       deliveryAssociate
+      defects
       customerDeliveryFeedback
       hasManyAccidents
-      customerDeliveryFeedback
       belongsToTeam
       attendence
       productivity
@@ -451,7 +448,6 @@ const LOGIN = gql`
         token
         firstname
         lastname
-        profilePick
         weeklyReport {
           id
           createdAt
@@ -475,6 +471,7 @@ const LOGIN = gql`
           defects
           customerDeliveryFeedback
         }
+        profilePick
       }
     }
   }
