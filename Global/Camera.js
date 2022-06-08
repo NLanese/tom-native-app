@@ -287,9 +287,10 @@ const CameraPage = ({type}) => {
                     </View>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', marginLeft: maxWidth * .15 - 10, width: maxWidth * .7, marginTop: 100}}>
                         {renderOpenCameraButton()}
-                        {renderContinueButton()}
+                        <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
                     </View>
                 </View>
+                // <Text>This is fucking retarded. I've taken shits with more helpful error messages than React Native</Text>
             )
         }
 
@@ -342,13 +343,11 @@ const CameraPage = ({type}) => {
                         </View>
 
                         {/* Picture and Arrows */}
-                        <View style={{flexDirection: 'row', justifyContent: 'space-between', height: maxHeight * 0.25, width: maxWidth, marginLeft: -maxWidth * .251}}>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between', height: maxHeight * 0.25, width: maxWidth * 0.7, marginLeft: -30}}>
 
                             {/* index - 1 button*/}
-                            <TouchableOpacity style={{flex: 1, alignItems: 'center', marginTop: 70}} 
-                            onPress={() => changeImageIndex("sub")}
-                            >
-                                <Text style={{textAlign: 'center', fontSize: 30}}>{'<'}</Text>
+                            <TouchableOpacity style={{flex: 1}}>
+                                <Text style={{textAlign: 'center'}}>{'<'}</Text>
                             </TouchableOpacity>
 
                             <Image 
@@ -357,10 +356,8 @@ const CameraPage = ({type}) => {
                             />
 
                             {/* index + 1 button */}
-                            <TouchableOpacity style={{flex: 1, alignItems: 'center', marginTop: 70}}
-                            onPress={() => changeImageIndex("add")}
-                            >
-                                <Text style={{textAlign: 'center', fontSize: 30}}>{'>'}</Text>
+                             <TouchableOpacity style={{flex: 1}}>
+                                <Text style={{textAlign: 'center'}}>{'>'}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -373,15 +370,21 @@ const CameraPage = ({type}) => {
                     </>
                 )
             }
+            return(
+                <View>
+                    {images && (
+                        <View >
+
+                            
+                        </View>
+                    )}
+                </View>
+            )
         }
 
-        // Renders the "No Pictures" Prompt when there are 0 images
         const renderNoPictures = () => {
             return (
-                <View style={{marginBottom: maxHeight * 0.25}}>
-                    <Text style={{...Styles.text, color: 'black'}}>You haven't taken any pictures</Text>
-                </View>
-                
+                <Text style={{...Styles.text, color: 'black'}}>You haven't taken any pictures</Text>
             )
         }
 
@@ -429,49 +432,6 @@ const CameraPage = ({type}) => {
             )
         }
 
-        // Renders the ContinueButton. Routes and Sites will vary based on the Camera Type
-        const renderContinueButton = () => {
-            if (type === "collision"){
-                return(
-                    <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
-                )
-            }
-            else if (type === "collision-injury"){
-               return(
-                    <ContinueButton nextPage={'collision-injury-report-information'} nextSite={"Collision Injury Info"} buttonText={'Done'} pageName={'collision-injury-specific-pictures-continue-button'}/>
-               )
-            }
-            else if (type === "injury"){
-                return(
-                    <ContinueButton nextPage={'injury-report-information'} nextSite={"Injury Info"} buttonText={'Done'} pageName={'injury-specific-pictures-continue-button'}/>
-               )
-            }
-            else if (type === "self-injury"){
-                return(
-                    <ContinueButton nextPage={'user-injury-information'} nextSite={"Your Own Injury Information"} buttonText={'Done'} pageName={'self-injury-specific-picture=continue-button'}/>
-                )
-            }
-            else if (type === "self-accident-injury"){
-                return(
-                    <ContinueButton nextPage={"user-accident-injury-information"} nextSite={"Your Own Accident Injury Information"} buttonText={'Done'} pageName={'self-accident-injury-specific-picture=continue-button'}/>
-                )
-            }
-            else if (type === "general"){
-                changeFunction = setAccidentData
-                changeValue = accidentData
-            }
-            else if (type === "property"){
-                return(
-                    <ContinueButton nextPage={'property-accident-information'} nextSite={"Property Damage Information"} buttonText={'Done'} pageName={'property-specific-pictures-continue-button'}/>
-                )
-            } 
-            else if (type === "self-damage"){
-                return(
-                    <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/> 
-                )
-            }
-        }
-
 //////////////////////
 ///                ///
 ///  Main Return   ///
@@ -513,7 +473,7 @@ const Styles = StyleSheet.create({
         fontFamily: 'GilroyBold',
         fontSize: 13,
         lineHeight: 18,
-        letterSpacing: 1,
+        letterSpacing: 2,
         color: '#888888'
     },
     text: {
@@ -526,7 +486,7 @@ const Styles = StyleSheet.create({
     },
     img: {
         flex: 5,
-        height: '150%',
+        height: '120%'
     },
     button: {
         height: 80,
