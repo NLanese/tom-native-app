@@ -145,6 +145,8 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
+console.log("Auth", client.req)
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
