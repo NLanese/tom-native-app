@@ -14,7 +14,7 @@ const CreateCollisionAccident = () => {
     const [collisionData, setCollisionData] = useRecoilState(collisionDataState)
     const [accidentData, setAccidentData] = useRecoilState(accidentDataState)
 
-    useEffect(() => [
+    useEffect(() => {
         setCollisionData({
             id: null,
             accidentId: accidentData.id,
@@ -34,7 +34,7 @@ const CreateCollisionAccident = () => {
             },
             extra_info: "",
         })
-    ], [])
+    }, [])
     
     return (
         <View>

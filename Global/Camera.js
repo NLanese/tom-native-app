@@ -6,12 +6,18 @@ import { shareAsync } from "expo-sharing";
 import * as MediaLibrary from 'expo-media-library'
 
 import { useRecoilState } from "recoil";
-import { collisionDataState, accidentDataState, injuryDataState, selfInjuryDataState, propertyDataState, ownCarDataState, cameraPermissionState, mediaLibraryPermissionState } from "../../../Recoil/atoms";
+import { collisionDataState, accidentDataState, injuryDataState, selfInjuryDataState, propertyDataState, ownCarDataState, cameraPermissionState, mediaLibraryPermissionState } from "../Recoil/atoms";
 
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
+import ContinueButton from "./Buttons/ContinueButton";
 import ErrorPrompt from "./ErrorPrompt";
+import Gradient from "../Components/Gradient"
+import Banner from "./Banner"
 
-const Camera = ({type}) => {
+
+let maxWidth = Dimensions.get('window').width
+let maxHeight = Dimensions.get('window').height
+
+const CameraPage = ({type}) => {
 
 ///////////////////////
 ///                 ///
@@ -37,6 +43,8 @@ const Camera = ({type}) => {
         const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useRecoilState(mediaLibraryPermissionState)
         const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
         const [showCamera, setShowCamera] = useState(false)
+        const [images, setImages] = useState([])
+        // const images = []
 
         /////////////////////////
         // State Determination //
@@ -65,7 +73,7 @@ const Camera = ({type}) => {
             else if (type === "property"){
                 changeFunction = setPropertyData
                 changeValue = propertyData
-            }
+            } 
             else if (type === "self-damage"){
                 changeFunction = setOwnCarData
                 changeValue = ownCarData
@@ -144,9 +152,8 @@ const Camera = ({type}) => {
         const handleClickTakePicture = async () => {
             const r = await takePhoto()
             if (!r.cancelled) {
-                setImage(r.uri)
-                let images = [...changeValue.specific_pictures];
-                images.push(r.uri)
+                console.log(r)
+                setImages([...images, r.uri]) 
                 changeFunction({
                     ...changeValue,
                     specific_pictures: images
@@ -242,9 +249,7 @@ const Camera = ({type}) => {
             return(
                 <View style={Styles.container}>
                     {/* Title */}
-                    <View>
-                        {renderPictureTypeTitle()}
-                    </View>
+                    {renderPictureTypeTitle()}
                     
                     <View>
                         <View style={Styles.imageBox}>
@@ -256,6 +261,7 @@ const Camera = ({type}) => {
                         <ContinueButton nextPage={'collision-accident-information'} nextSite={'Collision Information'} buttonText={'Done'} pageName={'collision-specific-pictures-continue-button'}/>
                     </View>
                 </View>
+                // <Text>This is fucking retarded. I've taken shits with more helpful error messages than React Native</Text>
             )
         }
 
@@ -301,10 +307,10 @@ const Camera = ({type}) => {
         const renderTakenPictures = () => {
             return(
                 <View>
-                    {image && (
+                    {images && (
                         <View style={Styles.pictureContainer}>
                             <Image 
-                                source={{ uri: image }}
+                                source={{ uri: images[images.length - 1] }}
                                 style={Styles.img}
                             />
                         </View>
@@ -344,9 +350,13 @@ const Camera = ({type}) => {
                     title = "Damage Pictures you should take:"
                     prompt = "Any and All Damages"
                 }
+                else{
+                    title="Error"
+                    prompt="Error"
+                }
             }
             return(
-                <View>
+                <View style={{width: maxWidth, height: maxHeight * 0.2}}>
                     <Text style={Styles.title}>{title}</Text>
                     <Text>{prompt}</Text>
                 </View>
@@ -361,18 +371,74 @@ const Camera = ({type}) => {
 
     const mainReturn = () => {
         if (showCamera){
-            displayCameraView()
+            return displayCameraView()
         }
         else{
-            renderDefaultView()
+            return renderDefaultView()
         }
     }
 
     return(
-        mainReturn()
+        <View>
+            <Banner />
+            {mainReturn()}
+        </View>
+        
     )
 
 }
 
+const Styles = StyleSheet.create({
+    title: {
+        marginLeft: 30,
+        width: maxWidth - 60,
+        marginTop: 30,
+        fontSize: 24,
+        fontFamily: "GilroyBold",
+        color: "#444444"
+    },
+    openCamButton: {
+        position: 'absolute',
+        marginTop: maxHeight * 0.385,
+        marginLeft: maxWidth * .57
+    },
+    continue: {
+        position: 'absolute',
+        marginTop: maxHeight * 0.60,
+        marginLeft: maxWidth * .13
+    },
+    camera: {
+        flex: 1,
+    },
+    container: {
+        flex: 1,
+    },
+    pictureContainer: {
+        marginTop: maxHeight * .06,
+        position: 'absolute',
+        marginLeft: (maxWidth -200) / 2,
+    },
+    buttonContainer: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        flexDirection: 'row',
+        margin: 20,
+        padding: 50
+    },
+    text: {
+        fontSize: 18,
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    imageBox: {
+        width: '100%',
+    },
+    img: {
+        width: 200,
+        height: 200,
 
-export default Camera
+    }
+})
+
+
+export default CameraPage
