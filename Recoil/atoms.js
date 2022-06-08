@@ -28,12 +28,12 @@ export const geoLocation = atom({
 	default: false
 })
 
-export const accidentDataState = atom({
+export const accidentDataState = atom({ // 
 	key: 'accidentDataState',
 	default: false
 })
 
-export const collisionDataState = atom({
+export const collisionDataState = atom({ // 
 	key: 'collisionDataState',
 	default: null
 })
@@ -43,12 +43,12 @@ export const collisionIdState = atom({
 	default: false
 })
 
-export const ownCarDataState = atom({
+export const ownCarDataState = atom({ // 
 	key: 'ownCarDataState',
 	default: false
 })
 
-export const injuryDataState = atom({
+export const injuryDataState = atom({ // 
 	key: 'injuryDataState',
 	default: false
 })
@@ -58,12 +58,12 @@ export const injuryIdState = atom({
 	default: false
 })
 
-export const propertyDataState = atom({
+export const propertyDataState = atom({ // 
 	key: 'propertyDataState',
 	default: false
 })
 
-export const selfInjuryDataState = atom({
+export const selfInjuryDataState = atom({ // 
 	key: 'selfInjuryDataState',
 	default: false
 })
@@ -77,7 +77,7 @@ export const cameraPermissionState = atom({
 	default: null
 })
 
-export const MediaLibraryPermissionState = atom({
+export const mediaLibraryPermissionState = atom({
 	key: 'mediaLibraryPermissionState',
 	default: null
 })

@@ -501,8 +501,8 @@ const IS_SERVER_READY = gql`
 //////////////////////////////////////////
 
 const DRIVER_CREATE_ACCIDENT = gql`
-  mutation Mutation($name: String!, $date: String!, $time: String!, $location: String!) {
-  driverCreateAccident(name: $name, date: $date, time: $time, location: $location) {
+  mutation Mutation($name: String!, $date: String!, $time: String!, $location: String!, $dspId: String!) {
+  driverCreateAccident(name: $name, date: $date, time: $time, location: $location, dspId: $dspId) {
     id
     name
     date
