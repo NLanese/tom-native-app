@@ -21,18 +21,22 @@ let maxHeight = Dimensions.get('window').height
 
 const PropertyAccidentContactInformation = () => {
 
-//----------------------------------------------\\
-//                                              \\
-//                 GLOBAL STUFF                 \\
-//                                              \\
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V\\
+/////////////////////////
+///                   ///
+///    PRELIMINARY    ///
+///                   ///
+/////////////////////////
 
+     // The details of the accident
+     const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
+     // Tracks for the Done Button to appear
+     cosnt [answeredQs, setAnsweredQs] = useEffect({
+         types: false,
+         kind: false
+     })
 
-
-    // The details of the accident
-    const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
-
+    // ContinueButton Props
     let route = 'property-accident-safety-equipment'
     let site  = 'Safety Equipment'
     if ( propertyData.types_of_damage.pack == true  ){
@@ -40,8 +44,12 @@ const PropertyAccidentContactInformation = () => {
         site  = 'Package Damage Information'
     }
 
-    // Determines which field the user is in
-    const [activeField, setActiveField] = useState("none")
+//////////////////////////
+///                    ///
+///     RENDERINGS     ///
+///                    ///
+//////////////////////////
+
 
     // Sets the height of the scroll view
     let defaultHeight = maxHeight
@@ -54,7 +62,9 @@ const PropertyAccidentContactInformation = () => {
         let rChunk = []
         let i = 0
         // Personal or Property Questions
-        if (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal){
+        console.log(propertyData.types_of_damage)
+        if (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true){
+            console.log("hello?")
             i++
             rChunk.push(personalProperty())
         }
@@ -76,7 +86,7 @@ const PropertyAccidentContactInformation = () => {
     const renderContinue = () => {
         
         // If all questions are rendered
-        if (propertyData.types_of_damage.gov && (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal)){
+        if (propertyData.types_of_damage.gov === true && (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true)){
             // All Qs answered
            if (
                propertyData.contact_info.town != null &&
@@ -95,7 +105,7 @@ const PropertyAccidentContactInformation = () => {
         else {
 
             // If only pack/personal questions
-            if (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal){
+            if (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true){
                 if (
                     (propertyData.contact_info.phoneNumber != null) &&
                     propertyData.contact_info.name != null &&
@@ -265,7 +275,7 @@ const PropertyAccidentContactInformation = () => {
 
     const govProperty = () => {
         return(
-            <View>
+            <View style={{height: 'auto'}}>
 
                 <Text style={Template.title}>
                    What is the Name of the Township whose government property was damaged?
@@ -347,7 +357,7 @@ const PropertyAccidentContactInformation = () => {
     return (
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: defaultHeight + 50}}>
+            <ScrollView contentContainerStyle={{height: 'auto'}}>
                 {determineQuestions()}
                 {renderContinue()}
             </ScrollView>

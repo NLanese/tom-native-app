@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Button, Input, CheckBox } from "@ui-kitten/components";
+import { Button, Input, CheckBox, Autocomplete } from "@ui-kitten/components";
 
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
@@ -19,36 +19,45 @@ let maxWidth = Dimensions.get('window').width
 let maxHeight = Dimensions.get('window').height
 
 const PropertyAccidentInformation = () => {
+///////////////////////
+///                 ///
+///   PRELIMINARY   /// 
+///                 ///
+///////////////////////
 
-//----------------------------------------------//
-//                                              //
-//         Preliminary States and Recoil        //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+        // Tracks the running property state
+        const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
-    // Self-explanatory bro
-    const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
+        // Keeps Track of the height for the container scroll view
+        const [contHeight, setContHeight] = useState(200)
 
-    // Keeps Track of the height for the container scroll view
-    const [contHeight, setContHeight] = useState(200)
+        ///////////////
+        // Page Data //
+        ///////////////
+
+            // Gets Package Type from Recoil to bring to Local
+            let initPack = propertyData.types_of_damage.pack
+            const [pack, setPack] = useState(initPack)
+
+            // Gets Personal Property Type from Recoil to bring to Local
+            let initPersonal = propertyData.types_of_damage.personal 
+            const [personal, setPersonal] = useState(initPersonal)
+
+            // Gets Gov Property Type from Recoil to bring to Local
+            let initGov = propertyData.types_of_damage.gov 
+            const [gov, setGov] = useState(initGov)
+
+            // Pulls the hash from Recoil to track things hit (already filled with values: false)
+            const [thingsHit, setThingsHit] = useState(propertyData.damage_report.thingsHit)
+
+            // Sets a counter on how many prop types were damages
+            const [amtDam, setAmtDam] = useState(0)
+
+            // Tracks whether damage happened inside or outside
+            const [inOrOut, setInOrOut] = useState(propertyData.damage_report.inOrOut)
 
 
-//----------------------------------------------//
-//                                              //
-//            Damage Type Information           //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
-
-    // Gets recoil values for state
-    let initPack = propertyData.types_of_damage.pack
-    let initPersonal = propertyData.types_of_damage.personal 
-    let initGov = propertyData.types_of_damage.gov 
-
-    // Sets damage type states
-    const [pack, setPack] = useState(initPack)
-    const [personal, setPersonal] = useState(initPersonal)
-    const [gov, setGov] = useState(initGov)
-
+   
 
     //        Makes sure that the inOrOut value of the           \\
     //    propertyData recoil object is always set to "outside"  \\
@@ -65,22 +74,87 @@ const PropertyAccidentInformation = () => {
         }
     }
 
+////////////////////////
+///                  ///
+///    RENDERINGS    /// 
+///                  ///
+////////////////////////
 
-//----------------------------------------------//
-//                                              //
-//              Package Information             //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+    ///////////////
+    // In Or Out //
+    ///////////////
 
-    const [inOrOut, setInOrOut] = useState(propertyData.damage_report.inOrOut)
+        // Renders the question that asks where package damage occurred
+        const whereWasPackageDamage = () => {
+            return(
+                <View>
+                    <Text style={Template.questionText}>
+                        Where did the damage to the package(s) occur?
+                    </Text>
+                    <View style={{marginLeft: 30, marginTop: 20}}>
+                        <CheckBox
+                            checked={inOrOutChecked("outside")}
+                            style={Template.stackedCheck}
+                            onChange={()=>{
+                                handleInOrOutClick("outside")
+                            }}
+                        >
+                            Outside of the vehicle
+                        </CheckBox>
+                        <CheckBox
+                            checked={inOrOutChecked("inside")}
+                            style={Template.stackedCheck}
+                            onChange={()=>{
+                                handleInOrOutClick("inside")
+                            }}
+                        >
+                            Inside of the vehicle
+                        </CheckBox>
+                    </View>
+                </View>
+            )
+        }
 
-//----------------------------------------------//
-//                                              //
-//              Package Functions               //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+    /////////////////////////
+    // Property Things Hit //
+    /////////////////////////
 
-    // HANDLERS \\
+        // Determines all the possible choices to select for property damage. RENDERS NOTHING
+        const propertyOptions = () => {
+            let damageOptions = [
+                "Building",
+                "Fence",
+                "Sign",
+                "Mailbox",
+                "Bushes / Tree(s)"
+            ]
+            if (gov){
+                damageOptions.push("Traffic Signal")
+                damageOptions.push("Telephone Pole")
+                damageOptions.push("Road Structure")
+            }
+            if (personal){
+                damageOptions.push("Bird Feeder")
+                damageOptions.push("Garden")
+                damageOptions.push("Parked Car")
+                damageOptions.push("Lawn Decorations")
+            }
+            damageOptions.push("Other")
+            return damageOptions
+        }
+
+////////////////////////
+///                  ///
+///     HANDLERS     /// 
+///                  ///
+////////////////////////
+
+
+    ///////////////
+    // In Or Out //
+    ///////////////
+
+        // Determines whether inside, outside, or both
         const handleInOrOutClick = (status) => {
 
             // if no value
@@ -160,7 +234,7 @@ const PropertyAccidentInformation = () => {
             }
         }
 
-    // RENDERINGS \\
+        // Determines which, if any, of the in and outs are checked
         const inOrOutChecked = (status) => {
             if (inOrOut == "both" || inOrOut == status){
                 return true
@@ -169,89 +243,11 @@ const PropertyAccidentInformation = () => {
                 return false
             }
         }
-
-
-
-//----------------------------------------------//
-//                                              //
-//             Package Code Chunks              //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
-
-    const whereWasPackageDamage = () => {
-        return(
-            <View>
-                <Text style={Template.questionText}>
-                    Where did the damage to the package(s) occur?
-                </Text>
-                <View style={{marginLeft: 30, marginTop: 20}}>
-                    <CheckBox
-                        checked={inOrOutChecked("outside")}
-                        style={Template.stackedCheck}
-                        onChange={()=>{
-                            handleInOrOutClick("outside")
-                        }}
-                    >
-                        Outside of the vehicle
-                    </CheckBox>
-                    <CheckBox
-                        checked={inOrOutChecked("inside")}
-                        style={Template.stackedCheck}
-                        onChange={()=>{
-                            handleInOrOutClick("inside")
-                        }}
-                    >
-                        Inside of the vehicle
-                    </CheckBox>
-                </View>
-            </View>
-        )
-    }
-
-
-
-
-//----------------------------------------------//
-//                                              //
-//             Property Information             //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
     
-    const [thingsHit, setThingsHit] = useState(propertyData.damage_report.thingsHit)
 
-
-//----------------------------------------------//
-//                                              //
-//             Property Functions               //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
-
-
-    // RENDERINGS \\
-
-        // Determines all the possible choices to select for property damage
-        const propertyOptions = () => {
-            let damageOptions = [
-                "Building",
-                "Fence",
-                "Sign",
-                "Mailbox",
-                "Bushes / Tree(s)"
-            ]
-            if (gov){
-                damageOptions.push("Traffic Signal")
-                damageOptions.push("Telephone Pole")
-                damageOptions.push("Road Structure")
-            }
-            if (personal){
-                damageOptions.push("Bird Feeder")
-                damageOptions.push("Garden")
-                damageOptions.push("Parked Car")
-                damageOptions.push("Lawn Decorations")
-            }
-            damageOptions.push("Other")
-            return damageOptions
-        }
+    /////////////////////////
+    // Property Things Hit //
+    /////////////////////////
 
         // Determines if a damaged property option is checked or not
         const propertyIsChecked = (property) => {
@@ -262,6 +258,15 @@ const PropertyAccidentInformation = () => {
                 return false
             }
         }
+
+
+//----------------------------------------------//
+//                                              //
+//             Property Functions               //
+//                                              //
+//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
+
+
 
         // Renders checkboxes for all property damage options
         const renderPropertyBoxes = () => {
@@ -405,7 +410,7 @@ const PropertyAccidentInformation = () => {
     return (
         <View >
             <Banner />
-            <ScrollView contentContainerStyle={{height: contHeight}}>
+            <ScrollView contentContainerStyle={{height: 'auto', }}>
 
                 <Text style={Template.questionText}>What was damaged? Choose all that apply</Text>
                 <View style={{marginTop: 20, marginLeft: 30}}>

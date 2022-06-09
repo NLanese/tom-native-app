@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
-import Banner from "../../../Global/Banner"
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
-// import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-// import { useMutation } from "@apollo/client";
-import { collisionDataState, accidentDataState, cameraPermissionState, ownCarDataState } from "../../../Recoil/atoms";
-import { useRecoilState } from "recoil";
-import { Camera } from 'expo-camera';
+// import { useNavigation } from '@react-navigation/native';
+// import Banner from "../../../Global/Banner"
+// import ContinueButton from "../../../Global/Buttons/ContinueButton";
+// // import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
+// // import { useMutation } from "@apollo/client";
+// import { collisionDataState, accidentDataState, cameraPermissionState, ownCarDataState } from "../../../Recoil/atoms";
+// import { useRecoilState } from "recoil";
+// import { Camera } from 'expo-camera';
 
-let maxWidth = Dimensions.get('window').width
-let maxHeight = Dimensions.get('window').height
+// let maxWidth = Dimensions.get('window').width
+// let maxHeight = Dimensions.get('window').height
 
 const OwnCarSpecificPictures = () => {
     const [ownCarData, setOwnCarData] = useRecoilState(ownCarDataState)
