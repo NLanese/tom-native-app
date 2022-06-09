@@ -36,7 +36,6 @@ const PropertyAccidentExtraInformation = () => {
                 types_of_damage: propertyData.types_of_damage
             }
         }).then( (resolved) => {
-            console.log(resolved)
             setPropertyData({
                 ...propertyData,
                 id: resolved.data.driverCreatePropertyAccident.id
@@ -77,7 +76,7 @@ const PropertyAccidentExtraInformation = () => {
                 />
             </View>
 
-            <View style={{marginLeft: 30, marginTop: 300}}>
+            <View style={{marginLeft: 30, marginTop: maxHeight * 0.3}}>
                 <TouchableOpacity onPress={() => handleSubmit()}>
                     <Gradient
                         colorOne={"#534FFF"}
@@ -96,7 +95,9 @@ const PropertyAccidentExtraInformation = () => {
 
             <View style={{marginLeft: 30, marginTop: -90}}>
                 {complete === true ? 
+                <View style={{marginTop: 0}}>
                     <ContinueButton nextPage={'post-property-instructions'} nextSite={'Post Property Damage Instructions'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />
+                </View>
                  : null} 
             </View>
         </View>

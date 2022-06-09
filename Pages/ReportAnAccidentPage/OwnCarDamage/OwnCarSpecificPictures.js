@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
-import Banner from "../../../Global/Banner"
-import ContinueButton from "../../../Global/Buttons/ContinueButton";
-// import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-// import { useMutation } from "@apollo/client";
-import { collisionDataState, accidentDataState, cameraPermissionState, ownCarDataState } from "../../../Recoil/atoms";
-import { useRecoilState } from "recoil";
-import { Camera } from 'expo-camera';
+// import { useNavigation } from '@react-navigation/native';
+// import Banner from "../../../Global/Banner"
+// import ContinueButton from "../../../Global/Buttons/ContinueButton";
+// // import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
+// // import { useMutation } from "@apollo/client";
+// import { collisionDataState, accidentDataState, cameraPermissionState, ownCarDataState } from "../../../Recoil/atoms";
+// import { useRecoilState } from "recoil";
+// import { Camera } from 'expo-camera';
 
-let maxWidth = Dimensions.get('window').width
-let maxHeight = Dimensions.get('window').height
+// let maxWidth = Dimensions.get('window').width
+// let maxHeight = Dimensions.get('window').height
 
 const OwnCarSpecificPictures = () => {
     const [ownCarData, setOwnCarData] = useRecoilState(ownCarDataState)
@@ -28,7 +28,6 @@ const OwnCarSpecificPictures = () => {
         // Get permission to use the camera
         (async () => {
             const { status } = await Camera.requestCameraPermissionsAsync()
-            console.log(status)
             setHasPermission(status)
             if (status === 'denied') {
                 alert('Camera access is required. Please modify your device permissions in the Systems Preferences page or contact your manager')
@@ -45,7 +44,6 @@ const OwnCarSpecificPictures = () => {
     // Function for taking a photo
     const takePhoto = async () => {
         if (cameraRef) {
-            console.log('taking picture')
             try {
                 let photo = await cameraRef.current.takePictureAsync({
                     allowsEditing: true,
@@ -53,7 +51,6 @@ const OwnCarSpecificPictures = () => {
                     // base64: true,
                     quality: 1
                 })
-                console.log(photo)
                 return photo
             } catch (error) {
                 console.log(error)
@@ -90,7 +87,6 @@ const OwnCarSpecificPictures = () => {
                                             ...ownCarData,
                                             specific_pictures: images
                                         })
-                                        // console.log(images)
                                     }
                                     // alert(`DEBUG: ${JSON.stringify(r)}`)
                                     setShowCamera(false)
@@ -143,59 +139,59 @@ const OwnCarSpecificPictures = () => {
 
 // TODO: Continue Button needs to be the right button
 
-const Styles = StyleSheet.create({
-    title: {
-        marginTop: 23,
-        marginLeft: 30,
-        marginRight: 30,
+// const Styles = StyleSheet.create({
+//     title: {
+//         marginTop: 23,
+//         marginLeft: 30,
+//         marginRight: 30,
 
-        fontFamily: "GilroyBold",
-        fontSize: 30,
-        color: "#444444",
-        letterSpacing: -0.5
-    },
-    noButton: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .58
-    },
-    continue: {
-        position: 'absolute',
-        marginTop: maxHeight * 0.75,
-        marginLeft: maxWidth * .15
-    },
-    container: {
-        flex: 1,
-    },
-    camera: {
-        flex: 1,
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-        padding: 50
-    },
-    button: {
-        flex: 1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 18,
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    imageBox: {
-        width: '100%',
-        alignItems: 'center'
-    },
-    img: {
-        width: 200,
-        height: 200,
+//         fontFamily: "GilroyBold",
+//         fontSize: 30,
+//         color: "#444444",
+//         letterSpacing: -0.5
+//     },
+//     noButton: {
+//         position: 'absolute',
+//         marginTop: maxHeight * 0.75,
+//         marginLeft: maxWidth * .58
+//     },
+//     continue: {
+//         position: 'absolute',
+//         marginTop: maxHeight * 0.75,
+//         marginLeft: maxWidth * .15
+//     },
+//     container: {
+//         flex: 1,
+//     },
+//     camera: {
+//         flex: 1,
+//     },
+//     buttonContainer: {
+//         flex: 1,
+//         backgroundColor: 'transparent',
+//         flexDirection: 'row',
+//         margin: 20,
+//         padding: 50
+//     },
+//     button: {
+//         flex: 1,
+//         alignSelf: 'flex-end',
+//         alignItems: 'center',
+//     },
+//     text: {
+//         fontSize: 18,
+//         color: 'white',
+//         fontWeight: 'bold'
+//     },
+//     imageBox: {
+//         width: '100%',
+//         alignItems: 'center'
+//     },
+//     img: {
+//         width: 200,
+//         height: 200,
 
-    }
-})
+//     }
+// })
 
 export default OwnCarSpecificPictures

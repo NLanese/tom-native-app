@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView
 
 import { Input, Button } from '@ui-kitten/components';
 
-import { geoLocation, accidentDataState, websiteState } from "../../../Recoil/atoms";
+import { geoLocation, accidentDataState, websiteState, userState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
 
 import DynamicInput from "../../../Components/DynamicInput";
@@ -34,6 +34,7 @@ const CreateAccident = ({accident}) => {
     const [driverCreateAccount, { loading: loading, error: error, data: data }] = useMutation(DRIVER_CREATE_ACCIDENT)
     const [gLocation, setGeoLocation] = useRecoilState(geoLocation)
     const [accidentStateData, setAccidentDataState] = useRecoilState(accidentDataState)
+    const [user, setUser] = useRecoilState(userState)
 
     // Getting Time and Dates
     let today = new Date();
@@ -70,12 +71,15 @@ const CreateAccident = ({accident}) => {
                         name: accidentData.name,
                         date: accidentData.date,
                         time: accidentData.time,
-                        location: accidentData.location
+                        location: accidentData.location,
+                        dspId: user.dsp.id
                     }
                 }).then( async(resolved) => {
                     await setAccidentDataState(resolved.data.driverCreateAccident)
                     await setWebsite({current: site, previous: website.state, saved: site})
                     navigation.navigate(route)
+                }).catch( (error) => {
+                    console.log(error)
                 })
             }
     }

@@ -326,7 +326,6 @@ const FinalQuestions = () => {
                                 }
                             }
                         })
-                        console.log(accidentState)
                         setWebsite({current: "Finished Reporting", previous: website.current, saved: "Finished Reporting"})
                         navigation.navigate("finish")
                     }}>
@@ -535,7 +534,6 @@ const FinalQuestions = () => {
 /////////////////////////////////////////
 
     let screenHeight = `${theHeight}%`
-    console.log(theHeight)
 
     return(
         <View>

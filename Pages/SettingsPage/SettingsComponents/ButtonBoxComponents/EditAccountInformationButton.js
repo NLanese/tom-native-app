@@ -34,7 +34,6 @@ const EditAccountInformationButton = ({edit, setEdit, currentSettings}) => {
             return(
                 handleMutation()
                     .then( (resolved) => {
-                        console.log(resolved)
                     })
                 )
         }
@@ -66,18 +65,6 @@ const EditAccountInformationButton = ({edit, setEdit, currentSettings}) => {
                     <Text style={AccountInformationStyles.buttonText}>{determineText()}</Text>
                 </Gradient>
             </TouchableOpacity>
-            {/* <Button 
-                mode="contained"
-                loading={buttonLoading}
-                style={ButtonStyles.logInButton}
-                titleStyle={{color: "white"}}
-                onPress={() => {
-                    // handleButtonLoading()
-                    navigation.navigate("edit_account_information")
-                }}
-            >
-                Edit Account Information
-            </Button> */}
         </View>
     )
 }

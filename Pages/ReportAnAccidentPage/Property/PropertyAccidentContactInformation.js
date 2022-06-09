@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Button, Input } from "@ui-kitten/components";
 
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import DynamicInput from "../../../Components/DynamicInput";
-
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-import { useMutation } from "@apollo/client";
 
 import { propertyDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -21,18 +17,24 @@ let maxHeight = Dimensions.get('window').height
 
 const PropertyAccidentContactInformation = () => {
 
-//----------------------------------------------\\
-//                                              \\
-//                 GLOBAL STUFF                 \\
-//                                              \\
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V\\
+/////////////////////////
+///                   ///
+///    PRELIMINARY    ///
+///                   ///
+/////////////////////////
 
+     // The details of the accident
+     const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
+    console.log(propertyData)
 
+     // Tracks for the Done Button to appear
+     const [answeredQs, setAnsweredQs] = useState({
+         types: false,
+         kind: false
+     })
 
-    // The details of the accident
-    const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
-
+    // ContinueButton Props
     let route = 'property-accident-safety-equipment'
     let site  = 'Safety Equipment'
     if ( propertyData.types_of_damage.pack == true  ){
@@ -40,27 +42,28 @@ const PropertyAccidentContactInformation = () => {
         site  = 'Package Damage Information'
     }
 
-    // Determines which field the user is in
-    const [activeField, setActiveField] = useState("none")
-
-    // Sets the height of the scroll view
-    let defaultHeight = maxHeight
-    if (propertyData.types_of_damage.gov && (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal)){
-        defaultHeight = maxHeight + 300
-    }
+//////////////////////////
+///                    ///
+///     RENDERINGS     ///
+///                    ///
+//////////////////////////
 
     // Based on what info is in the property data, it renders certain questions
     const determineQuestions = () => {
+        // returnChunk. This will hold one, or both, of the prop / pack questions
         let rChunk = []
-        let i = 0
-        if (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal){
-            i++
+
+        // Personal or Property Questions
+        if (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true){
             rChunk.push(personalProperty())
         }
+
+        // Gov Questions
         if (propertyData.types_of_damage.gov){
-            i++
             rChunk.push(govProperty())
         }
+
+        // Returns the / both Chunk(s)
         return rChunk.map( (chunk, index) => {
             return(
                 <View key={index}>
@@ -74,7 +77,7 @@ const PropertyAccidentContactInformation = () => {
     const renderContinue = () => {
         
         // If all questions are rendered
-        if (propertyData.types_of_damage.gov && (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal)){
+        if (propertyData.types_of_damage.gov === true && (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true)){
             // All Qs answered
            if (
                propertyData.contact_info.town != null &&
@@ -93,7 +96,7 @@ const PropertyAccidentContactInformation = () => {
         else {
 
             // If only pack/personal questions
-            if (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal){
+            if (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true){
                 if (
                     (propertyData.contact_info.phoneNumber != null) &&
                     propertyData.contact_info.name != null &&
@@ -263,7 +266,7 @@ const PropertyAccidentContactInformation = () => {
 
     const govProperty = () => {
         return(
-            <View>
+            <View style={{height: 'auto'}}>
 
                 <Text style={Template.title}>
                    What is the Name of the Township whose government property was damaged?
@@ -345,7 +348,7 @@ const PropertyAccidentContactInformation = () => {
     return (
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: defaultHeight + 50}}>
+            <ScrollView contentContainerStyle={{height: 'auto', paddingBottom: maxHeight * 0.22}}>
                 {determineQuestions()}
                 {renderContinue()}
             </ScrollView>

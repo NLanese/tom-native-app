@@ -4,7 +4,6 @@ import { View, Text, ScrollView, TouchableOpacity, Touchable } from 'react-nativ
 import { Modal } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
 
-import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM, DYNAMICUPDATECHATROOM, DYNAMICADDDRIVERTOCHAT} from "../../../GraphQL/operations";
 
@@ -13,17 +12,18 @@ import Loading from "../../../Global/Loading";
 import SearchBar from "./SearchBar";
 import NameChat from "./NameChat";
 
+import ErrorPrompt from "../../../Global/ErrorPrompt";
+
 import { useRecoilState } from 'recoil'
 import { threadState, userState, websiteState } from "../../../Recoil/atoms";
 
 import nameObj from "../../../Hooks/handleNameCaseChange";
+import handlePicture from "../../../Hooks/handlePicture";
 
 const Contacts = ({creating}) => {
     const navigation = useNavigation()
 
     // Gets all Drivers from DSP
-    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
-
 
     const [driverCreateChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DRIVERCREATECHATROOM);
 
@@ -70,10 +70,12 @@ const Contacts = ({creating}) => {
             i++
             return(
                 <View style={ContactStyles.card} key={i}>
-                    <View style={ContactStyles.image}><Text>Image</Text></View>
+                    <View style={ContactStyles.image}>
+                        {handlePicture(driver.profilePick, 50)}
+                    </View>
                     <View style={ContactStyles.nameView}>
                         <Text style={ContactStyles.title}>{namer.first} {namer.last} </Text>
-                        <Text style={ContactStyles.subtitle}>{driver.__typename}</Text>
+                        <Text style={{...ContactStyles.subtitle, marginTop: 5}}>{driver.__typename}</Text>
                     </View>
                     {determineAddOrRemove(driver)}
                     <View style={ContactStyles.divider} />
@@ -117,7 +119,6 @@ const Contacts = ({creating}) => {
         })
     }
 
-
     // Determines whether the add, remove or none of the buttons are displayed
     const determineAddOrRemove = (selected) => {
         let returnComponent
@@ -159,7 +160,9 @@ const Contacts = ({creating}) => {
                                 returnComponent = () => {
                                     return(
                                         <TouchableOpacity style={ContactStyles.removeButton} onPress={() => handleRemoveClick(selected)}>
-                                            <View><Text style={ContactStyles.removeText}>Remove</Text></View>
+                                            <View>
+                                                <Text style={ContactStyles.removeText}>Remove</Text>
+                                            </View>
                                         </TouchableOpacity>
                                     )
                                 }
@@ -291,60 +294,50 @@ const Contacts = ({creating}) => {
 
 // ------------------------- UseEffects --------------------------
 
-    useEffect (async () => {
-        if (changesMade && !loading){
-            setTimeout(() => {
-                
-            }, 500)
-        }
-    }, [activeThread])
 
 // ------------------------- UseEffects --------------------------
 
 
-    if (!loading && queryData){
-        let allDrivers = [...queryData.driverGetDriversFromDsp.drivers]
+        let allDrivers = user.dsp.drivers
 
         let allContacts = [...allDrivers, ...user.managers]
 
-        return (
-            <View>
-                <Banner />
-
-                <View style={ContactStyles.header}>
-                    <View style={ContactStyles.searchBar}>
-                        <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
-                        <SearchBar setSearch={handleSetSearch} />
-                    </View>
-                </View>
-
-                <View style={ContactStyles.scrollContainer}>
-                    <ScrollView contentContainerStyle={ContactStyles.container}>
-                        {determineRosterDisplay(allContacts)}
-                    </ScrollView>
-                </View>
-
-                <View style={ContactStyles.footer}>
-                    <TouchableOpacity onPress={() => handleDoneClick()} style={ContactStyles.doneTouchBounds}>  
-                        <View style={ContactStyles.completeSelection}>
-                            <Text style={ContactStyles.doneText}>Done</Text>
+        try{
+            return (
+                <View>
+                    <Banner />
+    
+                    <View style={ContactStyles.header}>
+                        <View style={ContactStyles.searchBar}>
+                            <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
+                            <SearchBar setSearch={handleSetSearch} />
                         </View>
-                    </TouchableOpacity>
-                </View>
-
-                <Modal visible={modalVisible}  backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-                    <View>
-                        <NameChat handleSubmission={handleSubmission} setModalVisible={setModalVisible} />
                     </View>
-                </Modal>
-
-            </View>
-        )
-    }
-    else{
-        return(
-            <Loading />
-        )
-    }
+    
+                    <View style={ContactStyles.scrollContainer}>
+                        <ScrollView contentContainerStyle={ContactStyles.container}>
+                            {determineRosterDisplay(allContacts)}
+                        </ScrollView>
+                    </View>
+    
+                    <View style={ContactStyles.footer}>
+                        <TouchableOpacity onPress={() => handleDoneClick()} style={ContactStyles.doneTouchBounds}>  
+                            <View style={ContactStyles.completeSelection}>
+                                <Text style={ContactStyles.doneText}>Done</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+    
+                    <Modal visible={modalVisible}  backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                        <View>
+                            <NameChat handleSubmission={handleSubmission} setModalVisible={setModalVisible} />
+                        </View>
+                    </Modal>
+    
+                </View>
+            )
+        } catch(err){
+            throw new Error("603")
+        }
 }
 export default Contacts

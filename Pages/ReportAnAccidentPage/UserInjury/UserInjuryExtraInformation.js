@@ -32,10 +32,7 @@ const UserInjuryExtraInformation = ({accident}) => {
 
     const [selfInjuryData, setSelfInjuryData] = useRecoilState(selfInjuryDataState)
     const [accidentState, setAccidentState] = useRecoilState(accidentDataState)
-    const [user] = useRecoilState(user.token)
-
-    console.log(userState.token)
-
+    const [user] = useRecoilState(userState)
 
     const [isActive, setActive] = useState(false)
     const [completed, setCompleted] = useState(false)

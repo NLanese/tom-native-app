@@ -44,21 +44,17 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRemem
         }
     }
 
-    useEffect(async () => {
-        // Look at local storage for username and password
-        const data = await getData()
-        // console.log(`email, useEffect: ${data.email}`)
-        // console.log(`password, useEffect: ${data.password}`)
-        // Fill in the fields with the data in local storage if it's there
-        if (data) {
-            setUserData({
-                ...userData,
-                email: data.email,
-                password: data.password
-            })
-            // console.log(JSON.stringify(userData))
-        }
-    }, [])
+    // useEffect(() => {
+    //     // Look at local storage for username and password
+    //     const data = getData()
+    //     if (data) {
+    //         setUserData({
+    //             ...userData,
+    //             email: data.email,
+    //             password: data.password
+    //         })
+    //     }
+    // }, [])
 
 
     // Sends user input to the use state above
@@ -90,27 +86,32 @@ const LandingPageContainer = ({handleLoggedIn, setTab, tab, rememberMe, setRemem
         }
     }
 
-    return (
-        <View style={LandingPageStyles.container}>
-            <View style={LandingPageStyles.tabBarContainer}>
-                <TabBar 
-                    tabsArray={["LOGIN", "SIGN UP"]}
-                    styleInactive={LandingPageStyles.inactiveTab}
-                    styleActive={LandingPageStyles.activeTab}
-                    tabTextStyleActive={LandingPageStyles.activeText}
-                    tabTextStyleInactive={LandingPageStyles.inactiveText}
-                    startIndex={selectedIndex}
-                    onChangeIndex={async (index) => {
-                        await setSelectedIndex(index)
-                        await setTab(index)
-                    }}
-                />
-
+    try {
+        return (
+            <View style={LandingPageStyles.container}>
+                <View style={LandingPageStyles.tabBarContainer}>
+                    <TabBar 
+                        tabsArray={["LOGIN", "SIGN UP"]}
+                        styleInactive={LandingPageStyles.inactiveTab}
+                        styleActive={LandingPageStyles.activeTab}
+                        tabTextStyleActive={LandingPageStyles.activeText}
+                        tabTextStyleInactive={LandingPageStyles.inactiveText}
+                        startIndex={selectedIndex}
+                        onChangeIndex={async (index) => {
+                            await setSelectedIndex(index)
+                            await setTab(index)
+                        }}
+                    />
+    
+                </View>
+                <View>
+                    {determineRender()}
+                </View>
             </View>
-            <View>
-                {determineRender()}
-            </View>
-        </View>
-    )
+        )
+    } catch(err){
+        throw new Error("101")
+    }
+    
 }
 export default LandingPageContainer

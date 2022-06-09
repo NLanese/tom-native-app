@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { Toggle } from '@ui-kitten/components';
+
 import { SignInBoxStyles } from '../../../Styles/LandingPageStyles';
+
+import { useRecoilState } from 'recoil';
+import { errorDataState } from '../../../Recoil/atoms';
+
 import Email from './SignInBoxComponents/Email';
 import Password from './SignInBoxComponents/Password';
 import LoginButton from './SignInBoxComponents/LoginButton';
 import ForgotPasswordModal from './SignInBoxComponents/ForgotPasswordModal';
+import ErrorMessage from '../../../Global/ErrorMessage';
+
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
     const [checked, setChecked] = useState(rememberMe)
     const [visible, setVisible] = useState(false)
 
+    const [errorState, setErrorState] = useRecoilState(errorDataState)
+
     return(
         <View style={SignInBoxStyles.container}>
+        
+        {/* The Main DIV is a touchable in order to more eaasily remove the iPhone keyboard */}
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{borderColor: 'red', borderWidth: 2}}>
             <View>
                 <View style={SignInBoxStyles.titleBox}>
@@ -21,8 +33,22 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
                         Login
                     </Text>
                 </View>
-                <View style={SignInBoxStyles.loginContents}><Email handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
-                <View style={SignInBoxStyles.loginContents}><Password handleInput={handleInput} userData={userData} rememberMe={rememberMe}/></View>
+
+                {/* Login Fields */}
+                <View style={SignInBoxStyles.loginContents}>
+                    <View style={{marginLeft: 60}}>
+                        <ErrorMessage message={errorState.email_login}/>
+                    </View>
+                    <Email handleInput={handleInput} userData={userData} rememberMe={rememberMe}/>
+                </View>
+                <View style={SignInBoxStyles.loginContents}>
+                    <View style={{marginLeft: 60}}>
+                        <ErrorMessage message={errorState.password_login}/>
+                    </View>
+                    <Password handleInput={handleInput} userData={userData} rememberMe={rememberMe}/>
+                </View>
+
+                {/* Login Button */}
                 <View style={SignInBoxStyles.loginButton}>
                     <LoginButton 
                         userData={userData} 
@@ -30,6 +56,8 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
                         checked={checked}
                     />
                 </View>
+
+                {/* Remember Me Toggle */}
                 <View syle={SignInBoxStyles.rememberMe}>
                     <View style={SignInBoxStyles.rememberMeTextBox}>
                         <Text style={{color: '#f9f9f9', fontSize: 12, fontFamily: 'GilroyRegular', color: "#EEEEEE", letterSpacing: 3}}>REMEMBER ME?</Text>
@@ -40,19 +68,24 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
                         style={SignInBoxStyles.rememberToggle}
                     />
                 </View>
+
+                {/* Forgot Password Button Space*/}
                 <View style={SignInBoxStyles.forgotPasswordSpace}>
                     <View style={SignInBoxStyles.divider} />
                     <View style={SignInBoxStyles.forgotBox}>
+
+                        {/* Forgot Password Button */}
                         <TouchableWithoutFeedback onPress={() => setVisible(true)}>
                             <View style={{paddingBottom: 2.4, borderBottomWidth: 1, borderColor: 'rgba(255, 255, 255, 0.36)', }}><Text style={SignInBoxStyles.forgotPasswordText}>FORGOT PASSWORD?</Text></View>
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
+
             </View>
         </TouchableWithoutFeedback>  
 
-            <ForgotPasswordModal visible={visible} setVisible={setVisible} />
-        </View>
+        <ForgotPasswordModal visible={visible} setVisible={setVisible} />
+    </View>
     )
 }
 

@@ -36,11 +36,9 @@ const LandingPage = ({ handleLoggedIn, rememberMe, setRememberMe }) => {
             <ImageBackground style={LandingStyles.backdrop} source={backgroundImage} resizeMode="cover">
             <ImageBackground style={LandingStyles.backdrop} source={renderBackground()} resizeMode='cover'>
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                    {/* <View style={{backgroundColor: 'rgba(52, 52, 52, 0.4) !important',}}> */}
-                        <View style={LandingStyles.contents}>
-                            <LandingPageContainer handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} setTab={setTab} tab={tab}/>
-                        </View>
-                    {/* </View> */}
+                    <View style={LandingStyles.contents}>
+                        <LandingPageContainer handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} setTab={setTab} tab={tab}/>
+                    </View>
                 </TouchableWithoutFeedback>
             </ImageBackground>
             </ImageBackground>

@@ -1,36 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { useRecoilState } from 'recoil'
-import { cameraPermissionState, userState } from '../../../../Recoil/atoms'
+import { cameraPermissionState, userState, loggedState, errorDataState } from '../../../../Recoil/atoms'
 import { websiteState } from '../../../../Recoil/atoms';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useMutation } from '@apollo/client';
-import { LOGIN } from '../../../../GraphQL/operations';
+import { useMutation, useQuery } from '@apollo/client';
+import { IS_SERVER_READY, LOGIN } from '../../../../GraphQL/operations';
 
 import stateChange from '../../../../Hooks/handleToken'
 
 
 
 const LoginButton = ({ userData, handleLoggedIn, checked }) => {
-
+	const navigation = useNavigation()
+	const [errorState, setErrorState] = useRecoilState(errorDataState)
 // ---------------------------- Mutations ---------------------------- //
 
 	// Login Mutation
 	const [login, { loading: loading, error: error, data: data }] =
 		useMutation(LOGIN);
 
+
 	// Handles the data changes and reroutes to the logged-in home page
-	useEffect( async () => {
+	useEffect(() => {
 		if (!loading && data) {
+			if (!data.driverSignIn){
+				return
+			}
 			// await storeData()
-			await setUser(data.driverSignIn)
-			await stateChange(data.driverSignIn.token);
-			await handleLoggedIn()
+			console.log(data.driverSignIn.token)
+			 setUser(data.driverSignIn)
+			 stateChange(data.driverSignIn.token);
+			 handleLoggedIn()
 		}
-	}, [data])
+	}, [loading])
+
 
 // ---------------------------- Mutations ---------------------------- //
 //																	   //
@@ -38,6 +47,8 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 // ----------------------------- States ------------------------------ //
 
 	const [user, setUser] = useRecoilState(userState);
+
+	const [logged, setLogged] = useRecoilState(loggedState)
 
 	const [website, setWebsite] = useRecoilState(websiteState)
 
@@ -56,53 +67,63 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 			},
 		})
 		// Store email and password to AsyncStorage on login if Remember Me option is selected
-		.then(async () => {
-			console.log(`checked: ${checked}`)
-			if (checked === true) {
-				// Check and see if email and password are in AsyncStorage
-				try {
-					const email = await AsyncStorage.getItem('@email')
-					const password = await AsyncStorage.getItem('@password')
-					await AsyncStorage.setItem('@remember_User', 'true')
-					// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
-					if (email === null && password === null) {
-						try {
-							await AsyncStorage.setItem('@email', userData.email)
-							await AsyncStorage.setItem('@password', userData.password)
-						} catch (error) {
-							console.error(error)
+		.then( (resolved) => {
+
+			// Failed Login // 
+			if (resolved.data.driverSignIn === null){
+				return resolved.data.driverSignIn
+			}
+
+			// Successful Login
+			else{
+				setLogged(true)
+				setErrorState({...errorState, email_login: false, password_login: false})
+				// If REMEMBER ME
+				if (checked) {
+					try {
+						const email =  AsyncStorage.getItem('@email')
+						const password =  AsyncStorage.getItem('@password')
+						AsyncStorage.setItem('@remember_User', 'true')
+						// If email and password don't already exist in AsyncStorage, save them to AsyncStorage on login
+						if (email === null && password === null) {
+							try {
+								AsyncStorage.setItem('@email', userData.email)
+								AsyncStorage.setItem('@password', userData.password)
+							} catch (error) {
+								console.error(error)
+							}
 						}
+						navigation.navigate("home")
+					} catch (error) {
+						console.error(error)
 					}
-				} catch (error) {
-					console.error(error)
 				}
-			}
-			else {
-				try {
-					await AsyncStorage.clear()
-				} catch (error) {
-					console.error(error)
+
+				// If NOT REMEMBER ME
+				if (!checked) {
+					navigation.navigate("home")
 				}
+
+				setWebsite({
+					current: "Home",
+					previous: "Landing",
+					saved: website.saved,
+				});
 			}
-		})
-		.then(() => {
-		setWebsite({
-		current: "Home",
-		previous: "Landing",
-		saved: website.saved,
+
+		}).catch((error) => {
+			let errorMessage = error.toString().split("\n")[0]
+			if (errorMessage === "Error: Error: No User exists with this email!"){
+				setErrorState({...errorState, email_login: "Incorrect Email"})
+			}
+			else{
+				setErrorState({...errorState, email_login: false})
+			}
+			if (errorMessage === "Error: Error: Wrong Passowrd!"){
+				setErrorState({...errorState, password_login: "Incorrect Password!"})
+			}
 		});
-		})
-		// .then(() => {
-		// 	console.log(`Pre-check for permissions: ${hasCameraPermission}`)
-		// 	const permissions = await Camera.requestCameraPermissionsAsync()
-		// 	if (hasCameraPermission === 'denied') {
-		// 		console.log('in denial check')
-		// 		setHasCameraPermission(null)
-		// 	}
-		// 	console.log(`After checking current permissions for denial: ${hasCameraPermission}`)
-		// })
-		.catch((error) => console.log(error));
-		};
+	};
 
 
 // ---------------------------- Handlers ----------------------------- //

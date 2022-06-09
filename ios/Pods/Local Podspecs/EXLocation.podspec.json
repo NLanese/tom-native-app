@@ -1,6 +1,6 @@
 {
   "name": "EXLocation",
-  "version": "14.0.2",
+  "version": "14.2.2",
   "summary": "Allows reading geolocation information from the device. Your app can poll for the current location or subscribe to location update events.",
   "description": "Allows reading geolocation information from the device. Your app can poll for the current location or subscribe to location update events.",
   "license": "MIT",
@@ -15,9 +15,6 @@
   "static_framework": true,
   "dependencies": {
     "ExpoModulesCore": [
-
-    ],
-    "UMTaskManagerInterface": [
 
     ]
   },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, TouchableOpacity, TextInput } from "react-native";
+import { ScrollView, View, Text, TouchableOpacity, TextInput, Dimensions, Button } from "react-native";
 import { Modal } from "@ui-kitten/components";
 import { useRecoilState } from "recoil";
 import { userState, threadState } from "../../../Recoil/atoms";
@@ -17,9 +17,10 @@ import AddContactButton from "./AddContactButton";
 
 const ThreadDetails = ({chatroom, setModalVisible}) => {
 
+    let maxHeight= Dimensions.get('window').height
+
 // -------------- Mutations and Queries ----------------
 const {loading: loading, error: error, data: queryData, refetch: refetch} = useQuery(GETDRIVERDATA)
-
 const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DYNAMICREMOVEDRIVERFROMCHATROOM);
 
 // -------------- Mutations and Queries ----------------
@@ -69,7 +70,7 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
             }
             addedIds.push(guest.id)
             return(
-                <View style={ThreadDetailStyles.nameCard} key={index}>
+                <View style={{...ThreadDetailStyles.nameCard, marginRight: 30}} key={index}>
                     <Text style={ThreadDetailStyles.nameText}>{guest.name}</Text>
                     {renderRemoveButtons(guest.id)}
                 </View>
@@ -143,38 +144,31 @@ const [removeFromChat, { loading: loadingChat, error: errorChat, data: dataChat 
 //---------------------- Handlers -----------------------
 
 
-    return(
-        <View style={ThreadDetailStyles.container}>
-            <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
-            
-            <View style={ThreadDetailStyles.nameListContainer}>
-                <View style={ThreadDetailStyles.labelBox}>
-                    <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
+    try{
+        return(
+            <View style={{ backgroundColor: 'white', height: maxHeight, marginTop: 0}}>
+                <Text style={ThreadDetailStyles.chatName}>{activeThread.chatroomName}</Text>
+                
+                <View style={ThreadDetailStyles.nameListContainer}>
+                    <View style={ThreadDetailStyles.labelBox}>
+                        <Text style={ThreadDetailStyles.labelText}>Chatroom Participants</Text>
+                    </View>
+                    {renderChatroomNames()}
                 </View>
-                {renderChatroomNames()}
-            </View>
-
-            <View>
-                <Text>Chatroom Name</Text>
-                <TextInput
-                    onChange={(value) => setNewName(value)}
-                />
-                <TouchableOpacity>
-                    <Text>Rename Chat</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View>
-                {renderAddContacts()}
-            </View>
-
-            <TouchableOpacity onPress={() => setModalVisible(false)}> 
+    
+                <View>
+                    {renderAddContacts()}
+                </View>
+    
                 <View style={ThreadDetailStyles.doneBox}>
-                    <Text style={ThreadDetailStyles.doneText}>Done</Text>
+                    <Button style={ThreadDetailStyles.doneText} title="Close" onPress={() => setModalVisible(false)}/>
                 </View>
-            </TouchableOpacity>
-
-        </View>
-    )
+    
+            </View>
+        )
+    } catch (error){
+        throw new Error("602")
+    }
+    
 }
 export default ThreadDetails

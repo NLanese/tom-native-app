@@ -22,6 +22,8 @@ const ReportAnAccidentButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
+
+        // If it is null, that means you are not in the middle of RAA
         if (website.saved != null){
             setWebsite({current: website.saved, previous: "Home", saved: website.saved})
             if (website.saved == "Report Accident"){
@@ -75,12 +77,12 @@ const ReportAnAccidentButton = () => {
                 navigation.navigate('collision-injury-report-information')
             }
             if (website.saved == "Collision Injury Extra Information"){
-                navigation.navigate('collision-injury-report-extra-information')
+                navigation.navigate('collision-extra-info')
             }
         
         
         
-            if (website.saved == "Check Property Damage"){
+            if (website.saved == "Check Property Accident"){
                 navigation.navigate('check-property-accident')
             }
             if (website.saved == "Create Property Report"){
@@ -92,19 +94,25 @@ const ReportAnAccidentButton = () => {
             if (website.saved == "Property Damage Information"){
                 navigation.navigate('property-accident-information')
             }
-            if (website.saved == "Property Accident Contact Information"){
+            if (website.saved == "Property Accident Contact Info"){
                 navigation.navigate('property-accident-contact-information')
+            }
+            if(website.saved == "Package Damage Information"){
+                navigation.navigate('property-package-info')
             }
             if (website.saved == "Safety Equipment"){
                 navigation.navigate('property-accident-safety-equipment')
             }
             if (website.saved == "Property Damage Extra Information"){
-                navigation.navigate('property-accident-extra-information')
+                navigation.navigate('property-accident-extra-info')
+            }
+            if (website.saved == "Post Property Damage Instructions"){
+                navigation.navigate('post-property-instructions')
             }
         
         
         
-            if (website.saved == "Check Injuries"){
+            if (website.saved == "Check Injury"){
                 navigation.navigate('check-injury-accident')
             }
             if (website.saved == "Create Injury Report"){
@@ -117,7 +125,7 @@ const ReportAnAccidentButton = () => {
                 navigation.navigate('injury-report-information')
             }
             if (website.saved == "Injury Extra Information"){
-                navigation.navigate('injury-report-extra-information')
+                navigation.navigate('injury-report-extra-info')
             }
         
         

@@ -32,18 +32,17 @@ const FinishedPage = () => {
                     police_report: accidentState.police_report,
                     before_accident_report: accidentState.before_accident_report,
                     selfDamage: accidentState.selfDamage,
-                    weather_and_distractions: accidentState.weather_and_distractions
+                    weather_and_distractions: accidentState.weather_and_distractions,
+                    filled: true
                 },
             })
         )
     }
 
     const handleCompletion = () => {
-        console.log("hit")
         return handleMutation().then( resolved => {
-            console.log(resolved)
-            // setWebsite({current: "Home", previous: null, saved: null})
-            // navigation.navigate("home")
+            setWebsite({current: "Home", previous: null, saved: null})
+            navigation.navigate("home")
         })
     }
 
@@ -52,7 +51,7 @@ const FinishedPage = () => {
             <Banner />
             <Text style={Template.title}>Your Incident Report has been filed!</Text>
             <View style={{marginTop: 20}} />
-            <Text style={Template.subTitle2}>Thank you for bearing with this process and we hope you have a safe remainder of your day</Text>
+            <Text style={Template.subTitle2}>Thank you for bearing with this process, and we hope you have a safe remainder of your day!</Text>
             <Text style={Template.subTitle2}>Please remember to call any and all emergency services necessary, or contact your manager if you feel unable to complete your shift.</Text>
 
             <View style={{marginLeft: 30, marginTop: 130}}>

@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useRecoilState } from "recoil";
 import { websiteState } from '../Recoil/atoms'
-import { threadState } from "../Recoil/atoms";
+import { threadState, userState } from "../Recoil/atoms";
 
 import ThreadDetails from "../Pages/CommunicationPage/CommunicationComponents/ThreadDetails";
 import Gradient from "../Components/Gradient";
@@ -18,6 +18,8 @@ import Bell from "./BannerComponents/Bell";
 import BellDropdown from "./BannerComponents/BellComponents/BellDropdown";
 import arrowBack from '../assets/backArrowIcon.png'
 import homeIcon from '../assets/homeIcon.png'
+
+import handlePicture from "../Hooks/handlePicture";
 
 import { CommunicationStyles } from "../Styles/CommunicationStyles"
 import Template from "../Styles/RAA/RAATemplateStyles"
@@ -34,6 +36,7 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   const [notifiedVisible, setNotifiedVisible] = useState(false)
 
   const [website, setWebsiteState] = useRecoilState(websiteState)
+  const [user, setUser] = useRecoilState(userState)
   const [activeThread] = useRecoilState(threadState)
   const navigation = useNavigation()
 
@@ -71,6 +74,9 @@ const Banner = ({ handleLoggedIn, setActiveThread = null }) => {
   }
 
   const handleBackClick = () => {
+    if (website.previous == "Landing"){
+      return null
+    }
     if (website.previous == "Create Chatroom"){
       setWebsiteState({current: "Messaging", previous: website.current, saved: website.saved})
       navigation.navigate("messages")
@@ -89,17 +95,12 @@ const handleInfoClick = () => {
     if (website.current == "Message Thread"){
       return(
         <View>
-            {/* INFORMATION MODAL */}
-            <Modal visible={modalvisible}>
-                <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
-            </Modal>
-
             {/* Chatroom Label */}
             <TouchableWithoutFeedback onPress={() => handleInfoClick()} style={{borderWidth: 2, borderColor: " red", position: 'absolute'}}>
                 <View style={CommunicationStyles.threadLabel}>
-                    <Text style={CommunicationStyles.labelText}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
+                    <Text style={{...CommunicationStyles.labelText, marginTop: -5}}>{activeThread.chatroomName.split(" chatroom")[0]}</Text>
                     <View>
-                        <View style={{height: 35, width: 35, marginTop: 0, borderRadius: 100, backgroundColor: 'black'}}/>
+                        <View style={{height: 35, width: 35, marginTop: -5, borderRadius: 100, backgroundColor: 'black'}}/>
                     </View>
                 </View >
             </TouchableWithoutFeedback>
@@ -113,9 +114,19 @@ const handleInfoClick = () => {
 
   return (
     <View>
-      <View style={styles.topBar}></View>
+      <View style={styles.topBar}>
+        {/* INFORMATION MODAL */}
+        <Modal visible={modalvisible} style={{marginTop: -100, height: maxHeight - (maxHeight * .20)}}>
+              <ThreadDetails setModalVisible={setModalVisible} chatroom={activeThread} setActiveThread={setActiveThread} activeThread={activeThread}/>
+        </Modal>
+
+      </View>
+      {/* BANNER DROP */}
       <BannerDropdown visible={visible} handleModal={handleModal} handleLoggedIn={handleLoggedIn}/>
+
+      {/* NOTIFICATION DROP */}
       <BellDropdown notifiedVisible={notifiedVisible} handleNotifiedModal={handleNotifiedModal} />
+
         <Appbar style={styles.bottom}>
 
           <View style={styles.leftIcons}>
@@ -146,76 +157,106 @@ const handleInfoClick = () => {
 
             <Pressable onPress={() => handleModal()}>
 
-              <Avatar.Image
-                style={{marginTop: 12}}
-                source={SomeDudesFace}
-                size={40}
-              />
+            <View style={{marginTop: 20}}>
+              {handlePicture(user.profilePick, 45)}
+            </View>
 
             </Pressable>
           </View>
 
         </Appbar>
+
+        {/* RAA Relocation Modal */}
         <Modal 
               animationType='slide' 
               transparent={true} 
               visible={modalVisible2}
               backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
               style={{
-                  height: 200,
+                  height: 300,
                   width: 300,
                   borderRadius: 10,
               }}
           >
-              <View style={{ 
-                  backgroundColor: "white", 
-                  height: 175,
-                  width: 300,
-                  borderRadius: 10,
-              }}>
+              <View style={{ backgroundColor: "white", height: 255, width: 300,borderRadius: 10,}}>
+                
                   <Text style={{...Template.questionText, textAlign: 'center', marginLeft: -8, marginBottom: 10, marginLeft: 20, width: 260}}>Go back to the homepage?</Text>
                 
-              <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
+                  {/* OKAY or DISMISS */}
+                  <View style={{flexDirection: 'row', marginTop: 10, marginLeft: 30, width: 240 }}>
 
-                  <TouchableOpacity onPress={() => {
-                    setModalVisible2(false)
-                    setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
-                    navigation.navigate('home')
-                  }}>
-                  <Gradient
-                      colorOne={"#534FFF"}
-                      colorTwo={"#15A1F1"}
-                      style={{
-                          height: 50,
-                          width: 80,
-                          borderRadius: 20,
-                          justifyContent: 'center'
-                      }}
-                  >
-                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
-                  </Gradient>
-                  </TouchableOpacity>
+                      {/* OKAY BUTTON */}
+                      <View style={{marginLeft: 4}}>
+                        <TouchableOpacity onPress={() => {
+                          setModalVisible2(false)
+                          setWebsiteState({current: "Home", previous: website.current, saved: website.saved})
+                          navigation.navigate('home')
+                        }}>
 
-                  <View style={{marginLeft: 70}}>
-                  <TouchableOpacity onPress={() => setModalVisible2(false)}>
-                  <Gradient
-                      colorOne={"#DE0000"}
-                      colorTwo={"#DE0000"}
-                      style={{
-                          height: 50,
-                          width: 80,
-                          borderRadius: 20,
-                          justifyContent: 'center'
-                      }}
-                  >
-                      <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
-                  </Gradient>
-                  </TouchableOpacity>
+                        <Gradient
+                            colorOne={"#534FFF"}
+                            colorTwo={"#15A1F1"}
+                            style={{
+                                height: 50,
+                                width: 80,
+                                borderRadius: 20,
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>OK</Text>
+                        </Gradient>
+
+                        </TouchableOpacity>
+                      </View>
+
+                        {/* DISMISS BUTTON */}
+                      <View style={{marginLeft: 70}}>
+                          <TouchableOpacity onPress={() => setModalVisible2(false)}>
+                            <Gradient
+                                colorOne={"#DE0000"}
+                                colorTwo={"#DE0000"}
+                                style={{
+                                    height: 50,
+                                    width: 80,
+                                    borderRadius: 20,
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Dismiss</Text>
+                            </Gradient>
+                          </TouchableOpacity>
+                      </View>
+
                   </View>
 
+                  {/* CANCEL REPORT */}
+                  <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity 
+                        onPress={() => {
+                          setModalVisible2(false)
+                          setWebsiteState({current: "Home", previous: "Home", saved: null})
+                          navigation.navigate('home')
+                        }}
+                        style={{marginTop: 30}}
+                        >
+                          <Gradient
+                              colorOne={"#232323"}
+                              colorTwo={"#222222"}
+                              style={{
+                                  height: 50,
+                                  width: 150,
+                                  borderRadius: 20,
+                                  justifyContent: 'center'
+                              }}
+                          >
+                              <Text style={{fontSize: 12, textAlign: 'center', color: '#fff'}}>Cancel Report</Text>
+                          </Gradient>
+                        </TouchableOpacity>
+                  </View>
+              
               </View>
-              </View>
-          </Modal>
+
+        </Modal>
     </View>
   )
 }

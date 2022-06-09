@@ -14,7 +14,6 @@ let maxHeight = Dimensions.get('window').height
 
 const CreateCollisionInjuryReport = ({collision}) => {
 
-    console.log(collision)
 
     let route = 'collision-injury-specific-pictures'
     let site = "Collision Injury Pictures"
@@ -86,7 +85,7 @@ const CreateCollisionInjuryReport = ({collision}) => {
     }
 
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
             <Text style={Styles.title}>
                 {renderTitle()}

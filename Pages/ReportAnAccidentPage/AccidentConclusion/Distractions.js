@@ -24,12 +24,6 @@ const Distractions = () => {
 
 
  //////// USE EFFECTS TO UPDATE OBJECT /////////   
- useEffect(() => {
-    console.log("hit")
-    
-}, [])
-
-console.log(accidentData)
 
 
  //////// WEATHER STATES AND HANDLERS /////////   
@@ -132,7 +126,7 @@ console.log(accidentData)
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: '120%'}}>
+            <ScrollView contentContainerStyle={{height: '200%'}}>
                 <Text style={Template.title}>
                     What was the weather like at the time of the incident?
                 </Text>

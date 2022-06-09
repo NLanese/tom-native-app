@@ -34,7 +34,7 @@ const RosterButton = () => {
                         top: '30%',
                         height: 40,
                         width: 39,
-                        marginLeft: 58
+                        marginLeft: 54
                     }}
                     source={require('../../../../assets/roster-icon.jpeg')}/>
             </View> 

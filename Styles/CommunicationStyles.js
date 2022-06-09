@@ -68,20 +68,22 @@ const ChatroomsStyles = StyleSheet.create({
     },
     searchBarInactive: {
         backgroundColor: '#EEEEEE',
-        width: maxWidth - 60,
+        width: maxWidth - 45,
         borderRadius: 10,
         marginTop: 13,
         marginLeft: 30,
-        borderColor: "#EEEEEE"
+        borderColor: "#EEEEEE",
+        paddingLeft: 30,
     },
     searchBarActive: {
         backgroundColor: '#EEEEEE',
-        width: maxWidth - 60,
+        width: maxWidth - 45,
         borderRadius: 10,
         marginTop: 13,
         marginLeft: 30,
         borderWidth: 2,
-        borderColor: '#DDDDDD'
+        borderColor: '#DDDDDD',
+        paddingLeft: 30,
     },
 //-----------------------------------
     chatroomBox: {
@@ -294,7 +296,7 @@ const ContactStyles = StyleSheet.create({
     },
 //-----------------------------------------
     image: {
-        backgroundColor: 'black',
+        // backgroundColor: 'black',
         height: 35,
         width: 35,
         borderRadius: 100,

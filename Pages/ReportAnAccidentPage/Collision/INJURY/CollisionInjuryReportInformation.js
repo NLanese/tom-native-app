@@ -23,8 +23,6 @@ let maxWidth = Dimensions.get('window').width
 
 const CollisionInjuryReportInformation = ({collision}) => {
 
-    console.log(collision)
-
     let route = "collision-injury-report-extra-info"
     let site = "Collision Injury Extra Information"
     if (!collision){
@@ -850,10 +848,10 @@ const renderOtherQuestions = () => {
 //                                                  //
 //-V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
     return (
-        <View>
+        <View style={{height: 'auto'}}>
             <Banner />
             <ScrollView contentContainerStyle={{height: 2500}}>
-            <Text style={Template.questionText}>Was nedical attention needed?</Text>
+            <Text style={Template.questionText}>Was any medical attention needed?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
 
                 <View style={RAACollisionInfoStyles.buttonContainer}>
@@ -899,7 +897,7 @@ const renderOtherQuestions = () => {
 
             </View>
 
-            <Text style={Template.questionText}>Did a Fatality Occur?</Text>
+            <Text style={Template.questionText}>Did a fatality occur?</Text>
             <View style={RAACollisionInfoStyles.buttonBox}>
 
                 <View style={RAACollisionInfoStyles.buttonContainer}>

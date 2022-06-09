@@ -1,20 +1,54 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native';
+
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Button, Card, Modal, Text, Input } from '@ui-kitten/components';
-import axios from 'axios';
+
+import Template from '../../../../Styles/RAA/RAATemplateStyles';
+
+import Gradient from '../../../../Components/Gradient';
+
+import { useMutation } from '@apollo/client';
+import { FORGOT_PASSWORD } from '../../../../GraphQL/operations';
+
 
 const ForgotPasswordModal = ({ visible, setVisible }) => {
+///////////////////////////
+///                     ///
+///     Preliminary     ///
+////                    ///
+///////////////////////////
+    // Tracks Email
     const [email, setEmail] = useState()
+    // Tracks whether or not the process is complete
     const [completed, setCompleted] = useState(false)
 
-    const handleSubmit = async () => {
-        await axios.get(`http://localhost:5001/password/reset/${email}`)
-        .then((res) => console.log(res.status))
-        .catch((err) => console.log(err))
+    // Mutation
+    const [forgotPassword, { loading: loading, error: error, data: data }] = useMutation(FORGOT_PASSWORD);
 
-        await setCompleted(true)
+///////////////////////////
+///                     ///
+///       Handlers      ///
+////                    ///
+///////////////////////////
+
+    const handleMutation = () => {
+        return forgotPassword({
+            variables: {
+                email: email
+            }
+        })
     }
 
+    const handleSubmitEmail = async () => {
+        handleMutation()
+    }
+
+
+///////////////////////////
+///                     ///
+///      Main Render    ///
+////                    ///
+///////////////////////////
     return (
         <View style={styles.container}>
 
@@ -23,22 +57,57 @@ const ForgotPasswordModal = ({ visible, setVisible }) => {
                 backdropStyle={styles.backdrop}
                 onBackdropPress={() => setVisible(false)}>
                 <Card disabled={true}>
-                <Text>Please enter email address and youll recieve a link with further directions</Text>
+                <Text style={{...Template.title, marginTop: 10, marginBottom: 20, fontSize: 20}}>Please enter email your address</Text>
 
                 <Input
                     placeholder='Place your Text'
                     onChangeText={email => setEmail(email)}
-                    />
+                />
 
-                {completed === true ? (<Text>Check your email. If the email exist in our system you should recieve further instructions</Text>) : null}
+                <View style={{height: 30}} />
 
-                <Button onPress={handleSubmit}>
-                    SUBMIT
-                </Button>   
 
-                <Button onPress={() => setVisible(false)}>
-                    DISMISS
-                </Button>
+                <TouchableOpacity onPress={() => handleSubmitEmail()}>
+                    <Gradient
+                        colorOne={"#534FFF"}
+                        colorTwo={"#15A1F1"}
+                        style={{
+                            height: 50,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={{
+                            color: "white",
+                            fontFamily: "GilroySemiBold",
+                            fontSize: 13,
+                            textAlign: 'center'}}
+                        >
+                                SUBMIT
+                        </Text>
+                    </Gradient>
+                </TouchableOpacity>
+
+                <View style={{height: 30}} />
+
+                <TouchableOpacity onPress={() => setVisible(false)}>
+                    <Gradient
+                        colorOne={"#534FFF"}
+                        colorTwo={"#15A1F1"}
+                        style={{
+                            height: 50,
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={{
+                            color: "white",
+                            fontFamily: "GilroySemiBold",
+                            fontSize: 13,
+                            textAlign: 'center'}}
+                        >
+                                DISMISS
+                        </Text>
+                    </Gradient>
+                </TouchableOpacity>
                 </Card>
             </Modal>
 

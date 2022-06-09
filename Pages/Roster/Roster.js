@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { DRIVERSGETDRIVERSFROMDSP, DRIVERCREATECHATROOM } from "../../GraphQL/operations";
+import { DRIVERS_GET_DRIVERS_FROM_DSP } from "../../GraphQL/operations";
 
 import Banner from "../../Global/Banner";
 import Loading from "../../Global/Loading";
@@ -17,15 +17,13 @@ import { useRecoilState } from 'recoil'
 import { threadState, userState } from "../../Recoil/atoms";
 
 import nameObj from "../../Hooks/handleNameCaseChange";
+import handlePicture from "../../Hooks/handlePicture";
 
 const Roster = ({contacts}) => {
     const navigation = useNavigation()
 
     // Gets all Drivers from DSP
-    const {loading: loading, error: error, data: queryData} = useQuery(DRIVERSGETDRIVERSFROMDSP)
-
-
-    const [driverCreateChat, { loading: loadingChat, error: errorChat, data: dataChat }] = useMutation(DRIVERCREATECHATROOM);
+    // const {loading: loading, error: error, data: queryData} = useQuery(DRIVERS_GET_DRIVERS_FROM_DSP)
 
 
 // -------------------- Recoil and UseState ----------------------
@@ -46,8 +44,6 @@ const Roster = ({contacts}) => {
         const[changesMade, setChangesMade] = useState(false)
 
 // -------------------- Recoil and UseState ----------------------
-
-
     
 // --------------- Rendering and Generating Functions ------------ 
 
@@ -59,7 +55,7 @@ const Roster = ({contacts}) => {
             i++
             return(
                 <View style={ContactStyles.card} key={i}>
-                    <View style={ContactStyles.image}><Text>Image</Text></View>
+                    <View style={ContactStyles.image}>{handlePicture(driver.profilePick, 55)}</View>
                     <View style={ContactStyles.nameView}>
                         <Text style={ContactStyles.title}>{namer.first} {namer.last} </Text>
                         <Text style={ContactStyles.subtitle}>{driver.__typename}</Text>
@@ -108,7 +104,7 @@ const Roster = ({contacts}) => {
     // Filters based off of the name typed in
     const filterBasedOffSearch = (list) => {
         let filteredList = []
-        if (searchVal == ""){
+        if (searchVal === ""){
             return list
         }
         else{
@@ -148,33 +144,38 @@ const Roster = ({contacts}) => {
 // -------------------------- Handlers ---------------------------
 
 
-    if (!loading && queryData){
-        let allContacts = [...queryData.driverGetDriversFromDsp.drivers]
+    // if (!loading && queryData){
+        let allContacts = user.dsp.drivers
 
-        return (
-            <View>
-                <Banner />
-
-                <View style={ContactStyles.header}>
-                    <View style={ContactStyles.searchBar}>
-                        <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
-                        <SearchBar setSearch={handleSetSearch} />
+        try{
+            return (
+                <View style={{height: 'auto'}}>
+                    <Banner />
+    
+                    <View style={ContactStyles.header}>
+                        <View style={ContactStyles.searchBar}>
+                            <Text style={ContactStyles.mainTitle}>{allContacts.length} Contacts</Text>
+                            <SearchBar setSearch={handleSetSearch} />
+                        </View>
                     </View>
+    
+                    <View >
+                        <ScrollView contentContainerStyle={{height: '300%'}} >
+                            {determineRosterDisplay(allContacts)}
+                            <View></View>
+                        </ScrollView>
+                    </View>
+    
                 </View>
-
-                <View >
-                    <ScrollView contentContainerStyle={ContactStyles.container}>
-                        {determineRosterDisplay(allContacts)}
-                    </ScrollView>
-                </View>
-
-            </View>
-        )
+            )
+        } catch(error){
+            throw new Error("301")
+        }
     }
-    else{
-        return(
-            <Loading />
-        )
-    }
-}
+    // else{
+    //     return(
+    //         <Loading />
+    //     )
+    // }
+
 export default Roster
