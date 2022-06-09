@@ -39,6 +39,7 @@ const CollisionExtraInfo = () => {
     }
 
     const handleMutation = async () => {
+        console.log(collisionData)
         return driverCreateCollisionAccident({
             variables: {
                 accidentId: collisionData.accidentId,

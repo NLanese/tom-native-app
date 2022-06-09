@@ -22,6 +22,8 @@ const ReportAnAccidentButton = () => {
     const [website, setWebsite] = useRecoilState(websiteState)
 
     const handleClick = () => {
+
+        // If it is null, that means you are not in the middle of RAA
         if (website.saved != null){
             setWebsite({current: website.saved, previous: "Home", saved: website.saved})
             if (website.saved == "Report Accident"){
