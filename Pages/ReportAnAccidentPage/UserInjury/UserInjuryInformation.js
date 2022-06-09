@@ -682,7 +682,7 @@ const UserInjuryInformation = ({accident}) => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: '200%'}}>
+            <ScrollView contentContainerStyle={{height: 'auto', paddingBottom: 200}}>
             <Text style={Template.title}>
                 What did you hurt? Select all that apply
             </Text>
