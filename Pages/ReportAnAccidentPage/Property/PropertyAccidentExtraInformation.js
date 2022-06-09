@@ -76,7 +76,7 @@ const PropertyAccidentExtraInformation = () => {
                 />
             </View>
 
-            <View style={{marginLeft: 30, marginTop: 300}}>
+            <View style={{marginLeft: 30, marginTop: maxHeight * 0.3}}>
                 <TouchableOpacity onPress={() => handleSubmit()}>
                     <Gradient
                         colorOne={"#534FFF"}
@@ -93,7 +93,7 @@ const PropertyAccidentExtraInformation = () => {
                 </TouchableOpacity>
             </View>
 
-            <View style={{marginLeft: 30, marginTop: -160}}>
+            <View style={{marginLeft: 30, marginTop: -90}}>
                 {complete === true ? 
                 <View style={{marginTop: 0}}>
                     <ContinueButton nextPage={'post-property-instructions'} nextSite={'Post Property Damage Instructions'} buttonText={'Done'} pageName={'property-accident-extra-information-continue-button'} />

@@ -26,8 +26,10 @@ const PropertyAccidentContactInformation = () => {
      // The details of the accident
      const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
+    console.log(propertyData)
+
      // Tracks for the Done Button to appear
-     const [answeredQs, setAnsweredQs] = useEffect({
+     const [answeredQs, setAnsweredQs] = useState({
          types: false,
          kind: false
      })
@@ -46,29 +48,22 @@ const PropertyAccidentContactInformation = () => {
 ///                    ///
 //////////////////////////
 
-
-    // Sets the height of the scroll view
-    let defaultHeight = maxHeight
-    if (propertyData.types_of_damage.gov && (propertyData.types_of_damage.pack || propertyData.types_of_damage.personal)){
-        defaultHeight = maxHeight + 300
-    }
-
     // Based on what info is in the property data, it renders certain questions
     const determineQuestions = () => {
+        // returnChunk. This will hold one, or both, of the prop / pack questions
         let rChunk = []
-        let i = 0
+
         // Personal or Property Questions
-        console.log(propertyData.types_of_damage)
         if (propertyData.types_of_damage.pack === true || propertyData.types_of_damage.personal === true){
-            console.log("hello?")
-            i++
             rChunk.push(personalProperty())
         }
+
         // Gov Questions
         if (propertyData.types_of_damage.gov){
-            i++
             rChunk.push(govProperty())
         }
+
+        // Returns the / both Chunk(s)
         return rChunk.map( (chunk, index) => {
             return(
                 <View key={index}>
@@ -353,7 +348,7 @@ const PropertyAccidentContactInformation = () => {
     return (
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: 'auto'}}>
+            <ScrollView contentContainerStyle={{height: 'auto', paddingBottom: maxHeight * 0.22}}>
                 {determineQuestions()}
                 {renderContinue()}
             </ScrollView>

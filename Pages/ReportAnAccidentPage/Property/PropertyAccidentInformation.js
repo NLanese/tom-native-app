@@ -57,7 +57,7 @@ const PropertyAccidentInformation = () => {
             const [inOrOut, setInOrOut] = useState(propertyData.damage_report.inOrOut)
 
             // Creates an object to print during testing
-            const testGuy = {
+            const types_of_damage = {
                 pack: pack,
                 personal: personal,
                 gov: gov
@@ -65,7 +65,7 @@ const PropertyAccidentInformation = () => {
 
             // The Test
             useEffect(() => {
-                console.log(testGuy)
+                console.log(types_of_damage)
             })
 
 
@@ -310,7 +310,7 @@ const PropertyAccidentInformation = () => {
                 }
             }
             else{
-                if (thingsHit.length > 0){
+                if (thingsHit.length > 0 && (gov || personal)){
                     return(
                         <View style={{marginLeft: 30, marginTop: 70}}>
                             <ContinueButton nextPage={'property-accident-contact-information'} nextSite={'Property Accident Contact Info'} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
@@ -329,6 +329,13 @@ const PropertyAccidentInformation = () => {
             if (pack && (gov || personal)){
                 if (thingsHit.length > 0){
                     if (inOrOut != null){
+                        setPropertyData({
+                            ...propertyData,
+                            damage_report: {
+                                ...propertyData.damage_report,
+                                types_of_damage: types_of_damage
+                            }
+                        })
                         return(
                             <View style={{marginLeft: 30, marginTop: 40}}>
                                 <ContinueButton nextPage={'property-accident-contact-information'} nextSite={"Property Accident Contact Info"} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
@@ -454,23 +461,6 @@ const PropertyAccidentInformation = () => {
                 return false
             }
         }
-
-
-
-
-
-
-//----------------------------------------------//
-//                                              //
-//            Rendering Functions               //
-//                                              //
-//_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V_V//
-
-
-
-
-
-
 
     return (
         <View >

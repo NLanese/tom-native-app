@@ -234,7 +234,7 @@ const handleInfoClick = () => {
                         <TouchableOpacity 
                         onPress={() => {
                           setModalVisible2(false)
-                          setWebsiteState({current: "Home", previous: "Home", saved: "Home"})
+                          setWebsiteState({current: "Home", previous: "Home", saved: null})
                           navigation.navigate('home')
                         }}
                         style={{marginTop: 30}}
