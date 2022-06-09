@@ -155,11 +155,16 @@ const CameraPage = ({type}) => {
             const r = await takePhoto()
             if (!r.cancelled) {
                 // console.log(r)
-                setImages([...images, r.uri]) 
-                changeFunction({
-                    ...changeValue,
-                    specific_pictures: images
-                })
+                if (images.length < 1){
+                    setImages([r.uri])
+                }
+                else{
+                    setImages([...images, r.uri]) 
+                    changeFunction({
+                        ...changeValue,
+                        specific_pictures: images
+                    })
+                }
             }
         }
 
@@ -386,7 +391,7 @@ const CameraPage = ({type}) => {
                     title = "Collision Pictures you should take:"
                     prompt = "Your Car, Their Car, Thier Insurance (if possible) Their Drivers License (if possible)"
                 }
-                else if (type === "injury"){
+                else if (type === "injury" || type === 'collision-injury'){
                     title = "Injury Pictures you should take:"
                     prompt = "The Scene, The Victim (with permission, if appropriate), Insurance Card"
                 }
