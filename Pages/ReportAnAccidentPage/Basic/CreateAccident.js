@@ -86,67 +86,18 @@ const CreateAccident = ({accident}) => {
 
 
     return (
-        <View>
+        <ScrollView>
             <Banner />
-            <ScrollView contentContainerStyle={{height: 'auto', paddingBottom: 200}}>
-                <Text style={{...Template.questionText, marginBottom: 10}}> 
-                    Please make sure the information below is correct.
-                    If not, please correct it below
-                </Text>
 
-                <View style={{marginTop: 20}}>
-                    <Text style={Template.subTitle}> ACCIDENT NAME </Text>
-                    <View style={{marginLeft: 30, marginBottom: 10}}>
-                        <DynamicInput 
-                            activeColorOne="#534FFF" 
-                            activeColorTwo="#15A1F1"
-                            activeTextStyle={Template.activeTextStyle}
+            <Text style={{...Template.questionText, marginBottom: 10}}> 
+                Please make sure the information below is correct.
+                If not, please correct it below
+             </Text>
 
-                            height={50}
-                            width={maxWidth - 60}
-
-                            borderLeftRightWidth={6}
-                            borderTopBottomWidth={6}
-                            borderRadius={20}
-
-                            inactiveColor="#ddd" 
-                            inactiveTextStyle={Template.inactiveTextStyle}
-
-                            placeholder={accidentData.name}
-                            onChange={name => {
-                                handleInput('name', name)
-                            }}
-                        />
-                    </View>
-        
-                    <Text style={Template.subTitle}> ACCIDENT DATE </Text>
-                    <View style={{marginLeft: 30, marginBottom: 10}}>
-                        <DynamicInput 
-                            activeColorOne="#534FFF" 
-                            activeColorTwo="#15A1F1"
-                            activeTextStyle={Template.activeTextStyle}
-
-                            height={50}
-                            width={maxWidth - 60}
-
-                            borderLeftRightWidth={6}
-                            borderTopBottomWidth={6}
-                            borderRadius={20}
-
-                            inactiveColor="#ddd" 
-                            inactiveTextStyle={Template.inactiveTextStyle}
-
-                            placeholder={accidentData.date}
-                            onChange={date => {
-                                handleInput('date', date)
-                            }}
-                        />
-                    </View>
-
-
-                    <Text style={Template.subTitle}> ACCIDENT TIME </Text>
-                    <View style={{marginLeft: 30, marginBottom: 10}}>
-                        <DynamicInput 
+            <View style={{marginTop: 20}}>
+                <Text style={Template.subTitle}> ACCIDENT NAME </Text>
+                <View style={{marginLeft: 30, marginBottom: 10}}>
+                    <DynamicInput 
                         activeColorOne="#534FFF" 
                         activeColorTwo="#15A1F1"
                         activeTextStyle={Template.activeTextStyle}
@@ -161,38 +112,87 @@ const CreateAccident = ({accident}) => {
                         inactiveColor="#ddd" 
                         inactiveTextStyle={Template.inactiveTextStyle}
 
-                            placeholder={accidentData.time}
-                            onChange={time => {
-                                handleInput('time', time)
-                            }}
-                        />
-                    </View>
+                        placeholder={accidentData.name}
+                        onChange={name => {
+                            handleInput('name', name)
+                        }}
+                    />
+                </View>
+    
+                <Text style={Template.subTitle}> ACCIDENT DATE </Text>
+                <View style={{marginLeft: 30, marginBottom: 10}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
 
-                    <Text style={Template.subTitle}> ACCIDENT LOCATION </Text>
+                        height={50}
+                        width={maxWidth - 60}
 
-                        <View style={{marginLeft: 30, marginBottom: 40}}>
-                        <DynamicInput 
-                            activeColorOne="#534FFF" 
-                            activeColorTwo="#15A1F1"
-                            activeTextStyle={Template.activeTextStyle}
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
 
-                            height={50}
-                            width={maxWidth - 60}
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
 
-                            borderLeftRightWidth={6}
-                            borderTopBottomWidth={6}
-                            borderRadius={20}
+                        placeholder={accidentData.date}
+                        onChange={date => {
+                            handleInput('date', date)
+                        }}
+                    />
+                </View>
 
-                            inactiveColor="#ddd" 
-                            inactiveTextStyle={Template.inactiveTextStyle}
 
-                            placeholder={accidentData.location}
-                            onChange={location => {
-                                handleInput('location', location)
-                            }}
-                        />
-                    </View>
-                        
+                <Text style={Template.subTitle}> ACCIDENT TIME </Text>
+                <View style={{marginLeft: 30, marginBottom: 10}}>
+                    <DynamicInput 
+                       activeColorOne="#534FFF" 
+                       activeColorTwo="#15A1F1"
+                       activeTextStyle={Template.activeTextStyle}
+
+                       height={50}
+                       width={maxWidth - 60}
+
+                       borderLeftRightWidth={6}
+                       borderTopBottomWidth={6}
+                       borderRadius={20}
+
+                       inactiveColor="#ddd" 
+                       inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={accidentData.time}
+                        onChange={time => {
+                            handleInput('time', time)
+                        }}
+                    />
+                </View>
+
+                <Text style={Template.subTitle}> ACCIDENT LOCATION </Text>
+
+                    <View style={{marginLeft: 30, marginBottom: 40}}>
+                    <DynamicInput 
+                        activeColorOne="#534FFF" 
+                        activeColorTwo="#15A1F1"
+                        activeTextStyle={Template.activeTextStyle}
+
+                        height={50}
+                        width={maxWidth - 60}
+
+                        borderLeftRightWidth={6}
+                        borderTopBottomWidth={6}
+                        borderRadius={20}
+
+                        inactiveColor="#ddd" 
+                        inactiveTextStyle={Template.inactiveTextStyle}
+
+                        placeholder={accidentData.location}
+                        onChange={location => {
+                            handleInput('location', location)
+                        }}
+                    />
+                </View>
+                    
 
                     <TouchableOpacity onPress={() => handleSubmit()} style={{ width: 120, marginLeft: 30}}>
                         <Gradient
@@ -203,10 +203,8 @@ const CreateAccident = ({accident}) => {
                             <Text style={{...Template.buttonText, marginTop: -7}}>Done</Text>
                         </Gradient>
                     </TouchableOpacity>
-                </View>
-            </ScrollView>
-        </View>
-        
+            </View>
+        </ScrollView>
     )
 }
 

@@ -156,7 +156,8 @@ const CameraPage = ({type}) => {
             if (!r.cancelled) {
                 if (!images){
                     console.log("Should set the thing to ", [r.uri])
-                    setImages(images => ([r.uri]))
+                    let temp = [r.uri]
+                    setImages(temp)
                 }
                 else{
                     setImages([...images, r.uri]) 
@@ -165,6 +166,7 @@ const CameraPage = ({type}) => {
                         specific_pictures: images
                     })
                 }
+                console.log(images)
             }
         }
 

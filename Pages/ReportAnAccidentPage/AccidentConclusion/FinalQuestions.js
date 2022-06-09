@@ -538,7 +538,7 @@ const FinalQuestions = () => {
     return(
         <View>
             <Banner />
-            <ScrollView contentContainerStyle={{height: 'auto', paddingBottom: 200}}>
+            <ScrollView contentContainerStyle={{height: screenHeight}}>
                 {renderQ1()}
                 {renderQ2()}
                 {renderQ3()}
