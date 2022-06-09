@@ -154,7 +154,7 @@ const CameraPage = ({type}) => {
         const handleClickTakePicture = async () => {
             const r = await takePhoto()
             if (!r.cancelled) {
-                console.log(r)
+                // console.log(r)
                 setImages([...images, r.uri]) 
                 changeFunction({
                     ...changeValue,
@@ -323,6 +323,7 @@ const CameraPage = ({type}) => {
         // Renders the Pictures Taken
         const renderTakenPictures = () => {
             if (images.length > 0){
+                console.log(changeValue)
                 return(
                     <View>
                         {/* Title */}
@@ -367,8 +368,8 @@ const CameraPage = ({type}) => {
         // Renders the "No Pictures" Prompt when there are 0 images
         const renderNoPictures = () => {
             return (
-                <View style={{marginBottom: maxHeight * 0.25}}>
-                    <Text style={{...Styles.text, color: 'black'}}>You haven't taken any pictures</Text>
+                <View style={{marginBottom: maxHeight * 0.12, marginTop: maxHeight * 0.12}}>
+                    <Text style={{...Styles.text, color: '#888888', textAlign: 'center' }}>You haven't taken any pictures yet</Text>
                 </View>
                 
             )
@@ -489,6 +490,7 @@ const CameraPage = ({type}) => {
 const Styles = StyleSheet.create({
     title: {
         marginLeft: 30,
+        marginBottom: maxHeight * 0.02,
         width: maxWidth - 60,
         marginTop: 30,
         fontSize: 24,

@@ -280,6 +280,7 @@ const LOGIN = gql`
     mutedIds
     locked
     notified
+    token
     owner {
       id
       role

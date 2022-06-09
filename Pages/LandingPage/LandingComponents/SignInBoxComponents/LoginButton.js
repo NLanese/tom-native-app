@@ -113,7 +113,6 @@ const LoginButton = ({ userData, handleLoggedIn, checked }) => {
 
 		}).catch((error) => {
 			let errorMessage = error.toString().split("\n")[0]
-			console.log(errorMessage)
 			if (errorMessage === "Error: Error: No User exists with this email!"){
 				setErrorState({...errorState, email_login: "Incorrect Email"})
 			}

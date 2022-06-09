@@ -29,6 +29,7 @@ const CollisionAccidentInformation = () => {
 		setCollisionData(input);
     }
 
+    // Changes whether driver has the other drivers' license via picture
     const handleDriverLicense = (answer) => {
         if (answer === 'yes') {
             setDriverLicenseAnswer('yes')
@@ -39,10 +40,11 @@ const CollisionAccidentInformation = () => {
         } 
     }
 
+    // Renders the Questions if you do NOT have the drivers' license via picture
     const renderDriverLicense = () => {
         if (driverLicenseAnswer === 'no') {
             return (
-                <View>
+                <View style={{height: 'auto'}}>
                     <View style={{ marginTop: 20, }}>
                         
                             <View style={{marginLeft: 30, marginBottom: 10}}>
@@ -171,6 +173,7 @@ const CollisionAccidentInformation = () => {
         }
     }
 
+    // Renders the Insurance Picture Yes ot No
     const renderInsuranceInput = () => {
 
         if (q1 === 'no' || q2 === "no") {
@@ -241,8 +244,11 @@ const CollisionAccidentInformation = () => {
     }
 
  // ---------- INSURANCE------------
+
+    // Do you have the license via picture
     const [q2, setQ2] = useState("none")
 
+    // Dynamically styles the Button Outlines depending on clicked or not
     const determineOutline2 = (yesNo) => {
         if (yesNo == q2){
             if (yesNo == "yes"){
@@ -257,6 +263,7 @@ const CollisionAccidentInformation = () => {
         }
     }
 
+    // Dynamically Determines the Size of the Buttons depending on clicked or not
     const determineSize2 = (yesNo) => {
         if (yesNo == q2){
             if (yesNo == "yes"){
@@ -270,6 +277,7 @@ const CollisionAccidentInformation = () => {
             return RAACollisionInfoStyles.button
         }
     }
+
 
     const renderInsuranceInformationButtons = () => {
         if (q1 == "yes"){
@@ -706,45 +714,48 @@ const CollisionAccidentInformation = () => {
 
 // ------------ RENDER ------------
     return (
-        <ScrollView contentContainerStyle={{ height: "auto" }}>
-            <Banner />
-            <Text style={RAACollisionInfoStyles.questionText}>Who is legally at fault?</Text>
+        <View>
+             <Banner />
+             <ScrollView contentContainerStyle={{ height: "auto", paddingBottom: maxHeight * 0.3 }}>
+           
+                <Text style={RAACollisionInfoStyles.questionText}>Who is legally at fault?</Text>
 
-            <View style={{flexDirection: 'row', marginLeft: 30, width: maxWidth - 60, marginTop: 15}}>
-                <CheckBox
-                    checked={determineChecked("Other Party Hit Me")}
-                    onChange={() => handleCheck("Other Party Hit Me")}
-                >
-                    <Text>They are</Text>
-                </CheckBox>
-                <CheckBox
-                    style={{marginLeft: 20}}
-                    checked={determineChecked("I caused the accident")}
-                    onChange={() => handleCheck("I caused the accident")}
-                >
-                    <Text>I am</Text>
-                </CheckBox>
-                 <CheckBox
-                    style={{marginLeft: 20}}
-                    checked={determineChecked("Unsure")}
-                    onChange={() => handleCheck("Unsure")}
-                >
-                    <Text>Unsure</Text>
-                </CheckBox>
-            </View>
+                <View style={{flexDirection: 'row', marginLeft: 30, width: maxWidth - 60, marginTop: 15, height: 'auto'}}>
+                    <CheckBox
+                        checked={determineChecked("Other Party Hit Me")}
+                        onChange={() => handleCheck("Other Party Hit Me")}
+                    >
+                        <Text>They are</Text>
+                    </CheckBox>
+                    <CheckBox
+                        style={{marginLeft: 20}}
+                        checked={determineChecked("I caused the accident")}
+                        onChange={() => handleCheck("I caused the accident")}
+                    >
+                        <Text>I am</Text>
+                    </CheckBox>
+                        <CheckBox
+                        style={{marginLeft: 20}}
+                        checked={determineChecked("Unsure")}
+                        onChange={() => handleCheck("Unsure")}
+                    >
+                        <Text>Unsure</Text>
+                    </CheckBox>
+                </View>
 
-            {renderAccidentQuestions()}
+                {renderAccidentQuestions()}
 
-            {renderLicenseQuestion()}
+                {renderLicenseQuestion()}
 
-            {renderInsuranceInformationButtons()}
+                {renderInsuranceInformationButtons()}
 
-            {renderInsuranceInput()}
+                {renderInsuranceInput()}
 
-            {renderContinue()}
-          
-            
-        </ScrollView>
+                {renderContinue()}
+                
+                
+            </ScrollView>
+        </View>
     )
 }
 
