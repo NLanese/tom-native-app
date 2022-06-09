@@ -44,7 +44,7 @@ const CameraPage = ({type}) => {
         const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useRecoilState(mediaLibraryPermissionState)
         const [cameraType, setCameraType] = useState(Camera.Constants.Type.back)
         const [showCamera, setShowCamera] = useState(false)
-        const [images, setImages] = useState([])
+        const [images, setImages] = useState(false)
         const [imageIndex, setImageIndex] = useState(0)
         // const images = []
 
@@ -154,9 +154,10 @@ const CameraPage = ({type}) => {
         const handleClickTakePicture = async () => {
             const r = await takePhoto()
             if (!r.cancelled) {
-                // console.log(r)
-                if (images.length < 1){
-                    setImages([r.uri])
+                if (!images){
+                    console.log("Should set the thing to ", [r.uri])
+                    let temp = [r.uri]
+                    setImages(temp)
                 }
                 else{
                     setImages([...images, r.uri]) 
@@ -165,6 +166,7 @@ const CameraPage = ({type}) => {
                         specific_pictures: images
                     })
                 }
+                console.log(images)
             }
         }
 
@@ -327,8 +329,7 @@ const CameraPage = ({type}) => {
 
         // Renders the Pictures Taken
         const renderTakenPictures = () => {
-            if (images.length > 0){
-                console.log(changeValue)
+            if (images){
                 return(
                     <View>
                         {/* Title */}

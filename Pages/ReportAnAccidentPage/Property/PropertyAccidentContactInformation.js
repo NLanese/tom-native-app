@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { View, TouchableOpacity, Image, Text, Dimensions, StyleSheet, ScrollView } from 'react-native'
-import { Button, Input } from "@ui-kitten/components";
 
 import Banner from "../../../Global/Banner"
 import ContinueButton from "../../../Global/Buttons/ContinueButton";
 import DynamicInput from "../../../Components/DynamicInput";
-
-import { DRIVERCREATECOLLISIONACCIDENT } from "../../../GraphQL/operations";
-import { useMutation } from "@apollo/client";
 
 import { propertyDataState, accidentDataState } from "../../../Recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -31,7 +27,7 @@ const PropertyAccidentContactInformation = () => {
      const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
      // Tracks for the Done Button to appear
-     cosnt [answeredQs, setAnsweredQs] = useEffect({
+     const [answeredQs, setAnsweredQs] = useEffect({
          types: false,
          kind: false
      })
