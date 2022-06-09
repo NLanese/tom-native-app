@@ -28,6 +28,9 @@ const PropertyAccidentInformation = () => {
         // Tracks the running property state
         const [propertyData, setPropertyData] = useRecoilState(propertyDataState)
 
+        // Keeps Track of the height for the container scroll view
+        const [contHeight, setContHeight] = useState(200)
+
         ///////////////
         // Page Data //
         ///////////////
@@ -47,6 +50,8 @@ const PropertyAccidentInformation = () => {
             // Pulls the hash from Recoil to track things hit (already filled with values: false)
             const [thingsHit, setThingsHit] = useState(propertyData.damage_report.thingsHit)
 
+            // Sets a counter on how many prop types were damages
+            const [amtDam, setAmtDam] = useState(0)
 
             // Tracks whether damage happened inside or outside
             const [inOrOut, setInOrOut] = useState(propertyData.damage_report.inOrOut)
@@ -58,13 +63,11 @@ const PropertyAccidentInformation = () => {
                 gov: gov
             }
 
+            // The Test
             useEffect(() => {
-                
-                console.log("\n\n\nPACK, GOV, PERSONAL, GOT CHANGED, THIS SHOULD BE ADDED")
                 console.log(types_of_damage)
-                setPropertyData(propertyData => ({
-                    ...propertyData, types_of_damage: {...types_of_damage} }))
-            }, [pack, gov, personal])
+            })
+
 
    
 
@@ -229,10 +232,10 @@ const PropertyAccidentInformation = () => {
                             checked={pack}
                             style={Template.stackedCheck}
                             onChange={() => {
-                                // setPropertyData({
-                                //     ...propertyData,
-                                //     types_of_damage: {...propertyData.types_of_damage, pack: !pack}
-                                // })
+                                setPropertyData({
+                                    ...propertyData,
+                                    types_of_damage: {...propertyData.types_of_damage, pack: !pack}
+                                })
                                 setPack(!pack)
                             }}
                         >
@@ -243,10 +246,10 @@ const PropertyAccidentInformation = () => {
                             checked={personal}
                             style={Template.stackedCheck}
                             onChange={() => {
-                                // setPropertyData({
-                                //     ...propertyData,
-                                //     types_of_damage: {...propertyData.types_of_damage, personal: !personal}
-                                // })
+                                setPropertyData({
+                                    ...propertyData,
+                                    types_of_damage: {...propertyData.types_of_damage, personal: !personal}
+                                })
                                 setPersonal(!personal)
                             }}
                         >
@@ -257,10 +260,10 @@ const PropertyAccidentInformation = () => {
                             checked={gov}
                             style={Template.stackedCheck}
                             onChange={() => {
-                                // setPropertyData({
-                                //     ...propertyData,
-                                //     types_of_damage: {...propertyData.types_of_damage, gov: !gov}
-                                // })
+                                setPropertyData({
+                                    ...propertyData,
+                                    types_of_damage: {...propertyData.types_of_damage, gov: !gov}
+                                })
                                 setGov(!gov)
                             }}
                         >
@@ -292,6 +295,9 @@ const PropertyAccidentInformation = () => {
         // Based on your answers in part one and two, renders the next prompts
         const determineThird = () => {
             if (pack && (personal || gov)){
+                if (contHeight < 840){
+                    setContHeight(contHeight + 440)
+                }
                 return(whatProperty())
             }
             if (pack && !(personal || gov)){
@@ -323,6 +329,13 @@ const PropertyAccidentInformation = () => {
             if (pack && (gov || personal)){
                 if (thingsHit.length > 0){
                     if (inOrOut != null){
+                        setPropertyData({
+                            ...propertyData,
+                            damage_report: {
+                                ...propertyData.damage_report,
+                                types_of_damage: types_of_damage
+                            }
+                        })
                         return(
                             <View style={{marginLeft: 30, marginTop: 40}}>
                                 <ContinueButton nextPage={'property-accident-contact-information'} nextSite={"Property Accident Contact Info"} buttonText={'Done'} pageName={'property-accident-information-continue-button'} />
