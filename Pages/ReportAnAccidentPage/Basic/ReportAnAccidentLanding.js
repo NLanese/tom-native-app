@@ -20,61 +20,64 @@ import { geoLocation, userState } from "../../../Recoil/atoms"
 import { RAALandingStyles } from "../../../Styles/RAA/RAALanding";
 import { render } from "react-dom";
 
+let maxWidth = Dimensions.get('window').width
+let maxHeight = Dimensions.get('window').height
+
 
 
 const ReportAnAccidentLanding = () => {
+///////////////////////////
+///                     ///
+///     Preliminary     ///
+///                     ///
+///////////////////////////
   const navigation = useNavigation()
 
-  let maxWidth = Dimensions.get('window').width
-  let maxHeight = Dimensions.get('window').height
+  // With Location Enabled, accesses your geolocation
+  const [gLocation, setGeoLocation] = useRecoilState(geoLocation)
 
+  // Location. Either Attached to geoLocation or manually entered
+  const [location, setLocation] = useState(false);
 
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [address, setAddress] = useState(null);
+  // Error Message 
+  const [errorMsg, setErrorMsg] = useState(false);
+
+  // Address. Also assisted with geolocation
+  const [address, setAddress] = useState(false);
+
+  // User Info
   const [user, setUser] = useRecoilState(userState)
-
+    // User Name-- not username
     const name = nameObj(user.firstname, user.lastname)
 
 
+  // UseEffect to append Geolocation to individual states
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
 
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
 
-//----------------------------------------------------//
-//                                                    //
-//                       Location                     //
-//                                                    //
-//----------------------------------------------------//
+      const { coords } = await Location.getCurrentPositionAsync()
 
+      setLocation(coords)
 
+      if (coords) {
+        const { longitude, latitude } = coords
 
-const [gLocation, setGeoLocation] = useRecoilState(geoLocation)
-
-useEffect(() => {
-  (async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-
-    if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
-      return;
-    }
-
-    const { coords } = await Location.getCurrentPositionAsync()
-
-    setLocation(coords)
-
-    if (coords) {
-      const { longitude, latitude } = coords
-
-      const regionName = await Location.reverseGeocodeAsync({
-          longitude,
-          latitude,
-        });
-    
-        setAddress(regionName[0]);
-        setGeoLocation(regionName[0])
-    }
-  })();
-}, []);
+        const regionName = await Location.reverseGeocodeAsync({
+            longitude,
+            latitude,
+          });
+      
+          setAddress(regionName[0]);
+          setGeoLocation(regionName[0])
+      }
+    })();
+  }, []);
 
 
 //----------------------------------------------------//
