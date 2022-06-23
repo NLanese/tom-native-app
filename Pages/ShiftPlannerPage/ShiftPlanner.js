@@ -18,11 +18,11 @@ import Loading from "../../Global/Loading";
 import Gradient from "../../Components/Gradient";
 
 const ShiftPlanner = () => {
- //-------------------------------------------------------------//
- //                                                             //
- //                  PRELIMINARY STATES                         //
- //                                                             //
- //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+///////////////////////////
+///                     ///
+///     PRELIMINARY     ///
+///                     ///
+///////////////////////////
 
     // Dimensions
     let maxWidth= Dimensions.get('window').width
@@ -43,14 +43,14 @@ const ShiftPlanner = () => {
 
         const dayOfTheWeek = currentDate.dayOfWeek
 
-        const initShift  = user.shifts.find(shift => shift.date == currentDate.date)
+        const initShift  = user.shifts.find(shift => shift.date === currentDate.date)
         const [currentShift, setCurrentShift] = useState(initShift)
 
- //-------------------------------------------------------------//
- //                                                             //
- //                         HANDLERS                            //
- //                                                             //
- //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+///////////////////////////
+///                     ///
+///       HANDLERS      ///
+///                     ///
+///////////////////////////
 
     const handleDateChange = (add_or_subtract) => {
         let changer = 0
@@ -71,135 +71,124 @@ const ShiftPlanner = () => {
     }
 
 
- //-------------------------------------------------------------//
- //                                                             //
- //                     OTHER RENDER METHODS                    //
- //                                                             //
- //-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-V-//
+///////////////////////////
+///                     ///
+///      RENDERERS      ///
+///                     ///
+///////////////////////////
+
+
+    // Renders the blue gradient circle, which is clickable to change dates
+    const renderHollowActiveGradient = (add_or_sub) => {
+        let charBoy = ">"
+        if (add_or_sub === 'subtract'){
+            charBoy = "<"
+        }
+        return(
+            <TouchableOpacity onPress={() => handleDateChange(add_or_sub)}>
+                <Gradient
+                    colorOne="#534FFF"
+                    colorTwo="#15A1F1"
+                    style={{
+                        height: 35,
+                        width: 35,
+                        borderRadius: 17.5
+                    }}
+                    hollow={true}
+                    hollowColor={"#f2f2f2"}
+                    hollowBorderSize="medium"
+                    hollowStyles={{
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                >
+                    <Text style={ShiftPlannerStyles.arrowActive}>{charBoy}</Text>
+                </Gradient>
+            </TouchableOpacity>
+        )
+    }
+
+    // Renders the greyed circle, which cannot be clicked
+    const renderInactiveHollow = (add_or_sub) => {
+        let charBoy = ">"
+        if (add_or_sub === 'subtract'){
+            charBoy = "<"
+        }
+        return(
+            <View style={{
+                height: 35,
+                width: 35, 
+                borderRadius: 100,
+                borderColor: "#888",
+                borderWidth: 2,
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <Text style={ShiftPlannerStyles.arrowInactive}>{charBoy}</Text>
+            </View>
+        )
+    }
 
     // Renders the forward and backwards arrows, determines whether or not they are clickable
     const renderArrow = (frontOrBack) => {
         if (frontOrBack == "back"){
             if (daysAhead > 0){
-                return(
-                    <TouchableOpacity onPress={() => handleDateChange("subtract")}>
-                        <Gradient
-                            colorOne="#534FFF"
-                            colorTwo="#15A1F1"
-                            style={{
-                                height: 35,
-                                width: 35,
-                                borderRadius: 17.5
-                            }}
-                            hollow={true}
-                            hollowColor={"#f2f2f2"}
-                            hollowBorderSize="medium"
-                            hollowStyles={{
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <Text style={ShiftPlannerStyles.arrowActive}>{"<"}</Text>
-                        </Gradient>
-                    </TouchableOpacity>
-                )
+                return renderHollowActiveGradient("subtract")
             }
             else{
-                return(
-                    <View style={{
-                        height: 35,
-                        width: 35, 
-                        borderRadius: 100,
-                        borderColor: "#888",
-                        borderWidth: 2,
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                    <Text style={ShiftPlannerStyles.arrowInactive}>{"<"}</Text>
-                </View>
-                )
+                return renderInactiveHollow("subtract")
             }
         }
         else{
 
             if (daysAhead < 30){
-                return(
-                    <TouchableOpacity onPress={() => handleDateChange("add")}>
-                        <Gradient
-                            colorOne="#534FFF"
-                            colorTwo="#15A1F1"
-                            style={{
-                                height: 35,
-                                width: 35,
-                                borderRadius: 17.5
-                            }}
-                            hollow={true}
-                            hollowColor={"#f2f2f2"}
-                            hollowBorderSize="medium"
-                            hollowStyles={{
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <Text style={ShiftPlannerStyles.arrowActive}>{">"}</Text>
-                        </Gradient>
-                    </TouchableOpacity>
-                )
+                return renderHollowActiveGradient('add')
             }
             else{
-                return(
-                    <View
-                        style={{
-                            height: 35,
-                            width: 35, 
-                            borderRadius: 100,
-                            borderColor: "#888",
-                            borderWidth: 2,
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Text style={ShiftPlannerStyles.arrowInactive}>{">"}</Text>
-                    </View>
-                )
+                return renderInactiveHollow("add")
             }
         }
     }
 
+    // Renders the generated devices for the User's Shfit
     const renderShiftAssignments = () => {
-
-        const generateDeviceComponents = () => {
-            if (!currentShift || currentShift == 'undefined'){
-                return(
-                    <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>
-                        <Text style={{...ShiftPlannerStyles.subtitle, fontSize: 12, textAlign: 'center'}}>You do not have any assignments today</Text>
-                    </View>
-                )
-            }
-            else if (currentShift.date){
-                let allDevices = Object.keys(currentShift)
-                allDevices = allDevices.filter(deviceName => {
-                    if (deviceName != "date"){
-                        return deviceName
-                    }
-                })
-                return allDevices.map( (deviceName, index) => {
-                    return(
-                        <View style={{...ShiftPlannerStyles.cell, alignContent: 'center'}} key={index}>
-                            <Text style={ShiftPlannerStyles.valText}>{currentShift[deviceName]}</Text>
-                            <Text style={ShiftPlannerStyles.valTitle}>{deviceName} ID</Text>
-                        </View>
-                    )
-                })
-            }
-        }
-
         return (
             <View>
                 <View style={{alignItems: 'center'}}>
                     <Text style={{...ShiftPlannerStyles.subtitle2, fontSize: 14}}>ASSIGNNMENTS</Text>
                 </View>
                 {generateDeviceComponents()}
+            </View>
+        )
+    }
+
+    // Generates the Devices for the User's Shift
+    const generateDeviceComponents = () => {
+        if (!currentShift || currentShift == 'undefined'){
+            return renderNoShift()
+        }
+        else if (currentShift.date){
+            let allDevices = Object.keys(currentShift)
+            allDevices = allDevices.filter(deviceName => {
+                if (deviceName != "date"){
+                    return deviceName
+                }
+            })
+            return allDevices.map( (deviceName, index) => {
+                return(
+                    <View style={{...ShiftPlannerStyles.cell, alignContent: 'center'}} key={index}>
+                        <Text style={ShiftPlannerStyles.valText}>{currentShift[deviceName]}</Text>
+                        <Text style={ShiftPlannerStyles.valTitle}>{deviceName} ID</Text>
+                    </View>
+                )
+            })
+        }
+    }
+
+    const renderNoShift = () => {
+        return(
+            <View style={{justifyContent: 'center', alignItems: 'center', marginLeft: -28, width: 280}}>
+                <Text style={{...ShiftPlannerStyles.subtitle, fontSize: 12, textAlign: 'center'}}>You do not have any assignments today</Text>
             </View>
         )
     }
@@ -486,6 +475,7 @@ const ShiftPlanner = () => {
             </View>
         )
     } catch(error){
+        console.log(error)
         throw new Error("201")
     }
    

@@ -2,7 +2,7 @@
   "expo": {
     "name": "The Tom App",
     "slug": "the-tom-app",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "privacy": "public",
     "description": "In the development and testing phase",
     "orientation": "portrait",
