@@ -195,7 +195,7 @@ export default function App() {
                 >
                 <View style={AppStyles.container}>
                   <Stack.Navigator screenOptions={{headerShown: false}}>
-              
+            
                     {/* {loggedIn === false ? ( */}
                     <Stack.Screen name="/">
                       {props => <LandingPage {...props} handleLoggedIn={handleLoggedIn} rememberMe={rememberMe} setRememberMe={setRememberMe} />}
