@@ -69,7 +69,7 @@ const LoginScreen = ({ handleInput, handleLoggedIn, userData, rememberMe }) => {
                     />
                 </View>
 
-                {/* Forgot Password Button Space*/}
+                {/* Forgot Password Button Space */}
                 <View style={SignInBoxStyles.forgotPasswordSpace}>
                     <View style={SignInBoxStyles.divider} />
                     <View style={SignInBoxStyles.forgotBox}>
