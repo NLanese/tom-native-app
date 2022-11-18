@@ -15,7 +15,7 @@ import stateChange from '../../../../Hooks/handleToken'
 import { useNavigation } from '@react-navigation/native';
 
 
-const SignupButton = ({ userData, handleLoggedIn }) => {
+const SignupButton = ({ userData, handleLoggedIn, rememberMe }) => {
 	const navigation = useNavigation()
 
 // ---------------------------- Mutations ---------------------------- //
@@ -27,6 +27,7 @@ const SignupButton = ({ userData, handleLoggedIn }) => {
 		try {
 			await AsyncStorage.setItem('@email', userData.email)
 			await AsyncStorage.setItem('@password', userData.password)
+			await AsyncStorage.setItem('@remember', rememberMe)
 		} catch (e) {
 			console.log(e)
 		}
