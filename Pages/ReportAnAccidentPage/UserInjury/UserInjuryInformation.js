@@ -55,8 +55,8 @@ const UserInjuryInformation = ({accident}) => {
         "Head", "Neck", "Shoulder(s)", 
         "Chest", "Stomach", "Back", 
         "Hips", "Waist", "Groin", 
-        "Arm[s]", "Hand[s]", "Elbow[s]", 
-        "Leg[s]", "Knee[s]", "Foot",
+        "Arm[s]", "Hand[s]", "Ankle[s]", 
+        "Leg[s]", "Knee[s]", "Foot/Feet",
     ]
 
     // Tracks the selected injuries
